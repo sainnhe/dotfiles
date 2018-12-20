@@ -653,6 +653,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite'
     Plug 'chemzqm/denite-git'
     Plug 'ozelentok/denite-gtags'
     Plug 'notomo/denite-keymap'
+    Plug 'tjmmm/denite-man'
     if g:VIM_Linter ==# 'ale'
         Plug 'iyuuya/denite-ale'
     elseif g:VIM_Linter ==# 'neomake'
@@ -700,6 +701,7 @@ Plug 'ianva/vim-youdao-translater'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'metakirby5/codi.vim'
+Plug 'nhooyr/neoman.vim', { 'on': [ 'Nman', 'Snman', 'Vnman', 'Tnman' ] }
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
             \| au BufNewFile,BufRead *.html,*.css call Func_emmet_vim()
@@ -763,6 +765,7 @@ call g:quickmenu#append('Multiple Cursors', 'call Help_vim_multiple_cursors()', 
 call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 's')
 call g:quickmenu#append('VIM Surround', 'call Help_vim_surround()', '', '', 0, 'r')
 call g:quickmenu#append('MatchTagAlways', 'call Help_MatchTagAlways()', '', '', 0, 'M')
+call g:quickmenu#append('neoman', 'call Help_neoman()', '', '', 0, 'h')
 "}}}
 " User Interface
 "{{{lightline.vim
@@ -1520,7 +1523,7 @@ let g:signify_vcs_cmds_diffmode = {
 " :LeadingSpaceToggle  切换显示Leading Space
 " :IndentLinesToggle  切换显示indentLine
 "}}}
-let g:ExcludeIndentFileType_Universal = [ 'startify', 'defx', 'codi', 'help' ]
+let g:ExcludeIndentFileType_Universal = [ 'startify', 'defx', 'codi', 'help', 'man', 'neoman' ]
 let g:ExcludeIndentFileType_Special = [ 'markdown', 'json' ]
 let g:indentLine_enabled = 1
 let g:indentLine_leadingSpaceEnabled = 0
@@ -2282,6 +2285,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite'
     call g:quickmenu#append('      Location List', 'Denite location_list', '', '', 0, 'i')
     call g:quickmenu#append('      Quickfix', 'Denite quickfix', '', '', 0, 'q')
     call g:quickmenu#append('      Grep', 'Denite grep', '', '', 0, 'G')
+    call g:quickmenu#append('      Man', 'Denite man', '', '', 0, '$')
     call g:quickmenu#append('      Help Mappings', 'call Help_denite_mappings()', '', '', 0, '?')
     "}}}
     "{{{mappings
@@ -3049,6 +3053,27 @@ let g:codi#width = 40
 let g:codi#rightsplit = 1
 let g:codi#rightalign = 0
 "}}}
+" "{{{neoman.vim
+" neoman.vim-usage
+function! Help_neoman()
+    echo 'Nman " display man page for <cWORD>'
+    echo 'Nman [sect] page'
+    echo 'Nman page[(sect)]'
+    echo 'Nman path " if in current directory, start path with ./'
+    echo ':Nman printf'
+    echo ':Nman 3 printf'
+    echo ':Nman printf(3)'
+    echo ':Nman ./fzf.1 " open manpage in current directory'
+    echo ''
+    echo 'Commands'
+    echo 'Nman Snman Vnman Tnman'
+    echo ''
+    echo 'Mappings'
+    echo '<C-]>  jump to a manpage under the cursor'
+    echo '<C-t>  jump back to the previous man page'
+    echo 'q  quit'
+endfunction
+" "}}}
 "{{{emmet-vim
 "{{{emmet-vim-usage
 " https://blog.zfanw.com/zencoding-vim-tutorial-chinese/
