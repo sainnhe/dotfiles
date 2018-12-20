@@ -243,7 +243,7 @@ endif
 " ; 绑定到 :
 nnoremap ; :
 " Ctrl+S保存文件
-nnoremap <C-S> <Esc>:w<CR>
+nnoremap <C-S> :<C-u>w<CR>
 " Shift加方向键加速移动
 nnoremap <S-up> <Esc>5<up>zz
 nnoremap <S-down> <Esc>5<down>zz
@@ -255,33 +255,33 @@ nnoremap x "_x
 nnoremap <A-BS> <Esc><left>v0"_d
 " Ctrl+T新建tab
 if g:VIM_Explore ==# 'defx'
-    nnoremap <silent> <C-T> <Esc>:tabnew<CR>:call DefxStartify()<CR>
+    nnoremap <silent> <C-T> :<C-u>tabnew<CR>:call DefxStartify()<CR>
 elseif g:VIM_Explore ==# 'nerdtree'
-    nnoremap <silent> <C-T> <Esc>:tabnew<CR>:call NerdtreeStartify()<CR>
+    nnoremap <silent> <C-T> :<C-u>tabnew<CR>:call NerdtreeStartify()<CR>
 endif
 " Ctrl+W关闭当前标签
-nnoremap <silent> <C-W> <Esc>:call CloseOnLastTab()<CR>
+nnoremap <silent> <C-W> :<C-u>call CloseOnLastTab()<CR>
 " Ctrl+左右切换tab
 nnoremap <C-left> <Esc>gT
 nnoremap <C-right> <Esc>gt
 " Ctrl+上下切换到第一个、最后一个tab
-nnoremap <silent> <C-up> <Esc>:tabfirst<CR>
-nnoremap <silent> <C-down> <Esc>:tablast<CR>
+nnoremap <silent> <C-up> :<C-u>tabfirst<CR>
+nnoremap <silent> <C-down> :<C-u>tablast<CR>
 " Alt+上下左右可以在窗口之间跳转
-nnoremap <silent> <A-left> <Esc>:wincmd h<CR>
-nnoremap <silent> <A-right> <Esc>:wincmd l<CR>
-nnoremap <silent> <A-up> <Esc>:wincmd k<CR>
-nnoremap <silent> <A-down> <Esc>:wincmd j<CR>
+nnoremap <silent> <A-left> :<C-u>wincmd h<CR>
+nnoremap <silent> <A-right> :<C-u>wincmd l<CR>
+nnoremap <silent> <A-up> :<C-u>wincmd k<CR>
+nnoremap <silent> <A-down> :<C-u>wincmd j<CR>
 " Alt+W关闭窗口
-nnoremap <silent> <A-w> <Esc>:q<CR>
+nnoremap <silent> <A-w> :<C-u>q<CR>
 " Alt+V && Alt+H新建窗口
-nnoremap <silent> <A-v> <Esc>:vsp<CR>
-nnoremap <silent> <A-h> <Esc>:sp<CR>
+nnoremap <silent> <A-v> :<C-u>vsp<CR>
+nnoremap <silent> <A-h> :<C-u>sp<CR>
 " Alt+-<>调整窗口大小
-nnoremap <silent> <A-=> <Esc>:wincmd +<CR>
-nnoremap <silent> <A--> <Esc>:wincmd -<CR>
-nnoremap <silent> <A-,> <Esc>:wincmd <<CR>
-nnoremap <silent> <A-.> <Esc>:wincmd ><CR>
+nnoremap <silent> <A-=> :<C-u>wincmd +<CR>
+nnoremap <silent> <A--> :<C-u>wincmd -<CR>
+nnoremap <silent> <A-,> :<C-u>wincmd <<CR>
+nnoremap <silent> <A-.> :<C-u>wincmd ><CR>
 " z+方向键快速跳转
 nnoremap z<left> zk
 nnoremap z<right> zj
@@ -299,8 +299,8 @@ nnoremap zd zd
 " zn创建新的折叠，并yard当前行的内容
 nmap zn $vbda<Space><CR><Space><CR><Space><ESC>v<up><up>zfa<Backspace><down><right><Backspace><down><right><Backspace><up><up><Esc>A
 " zs保存折叠视图，zl加载折叠视图
-nnoremap zs :mkview<CR>
-nnoremap zl :loadview<CR>
+nnoremap zs :<C-u>mkview<CR>
+nnoremap zl :<C-u>loadview<CR>
 "}}}
 "{{{InsertMode
 " Ctrl+Space进入普通模式
@@ -311,7 +311,7 @@ endif
 " Ctrl+V粘贴
 inoremap <C-V> <ESC>pa
 " Ctrl+S保存文件
-inoremap <C-S> <ESC>:w<CR>a
+inoremap <C-S> :<C-u>w<CR>a
 " Ctrl+Z撤销上一个动作
 inoremap <C-Z> <ESC>ua
 " Ctrl+R撤销撤销的动作
@@ -326,10 +326,10 @@ inoremap <S-down> <down><down><down><down><down>
 inoremap <S-left> <ESC>I
 inoremap <S-right> <ESC>A
 " Alt+上下左右可以在窗口之间跳转
-inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
-inoremap <silent> <A-right> <Esc>:wincmd l<CR>i
-inoremap <silent> <A-up> <Esc>:wincmd k<CR>i
-inoremap <silent> <A-down> <Esc>:wincmd j<CR>i
+inoremap <silent> <A-left> :<C-u>wincmd h<CR>i
+inoremap <silent> <A-right> :<C-u>wincmd l<CR>i
+inoremap <silent> <A-up> :<C-u>wincmd k<CR>i
+inoremap <silent> <A-down> :<C-u>wincmd j<CR>i
 "}}}
 "{{{VisualMode
 " Ctrl+Space进入普通模式
@@ -340,7 +340,7 @@ endif
 " ; 绑定到 :
 vnoremap ; :
 " Ctrl+S保存文件
-vnoremap <C-S> <ESC>:w<CR>v
+vnoremap <C-S> :<C-u>w<CR>v
 " x删除字符但不保存到剪切板
 vnoremap x "_x
 " Shift+方向键快速移动
@@ -356,7 +356,7 @@ if !has('nvim')
     cmap ^@ <ESC>
 endif
 " Ctrl+S保存
-cmap <C-S> <ESC>:w<CR>
+cmap <C-S> :<C-u>w<CR>
 "}}}
 "{{{TerminalMode
 if has('nvim')
@@ -1426,7 +1426,7 @@ if g:VIM_Explore ==# 'defx'
                     \ |   call DefxStartify()
                     \ | endif
         " on Enter
-        autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers)<Esc>:call ToggleDefx()<CR>
+        autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):<C-u>call ToggleDefx()<CR>
     augroup END
 elseif g:VIM_Explore ==# 'nerdtree'
     function! NerdtreeStartify()
@@ -2665,7 +2665,7 @@ if g:VIM_Explore ==# 'defx'
     function! ToggleDefx()
         execute 'Defx -toggle -auto-cd -buffer-name="Explore" -split=vertical -winwidth=35 -direction=topleft -fnamewidth=19 -columns=mark:icons:filename:git:size:time'
     endfunction
-    nnoremap <silent> <C-B> <Esc>:call ToggleDefx()<CR>
+    nnoremap <silent> <C-B> :<C-u>call ToggleDefx()<CR>
     let g:defx_icons_enable_syntax_highlight = 1
     let g:defx_icons_column_length = 1
     let g:defx_icons_directory_icon = ''
@@ -2722,15 +2722,15 @@ if g:VIM_Explore ==# 'defx'
                     \ defx#async_action('redraw')
         nnoremap <silent><buffer> <S-left> <Plug>(defx-git-prev)
         nnoremap <silent><buffer> <S-right> <Plug>(defx-git-next)
-        nnoremap <silent><buffer> <C-p> :echo getcwd(0,tabpagenr())<CR>
-        nnoremap <silent><buffer> <A-b> :call Toggle_bufexplore()<CR>
-        nnoremap <silent><buffer> f :call DefxFuzzyFind()<CR>
-        nnoremap <silent><buffer> ? :call Help_defx()<CR>
+        nnoremap <silent><buffer> <C-p> :<C-u>echo getcwd(0,tabpagenr())<CR>
+        nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_bufexplore()<CR>
+        nnoremap <silent><buffer> f :<C-u>call DefxFuzzyFind()<CR>
+        nnoremap <silent><buffer> ? :<C-u>call Help_defx()<CR>
     endfunction
     "}}}
     "{{{nerdtree
 elseif g:VIM_Explore ==# 'nerdtree'
-    nnoremap <silent> <C-B> <Esc>:NERDTreeToggle<CR>
+    nnoremap <silent> <C-B> :<C-u>NERDTreeToggle<CR>
     augroup NERDTreeAu
         autocmd!
         " open NERDTree automatically when vim starts up on opening a directory
@@ -2774,8 +2774,8 @@ endfunction
 " Use Default Mappings
 let g:bufExplorerDisableDefaultKeyMapping=1
 function! s:bufexplore_mappings() abort
-    nnoremap <silent><buffer> <A-b> :call Toggle_bufexplore()<CR>
-    nnoremap <silent><buffer> <C-b> :q<CR>
+    nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_bufexplore()<CR>
+    nnoremap <silent><buffer> <C-b> :<C-u>q<CR>
     nmap <silent><buffer> ? <F1>
 endfunction
 let g:bufExplorerShowTabBuffer=1 " 只显示当前tab的buffer
@@ -2790,7 +2790,7 @@ let g:bufExplorerSortBy='mru'        " Sort by most recently used.
 " let g:bufExplorerSortBy='number'     " Sort by the buffer's number.
 "}}}
 "{{{tagbar
-nnoremap <silent><A-b> <Esc>:call ToggleTagbar()<CR>
+nnoremap <silent><A-b> :<C-u>call ToggleTagbar()<CR>
 let g:TagBarLoad = 0
 function! ToggleTagbar()
     if g:TagBarLoad == 0
@@ -2976,7 +2976,7 @@ let g:bookmark_auto_close = 1
 let g:bookmark_no_default_key_mappings = 1
 nmap <Leader>bb <Plug>BookmarkToggle
 nmap <Leader>ba <Plug>BookmarkAnnotate
-nmap <silent> <Leader>bs :call VIM_Bookmarks_FuzzyFinder()<CR>
+nmap <silent> <Leader>bs :<C-u>call VIM_Bookmarks_FuzzyFinder()<CR>
 nmap <Leader>b<down> <Plug>BookmarkNext
 nmap <Leader>b<left> <Plug>BookmarkPrev
 nmap <Leader>bc <Plug>BookmarkClear
@@ -2985,7 +2985,7 @@ nmap <Leader>bC <Plug>BookmarkClearAll
 nmap <Leader>b<up> <Plug>BookmarkMoveUp
 nmap <Leader>b<down> <Plug>BookmarkMoveDown
 nmap <Leader>b<Tab> <Plug>BookmarkMoveToLine
-nmap <silent> <Leader>b? :call Help_vim_bookmarks()<CR>
+nmap <silent> <Leader>b? :<C-u>call Help_vim_bookmarks()<CR>
 "}}}
 "{{{suda.vim
 "{{{suda.vim-usage
@@ -3037,24 +3037,24 @@ nnoremap <silent> <leader>T :<C-u>Yde<CR>
 let g:comfortable_motion_no_default_key_mappings = 1
 let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
-nnoremap <silent> <S-pagedown> :call comfortable_motion#flick(200)<CR>
-nnoremap <silent> <S-pageup> :call comfortable_motion#flick(-200)<CR>
-inoremap <silent> <S-pagedown> <Esc>:call comfortable_motion#flick(100)<CR>a
-inoremap <silent> <S-pageup> <Esc>:call comfortable_motion#flick(-100)<CR>a
-vnoremap <silent> <S-pagedown> <Esc>:call comfortable_motion#flick(150)<CR>v
-vnoremap <silent> <S-pageup> <Esc>:call comfortable_motion#flick(-150)<CR>v
+nnoremap <silent> <S-pagedown> :<C-u>call comfortable_motion#flick(200)<CR>
+nnoremap <silent> <S-pageup> :<C-u>call comfortable_motion#flick(-200)<CR>
+inoremap <silent> <S-pagedown> :<C-u>call comfortable_motion#flick(100)<CR>a
+inoremap <silent> <S-pageup> :<C-u>call comfortable_motion#flick(-100)<CR>a
+vnoremap <silent> <S-pagedown> :<C-u>call comfortable_motion#flick(150)<CR>v
+vnoremap <silent> <S-pageup> :<C-u>call comfortable_motion#flick(-150)<CR>v
 "}}}
 "{{{vim-smooth-scroll
-nnoremap <silent> <S-up> :call smooth_scroll#up(&scroll/2, 10, 2)<CR>
-nnoremap <silent> <S-down> :call smooth_scroll#down(&scroll/2, 10, 2)<CR>
+nnoremap <silent> <S-up> :<C-u>call smooth_scroll#up(&scroll/2, 10, 2)<CR>
+nnoremap <silent> <S-down> :<C-u>call smooth_scroll#down(&scroll/2, 10, 2)<CR>
 "}}}
 "{{{codi.vim
 let g:codi#width = 40
 let g:codi#rightsplit = 1
 let g:codi#rightalign = 0
 "}}}
-" "{{{neoman.vim
-" neoman.vim-usage
+" {{{neoman.vim
+" {{{neoman.vim-usage
 function! Help_neoman()
     echo 'Nman " display man page for <cWORD>'
     echo 'Nman [sect] page'
@@ -3069,11 +3069,31 @@ function! Help_neoman()
     echo 'Nman Snman Vnman Tnman'
     echo ''
     echo 'Mappings'
-    echo '<C-]>  jump to a manpage under the cursor'
-    echo '<C-t>  jump back to the previous man page'
+    echo '<Tab>  jump to a manpage under the cursor'
+    echo '<S-Tab>  jump back to the previous man page'
+    echo '<leader>mr  阅读模式'
+    echo 'f  搜索行'
+    echo '?  显示帮助'
     echo 'q  quit'
 endfunction
-" "}}}
+" }}}
+function! s:neoman_mappings() abort
+    if g:VIM_Fuzzy_Finder ==# 'denite'
+        nnoremap <silent><buffer> f :<C-u>Denite line:buffer<CR>
+    elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+        nnoremap <silent><buffer> f :<C-u>BLines<CR>
+    elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
+        nnoremap <silent><buffer> f :<C-u>LeaderfLine<CR>
+    endif
+    nnoremap <silent><buffer> ? :<C-u>call Help_neoman()<CR>
+    nmap <silent><buffer> <Tab> <C-]>
+    nmap <silent><buffer> <S-Tab> <C-t>
+endfunction
+augroup NeomanAu
+    autocmd!
+    autocmd FileType neoman call s:neoman_mappings()
+augroup END
+" }}}
 "{{{emmet-vim
 "{{{emmet-vim-usage
 " https://blog.zfanw.com/zencoding-vim-tutorial-chinese/
@@ -3104,7 +3124,7 @@ function! Help_MatchTagAlways()
 endfunction
 "}}}
 function! Func_MatchTagAlways()
-    inoremap <silent><A-j> <Esc>:MtaJumpToOtherTag<CR>i
-    nnoremap <silent><A-j> <Esc>:MtaJumpToOtherTag<CR>
+    inoremap <silent><A-j> :<C-u>MtaJumpToOtherTag<CR>i
+    nnoremap <silent><A-j> :<C-u>MtaJumpToOtherTag<CR>
 endfunction
 "}}}
