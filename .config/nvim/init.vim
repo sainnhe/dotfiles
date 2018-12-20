@@ -28,16 +28,17 @@ endif
 "{{{Todo
 " https://github.com/search?p=21&q=vim&ref=opensearch&s=stars&type=Repositories
 "}}}
+let g:VIM_AutoInstall = 1
 let g:VIM_LSP_Client = 'lcn'  " lcn vim-lsp
 let g:VIM_Snippets = 'ultisnips'  " ultisnips neosnippet
 let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc neocomplete
 let g:VIM_Fuzzy_Finder = 'denite'  " denite fzf leaderf
 let g:VIM_Linter = 'ale' | let g:EnableCocLint = 0  " ale neomake
 let g:VIM_Explore = 'defx'  " defx nerdtree
+" :UpdateRemotePlugins
 if exists('*VIM_Global_Settings')
     call VIM_Global_Settings()
 endif
-" :UpdateRemotePlugins
 "}}}
 "{{{VimConfig
 "{{{Functions
@@ -443,10 +444,15 @@ augroup vim_plug_mapping
 augroup END
 
 " automatically install missing plugins on startup
-" autocmd VimEnter *
-"             \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-"             \|   PlugInstall --sync | q
-"             \| endif
+if g:VIM_AutoInstall == 1
+    augroup vim_plug_auto_install
+        autocmd!
+        autocmd VimEnter *
+                    \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+                    \|   PlugInstall --sync | q
+                    \| endif
+    augroup END
+endif
 
 " Press 'H' to open help docs
 function! s:plug_doc()
@@ -537,30 +543,22 @@ Plug 'Badacadabra/vim-archery'
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'yuttie/hydrangea-vim'
 Plug 'yuttie/inkstained-vim'
-Plug 'soft-aesthetic/soft-era-vim'
 Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'nightsense/stellarized'
 Plug 'tomasr/molokai'
+Plug 'ayu-theme/ayu-vim'
 Plug 'whatyouhide/vim-gotham'
-Plug 'reedes/vim-colors-pencil'
 Plug 'blueshirts/darcula'
-Plug 'josuegaleas/jay'
 Plug 'kaicataldo/material.vim'
 Plug 'fcpg/vim-fahrenheit'
 Plug 'fcpg/vim-farout'
 Plug 'fcpg/vim-orbital'
-
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'nightsense/forgotten'
 Plug 'nightsense/nemo'
 Plug 'Marfisc/vorange'
-Plug 'schickele/vim'
-Plug 'nightsense/seabird'  " bg
-Plug 'nightsense/seabird'  " bg
-Plug 'ayu-theme/ayu-vim'  " bg let ayucolor='light' mirage dark
-Plug 'jaimebuelta/jaime-vim-colorscheme'
-Plug 'goatslacker/mango.vim'  " bg
-Plug 'hzchirs/vim-material'  " https://github.com/hzchirs/vim-material
+Plug 'hzchirs/vim-material'
 "}}}
 
 " Productivity
@@ -917,7 +915,7 @@ let g:lightline.component_type = {
             \ }
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'nemo'
+let g:VIM_Color_Scheme = 'ayu'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -937,23 +935,23 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('zenburn', 'call SwitchColorScheme("zenburn")', '', '', 0, '')
     "}}}
+    "{{{quantum
+    if g:VIM_Color_Scheme ==# 'quantum'
+        set background=dark
+        let g:quantum_black=1
+        let g:quantum_italics=1
+        colorscheme quantum
+        let g:lightline.colorscheme = 'quantum'
+    endif
+    call g:quickmenu#append('quantum', 'call SwitchColorScheme("quantum")', '', '', 0, '')
+    "}}}
     "{{{vorange
     if g:VIM_Color_Scheme ==# 'vorange'
         set background=dark
         colorscheme vorange
-        let g:lightline.colorscheme = 'jay'
+        let g:lightline.colorscheme = 'fahrenheit'
     endif
     call g:quickmenu#append('vorange', 'call SwitchColorScheme("vorange")', '', '', 0, '')
-    "}}}
-    "{{{material
-    if g:VIM_Color_Scheme ==# 'material'
-        set background=dark
-        let g:material_theme_style = 'dark'
-        let g:material_terminal_italics = 1
-        colorscheme material
-        let g:lightline.colorscheme = 'material_vim'
-    endif
-    call g:quickmenu#append('material', 'call SwitchColorScheme("material")', '', '', 0, '')
     "}}}
     "{{{darcula
     if g:VIM_Color_Scheme ==# 'darcula'
@@ -983,20 +981,21 @@ function! ColorScheme()
     "}}}
     "{{{tender
     if g:VIM_Color_Scheme ==# 'tender'
+        set background=dark
         colorscheme tender
-        let g:lightline.colorscheme = 'nord'
+        let g:material_theme_style = 'dark'
+        let g:lightline.colorscheme = 'material_vim'
     endif
     call g:quickmenu#append('tender', 'call SwitchColorScheme("tender")', '', '', 0, '')
     "}}}
-    "{{{quantum
-    if g:VIM_Color_Scheme ==# 'quantum'
+    "{{{palenight
+    if g:VIM_Color_Scheme ==# 'palenight'
+        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
         set background=dark
-        let g:quantum_black=1
-        let g:quantum_italics=1
-        colorscheme quantum
-        let g:lightline.colorscheme = 'quantum'
+        colorscheme palenight
+        let g:lightline.colorscheme = 'deepspace'
     endif
-    call g:quickmenu#append('quantum', 'call SwitchColorScheme("quantum")', '', '', 0, '')
+    call g:quickmenu#append('palenight', 'call SwitchColorScheme("palenight")', '', '', 0, '')
     "}}}
     "{{{iceberg
     if g:VIM_Color_Scheme ==# 'iceberg'
@@ -1063,19 +1062,14 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('github', 'call SwitchColorScheme("github")', '', '', 0, '')
     "}}}
-    "{{{pencil
-    if g:VIM_Color_Scheme ==# 'pencil'
-        let g:pencil_higher_contrast_ui = 0   " 0=low (def), 1=high
-        let g:pencil_neutral_headings = 0   " 0=blue (def), 1=normal
-        let g:pencil_neutral_code_bg = 1   " 0=gray (def), 1=normal
-        let g:pencil_gutter_color = 1      " 0=mono (def), 1=color
-        let g:pencil_spell_undercurl = 1       " 0=underline, 1=undercurl (def)
-        let g:pencil_terminal_italics = 1
+    "{{{ayu
+    if g:VIM_Color_Scheme ==# 'ayu'
+        let g:ayucolor = 'light'
         set background=light
-        let g:lightline.colorscheme = 'snow_light'
-        colorscheme pencil
+        colorscheme ayu
+        let g:lightline.colorscheme = 'one'
     endif
-    call g:quickmenu#append('pencil', 'call SwitchColorScheme("pencil")', '', '', 0, '')
+    call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu")', '', '', 0, '')
     "}}}
     "{{{inkstained
     if g:VIM_Color_Scheme ==# 'inkstained'
@@ -1083,13 +1077,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'inkstained'
     endif
     call g:quickmenu#append('inkstained', 'call SwitchColorScheme("inkstained")', '', '', 0, '')
-    "}}}
-    "{{{soft-era
-    if g:VIM_Color_Scheme ==# 'soft-era'
-        colorscheme soft-era
-        let g:lightline.colorscheme = 'inkstained'
-    endif
-    call g:quickmenu#append('soft-era', 'call SwitchColorScheme("soft-era")', '', '', 0, '')
     "}}}
     "{{{nemo
     if g:VIM_Color_Scheme ==# 'nemo'
@@ -1109,14 +1096,31 @@ function! ColorScheme()
     "}}}
     "{{{onehalf*
     if g:VIM_Color_Scheme ==# 'onehalf-dark'
+        set background=dark
         colorscheme onehalfdark
         let g:lightline.colorscheme = 'one'
     elseif g:VIM_Color_Scheme ==# 'onehalf-light'
+        set background=light
         colorscheme onehalflight
-        let g:lightline.colorscheme = 'snow_light'
+        let g:lightline.colorscheme = 'one'
     endif
     call g:quickmenu#append('onehalf-dark', 'call SwitchColorScheme("onehalf-dark")', '', '', 0, '')
     call g:quickmenu#append('onehalf-light', 'call SwitchColorScheme("onehalf-light")', '', '', 0, '')
+    "}}}
+    "{{{material*
+    if g:VIM_Color_Scheme ==# 'material-dark'
+        set background=dark
+        let g:material_theme_style = 'dark'
+        let g:material_terminal_italics = 1
+        colorscheme material
+        let g:lightline.colorscheme = 'material_vim'
+    elseif g:VIM_Color_Scheme ==# 'material-light'
+        set background=light
+        colorscheme vim-material
+        let g:lightline.colorscheme = 'snow_light'
+    endif
+    call g:quickmenu#append('material-dark', 'call SwitchColorScheme("material-dark")', '', '', 0, '')
+    call g:quickmenu#append('material-light', 'call SwitchColorScheme("material-light")', '', '', 0, '')
     "}}}
     "{{{snow*
     if g:VIM_Color_Scheme ==# 'snow-dark'
@@ -1142,10 +1146,10 @@ function! ColorScheme()
     endif
     if g:VIM_Color_Scheme ==# 'seoul256-light'
         " 252 (darkest) ~ 256 (lightest)
-        let g:seoul256_background = 254
+        let g:seoul256_background = 252
         colo seoul256
         set background=light
-        let g:lightline.colorscheme = 'inkstained'
+        let g:lightline.colorscheme = 'Tomorrow'
     endif
     call g:quickmenu#append('seoul256-dark', 'call SwitchColorScheme("seoul256-dark")', '', '', 0, '')
     call g:quickmenu#append('seoul256-light', 'call SwitchColorScheme("seoul256-light")', '', '', 0, '')
@@ -1188,19 +1192,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('Tomorrow-dark', 'call SwitchColorScheme("Tomorrow-dark")', '', '', 0, '')
     call g:quickmenu#append('Tomorrow-light', 'call SwitchColorScheme("Tomorrow-light")', '', '', 0, '')
-    "}}}
-    "{{{jay*
-    if g:VIM_Color_Scheme ==# 'jay-light'
-        set background=light
-        colorscheme jay
-        let g:lightline.colorscheme = 'jay'
-    elseif g:VIM_Color_Scheme ==# 'jay-dark'
-        set background=dark
-        colorscheme jay
-        let g:lightline.colorscheme = 'jay'
-    endif
-    call g:quickmenu#append('jay-dark', 'call SwitchColorScheme("jay-dark")', '', '', 0, '')
-    call g:quickmenu#append('jay-light', 'call SwitchColorScheme("jay-light")', '', '', 0, '')
     "}}}
     "{{{Atelier**
     "{{{Atelier_Cave*
@@ -2266,7 +2257,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite'
     call g:quickmenu#append('      Buffer', 'Denite buffer -default-action="switch"', '', '', 0, 'b')
     call g:quickmenu#append('      Buffer!', 'Denite buffer', '', '', 0, 'B')
     call g:quickmenu#append('      File MRU', 'Denite file_mru', '', '', 0, 'f')
-    call g:quickmenu#append('      File Manager', 'Denite file_rec', '', '', 0, 'F')
+    call g:quickmenu#append('      File', 'Denite file_rec', '', '', 0, 'F')
     call g:quickmenu#append('      Marks', 'Denite mark', '', '', 0, 'm')
     call g:quickmenu#append('      Directory MRU', 'Denite directory_mru', '', '', 0, 'd')
     call g:quickmenu#append('      Directory', 'Denite directory_rec', '', '', 0, 'D')
