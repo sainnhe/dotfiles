@@ -31,7 +31,7 @@ endif
 let g:VIM_AutoInstall = 1
 let g:VIM_LSP_Client = 'lcn'  " lcn vim-lsp
 let g:VIM_Snippets = 'ultisnips'  " ultisnips neosnippet
-let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc neocomplete
+let g:VIM_Completion_Framework = 'deoplete'  " deoplete ncm2 asyncomplete coc neocomplete
 let g:VIM_Fuzzy_Finder = 'denite'  " denite fzf leaderf
 let g:VIM_Linter = 'ale' | let g:EnableCocLint = 0  " ale neomake
 let g:VIM_Explore = 'defx'  " defx nerdtree
@@ -512,7 +512,7 @@ augroup PlugDiffExtra
 augroup END
 
 call plug#begin('~/.vim/plugins')
-if !has('nvim')
+if !has('nvim') && has('python3')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
@@ -583,6 +583,7 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'Shougo/context_filetype.vim'
     Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains bash ./install.sh' }
     Plug 'Shougo/neco-vim', { 'for': 'vim' }
+    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
     Plug 'Shougo/deoplete-clangx', { 'for': [ 'c', 'cpp' ] }
     Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp' ] }
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
@@ -601,6 +602,7 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     Plug 'ncm2/ncm2-jedi'
     Plug 'ncm2/ncm2-markdown-subscope', { 'for': 'markdown' }
     Plug 'ncm2/ncm2-vim', { 'for': 'vim' } | Plug 'Shougo/neco-vim', { 'for': 'vim' }
+    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
     if g:VIM_LSP_Client ==# 'vim-lsp'
         Plug 'ncm2/ncm2-vim-lsp'
     endif
@@ -615,6 +617,7 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     Plug 'Shougo/neco-syntax' | Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
     Plug 'Shougo/neoinclude.vim' | Plug 'kyouryuukunn/asyncomplete-neoinclude.vim'
     Plug 'Shougo/neco-vim', { 'for': 'vim' } | Plug 'prabirshrestha/asyncomplete-necovim.vim', { 'for': 'vim' }
+    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
     if g:VIM_LSP_Client ==# 'vim-lsp'
         Plug 'prabirshrestha/asyncomplete-lsp.vim'
     endif
@@ -641,6 +644,7 @@ elseif g:VIM_Completion_Framework ==# 'neocomplete'
     Plug 'Shougo/neco-vim'
     Plug 'Shougo/neco-syntax'
     Plug 'ujihisa/neco-look'
+    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
 endif
 Plug 'wsdjeg/FlyGrep.vim', { 'on': 'FlyGrep' }
 if g:VIM_Fuzzy_Finder ==# 'denite'
@@ -1805,6 +1809,7 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     " https://github.com/zchee/deoplete-clang
     " deoplete-jedi
     " https://github.com/zchee/deoplete-jedi
+    let g:tmuxcomplete#trigger = ''
     "}}}
     let g:deoplete#enable_at_startup = 0
     augroup Deoplete_Au
@@ -1891,6 +1896,9 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     " Symbol
     let g:ncm2_look_mark = "\uf02d"
     "}}}
+    "{{{tmux-complete.vim
+    let g:tmuxcomplete#trigger = ''
+    "}}}
     "}}}
     augroup NCM2_Config
         autocmd!
@@ -1965,6 +1973,19 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
                         \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
                         \ }))
         endif
+        let g:tmuxcomplete#asyncomplete_source_options = {
+                    \ 'name':      'tmuxcomplete',
+                    \ 'whitelist': ['*'],
+                    \ 'config': {
+                    \     'splitmode':      'words',
+                    \     'filter_prefix':   1,
+                    \     'show_incomplete': 1,
+                    \     'sort_candidates': 0,
+                    \     'scrollback':      0,
+                    \     'truncate':        0
+                    \     }
+                    \ }
+        let g:tmuxcomplete#trigger = ''
     endfunction
     "}}}
     "{{{coc.nvim
@@ -2097,6 +2118,7 @@ elseif g:VIM_Completion_Framework ==# 'neocomplete'
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     augroup END
     let g:UltiSnipsExpandTrigger            = '<C-l>'
+    let g:tmuxcomplete#trigger = ''
     inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : neocomplete#start_manual_complete()."\<C-n>"
     inoremap <expr> <down> pumvisible() ? neocomplete#smart_close_popup()."\<down>" : "\<down>"
