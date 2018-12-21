@@ -11,7 +11,7 @@ endif
 "{{{Manual
 " sudo pacman -S python-neovim
 " 安装软件包:
-" lua boost xclip words the_silver_searcher fzf ctags global toilet toilet-fonts nodejs yarn php
+" lua boost xclip words ripgrep fzf ctags global toilet toilet-fonts nodejs yarn php
 " astyle tidy eslint stylelint prettier shfmt js-beautify cppcheck nodejs-jsonlint shellcheck python-vint stylelint-config-standard(npm)
 " yapf python-pyflakes python-pycodestyle python-pydocstyle python-pylint
 " :call Install_COC_Sources()  "  function里包含了json的额外设置
@@ -32,7 +32,7 @@ let g:VIM_AutoInstall = 1
 let g:VIM_LSP_Client = 'lcn'  " lcn vim-lsp
 let g:VIM_Snippets = 'ultisnips'  " ultisnips neosnippet
 let g:VIM_Completion_Framework = 'deoplete'  " deoplete ncm2 asyncomplete coc neocomplete
-let g:VIM_Fuzzy_Finder = 'denite'  " denite fzf leaderf
+let g:VIM_Fuzzy_Finder = 'remix'  " remix denite fzf leaderf
 let g:VIM_Linter = 'ale' | let g:EnableCocLint = 0  " ale neomake
 let g:VIM_Explore = 'defx'  " defx nerdtree
 " :UpdateRemotePlugins
@@ -229,14 +229,15 @@ if !has('nvim')
     execute "set <M-=>=\e="
     execute "set <M-b>=\eb"
     execute "set <M-z>=\ez"
+    execute "set <M-c>=\ec"
     execute "set <M-g>=\eg"
     execute "set <M-n>=\en"
     execute "set <M-p>=\ep"
 endif
 "}}}
 "{{{NormalMode
-" Ctrl+Space进入普通模式
-nnoremap <C-SPACE> <ESC>
+" Alt+C进入普通模式
+nnoremap <A-c>> <ESC>
 if !has('nvim')
     nnoremap ^@ <ESC>
 endif
@@ -303,15 +304,15 @@ nnoremap zs :<C-u>mkview<CR>
 nnoremap zl :<C-u>loadview<CR>
 "}}}
 "{{{InsertMode
-" Ctrl+Space进入普通模式
-inoremap <C-SPACE> <ESC><right>
+" Alt+C进入普通模式
+inoremap <A-c> <ESC><right>
 if !has('nvim')
     inoremap ^@ <ESC>
 endif
 " Ctrl+V粘贴
 inoremap <C-V> <ESC>pa
 " Ctrl+S保存文件
-inoremap <C-S> :<C-u>w<CR>a
+inoremap <C-S> <Esc>:w<CR>a
 " Ctrl+Z撤销上一个动作
 inoremap <C-Z> <ESC>ua
 " Ctrl+R撤销撤销的动作
@@ -326,14 +327,14 @@ inoremap <S-down> <down><down><down><down><down>
 inoremap <S-left> <ESC>I
 inoremap <S-right> <ESC>A
 " Alt+上下左右可以在窗口之间跳转
-inoremap <silent> <A-left> :<C-u>wincmd h<CR>i
-inoremap <silent> <A-right> :<C-u>wincmd l<CR>i
-inoremap <silent> <A-up> :<C-u>wincmd k<CR>i
-inoremap <silent> <A-down> :<C-u>wincmd j<CR>i
+inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
+inoremap <silent> <A-right> <Esc>:wincmd l<CR>i
+inoremap <silent> <A-up> <Esc>:wincmd k<CR>i
+inoremap <silent> <A-down> <Esc>:wincmd j<CR>i
 "}}}
 "{{{VisualMode
-" Ctrl+Space进入普通模式
-vnoremap <C-SPACE> <ESC>
+" Alt+C进入普通模式
+vnoremap <A-c>> <ESC>
 if !has('nvim')
     vnoremap ^@ <ESC>
 endif
@@ -350,8 +351,8 @@ vnoremap <S-left> 0
 vnoremap <S-right> $<left>
 "}}}
 "{{{CommandMode
-" Ctrl+Space进入普通模式
-cmap <C-SPACE> <ESC>
+" Alt+C进入普通模式
+cmap <A-c> <ESC>
 if !has('nvim')
     cmap ^@ <ESC>
 endif
@@ -360,8 +361,8 @@ cmap <C-S> :<C-u>w<CR>
 "}}}
 "{{{TerminalMode
 if has('nvim')
-    " Ctrl+Space返回普通模式
-    tnoremap <C-Space> <C-\><C-n>
+    " Alt+C进入普通模式
+    tnoremap <A-c> <C-\><C-n>
     " Shift+方向键加速移动
     tnoremap <S-down> <C-E>
     tnoremap <S-up> <C-A>
@@ -646,8 +647,7 @@ elseif g:VIM_Completion_Framework ==# 'neocomplete'
     Plug 'ujihisa/neco-look'
     Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
 endif
-Plug 'wsdjeg/FlyGrep.vim', { 'on': 'FlyGrep' }
-if g:VIM_Fuzzy_Finder ==# 'denite'
+if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins'}
     Plug 'raghur/fruzzy', {'do': { -> fruzzy#install()}}
     Plug 'nixprime/cpsm', { 'do': 'bash ./install.sh' }
@@ -663,10 +663,12 @@ if g:VIM_Fuzzy_Finder ==# 'denite'
     elseif g:VIM_Linter ==# 'neomake'
         Plug 'mhartington/denite-neomake'
     endif
-elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+endif
+if g:VIM_Fuzzy_Finder ==# 'fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'fszymanski/fzf-quickfix'
-elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
+endif
+if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
     Plug 'Yggdroot/LeaderF-marks'
 endif
@@ -685,12 +687,12 @@ if g:VIM_Explore ==# 'defx'
     Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'kristijanhusak/defx-git'
     Plug 'kristijanhusak/defx-icons'
-    Plug 'jlanzarotta/bufexplorer'
 elseif g:VIM_Explore ==# 'nerdtree'
     Plug 'scrooloose/nerdtree'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'ryanoasis/vim-devicons'
 endif
+Plug 'jlanzarotta/bufexplorer'
 Plug 'majutsushi/tagbar', { 'on': [] }
 Plug 'lvht/tagbar-markdown', { 'on': [] }
 Plug 'Chiel92/vim-autoformat'
@@ -745,7 +747,6 @@ let g:startify_commands = [
 call quickmenu#current(0)
 call quickmenu#reset()
 nnoremap <silent> <leader><Space> :call quickmenu#toggle(0)<cr>
-vnoremap <silent> <leader><Space> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
 if g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('COC Menu', 'call quickmenu#toggle(6)', '', '', 0, '`')
@@ -755,6 +756,7 @@ call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
 call g:quickmenu#append('Format', 'call quickmenu#toggle(7)', '', '', 0, 'f')
 call g:quickmenu#append('IndentGuides', 'call ToggleIndentGuides()', '', '', 0, 'i')
+call g:quickmenu#append('BufExplore', 'ToggleBufExplorer', '', '', 0, 'b')
 call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
 call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
 call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
@@ -1488,10 +1490,10 @@ nmap <leader>gj <plug>(signify-next-hunk)
 nmap <leader>gk <plug>(signify-prev-hunk)
 nmap <leader>gJ 9999<leader>gj
 nmap <leader>gK 9999<leader>gk
-nnoremap <leader>gt :SignifyToggle<CR>
-nnoremap <leader>gh :SignifyToggleHighlight<CR>
-nnoremap <leader>gr :SignifyRefresh<CR>
-nnoremap <leader>gd :SignifyDebug<CR>
+nnoremap <leader>gt :<C-u>SignifyToggle<CR>
+nnoremap <leader>gh :<C-u>SignifyToggleHighlight<CR>
+nnoremap <leader>gr :<C-u>SignifyRefresh<CR>
+nnoremap <leader>gd :<C-u>SignifyDebug<CR>
 omap ic <plug>(signify-motion-inner-pending)
 xmap ic <plug>(signify-motion-inner-visual)
 omap ac <plug>(signify-motion-outer-pending)
@@ -1564,7 +1566,7 @@ endfunction
 " <leader>mf  toggle focus mode
 "}}}
 let g:limelight_default_coefficient = 0.7
-nnoremap <leader>mf :Limelight!!<CR>
+nnoremap <leader>mf :<C-u>Limelight!!<CR>
 "}}}
 "{{{goyo.vim
 "{{{goyo.vim-usage
@@ -1578,7 +1580,7 @@ augroup Goyo_Config
     autocmd! User GoyoEnter Limelight
     autocmd! User GoyoLeave Limelight!
 augroup END
-nnoremap <leader>mr :Goyo<CR>
+nnoremap <leader>mr :<C-u>Goyo<CR>
 "}}}
 "{{{golden-ratio
 "{{{golden-ratio-usage
@@ -1617,9 +1619,9 @@ if g:VIM_LSP_Client ==# 'lcn'
     " Interface
     " let g:LanguageClient_selectionUI = 'fzf'  " fzf quickfix location-list
     " Mappings
-    vnoremap <silent> lf :call LanguageClient#textDocument_rangeFormatting()<CR>
-    nnoremap <silent> l :call quickmenu#toggle(4)<CR>
-    if g:VIM_Fuzzy_Finder ==# 'denite'
+    vnoremap <silent> lf :<C-u>call LanguageClient#textDocument_rangeFormatting()<CR>
+    nnoremap <silent> l :<C-u>call quickmenu#toggle(4)<CR>
+    if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
         call quickmenu#current(4)
         call quickmenu#reset()
         call g:quickmenu#append('# LSC', '')
@@ -1740,7 +1742,7 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
                     \ 'whitelist': ['sh'],
                     \ })
     augroup END
-    nnoremap <silent> l :call quickmenu#toggle(4)<CR>
+    nnoremap <silent> l :<C-u>call quickmenu#toggle(4)<CR>
     call quickmenu#current(4)
     call quickmenu#reset()
     call g:quickmenu#append('# LSC', '')
@@ -1760,7 +1762,7 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
     call g:quickmenu#append('Stop LSC', 'call lsp#disable()', '', '', 0, '#')
     call g:quickmenu#append('NextError', 'LspNextError', 'Jump to Next err diagnostics', '', 0, '<down>')
     call g:quickmenu#append('PreviousError', 'LspPreviousError', 'Jump to Previous err diagnostics', '', 0, '<up>')
-    vnoremap lf :LspDocumentRangeFormat<CR>
+    vnoremap lf :<C-u>LspDocumentRangeFormat<CR>
 endif
 "}}}
 "{{{ultisnips
@@ -2026,21 +2028,21 @@ elseif g:VIM_Completion_Framework ==# 'coc'
             autocmd!
             autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
         augroup END
-        nnoremap <silent> l :call quickmenu#toggle(5)<CR>
-        vnoremap <silent> lf :call CocActionAsync('format')<CR>
+        nnoremap <silent> l :<C-u>call quickmenu#toggle(5)<CR>
+        vnoremap <silent> lf :<C-u>call CocActionAsync('format')<CR>
         let g:CurrentLSC = 5
         function! Toggle_LSC()
             if g:CurrentLSC == 4
                 let g:CurrentLSC = 5
-                nnoremap <silent> l :call quickmenu#toggle(5)<CR>
-                vnoremap <silent> lf :call CocActionAsync('format')<CR>
+                nnoremap <silent> l :<C-u>call quickmenu#toggle(5)<CR>
+                vnoremap <silent> lf :<C-u>call CocActionAsync('format')<CR>
             elseif g:CurrentLSC == 5
                 let g:CurrentLSC = 4
-                nnoremap <silent> l :call quickmenu#toggle(4)<CR>
+                nnoremap <silent> l :<C-u>call quickmenu#toggle(4)<CR>
                 if g:VIM_LSP_Client ==# 'lcn'
-                    vnoremap <silent> lf :call LanguageClient#textDocument_rangeFormatting()<CR>
+                    vnoremap <silent> lf :<C-u>call LanguageClient#textDocument_rangeFormatting()<CR>
                 elseif g:VIM_LSP_Client ==# 'vim-lsp'
-                    vnoremap lf :LspDocumentRangeFormat<CR>
+                    vnoremap lf :<C-u>LspDocumentRangeFormat<CR>
                 endif
             endif
         endfunction
@@ -2127,7 +2129,7 @@ elseif g:VIM_Completion_Framework ==# 'neocomplete'
 endif
 "}}}
 "{{{denite.nvim
-if g:VIM_Fuzzy_Finder ==# 'denite'
+if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
     "{{{denite.nvim-usage
     " f  cwd search
     " F  pwd search
@@ -2141,7 +2143,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite'
         echo '<C-k>           <denite:move_to_previous_line>'
         echo '<S-left>        <denite:move_caret_to_head>'
         echo '<S-right>       <denite:move_caret_to_tail>'
-        echo '<C-Space>       <denite:enter_mode:normal>'
+        echo '<A-c>       <denite:enter_mode:normal>'
         echo '<C-v>           <denite:paste_from_register>'
         echo '<C-p>           <denite:do_action:preview>'
         echo '<C-d>           <denite:do_action:delete>'
@@ -2266,9 +2268,12 @@ if g:VIM_Fuzzy_Finder ==# 'denite'
     " :h denite-options
     call quickmenu#current(1)
     call quickmenu#reset()
-    noremap <silent> f :call quickmenu#toggle(1)<cr>
+    if g:VIM_Fuzzy_Finder ==# 'denite'
+        noremap <silent> f :call quickmenu#toggle(1)<cr>
+    elseif g:VIM_Fuzzy_Finder ==# 'remix'
+        noremap <silent> F :call quickmenu#toggle(1)<cr>
+    endif
     call g:quickmenu#append('# Denite', '')
-    call g:quickmenu#append('      Fly Grep', 'FlyGrep', '', '', 0, "\uf1d9")
     call g:quickmenu#append('      Source', 'Denite source', '', '', 0, '#')
     if g:VIM_Linter ==# 'ale'
         call g:quickmenu#append('      Lint', 'Denite ale', '', '', 0, '>')
@@ -2306,8 +2311,8 @@ if g:VIM_Fuzzy_Finder ==# 'denite'
     call g:quickmenu#append('      Project', 'Denite project', '', '', 0, 'p')
     call g:quickmenu#append('      Location List', 'Denite location_list', '', '', 0, 'i')
     call g:quickmenu#append('      Quickfix', 'Denite quickfix', '', '', 0, 'q')
-    call g:quickmenu#append('      Grep', 'Denite grep', '', '', 0, 'G')
     call g:quickmenu#append('      Man', 'Denite man', '', '', 0, '$')
+    call g:quickmenu#append('      Grep', 'Denite grep', '', '', 0, 'G')
     call g:quickmenu#append('      Help Mappings', 'call Help_denite_mappings()', '', '', 0, '?')
     "}}}
     "{{{mappings
@@ -2326,7 +2331,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite'
                 \)
     call denite#custom#map(
                 \ 'insert',
-                \ '<C-Space>',
+                \ '<A-c>',
                 \ '<denite:enter_mode:normal>',
                 \ 'noremap'
                 \)
@@ -2379,11 +2384,11 @@ if g:VIM_Fuzzy_Finder ==# 'denite'
     augroup END
     let g:fruzzy#usenative = 1
     " Customize Var
-    call denite#custom#var('grep', 'command', ['ag'])
+    call denite#custom#var('grep', 'command', ['rg'])
     call denite#custom#var('grep', 'default_opts',
-                \ ['-i', '--vimgrep', '-a', '--hidden'])
+                \ ['-i', '--vimgrep', '--no-heading'])
     call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
     call denite#custom#var('grep', 'separator', ['--'])
     call denite#custom#var('grep', 'final_opts', [])
     call denite#custom#var('outline', 'command', ['ctags'])
@@ -2401,14 +2406,15 @@ if g:VIM_Fuzzy_Finder ==# 'denite'
     " :h denite-source-attributes
     " :h denite-filters
     call denite#custom#source('_', 'matchers', ['matcher/cpsm'])  " matcher/fuzzy matcher/fruzzy matcher/cpsm
-    call denite#custom#source('_', 'sorters', ['sorter/sublime'])  " sorter/sublime (sorter/rank)
+    call denite#custom#source('_', 'sorters', [''])  " sorter/sublime (sorter/rank)
     " if in git dir, git ls-files for file/rec
     call denite#custom#alias('source', 'file/rec/git', 'file/rec')
     call denite#custom#var('file/rec/git', 'command',
                 \ ['git', 'ls-files', '-co', '--exclude-standard'])
-    "}}}
-    "{{{fzf.vim
-elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+endif
+"}}}
+"{{{fzf.vim
+if g:VIM_Fuzzy_Finder ==# 'fzf'
     "{{{fzf.vim-usage
     " f  search
     " grep中用<C-p>预览
@@ -2418,7 +2424,6 @@ elseif g:VIM_Fuzzy_Finder ==# 'fzf'
     call quickmenu#reset()
     noremap <silent> f :call quickmenu#toggle(1)<cr>
     call g:quickmenu#append('# FZF', '')
-    call g:quickmenu#append(' Fly Grep', 'Ag', '', '', 0, "\uf1d9")
     call g:quickmenu#append(' Line Buffer', 'BLines', '', '', 0, 'l')
     call g:quickmenu#append(' Line All', 'Lines', '', '', 0, 'L')
     call g:quickmenu#append(' MRU', 'History', '', '', 0, 'f')
@@ -2438,6 +2443,7 @@ elseif g:VIM_Fuzzy_Finder ==# 'fzf'
     call g:quickmenu#append('Git Commits Buffer', 'BCommits', '', '', 0, 'gc')
     call g:quickmenu#append('Git Commits All', 'Commits', '', '', 0, 'gC')
     call g:quickmenu#append(' Commands', 'Commands', '', '', 0, 'c')
+    call g:quickmenu#append(' Grep', 'Rg', '', '', 0, 'G')
     call g:quickmenu#append(' Help', 'Helptags', '', '', 0, 'H')
     "}}}
     "{{{functions
@@ -2505,61 +2511,102 @@ elseif g:VIM_Fuzzy_Finder ==# 'fzf'
                 \   <bang>0 ? fzf#vim#with_preview('up:60%')
                 \           : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
                 \   <bang>0)
-    "}}}
-    "{{{LeaderF
-elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
+endif
+"}}}
+"{{{LeaderF
+if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     "{{{LeaderF-usage
     " f  search
     function Help_LeaderF()
-        echo "<leader>f  呼出帮助窗口\n"
-        echo "<C-C> 或 ESC 退出Leaderf\n"
-        echo "<C-V>  从剪切板粘贴\n"
-        echo "<C-U>  清空输入框\n"
-        echo "<C-J>, <C-K>  移动光标\n"
-        echo "<up> <down>  历史记录\n"
-        echo "<C-R>     switch between fuzzy search mode and regex mode\n"
-        echo "<C-F>     switch between full path search mode and name only search mode\n"
-        echo "<CR>  打开\n"
-        echo "<C-T>  新建Tab打开\n"
-        echo "<C-S>  选择多个文件\n"
-        echo "<C-A>  选择全部文件\n"
-        echo "<C-L>  取消选中\n"
-        echo "<Home>, <End>  跳转到行开头或末尾\n"
-        echo "<C-P>  预览\n"
-        echo '<F5>  刷新'
+        echo '<Tab>  切换到普通模式'
+        echo '<C-c> <Esc>  退出'
+        echo '<C-r>  在Fuzzy和Regex模式间切换'
+        echo '<C-f>  在FullPath和NameOnly模式间切换'
+        echo '<C-v>  从剪切板粘贴'
+        echo '<C-u>  清空输入框'
+        echo '<CR> <C-X> <C-]> <C-t>  在当前窗口、新的水平窗口、新的竖直窗口、新的tab中打开'
+        echo '<F5>  刷新缓存'
+        echo '<C-s>  选择多个文件'
+        echo '<C-a>  选择所有文件'
+        echo '<C-l>  清空选择'
+        echo '<C-p>  预览'
+        echo '<S-left>  光标移到最左端'
+        echo '<S-right>  光标移到最右端'
+        echo '.  切换搜索隐藏文件的变量(normal mode)'
+        echo '?  呼出帮助窗口(normal mode)'
+        echo ''
+        echo 'Commands'
+        echo '-i, --ignore-case'
+        echo '-s, --case-sensitive'
+        echo '--no-ignore'
+        echo '--no-ignore-parent'
+        echo '-t <TYPE>..., --type <TYPE>...'
+        echo '-T <TYPE>..., --type-not <TYPE>...'
     endfunction
     "}}}
     "{{{quickmenu
-    call quickmenu#current(1)
-    call quickmenu#reset()
-    noremap <silent> f :call quickmenu#toggle(1)<cr>
+    if g:VIM_Fuzzy_Finder ==# 'leaderf'
+        call quickmenu#current(1)
+        call quickmenu#reset()
+        noremap <silent> f :call quickmenu#toggle(1)<cr>
+    elseif g:VIM_Fuzzy_Finder ==# 'remix'
+        call quickmenu#current(2)
+        call quickmenu#reset()
+        noremap <silent> f :call quickmenu#toggle(2)<cr>
+    endif
     call g:quickmenu#append('# LeaderF', '')
-    call g:quickmenu#append('Fly Grep', 'FlyGrep', '', '', 0, "\uf1d9")
-    call g:quickmenu#append('Line', 'LeaderfLine', 'Search Line in Current Buffer', '', 0, 'l')
-    call g:quickmenu#append('Line All', 'LeaderfLineAll', 'Search Line in All Buffers', '', 0, 'L')
-    call g:quickmenu#append('Buffer', 'LeaderfBuffer', 'Search Buffers, "open" as default action', '', 0, 'B')
-    call g:quickmenu#append('MRU', 'LeaderfMru', 'Search MRU files', '', 0, 'f')
-    call g:quickmenu#append('File', 'LeaderfFile', 'Search files', '', 0, 'F')
-    call g:quickmenu#append('Tags', 'LeaderfBufTag', 'Search Tags in Current Buffer', '', 0, 't')
-    call g:quickmenu#append('Tags All', 'LeaderfBufTagAll', 'Search Tags in All Buffers', '', 0, 'T')
-    call g:quickmenu#append('History Command', 'LeaderfHistoryCmd', 'Search History Commands', '', 0, 'hc')
-    call g:quickmenu#append('History Search', 'LeaderfHistorySearch', 'Search History Searching', '', 0, 'hs')
-    call g:quickmenu#append('Marks', 'LeaderfMarks', 'Search Marks', '', 0, 'm')
-    call g:quickmenu#append('Help Docs', 'LeaderfHelp', 'Search Help Docs', '', 0, 'H')
+    call g:quickmenu#append('Line', 'Leaderf line --smart-case', 'Search Line in Current Buffer', '', 0, 'l')
+    call g:quickmenu#append('Line All', 'Leaderf line --all --smart-case', 'Search Line in All Buffers', '', 0, 'L')
+    call g:quickmenu#append('Buffer', 'Leaderf buffer --smart-case', 'Search Buffers, "open" as default action', '', 0, 'B')
+    call g:quickmenu#append('MRU', 'Leaderf mru --smart-case', 'Search MRU files', '', 0, 'f')
+    call g:quickmenu#append('File', 'Leaderf file --nameOnly --smart-case', 'Search files', '', 0, 'F')
+    call g:quickmenu#append('Directory', 'Leaderf file --fullPath --smart-case', 'Search directorys', '', 0, 'D')
+    call g:quickmenu#append('Tags', 'Leaderf bufTag --smart-case', 'Search Tags in Current Buffer', '', 0, 't')
+    call g:quickmenu#append('Tags All', 'Leaderf bufTag --all --smart-case', 'Search Tags in All Buffers', '', 0, 'T')
+    call g:quickmenu#append('History Command', 'Leaderf cmdHistory --smart-case', 'Search History Commands', '', 0, 'hc')
+    call g:quickmenu#append('History Search', 'Leaderf searchHistory --smart-case', 'Search History Searching', '', 0, 'hs')
+    call g:quickmenu#append('Marks', 'Leaderf marks --smart-case', 'Search Marks', '', 0, 'm')
+    call g:quickmenu#append('Help Docs', 'Leaderf help --smart-case', 'Search Help Docs', '', 0, 'H')
+    call g:quickmenu#append('Grep', 'Leaderf rg --smart-case', '', '', 0, 'G')
     call g:quickmenu#append('Leaderf Help', 'call Help_LeaderF()', 'Leaderf Help', '', 0, '?')
     "}}}
-    " let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
-    let g:Lf_DefaultExternalTool = 'ag'
+    "{{{ToggleLfHiddenVar()
+    function! ToggleLfHiddenVar()
+        if g:Lf_ShowHidden == 0
+            let g:Lf_ShowHidden = 1
+        elseif g:Lf_ShowHidden == 1
+            let g:Lf_ShowHidden = 0
+        endif
+    endfunction
+    "}}}
+    let g:Lf_DefaultMode = 'Fuzzy' " NameOnly FullPath Fuzzy Regex   :h g:Lf_DefaultMode
+    let g:Lf_WorkingDirectoryMode = 'ac'  " g:Lf_WorkingDirectoryMode
+    let g:Lf_RootMarkers = ['.git', '.hg', '.svn']
+    let g:Lf_ShowHidden = 0  " search hidden files
+    let g:Lf_FollowLinks = 1  " expand symbol link
+    let g:Lf_RecurseSubmodules = 1  " show git submodules
+    let g:Lf_DefaultExternalTool = 'rg'  " 'rg', 'pt', 'ag', 'find'
     let g:Lf_StlColorscheme = 'one'  " /home/sainnhe/.vim/plugins/LeaderF/autoload/leaderf/colorscheme
     let g:Lf_StlSeparator = { 'left': '', 'right': '' }
-    let g:Lf_ShortcutF = '```zw'  " mapping for searching files
-    let g:Lf_ShortcutB = '````1cv'  " mapping for searching buffers
     let g:Lf_WindowPosition = 'bottom'  " top bottom left right
     let g:Lf_WindowHeight = 0.4
-    let g:Lf_DefaultMode = 'FullPath' " NameOnly FullPath Fuzzy Regex   :h g:Lf_DefaultMode
-    let g:Lf_WorkingDirectoryMode = 'Ac'
-    let g:Lf_CacheDirectory = '/home/sainnhe/.cache/'
-    let g:Lf_PreviewCode = 1  " preview code
+    let g:Lf_CursorBlink = 1
+    let g:Lf_CacheDirectory = expand('~/.cache/')
+    let g:Lf_NeedCacheTime = 0.5
+    " let g:Lf_WildIgnore = {
+    "         \ 'dir': ['.svn','.git','.hg'],
+    "         \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+    "         \}
+    " let g:Lf_MruFileExclude = ['*.so']
+    " let g:Lf_MruWildIgnore = {
+    "         \ 'dir': [],
+    "         \ 'file': []
+    "         \}
+    " let g:Lf_CtagsFuncOpts = {
+    "         \ 'c': '--c-kinds=fp',
+    "         \ 'rust': '--rust-kinds=f',
+    "         \ }
+    let g:Lf_PreviewCode = 1  " preview code when navigating the tags
     let g:Lf_PreviewResult = {
                 \ 'File': 1,
                 \ 'Buffer': 1,
@@ -2569,6 +2616,22 @@ elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
                 \ 'Function': 1,
                 \ 'Line': 1,
                 \ 'Colorscheme': 0
+                \}
+    let g:Lf_CommandMap = {'<Home>': ['<S-left>'], '<End>': ['<S-right>']}
+    let g:Lf_ShortcutF = '```zw'  " mapping for searching files
+    let g:Lf_ShortcutB = '````1cv'  " mapping for searching buffers
+    let g:Lf_NormalMap = {
+                \ 'File':   [['.', ':call ToggleLfHiddenVar()<CR>'], ['?', ':call Help_LeaderF()<CR>']],
+                \ 'Buffer': [['.', ':call ToggleLfHiddenVar()<CR>'], ['?', ':call Help_LeaderF()<CR>']],
+                \ 'Mru':    [['.', ':call ToggleLfHiddenVar()<CR>'], ['?', ':call Help_LeaderF()<CR>']],
+                \ 'Tag':    [['.', ':call ToggleLfHiddenVar()<CR>'], ['?', ':call Help_LeaderF()<CR>']],
+                \ 'BufTag': [['.', ':call ToggleLfHiddenVar()<CR>'], ['?', ':call Help_LeaderF()<CR>']],
+                \ 'Function': [['.', ':call ToggleLfHiddenVar()<CR>'], ['?', ':call Help_LeaderF()<CR>']],
+                \ 'Line':   [['.', ':call ToggleLfHiddenVar()<CR>'], ['?', ':call Help_LeaderF()<CR>']],
+                \ 'History':[['.', ':call ToggleLfHiddenVar()<CR>'], ['?', ':call Help_LeaderF()<CR>']],
+                \ 'Help':   [['.', ':call ToggleLfHiddenVar()<CR>'], ['?', ':call Help_LeaderF()<CR>']],
+                \ 'Self':   [['.', ':call ToggleLfHiddenVar()<CR>'], ['?', ':call Help_LeaderF()<CR>']],
+                \ 'Colorscheme': [['.', ':call ToggleLfHiddenVar()<CR>'], ['?', ':call Help_LeaderF()<CR>']]
                 \}
 endif
 "}}}
@@ -2592,9 +2655,9 @@ if g:VIM_Linter ==# 'ale'
                 \       'vim': ['vint'],
                 \}
     "查看上一个错误
-    nmap <silent> <leader><up> <Plug>(ale_previous_wrap)
+    nnoremap <silent> <leader><up> <Plug>(ale_previous_wrap)
     "查看下一个错误
-    nmap <silent> <leader><down> <Plug>(ale_next_wrap)
+    nnoremap <silent> <leader><down> <Plug>(ale_next_wrap)
     "自定义error和warning图标
     let g:ale_sign_error = "\uf65b"
     let g:ale_sign_warning = "\uf421"
@@ -2679,7 +2742,7 @@ if g:VIM_Explore ==# 'defx'
             execute 'Denite file_rec directory_rec'
         elseif g:VIM_Fuzzy_Finder ==# 'fzf'
             execute 'Files'
-        elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
+        elseif g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
             execute 'LeaderfFile'
         endif
     endfunction
@@ -2700,7 +2763,7 @@ if g:VIM_Explore ==# 'defx'
         autocmd!
         autocmd bufenter * if (winnr("$") == 1 && exists("b:defx")) | q | endif
         autocmd FileType defx call s:defx_my_settings()
-        autocmd FileType bufexplorer call s:bufexplore_mappings()
+        autocmd FileType bufexplorer call s:bufexplore_defx_mappings()
     augroup END
     function! s:defx_my_settings() abort
         " Define Mappings
@@ -2709,7 +2772,7 @@ if g:VIM_Explore ==# 'defx'
                     \ defx#async_action('open', 'wincmd w \| drop')
         nnoremap <silent><buffer><expr> <left>
                     \ defx#async_action('cd', ['..'])
-        nnoremap <silent><buffer> <Tab> :tcd %:p:h<CR>
+        nnoremap <silent><buffer> <Tab> :<C-u>tcd %:p:h<CR>
         nnoremap <silent><buffer><expr> nd
                     \ defx#async_action('new_directory')
         nnoremap <silent><buffer><expr> nf
@@ -2745,7 +2808,7 @@ if g:VIM_Explore ==# 'defx'
         nnoremap <silent><buffer> <S-left> <Plug>(defx-git-prev)
         nnoremap <silent><buffer> <S-right> <Plug>(defx-git-next)
         nnoremap <silent><buffer> <C-p> :<C-u>echo getcwd(0,tabpagenr())<CR>
-        nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_bufexplore()<CR>
+        nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_defx_bufexplore()<CR>
         nnoremap <silent><buffer> f :<C-u>call DefxFuzzyFind()<CR>
         nnoremap <silent><buffer> ? :<C-u>call Help_defx()<CR>
     endfunction
@@ -2782,8 +2845,8 @@ endif
 " defx中<A-b>  切换bufexplorer, <C-b>退出
 " ?  显示帮助文档
 "}}}
-"{{{Toggle_bufexplore()
-function! Toggle_bufexplore()
+"{{{Toggle_defx_bufexplore()
+function! Toggle_defx_bufexplore()
     if &filetype ==# 'defx'
         execute 'ToggleBufExplorer'
     elseif &filetype ==# 'bufexplorer'
@@ -2795,11 +2858,18 @@ endfunction
 "}}}
 " Use Default Mappings
 let g:bufExplorerDisableDefaultKeyMapping=1
-function! s:bufexplore_mappings() abort
-    nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_bufexplore()<CR>
+function! s:bufexplore_defx_mappings() abort
+    nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_defx_bufexplore()<CR>
     nnoremap <silent><buffer> <C-b> :<C-u>q<CR>
     nmap <silent><buffer> ? <F1>
 endfunction
+function! s:bufexplore_mappings() abort
+    nmap <buffer> ? <F1>
+endfunction
+augroup BufexploreAu
+    autocmd!
+    autocmd FileType bufexplorer call s:bufexplore_mappings()
+augroup END
 let g:bufExplorerShowTabBuffer=1 " 只显示当前tab的buffer
 let g:bufExplorerSplitBelow=1 " explore水平分割时，在下方打开
 let g:bufExplorerDefaultHelp=0 " 默认不显示帮助信息
@@ -2974,7 +3044,7 @@ endfunction
 "}}}
 "{{{FuzzyFinderIntegration
 function! VIM_Bookmarks_FuzzyFinder()
-    if g:VIM_Fuzzy_Finder ==# 'denite'
+    if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
         execute 'BookmarkShowAll'
         execute 'q'
         execute 'Denite quickfix -default-action="switch"'
@@ -3061,10 +3131,10 @@ let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
 nnoremap <silent> <S-pagedown> :<C-u>call comfortable_motion#flick(200)<CR>
 nnoremap <silent> <S-pageup> :<C-u>call comfortable_motion#flick(-200)<CR>
-inoremap <silent> <S-pagedown> :<C-u>call comfortable_motion#flick(100)<CR>a
-inoremap <silent> <S-pageup> :<C-u>call comfortable_motion#flick(-100)<CR>a
-vnoremap <silent> <S-pagedown> :<C-u>call comfortable_motion#flick(150)<CR>v
-vnoremap <silent> <S-pageup> :<C-u>call comfortable_motion#flick(-150)<CR>v
+inoremap <silent> <S-pagedown> <Esc>:call comfortable_motion#flick(100)<CR>a
+inoremap <silent> <S-pageup> <Esc>:call comfortable_motion#flick(-100)<CR>a
+vnoremap <silent> <S-pagedown> <Esc>:call comfortable_motion#flick(150)<CR>v
+vnoremap <silent> <S-pageup> <Esc>:call comfortable_motion#flick(-150)<CR>v
 "}}}
 "{{{vim-smooth-scroll
 nnoremap <silent> <S-up> :<C-u>call smooth_scroll#up(&scroll/2, 10, 2)<CR>
@@ -3104,7 +3174,7 @@ function! s:neoman_mappings() abort
         nnoremap <silent><buffer> f :<C-u>Denite line:buffer<CR>
     elseif g:VIM_Fuzzy_Finder ==# 'fzf'
         nnoremap <silent><buffer> f :<C-u>BLines<CR>
-    elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
+    elseif g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
         nnoremap <silent><buffer> f :<C-u>LeaderfLine<CR>
     endif
     nnoremap <silent><buffer> ? :<C-u>call Help_neoman()<CR>
@@ -3146,7 +3216,7 @@ function! Help_MatchTagAlways()
 endfunction
 "}}}
 function! Func_MatchTagAlways()
-    inoremap <silent><A-j> :<C-u>MtaJumpToOtherTag<CR>i
+    inoremap <silent><A-j> <Esc>:MtaJumpToOtherTag<CR>i
     nnoremap <silent><A-j> :<C-u>MtaJumpToOtherTag<CR>
 endfunction
 "}}}
