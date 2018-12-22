@@ -11,7 +11,7 @@ endif
 "{{{Manual
 " sudo pacman -S python-neovim
 " 安装软件包:
-" lua boost xclip words ripgrep fzf ctags global toilet toilet-fonts nodejs yarn php
+" lua boost xclip words ripgrep fzf ctags global toilet toilet-fonts nodejs yarn php python-wcwidth
 " astyle tidy eslint stylelint prettier shfmt js-beautify cppcheck nodejs-jsonlint shellcheck python-vint stylelint-config-standard(npm)
 " yapf python-pyflakes python-pycodestyle python-pydocstyle python-pylint
 " :call Install_COC_Sources()  "  function里包含了json的额外设置
@@ -125,14 +125,24 @@ fun! NegativeCircledNumber(number) abort
     return l:nicenumber
 endfun
 "}}}
+"{{{ToggleObsession
+function! ToggleObsession()
+    if ObsessionStatusEnhance() ==# ''
+        execute 'Obsession ~/.vim/sessions/obsession.vim'
+    else
+        execute 'Obsession'
+    endif
+endfunction
+"}}}
 "}}}
 "{{{Settings
 set encoding=utf-8
 scriptencoding utf-8
 let mapleader=' '
 nnoremap <SPACE> <Nop>                  " leader map required
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " :retab 使文件中的TAB匹配当前设置
-let g:sessions_dir = '~/.vim/sessions/'
+let g:sessions_dir = expand('~/.vim/sessions/') " session目录
+syntax enable                           " 开启语法支持
+filetype on                             " 开启文件类型支持
 set termguicolors                       " 开启GUI颜色支持
 set smartindent                         " 智能缩进
 set hlsearch                            " 高亮搜索
@@ -146,15 +156,11 @@ set showtabline=2                       " 总是显示标签
 set scrolloff=5                         " 保持5行
 set viminfo='1000                       " 文件历史个数
 set autoindent                          " 自动对齐
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
 if has('nvim')
     set inccommand=split
 endif
-filetype on
 " "{{{
-" if (has('termguicolors'))
-"         set termguicolors
-" endif
-"
 " if exists('g:loaded_sensible') || &compatible
 "         finish
 " else
@@ -164,15 +170,10 @@ filetype on
 " if has('autocmd')
 "         filetype plugin indent on
 " endif
-" if has('syntax') && !exists('g:syntax_on')
-"         syntax enable
-" endif
 "
 " " Use :help 'option' to see the documentation for the given option.
 "
 " set backspace=indent,eol,start
-" set complete-=i
-" set smarttab
 "
 " set nrformats-=octal
 "
@@ -658,6 +659,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
     Plug 'ozelentok/denite-gtags'
     Plug 'notomo/denite-keymap'
     Plug 'tjmmm/denite-man'
+    Plug 'bennyyip/denite-github-stars'
     if g:VIM_Linter ==# 'ale'
         Plug 'iyuuya/denite-ale'
     elseif g:VIM_Linter ==# 'neomake'
@@ -667,10 +669,13 @@ endif
 if g:VIM_Fuzzy_Finder ==# 'fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'fszymanski/fzf-quickfix'
+    Plug 'dominickng/fzf-session.vim'
 endif
 if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
     Plug 'Yggdroot/LeaderF-marks'
+    Plug 'youran0715/LeaderF-Cmdpalette'
+    Plug 'bennyyip/LeaderF-github-stars'
 endif
 if g:VIM_Linter ==# 'ale'
     Plug 'w0rp/ale'
@@ -698,6 +703,7 @@ Plug 'lvht/tagbar-markdown', { 'on': [] }
 Plug 'Chiel92/vim-autoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-obsession'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/suda.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -751,7 +757,7 @@ call g:quickmenu#append('# Menu', '')
 if g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('COC Menu', 'call quickmenu#toggle(6)', '', '', 0, '`')
 endif
-call g:quickmenu#append('Make Session', 'mks! ~/.vim/sessions/session.vim', '', '', 0, 's')
+call g:quickmenu#append('Toggle Obsession', 'call ToggleObsession()', '', '', 0, 's')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
 call g:quickmenu#append('Format', 'call quickmenu#toggle(7)', '', '', 0, 'f')
@@ -797,6 +803,13 @@ function! CocStatusDiagnostic() abort
         call add(msgs, "\uf529" . info['warning'])
     endif
     return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
+endfunction
+function! ObsessionStatusEnhance() abort
+    if ObsessionStatus() ==# '[$]'
+        return " \uf94a"
+    else
+        return ''
+    endif
 endfunction
 "}}}
 set laststatus=2  " Basic
@@ -886,7 +899,7 @@ let g:lightline.component = {
             \ 'percent': '%2p%%',
             \ 'percentwin': '%P',
             \ 'spell': '%{&spell?&spelllang:""}',
-            \ 'lineinfo': '%2p%% %3l:%-2v',
+            \ 'lineinfo': '%2p%% %3l:%-2v%{ObsessionStatusEnhance()}',
             \ 'line': '%l',
             \ 'column': '%c',
             \ 'close': '%999X X ',
@@ -924,7 +937,7 @@ let g:lightline.component_type = {
             \ }
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'ayu'
+let g:VIM_Color_Scheme = 'quantum'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1380,7 +1393,7 @@ endfunction
 "}}}
 "}}}
 "{{{vim-startify
-let g:startify_session_dir = '~/.vim/sessions/'
+let g:startify_session_dir = expand('~/.vim/sessions/')
 let g:startify_files_number = 5
 let g:startify_update_oldfiles = 1
 " let g:startify_session_autoload = 1
@@ -1795,7 +1808,7 @@ elseif g:VIM_Snippets ==# 'neosnippet'
     if has('conceal')
         set conceallevel=2 concealcursor=niv
     endif
-    let g:neosnippet#snippets_directory='~/.vim/plugins/vim-snippets/snippets'
+    let g:neosnippet#snippets_directory = expand('~/.vim/plugins/vim-snippets/snippets')
 endif
 "}}}
 "{{{deoplete.nvim
@@ -2302,17 +2315,18 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
     call g:quickmenu#append('      Session', 'Denite session', '', '', 0, 's')
     call g:quickmenu#append('     History Fils', 'Denite file/old', '', '', 0, 'hf')
     call g:quickmenu#append('     History Command', 'Denite command_history', '', '', 0, 'hc')
-    call g:quickmenu#append('      Commands', 'Denite commands', '', '', 0, 'C')
+    call g:quickmenu#append('      Commands', 'Denite commands', '', '', 0, 'c')
     call g:quickmenu#append('     Key Mappings', 'Denite keymap:n', '', '', 0, 'MN')
     call g:quickmenu#append('     Key Mappings', 'Denite keymap:i', '', '', 0, 'MI')
     call g:quickmenu#append('     Key Mappings', 'Denite keymap:v', '', '', 0, 'MV')
     call g:quickmenu#append('      Help Tags', 'Denite help', '', '', 0, 'H')
-    call g:quickmenu#append('      Change', 'Denite change', '', '', 0, 'c')
+    call g:quickmenu#append('      Change', 'Denite change', '', '', 0, 'C')
     call g:quickmenu#append('      Project', 'Denite project', '', '', 0, 'p')
     call g:quickmenu#append('      Location List', 'Denite location_list', '', '', 0, 'i')
     call g:quickmenu#append('      Quickfix', 'Denite quickfix', '', '', 0, 'q')
     call g:quickmenu#append('      Man', 'Denite man', '', '', 0, '$')
     call g:quickmenu#append('      Grep', 'Denite grep', '', '', 0, 'G')
+    call g:quickmenu#append('      Github Stars', 'Denite github_stars', '', '', 0, '*')
     call g:quickmenu#append('      Help Mappings', 'call Help_denite_mappings()', '', '', 0, '?')
     "}}}
     "{{{mappings
@@ -2382,6 +2396,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
         autocmd!
         autocmd User CocQuickfixChange :Denite -mode=normal quickfix
     augroup END
+    let dgs#username='sainnhe'
     let g:fruzzy#usenative = 1
     " Customize Var
     call denite#custom#var('grep', 'command', ['rg'])
@@ -2435,6 +2450,7 @@ if g:VIM_Fuzzy_Finder ==# 'fzf'
     call g:quickmenu#append(' Marks', 'Marks', '', '', 0, 'm')
     call g:quickmenu#append(' Maps', 'Maps', '', '', 0, 'M')
     call g:quickmenu#append(' Windows', 'Windows', '', '', 0, 'w')
+    call g:quickmenu#append(' Sessions', 'Sessions', '', '', 0, 's')
     call g:quickmenu#append('History Command', 'History:', '', '', 0, 'hc')
     call g:quickmenu#append('History Search', 'History/', '', '', 0, 'hs')
     call g:quickmenu#append(' Snippets', 'Snippets', '', '', 0, 's')
@@ -2453,6 +2469,7 @@ if g:VIM_Fuzzy_Finder ==# 'fzf'
         let g:fzf_buffers_jump = 1
     endfunction
     "}}}
+    let g:fzf_session_path = expand('~/.vim/sessions/')
     augroup FZF_Au
         autocmd!
         autocmd User CocQuickfixChange :call fzf_quickfix#run()
@@ -2462,7 +2479,7 @@ if g:VIM_Fuzzy_Finder ==# 'fzf'
     omap <leader><tab> <plug>(fzf-maps-o)
     let g:fzf_action = {
                 \ 'ctrl-t': 'tab split',
-                \ 'ctrl-x': 'split',
+                \ 'ctrl-h': 'split',
                 \ 'ctrl-v': 'vsplit' }
     let g:fzf_layout = { 'down': '~40%' }
     " Customize fzf colors to match your color scheme
@@ -2480,7 +2497,7 @@ if g:VIM_Fuzzy_Finder ==# 'fzf'
                 \ 'marker':  ['fg', 'Keyword'],
                 \ 'spinner': ['fg', 'Label'],
                 \ 'header':  ['fg', 'Comment'] }
-    let g:fzf_history_dir = '~/.cache/fzf-history'
+    let g:fzf_history_dir = expand('~/.cache/fzf-history')
     let g:fzf_buffers_jump = 1
     " [[B]Commits] Customize the options used by 'git log':
     let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -2563,11 +2580,13 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     call g:quickmenu#append('Directory', 'Leaderf file --fullPath --smart-case', 'Search directorys', '', 0, 'D')
     call g:quickmenu#append('Tags', 'Leaderf bufTag --smart-case', 'Search Tags in Current Buffer', '', 0, 't')
     call g:quickmenu#append('Tags All', 'Leaderf bufTag --all --smart-case', 'Search Tags in All Buffers', '', 0, 'T')
+    call g:quickmenu#append('Commands', 'LeaderfCmdpalette', 'Search Commands', '', 0, 'c')
     call g:quickmenu#append('History Command', 'Leaderf cmdHistory --smart-case', 'Search History Commands', '', 0, 'hc')
     call g:quickmenu#append('History Search', 'Leaderf searchHistory --smart-case', 'Search History Searching', '', 0, 'hs')
     call g:quickmenu#append('Marks', 'Leaderf marks --smart-case', 'Search Marks', '', 0, 'm')
     call g:quickmenu#append('Help Docs', 'Leaderf help --smart-case', 'Search Help Docs', '', 0, 'H')
-    call g:quickmenu#append('Grep', 'Leaderf rg --smart-case', '', '', 0, 'G')
+    call g:quickmenu#append('Github Stars', 'LeaderfStars', 'Search Github Stars', '', 0, '*')
+    call g:quickmenu#append('Grep', 'Leaderf rg --smart-case', 'Grep', '', 0, 'G')
     call g:quickmenu#append('Leaderf Help', 'call Help_LeaderF()', 'Leaderf Help', '', 0, '?')
     "}}}
     "{{{ToggleLfHiddenVar()
@@ -2579,6 +2598,7 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
         endif
     endfunction
     "}}}
+    let gs#username='sainnhe'
     let g:Lf_DefaultMode = 'Fuzzy' " NameOnly FullPath Fuzzy Regex   :h g:Lf_DefaultMode
     let g:Lf_WorkingDirectoryMode = 'ac'  " g:Lf_WorkingDirectoryMode
     let g:Lf_RootMarkers = ['.git', '.hg', '.svn']
