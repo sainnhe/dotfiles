@@ -128,14 +128,14 @@ endfun
 "{{{ToggleObsession
 function! ToggleObsession()
     if ObsessionStatusEnhance() ==# ''
-        execute 'Obsession ~/.vim/sessions/obsession.vim'
+        execute 'Obsession ~/.vim/sessions/Obsession'
     else
         execute 'Obsession'
     endif
 endfunction
 "}}}
 "}}}
-"{{{Settings
+"{{{Config
 set encoding=utf-8
 scriptencoding utf-8
 let mapleader=' '
@@ -156,6 +156,7 @@ set showtabline=2                       " 总是显示标签
 set scrolloff=5                         " 保持5行
 set viminfo='1000                       " 文件历史个数
 set autoindent                          " 自动对齐
+set wildmenu                            " 命令框Tab呼出菜单
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
 if has('nvim')
     set inccommand=split
@@ -180,7 +181,6 @@ endif
 " set incsearch
 " set laststatus=2
 " set ruler
-" set wildmenu
 "
 " if &listchars ==# 'eol:$'
 "         set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
@@ -570,6 +570,11 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
 endif
+if has('python3')
+    Plug 'vim-vdebug/vdebug', { 'on': [] }
+endif
+Plug 'Shougo/vimproc.vim', { 'on': [] }
+Plug 'idanarye/vim-vebugger', { 'on': [] }
 if g:VIM_Snippets ==# 'ultisnips' && g:VIM_Completion_Framework !=# 'coc'
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
@@ -669,12 +674,12 @@ endif
 if g:VIM_Fuzzy_Finder ==# 'fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'fszymanski/fzf-quickfix'
-    Plug 'dominickng/fzf-session.vim'
 endif
 if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
     Plug 'Yggdroot/LeaderF-marks'
     Plug 'youran0715/LeaderF-Cmdpalette'
+    Plug 'markwu/LeaderF-prosessions'
     Plug 'bennyyip/LeaderF-github-stars'
 endif
 if g:VIM_Linter ==# 'ale'
@@ -704,6 +709,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/suda.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -733,7 +739,7 @@ call plug#end()
 "}}}
 "}}}
 "}}}
-"{{{Config
+"{{{Setting
 " quickmenu
 let g:quickmenu_options = 'HL'  " enable cursorline (L) and cmdline help (H)
 " startify
@@ -757,7 +763,7 @@ call g:quickmenu#append('# Menu', '')
 if g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('COC Menu', 'call quickmenu#toggle(6)', '', '', 0, '`')
 endif
-call g:quickmenu#append('Toggle Obsession', 'call ToggleObsession()', '', '', 0, 's')
+call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
 call g:quickmenu#append('Format', 'call quickmenu#toggle(7)', '', '', 0, 'f')
@@ -769,12 +775,13 @@ call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
 call quickmenu#current(10)
 call quickmenu#reset()
 call g:quickmenu#append('# Help', '')
+call g:quickmenu#append('Prosession', 'call Help_vim_prosession()', '', '', 0, 's')
 call g:quickmenu#append('Auto Pairs', 'call Help_auto_pairs()', '', '', 0, 'p')
 call g:quickmenu#append('Nerd Commenter', 'call Help_nerdcommenter()', '', '', 0, 'c')
 call g:quickmenu#append('Bookmarks', 'call Help_vim_bookmarks()', '', '', 0, 'b')
 call g:quickmenu#append('Close Tag', 'call Help_vim_closetag()', '', '', 0, 't')
 call g:quickmenu#append('Multiple Cursors', 'call Help_vim_multiple_cursors()', '', '', 0, 'm')
-call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 's')
+call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 'S')
 call g:quickmenu#append('VIM Surround', 'call Help_vim_surround()', '', '', 0, 'r')
 call g:quickmenu#append('MatchTagAlways', 'call Help_MatchTagAlways()', '', '', 0, 'M')
 call g:quickmenu#append('neoman', 'call Help_neoman()', '', '', 0, 'h')
@@ -2312,7 +2319,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
     call g:quickmenu#append('     Git Log', 'Denite gitlog', '', '', 0, 'gl')
     call g:quickmenu#append('     Git Log All', 'Denite gitlog', '', '', 0, 'gL')
     call g:quickmenu#append('      Register', 'Denite register', '', '', 0, 'r')
-    call g:quickmenu#append('      Session', 'Denite session', '', '', 0, 's')
+    call g:quickmenu#append('      Prosessions', 'Denite prosession', '', '', 0, 's')
     call g:quickmenu#append('     History Fils', 'Denite file/old', '', '', 0, 'hf')
     call g:quickmenu#append('     History Command', 'Denite command_history', '', '', 0, 'hc')
     call g:quickmenu#append('      Commands', 'Denite commands', '', '', 0, 'c')
@@ -2450,7 +2457,6 @@ if g:VIM_Fuzzy_Finder ==# 'fzf'
     call g:quickmenu#append(' Marks', 'Marks', '', '', 0, 'm')
     call g:quickmenu#append(' Maps', 'Maps', '', '', 0, 'M')
     call g:quickmenu#append(' Windows', 'Windows', '', '', 0, 'w')
-    call g:quickmenu#append(' Sessions', 'Sessions', '', '', 0, 's')
     call g:quickmenu#append('History Command', 'History:', '', '', 0, 'hc')
     call g:quickmenu#append('History Search', 'History/', '', '', 0, 'hs')
     call g:quickmenu#append(' Snippets', 'Snippets', '', '', 0, 's')
@@ -2469,7 +2475,6 @@ if g:VIM_Fuzzy_Finder ==# 'fzf'
         let g:fzf_buffers_jump = 1
     endfunction
     "}}}
-    let g:fzf_session_path = expand('~/.vim/sessions/')
     augroup FZF_Au
         autocmd!
         autocmd User CocQuickfixChange :call fzf_quickfix#run()
@@ -2581,6 +2586,7 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     call g:quickmenu#append('Tags', 'Leaderf bufTag --smart-case', 'Search Tags in Current Buffer', '', 0, 't')
     call g:quickmenu#append('Tags All', 'Leaderf bufTag --all --smart-case', 'Search Tags in All Buffers', '', 0, 'T')
     call g:quickmenu#append('Commands', 'LeaderfCmdpalette', 'Search Commands', '', 0, 'c')
+    call g:quickmenu#append('Prosessions', 'LeaderfProsessions', 'Search Prosessions', '', 0, 's')
     call g:quickmenu#append('History Command', 'Leaderf cmdHistory --smart-case', 'Search History Commands', '', 0, 'hc')
     call g:quickmenu#append('History Search', 'Leaderf searchHistory --smart-case', 'Search History Searching', '', 0, 'hs')
     call g:quickmenu#append('Marks', 'Leaderf marks --smart-case', 'Search Marks', '', 0, 'm')
@@ -3043,6 +3049,22 @@ let g:multi_cursor_select_all_word_key = '<leader>`zxcasdsfxc'
 let g:multi_cursor_select_all_key      = '<leader>`zxcafdsfa'
 let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
+"}}}
+"{{{vim-prosession
+"{{{vim-prosession-usage
+function! Help_vim_prosession()
+    echo ':Prosession {dir}   switch to the session of {dir}, if doesnt exist, creat a new session'
+    echo ':ProsessionDelete [{dir}]   if no {dir} specified, delete current active session'
+    echo ':ProsessionList {filter}   if no {filter} specified, list all session'
+endfunction
+"}}}
+augroup SessionAu
+    autocmd!
+    autocmd VimLeave * mksession! %:p:h/.vim/sessions/LastSession
+augroup END
+let g:prosession_dir = '~/.cache/prosession/'
+let g:prosession_on_startup = 0
+command! -nargs=? ProsessionList echo prosession#ListSessions(<q-args>)
 "}}}
 "{{{vim-bookmarks
 "{{{vim-bookmarks-usage
