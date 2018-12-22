@@ -31,7 +31,7 @@ endif
 let g:VIM_AutoInstall = 1
 let g:VIM_LSP_Client = 'lcn'  " lcn vim-lsp
 let g:VIM_Snippets = 'ultisnips'  " ultisnips neosnippet
-let g:VIM_Completion_Framework = 'deoplete'  " deoplete ncm2 asyncomplete coc neocomplete
+let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc neocomplete
 let g:VIM_Fuzzy_Finder = 'remix'  " remix denite fzf leaderf
 let g:VIM_Linter = 'ale' | let g:EnableCocLint = 0  " ale neomake
 let g:VIM_Explore = 'defx'  " defx nerdtree
@@ -229,15 +229,15 @@ if !has('nvim')
     execute "set <M-=>=\e="
     execute "set <M-b>=\eb"
     execute "set <M-z>=\ez"
-    execute "set <M-c>=\ec"
+    execute "set <M-x>=\ex"
     execute "set <M-g>=\eg"
     execute "set <M-n>=\en"
     execute "set <M-p>=\ep"
 endif
 "}}}
 "{{{NormalMode
-" Alt+C进入普通模式
-nnoremap <A-c>> <ESC>
+" Alt+X进入普通模式
+nnoremap <A-x>> <ESC>
 if !has('nvim')
     nnoremap ^@ <ESC>
 endif
@@ -304,8 +304,8 @@ nnoremap zs :<C-u>mkview<CR>
 nnoremap zl :<C-u>loadview<CR>
 "}}}
 "{{{InsertMode
-" Alt+C进入普通模式
-inoremap <A-c> <ESC><right>
+" Alt+X进入普通模式
+inoremap <A-x> <ESC><right>
 if !has('nvim')
     inoremap ^@ <ESC>
 endif
@@ -333,8 +333,8 @@ inoremap <silent> <A-up> <Esc>:wincmd k<CR>i
 inoremap <silent> <A-down> <Esc>:wincmd j<CR>i
 "}}}
 "{{{VisualMode
-" Alt+C进入普通模式
-vnoremap <A-c>> <ESC>
+" Alt+X进入普通模式
+vnoremap <A-x> <ESC>
 if !has('nvim')
     vnoremap ^@ <ESC>
 endif
@@ -351,8 +351,8 @@ vnoremap <S-left> 0
 vnoremap <S-right> $<left>
 "}}}
 "{{{CommandMode
-" Alt+C进入普通模式
-cmap <A-c> <ESC>
+" Alt+X进入普通模式
+cmap <A-x> <ESC>
 if !has('nvim')
     cmap ^@ <ESC>
 endif
@@ -361,8 +361,8 @@ cmap <C-S> :<C-u>w<CR>
 "}}}
 "{{{TerminalMode
 if has('nvim')
-    " Alt+C进入普通模式
-    tnoremap <A-c> <C-\><C-n>
+    " Alt+X进入普通模式
+    tnoremap <A-x> <C-\><C-n>
     " Shift+方向键加速移动
     tnoremap <S-down> <C-E>
     tnoremap <S-up> <C-A>
@@ -852,7 +852,7 @@ let g:lightline.inactive = {
             \ 'right': [ [ 'lineinfo', 'percent' ] ] }
 let g:lightline.tabline = {
             \ 'left': [ [ 'vim_logo', 'tabs' ] ],
-            \ 'right': [ [ 'bufinfo' ] ] }
+            \ 'right': [] }
 let g:lightline.tab = {
             \ 'active': [ 'nicetabnum', 'filename', 'modified' ],
             \ 'inactive': [ 'nicetabnum', 'filename', 'modified' ] }
@@ -2143,7 +2143,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
         echo '<C-k>           <denite:move_to_previous_line>'
         echo '<S-left>        <denite:move_caret_to_head>'
         echo '<S-right>       <denite:move_caret_to_tail>'
-        echo '<A-c>       <denite:enter_mode:normal>'
+        echo '<A-x>       <denite:enter_mode:normal>'
         echo '<C-v>           <denite:paste_from_register>'
         echo '<C-p>           <denite:do_action:preview>'
         echo '<C-d>           <denite:do_action:delete>'
@@ -2331,7 +2331,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
                 \)
     call denite#custom#map(
                 \ 'insert',
-                \ '<A-c>',
+                \ '<A-x>',
                 \ '<denite:enter_mode:normal>',
                 \ 'noremap'
                 \)
@@ -2406,7 +2406,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
     " :h denite-source-attributes
     " :h denite-filters
     call denite#custom#source('_', 'matchers', ['matcher/cpsm'])  " matcher/fuzzy matcher/fruzzy matcher/cpsm
-    call denite#custom#source('_', 'sorters', [''])  " sorter/sublime (sorter/rank)
+    call denite#custom#source('_', 'sorters', [])  " sorter/sublime (sorter/rank)
     " if in git dir, git ls-files for file/rec
     call denite#custom#alias('source', 'file/rec/git', 'file/rec')
     call denite#custom#var('file/rec/git', 'command',
@@ -2743,7 +2743,7 @@ if g:VIM_Explore ==# 'defx'
         elseif g:VIM_Fuzzy_Finder ==# 'fzf'
             execute 'Files'
         elseif g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
-            execute 'LeaderfFile'
+            execute 'Leaderf file --fullPath --smart-case'
         endif
     endfunction
     "}}}
