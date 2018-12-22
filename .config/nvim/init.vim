@@ -2744,6 +2744,9 @@ if g:VIM_Explore ==# 'defx'
         echo "<F5>  刷新\n"
         echo "<A-b>  切换bufexplore\n"
         echo 'f  搜索'
+        echo 'SS  Prosession Switch'
+        echo 'SD  Prosession Delete'
+        echo 'SF  Prosession Fuzzy Find'
         echo "q  退出\n"
         echo '?  帮助'
     endfunction
@@ -2773,6 +2776,27 @@ if g:VIM_Explore ==# 'defx'
         endif
     endfunction
     "}}}
+"{{{Defx_Prosession
+function! Defx_Prosession_Switch()
+    let s:Defx_cwd = getcwd()
+    execute 'Prosession'.s:Defx_cwd
+endfunction
+function! Defx_Prosession_Delete()
+    let s:Defx_cwd = getcwd()
+    execute 'ProsessionDelete'.s:Defx_cwd
+endfunction
+function! Defx_Prosession_FuzzyFind()
+    if g:VIM_Fuzzy_Finder ==# 'remix'
+        execute 'LeaderfProsessions'
+    elseif g:VIM_Fuzzy_Finder ==# 'denite'
+        execute 'Denite prosession'
+    elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+        execute 'ProsessionList'
+    elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
+        execute 'LeaderfProsessions'
+    endif
+endfunction
+"}}}
     function! ToggleDefx()
         execute 'Defx -toggle -auto-cd -buffer-name="Explore" -split=vertical -winwidth=35 -direction=topleft -fnamewidth=19 -columns=mark:icons:filename:git:size:time'
     endfunction
@@ -2836,6 +2860,9 @@ if g:VIM_Explore ==# 'defx'
         nnoremap <silent><buffer> <C-p> :<C-u>echo getcwd(0,tabpagenr())<CR>
         nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_defx_bufexplore()<CR>
         nnoremap <silent><buffer> f :<C-u>call DefxFuzzyFind()<CR>
+        nnoremap <silent><buffer> SS :<C-u>call Defx_Prosession_Switch()<CR>
+        nnoremap <silent><buffer> SD :<C-u>call Defx_Prosession_Delete()<CR>
+        nnoremap <silent><buffer> SF :<C-u>call Defx_Prosession_FuzzyFind()<CR>
         nnoremap <silent><buffer> ? :<C-u>call Help_defx()<CR>
     endfunction
     "}}}
