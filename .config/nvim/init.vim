@@ -513,6 +513,8 @@ augroup PlugDiffExtra
     autocmd FileType vim-plug call s:setup_extra_keys()
 augroup END
 
+command PU PlugUpdate | PlugUpgrade
+
 call plug#begin('~/.vim/plugins')
 if !has('nvim') && has('python3')
     Plug 'roxma/nvim-yarp'
@@ -714,7 +716,8 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/suda.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'lilydjwg/fcitx.vim'
+Plug 'lilydjwg/fcitx.vim', { 'on': [] }
+            \| au InsertEnter * call plug#load('fcitx.vim')
 Plug 'ianva/vim-youdao-translater'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'terryma/vim-smooth-scroll'
