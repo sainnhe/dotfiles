@@ -1909,7 +1909,6 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     let g:deoplete#keyword_patterns = {}
     let g:deoplete#keyword_patterns.gitcommit = '#'
     call deoplete#util#set_pattern(
-                \ g:deoplete#omni#input_patterns,
                 \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
     "}}}
     let g:deoplete#enable_at_startup = 0
