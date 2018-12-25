@@ -604,6 +604,7 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'Shougo/neco-syntax'
     Plug 'Shougo/neoinclude.vim'
     Plug 'Shougo/context_filetype.vim'
+    Plug 'SevereOverfl0w/deoplete-github'
     Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains bash ./install.sh' }
     Plug 'Shougo/neco-vim', { 'for': 'vim' }
     Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
@@ -1008,7 +1009,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'quantum'
+let g:VIM_Color_Scheme = 'github'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1888,7 +1889,12 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     "{{{deoplete-usage
     " <Tab> <S-Tab> 分别向下和向上选中，
     " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
-    " :ToggleDeopleteWords  切换words补全
+    "}}}
+    "{{{quickmenu
+    call quickmenu#current(8)
+    call quickmenu#reset()
+    call g:quickmenu#append('# Deoplete', '')
+    call g:quickmenu#append('Toggle Word Completion', 'call Func_ToggleDeopleteWords()', '', '', 0, 'w')
     "}}}
     "{{{extensions
     let g:necosyntax#min_keyword_length = 3
@@ -1897,6 +1903,14 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     " deoplete-jedi
     " https://github.com/zchee/deoplete-jedi
     let g:tmuxcomplete#trigger = ''
+
+    let g:deoplete#sources = {}
+    let g:deoplete#sources.gitcommit=['github']
+    let g:deoplete#keyword_patterns = {}
+    let g:deoplete#keyword_patterns.gitcommit = '#'
+    call deoplete#util#set_pattern(
+                \ g:deoplete#omni#input_patterns,
+                \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
     "}}}
     let g:deoplete#enable_at_startup = 0
     augroup Deoplete_Au
@@ -1925,13 +1939,27 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     inoremap <expr> <down> pumvisible() ? deoplete#close_popup()."\<down>" : "\<down>"
     inoremap <expr> <up> pumvisible() ? deoplete#close_popup()."\<up>" : "\<up>"
     inoremap <expr> <CR> pumvisible() ? deoplete#close_popup()."\<CR>" : "\<CR>"
+    let g:Deoplete_Word_Completion_Enable = 0
     function! Func_ToggleDeopleteWords()
-        setlocal dictionary+=/usr/share/dict/words
-        setlocal dictionary+=/usr/share/dict/american-english
-        call deoplete#custom#source(
-                    \ 'dictionary', 'min_pattern_length', 4)
+        if g:Deoplete_Word_Completion_Enable == 1
+            let g:Deoplete_Word_Completion_Enable = 0
+            setlocal dictionary+=/usr/share/dict/words
+            setlocal dictionary+=/usr/share/dict/american-english
+            call deoplete#custom#source(
+                        \ 'dictionary', 'min_pattern_length', 4)
+            call deoplete#custom#source(
+                        \ 'dictionary', 'matchers', ['matcher_head'])
+        elseif g:Deoplete_Word_Completion_Enable == 0
+            let g:Deoplete_Word_Completion_Enable = 1
+            setlocal dictionary-=/usr/share/dict/words
+            setlocal dictionary-=/usr/share/dict/american-english
+            call deoplete#custom#source(
+                        \ 'dictionary', 'min_pattern_length', 4)
+            call deoplete#custom#source(
+                        \ 'dictionary', 'matchers', ['matcher_head'])
+        endif
     endfunction
-    command ToggleDeopleteWords call Func_ToggleDeopleteWords()
+    " autocmd BufNewFile,BufRead *.md call Func_ToggleDeopleteWords()
     set completeopt-=preview
     function Multiple_cursors_before()
         let g:deoplete#disable_auto_complete = 1
@@ -1945,7 +1973,12 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     "{{{ncm2-usage
     " <Tab> <S-Tab> 分别向下和向上选中，
     " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
-    " :ToggleNcm2Look  切换ncm2-look
+    "}}}
+    "{{{quickmenu
+    call quickmenu#current(8)
+    call quickmenu#reset()
+    call g:quickmenu#append('# NCM2', '')
+    call g:quickmenu#append('Toggle Word Completion', 'call Func_ToggleNcm2Look()', '', '', 0, 'w')
     "}}}
     "{{{ncm2-extensions
     "{{{ncm2-ultisnips
@@ -1971,15 +2004,14 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     " Enable && Disable Globally
     let g:ncm2_look_enabled = 0
     " Enable Command
-    function! ToggleNcm2LookFunc()
+    function! Func_ToggleNcm2Look()
         if g:ncm2_look_enabled == 1
             let g:ncm2_look_enabled = 0
         elseif g:ncm2_look_enabled == 0
             let g:ncm2_look_enabled = 1
         endif
     endfunction
-    command ToggleNcm2Look call ToggleNcm2LookFunc()
-    " autocmd BufNewFile,BufRead *.md call ToggleNcm2LookFunc()
+    " autocmd BufNewFile,BufRead *.md call Func_ToggleNcm2Look()
     " Symbol
     let g:ncm2_look_mark = "\uf02d"
     "}}}
@@ -2077,6 +2109,9 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     "}}}
     "{{{coc.nvim
 elseif g:VIM_Completion_Framework ==# 'coc'
+    "{{{coc.nvim-usage
+    " 主quickmenu中打开COC
+    "}}}
     augroup Load_Coc
         autocmd!
         autocmd InsertEnter * call CocInit()
@@ -2089,9 +2124,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         endif
     endfunction
     function! Func_Coc()
-        "{{{coc.nvim-usage
-        " 主quickmenu中打开COC
-        "}}}
         let g:Has_Load_Coc = 1
         if g:VIM_Snippets ==# 'ultisnips'
             call plug#load('ultisnips', 'vim-snippets')
