@@ -7,6 +7,9 @@ endif
 if !filereadable(expand('~/.vim/autoload/plug.vim'))
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
+if executable('tmux') && filereadable(expand('~/.zshrc'))
+    let g:VIM_Enable_TmuxLine = 1
+endif
 "}}}
 "{{{Manual
 " sudo pacman -S python-neovim
@@ -29,9 +32,10 @@ endif
 " https://github.com/search?p=21&q=vim&ref=opensearch&s=stars&type=Repositories
 "}}}
 let g:VIM_AutoInstall = 1
+let g:VIM_TmuxLineSync = 0
 let g:VIM_LSP_Client = 'lcn'  " lcn vim-lsp
 let g:VIM_Snippets = 'ultisnips'  " ultisnips neosnippet
-let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc neocomplete
+let g:VIM_Completion_Framework = 'deoplete'  " deoplete ncm2 asyncomplete coc neocomplete
 let g:VIM_Fuzzy_Finder = 'remix'  " remix denite fzf leaderf
 let g:VIM_Linter = 'ale' | let g:EnableCocLint = 0  " ale neomake
 let g:VIM_Explore = 'defx'  " defx nerdtree
@@ -44,14 +48,17 @@ endif
 "{{{Functions
 "{{{CloseOnLastTab
 function! CloseOnLastTab()
-    let g:Loop_Var = 0
+    "     let g:Loop_Var = 0
+    " if tabpagenr('$') == 1
+    "     while (winnr('$') > 0) && g:Loop_Var < 10
+    "         execute 'q'
+    "         g:Loop_Var = g:Loop_Var + 1
+    "         endwhile
     if tabpagenr('$') == 1
-        while (winnr('$') > 0) && g:Loop_Var < 10
-            execute 'q'
-            g:Loop_Var = g:Loop_Var + 1
-        endwhile
+        execute 'windo bd'
+        execute 'q'
     elseif tabpagenr('$') > 1
-        execute 'tabclose'
+        execute 'windo bd'
     endif
 endfunction
 "}}}
@@ -139,10 +146,10 @@ endfunction
 set encoding=utf-8
 scriptencoding utf-8
 let mapleader=' '
-nnoremap <SPACE> <Nop>                  " leader map required
-let g:sessions_dir = expand('~/.vim/sessions/') " session目录
+nnoremap <SPACE> <Nop>
+filetype plugin indent on
+let g:sessions_dir = expand('~/.vim/sessions/')
 syntax enable                           " 开启语法支持
-filetype on                             " 开启文件类型支持
 set termguicolors                       " 开启GUI颜色支持
 set smartindent                         " 智能缩进
 set hlsearch                            " 高亮搜索
@@ -166,10 +173,6 @@ endif
 "         finish
 " else
 "         let g:loaded_sensible = 'yes'
-" endif
-"
-" if has('autocmd')
-"         filetype plugin indent on
 " endif
 "
 " " Use :help 'option' to see the documentation for the given option.
@@ -224,6 +227,10 @@ if !has('nvim')
     execute "set <M-w>=\ew"
     execute "set <M-v>=\ev"
     execute "set <M-h>=\eh"
+    execute "set <M-j>=\ej"
+    execute "set <M-k>=\ek"
+    execute "set <M-s>=\es"
+    execute "set <M-l>=\el"
     execute "set <M-,>=\e,"
     execute "set <M-.>=\e."
     execute "set <M-->=\e-"
@@ -234,16 +241,19 @@ if !has('nvim')
     execute "set <M-g>=\eg"
     execute "set <M-n>=\en"
     execute "set <M-p>=\ep"
+    execute "set <M-t>=\et"
 endif
 "}}}
 "{{{NormalMode
 " Alt+X进入普通模式
-nnoremap <A-x>> <ESC>
+nnoremap <A-x> <ESC>
 if !has('nvim')
     nnoremap ^@ <ESC>
 endif
 " ; 绑定到 :
 nnoremap ; :
+" q 绑定到:q
+nnoremap <silent> q :q<CR>
 " Ctrl+S保存文件
 nnoremap <C-S> :<C-u>w<CR>
 " Shift加方向键加速移动
@@ -255,30 +265,27 @@ nnoremap <S-right> <Esc>$
 nnoremap x "_x
 " Alt+Backspace从当前位置删除到行开头
 nnoremap <A-BS> <Esc><left>v0"_d
-" Ctrl+T新建tab
+" Alt+T新建tab
 if g:VIM_Explore ==# 'defx'
-    nnoremap <silent> <C-T> :<C-u>tabnew<CR>:call DefxStartify()<CR>
+    nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call DefxStartify()<CR>
 elseif g:VIM_Explore ==# 'nerdtree'
-    nnoremap <silent> <C-T> :<C-u>tabnew<CR>:call NerdtreeStartify()<CR>
+    nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call NerdtreeStartify()<CR>
 endif
-" Ctrl+W关闭当前标签
-nnoremap <silent> <C-W> :<C-u>call CloseOnLastTab()<CR>
-" Ctrl+左右切换tab
-nnoremap <C-left> <Esc>gT
-nnoremap <C-right> <Esc>gt
-" Ctrl+上下切换到第一个、最后一个tab
-nnoremap <silent> <C-up> :<C-u>tabfirst<CR>
-nnoremap <silent> <C-down> :<C-u>tablast<CR>
-" Alt+上下左右可以在窗口之间跳转
-nnoremap <silent> <A-left> :<C-u>wincmd h<CR>
-nnoremap <silent> <A-right> :<C-u>wincmd l<CR>
-nnoremap <silent> <A-up> :<C-u>wincmd k<CR>
-nnoremap <silent> <A-down> :<C-u>wincmd j<CR>
-" Alt+W关闭窗口
-nnoremap <silent> <A-w> :<C-u>q<CR>
-" Alt+V && Alt+H新建窗口
+" Alt+W关闭当前标签
+nnoremap <silent> <A-w> :<C-u>call CloseOnLastTab()<CR>
+" Alt+上下左右可以跳转和移动窗口
+nnoremap <A-left> <Esc>gT
+nnoremap <A-right> <Esc>gt
+nnoremap <silent> <A-up> :<C-u>tabm -1<CR>
+nnoremap <silent> <A-down> :<C-u>tabm +1<CR>
+" Alt+h j k l可以在窗口之间跳转
+nnoremap <silent> <A-h> :<C-u>wincmd h<CR>
+nnoremap <silent> <A-l> :<C-u>wincmd l<CR>
+nnoremap <silent> <A-k> :<C-u>wincmd k<CR>
+nnoremap <silent> <A-j> :<C-u>wincmd j<CR>
+" Alt+V && Alt+S新建窗口
 nnoremap <silent> <A-v> :<C-u>vsp<CR>
-nnoremap <silent> <A-h> :<C-u>sp<CR>
+nnoremap <silent> <A-s> :<C-u>sp<CR>
 " Alt+-<>调整窗口大小
 nnoremap <silent> <A-=> :<C-u>wincmd +<CR>
 nnoremap <silent> <A--> :<C-u>wincmd -<CR>
@@ -327,11 +334,11 @@ inoremap <S-up> <up><up><up><up><up>
 inoremap <S-down> <down><down><down><down><down>
 inoremap <S-left> <ESC>I
 inoremap <S-right> <ESC>A
-" Alt+上下左右可以在窗口之间跳转
+" Alt+上下左右可以跳转和移动窗口
 inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
 inoremap <silent> <A-right> <Esc>:wincmd l<CR>i
-inoremap <silent> <A-up> <Esc>:wincmd k<CR>i
-inoremap <silent> <A-down> <Esc>:wincmd j<CR>i
+inoremap <silent> <A-up> <Esc>:tabm -1<CR>i
+inoremap <silent> <A-down> <Esc>:tabm +1<CR>i
 "}}}
 "{{{VisualMode
 " Alt+X进入普通模式
@@ -517,20 +524,15 @@ command PU PlugUpdate | PlugUpgrade
 
 call plug#begin('~/.vim/plugins')
 if !has('nvim') && has('python3')
-    Plug 'roxma/nvim-yarp'
+    if g:VIM_Completion_Framework !=# 'ncm2'
+        Plug 'roxma/nvim-yarp'
+    endif
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-repeat'
 "}}}
 " User Interface
-Plug 'itchyny/lightline.vim'
-Plug 'mhinz/vim-startify'
-Plug 'CharlesGueunet/quickmenu.vim'
-Plug 'mhinz/vim-signify'
-Plug 'Yggdroot/indentLine'
-Plug 'nathanaelkane/vim-indent-guides', { 'on': [] }
-Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-Plug 'roman/golden-ratio'
 "{{{themes
 Plug 'ajmwagar/vim-deus' | Plug 'nrhodes91/deus_one.vim'
 Plug 'jnurmine/Zenburn' | Plug 'acepukas/vim-zenburn'
@@ -564,6 +566,18 @@ Plug 'nightsense/nemo'
 Plug 'Marfisc/vorange'
 Plug 'hzchirs/vim-material'
 "}}}
+Plug 'itchyny/lightline.vim'
+if g:VIM_Enable_TmuxLine == 1
+    Plug 'edkolev/tmuxline.vim'
+endif
+Plug 'mhinz/vim-startify'
+Plug 'CharlesGueunet/quickmenu.vim'
+Plug 'mhinz/vim-signify'
+Plug 'Yggdroot/indentLine'
+Plug 'nathanaelkane/vim-indent-guides', { 'on': [] }
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'roman/golden-ratio'
 
 " Productivity
 if g:VIM_LSP_Client ==# 'lcn'
@@ -597,20 +611,20 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp' ] }
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 elseif g:VIM_Completion_Framework ==# 'ncm2'
-    Plug 'ncm2/ncm2' | Plug 'roxma/nvim-yarp'
+    Plug 'roxma/nvim-yarp' | Plug 'ncm2/ncm2'
     Plug 'ncm2/ncm2-bufword'
     Plug 'ncm2/ncm2-path'
     Plug 'ncm2/ncm2-tagprefix'
     Plug 'filipekiss/ncm2-look.vim'
     Plug 'ncm2/ncm2-github'
-    Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
-    Plug 'ncm2/ncm2-neoinclude' | Plug 'Shougo/neoinclude.vim'
+    Plug 'Shougo/neco-syntax' | Plug 'ncm2/ncm2-syntax'
+    Plug 'Shougo/neoinclude.vim' | Plug 'ncm2/ncm2-neoinclude'
     Plug 'ncm2/ncm2-pyclang', { 'for': ['c', 'cpp'] }
     " Plug 'ncm2/ncm2-cssomni', { 'for': 'css' }
     Plug 'ncm2/ncm2-html-subscope', { 'for': 'html' }
     Plug 'ncm2/ncm2-jedi'
     Plug 'ncm2/ncm2-markdown-subscope', { 'for': 'markdown' }
-    Plug 'ncm2/ncm2-vim', { 'for': 'vim' } | Plug 'Shougo/neco-vim', { 'for': 'vim' }
+    Plug 'Shougo/neco-vim', { 'for': 'vim' } | Plug 'ncm2/ncm2-vim', { 'for': 'vim' }
     Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
     if g:VIM_LSP_Client ==# 'vim-lsp'
         Plug 'ncm2/ncm2-vim-lsp'
@@ -716,14 +730,13 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/suda.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'lilydjwg/fcitx.vim', { 'on': [] }
-            \| au InsertEnter * call plug#load('fcitx.vim')
 Plug 'ianva/vim-youdao-translater'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'metakirby5/codi.vim'
 Plug 'nhooyr/neoman.vim', { 'on': [ 'Nman', 'Snman', 'Vnman', 'Tnman' ] }
-Plug 'sheerun/vim-polyglot'
+Plug 'lilydjwg/fcitx.vim', { 'on': [] }
+            \| au InsertEnter * call plug#load('fcitx.vim')
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
             \| au BufNewFile,BufRead *.html,*.css call Func_emmet_vim()
 Plug 'gko/vim-coloresque', { 'for': ['html', 'css'] }
@@ -736,7 +749,6 @@ Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
 call plug#end()
 "{{{ncm2-archived
 " Plug 'ncm2/ncm2-gtags'
-" Plug 'ncm2/ncm2-tmux'
 " Plug 'ncm2/ncm2-match-highlight'
 " Plug 'ncm2/ncm2-highprio-pop'
 "}}}
@@ -816,9 +828,19 @@ function! CocStatusDiagnostic() abort
 endfunction
 function! ObsessionStatusEnhance() abort
     if ObsessionStatus() ==# '[$]'
-        return " \uf94a"
+        " return \uf94a
+        return '⏺'
     else
-        return ''
+        " return \uf949
+        return '⏹'
+    endif
+endfunction
+" TmuxBindLock
+function! TmuxBindLock() abort
+    if filereadable('/tmp/.tmux_bind.lck')
+        return "\uf13e"
+    else
+        return "\uf023"
     endif
 endfunction
 "}}}
@@ -848,12 +870,14 @@ if g:VIM_Linter ==# 'ale'
                 \ 'left': [ [ 'mode', 'paste' ],
                 \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
                 \ 'right': [ [ 'lineinfo' ],
+                \            [ 'obsession', 'tmuxlock' ],
                 \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
 elseif g:VIM_Linter ==# 'neomake'
     let g:lightline.active = {
                 \ 'left': [ [ 'mode', 'paste' ],
                 \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
                 \ 'right': [ [ 'lineinfo' ],
+                \            [ 'obsession', 'tmuxlock' ],
                 \            [ 'neomake' ]] }
     " \            [ 'neomake_warnings', 'neomake_errors', 'neomake_infos', 'neomake_ok' ],
 endif
@@ -862,12 +886,14 @@ if g:EnableCocLint == 1 && g:VIM_Linter ==# 'neomake'
                 \ 'left': [ [ 'mode', 'paste' ],
                 \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
                 \ 'right': [ [ 'lineinfo' ],
+                \            [ 'obsession', 'tmuxlock' ],
                 \            [ 'cocstatus' ]] }
 elseif g:VIM_LSP_Client ==# 'lcn' && g:VIM_Linter ==# 'neomake'
     let g:lightline.active = {
                 \ 'left': [ [ 'mode', 'paste' ],
                 \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
                 \ 'right': [ [ 'lineinfo' ],
+                \            [ 'obsession', 'tmuxlock' ],
                 \            [ 'lsc_ok', 'lsc_errors', 'lsc_checking', 'lsc_warnings' ]] }
 endif
 let g:lightline.inactive = {
@@ -890,6 +916,8 @@ let g:lightline.tab_component_function = {
 let g:lightline.component = {
             \ 'bufinfo': '%{bufname("%")}:%{bufnr("%")}',
             \ 'cocstatus': '%{CocStatusDiagnostic()}',
+            \ 'obsession': '%{ObsessionStatusEnhance()}',
+            \ 'tmuxlock': '%{TmuxBindLock()}',
             \ 'vim_logo': "\ue7c5",
             \ 'nicewinnumber': '%{NegativeCircledNumber(tabpagewinnr(tabpagenr()))}',
             \ 'mode': '%{lightline#mode()}',
@@ -909,7 +937,7 @@ let g:lightline.component = {
             \ 'percent': '%2p%%',
             \ 'percentwin': '%P',
             \ 'spell': '%{&spell?&spelllang:""}',
-            \ 'lineinfo': '%2p%% %3l:%-2v%{ObsessionStatusEnhance()}',
+            \ 'lineinfo': '%2p%% %3l:%-2v',
             \ 'line': '%l',
             \ 'column': '%c',
             \ 'close': '%999X X ',
@@ -945,6 +973,39 @@ let g:lightline.component_type = {
             \ 'linter_errors': 'error',
             \ 'linter_ok': 'middle',
             \ }
+"}}}
+"{{{tmuxline.vim
+if g:VIM_Enable_TmuxLine == 1
+    if g:VIM_TmuxLineSync == 1
+        augroup TmuxlineAu
+            autocmd!
+            autocmd BufEnter * Tmuxline lightline
+            autocmd InsertLeave * Tmuxline lightline
+            autocmd InsertEnter * Tmuxline lightline_insert
+        augroup END
+    else
+        augroup TmuxlineAu
+            autocmd!
+            autocmd VimEnter * Tmuxline lightline
+        augroup END
+    endif
+    let g:tmuxline_preset = {
+                \'a'    : '#S',
+                \'b'    : ['#W'],
+                \'c'    : '',
+                \'win'  : ['#I', '#W'],
+                \'cwin' : ['#I', '#W', '#F'],
+                \'x'    : ['#(tmux-pomodoro status)'],
+                \'y'    : '%R %a',
+                \'z'    : '#H'
+                \}
+    let g:tmuxline_separators = {
+                \ 'left' : "\ue0bc",
+                \ 'left_alt': "\ue0bd",
+                \ 'right' : "\ue0ba",
+                \ 'right_alt' : "\ue0bd",
+                \ 'space' : ' '}
+endif
 "}}}
 "{{{colorscheme
 let g:VIM_Color_Scheme = 'quantum'
@@ -1380,6 +1441,7 @@ function! SwitchColorScheme(name)
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
+    execute 'Tmuxline lightline'
 endfunction
 "}}}
 "{{{TransparentBG()
@@ -2549,7 +2611,7 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
         echo '<C-f>  在FullPath和NameOnly模式间切换'
         echo '<C-v>  从剪切板粘贴'
         echo '<C-u>  清空输入框'
-        echo '<CR> <C-X> <C-]> <C-t>  在当前窗口、新的水平窗口、新的竖直窗口、新的tab中打开'
+        echo '<CR> <C-X> <C-]> <A-t>  在当前窗口、新的水平窗口、新的竖直窗口、新的tab中打开'
         echo '<F5>  刷新缓存'
         echo '<C-s>  选择多个文件'
         echo '<C-a>  选择所有文件'
@@ -2646,7 +2708,7 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
                 \ 'Line': 1,
                 \ 'Colorscheme': 0
                 \}
-    let g:Lf_CommandMap = {'<Home>': ['<S-left>'], '<End>': ['<S-right>']}
+    let g:Lf_CommandMap = {'<Home>': ['<S-left>'], '<End>': ['<S-right>'], '<C-t>': ['<A-t>']}
     let g:Lf_ShortcutF = '```zw'  " mapping for searching files
     let g:Lf_ShortcutB = '````1cv'  " mapping for searching buffers
     let g:Lf_NormalMap = {
@@ -2727,6 +2789,7 @@ if g:VIM_Explore ==# 'defx'
         echo "<right>  打开文件或目录\n"
         echo "<left>  返回上一级目录\n"
         echo "<Tab>  让当前目录成为当前TAB的工作目录\n"
+        echo "<S-Tab>  让当前目录成为所有TAB的工作目录\n"
         echo "nd  新建目录\n"
         echo "nf  新建文件\n"
         echo "s  选中\n"
@@ -2779,27 +2842,27 @@ if g:VIM_Explore ==# 'defx'
         endif
     endfunction
     "}}}
-"{{{Defx_Prosession
-function! Defx_Prosession_Switch()
-    let s:Defx_cwd = getcwd()
-    execute 'Prosession'.s:Defx_cwd
-endfunction
-function! Defx_Prosession_Delete()
-    let s:Defx_cwd = getcwd()
-    execute 'ProsessionDelete'.s:Defx_cwd
-endfunction
-function! Defx_Prosession_FuzzyFind()
-    if g:VIM_Fuzzy_Finder ==# 'remix'
-        execute 'LeaderfProsessions'
-    elseif g:VIM_Fuzzy_Finder ==# 'denite'
-        execute 'Denite prosession'
-    elseif g:VIM_Fuzzy_Finder ==# 'fzf'
-        execute 'ProsessionList'
-    elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
-        execute 'LeaderfProsessions'
-    endif
-endfunction
-"}}}
+    "{{{Defx_Prosession
+    function! Defx_Prosession_Switch()
+        let s:Defx_cwd = getcwd()
+        execute 'Prosession'.s:Defx_cwd
+    endfunction
+    function! Defx_Prosession_Delete()
+        let s:Defx_cwd = getcwd()
+        execute 'ProsessionDelete'.s:Defx_cwd
+    endfunction
+    function! Defx_Prosession_FuzzyFind()
+        if g:VIM_Fuzzy_Finder ==# 'remix'
+            execute 'LeaderfProsessions'
+        elseif g:VIM_Fuzzy_Finder ==# 'denite'
+            execute 'Denite prosession'
+        elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+            execute 'ProsessionList'
+        elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
+            execute 'LeaderfProsessions'
+        endif
+    endfunction
+    "}}}
     function! ToggleDefx()
         execute 'Defx -toggle -auto-cd -buffer-name="Explore" -split=vertical -winwidth=35 -direction=topleft -fnamewidth=19 -columns=mark:icons:filename:git:size:time'
     endfunction
@@ -2826,6 +2889,7 @@ endfunction
         nnoremap <silent><buffer><expr> <left>
                     \ defx#async_action('cd', ['..'])
         nnoremap <silent><buffer> <Tab> :<C-u>tcd %:p:h<CR>
+        nnoremap <silent><buffer> <S-Tab> :<C-u>cd %:p:h<CR>
         nnoremap <silent><buffer><expr> nd
                     \ defx#async_action('new_directory')
         nnoremap <silent><buffer><expr> nf
@@ -3164,12 +3228,12 @@ command W w suda://%
 " 主quickmenu
 function! Help_auto_pairs()
     echo '插入模式下：'
-    echo '<A-w>  fast wrap'
+    echo '<A-z><A-w>  fast wrap'
     echo '<A-n>  jump to next closed pair'
 endfunction
 "}}}
 let g:AutoPairsShortcutToggle = '<A-z>`asdxcvdsf'
-let g:AutoPairsShortcutFastWrap = '<A-w>'
+let g:AutoPairsShortcutFastWrap = '<A-z><A-w>'
 let g:AutoPairsShortcutJump = '<A-n>'
 "}}}
 "{{{vim-surround
@@ -3284,11 +3348,11 @@ endfunction
 "{{{MatchTagAlways
 "{{{MatchTagAlways-usage
 function! Help_MatchTagAlways()
-    echo '<A-j>  普通模式下跳转tag'
+    echo '<leader><Tab>  普通模式和插入模式跳转tag'
 endfunction
 "}}}
 function! Func_MatchTagAlways()
-    inoremap <silent><A-j> <Esc>:MtaJumpToOtherTag<CR>i
-    nnoremap <silent><A-j> :<C-u>MtaJumpToOtherTag<CR>
+    inoremap <silent><A-z><Tab> <Esc>:MtaJumpToOtherTag<CR>i
+    nnoremap <silent><leader><Tab> :<C-u>MtaJumpToOtherTag<CR>
 endfunction
 "}}}
