@@ -1,11 +1,60 @@
+# {{{Variables
+export TERM="xterm-256color"
+export PATH="$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
+export TERM_Emulator=$(ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))")
+# }}}
+# {{{functions
+test_cmd_pre () {
+    command -v "$1" >/dev/null
+}
+test_cmd () {
+    test_cmd_pre "$1" && echo 'yes' || echo 'no'
+}
+# }}}
 # {{{Install
 # yay -S zsh-theme-powerlevel9k powerline
 # sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 # https://archive.archlinux.org/packages/z/zsh-theme-powerlevel9k/zsh-theme-powerlevel9k-0.6.4-1-any.pkg.tar.xz
 # }}}
-export TERM="xterm-256color"
-export PATH="$HOME/.local/bin:$PATH"
-export TERM_Emulator=$(ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))")
+# {{{TMUX Init
+nvim_exist=$(test_cmd nvim)
+if [[ "$TERM_Emulator" != "tilda" ]]; then
+    if [[ -z "$TMUX" ]] ;then
+        ID="`tmux ls | grep -vm1 attached | grep Alpha | cut -d: -f1`" # check if Alpha session exist
+        if [[ -z "$ID" ]] ;then # if not, creat a new one
+            tmux new-session -d -s Alpha -n VIM
+            tmux new-window -t Alpha -n Shell
+            tmux send-keys -t Alpha:VIM "cd ~" Enter
+            if [[ "$nvim_exist" == "yes" ]]; then
+                tmux send-keys -t Alpha:VIM "nvim" Enter
+            elif [[ "$nvim_exist" == "no" ]]; then
+                tmux send-keys -t Alpha:VIM "vim" Enter
+            fi
+            tmux attach -t Alpha:Shell
+        else
+            tmux attach-session -t Alpha # if available attach to it # else, attach it
+        fi
+    fi
+elif [[ "$TERM_Emulator" == "tilda" ]]; then
+    if [[ -z "$TMUX" ]] ;then
+        ID="`tmux ls | grep -vm1 attached | grep Beta | cut -d: -f1`" # check if Beta session exist
+        if [[ -z "$ID" ]] ;then # if not, creat a new one
+            tmux new-session -d -s Beta -n VIM
+            tmux new-window -t Beta -n Shell
+            tmux send-keys -t Beta:VIM "cd ~" Enter
+            if [[ "$nvim_exist" == "yes" ]]; then
+                tmux send-keys -t Beta:VIM "nvim" Enter
+            elif [[ "$nvim_exist" == "no" ]]; then
+                tmux send-keys -t Beta:VIM "vim" Enter
+            fi
+            tmux attach -t Beta:Shell
+        else
+            tmux attach-session -t Beta # if available attach to it # else, attach it
+        fi
+    fi
+fi
+./.tmux_bind.sh yes
+# }}}
 set -o ignoreeof
 set -o noclobber
 
@@ -67,19 +116,19 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 # for code ({000..255}) print -P -- "$code: %F{$code}This is how your text would look like%f"
 # 两个单冒号之间可以是一个三位数的数字，用来代表颜色，具体选择请终端执行以上代码
 # 某些变量具有状态属性，设置颜色的时候按照这个格式POWERLEVEL9K_<name-of-segment>_<state>_[BACKGROUND|FOREGROUND]
-# Segment	States
-# battery	LOW, CHARGING, CHARGED, DISCONNECTED
-# context	DEFAULT, ROOT, SUDO, REMOTE, REMOTE_SUDO
-# dir	HOME, HOME_SUBFOLDER, DEFAULT, ETC
-# dir_writable	FORBIDDEN
-# host	LOCAL, REMOTE
-# load	CRITICAL, WARNING, NORMAL
-# rspec_stats	STATS_GOOD, STATS_AVG, STATS_BAD
-# status	ERROR, OK (note: only, if verbose is not false)
-# symfony2_tests	TESTS_GOOD, TESTS_AVG, TESTS_BAD
-# user	DEFAULT, SUDO, ROOT
-# vcs	CLEAN, UNTRACKED, MODIFIED
-# vi_mode	NORMAL, INSERT
+# Segment       States
+# battery       LOW, CHARGING, CHARGED, DISCONNECTED
+# context       DEFAULT, ROOT, SUDO, REMOTE, REMOTE_SUDO
+# dir   HOME, HOME_SUBFOLDER, DEFAULT, ETC
+# dir_writable  FORBIDDEN
+# host  LOCAL, REMOTE
+# load  CRITICAL, WARNING, NORMAL
+# rspec_stats   STATS_GOOD, STATS_AVG, STATS_BAD
+# status        ERROR, OK (note: only, if verbose is not false)
+# symfony2_tests        TESTS_GOOD, TESTS_AVG, TESTS_BAD
+# user  DEFAULT, SUDO, ROOT
+# vcs   CLEAN, UNTRACKED, MODIFIED
+# vi_mode       NORMAL, INSERT
 # 另外大部分变量都可以设置在visual模式下的颜色，格式像这样POWERLEVEL9K_LOAD_CRITICAL_VISUAL_IDENTIFIER_COLOR="red" 在state和ground之间加上_VISUAL_IDENTIFIER
 # }}}
 
@@ -112,18 +161,18 @@ zstyle ':completion:*' menu select
 setopt completealiases
 # Alt+Left撤销最后一次cd；Alt+Up返回目录的上一层
 cdUndoKey() {
-	popd      > /dev/null
-	zle       reset-prompt
-	echo
-	ls
-	echo
+    popd      > /dev/null
+    zle       reset-prompt
+    echo
+    ls
+    echo
 }
 cdParentKey() {
-	pushd .. > /dev/null
-	zle      reset-prompt
-	echo
-	ls
-	echo
+    pushd .. > /dev/null
+    zle      reset-prompt
+    echo
+    ls
+    echo
 }
 zle -N                 cdParentKey
 zle -N                 cdUndoKey
