@@ -51,5 +51,7 @@ elif [[ "$1" == "no" ]]; then
     tmux unbind-key -n C-=
     tmux unbind-key -n C--
     tmux unbind-key -n C-x
-    rm /tmp/.tmux_bind.lck
+    if [ -e "/tmp/.tmux_bind.lck" ]; then
+        rm /tmp/.tmux_bind.lck
+    fi
 fi
