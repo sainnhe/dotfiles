@@ -53,7 +53,7 @@ elif [[ "$TERM_Emulator" == "tilda" ]]; then
         fi
     fi
 fi
-./.tmux_bind.sh yes
+./.tmux_bind.sh no
 # }}}
 set -o ignoreeof
 set -o noclobber
