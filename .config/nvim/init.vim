@@ -775,9 +775,7 @@ call quickmenu#current(0)
 call quickmenu#reset()
 nnoremap <silent> <leader><Space> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
-if g:VIM_Completion_Framework ==# 'coc'
-    call g:quickmenu#append('COC Menu', 'call quickmenu#toggle(6)', '', '', 0, '`')
-endif
+call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(6)', '', '', 0, '`')
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
@@ -1890,7 +1888,7 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
     "}}}
     "{{{quickmenu
-    call quickmenu#current(8)
+    call quickmenu#current(6)
     call quickmenu#reset()
     call g:quickmenu#append('# Deoplete', '')
     call g:quickmenu#append('Toggle Word Completion', 'call Func_ToggleDeopleteWords()', '', '', 0, 'w')
@@ -1966,7 +1964,7 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
     "}}}
     "{{{quickmenu
-    call quickmenu#current(8)
+    call quickmenu#current(6)
     call quickmenu#reset()
     call g:quickmenu#append('# NCM2', '')
     call g:quickmenu#append('Toggle Word Completion', 'call Func_ToggleNcm2Look()', '', '', 0, 'w')
@@ -2026,6 +2024,11 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     "{{{asyncomplete-usage
     " <Tab> <S-Tab> 分别向下和向上选中，
     " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
+    "}}}
+    "{{{quickmenu
+    call quickmenu#current(6)
+    call quickmenu#reset()
+    call g:quickmenu#append('# Asyncomplete', '')
     "}}}
 elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
@@ -2103,6 +2106,41 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     "{{{coc.nvim-usage
     " 主quickmenu中打开COC
     "}}}
+    "{{{quickmenu
+    call quickmenu#current(6)
+    call quickmenu#reset()
+    call g:quickmenu#append('# COC', '')
+    call g:quickmenu#append('Action', 'Denite coc-action', '', '', 0, '*')
+    call g:quickmenu#append('Toggle LSC', 'call Toggle_LSC()', '', '', 0, 't')
+    call g:quickmenu#append('Extension Commands', 'Denite coc-command', '', '', 0, 'c')
+    call g:quickmenu#append('Extension', 'Denite coc-extension', '', '', 0, 'e')
+    call g:quickmenu#append('Service', 'Denite coc-service', '', '', 0, 'm')
+    call g:quickmenu#append('Edit COC Config', 'CocConfig', '', '', 0, 'E')
+    call g:quickmenu#append('Update Extensions', 'CocUpdate', '', '', 0, 'U')
+    call g:quickmenu#append('Disable COC', 'CocDisable', '', '', 0, '#')
+    call g:quickmenu#append('Enable COC', 'CocEnable', '', '', 0, '$')
+    call g:quickmenu#append('Restart COC', 'CocRestart', '', '', 0, '@')
+    call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
+    call g:quickmenu#append('Help', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
+    call quickmenu#current(5)
+    call quickmenu#reset()
+    call g:quickmenu#append('Code Action', "call CocActionAsync('codeAction')", 'prompty for a code action and do it.', '', 0, 'a')
+    call g:quickmenu#append('Code Lens Action', "call CocActionAsync('codeLensAction')", 'Invoke command for codeLens of current line (or the line contains codeLens just before).', '', 0, 'A')
+    call g:quickmenu#append('Symbols', 'Denite coc-symbols', '', '', 0, 's')
+    call g:quickmenu#append('Symbols Workspace', 'Denite coc-workspace', '', '', 0, 'S')
+    call g:quickmenu#append('Definition', "call CocActionAsync('jumpDefinition')", 'jump to definition position of current symbol.', '', 0, 'd')
+    call g:quickmenu#append('Type Definition', "call CocActionAsync('jumpTypeDefinition')", 'Jump to type definition position of current symbol.', '', 0, 'D')
+    call g:quickmenu#append('Diagnostics', "call CocActionAsync('diagnosticInfo')", 'Show diagnostic message at current position, no truncate.', '', 0, 'e')
+    call g:quickmenu#append('Diagnostic Lists', 'Denite coc-diagnostic', '', '', 0, 'E')
+    call g:quickmenu#append('References', "call CocActionAsync('jumpReferences')", 'Jump to references position of current symbol.', '', 0, 'r')
+    call g:quickmenu#append('Rename', "call CocActionAsync('rename')", 'Do rename for symbol under cursor position.', '', 0, 'R')
+    call g:quickmenu#append('Hover', "call CocActionAsync('doHover')", 'Show documentation of current word at preview window.', '', 0, 'h')
+    call g:quickmenu#append('Implementation', "call CocActionAsync('jumpImplementation')", 'Jump to implementation position of current symbol.', '', 0, 'i')
+    call g:quickmenu#append('Format', "call CocActionAsync('format')", 'Format current buffer using language server.', '', 0, 'f')
+    call g:quickmenu#append('Highlight', "call CocActionAsync('highlight')", 'Highlight symbols under cursor', '', 0, 'l')
+    call g:quickmenu#append('Open Link', "call CocActionAsync('openLink')", 'Open link under cursor.', '', 0, 'L')
+    call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
+    "}}}
     augroup Load_Coc
         autocmd!
         autocmd InsertEnter * call CocInit()
@@ -2154,39 +2192,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 endif
             endif
         endfunction
-        call quickmenu#current(6)
-        call quickmenu#reset()
-        call g:quickmenu#append('# COC Menu', '')
-        call g:quickmenu#append('Action', 'Denite coc-action', '', '', 0, '*')
-        call g:quickmenu#append('Toggle LSC', 'call Toggle_LSC()', '', '', 0, 't')
-        call g:quickmenu#append('Extension Commands', 'Denite coc-command', '', '', 0, 'c')
-        call g:quickmenu#append('Extension', 'Denite coc-extension', '', '', 0, 'e')
-        call g:quickmenu#append('Service', 'Denite coc-service', '', '', 0, 'm')
-        call g:quickmenu#append('Edit COC Config', 'CocConfig', '', '', 0, 'E')
-        call g:quickmenu#append('Update Extensions', 'CocUpdate', '', '', 0, 'U')
-        call g:quickmenu#append('Disable COC', 'CocDisable', '', '', 0, '#')
-        call g:quickmenu#append('Enable COC', 'CocEnable', '', '', 0, '$')
-        call g:quickmenu#append('Restart COC', 'CocRestart', '', '', 0, '@')
-        call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
-        call g:quickmenu#append('Help', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
-        call quickmenu#current(5)
-        call quickmenu#reset()
-        call g:quickmenu#append('Code Action', "call CocActionAsync('codeAction')", 'prompty for a code action and do it.', '', 0, 'a')
-        call g:quickmenu#append('Code Lens Action', "call CocActionAsync('codeLensAction')", 'Invoke command for codeLens of current line (or the line contains codeLens just before).', '', 0, 'A')
-        call g:quickmenu#append('Symbols', 'Denite coc-symbols', '', '', 0, 's')
-        call g:quickmenu#append('Symbols Workspace', 'Denite coc-workspace', '', '', 0, 'S')
-        call g:quickmenu#append('Definition', "call CocActionAsync('jumpDefinition')", 'jump to definition position of current symbol.', '', 0, 'd')
-        call g:quickmenu#append('Type Definition', "call CocActionAsync('jumpTypeDefinition')", 'Jump to type definition position of current symbol.', '', 0, 'D')
-        call g:quickmenu#append('Diagnostics', "call CocActionAsync('diagnosticInfo')", 'Show diagnostic message at current position, no truncate.', '', 0, 'e')
-        call g:quickmenu#append('Diagnostic Lists', 'Denite coc-diagnostic', '', '', 0, 'E')
-        call g:quickmenu#append('References', "call CocActionAsync('jumpReferences')", 'Jump to references position of current symbol.', '', 0, 'r')
-        call g:quickmenu#append('Rename', "call CocActionAsync('rename')", 'Do rename for symbol under cursor position.', '', 0, 'R')
-        call g:quickmenu#append('Hover', "call CocActionAsync('doHover')", 'Show documentation of current word at preview window.', '', 0, 'h')
-        call g:quickmenu#append('Implementation', "call CocActionAsync('jumpImplementation')", 'Jump to implementation position of current symbol.', '', 0, 'i')
-        call g:quickmenu#append('Format', "call CocActionAsync('format')", 'Format current buffer using language server.', '', 0, 'f')
-        call g:quickmenu#append('Highlight', "call CocActionAsync('highlight')", 'Highlight symbols under cursor', '', 0, 'l')
-        call g:quickmenu#append('Open Link', "call CocActionAsync('openLink')", 'Open link under cursor.', '', 0, 'L')
-        call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
+
         function! Install_COC_Sources()
             execute 'CocInstall coc-dictionary'
             execute 'CocInstall coc-tag'
