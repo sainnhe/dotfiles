@@ -604,7 +604,6 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'Shougo/neco-syntax'
     Plug 'Shougo/neoinclude.vim'
     Plug 'Shougo/context_filetype.vim'
-    Plug 'SevereOverfl0w/deoplete-github'
     Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains bash ./install.sh' }
     Plug 'Shougo/neco-vim', { 'for': 'vim' }
     Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
@@ -1903,13 +1902,6 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     " deoplete-jedi
     " https://github.com/zchee/deoplete-jedi
     let g:tmuxcomplete#trigger = ''
-
-    let g:deoplete#sources = {}
-    let g:deoplete#sources.gitcommit=['github']
-    let g:deoplete#keyword_patterns = {}
-    let g:deoplete#keyword_patterns.gitcommit = '#'
-    call deoplete#util#set_pattern(
-                \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
     "}}}
     let g:deoplete#enable_at_startup = 0
     augroup Deoplete_Au
