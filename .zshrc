@@ -12,11 +12,14 @@ test_cmd () {
 }
 # }}}
 # {{{Install
-# yay -S zsh-theme-powerlevel9k powerline
+# sudo pacman -S zsh-theme-powerlevel9k powerline
 # sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 # https://archive.archlinux.org/packages/z/zsh-theme-powerlevel9k/zsh-theme-powerlevel9k-0.6.4-1-any.pkg.tar.xz
 # }}}
 # {{{TMUX Init
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 nvim_exist=$(test_cmd nvim)
 if [[ "$TERM_Emulator" != "tilda" ]]; then
     if [[ -z "$TMUX" ]] ;then
