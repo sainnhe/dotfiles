@@ -15,8 +15,9 @@ endif
 " sudo pacman -S python-neovim
 " 安装软件包:
 " lua boost xclip words ripgrep fzf ctags global toilet toilet-fonts nodejs yarn php python-wcwidth
-" astyle tidy eslint stylelint prettier shfmt js-beautify cppcheck nodejs-jsonlint shellcheck python-vint stylelint-config-standard(npm)
-" yapf python-pyflakes python-pycodestyle python-pydocstyle python-pylint
+" clang tidy eslint stylelint flake8 flawfinder cppcheck nodejs-jsonlint shellcheck python-vint stylelint-config-standard(npm)
+" python-pyflakes python-pycodestyle python-pydocstyle python-pylint
+" astyle prettier shfmt js-beautify uncrustify yapf
 " :call Install_COC_Sources()  "  function里包含了json的额外设置
 "{{{InstallLSP
 " https://microsoft.github.io/language-server-protocol/implementors/servers/
@@ -35,9 +36,9 @@ let g:VIM_AutoInstall = 1
 let g:VIM_TmuxLineSync = 0
 let g:VIM_LSP_Client = 'lcn'  " lcn vim-lsp
 let g:VIM_Snippets = 'ultisnips'  " ultisnips neosnippet
-let g:VIM_Completion_Framework = 'deoplete'  " deoplete ncm2 asyncomplete coc neocomplete
+let g:VIM_Completion_Framework = 'ncm2'  " deoplete ncm2 asyncomplete coc neocomplete
 let g:VIM_Fuzzy_Finder = 'remix'  " remix denite fzf leaderf
-let g:VIM_Linter = 'ale' | let g:EnableCocLint = 0  " ale neomake
+let g:VIM_Linter = 'ale'  " ale neomake
 let g:VIM_Explore = 'defx'  " defx nerdtree
 " :UpdateRemotePlugins
 if exists('*VIM_Global_Settings')
@@ -147,6 +148,7 @@ set encoding=utf-8
 scriptencoding utf-8
 let mapleader=' '
 nnoremap <SPACE> <Nop>
+set mouse=a
 filetype plugin indent on
 let g:sessions_dir = expand('~/.vim/sessions/')
 syntax enable                           " 开启语法支持
@@ -318,7 +320,7 @@ if !has('nvim')
     inoremap ^@ <ESC>
 endif
 " Ctrl+V粘贴
-inoremap <C-V> <ESC>pa
+inoremap <C-V> <Space><Backspace><ESC>pa
 " Ctrl+S保存文件
 inoremap <C-S> <Esc>:w<CR>a
 " Ctrl+Z撤销上一个动作
@@ -721,9 +723,9 @@ endif
 Plug 'jlanzarotta/bufexplorer'
 Plug 'majutsushi/tagbar', { 'on': [] }
 Plug 'lvht/tagbar-markdown', { 'on': [] }
-Plug 'Chiel92/vim-autoformat'
+Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'test'}
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'MattesGroeger/vim-bookmarks'
@@ -779,7 +781,6 @@ call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(6)', '', 
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
-call g:quickmenu#append('Format', 'call quickmenu#toggle(7)', '', '', 0, 'f')
 call g:quickmenu#append('IndentGuides', 'call ToggleIndentGuides()', '', '', 0, 'i')
 call g:quickmenu#append('BufExplore', 'ToggleBufExplorer', '', '', 0, 'b')
 call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
@@ -788,7 +789,9 @@ call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
 call quickmenu#current(10)
 call quickmenu#reset()
 call g:quickmenu#append('# Help', '')
+call g:quickmenu#append('Visual Multi', 'call Help_vim_visual_multi()', '', '', 0, 'v')
 call g:quickmenu#append('Prosession', 'call Help_vim_prosession()', '', '', 0, 's')
+call g:quickmenu#append('Neoformat', 'call Help_neoformat()', '', '', 0, 'f')
 call g:quickmenu#append('Auto Pairs', 'call Help_auto_pairs()', '', '', 0, 'p')
 call g:quickmenu#append('Nerd Commenter', 'call Help_nerdcommenter()', '', '', 0, 'c')
 call g:quickmenu#append('Bookmarks', 'call Help_vim_bookmarks()', '', '', 0, 'b')
@@ -810,19 +813,6 @@ function! NiceTabNum(n) abort
     " \ 'globalinfo': 'T%{NiceNumber(tabpagenr())} B%{bufnr("%")} W%{tabpagewinnr(tabpagenr())}',
     return RomaNumber(a:n)
     " return RomaNumber(tabpagenr('$'))
-endfunction
-" COC StatusLine Function
-function! CocStatusDiagnostic() abort
-    let info = get(b:, 'coc_diagnostic_info', {})
-    if empty(info) | return '' | endif
-    let msgs = []
-    if get(info, 'error', 0)
-        call add(msgs, "\uf00d" . info['error'])
-    endif
-    if get(info, 'warning', 0)
-        call add(msgs, "\uf529" . info['warning'])
-    endif
-    return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
 endfunction
 function! ObsessionStatusEnhance() abort
     if ObsessionStatus() ==# '[$]'
@@ -876,23 +866,10 @@ elseif g:VIM_Linter ==# 'neomake'
                 \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
                 \ 'right': [ [ 'lineinfo' ],
                 \            [ 'obsession', 'tmuxlock' ],
-                \            [ 'neomake' ]] }
+                \            [ 'neomake' ],
+                \            [ 'lsc_ok', 'lsc_errors', 'lsc_checking', 'lsc_warnings' ]
+                \            ] }
     " \            [ 'neomake_warnings', 'neomake_errors', 'neomake_infos', 'neomake_ok' ],
-endif
-if g:EnableCocLint == 1 && g:VIM_Linter ==# 'neomake'
-    let g:lightline.active = {
-                \ 'left': [ [ 'mode', 'paste' ],
-                \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
-                \ 'right': [ [ 'lineinfo' ],
-                \            [ 'obsession', 'tmuxlock' ],
-                \            [ 'cocstatus' ]] }
-elseif g:VIM_LSP_Client ==# 'lcn' && g:VIM_Linter ==# 'neomake'
-    let g:lightline.active = {
-                \ 'left': [ [ 'mode', 'paste' ],
-                \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
-                \ 'right': [ [ 'lineinfo' ],
-                \            [ 'obsession', 'tmuxlock' ],
-                \            [ 'lsc_ok', 'lsc_errors', 'lsc_checking', 'lsc_warnings' ]] }
 endif
 let g:lightline.inactive = {
             \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'filetype', 'filesize' ]],
@@ -913,7 +890,6 @@ let g:lightline.tab_component_function = {
             \ 'tabnum': 'lightline#tab#tabnum' }
 let g:lightline.component = {
             \ 'bufinfo': '%{bufname("%")}:%{bufnr("%")}',
-            \ 'cocstatus': '%{CocStatusDiagnostic()}',
             \ 'obsession': '%{ObsessionStatusEnhance()}',
             \ 'tmuxlock': '%{TmuxBindLock()}',
             \ 'vim_logo': "\ue7c5",
@@ -2111,17 +2087,16 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call quickmenu#reset()
     call g:quickmenu#append('# COC', '')
     call g:quickmenu#append('Action', 'Denite coc-action', '', '', 0, '*')
-    call g:quickmenu#append('Toggle LSC', 'call Toggle_LSC()', '', '', 0, 't')
     call g:quickmenu#append('Extension Commands', 'Denite coc-command', '', '', 0, 'c')
-    call g:quickmenu#append('Extension', 'Denite coc-extension', '', '', 0, 'e')
-    call g:quickmenu#append('Service', 'Denite coc-service', '', '', 0, 'm')
-    call g:quickmenu#append('Edit COC Config', 'CocConfig', '', '', 0, 'E')
+    call g:quickmenu#append('Extension Management', 'Denite coc-extension', '', '', 0, 'e')
     call g:quickmenu#append('Update Extensions', 'CocUpdate', '', '', 0, 'U')
+    call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
+    call g:quickmenu#append('Edit COC Config', 'CocConfig', '', '', 0, 'E')
+    call g:quickmenu#append('Language Server Management', 'Denite coc-service', '', '', 0, 'm')
     call g:quickmenu#append('Disable COC', 'CocDisable', '', '', 0, '#')
     call g:quickmenu#append('Enable COC', 'CocEnable', '', '', 0, '$')
     call g:quickmenu#append('Restart COC', 'CocRestart', '', '', 0, '@')
-    call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
-    call g:quickmenu#append('Help', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
+    call g:quickmenu#append('Help Mappings', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
     call quickmenu#current(5)
     call quickmenu#reset()
     call g:quickmenu#append('Code Action', "call CocActionAsync('codeAction')", 'prompty for a code action and do it.', '', 0, 'a')
@@ -2169,7 +2144,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         imap <C-l> <C-y>
         inoremap <expr> <down> pumvisible() ? "\<left>\<right>\<down>" : "\<down>"
         inoremap <expr> <up> pumvisible() ? "\<left>\<right>\<up>" : "\<up>"
-        inoremap <expr> <CR> pumvisible() ? "\<left>\<right>\<CR>" : "\<CR>"
+        inoremap <expr> <CR> pumvisible() ? "\<CR>\<left>\<left>\<CR>" : "\<CR>"
         augroup CocAu
             autocmd!
             autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
@@ -2213,6 +2188,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
             "coc.preferences.diagnostic.warningSign": "\uf529",
             "coc.preferences.diagnostic.infoSign": "ℹ",
             "coc.preferences.diagnostic.hintSign": "➤",
+            "coc.preferences.diagnostic.displayByAle": false,
             "https://github.com/neoclide/coc.nvim/wiki/Language-servers
         endfunction
     endfunction
@@ -2573,9 +2549,6 @@ if g:VIM_Fuzzy_Finder ==# 'fzf'
         autocmd!
         autocmd User CocQuickfixChange :call fzf_quickfix#run()
     augroup END
-    nmap <leader><tab> <plug>(fzf-maps-n)
-    xmap <leader><tab> <plug>(fzf-maps-x)
-    omap <leader><tab> <plug>(fzf-maps-o)
     let g:fzf_action = {
                 \ 'ctrl-t': 'tab split',
                 \ 'ctrl-h': 'split',
@@ -2765,12 +2738,12 @@ if g:VIM_Linter ==# 'ale'
     " ls ~/.vim/plugins/ale/ale_linters/
     let g:ale_linters = {
                 \       'asm': ['gcc'],
-                \       'c': ['cppcheck'],
-                \       'cpp': ['cppcheck'],
+                \       'c': ['clangtidy', 'cppcheck', 'flawfinder'],
+                \       'cpp': ['clangtidy', 'cppcheck', 'flawfinder'],
                 \       'css': ['stylelint'],
                 \       'html': ['tidy'],
                 \       'json': ['jsonlint'],
-                \       'python': ['pylint'],
+                \       'python': ['pylint', 'flake8'],
                 \       'sh': ['shellcheck'],
                 \       'vim': ['vint'],
                 \}
@@ -2789,6 +2762,10 @@ if g:VIM_Linter ==# 'ale'
     let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
     " 光标移动到错误的地方时立即显示错误
     let g:ale_echo_delay = 0
+    " virtual text
+    let g:ale_virtualtext_cursor = 1
+    let g:ale_virtualtext_delay = 10
+    let g:ale_virtualtext_prefix = 'ᐅ'
     " ale-mode
     if g:ALE_MODE == 0
         let g:ale_lint_on_text_changed = 'never'
@@ -3058,59 +3035,29 @@ function! TagbarInit()
                 \ }
 endfunction
 "}}}
-"{{{vim-autoformat
-"{{{vim-autoformat-usage
-" 主quickmenu
+"{{{neoformat
+"{{{neoformat-usage
+function! Help_neoformat()
+    echo '<leader><Tab>  普通模式和可视模式排版'
+    echo '<leader><S-Tab>  普通模式和可视模式自定义排版'
+endfunction
 "}}}
-call quickmenu#current(7)
-call quickmenu#reset()
-call g:quickmenu#append('# Format', '')
-call g:quickmenu#append('Auto Format', 'Autoformat', '', '', 0, 'f')
-call g:quickmenu#append('Next Formatter', 'NextFormatter', '', '', 0, 'n')
-call g:quickmenu#append('Previous Formatter', 'PreviousFormatter', '', '', 0, 'p')
-call g:quickmenu#append('Current Formatter', 'CurrentFormatter', '', '', 0, 'c')
-" au BufWrite * :Autoformat     "在保存文件时自动排版
-" 自定义formatters
-" 你可以改变它们的顺序，但是不要改变它们的值
-let g:formatters_c = ['astyle_c', 'clangformat']
-let g:formatters_cpp = ['astyle_cpp', 'clangformat']
-let g:formatters_cs = ['astyle_cs']
-let g:formatters_objc = ['clangformat']
-let g:formatters_java = ['astyle_java']
-let g:formatters_javascript = [
-            \ 'eslint_local',
-            \ 'jsbeautify_javascript',
-            \ 'jscs',
-            \ 'standard_javascript',
-            \ 'prettier',
-            \ 'xo_javascript',
-            \ ]
-let g:formatters_python = ['yapf', 'autopep8']
-let g:formatters_json = [
-            \ 'jsbeautify_json',
-            \ 'fixjson',
-            \ 'prettier',
-            \ ]
-let g:formatters_html = ['tidy_html', 'htmlbeautify']
-let g:formatters_xml = ['tidy_xml']
-let g:formatters_svg = ['tidy_xml']
-let g:formatters_xhtml = ['tidy_xhtml']
-let g:formatters_ruby = ['rbeautify', 'rubocop']
-let g:formatters_css = ['prettier', 'cssbeautify']
-let g:formatters_scss = ['prettier', 'sassconvert']
-let g:formatters_less = ['prettier']
-let g:formatters_typescript = ['tsfmt', 'prettier']
-let g:formatters_go = ['gofmt_1', 'goimports', 'gofmt_2']
-let g:formatters_rust = ['rustfmt']
-let g:formatters_dart = ['dartfmt']
-let g:formatters_perl = ['perltidy']
-let g:formatters_haskell = ['stylish_haskell']
-let g:formatters_markdown = ['prettier', 'remark_markdown']
-let g:formatters_graphql = ['prettier']
-let g:formatters_fortran = ['fprettify']
-let g:formatters_elixir = ['mix_format']
-let g:formatters_sh = ['shfmt']
-let g:formatters_sql = ['sqlformat']
+" :h neoformat-supported-filetypes
+" format on save
+" augroup fmt
+" autocmd!
+" autocmd BufWritePre * undojoin | Neoformat
+" augroup END
+" Enable alignment
+let g:neoformat_basic_format_align = 1
+" Enable tab to spaces conversion
+let g:neoformat_basic_format_retab = 1
+" Enable trimmming of trailing whitespace
+let g:neoformat_basic_format_trim = 1
+nnoremap <silent> <leader><Tab> :<C-u>Neoformat<CR>
+vnoremap <silent> <leader><Tab> :Neoformat! &ft<CR>
+nnoremap <silent> <leader><S-Tab> :<C-u>Neoformat
+vnoremap <silent> <leader><S-Tab> :Neoformat! &ft
 "}}}
 "{{{nerdcommenter
 "{{{nerdcommenter-usage
@@ -3148,30 +3095,47 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 "}}}
-"{{{vim-multiple-cursors
-"{{{vim-multiple-cursors-usage
-" 主quickmenu
-function! Help_vim_multiple_cursors()
-    echo '<leader><A-[>  start word'
-    echo '<leader><A-]>  start character'
-    echo '<A-]>  next match'
-    echo '<A-[>  previous match'
-    echo '<A-\>  skip match'
-    echo 'v <C-v>  visual select'
-    echo '<Esc>  quit'
+"{{{vim-visual-multi
+"{{{vim-visual-multi-usage
+function! Help_vim_visual_multi()
+    echo '<F1>  help'
+    echo ''
+    echo '鼠标操作：'
+    echo ''
+    echo 'Ctrl+左键  选中position'
+    echo 'Ctrl+右键  选中word'
+    echo 'Ctrl+Meta+右键  选中column'
+    echo ''
+    echo '键盘操作：'
+    echo '<leader><M-n>  visual选中后按下，开始匹配word'
+    echo '<leader><M-down>  开始选择position'
+    echo '<M-down>  下一个position'
+    echo '<M-up>  上一个position'
+    echo 'h, j, k, l  移动光标'
+    echo '<Tab>  extend mode'
+    echo ']  查找下一个'
+    echo '[  查找上一个'
+    echo '}  跳转到下一个选中'
+    echo '[  跳转到上一个选中'
+    echo '<C-f>  跳转到最后一个选中'
+    echo '<C-b>  跳转到第一个选中'
+    echo 'q  删除当前选中'
+    echo 'Q  删除选中区域'
 endfunction
 "}}}
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_start_word_key      = '<leader><A-[>'
-let g:multi_cursor_start_key           = '<leader><A-]>'
-let g:multi_cursor_next_key            = '<A-]>'
-let g:multi_cursor_prev_key            = '<A-[>'
-let g:multi_cursor_skip_key            = '<A-\>'
-let g:multi_cursor_quit_key            = '<Esc>'
-let g:multi_cursor_select_all_word_key = '<leader>`zxcasdsfxc'
-let g:multi_cursor_select_all_key      = '<leader>`zxcafdsfa'
-let g:multi_cursor_exit_from_visual_mode = 0
-let g:multi_cursor_exit_from_insert_mode = 0
+" https://github.com/mg979/vim-visual-multi/wiki
+nmap <leader><M-down> <C-down>
+nmap <leader><M-n> <C-n>
+let g:VM_mouse_mappings = 1
+let g:VM_maps = {}
+let g:VM_maps['Add Cursor Up']               = '<M-up>'
+let g:VM_maps['Add Cursor Down']             = '<M-down>'
+let g:VM_maps['I Arrow ge']                  = '<M-up>'
+let g:VM_maps['I Arrow e']                   = '<M-down>'
+let g:VM_maps['Select e']                    = '<M-right>'
+let g:VM_maps['Select ge']                   = '<M-left>'
+let g:VM_maps['I Arrow w']                   = '<M-right>'
+let g:VM_maps['I Arrow b']                   = '<M-left>'
 "}}}
 "{{{vim-prosession
 "{{{vim-prosession-usage
@@ -3377,11 +3341,11 @@ endfunction
 "{{{MatchTagAlways
 "{{{MatchTagAlways-usage
 function! Help_MatchTagAlways()
-    echo '<leader><Tab>  普通模式和插入模式跳转tag'
+    echo '<leader><A-n>  普通模式和插入模式跳转tag'
 endfunction
 "}}}
 function! Func_MatchTagAlways()
-    inoremap <silent><A-z><Tab> <Esc>:MtaJumpToOtherTag<CR>i
-    nnoremap <silent><leader><Tab> :<C-u>MtaJumpToOtherTag<CR>
+    inoremap <silent><A-z><A-n> <Esc>:MtaJumpToOtherTag<CR>i
+    nnoremap <silent><leader><A-n> :<C-u>MtaJumpToOtherTag<CR>
 endfunction
 "}}}
