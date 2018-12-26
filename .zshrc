@@ -26,8 +26,10 @@ if [[ "$TERM_Emulator" != "tilda" ]]; then
             tmux new-window -t Alpha -n Shell
             tmux send-keys -t Alpha:VIM "cd ~" Enter
             if [[ "$nvim_exist" == "yes" ]]; then
+                tmux send-keys -t Alpha:VIM "export TERM_Emulator=$TERM_Emulator" Enter
                 tmux send-keys -t Alpha:VIM "nvim" Enter
             elif [[ "$nvim_exist" == "no" ]]; then
+                tmux send-keys -t Alpha:VIM "export TERM_Emulator=$TERM_Emulator" Enter
                 tmux send-keys -t Alpha:VIM "vim" Enter
             fi
             tmux attach -t Alpha:Shell
