@@ -1,5 +1,5 @@
 # {{{Variables
-export TERM="xterm-256color"
+export TERM=xterm-256color
 export PATH="$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
 export TERM_Emulator=$(ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))")
 # }}}
@@ -17,6 +17,7 @@ test_cmd () {
 # https://archive.archlinux.org/packages/z/zsh-theme-powerlevel9k/zsh-theme-powerlevel9k-0.6.4-1-any.pkg.tar.xz
 # }}}
 # {{{TMUX Init
+alias tmux='tmux -2'
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
@@ -58,7 +59,7 @@ elif [[ "$TERM_Emulator" == "tilda" ]]; then
         fi
     fi
 fi
-./.tmux_bind.sh no
+~/.tmux_bind.sh no
 # }}}
 set -o ignoreeof
 set -o noclobber
