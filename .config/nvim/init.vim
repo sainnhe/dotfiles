@@ -7,8 +7,10 @@ endif
 if !filereadable(expand('~/.vim/autoload/plug.vim'))
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
-if executable('tmux') && filereadable(expand('~/.zshrc'))
+if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
     let g:VIM_Enable_TmuxLine = 1
+else
+    let g:VIM_Enable_TmuxLine = 0
 endif
 "}}}
 "{{{Manual
@@ -36,7 +38,7 @@ let g:VIM_AutoInstall = 1
 let g:VIM_TmuxLineSync = 0
 let g:VIM_LSP_Client = 'lcn'  " lcn vim-lsp
 let g:VIM_Snippets = 'ultisnips'  " ultisnips neosnippet
-let g:VIM_Completion_Framework = 'ncm2'  " deoplete ncm2 asyncomplete coc neocomplete
+let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc neocomplete
 let g:VIM_Fuzzy_Finder = 'remix'  " remix denite fzf leaderf
 let g:VIM_Linter = 'ale'  " ale neomake
 let g:VIM_Explore = 'defx'  " defx nerdtree
@@ -135,7 +137,7 @@ endfun
 "}}}
 "{{{ToggleObsession
 function! ToggleObsession()
-    if ObsessionStatusEnhance() ==# ''
+    if ObsessionStatusEnhance() ==# '⏹'
         execute 'Obsession ~/.vim/sessions/Obsession'
     else
         execute 'Obsession'
@@ -144,12 +146,16 @@ endfunction
 "}}}
 "}}}
 "{{{Config
-set encoding=utf-8
+set encoding=utf-8 nobomb
+set termencoding=utf-8
+set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
+set fileformats=unix,dos,mac
 scriptencoding utf-8
 let mapleader=' '
 nnoremap <SPACE> <Nop>
 set mouse=a
 filetype plugin indent on
+set t_Co=256
 let g:sessions_dir = expand('~/.vim/sessions/')
 syntax enable                           " 开启语法支持
 set termguicolors                       " 开启GUI颜色支持
@@ -769,9 +775,11 @@ let g:startify_bookmarks = [
             \ {'c': '~/.config/nvim/init.vim'},
             \ {'c': '~/.zshrc'},
             \ ]
-let g:startify_commands = [
-            \ {'1': 'terminal'},
-            \ ]
+if has('nvim')
+    let g:startify_commands = [
+                \ {'1': 'terminal'},
+                \ ]
+endif
 
 call quickmenu#current(0)
 call quickmenu#reset()
@@ -982,11 +990,12 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'github'
+let g:VIM_Color_Scheme = 'material-dark'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
     call g:quickmenu#append('# ColorScheme', '')
+    call g:quickmenu#append('Background Transparent', 'call ToggleBG()', '', '', 0, '')
     "{{{deus
     if g:VIM_Color_Scheme ==# 'deus'
         set background=dark
@@ -1415,7 +1424,9 @@ function! SwitchColorScheme(name)
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
-    execute 'Tmuxline lightline'
+    if g:VIM_Enable_TmuxLine == 1
+        execute 'Tmuxline lightline'
+    endif
 endfunction
 "}}}
 "{{{TransparentBG()
@@ -2970,6 +2981,7 @@ endif
 "{{{bufexplore-usage
 " defx中<A-b>  切换bufexplorer, <C-b>退出
 " ?  显示帮助文档
+" 主菜单可以打开bufexplore
 "}}}
 "{{{Toggle_defx_bufexplore()
 function! Toggle_defx_bufexplore()
@@ -3147,7 +3159,7 @@ endfunction
 "}}}
 augroup SessionAu
     autocmd!
-    autocmd VimLeave * mksession! %:p:h/.vim/sessions/LastSession
+    autocmd VimLeave * mksession! ~/.vim/sessions/LastSession
 augroup END
 let g:prosession_dir = '~/.cache/prosession/'
 let g:prosession_on_startup = 0
