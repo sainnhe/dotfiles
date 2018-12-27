@@ -668,6 +668,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     endif
     Plug 'neoclide/coc.nvim', {'do': 'proxychains yarn install', 'on': []}
     Plug 'Shougo/neco-vim', { 'on': [] } | Plug 'neoclide/coc-neco', { 'on': [] }
+    Plug 'Shougo/neoinclude.vim', { 'on': [] } | Plug 'jsfaint/coc-neoinclude', { 'on': [] }
     Plug 'iamcco/coc-action-source.nvim', { 'on': [] }
 elseif g:VIM_Completion_Framework ==# 'neocomplete'
     Plug 'Shougo/neocomplete.vim'
@@ -990,7 +991,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'material-dark'
+let g:VIM_Color_Scheme = 'github'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -2127,6 +2128,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('Open Link', "call CocActionAsync('openLink')", 'Open link under cursor.', '', 0, 'L')
     call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
     "}}}
+    "{{{coc-init
+    inoremap <silent><expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
     augroup Load_Coc
         autocmd!
         autocmd InsertEnter * call CocInit()
@@ -2136,38 +2139,57 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         if g:Has_Load_Coc == 0
             let g:Has_Load_Coc = 1
             call Func_Coc()
+        elseif g:Has_Load_Coc == 2
+            call Func_Coc_Snippet_Uninstall()
         endif
     endfunction
     function! Func_Coc()
-        let g:Has_Load_Coc = 1
+        let g:Has_Load_Coc = 2
+        "}}}
+        "{{{coc-load
         if g:VIM_Snippets ==# 'ultisnips'
             call plug#load('ultisnips', 'vim-snippets')
+            let g:Coc_Snippet = 'coc-ultisnips'
         elseif g:VIM_Snippets ==# 'neosnippet'
             call plug#load('neosnippet.vim', 'neosnippet-snippets', 'vim-snippets')
+            let g:Coc_Snippet = 'coc-neosnippet'
         endif
-        call plug#load('coc.nvim', 'neco-vim', 'coc-neco', 'coc-action-source.nvim')
+        call plug#load('coc.nvim', 'neco-vim', 'coc-neco', 'neoinclude.vim', 'coc-neoinclude', 'coc-action-source.nvim')
+        call coc#add_extension(
+                    \   'coc-dictionary', 'coc-tag', 'coc-word',
+                    \   'coc-emoji', 'coc-highlight', g:Coc_Snippet,
+                    \   'coc-html', 'coc-css', 'coc-eslint',
+                    \   'coc-stylelint', 'coc-emmet', 'coc-pyls',
+                    \   'coc-jest', 'coc-json'
+                    \   )
+        function! Func_Coc_Snippet_Uninstall()
+            if g:VIM_Snippets ==# 'ultisnips' && match(CocAction('extensionStats'), 'coc-neosnippet') != -1
+                call CocAction('uninstallExtension', 'coc-neosnippet')
+            elseif g:VIM_Snippets ==# 'neosnippet' && match(CocAction('extensionStats'), 'coc-ultisnips') != -1
+                call CocAction('uninstallExtension', 'coc-ultisnips')
+            endif
+            let g:Has_Load_Coc = 1
+        endfunction
+        "}}}
+        "{{{coc-settings
         if g:VIM_Snippets ==# 'ultisnips'
             let g:UltiSnipsExpandTrigger            = '<A-z>``zsx'
         endif
-        set completeopt-=preview
-        inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
-        imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
-        imap <C-l> <C-y>
-        inoremap <expr> <down> pumvisible() ? "\<left>\<right>\<down>" : "\<down>"
-        inoremap <expr> <up> pumvisible() ? "\<left>\<right>\<up>" : "\<up>"
-        inoremap <expr> <CR> pumvisible() ? "\<CR>\<left>\<left>\<CR>" : "\<CR>"
+        set completeopt=noinsert,noselect,menuone
         augroup CocAu
             autocmd!
             autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
+            autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+            autocmd CursorHold * silent call CocActionAsync('highlight')
         augroup END
         nnoremap <silent> l :<C-u>call quickmenu#toggle(5)<CR>
-        vnoremap <silent> lf :<C-u>call CocActionAsync('format')<CR>
+        vnoremap <silent> lf <Plug>(coc-format-selected)
         let g:CurrentLSC = 5
         function! Toggle_LSC()
             if g:CurrentLSC == 4
                 let g:CurrentLSC = 5
                 nnoremap <silent> l :<C-u>call quickmenu#toggle(5)<CR>
-                vnoremap <silent> lf :<C-u>call CocActionAsync('format')<CR>
+                vnoremap <silent> lf <Plug>(coc-format-selected)
             elseif g:CurrentLSC == 5
                 let g:CurrentLSC = 4
                 nnoremap <silent> l :<C-u>call quickmenu#toggle(4)<CR>
@@ -2178,31 +2200,15 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 endif
             endif
         endfunction
-
-        function! Install_COC_Sources()
-            execute 'CocInstall coc-dictionary'
-            execute 'CocInstall coc-tag'
-            execute 'CocInstall coc-word'
-            execute 'CocInstall coc-emoji'
-            execute 'CocInstall coc-ultisnips'
-            execute 'CocInstall coc-neosnippet'
-            execute 'CocInstall coc-html'
-            execute 'CocInstall coc-css'
-            execute 'CocInstall coc-eslint'
-            execute 'CocInstall coc-stylelint'
-            execute 'CocInstall coc-emmet'
-            execute 'CocInstall coc-pyls'
-            execute 'CocInstall https://github.com/andys8/vscode-jest-snippets.git#master'
-            "coc.preferences.snippetIndicator": "\ue796",
-            "coc.preferences.minTriggerInputLength": 1,
-            "coc.preferences.diagnostic.errorSign": "\uf00d",
-            "coc.preferences.diagnostic.warningSign": "\uf529",
-            "coc.preferences.diagnostic.infoSign": "ℹ",
-            "coc.preferences.diagnostic.hintSign": "➤",
-            "coc.preferences.diagnostic.displayByAle": false,
-            "https://github.com/neoclide/coc.nvim/wiki/Language-servers
-        endfunction
+        "}}}
+        "{{{coc-mappings
+        inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
+        imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
+        imap <C-l> <C-y>
+        inoremap <expr> <down> pumvisible() ? "\<left>\<right>\<down>" : "\<down>"
+        inoremap <expr> <up> pumvisible() ? "\<left>\<right>\<up>" : "\<up>"
     endfunction
+    "}}}
     "}}}
     "{{{neocomplete.vim
 elseif g:VIM_Completion_Framework ==# 'neocomplete'
