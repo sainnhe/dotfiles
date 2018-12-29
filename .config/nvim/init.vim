@@ -24,11 +24,11 @@ endif
 "{{{InstallLSP
 " https://microsoft.github.io/language-server-protocol/implementors/servers/
 " sudo pacman -Syu clang  # clangd
-" yay -S ccls  # ccls
 " sudo pacman -S python-language-server  # pyls
 " sudo pacman -S bash-language-server  # bash-language-server start
-" sudo npm install -g vscode-css-languageserver-bin  # css-languageserver --stdio
 " sudo npm install -g vscode-html-languageserver-bin  # html-languageserver --stdio
+" sudo npm install -g vscode-css-languageserver-bin  # css-languageserver --stdio
+" sudo npm install -g vscode-json-languageserver-bin  # json-languageserver --stdio
 "}}}
 "}}}
 "{{{Todo
@@ -36,8 +36,8 @@ endif
 "}}}
 let g:VIM_AutoInstall = 1
 let g:VIM_TmuxLineSync = 0
-let g:VIM_LSP_Client = 'lcn'  " lcn vim-lsp
-let g:VIM_Snippets = 'ultisnips'  " ultisnips neosnippet coc-snippets
+let g:VIM_LSP_Client = 'none'  " lcn vim-lsp none
+let g:VIM_Snippets = 'coc-snippets'  " ultisnips neosnippet coc-snippets
 let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc
 let g:VIM_Fuzzy_Finder = 'remix'  " remix denite fzf leaderf
 let g:VIM_Linter = 'ale'  " ale neomake
@@ -1665,10 +1665,11 @@ if g:VIM_LSP_Client ==# 'lcn'
     "}}}
     " Server Register
     let g:LanguageClient_serverCommands = {
-                \ 'c': ['ccls'],
-                \ 'cpp': ['ccls'],
+                \ 'c': ['clangd'],
+                \ 'cpp': ['clangd'],
                 \ 'css': ['css-languageserver', '--stdio'],
                 \ 'html': ['html-languageserver', '--stdio'],
+                \ 'json': ['json-languageserver', '--stdio'],
                 \ 'python': ['pyls'],
                 \ 'sh': ['bash-language-server', 'start']
                 \ }
@@ -1778,8 +1779,8 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
     augroup VIM_LSP_Register
         autocmd!
         au User lsp_setup call lsp#register_server({
-                    \ 'name': 'ccls',
-                    \ 'cmd': {server_info->['ccls']},
+                    \ 'name': 'clang',
+                    \ 'cmd': {server_info->['clangd']},
                     \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
                     \ })
         " au User lsp_setup call lsp#register_server({
@@ -1796,6 +1797,11 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
                     \ 'name': 'css-languageserver',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
                     \ 'whitelist': ['css', 'less', 'sass'],
+                    \ })
+        au User lsp_setup call lsp#register_server({
+                    \ 'name': 'json-languageserver',
+                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'json-languageserver --stdio']},
+                    \ 'whitelist': ['json'],
                     \ })
         au User lsp_setup call lsp#register_server({
                     \ 'name': 'python-languageserver',
