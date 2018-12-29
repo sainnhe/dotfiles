@@ -17,7 +17,7 @@ endif
 " sudo pacman -S python-neovim
 " 安装软件包:
 " lua boost xclip words ripgrep fzf ctags global toilet toilet-fonts nodejs yarn php python-wcwidth
-" clang tidy eslint stylelint flake8 flawfinder cppcheck nodejs-jsonlint shellcheck python-vint stylelint-config-standard(npm)
+" clang tidy eslint stylelint flake8 flawfinder cppcheck nodejs-jsonlint shellcheck vint stylelint-config-standard(npm)
 " python-pyflakes python-pycodestyle python-pydocstyle python-pylint
 " astyle prettier shfmt js-beautify uncrustify yapf
 " :call Install_COC_Sources()  "  function里包含了json的额外设置
@@ -37,8 +37,8 @@ endif
 let g:VIM_AutoInstall = 1
 let g:VIM_TmuxLineSync = 0
 let g:VIM_LSP_Client = 'lcn'  " lcn vim-lsp
-let g:VIM_Snippets = 'ultisnips'  " ultisnips neosnippet
-let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc neocomplete
+let g:VIM_Snippets = 'ultisnips'  " ultisnips neosnippet coc-snippets
+let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc
 let g:VIM_Fuzzy_Finder = 'remix'  " remix denite fzf leaderf
 let g:VIM_Linter = 'ale'  " ale neomake
 let g:VIM_Explore = 'defx'  " defx nerdtree
@@ -351,6 +351,7 @@ inoremap <silent> <A-down> <Esc>:tabm +1<CR>i
 "{{{VisualMode
 " Alt+X进入普通模式
 vnoremap <A-x> <ESC>
+snoremap <A-x> <ESC>
 if !has('nvim')
     vnoremap ^@ <ESC>
 endif
@@ -574,6 +575,7 @@ Plug 'nightsense/nemo'
 Plug 'Marfisc/vorange'
 Plug 'hzchirs/vim-material'
 "}}}
+Plug 'sainnhe/artify.vim'
 Plug 'itchyny/lightline.vim'
 if g:VIM_Enable_TmuxLine == 1
     Plug 'edkolev/tmuxline.vim'
@@ -1483,13 +1485,6 @@ let g:startify_lists = [
             \ { 'type': 'dir',       'header': [" \ufa1eMRU Files in ". getcwd()] },
             \ { 'type': 'commands',  'header': [" \uf085 Commands"]       },
             \ ]
-highlight StartifyBracket ctermfg=240
-highlight StartifyFooter  ctermfg=240
-highlight StartifyHeader  ctermfg=114
-highlight StartifyNumber  ctermfg=215
-highlight StartifyPath    ctermfg=245
-highlight StartifySlash   ctermfg=240
-highlight StartifySpecial ctermfg=240
 " on Start
 if g:VIM_Explore ==# 'defx'
     function! DefxStartify()
@@ -1839,30 +1834,24 @@ endif
 "{{{ultisnips
 if g:VIM_Snippets ==# 'ultisnips'
     "{{{ultisnips-usage
-    " 在补全插件中，Ctrl+L展开
-    " 展开后，Ctrl+J和Ctrl+K跳转
+    " Ctrl+J展开或跳转到下一个
+    " Ctrl+K跳转到上一个
     "}}}
     let g:UltiSnipsRemoveSelectModeMappings = 0
     let g:UltiSnipsJumpForwardTrigger       = '<C-j>'
     let g:UltiSnipsJumpBackwardTrigger      = '<C-k>'
-    " let g:UltiSnipsExpandTrigger            = '<A-z>se'
+    let g:UltiSnipsExpandTrigger            = '<A-z>``l'
     " let g:UltiSnipsListSnippets = "<A-y>l"
     " let g:UltiSnipsEditSplit="vertical"
     "}}}
     "{{{neosnippet.vim
     "{{{neosnippet-usage
-    " <C-l> 展开
-    " <C-K>跳转到下一个
+    " <C-J>展开或跳转到下一个
     "}}}
-elseif g:VIM_Snippets ==# 'neosnippet'
-    if g:VIM_Completion_Framework !=# 'coc'
-        imap <C-l>     <Plug>(neosnippet_expand)
-        smap <C-l>     <Plug>(neosnippet_expand)
-        xmap <C-l>     <Plug>(neosnippet_expand)
-        imap <C-k>     <Plug>(neosnippet_jump)
-        smap <C-k>     <Plug>(neosnippet_jump)
-        xmap <C-k>     <Plug>(neosnippet_jump)
-    endif
+elseif g:VIM_Snippets ==# 'neosnippet' && g:VIM_Completion_Framework !=# 'coc'
+    imap <C-j>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-j>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-j>     <Plug>(neosnippet_expand_target)
     if has('conceal')
         set conceallevel=2 concealcursor=niv
     endif
@@ -1902,7 +1891,7 @@ if g:VIM_Completion_Framework ==# 'deoplete'
                 \ 'min_pattern_length',
                 \ 2)
     if g:VIM_Snippets ==# 'ultisnips'
-        let g:UltiSnipsExpandTrigger            = '<C-l>'
+        imap <expr> <C-j> pumvisible() ? "\<A-z>\`\`\l" : "\<C-j>"
     endif
     inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     inoremap <silent><expr> <S-TAB>
@@ -1960,8 +1949,7 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     "{{{ncm2-extensions
     "{{{ncm2-ultisnips
     if g:VIM_Snippets ==# 'ultisnips'
-        let g:UltiSnipsExpandTrigger            = '<A-z>``zsf'
-        inoremap <silent> <expr> <C-l> ncm2_ultisnips#expand_or("\<C-l>", 'n')
+        imap <expr> <C-j> pumvisible() ? "\<Plug>(ncm2_ultisnips_expand_completed)" : "\<C-j>"
         "}}}
         "{{{neosnippet.vim
     elseif g:VIM_Snippets ==# 'neosnippet'
@@ -2024,7 +2012,9 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     inoremap <expr> <down> pumvisible() ? "\<left>\<right>\<down>" : "\<down>"
     inoremap <expr> <up> pumvisible() ? "\<left>\<right>\<up>" : "\<up>"
     inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-    let g:UltiSnipsExpandTrigger            = '<C-l>'
+    if g:VIM_Snippets ==# 'ultisnips'
+        imap <expr> <C-j> pumvisible() ? "\<A-z>\`\`\l" : "\<C-j>"
+    endif
     let g:asyncomplete_remove_duplicates = 1
     let g:asyncomplete_smart_completion = 1
     let g:asyncomplete_auto_popup = 1
@@ -2150,9 +2140,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         if g:VIM_Snippets ==# 'ultisnips'
             call plug#load('ultisnips', 'vim-snippets')
             let g:Coc_Snippet = 'coc-ultisnips'
-        elseif g:VIM_Snippets ==# 'neosnippet'
-            call plug#load('neosnippet.vim', 'neosnippet-snippets', 'vim-snippets')
-            let g:Coc_Snippet = 'coc-neosnippet'
+        elseif g:VIM_Snippets ==# 'coc-snippets'
+            let g:Coc_Snippet = 'coc-snippets'
         endif
         call plug#load('coc.nvim', 'neco-vim', 'coc-neco', 'neoinclude.vim', 'coc-neoinclude', 'coc-action-source.nvim')
         call coc#add_extension(
@@ -2163,24 +2152,21 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                     \   'coc-jest', 'coc-json'
                     \   )
         function! Func_Coc_Snippet_Uninstall()
-            if g:VIM_Snippets ==# 'ultisnips' && match(CocAction('extensionStats'), 'coc-neosnippet') != -1
-                call CocAction('uninstallExtension', 'coc-neosnippet')
-            elseif g:VIM_Snippets ==# 'neosnippet' && match(CocAction('extensionStats'), 'coc-ultisnips') != -1
+            if g:VIM_Snippets ==# 'ultisnips' && match(CocAction('extensionStats'), 'coc-snippets') != -1
+                call CocAction('uninstallExtension', 'coc-snippets')
+            elseif g:VIM_Snippets ==# 'coc-snippets' && match(CocAction('extensionStats'), 'coc-ultisnips') != -1
                 call CocAction('uninstallExtension', 'coc-ultisnips')
             endif
             let g:Has_Load_Coc = 1
         endfunction
         "}}}
         "{{{coc-settings
-        if g:VIM_Snippets ==# 'ultisnips'
-            let g:UltiSnipsExpandTrigger            = '<A-z>``zsx'
-        endif
         set completeopt=noinsert,noselect,menuone
         augroup CocAu
             autocmd!
             autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
             autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-            autocmd CursorHold * silent call CocActionAsync('highlight')
+            " autocmd CursorHold * silent call CocActionAsync('highlight')
         augroup END
         nnoremap <silent> l :<C-u>call quickmenu#toggle(5)<CR>
         vnoremap <silent> lf <Plug>(coc-format-selected)
@@ -2204,7 +2190,11 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         "{{{coc-mappings
         inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
         imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
-        imap <C-l> <C-y>
+        if g:VIM_Snippets ==# 'ultisnips'
+            imap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-j>"
+        elseif g:VIM_Snippets ==# 'coc-snippets'
+            imap <expr> <C-j> pumvisible() ? "\<Plug>(coc-snippets-expand)" : "\<C-j>"
+        endif
         inoremap <expr> <down> pumvisible() ? "\<left>\<right>\<down>" : "\<down>"
         inoremap <expr> <up> pumvisible() ? "\<left>\<right>\<up>" : "\<up>"
     endfunction
@@ -2226,8 +2216,10 @@ elseif g:VIM_Completion_Framework ==# 'neocomplete'
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     augroup END
-    let g:UltiSnipsExpandTrigger            = '<C-l>'
     let g:tmuxcomplete#trigger = ''
+    if g:VIM_Snippets ==# 'ultisnips'
+        imap <expr> <C-j> pumvisible() ? "\<A-z>\`\`\l" : "\<C-j>"
+    endif
     inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : neocomplete#start_manual_complete()."\<C-n>"
     inoremap <expr> <down> pumvisible() ? neocomplete#smart_close_popup()."\<down>" : "\<down>"
