@@ -138,7 +138,7 @@ endfun
 "{{{ToggleObsession
 function! ToggleObsession()
     if ObsessionStatusEnhance() ==# '⏹'
-        execute 'Obsession ~/.vim/sessions/Obsession'
+        execute 'Obsession ~/.cache/vim/sessions/Obsession'
     else
         execute 'Obsession'
     endif
@@ -156,13 +156,13 @@ nnoremap <SPACE> <Nop>
 set mouse=a
 filetype plugin indent on
 set t_Co=256
-let g:sessions_dir = expand('~/.vim/sessions/')
+let g:sessions_dir = expand('~/.cache/vim/sessions/')
 syntax enable                           " 开启语法支持
 set termguicolors                       " 开启GUI颜色支持
 set smartindent                         " 智能缩进
 set hlsearch                            " 高亮搜索
 set undofile                            " 始终保留undo文件
-set undodir=$HOME/.vim/undo             " 设置undo文件的目录
+set undodir=$HOME/.cache/vim/undo             " 设置undo文件的目录
 set timeoutlen=5000                     " 超时时间为5秒
 set clipboard=unnamedplus               " 开启系统剪切板，需要安装xclip
 set foldmethod=marker                   " 折叠方式为按照marker折叠
@@ -531,7 +531,7 @@ augroup END
 
 command PU PlugUpdate | PlugUpgrade
 
-call plug#begin('~/.vim/plugins')
+call plug#begin('~/.cache/vim/plugins')
 if !has('nvim') && has('python3')
     if g:VIM_Completion_Framework !=# 'ncm2'
         Plug 'roxma/nvim-yarp'
@@ -1453,7 +1453,7 @@ endfunction
 "}}}
 "}}}
 "{{{vim-startify
-let g:startify_session_dir = expand('~/.vim/sessions/')
+let g:startify_session_dir = expand('~/.cache/vim/sessions/')
 let g:startify_files_number = 5
 let g:startify_update_oldfiles = 1
 " let g:startify_session_autoload = 1
@@ -1855,7 +1855,7 @@ elseif g:VIM_Snippets ==# 'neosnippet' && g:VIM_Completion_Framework !=# 'coc'
     if has('conceal')
         set conceallevel=2 concealcursor=niv
     endif
-    let g:neosnippet#snippets_directory = expand('~/.vim/plugins/vim-snippets/snippets')
+    let g:neosnippet#snippets_directory = expand('~/.cache/vim/plugins/vim-snippets/snippets')
 endif
 "}}}
 "{{{deoplete.nvim
@@ -2578,7 +2578,7 @@ if g:VIM_Fuzzy_Finder ==# 'fzf'
                 \ 'marker':  ['fg', 'Keyword'],
                 \ 'spinner': ['fg', 'Label'],
                 \ 'header':  ['fg', 'Comment'] }
-    let g:fzf_history_dir = expand('~/.cache/fzf-history')
+    let g:fzf_history_dir = expand('~/.cache/vim/fzf-history')
     let g:fzf_buffers_jump = 1
     " [[B]Commits] Customize the options used by 'git log':
     let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -2688,12 +2688,12 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     let g:Lf_FollowLinks = 1  " expand symbol link
     let g:Lf_RecurseSubmodules = 1  " show git submodules
     let g:Lf_DefaultExternalTool = 'rg'  " 'rg', 'pt', 'ag', 'find'
-    let g:Lf_StlColorscheme = 'one'  " /home/sainnhe/.vim/plugins/LeaderF/autoload/leaderf/colorscheme
+    let g:Lf_StlColorscheme = 'one'  " $HOME/.cache/vim/plugins/LeaderF/autoload/leaderf/colorscheme
     let g:Lf_StlSeparator = { 'left': '', 'right': '' }
     let g:Lf_WindowPosition = 'bottom'  " top bottom left right
     let g:Lf_WindowHeight = 0.4
     let g:Lf_CursorBlink = 1
-    let g:Lf_CacheDirectory = expand('~/.cache/')
+    let g:Lf_CacheDirectory = expand('~/.cache/vim/')
     let g:Lf_NeedCacheTime = 0.5
     " let g:Lf_WildIgnore = {
     "         \ 'dir': ['.svn','.git','.hg'],
@@ -2744,7 +2744,7 @@ if g:VIM_Linter ==# 'ale'
     " 普通模式下<leader><up>和<leader><down>分别跳转到上一个、下一个错误
     " :ALEDetail  查看详细错误信息
     "}}}
-    " ls ~/.vim/plugins/ale/ale_linters/
+    " ls ~/.cache/vim/plugins/ale/ale_linters/
     let g:ale_linters = {
                 \       'asm': ['gcc'],
                 \       'c': ['clangtidy', 'cppcheck', 'flawfinder'],
@@ -3157,9 +3157,9 @@ endfunction
 "}}}
 augroup SessionAu
     autocmd!
-    autocmd VimLeave * mksession! ~/.vim/sessions/LastSession
+    autocmd VimLeave * mksession! ~/.cache/vim/sessions/LastSession
 augroup END
-let g:prosession_dir = '~/.cache/prosession/'
+let g:prosession_dir = '~/.cache/vim/prosession/'
 let g:prosession_on_startup = 0
 command! -nargs=? ProsessionList echo prosession#ListSessions(<q-args>)
 "}}}
@@ -3199,7 +3199,7 @@ endfunction
 let g:bookmark_sign = '✭'
 let g:bookmark_annotation_sign = '☰'
 let g:bookmark_auto_save = 1
-let g:bookmark_auto_save_file = $HOME .'/.cache/.vimbookmarks'
+let g:bookmark_auto_save_file = $HOME .'/.cache/vim/.vimbookmarks'
 let g:bookmark_highlight_lines = 1
 let g:bookmark_show_warning = 0
 let g:bookmark_show_toggle_warning = 0
