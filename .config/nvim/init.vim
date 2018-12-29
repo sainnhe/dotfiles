@@ -608,6 +608,9 @@ elseif g:VIM_Snippets ==# 'neosnippet' && g:VIM_Completion_Framework !=# 'coc'
     Plug 'Shougo/neosnippet.vim'
     Plug 'Shougo/neosnippet-snippets'
     Plug 'honza/vim-snippets'
+elseif g:VIM_Snippets ==# 'coc-snippets'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
 endif
 if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -2199,6 +2202,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         if g:VIM_Snippets ==# 'ultisnips'
             imap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-j>"
         elseif g:VIM_Snippets ==# 'coc-snippets'
+            let g:UltiSnipsJumpForwardTrigger       = '<A-z>``````j'
+            let g:UltiSnipsJumpBackwardTrigger      = '<A-z>``````k'
             imap <expr> <C-j> pumvisible() ? "\<Plug>(coc-snippets-expand)" : "\<C-j>"
         endif
         inoremap <expr> <down> pumvisible() ? "\<left>\<right>\<down>" : "\<down>"
