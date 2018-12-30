@@ -773,9 +773,9 @@ call plug#end()
 let g:quickmenu_options = 'HL'  " enable cursorline (L) and cmdline help (H)
 " startify
 let g:startify_bookmarks = [
-            \ {'N': '/mnt/ExternalDisk/OneDrive/Notes'},
-            \ {'n': '/mnt/ExternalDisk/OneDrive/Notes/CSS/w3schools.md'},
-            \ {'n': '/mnt/ExternalDisk/OneDrive/Notes/Python/w3schools.md'},
+            \ {'N': '~/Documents/Notes'},
+            \ {'n': '~/Documents/OneDrive/Notes/CSS/w3schools.md'},
+            \ {'n': '~/Documents/Notes/Python/w3schools.md'},
             \ {'S': '~/Scripts/'},
             \ {'P': '~/Documents/PlayGround/'},
             \ {'c': '~/.config/nvim/init.vim'},
