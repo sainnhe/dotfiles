@@ -16,7 +16,7 @@ endif
 "{{{Manual
 " sudo pacman -S python-neovim
 " 安装软件包:
-" lua boost xclip words ripgrep fzf ctags global toilet toilet-fonts nodejs yarn php python-wcwidth
+" lua boost xclip words the_silver_searcher ripgrep fzf ctags global toilet toilet-fonts nodejs yarn php python-wcwidth
 " clang tidy eslint stylelint flake8 flawfinder cppcheck nodejs-jsonlint shellcheck vint stylelint-config-standard(npm)
 " python-pyflakes python-pycodestyle python-pydocstyle python-pylint
 " astyle prettier shfmt js-beautify uncrustify yapf
@@ -574,6 +574,8 @@ Plug 'nightsense/forgotten'
 Plug 'nightsense/nemo'
 Plug 'Marfisc/vorange'
 Plug 'hzchirs/vim-material'
+Plug 'bellma101/vim-snazzy'
+Plug 'srcery-colors/srcery-vim'
 "}}}
 Plug 'sainnhe/artify.vim'
 Plug 'itchyny/lightline.vim'
@@ -996,7 +998,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'github'
+let g:VIM_Color_Scheme = 'srcery'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1016,6 +1018,13 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'zenburn'
     endif
     call g:quickmenu#append('zenburn', 'call SwitchColorScheme("zenburn")', '', '', 0, '')
+    "}}}
+    "{{{srcery
+    if g:VIM_Color_Scheme ==# 'srcery'
+        colorscheme srcery
+        let g:lightline.colorscheme = 'srcery'
+    endif
+    call g:quickmenu#append('srcery', 'call SwitchColorScheme("srcery")', '', '', 0, '')
     "}}}
     "{{{quantum
     if g:VIM_Color_Scheme ==# 'quantum'
@@ -1101,6 +1110,13 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'archery'
     endif
     call g:quickmenu#append('archery', 'call SwitchColorScheme("archery")', '', '', 0, '')
+    "}}}
+    "{{{snazzy
+    if g:VIM_Color_Scheme ==# 'archery'
+        colorscheme snazzy
+        let g:lightline.colorscheme = 'snazzy'
+    endif
+    call g:quickmenu#append('snazzy', 'call SwitchColorScheme("snazzy")', '', '', 0, '')
     "}}}
     "{{{hydrangea
     if g:VIM_Color_Scheme ==# 'hydrangea'
@@ -2489,6 +2505,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
                 \ 'noremap'
                 \)
     "}}}
+    let g:spacevim_commandline_prompt = '➣'
     augroup DeniteAu
         autocmd!
         autocmd User CocQuickfixChange :Denite -mode=normal quickfix
@@ -2496,11 +2513,11 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
     let dgs#username='sainnhe'
     let g:fruzzy#usenative = 1
     " Customize Var
-    call denite#custom#var('grep', 'command', ['rg'])
+    call denite#custom#var('grep', 'command', ['ag'])
     call denite#custom#var('grep', 'default_opts',
-                \ ['-i', '--vimgrep', '--no-heading'])
+                \ ['-i', '--vimgrep'])
     call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+    call denite#custom#var('grep', 'pattern_opt', [])
     call denite#custom#var('grep', 'separator', ['--'])
     call denite#custom#var('grep', 'final_opts', [])
     call denite#custom#var('outline', 'command', ['ctags'])
@@ -2555,7 +2572,7 @@ if g:VIM_Fuzzy_Finder ==# 'fzf'
     call g:quickmenu#append('Git Commits Buffer', 'BCommits', '', '', 0, 'gc')
     call g:quickmenu#append('Git Commits All', 'Commits', '', '', 0, 'gC')
     call g:quickmenu#append(' Commands', 'Commands', '', '', 0, 'c')
-    call g:quickmenu#append(' Grep', 'Rg', '', '', 0, 'G')
+    call g:quickmenu#append(' Grep', 'Ag', '', '', 0, 'G')
     call g:quickmenu#append(' Help', 'Helptags', '', '', 0, 'H')
     "}}}
     "{{{functions
@@ -2698,7 +2715,7 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     let g:Lf_ShowHidden = 0  " search hidden files
     let g:Lf_FollowLinks = 1  " expand symbol link
     let g:Lf_RecurseSubmodules = 1  " show git submodules
-    let g:Lf_DefaultExternalTool = 'rg'  " 'rg', 'pt', 'ag', 'find'
+    let g:Lf_DefaultExternalTool = 'ag'  " 'rg', 'pt', 'ag', 'find'
     let g:Lf_StlColorscheme = 'one'  " $HOME/.cache/vim/plugins/LeaderF/autoload/leaderf/colorscheme
     let g:Lf_StlSeparator = { 'left': '', 'right': '' }
     let g:Lf_WindowPosition = 'bottom'  " top bottom left right
@@ -2835,7 +2852,8 @@ if g:VIM_Explore ==# 'defx'
         echo "<S-right>  跳转到下一个git标识的位置\n"
         echo "<F5>  刷新\n"
         echo "<A-b>  切换bufexplore\n"
-        echo 'f  搜索'
+        echo 'f  搜索文件'
+        echo 'F  Grep'
         echo 'SS  Prosession Switch'
         echo 'SD  Prosession Delete'
         echo 'SF  Prosession Fuzzy Find'
@@ -2952,6 +2970,15 @@ if g:VIM_Explore ==# 'defx'
         nnoremap <silent><buffer> <S-right> <Plug>(defx-git-next)
         nnoremap <silent><buffer> <C-p> :<C-u>echo getcwd(0,tabpagenr())<CR>
         nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_defx_bufexplore()<CR>
+        if g:VIM_Fuzzy_Finder ==# 'fzf'
+            nnoremap <silent><buffer> F :<C-u>Ag<CR>
+        elseif g:VIM_Fuzzy_Finder ==# 'denite'
+            nnoremap <silent><buffer> F :<C-u>Denite grep<CR>
+        elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
+            nnoremap <silent><buffer> F :<C-u>Leaderf rg<CR>
+        elseif g:VIM_Fuzzy_Finder ==# 'remix'
+            nnoremap <silent><buffer> F :<C-u>Denite grep<CR>
+        endif
         nnoremap <silent><buffer> f :<C-u>call DefxFuzzyFind()<CR>
         nnoremap <silent><buffer> SS :<C-u>call Defx_Prosession_Switch()<CR>
         nnoremap <silent><buffer> SD :<C-u>call Defx_Prosession_Delete()<CR>
@@ -3203,16 +3230,17 @@ command! -nargs=? ProsessionList echo prosession#ListSessions(<q-args>)
 "{{{vim-bookmarks
 "{{{vim-bookmarks-usage
 function! Help_vim_bookmarks()
-    echo '<Leader>bs Show/Search Bookmarks'
+    echo '<Leader>bs Show Bookmarks'
+    echo '<Leader>bS Search Bookmarks using fuzzy finder(if possible)'
     echo '<Leader>bb <Plug>BookmarkToggle'
     echo '<Leader>ba <Plug>BookmarkAnnotate'
     echo '<Leader>b<down> <Plug>BookmarkNext'
-    echo '<Leader>b<left> <Plug>BookmarkPrev'
+    echo '<Leader>b<up> <Plug>BookmarkPrev'
     echo '<Leader>bc <Plug>BookmarkClear'
     echo '<Leader>bC <Plug>BookmarkClearAll'
     echo '" these will also work with a [count] prefix'
-    echo '<Leader>b<up> <Plug>BookmarkMoveUp'
-    echo '<Leader>b<down> <Plug>BookmarkMoveDown'
+    echo '<Leader>b<S-up> <Plug>BookmarkMoveUp'
+    echo '<Leader>b<S-down> <Plug>BookmarkMoveDown'
     echo '<Leader>b<Tab> <Plug>BookmarkMoveToLine'
     echo "\n"
     echo '<Leader>b? Help'
@@ -3244,14 +3272,15 @@ let g:bookmark_auto_close = 1
 let g:bookmark_no_default_key_mappings = 1
 nmap <Leader>bb <Plug>BookmarkToggle
 nmap <Leader>ba <Plug>BookmarkAnnotate
-nmap <silent> <Leader>bs :<C-u>call VIM_Bookmarks_FuzzyFinder()<CR>
+nmap <silent> <Leader>bS :<C-u>call VIM_Bookmarks_FuzzyFinder()<CR>
+nmap <silent> <leader>bs :<C-u>BookmarkShowAll<CR>
 nmap <Leader>b<down> <Plug>BookmarkNext
-nmap <Leader>b<left> <Plug>BookmarkPrev
+nmap <Leader>b<up> <Plug>BookmarkPrev
 nmap <Leader>bc <Plug>BookmarkClear
 nmap <Leader>bC <Plug>BookmarkClearAll
 " these will also work with a [count] prefix
-nmap <Leader>b<up> <Plug>BookmarkMoveUp
-nmap <Leader>b<down> <Plug>BookmarkMoveDown
+nmap <Leader>b<S-up> <Plug>BookmarkMoveUp
+nmap <Leader>b<S-down> <Plug>BookmarkMoveDown
 nmap <Leader>b<Tab> <Plug>BookmarkMoveToLine
 nmap <silent> <Leader>b? :<C-u>call Help_vim_bookmarks()<CR>
 "}}}
