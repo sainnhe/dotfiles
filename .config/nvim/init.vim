@@ -996,7 +996,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'tender'
+let g:VIM_Color_Scheme = 'github'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
