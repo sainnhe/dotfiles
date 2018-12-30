@@ -36,9 +36,9 @@ endif
 "}}}
 let g:VIM_AutoInstall = 1
 let g:VIM_TmuxLineSync = 0
-let g:VIM_LSP_Client = 'none'  " lcn vim-lsp none
-let g:VIM_Snippets = 'coc-snippets'  " ultisnips neosnippet coc-snippets
-let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc
+let g:VIM_LSP_Client = 'lcn'  " lcn vim-lsp none
+let g:VIM_Snippets = 'ultisnips'  " ultisnips neosnippet coc-snippets
+let g:VIM_Completion_Framework = 'deoplete'  " deoplete ncm2 asyncomplete coc
 let g:VIM_Fuzzy_Finder = 'remix'  " remix denite fzf leaderf
 let g:VIM_Linter = 'ale'  " ale neomake
 let g:VIM_Explore = 'defx'  " defx nerdtree
