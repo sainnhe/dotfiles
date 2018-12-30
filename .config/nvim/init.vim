@@ -2245,7 +2245,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
     " F  pwd search
     function! Help_denite_mappings()
         echo 'customized mappings'
-        echo ''
+        echo "\n"
         echo '"insert" mode mappings.'
         echo '{key}           {mapping}'
         echo '--------        -----------------------------'
@@ -2262,12 +2262,12 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
         echo '"normal" mode mappings.'
         echo '{key}           {mapping}'
         echo '--------        -----------------------------'
-        echo ''
+        echo "\n"
         echo ':h denite-key-mappings'
-        echo ''
-        echo ''
+        echo "\n"
+        echo "\n"
         echo 'default mappings'
-        echo ''
+        echo "\n"
         echo '{key}           {mapping}'
         echo '--------        -----------------------------'
         echo '<C-M>           <denite:do_action:default>'
@@ -2643,7 +2643,7 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
         echo '<S-right>  光标移到最右端'
         echo '.  切换搜索隐藏文件的变量(normal mode)'
         echo '?  呼出帮助窗口(normal mode)'
-        echo ''
+        echo "\n"
         echo 'Commands'
         echo '-i, --ignore-case'
         echo '-s, --case-sensitive'
@@ -3042,6 +3042,7 @@ function! ToggleTagbar()
 endfunction
 function! TagbarInit()
     call plug#load('tagbar', 'tagbar-markdown')
+    let g:tagbar_sort = 0
     let g:tagbar_width = 35
     let g:tagbar_autoclose = 1
     let g:tagbar_foldlevel = 2
@@ -3120,17 +3121,7 @@ let g:NERDToggleCheckAllLines = 1
 "{{{vim-visual-multi-usage
 function! Help_vim_visual_multi()
     echo '<F1>  help'
-    echo ''
-    echo '鼠标操作：'
-    echo ''
-    echo 'Ctrl+左键  选中position'
-    echo 'Ctrl+右键  选中word'
-    echo 'Ctrl+Meta+右键  选中column'
-    echo ''
-    echo ''
-    echo ''
-    echo '键盘操作：'
-    echo ''
+    echo "\n"
     echo 'word 匹配'
     echo 'visual mode选中文本，<leader>]  开始匹配'
     echo ']  匹配下一个'
@@ -3145,7 +3136,7 @@ function! Help_vim_visual_multi()
     echo '普通模式下h, j, k, l来整体挪移光标'
     echo '<Space> 切换Extend模式'
     echo '<Esc>  退出'
-    echo ''
+    echo "\n"
     echo 'position 选中'
     echo 'normal mode中，<Tab>选中当前位置'
     echo '普通模式下h, j, k, l来整体挪移光标'
@@ -3162,7 +3153,7 @@ function! Help_vim_visual_multi()
     echo '普通模式下h, j, k, l来整体挪移光标'
     echo '<Space> 切换Extend模式'
     echo '<Esc>  退出'
-    echo ''
+    echo "\n"
     echo 'visual mode 选中'
     echo 'visual mode选中后，<Tab>添加光标'
     echo '或者在visual mode选中后，按g/搜索，将会匹配所有搜索结果并进入Extend mode'
@@ -3170,7 +3161,7 @@ function! Help_vim_visual_multi()
     echo '普通模式下h, j, k, l来整体挪移光标'
     echo '<Space> 切换Extend模式'
     echo '<Esc>  退出'
-    echo ''
+    echo "\n"
     echo 'Extend 模式'
     echo '相当于visual模式'
     echo 'h, j, k, l来选中区域'
@@ -3180,20 +3171,18 @@ endfunction
 "}}}
 " https://github.com/mg979/vim-visual-multi/wiki
 vmap <leader>] <C-n>
-let g:VM_mouse_mappings = 1
 let g:VM_maps = {}
-let g:VM_maps['Add Cursor Up']               = '<M-z>``````addup'
-let g:VM_maps['Add Cursor Down']             = '<M-z>``````adddown'
 let g:VM_maps['Switch Mode']                 = '<Space>'
 let g:VM_maps['Add Cursor At Pos']           = '<Tab>'
 let g:VM_maps['Visual Cursors']              = '<Tab>'
+let g:VM_maps['Add Cursor Up']               = '<M-z>``````addup'
+let g:VM_maps['Add Cursor Down']             = '<M-z>``````adddown'
 let g:VM_maps['I Arrow ge']                  = '<M-z>``````addup'
 let g:VM_maps['I Arrow e']                   = '<M-z>``````adddown'
 let g:VM_maps['Select e']                    = '<M-z>``````addright'
 let g:VM_maps['Select ge']                   = '<M-z>``````addleft'
 let g:VM_maps['I Arrow w']                   = '<M-z>``````addright'
 let g:VM_maps['I Arrow b']                   = '<M-z>``````addleft'
-
 "}}}
 "{{{vim-prosession
 "{{{vim-prosession-usage
@@ -3225,7 +3214,7 @@ function! Help_vim_bookmarks()
     echo '<Leader>b<up> <Plug>BookmarkMoveUp'
     echo '<Leader>b<down> <Plug>BookmarkMoveDown'
     echo '<Leader>b<Tab> <Plug>BookmarkMoveToLine'
-    echo ''
+    echo "\n"
     echo '<Leader>b? Help'
 endfunction
 "}}}
@@ -3343,10 +3332,10 @@ function! Help_neoman()
     echo ':Nman 3 printf'
     echo ':Nman printf(3)'
     echo ':Nman ./fzf.1 " open manpage in current directory'
-    echo ''
+    echo "\n"
     echo 'Commands'
     echo 'Nman Snman Vnman Tnman'
-    echo ''
+    echo "\n"
     echo 'Mappings'
     echo '<Tab>  jump to a manpage under the cursor'
     echo '<S-Tab>  jump back to the previous man page'
