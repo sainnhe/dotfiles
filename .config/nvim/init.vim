@@ -742,6 +742,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mg979/vim-visual-multi', {'branch': 'test'}
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
+Plug 'Shougo/unite.vim', { 'on': [] }
+Plug 'thinca/vim-qfreplace', { 'on': [] }
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/suda.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -3230,8 +3232,8 @@ command! -nargs=? ProsessionList echo prosession#ListSessions(<q-args>)
 "{{{vim-bookmarks
 "{{{vim-bookmarks-usage
 function! Help_vim_bookmarks()
-    echo '<Leader>bs Show Bookmarks'
-    echo '<Leader>bS Search Bookmarks using fuzzy finder(if possible)'
+    echo '<Leader>bs Search and Manage Bookmarks using unite'
+    echo 'Unite Actions: preview, delete, replace, open, yank, highlight, etc.'
     echo '<Leader>bb <Plug>BookmarkToggle'
     echo '<Leader>ba <Plug>BookmarkAnnotate'
     echo '<Leader>b<down> <Plug>BookmarkNext'
@@ -3246,18 +3248,22 @@ function! Help_vim_bookmarks()
     echo '<Leader>b? Help'
 endfunction
 "}}}
-"{{{FuzzyFinderIntegration
-function! VIM_Bookmarks_FuzzyFinder()
-    if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
-        execute 'BookmarkShowAll'
-        execute 'q'
-        execute 'Denite quickfix -default-action="switch"'
-    elseif g:VIM_Fuzzy_Finder ==# 'fzf'
-        execute 'BookmarkShowAll'
-        execute 'q'
-        execute 'call fzf_quickfix#run()'
-    else
-        execute 'BookmarkShowAll'
+"{{{Bookmark_Unite
+let g:Load_Unite = 0
+function! Bookmark_Unite()
+    if g:Load_Unite == 0
+        let g:Load_Unite = 1
+        call plug#load('unite.vim', 'vim-qfreplace')
+        call unite#custom#profile('source/vim_bookmarks', 'context', {
+                    \   'winheight': 13,
+                    \   'direction': 'botright',
+                    \   'start_insert': 0,
+                    \   'keep_focus': 1,
+                    \   'no_quit': 1,
+                    \ })
+        execute 'Unite vim_bookmarks'
+    elseif g:Load_Unite == 1
+        execute 'Unite vim_bookmarks'
     endif
 endfunction
 "}}}
@@ -3272,8 +3278,7 @@ let g:bookmark_auto_close = 1
 let g:bookmark_no_default_key_mappings = 1
 nmap <Leader>bb <Plug>BookmarkToggle
 nmap <Leader>ba <Plug>BookmarkAnnotate
-nmap <silent> <Leader>bS :<C-u>call VIM_Bookmarks_FuzzyFinder()<CR>
-nmap <silent> <leader>bs :<C-u>BookmarkShowAll<CR>
+nmap <silent> <Leader>bs :<C-u>call Bookmark_Unite()<CR>
 nmap <Leader>b<down> <Plug>BookmarkNext
 nmap <Leader>b<up> <Plug>BookmarkPrev
 nmap <Leader>bc <Plug>BookmarkClear
