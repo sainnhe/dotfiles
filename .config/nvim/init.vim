@@ -560,7 +560,7 @@ Plug 'yuttie/inkstained-vim'
 Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'nightsense/stellarized'
-Plug 'ayu-theme/ayu-vim'
+Plug 'sainnhe/ayu-vim'
 Plug 'whatyouhide/vim-gotham'
 Plug 'blueshirts/darcula'
 Plug 'kaicataldo/material.vim'
@@ -580,6 +580,9 @@ Plug 'KeitaNakamura/neodark.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'mikker/lightline-theme-pencil'
+Plug 'bcicen/vim-vice'
+Plug 'ApolloBian/Retro.vim'
+Plug 'rcabralc/rcabralc-colorscheme.vim'
 "}}}
 Plug 'sainnhe/artify.vim'
 Plug 'itchyny/lightline.vim'
@@ -1004,7 +1007,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'pencil'
+let g:VIM_Color_Scheme = 'two-firewatch-light'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1064,6 +1067,13 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'darcula'
     endif
     call g:quickmenu#append('darcula', 'call SwitchColorScheme("darcula")', '', '', 0, '')
+    "}}}
+    "{{{vice
+    if g:VIM_Color_Scheme ==# 'vice'
+        colorscheme vice
+        let g:lightline.colorscheme = 'vice'
+    endif
+    call g:quickmenu#append('vice', 'call SwitchColorScheme("vice")', '', '', 0, '')
     "}}}
     "{{{sialoquent
     if g:VIM_Color_Scheme ==# 'sialoquent'
@@ -1150,6 +1160,14 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('fahrenheit', 'call SwitchColorScheme("fahrenheit")', '', '', 0, '')
     "}}}
+    "{{{rcabralc
+    if g:VIM_Color_Scheme ==# 'rcabralc'
+        set background=dark
+        colorscheme rcabralc
+        let g:lightline.colorscheme = 'rcabralc'
+    endif
+    call g:quickmenu#append('rcabralc', 'call SwitchColorScheme("rcabralc")', '', '', 0, '')
+    "}}}
     "{{{farout
     if g:VIM_Color_Scheme ==# 'farout'
         colorscheme farout
@@ -1178,6 +1196,14 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('github', 'call SwitchColorScheme("github")', '', '', 0, '')
     "}}}
+    "{{{retro
+    if g:VIM_Color_Scheme ==# 'retro'
+        set background=light
+        colorscheme retro
+        let g:lightline.colorscheme = 'retro'
+    endif
+    call g:quickmenu#append('retro', 'call SwitchColorScheme("retro")', '', '', 0, '')
+    "}}}
     "{{{pencil
     if g:VIM_Color_Scheme ==# 'pencil'
         set background=light
@@ -1191,15 +1217,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'pencil'
     endif
     call g:quickmenu#append('pencil', 'call SwitchColorScheme("pencil")', '', '', 0, '')
-    "}}}
-    "{{{ayu
-    if g:VIM_Color_Scheme ==# 'ayu'
-        let g:ayucolor = 'light'
-        set background=light
-        colorscheme ayu
-        let g:lightline.colorscheme = 'one'
-    endif
-    call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu")', '', '', 0, '')
     "}}}
     "{{{inkstained
     if g:VIM_Color_Scheme ==# 'inkstained'
@@ -1251,6 +1268,21 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('material-dark', 'call SwitchColorScheme("material-dark")', '', '', 0, '')
     call g:quickmenu#append('material-light', 'call SwitchColorScheme("material-light")', '', '', 0, '')
+    "}}}
+    "{{{ayu*
+    if g:VIM_Color_Scheme ==# 'ayu-light'
+        let g:ayucolor = 'light'
+        set background=light
+        colorscheme ayu
+        let g:lightline.colorscheme = 'ayu_light'
+    elseif g:VIM_Color_Scheme ==# 'ayu-dark'
+        let g:ayucolor = 'dark'
+        set background=dark
+        colorscheme ayu
+        let g:lightline.colorscheme = 'ayu_dark'
+    endif
+    call g:quickmenu#append('ayu-light', 'call SwitchColorScheme("ayu-light")', '', '', 0, '')
+    call g:quickmenu#append('ayu-dark', 'call SwitchColorScheme("ayu-dark")', '', '', 0, '')
     "}}}
     "{{{two-firewatch*
     if g:VIM_Color_Scheme ==# 'two-firewatch-light'
