@@ -581,8 +581,8 @@ Plug 'joshdick/onedark.vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'mikker/lightline-theme-pencil'
 Plug 'bcicen/vim-vice'
-Plug 'ApolloBian/Retro.vim'
 Plug 'rcabralc/rcabralc-colorscheme.vim'
+Plug 'sjl/badwolf'
 "}}}
 Plug 'sainnhe/artify.vim'
 Plug 'itchyny/lightline.vim'
@@ -1153,6 +1153,15 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('srcery', 'call SwitchColorScheme("srcery")', '', '', 0, '')
     "}}}
+    "{{{badwolf
+    if g:VIM_Color_Scheme ==# 'badwolf'
+        let g:badwolf_html_link_underline = 1
+        let g:badwolf_css_props_highlight = 1
+        colorscheme badwolf
+        let g:lightline.colorscheme = 'srcery'
+    endif
+    call g:quickmenu#append('badwolf', 'call SwitchColorScheme("badwolf")', '', '', 0, '')
+    "}}}
     "{{{fahrenheit
     if g:VIM_Color_Scheme ==# 'fahrenheit'
         colorscheme fahrenheit
@@ -1195,14 +1204,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'github'
     endif
     call g:quickmenu#append('github', 'call SwitchColorScheme("github")', '', '', 0, '')
-    "}}}
-    "{{{retro
-    if g:VIM_Color_Scheme ==# 'retro'
-        set background=light
-        colorscheme retro
-        let g:lightline.colorscheme = 'retro'
-    endif
-    call g:quickmenu#append('retro', 'call SwitchColorScheme("retro")', '', '', 0, '')
     "}}}
     "{{{pencil
     if g:VIM_Color_Scheme ==# 'pencil'
@@ -3277,19 +3278,22 @@ function! Help_vim_visual_multi()
 endfunction
 "}}}
 " https://github.com/mg979/vim-visual-multi/wiki
-vmap <leader>] <C-n>
-let g:VM_maps = {}
-let g:VM_maps['Switch Mode']                 = '<Space>'
-let g:VM_maps['Add Cursor At Pos']           = '<Tab>'
-let g:VM_maps['Visual Cursors']              = '<Tab>'
-let g:VM_maps['Add Cursor Up']               = '<M-z>``````addup'
-let g:VM_maps['Add Cursor Down']             = '<M-z>``````adddown'
-let g:VM_maps['I Arrow ge']                  = '<M-z>``````addup'
-let g:VM_maps['I Arrow e']                   = '<M-z>``````adddown'
-let g:VM_maps['Select e']                    = '<M-z>``````addright'
-let g:VM_maps['Select ge']                   = '<M-z>``````addleft'
-let g:VM_maps['I Arrow w']                   = '<M-z>``````addright'
-let g:VM_maps['I Arrow b']                   = '<M-z>``````addleft'
+function! Init_visual_multi()
+    vmap <leader>] <C-n>
+    let g:VM_maps = {}
+    let g:VM_maps['Switch Mode']                 = '<Space>'
+    let g:VM_maps['Add Cursor At Pos']           = '<Tab>'
+    let g:VM_maps['Visual Cursors']              = '<Tab>'
+    let g:VM_maps['Add Cursor Up']               = '<M-z>``````addup'
+    let g:VM_maps['Add Cursor Down']             = '<M-z>``````adddown'
+    let g:VM_maps['I Arrow ge']                  = '<M-z>``````addup'
+    let g:VM_maps['I Arrow e']                   = '<M-z>``````adddown'
+    let g:VM_maps['Select e']                    = '<M-z>``````addright'
+    let g:VM_maps['Select ge']                   = '<M-z>``````addleft'
+    let g:VM_maps['I Arrow w']                   = '<M-z>``````addright'
+    let g:VM_maps['I Arrow b']                   = '<M-z>``````addleft'
+endfunction
+call Init_visual_multi()
 "}}}
 "{{{vim-prosession
 "{{{vim-prosession-usage
