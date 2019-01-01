@@ -583,6 +583,7 @@ Plug 'mikker/lightline-theme-pencil'
 Plug 'bcicen/vim-vice'
 Plug 'rcabralc/rcabralc-colorscheme.vim'
 Plug 'sjl/badwolf'
+Plug 'sainnhe/soft-era-vim'
 "}}}
 Plug 'sainnhe/artify.vim'
 Plug 'itchyny/lightline.vim'
@@ -901,7 +902,7 @@ let g:lightline.inactive = {
             \ 'right': [ [ 'lineinfo', 'percent' ] ] }
 let g:lightline.tabline = {
             \ 'left': [ [ 'vim_logo', 'tabs' ] ],
-            \ 'right': [] }
+            \ 'right': [  ] }
 let g:lightline.tab = {
             \ 'active': [ 'nicetabnum', 'filename', 'modified' ],
             \ 'inactive': [ 'nicetabnum', 'filename', 'modified' ] }
@@ -1007,7 +1008,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'two-firewatch-light'
+let g:VIM_Color_Scheme = 'soft-era'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1225,6 +1226,13 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'inkstained'
     endif
     call g:quickmenu#append('inkstained', 'call SwitchColorScheme("inkstained")', '', '', 0, '')
+    "}}}
+    "{{{soft-era
+    if g:VIM_Color_Scheme ==# 'soft-era'
+        colorscheme soft-era
+        let g:lightline.colorscheme = 'softera'
+    endif
+    call g:quickmenu#append('soft-era', 'call SwitchColorScheme("soft-era")', '', '', 0, '')
     "}}}
     "{{{nemo
     if g:VIM_Color_Scheme ==# 'nemo'
@@ -3347,6 +3355,14 @@ function! Bookmark_Unite()
     elseif g:Load_Unite == 1
         execute 'Unite vim_bookmarks'
     endif
+endfunction
+augroup Unite_Config
+    autocmd!
+    autocmd FileType unite call s:unite_settings()
+augroup END
+function! s:unite_settings() abort
+    nnoremap <silent><buffer><expr> <C-p>
+                \ unite#do_action('preview')
 endfunction
 "}}}
 let g:bookmark_sign = '✭'
