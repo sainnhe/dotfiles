@@ -1650,30 +1650,29 @@ let g:startify_skiplist = [
 "}}}
 "{{{vim-signify
 "{{{vim-signify-usage
-" g? 显示帮助
+" <leader>g? 显示帮助
 function Help_vim_signify()
-    echo "gj  next hunk\n"
-    echo "gk  previous hunk\n"
-    echo "gJ  last hunk\n"
-    echo "gK  first hunk\n"
-    echo "gt  :SignifyToggle\n"
-    echo "gh  :SignifyToggleHighlight\n"
-    echo "gr  :SignifyRefresh\n"
-    echo "gd  :SignifyDebug\n"
-    echo "g?  Show this help\n"
+    echo "<leader>gj  next hunk\n"
+    echo "<leader>gk  previous hunk\n"
+    echo "<leader>gJ  last hunk\n"
+    echo "<leader>gK  first hunk\n"
+    echo "<leader>gt  :SignifyToggle\n"
+    echo "<leader>gh  :SignifyToggleHighlight\n"
+    echo "<leader>gr  :SignifyRefresh\n"
+    echo "<leader>gd  :SignifyDebug\n"
+    echo "<leader>g?  Show this help\n"
 endfunction
-nnoremap g? :call Help_vim_signify()<CR>
+nnoremap <leader>g? :call Help_vim_signify()<CR>
 "}}}
 let g:signify_realtime = 1
 let g:signify_disable_by_default = 0
 let g:signify_line_highlight = 0
 let g:signify_sign_show_count = 1
 let g:signify_sign_show_text = 1
-let g:signify_difftool = 'diff'
 let g:signify_sign_add = '+'
 let g:signify_sign_delete = '_'
 let g:signify_sign_delete_first_line = '‾'
-let g:signify_sign_change = '!'
+let g:signify_sign_change = '*'
 let g:signify_sign_changedelete = g:signify_sign_change
 nmap <leader>gj <plug>(signify-next-hunk)
 nmap <leader>gk <plug>(signify-prev-hunk)
@@ -1687,6 +1686,7 @@ omap ic <plug>(signify-motion-inner-pending)
 xmap ic <plug>(signify-motion-inner-visual)
 omap ac <plug>(signify-motion-outer-pending)
 xmap ac <plug>(signify-motion-outer-visual)
+let g:signify_difftool = 'diff'
 let g:signify_vcs_list = [ 'git' ]  " 'accurev''bzr''cvs''darcs''fossil''git''hg''perforce''rcs''svn''tfs'
 let g:signify_vcs_cmds = {
             \ 'git':      'git diff --no-color --no-ext-diff -U0 -- %f',
@@ -2920,7 +2920,7 @@ if g:VIM_Linter ==# 'ale'
     "}}}
     "{{{neomake
 elseif g:VIM_Linter ==# 'neomake'
-    call neomake#configure#automake('nwr')
+    call neomake#configure#automake('nwri')  " when writing or reading a buffer, and on changes in insert and normal mode
     let g:neomake_error_sign = {'text': "\uf65b", 'texthl': 'NeomakeErrorSign'}
     let g:neomake_warning_sign = {'text': "\uf421",'texthl': 'NeomakeWarningSign'}
     let g:neomake_message_sign = {'text': '➤','texthl': 'NeomakeMessageSign'}
@@ -3511,7 +3511,7 @@ function! s:vim_manpager_mappings() abort
     nnoremap <silent><buffer> ? :<C-u>call Help_vim_manpager()<CR>
     nmap <silent><buffer> <Tab> ]t
     nmap <silent><buffer> <S-Tab> [t
-    nmap <silent> <A-w> :<C-u>call ForceCloseRecursively()<CR>
+    nmap <silent><buffer> <A-w> :<C-u>call ForceCloseRecursively()<CR>
 endfunction
 let g:CloseDefxInVimManpagerFirstTime_finish = 0
 function! Vim_manpager_close_explore() abort
