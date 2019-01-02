@@ -234,6 +234,9 @@ endif
 "}}}
 "{{{Mappings
 "{{{VIM-Compatible
+" sed -n l
+" https://stackoverflow.com/questions/5379837/is-it-possible-to-mapping-alt-hjkl-in-insert-mode
+" https://vi.stackexchange.com/questions/2350/how-to-map-alt-key
 if !has('nvim')
     execute "set <M-w>=\ew"
     execute "set <M-v>=\ev"
@@ -268,8 +271,8 @@ nnoremap <silent> q :q<CR>
 " Ctrl+S保存文件
 nnoremap <C-S> :<C-u>w<CR>
 " Shift加方向键加速移动
-nnoremap <S-up> <Esc>5<up>zz
-nnoremap <S-down> <Esc>5<down>zz
+nnoremap <S-up> <Esc>5<up>
+nnoremap <S-down> <Esc>5<down>
 nnoremap <S-left> <Esc>0
 nnoremap <S-right> <Esc>$
 " x删除字符但不保存到剪切板
@@ -730,8 +733,7 @@ if g:VIM_Linter ==# 'ale'
     Plug 'maximbaz/lightline-ale'
 elseif g:VIM_Linter ==# 'neomake'
     Plug 'neomake/neomake'
-    " Plug 'sinetoami/lightline-neomake'
-    Plug 'mkalinski/vim-lightline_neomake'
+    Plug 'sinetoami/lightline-neomake'
     if g:VIM_LSP_Client ==# 'lcn'
         Plug 'Palpatineli/lightline-lsc-nvim'
     endif
@@ -891,24 +893,23 @@ let g:lightline#ale#indicator_checking = "\uf110"
 let g:lightline#ale#indicator_warnings = "\uf529"
 let g:lightline#ale#indicator_errors = "\uf00d"
 let g:lightline#ale#indicator_ok = "\uf00c"
-if g:VIM_Linter ==# 'ale'
-    let g:lightline.active = {
-                \ 'left': [ [ 'mode', 'paste' ],
-                \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
-                \ 'right': [ [ 'lineinfo' ],
-                \            [ 'pomodoro', 'obsession', 'tmuxlock' ],
-                \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
-elseif g:VIM_Linter ==# 'neomake'
-    let g:lightline.active = {
-                \ 'left': [ [ 'mode', 'paste' ],
-                \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
-                \ 'right': [ [ 'lineinfo' ],
-                \            [ 'obsession', 'tmuxlock' ],
-                \            [ 'neomake' ],
-                \            [ 'lsc_ok', 'lsc_errors', 'lsc_checking', 'lsc_warnings' ]
-                \            ] }
-    " \            [ 'neomake_warnings', 'neomake_errors', 'neomake_infos', 'neomake_ok' ],
+if g:VIM_Enable_TmuxLine == 1
+    let g:Lightline_StatusIndicators = [ 'pomodoro', 'obsession', 'tmuxlock' ]
+elseif g:VIM_Enable_TmuxLine == 0
+    let g:Lightline_StatusIndicators = [ 'pomodoro', 'obsession' ]
 endif
+if g:VIM_Linter ==# 'ale'
+    let g:Lightline_Linter = [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
+elseif g:VIM_Linter ==# 'neomake'
+    let g:Lightline_Linter = [ 'neomake_warnings', 'neomake_errors', 'neomake_infos', 'neomake_ok', 'lsc_ok', 'lsc_errors', 'lsc_checking', 'lsc_warnings' ]
+endif
+let g:lightline.active = {
+            \ 'left': [ [ 'mode', 'paste' ],
+            \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
+            \ 'right': [ [ 'lineinfo' ],
+            \            g:Lightline_StatusIndicators,
+            \            g:Lightline_Linter
+            \] }
 let g:lightline.inactive = {
             \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'filetype', 'filesize' ]],
             \ 'right': [ [ 'lineinfo', 'percent' ] ] }
@@ -966,7 +967,6 @@ let g:lightline.component_expand = {
             \ 'lsc_warnings': 'lightline#lsc#warnings',
             \ 'lsc_errors': 'lightline#lsc#errors',
             \ 'lsc_ok': 'lightline#lsc#ok',
-            \ 'neomake': 'lightline_neomake#component',
             \ 'linter_checking': 'lightline#ale#checking',
             \ 'linter_warnings': 'lightline#ale#warnings',
             \ 'linter_errors': 'lightline#ale#errors',
@@ -980,7 +980,6 @@ let g:lightline.component_type = {
             \ 'lsc_warnings': 'warning',
             \ 'lsc_errors': 'error',
             \ 'lsc_ok': 'middle',
-            \ 'neomake': 'error',
             \ 'linter_checking': 'middle',
             \ 'linter_warnings': 'warning',
             \ 'linter_errors': 'error',
@@ -2926,6 +2925,8 @@ elseif g:VIM_Linter ==# 'neomake'
     let g:neomake_warning_sign = {'text': "\uf421",'texthl': 'NeomakeWarningSign'}
     let g:neomake_message_sign = {'text': '➤','texthl': 'NeomakeMessageSign'}
     let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
+    let g:neomake_virtualtext_prefix = '▸'
+    let g:neomake_cursormoved_delay = 50
 endif
 "}}}
 "{{{defx.nvim
@@ -3448,21 +3449,26 @@ nnoremap <silent> <leader>T :<C-u>Yde<CR>
 "}}}
 "{{{comfortable-motion.vim
 "{{{comfortable-motion.vim-usage
-" <S-pageup> <S-pagedown>平滑滚动
+" <pageup> <pagedown>平滑滚动
+" nvim中，<A-J>和<A-K>平滑滚动
 "}}}
 let g:comfortable_motion_no_default_key_mappings = 1
 let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
-nnoremap <silent> <S-pagedown> :<C-u>call comfortable_motion#flick(200)<CR>
-nnoremap <silent> <S-pageup> :<C-u>call comfortable_motion#flick(-200)<CR>
-inoremap <silent> <S-pagedown> <Esc>:call comfortable_motion#flick(100)<CR>a
-inoremap <silent> <S-pageup> <Esc>:call comfortable_motion#flick(-100)<CR>a
-vnoremap <silent> <S-pagedown> <Esc>:call comfortable_motion#flick(150)<CR>v
-vnoremap <silent> <S-pageup> <Esc>:call comfortable_motion#flick(-150)<CR>v
+nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(200)<CR>
+nnoremap <silent> <pageup> :<C-u>call comfortable_motion#flick(-200)<CR>
+nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(200)<CR>
+nnoremap <silent> <ScrollWheelDown> :<C-u>call comfortable_motion#flick(-200)<CR>
+nnoremap <silent> <ScrollWheelUp> :<C-u>call comfortable_motion#flick(-200)<CR>
+if has('nvim')
+    nnoremap <silent> <A-J> :<C-u>call comfortable_motion#flick(200)<CR>
+    nnoremap <silent> <A-K> :<C-u>call comfortable_motion#flick(-200)<CR>
+endif
 "}}}
 "{{{vim-smooth-scroll
-nnoremap <silent> <S-up> :<C-u>call smooth_scroll#up(&scroll/2, 10, 2)<CR>
-nnoremap <silent> <S-down> :<C-u>call smooth_scroll#down(&scroll/2, 10, 2)<CR>
+" 行数，延迟，一次滑动多少行
+nnoremap <silent> K zz:<C-u>call smooth_scroll#up(&scroll, 10, 1)<CR>
+nnoremap <silent> J zz:<C-u>call smooth_scroll#down(&scroll, 10, 1)<CR>
 "}}}
 "{{{codi.vim
 let g:codi#width = 40
