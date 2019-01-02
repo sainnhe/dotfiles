@@ -1,0 +1,110 @@
+{
+    "coc.preferences.snippetIndicator": "\ue796",
+    "coc.preferences.minTriggerInputLength": 1,
+    "coc.preferences.diagnostic.errorSign": "\uf65b",
+    "coc.preferences.diagnostic.warningSign": "\uf421",
+    "coc.preferences.diagnostic.infoSign": "ℹ",
+    "coc.preferences.diagnostic.hintSign": "➤",
+    "coc.preferences.diagnostic.displayByAle": true,
+    "$schema": "./data/schema.json",
+    "coc.preferences.autoTrigger": "always",
+    "coc.preferences.snippets.enable": true,
+    "coc.preferences.colorSupport": true,
+    "coc.preferences.hoverTarget": "preview",
+    "coc.preferences.maxColorCount": 1000,
+    "coc.preferences.triggerAfterInsertEnter": false,
+    "coc.preferences.acceptSuggestionOnCommitCharacter": false,
+    "coc.preferences.triggerSignatureHelp": true,
+    "coc.preferences.timeout": 2000,
+    "coc.preferences.noselect": true,
+    "coc.preferences.formatOnType": false,
+    "coc.preferences.parseKeywordsLimitLines": 5000,
+    "coc.preferences.hyphenAsKeyword": true,
+    "coc.preferences.jumpCommand": "edit",
+    "coc.preferences.diagnostic.locationlist": true,
+    "coc.preferences.diagnostic.enable": true,
+    "coc.preferences.diagnostic.level": "hint",
+    "coc.preferences.diagnostic.enableMessage": true,
+    "coc.preferences.diagnostic.highlightOffset": 1000,
+    "coc.preferences.diagnostic.signOffset": 1000,
+    "coc.preferences.codeLens.enable": true,
+    "coc.preferences.codeLens.separator": "‣",
+    "coc.source.emmet.priority": 1,
+    "coc.source.ultisnips.priority": 2,
+    "coc.source.snippets.priority": 2,
+    "coc.source.around.priority": 10,
+    "coc.source.buffer.priority": 11,
+    "coc.source.file.priority": 12,
+    "coc.source.dictionary.priority": 20,
+    "coc.source.word.priority": 21,
+    "coc.source.emoji.priority": 22,
+    "coc.source.around.enable": true,
+    "coc.source.around.shortcut": "A",
+    "coc.source.buffer.enable": true,
+    "coc.source.buffer.shortcut": "B",
+    "coc.source.buffer.ignoreGitignore": true,
+    "coc.source.file.enable": true,
+    "coc.source.file.shortcut": "F",
+    "coc.source.file.triggerCharacters": ["/"],
+    "coc.source.file.trimSameExts": [".ts", ".js"],
+    "coc.source.file.ignoreHidden": true,
+    "coc.source.file.ignorePatterns": [],
+    "coc.source.dictionary.enable": true,
+    "coc.source.dictionary.shortcut": "D",
+    "coc.source.dictionary.filetypes": ["markdown"],
+    "coc.source.word.enable": true,
+    "coc.source.word.shortcut": "W",
+    "coc.source.word.filetypes": ["markdown"],
+    "coc.source.emoji.enable": true,
+    "coc.source.emoji.shortcut": "E",
+    "coc.source.emoji.filetypes": ["markdown"],
+    "coc.source.ultisnips.enable": true,
+    "coc.source.ultisnips.shortcut": "S",
+    "coc.source.snippets.enable": true,
+    "coc.source.snippets.shortcut": "S",
+    "coc.source.snippets.extends": {
+        "cpp": ["c"],
+        "javascriptreact": ["javascript"],
+        "typescript": ["javascript"]
+    },
+    "coc.source.snippets.ultisnips.enable": true,
+    "coc.source.snippets.ultisnips.pythonVersion": 3,
+    "coc.source.snippets.ultisnips.directories": ["UltiSnips"],
+    "coc.source.snippets.loadFromExtensions": true,
+    "coc.source.emmet.showExpandedAbbreviation": true,
+    "coc.source.emmet.showAbbreviationSuggestions": true,
+    "coc.source.emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact"},
+    "highlight.document.enable": false,
+    "highlight.colors,enable": true,
+    "highlight.disableLanguages": ["startify", "help"],
+    "http.proxy": "",
+    "http.proxyStrictSSL": true,
+    "languageserver": {
+        "clangd": {
+            "command": "clangd",
+            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "initializationOptions": {
+                "cacheDirectory": "/tmp/ccls"
+            }
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "filetypes": ["sh"],
+            "args": ["start"]
+        },
+        "MPLS": {
+            "command": "dotnet",
+            "args": ["exec", "/home/sainnhe/.cache/python-language-server/output/bin/Release/Microsoft.Python.LanguageServer.dll"],
+            "filetypes": ["python"],
+            "initializationOptions": {
+                "interpreter": {
+                    "properties": {
+                        "InterpreterPath": "/bin/python3",
+                        "UseDefaultDatabase": true,
+                        "Version": "3.7.1"
+                    }
+                }
+            }
+        }
+    }
+}

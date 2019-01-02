@@ -61,6 +61,39 @@ test_cmd () {
 # fi
 # ~/.tmux_bind.sh no
 # # }}}
+# {{{TMUX Init
+alias tmux='tmux -2'
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+nvim_exist=$(test_cmd nvim)
+if [[ "$TERM_Emulator" == "tilda" ]]; then
+    if [[ -z "$TMUX" ]] ;then
+        ID="`tmux ls | grep -vm1 attached | grep Beta | cut -d: -f1`" # check if Beta session exist
+        if [[ -z "$ID" ]] ;then # if not, creat a new one
+            tmux new-session -d -s Beta -n VIM
+            tmux new-window -t Beta -n Shell
+            tmux send-keys -t Beta:VIM "cd ~" Enter
+            if [[ "$nvim_exist" == "yes" ]]; then
+                tmux send-keys -t Beta:VIM "nvim" Enter
+            elif [[ "$nvim_exist" == "no" ]]; then
+                tmux send-keys -t Beta:VIM "vim" Enter
+            fi
+            tmux attach -t Beta:Shell
+        else
+            tmux attach-session -t Beta # if available attach to it # else, attach it
+        fi
+    fi
+fi
+~/.tmux_bind.sh no
+# }}}
+# {{{manpager
+if [[ "$nvim_exist" == "yes" ]]; then
+    export MANPAGER="nvim -c MANPAGER -"
+elif [[ "$nvim_exist" == "no" ]]; then
+    export MANPAGER="vim -c MANPAGER -"
+fi
+# }}}
 set -o ignoreeof
 set -o noclobber
 

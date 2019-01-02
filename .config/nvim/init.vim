@@ -17,7 +17,7 @@ endif
 " sudo pacman -S python-neovim
 " 安装软件包:
 " lua boost xclip words the_silver_searcher ripgrep fzf ctags global toilet toilet-fonts nodejs yarn php python-wcwidth
-" clang tidy eslint stylelint flake8 flawfinder cppcheck nodejs-jsonlint shellcheck vint stylelint-config-standard(npm)
+" clang tidy stylelint flake8 flawfinder cppcheck nodejs-jsonlint shellcheck vint stylelint-config-standard(npm)
 " python-pyflakes python-pycodestyle python-pydocstyle python-pylint
 " astyle prettier shfmt js-beautify uncrustify yapf
 " :call Install_COC_Sources()  "  function里包含了json的额外设置
@@ -51,12 +51,6 @@ endif
 "{{{Functions
 "{{{CloseOnLastTab
 function! CloseOnLastTab()
-    "     let g:Loop_Var = 0
-    " if tabpagenr('$') == 1
-    "     while (winnr('$') > 0) && g:Loop_Var < 10
-    "         execute 'q'
-    "         g:Loop_Var = g:Loop_Var + 1
-    "         endwhile
     if tabpagenr('$') == 1
         execute 'windo bd'
         execute 'q'
@@ -142,6 +136,15 @@ function! ToggleObsession()
     else
         execute 'Obsession'
     endif
+endfunction
+"}}}
+"{{{ForceCloseRecursively
+function! ForceCloseRecursively()
+    let s:Loop_Var = 0
+    while s:Loop_Var < 100
+        execute 'q!'
+        s:Loop_Var = s:Loop_Var + 1
+    endwhile
 endfunction
 "}}}
 "}}}
@@ -585,7 +588,6 @@ Plug 'rcabralc/rcabralc-colorscheme.vim'
 Plug 'sjl/badwolf'
 Plug 'sainnhe/soft-era-vim'
 "}}}
-Plug 'sainnhe/artify.vim'
 Plug 'itchyny/lightline.vim'
 if g:VIM_Enable_TmuxLine == 1
     Plug 'edkolev/tmuxline.vim'
@@ -598,6 +600,7 @@ Plug 'nathanaelkane/vim-indent-guides', { 'on': [] }
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'roman/golden-ratio'
+Plug 'sainnhe/artify.vim'
 
 " Productivity
 if g:VIM_LSP_Client ==# 'lcn'
@@ -681,9 +684,9 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         Plug 'Shougo/neosnippet-snippets', { 'on': [] }
         Plug 'honza/vim-snippets', { 'on': [] }
     endif
-    Plug 'neoclide/coc.nvim', {'do': 'proxychains yarn install', 'on': []}
     Plug 'Shougo/neco-vim', { 'on': [] } | Plug 'neoclide/coc-neco', { 'on': [] }
     Plug 'Shougo/neoinclude.vim', { 'on': [] } | Plug 'jsfaint/coc-neoinclude', { 'on': [] }
+    Plug 'neoclide/coc.nvim', {'do': 'proxychains yarn install', 'on': []}
     Plug 'iamcco/coc-action-source.nvim', { 'on': [] }
 elseif g:VIM_Completion_Framework ==# 'neocomplete'
     Plug 'Shougo/neocomplete.vim'
@@ -760,7 +763,8 @@ Plug 'ianva/vim-youdao-translater'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'metakirby5/codi.vim'
-Plug 'nhooyr/neoman.vim', { 'on': [ 'Nman', 'Snman', 'Vnman', 'Tnman' ] }
+Plug 'rmolin88/pomodoro.vim'
+Plug 'lambdalisue/vim-manpager'
 Plug 'lilydjwg/fcitx.vim', { 'on': [] }
             \| au InsertEnter * call plug#load('fcitx.vim')
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
@@ -804,6 +808,7 @@ call quickmenu#reset()
 nnoremap <silent> <leader><Space> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
 call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(6)', '', '', 0, '`')
+call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
@@ -826,7 +831,6 @@ call g:quickmenu#append('Multiple Cursors', 'call Help_vim_multiple_cursors()', 
 call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 'S')
 call g:quickmenu#append('VIM Surround', 'call Help_vim_surround()', '', '', 0, 'r')
 call g:quickmenu#append('MatchTagAlways', 'call Help_MatchTagAlways()', '', '', 0, 'M')
-call g:quickmenu#append('neoman', 'call Help_neoman()', '', '', 0, 'h')
 "}}}
 " User Interface
 "{{{lightline.vim
@@ -857,6 +861,14 @@ function! TmuxBindLock() abort
         return "\uf023"
     endif
 endfunction
+" Pomodoro
+function! PomodoroStatus() abort
+    if pomo#remaining_time() ==# '0'
+        return "\ue001"
+    else
+        return "\ue003 ".pomo#remaining_time()
+    endif
+endfunction
 "}}}
 set laststatus=2  " Basic
 set noshowmode  " Disable show mode info
@@ -884,7 +896,7 @@ if g:VIM_Linter ==# 'ale'
                 \ 'left': [ [ 'mode', 'paste' ],
                 \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
                 \ 'right': [ [ 'lineinfo' ],
-                \            [ 'obsession', 'tmuxlock' ],
+                \            [ 'pomodoro', 'obsession', 'tmuxlock' ],
                 \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
 elseif g:VIM_Linter ==# 'neomake'
     let g:lightline.active = {
@@ -919,6 +931,7 @@ let g:lightline.component = {
             \ 'obsession': '%{ObsessionStatusEnhance()}',
             \ 'tmuxlock': '%{TmuxBindLock()}',
             \ 'vim_logo': "\ue7c5",
+            \ 'pomodoro': '%{PomodoroStatus()}',
             \ 'nicewinnumber': '%{NegativeCircledNumber(tabpagewinnr(tabpagenr()))}',
             \ 'mode': '%{lightline#mode()}',
             \ 'absolutepath': '%F',
@@ -1008,7 +1021,10 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'soft-era'
+let g:VIM_Color_Scheme = 'pencil'
+if g:VIM_Enable_TmuxLine == 1
+    let g:VIM_Color_Scheme = 'github'
+endif
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1703,7 +1719,7 @@ let g:signify_vcs_cmds_diffmode = {
 " :LeadingSpaceToggle  切换显示Leading Space
 " :IndentLinesToggle  切换显示indentLine
 "}}}
-let g:ExcludeIndentFileType_Universal = [ 'startify', 'defx', 'codi', 'help', 'man', 'neoman' ]
+let g:ExcludeIndentFileType_Universal = [ 'startify', 'defx', 'codi', 'help', 'man' ]
 let g:ExcludeIndentFileType_Special = [ 'markdown', 'json' ]
 let g:indentLine_enabled = 1
 let g:indentLine_leadingSpaceEnabled = 0
@@ -2259,10 +2275,10 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         endif
         call plug#load('coc.nvim', 'neco-vim', 'coc-neco', 'neoinclude.vim', 'coc-neoinclude', 'coc-action-source.nvim')
         call coc#add_extension(
-                    \   'coc-dictionary', 'coc-tag', 'coc-word',
-                    \   'coc-emoji', 'coc-highlight', g:Coc_Snippet,
-                    \   'coc-html', 'coc-css', 'coc-eslint',
-                    \   'coc-stylelint', 'coc-emmet', 'coc-pyls',
+                    \   'coc-dictionary', 'coc-word', 'coc-emoji',
+                    \   'coc-highlight', g:Coc_Snippet,
+                    \   'coc-html', 'coc-css',
+                    \   'coc-emmet', 'coc-pyls',
                     \   'coc-jest', 'coc-json'
                     \   )
         function! Func_Coc_Snippet_Uninstall()
@@ -2280,7 +2296,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
             autocmd!
             autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
             autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-            " autocmd CursorHold * silent call CocActionAsync('highlight')
+            autocmd CursorHold * silent call CocActionAsync('highlight')
         augroup END
         nnoremap <silent> l :<C-u>call quickmenu#toggle(5)<CR>
         vnoremap <silent> lf <Plug>(coc-format-selected)
@@ -2891,7 +2907,7 @@ if g:VIM_Linter ==# 'ale'
     " virtual text
     let g:ale_virtualtext_cursor = 1
     let g:ale_virtualtext_delay = 10
-    let g:ale_virtualtext_prefix = 'ᐅ'
+    let g:ale_virtualtext_prefix = '▸'
     " ale-mode
     if g:ALE_MODE == 0
         let g:ale_lint_on_text_changed = 'never'
@@ -3453,31 +3469,34 @@ let g:codi#width = 40
 let g:codi#rightsplit = 1
 let g:codi#rightalign = 0
 "}}}
-" {{{neoman.vim
-" {{{neoman.vim-usage
-function! Help_neoman()
-    echo 'Nman " display man page for <cWORD>'
-    echo 'Nman [sect] page'
-    echo 'Nman page[(sect)]'
-    echo 'Nman path " if in current directory, start path with ./'
-    echo ':Nman printf'
-    echo ':Nman 3 printf'
-    echo ':Nman printf(3)'
-    echo ':Nman ./fzf.1 " open manpage in current directory'
-    echo "\n"
-    echo 'Commands'
-    echo 'Nman Snman Vnman Tnman'
-    echo "\n"
-    echo 'Mappings'
-    echo '<Tab>  jump to a manpage under the cursor'
-    echo '<S-Tab>  jump back to the previous man page'
-    echo '<leader>mr  阅读模式'
-    echo 'f  搜索行'
-    echo '?  显示帮助'
-    echo 'q  quit'
+"{{{pomodoro.vim
+let g:Pomodoro_Status = 0
+function! Toggle_Pomodoro()
+    if g:Pomodoro_Status == 0
+        let g:Pomodoro_Status = 1
+        execute 'PomodoroStart'
+    elseif g:Pomodoro_Status == 1
+        let g:Pomodoro_Status = 0
+        execute 'PomodoroStop'
+    endif
+endfunction
+let g:pomodoro_time_work = 25
+let g:pomodoro_time_slack = 5
+"}}}
+" {{{vim-manpager
+" {{{vim-manpager-usage
+function! Help_vim_manpager()
+    echo 'shell里"man foo"启动'
+    echo '<CR>  打开当前word的manual page'
+    echo '<C-o>  跳转到之前的位置'
+    echo '<Tab>  跳转到下一个keyword'
+    echo '<S-Tab>  跳转到上一个keyword'
+    echo 'f  FuzzyFind'
+    echo '<A-w>  quit'
+    echo '?  Help'
 endfunction
 " }}}
-function! s:neoman_mappings() abort
+function! s:vim_manpager_mappings() abort
     if g:VIM_Fuzzy_Finder ==# 'denite'
         nnoremap <silent><buffer> f :<C-u>Denite line:buffer<CR>
     elseif g:VIM_Fuzzy_Finder ==# 'fzf'
@@ -3485,13 +3504,33 @@ function! s:neoman_mappings() abort
     elseif g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
         nnoremap <silent><buffer> f :<C-u>LeaderfLine<CR>
     endif
-    nnoremap <silent><buffer> ? :<C-u>call Help_neoman()<CR>
-    nmap <silent><buffer> <Tab> <C-]>
-    nmap <silent><buffer> <S-Tab> <C-t>
+    nnoremap <silent><buffer> ? :<C-u>call Help_vim_manpager()<CR>
+    nmap <silent><buffer> <Tab> ]t
+    nmap <silent><buffer> <S-Tab> [t
+    nmap <silent> <A-w> :<C-u>call ForceCloseRecursively()<CR>
 endfunction
-augroup NeomanAu
+let g:CloseDefxInVimManpagerFirstTime_finish = 0
+function! Vim_manpager_close_explore() abort
+    execute 'IndentLinesDisable'
+    if g:CloseDefxInVimManpagerFirstTime_finish == 0
+        let g:CloseDefxInVimManpagerFirstTime_finish = 1
+        if g:VIM_Explore ==# 'defx'
+            execute 'call ToggleDefx()'
+        elseif g:VIM_Explore ==# 'nerdtree'
+            execute 'NERDTreeClose'
+        endif
+    elseif g:CloseDefxInVimManpagerFirstTime_finish == 1
+        if g:VIM_Explore ==# 'defx' && exists('b:defx')
+            execute 'call ToggleDefx()'
+        elseif g:VIM_Explore ==# 'nerdtree'
+            execute 'NERDTreeClose'
+        endif
+    endif
+endfunction
+augroup ManpagerAu
     autocmd!
-    autocmd FileType neoman call s:neoman_mappings()
+    autocmd FileType man call s:vim_manpager_mappings()
+    autocmd FileType man call Vim_manpager_close_explore()
 augroup END
 " }}}
 "{{{emmet-vim
@@ -3500,14 +3539,14 @@ augroup END
 " :h emmet
 "}}}
 function Func_emmet_vim()
-    let g:user_emmet_leader_key='<A-x>'
+    let g:user_emmet_leader_key='<A-z>'
     let g:user_emmet_mode='in'  "enable in insert and normal mode
 endfunction
 "}}}
 "{{{vim-closetag
 "{{{vim-closetag-usage
 function! Help_vim_closetag()
-    echo '<A-z>z  Add > at current position without closing the current tag'
+    echo '<A-z>>  Add > at current position without closing the current tag'
 endfunction
 "}}}
 function! Func_vim_closetag()
