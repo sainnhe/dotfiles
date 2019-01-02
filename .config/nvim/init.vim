@@ -140,10 +140,10 @@ endfunction
 "}}}
 "{{{ForceCloseRecursively
 function! ForceCloseRecursively()
-    let s:Loop_Var = 0
-    while s:Loop_Var < 100
+    let Loop_Var = 0
+    while Loop_Var < 100
         execute 'q!'
-        s:Loop_Var = s:Loop_Var + 1
+        Loop_Var = s:Loop_Var + 1
     endwhile
 endfunction
 "}}}
@@ -3458,8 +3458,6 @@ let g:comfortable_motion_air_drag = 2.0
 nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(200)<CR>
 nnoremap <silent> <pageup> :<C-u>call comfortable_motion#flick(-200)<CR>
 nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(200)<CR>
-nnoremap <silent> <ScrollWheelDown> :<C-u>call comfortable_motion#flick(-200)<CR>
-nnoremap <silent> <ScrollWheelUp> :<C-u>call comfortable_motion#flick(-200)<CR>
 if has('nvim')
     nnoremap <silent> <A-J> :<C-u>call comfortable_motion#flick(200)<CR>
     nnoremap <silent> <A-K> :<C-u>call comfortable_motion#flick(-200)<CR>
