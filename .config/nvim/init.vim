@@ -3040,8 +3040,8 @@ if g:VIM_Explore ==# 'defx'
     call defx#custom#column('mark', {
                 \ 'directory_icon': ' ',
                 \ 'readonly_icon': "\ue0a2",
-                \ 'root_icon': ' ',
-                \ 'selected_icon': '*',
+                \ 'root_icon': "\u2BB2",
+                \ 'selected_icon': "\uf058",
                 \ })
     function! ToggleDefx()
         if bufwinnr('defx') > 0
