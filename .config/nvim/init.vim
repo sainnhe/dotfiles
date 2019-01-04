@@ -300,6 +300,11 @@ nnoremap <silent> <A-j> :<C-u>wincmd j<CR>
 " Alt+V && Alt+S新建窗口
 nnoremap <silent> <A-v> :<C-u>vsp<CR>
 nnoremap <silent> <A-s> :<C-u>sp<CR>
+" neovim下，Alt+Shift+V, Alt+Shift+S分别切换到垂直和水平分割
+if has('nvim')
+    nnoremap <silent> <A-V> :<C-u>wincmd t<CR>:wincmd H<CR>
+    nnoremap <silent> <A-S> :<C-u>wincmd t<CR>:wincmd K<CR>
+endif
 " Alt+-<>调整窗口大小
 nnoremap <silent> <A-=> :<C-u>wincmd +<CR>
 nnoremap <silent> <A--> :<C-u>wincmd -<CR>
@@ -1020,7 +1025,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'pencil'
+let g:VIM_Color_Scheme = 'two-firewatch-light'
 if g:VIM_Enable_TmuxLine == 1
     let g:VIM_Color_Scheme = 'github'
 endif
@@ -2291,6 +2296,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         "}}}
         "{{{coc-settings
         set completeopt=noinsert,noselect,menuone
+        highlight CocErrorHighlight ctermfg=Gray guifg=#8d8d8d
         augroup CocAu
             autocmd!
             autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
@@ -2907,6 +2913,13 @@ if g:VIM_Linter ==# 'ale'
     let g:ale_virtualtext_cursor = 1
     let g:ale_virtualtext_delay = 10
     let g:ale_virtualtext_prefix = '▸'
+    " highlight ALEVirtualTextError ctermfg=Gray guifg=#8d6e6e
+    " highlight ALEVirtualTextWarning ctermfg=Gray guifg=#8d816e
+    highlight ALEVirtualTextError ctermfg=Gray guifg=#8d8d8d
+    highlight ALEVirtualTextWarning ctermfg=Gray guifg=#8d8d8d
+    highlight ALEVirtualTextInfo ctermfg=Gray guifg=#8d8d8d
+    highlight link ALEVirtualTextStyleError ALEVirtualTextError
+    highlight link ALEVirtualTextStyleWarning ALEVirtualTextWarning
     " ale-mode
     if g:ALE_MODE == 0
         let g:ale_lint_on_text_changed = 'never'
@@ -2935,14 +2948,15 @@ if g:VIM_Explore ==# 'defx'
     " defx中按?显示帮助
     function! Help_defx()
         echo "<CR>  打开文件或目录并关闭defx\n"
-        echo "<right>  打开文件或目录\n"
-        echo "<left>  返回上一级目录\n"
-        echo "<Tab>  让当前目录成为当前TAB的工作目录\n"
-        echo "<S-Tab>  让当前目录成为所有TAB的工作目录\n"
+        echo 'v  垂直打开'
+        echo 's  水平打开'
+        echo 't  在新标签页打开'
+        echo "<right>  打开文件或目录，同时自动切换到目录下\n"
+        echo "<left>  返回上一级目录，同时自动切换到目录下\n"
         echo "nd  新建目录\n"
         echo "nf  新建文件\n"
-        echo "s  选中\n"
-        echo "a  全部选中\n"
+        echo "<Tab>  选中\n"
+        echo "<S-Tab>  全部选中\n"
         echo ".  切换隐藏文件\n"
         echo "c  复制文件\n"
         echo "m  移动文件\n"
@@ -3013,10 +3027,30 @@ if g:VIM_Explore ==# 'defx'
         endif
     endfunction
     "}}}
+    call defx#custom#option('_', {
+                \   'columns': 'mark:icons:filename:git:size:time',
+                \   'direction': 'topleft',
+                \   'split': 'vertical',
+                \   'winwidth': 35
+                \ })
+    call defx#custom#column('filename', {
+                \ 'min_width': 19,
+                \ 'max_width': 19,
+                \ })
+    call defx#custom#column('mark', {
+                \ 'directory_icon': ' ',
+                \ 'readonly_icon': "\ue0a2",
+                \ 'root_icon': ' ',
+                \ 'selected_icon': '*',
+                \ })
     function! ToggleDefx()
-        execute 'Defx -toggle -auto-cd -buffer-name="Explore" -split=vertical -winwidth=35 -direction=topleft -fnamewidth=19 -columns=mark:icons:filename:git:size:time'
+        if bufwinnr('defx') > 0
+            execute 'bd! ' . bufnr('defx')
+        else
+            execute 'Defx -show-ignored-files -buffer-name="Explore"'
+        endif
     endfunction
-    nnoremap <silent> <C-B> :<C-u>call ToggleDefx()<CR>
+    nnoremap <silent> <C-b> :<C-u>call ToggleDefx()<CR>
     let g:defx_icons_enable_syntax_highlight = 1
     let g:defx_icons_column_length = 1
     let g:defx_icons_directory_icon = ''
@@ -3033,13 +3067,16 @@ if g:VIM_Explore ==# 'defx'
     augroup END
     function! s:defx_my_settings() abort
         " Define Mappings
-        nmap <silent><buffer><expr> <CR> defx#async_action('open', 'wincmd w \| drop')."\<C-B>"
+        nmap <silent><buffer><expr> <CR> defx#async_action('open', 'wincmd w \| drop')."\<C-b>"
+        nmap <silent><buffer><expr> v
+                    \ defx#async_action('open', [':vsplit'])."\<C-b>"
+        nmap <silent><buffer> s v:wincmd t<CR>:wincmd K<CR>
+        nnoremap <silent><buffer><expr> t
+                    \ defx#async_action('open', [':tabedit'])
         nnoremap <silent><buffer><expr> <right>
-                    \ defx#async_action('open', 'wincmd w \| drop')
+                    \ defx#async_action('open', 'wincmd w \| drop').defx#do_action('change_vim_cwd')
         nnoremap <silent><buffer><expr> <left>
-                    \ defx#async_action('cd', ['..'])
-        nnoremap <silent><buffer> <Tab> :<C-u>tcd %:p:h<CR>
-        nnoremap <silent><buffer> <S-Tab> :<C-u>cd %:p:h<CR>
+                    \ defx#async_action('cd', ['..']).defx#do_action('change_vim_cwd')
         nnoremap <silent><buffer><expr> nd
                     \ defx#async_action('new_directory')
         nnoremap <silent><buffer><expr> nf
@@ -3058,9 +3095,9 @@ if g:VIM_Explore ==# 'defx'
                     \ defx#async_action('rename')
         nnoremap <silent><buffer><expr> x
                     \ defx#async_action('execute_system')
-        nnoremap <silent><buffer><expr> s
+        nnoremap <silent><buffer><expr> <Tab>
                     \ defx#async_action('toggle_select')
-        nnoremap <silent><buffer><expr> a
+        nnoremap <silent><buffer><expr> <S-Tab>
                     \ defx#async_action('toggle_select_all')
         nnoremap <silent><buffer><expr> yy
                     \ defx#async_action('yank_path')
