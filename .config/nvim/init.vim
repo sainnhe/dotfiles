@@ -3676,28 +3676,9 @@ function! s:vim_manpager_mappings() abort
     nmap <silent><buffer> <S-Tab> [t
     nmap <silent><buffer> <A-w> :<C-u>call ForceCloseRecursively()<CR>
 endfunction
-let g:CloseDefxInVimManpagerFirstTime_finish = 0
-function! Vim_manpager_close_explore() abort
-    execute 'IndentLinesDisable'
-    if g:CloseDefxInVimManpagerFirstTime_finish == 0
-        let g:CloseDefxInVimManpagerFirstTime_finish = 1
-        if g:VIM_Explore ==# 'defx'
-            execute 'call ToggleDefx()'
-        elseif g:VIM_Explore ==# 'nerdtree'
-            execute 'NERDTreeClose'
-        endif
-    elseif g:CloseDefxInVimManpagerFirstTime_finish == 1
-        if g:VIM_Explore ==# 'defx' && exists('b:defx')
-            execute 'call ToggleDefx()'
-        elseif g:VIM_Explore ==# 'nerdtree'
-            execute 'NERDTreeClose'
-        endif
-    endif
-endfunction
 augroup ManpagerAu
     autocmd!
     autocmd FileType man call s:vim_manpager_mappings()
-    autocmd FileType man call Vim_manpager_close_explore()
 augroup END
 " }}}
 "{{{emmet-vim
