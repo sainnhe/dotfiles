@@ -1,7 +1,7 @@
 {
     "workbench.iconTheme": "material-icon-theme",
-    "editor.fontSize": 16,
-    "editor.fontFamily": "Inconsolata",
+    "editor.fontSize": 14,
+    "editor.fontFamily": "Monaco",
     "window.menuBarVisibility": "toggle",
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.cursorBlinking": true,
@@ -47,7 +47,7 @@
     "debug.enableAllHovers": true,
     "html.format.endWithNewline": true,
     "files.autoGuessEncoding": true,
-    "workbench.colorTheme": "Eva Light",
+    "workbench.colorTheme": "Ayu Light",
     "update.channel": "none",
     "update.enableWindowsBackgroundUpdates": false,
     "telemetry.enableTelemetry": false
