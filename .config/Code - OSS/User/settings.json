@@ -10,7 +10,6 @@
     "editor.smoothScrolling": true,
     "workbench.tree.horizontalScrolling": true,
     "terminal.external.linuxExec": "/usr/bin/zsh",
-    "materialTheme.accent": "Sky",
     "workbench.colorCustomizations": {
         "activityBarBadge.background": "#84FFFF",
         "list.activeSelectionForeground": "#84FFFF",
@@ -46,7 +45,6 @@
     "breadcrumbs.enabled": true,
     "zenMode.restore": true,
     "debug.enableAllHovers": true,
-    "searchRipgrep.enable": true,
     "html.format.endWithNewline": true,
     "files.autoGuessEncoding": true,
     "workbench.colorTheme": "Eva Light",
