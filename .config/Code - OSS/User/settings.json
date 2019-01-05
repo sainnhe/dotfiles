@@ -1,5 +1,5 @@
 {
-    "workbench.iconTheme": "eq-material-theme-icons-light",
+    "workbench.iconTheme": "material-icon-theme",
     "editor.fontSize": 16,
     "editor.fontFamily": "Inconsolata",
     "window.menuBarVisibility": "toggle",
@@ -48,5 +48,9 @@
     "debug.enableAllHovers": true,
     "searchRipgrep.enable": true,
     "html.format.endWithNewline": true,
-    "files.autoGuessEncoding": true
+    "files.autoGuessEncoding": true,
+    "workbench.colorTheme": "Eva Light",
+    "update.channel": "none",
+    "update.enableWindowsBackgroundUpdates": false,
+    "telemetry.enableTelemetry": false
 }
