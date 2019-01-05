@@ -3586,6 +3586,7 @@ inoremap <A-z>" "
 inoremap <A-z>[ [
 inoremap <A-z>{ {
 inoremap <A-z>( (
+inoremap <A-z><Backspace> <Backspace>
 "}}}
 "{{{vim-surround
 "{{{vim-surround-usage
