@@ -1,4 +1,116 @@
 "{{{Basic
+" "{{{Setup
+" #!/bin/bash
+" # {{{pacman_setup_func()
+" pacman_setup_func() {
+"     echo -n "make sure you have configured locale correctly. [enter to continue]  "
+"     read inputstr
+"     echo "updating cache..."
+"     pacman -Syy
+"     echo "installing git..."
+"     pacman -S --noconfirm git >/dev/null
+"     echo "installing python-neovim..."
+"     pacman -S --noconfirm python-neovim >/dev/null
+"     echo "installing npm..."
+"     pacman -S --noconfirm npm >/dev/null
+"     echo "installing yarn..."
+"     pacman -S --noconfirm yarn >/dev/null
+"     echo "installing lua..."
+"     pacman -S --noconfirm lua >/dev/null
+"     echo "installing boost..."
+"     pacman -S --noconfirm boost >/dev/null
+"     echo "installing xclip..."
+"     pacman -S --noconfirm xclip >/dev/null
+"     echo "installing words..."
+"     pacman -S --noconfirm words >/dev/null
+"     echo "installing the_silver_searcher..."
+"     pacman -S --noconfirm the_silver_searcher >/dev/null
+"     echo "installing ripgrep..."
+"     pacman -S --noconfirm ripgrep >/dev/null
+"     echo "installing fzf..."
+"     pacman -S --noconfirm fzf >/dev/null
+"     echo "installing ctags..."
+"     pacman -S --noconfirm ctags >/dev/null
+"     echo "installing php..."
+"     pacman -S --noconfirm php >/dev/null
+"     echo "installing python-wcwidth..."
+"     pacman -S --noconfirm python-wcwidth >/dev/null
+"     echo "installing clang..."
+"     pacman -S --noconfirm clang >/dev/null
+"     echo "installing tidy..."
+"     pacman -S --noconfirm tidy >/dev/null
+"     echo "installing flake8..."
+"     pacman -S --noconfirm flake8 >/dev/null
+"     echo "installing flawfinder..."
+"     pacman -S --noconfirm flawfinder >/dev/null
+"     echo "installing cppcheck..."
+"     pacman -S --noconfirm cppcheck >/dev/null
+"     echo "installing shellcheck..."
+"     pacman -S --noconfirm shellcheck >/dev/null
+"     echo "installing vint..."
+"     pacman -S --noconfirm vint >/dev/null
+"     echo "installing python-pyflakes..."
+"     pacman -S --noconfirm python-pyflakes >/dev/null
+"     echo "installing python-pycodestyle..."
+"     pacman -S --noconfirm python-pycodestyle >/dev/null
+"     echo "installing python-pydocstyle..."
+"     pacman -S --noconfirm python-pydocstyle >/dev/null
+"     echo "installing python-pylint..."
+"     pacman -S --noconfirm python-pylint >/dev/null
+"     echo "installing astyle..."
+"     pacman -S --noconfirm astyle >/dev/null
+"     echo "installing prettier..."
+"     pacman -S --noconfirm prettier >/dev/null
+"     echo "installing shfmt..."
+"     pacman -S --noconfirm shfmt >/dev/null
+"     echo "installing uncrustify..."
+"     pacman -S --noconfirm uncrustify >/dev/null
+"     echo "installing yapf..."
+"     pacman -S --noconfirm yapf >/dev/null
+"     echo "installing python-language-server..."
+"     pacman -S --noconfirm python-language-server >/dev/null
+"     echo "installing bash-language-server..."
+"     pacman -S --noconfirm bash-language-server >/dev/null
+" }
+" # }}}
+" # {{{yay_setup_func()
+" yay_setup_func() {
+"     echo -n "make sure you have configured makepkg proxy correctly. [enter to continue]  "
+"     read inputstr
+"     echo -n "install ccls from AUR. [enter to continue]  "
+"     yay -S ccls
+"     echo -n "install global from AUR. [enter to continue]  "
+"     yay -S global
+"     echo -n "install toilet from AUR. [enter to continue]  "
+"     yay -S toilet
+"     echo -n "install toilet-fonts from AUR. [enter to continue]  "
+"     yay -S toilet-fonts
+"     echo -n "install stylelint from AUR. [enter to continue]  "
+"     yay -S stylelint
+"     echo -n "install nodejs-jsonlint from AUR. [enter to continue]  "
+"     yay -S nodejs-jsonlint
+"     echo -n "install js-beautify from AUR. [enter to continue]  "
+"     yay -S js-beautify
+" }
+" # }}}
+" # {{{npm_global_setup()
+" npm_global_setup() {
+"     npm install -g vscode-html-languageserver-bin
+"     npm install -g vscode-css-languageserver-bin
+"     npm install -g vscode-json-languageserver-bin
+" }
+" # }}}
+" # {{{npm_setup()
+" npm_setup() {
+"     npm install stylelint-config-standard
+" }
+" # }}}
+" bash -c "$(declare -f pacman_setup_func); pacman_setup_func"
+" su sainnhe -c "$(declare -f yay_setup_func); yay_setup_func"
+" bash -c "$(declare -f npm_global_setup); npm_global_setup"
+" su sainnhe -c "$(declare -f npm_setup); npm_setup"
+" printf "\n\ninstall mpls manually\nhttps://microsoft.github.io/language-server-protocol/implementors/servers/\n"
+" "}}}
 "{{{BasicConfig
 if has('nvim')
     set runtimepath^=~/.vim runtimepath+=~/.vim/after
@@ -12,24 +124,6 @@ if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
 else
     let g:VIM_Enable_TmuxLine = 0
 endif
-"}}}
-"{{{Manual
-" sudo pacman -S python-neovim
-" 安装软件包:
-" lua boost xclip words the_silver_searcher ripgrep fzf ctags global toilet toilet-fonts nodejs yarn php python-wcwidth
-" clang tidy stylelint flake8 flawfinder cppcheck nodejs-jsonlint shellcheck vint stylelint-config-standard(npm)
-" python-pyflakes python-pycodestyle python-pydocstyle python-pylint
-" astyle prettier shfmt js-beautify uncrustify yapf
-" :call Install_COC_Sources()  "  function里包含了json的额外设置
-"{{{InstallLSP
-" https://microsoft.github.io/language-server-protocol/implementors/servers/
-" sudo pacman -Syu clang  # clangd
-" sudo pacman -S python-language-server  # pyls
-" sudo pacman -S bash-language-server  # bash-language-server start
-" sudo npm install -g vscode-html-languageserver-bin  # html-languageserver --stdio
-" sudo npm install -g vscode-css-languageserver-bin  # css-languageserver --stdio
-" sudo npm install -g vscode-json-languageserver-bin  # json-languageserver --stdio
-"}}}
 "}}}
 "{{{Todo
 " https://github.com/search?p=21&q=vim&ref=opensearch&s=stars&type=Repositories
@@ -146,6 +240,32 @@ function! ForceCloseRecursively()
         Loop_Var = s:Loop_Var + 1
     endwhile
 endfunction
+"}}}
+"{{{s:go_indent
+" gi, gpi跳转indent
+function! s:indent_len(str)
+    return type(a:str) == 1 ? len(matchstr(a:str, '^\s*')) : 0
+endfunction
+function! s:go_indent(times, dir)
+    for _ in range(a:times)
+        let l = line('.')
+        let x = line('$')
+        let i = s:indent_len(getline(l))
+        let e = empty(getline(l))
+
+        while l >= 1 && l <= x
+            let line = getline(l + a:dir)
+            let l += a:dir
+            if s:indent_len(line) != i || empty(line) != e
+                break
+            endif
+        endwhile
+        let l = min([max([1, l]), x])
+        execute 'normal! '. l .'G^'
+    endfor
+endfunction
+nnoremap <silent> gi :<c-u>call <SID>go_indent(v:count1, 1)<cr>
+nnoremap <silent> gpi :<c-u>call <SID>go_indent(v:count1, -1)<cr>
 "}}}
 "}}}
 "{{{Config
@@ -2280,7 +2400,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         call plug#load('coc.nvim', 'neco-vim', 'coc-neco', 'neoinclude.vim', 'coc-neoinclude', 'coc-action-source.nvim')
         call coc#add_extension(
                     \   'coc-dictionary', 'coc-word', 'coc-emoji',
-                    \   'coc-highlight', g:Coc_Snippet,
+                    \   g:Coc_Snippet,
                     \   'coc-html', 'coc-css',
                     \   'coc-emmet', 'coc-pyls',
                     \   'coc-jest', 'coc-json'
@@ -2301,7 +2421,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
             autocmd!
             autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
             autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-            autocmd CursorHold * silent call CocActionAsync('highlight')
         augroup END
         nnoremap <silent> l :<C-u>call quickmenu#toggle(5)<CR>
         vnoremap <silent> lf <Plug>(coc-format-selected)
@@ -3456,11 +3575,17 @@ function! Help_auto_pairs()
     echo '插入模式下：'
     echo '<A-z><A-w>  fast wrap'
     echo '<A-n>  jump to next closed pair'
+    echo '<A-z>[key]  不pairs'
 endfunction
 "}}}
 let g:AutoPairsShortcutToggle = '<A-z>`asdxcvdsf'
 let g:AutoPairsShortcutFastWrap = '<A-z><A-w>'
 let g:AutoPairsShortcutJump = '<A-n>'
+inoremap <A-z>' '
+inoremap <A-z>" "
+inoremap <A-z>[ ]
+inoremap <A-z>{ }
+inoremap <A-z>( )
 "}}}
 "{{{vim-surround
 "{{{vim-surround-usage

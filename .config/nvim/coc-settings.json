@@ -74,9 +74,6 @@
     "coc.source.emmet.showExpandedAbbreviation": true,
     "coc.source.emmet.showAbbreviationSuggestions": true,
     "coc.source.emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact"},
-    "highlight.document.enable": false,
-    "highlight.colors,enable": true,
-    "highlight.disableLanguages": ["startify", "help"],
     "http.proxy": "",
     "http.proxyStrictSSL": true,
     "languageserver": {
