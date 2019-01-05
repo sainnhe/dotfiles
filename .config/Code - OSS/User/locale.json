@@ -1,6 +1,0 @@
-{
-	// Defines VS Code's display language.
-	// See https://go.microsoft.com/fwlink/?LinkId=761051 for a list of supported languages.
-
-	"locale":"zh-CN" // Changes will not take effect until VS Code has been restarted.
-}
