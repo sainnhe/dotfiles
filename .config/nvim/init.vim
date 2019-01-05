@@ -3583,9 +3583,9 @@ let g:AutoPairsShortcutFastWrap = '<A-z><A-w>'
 let g:AutoPairsShortcutJump = '<A-n>'
 inoremap <A-z>' '
 inoremap <A-z>" "
-inoremap <A-z>[ ]
-inoremap <A-z>{ }
-inoremap <A-z>( )
+inoremap <A-z>[ [
+inoremap <A-z>{ {
+inoremap <A-z>( (
 "}}}
 "{{{vim-surround
 "{{{vim-surround-usage
