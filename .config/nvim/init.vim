@@ -696,9 +696,6 @@ Plug 'sainnhe/ayu-vim'
 Plug 'whatyouhide/vim-gotham'
 Plug 'blueshirts/darcula'
 Plug 'kaicataldo/material.vim'
-Plug 'fcpg/vim-fahrenheit'
-Plug 'fcpg/vim-farout'
-Plug 'fcpg/vim-orbital'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'nightsense/forgotten'
 Plug 'nightsense/nemo'
@@ -1259,6 +1256,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('vice', 'call SwitchColorScheme("vice")', '', '', 0, '')
     "}}}
+    "{{{hydrangea
+    if g:VIM_Color_Scheme ==# 'hydrangea'
+        colorscheme hydrangea
+        let g:lightline.colorscheme = 'hydrangea'
+    endif
+    call g:quickmenu#append('hydrangea', 'call SwitchColorScheme("hydrangea")', '', '', 0, '')
+    "}}}
     "{{{snazzy
     if g:VIM_Color_Scheme ==# 'snazzy'
         colorscheme snazzy
@@ -1282,15 +1286,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('palenight', 'call SwitchColorScheme("palenight")', '', '', 0, '')
     "}}}
-    "{{{deepspace
-    if g:VIM_Color_Scheme ==# 'deepspace'
-        set background=dark
-        let g:deepspace_italics=1
-        colorscheme deep-space
-        let g:lightline.colorscheme = 'deepspace'
-    endif
-    call g:quickmenu#append('deepspace', 'call SwitchColorScheme("deepspace")', '', '', 0, '')
-    "}}}
     "{{{srcery
     if g:VIM_Color_Scheme ==# 'srcery'
         colorscheme srcery
@@ -1306,26 +1301,14 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('rcabralc', 'call SwitchColorScheme("rcabralc")', '', '', 0, '')
     "}}}
-    "{{{fahrenheit
-    if g:VIM_Color_Scheme ==# 'fahrenheit'
-        colorscheme fahrenheit
-        let g:lightline.colorscheme = 'fahrenheit'
+    "{{{deepspace
+    if g:VIM_Color_Scheme ==# 'deepspace'
+        set background=dark
+        let g:deepspace_italics=1
+        colorscheme deep-space
+        let g:lightline.colorscheme = 'deepspace'
     endif
-    call g:quickmenu#append('fahrenheit', 'call SwitchColorScheme("fahrenheit")', '', '', 0, '')
-    "}}}
-    "{{{farout
-    if g:VIM_Color_Scheme ==# 'farout'
-        colorscheme farout
-        let g:lightline.colorscheme = 'farout'
-    endif
-    call g:quickmenu#append('farout', 'call SwitchColorScheme("farout")', '', '', 0, '')
-    "}}}
-    "{{{hydrangea
-    if g:VIM_Color_Scheme ==# 'hydrangea'
-        colorscheme hydrangea
-        let g:lightline.colorscheme = 'hydrangea'
-    endif
-    call g:quickmenu#append('hydrangea', 'call SwitchColorScheme("hydrangea")', '', '', 0, '')
+    call g:quickmenu#append('deepspace', 'call SwitchColorScheme("deepspace")', '', '', 0, '')
     "}}}
     "{{{iceberg
     if g:VIM_Color_Scheme ==# 'iceberg'
@@ -1347,13 +1330,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'gotham256'
     endif
     call g:quickmenu#append('gotham', 'call SwitchColorScheme("gotham")', '', '', 0, '')
-    "}}}
-    "{{{orbital
-    if g:VIM_Color_Scheme ==# 'orbital'
-        colorscheme orbital
-        let g:lightline.colorscheme = 'orbital'
-    endif
-    call g:quickmenu#append('orbital', 'call SwitchColorScheme("orbital")', '', '', 0, '')
     "}}}
     "{{{github
     if g:VIM_Color_Scheme ==# 'github'
