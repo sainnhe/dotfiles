@@ -127,6 +127,7 @@ endif
 "}}}
 "{{{Todo
 " https://github.com/search?p=21&q=vim&ref=opensearch&s=stars&type=Repositories
+" https://github.com/search?q=vim+color&ref=opensearch&s=stars
 "}}}
 let g:VIM_AutoInstall = 1
 let g:VIM_TmuxLineSync = 0
@@ -718,7 +719,6 @@ Plug 'mhartington/oceanic-next'
 Plug 'KKPMW/sacredforest-vim'
 Plug 'trevordmiller/nova-vim'
 Plug 'skreek/skeletor.vim'
-" https://vimcolors.com/?page=32
 "}}}
 Plug 'itchyny/lightline.vim'
 if g:VIM_Enable_TmuxLine == 1
@@ -1155,7 +1155,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'two-firewatch-light'
+let g:VIM_Color_Scheme = 'tender'
 if g:VIM_Enable_TmuxLine == 1
     let g:VIM_Color_Scheme = 'github'
 endif
