@@ -713,8 +713,13 @@ Plug 'reedes/vim-colors-pencil'
 Plug 'mikker/lightline-theme-pencil'
 Plug 'bcicen/vim-vice'
 Plug 'rcabralc/rcabralc-colorscheme.vim'
-Plug 'sjl/badwolf'
 Plug 'sainnhe/soft-era-vim'
+Plug 'sts10/vim-pink-moon'
+Plug 'mhartington/oceanic-next'
+Plug 'KKPMW/sacredforest-vim'
+Plug 'trevordmiller/nova-vim'
+Plug 'skreek/skeletor.vim'
+" https://vimcolors.com/?page=32
 "}}}
 Plug 'itchyny/lightline.vim'
 if g:VIM_Enable_TmuxLine == 1
@@ -966,6 +971,12 @@ call g:quickmenu#append('MatchTagAlways', 'call Help_MatchTagAlways()', '', '', 
 " :h g:lightline.component
 "}}}
 "{{{functions
+function! SwitchLightlineColorScheme(color)
+    let g:lightline.colorscheme = a:color
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+endfunction
 function! NiceTabNum(n) abort
     " \ 'globalinfo': 'T%{NiceNumber(tabpagenr())} B%{bufnr("%")} W%{tabpagewinnr(tabpagenr())}',
     return RomaNumber(a:n)
@@ -1179,6 +1190,14 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('apprentice', 'call SwitchColorScheme("apprentice")', '', '', 0, '')
     "}}}
+    "{{{sacredforest
+    if g:VIM_Color_Scheme ==# 'sacredforest'
+        set background=dark
+        colorscheme sacredforest
+        let g:lightline.colorscheme = 'nova'
+    endif
+    call g:quickmenu#append('sacredforest', 'call SwitchColorScheme("sacredforest")', '', '', 0, '')
+    "}}}
     "{{{onedark
     if g:VIM_Color_Scheme ==# 'onedark'
         set background=dark
@@ -1187,6 +1206,13 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'one'
     endif
     call g:quickmenu#append('onedark', 'call SwitchColorScheme("onedark")', '', '', 0, '')
+    "}}}
+    "{{{skeletor
+    if g:VIM_Color_Scheme ==# 'skeletor'
+        colorscheme skeletor
+        let g:lightline.colorscheme = 'snazzy'
+    endif
+    call g:quickmenu#append('skeletor', 'call SwitchColorScheme("skeletor")', '', '', 0, '')
     "}}}
     "{{{snazzy
     if g:VIM_Color_Scheme ==# 'snazzy'
@@ -1216,6 +1242,14 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('vice', 'call SwitchColorScheme("vice")', '', '', 0, '')
     "}}}
+    "{{{pink-moon
+    if g:VIM_Color_Scheme ==# 'pink-moon'
+        set background=dark
+        colorscheme pink-moon
+        let g:lightline.colorscheme = 'sialoquent'
+    endif
+    call g:quickmenu#append('pink-moon', 'call SwitchColorScheme("pink-moon")', '', '', 0, '')
+    "}}}
     "{{{sialoquent
     if g:VIM_Color_Scheme ==# 'sialoquent'
         set background=dark
@@ -1237,9 +1271,9 @@ function! ColorScheme()
     "{{{tender
     if g:VIM_Color_Scheme ==# 'tender'
         set background=dark
-        colorscheme tender
         let g:material_theme_style = 'dark'
         let g:lightline.colorscheme = 'material_vim'
+        colorscheme tender
     endif
     call g:quickmenu#append('tender', 'call SwitchColorScheme("tender")', '', '', 0, '')
     "}}}
@@ -1293,15 +1327,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'srcery'
     endif
     call g:quickmenu#append('srcery', 'call SwitchColorScheme("srcery")', '', '', 0, '')
-    "}}}
-    "{{{badwolf
-    if g:VIM_Color_Scheme ==# 'badwolf'
-        let g:badwolf_html_link_underline = 1
-        let g:badwolf_css_props_highlight = 1
-        colorscheme badwolf
-        let g:lightline.colorscheme = 'srcery'
-    endif
-    call g:quickmenu#append('badwolf', 'call SwitchColorScheme("badwolf")', '', '', 0, '')
     "}}}
     "{{{fahrenheit
     if g:VIM_Color_Scheme ==# 'fahrenheit'
@@ -1443,8 +1468,7 @@ function! ColorScheme()
         set background=dark
         let g:two_firewatch_italics=1
         colorscheme two-firewatch
-        " let g:lightline.colorscheme = 'twofirewatch'
-        let g:lightline.colorscheme = 'stellarized_dark'
+        let g:lightline.colorscheme = 'oceanicnext'
     endif
     call g:quickmenu#append('two-firewatch-dark', 'call SwitchColorScheme("two-firewatch-dark")', '', '', 0, '')
     call g:quickmenu#append('two-firewatch-light', 'call SwitchColorScheme("two-firewatch-light")', '', '', 0, '')
