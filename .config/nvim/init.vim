@@ -704,7 +704,6 @@ Plug 'nightsense/nemo'
 Plug 'hzchirs/vim-material'
 Plug 'bellma101/vim-snazzy'
 Plug 'srcery-colors/srcery-vim'
-Plug 'romainl/Apprentice', { 'branch': 'fancylines-and-neovim' }
 Plug 'rakr/vim-two-firewatch'
 Plug 'davidklsn/vim-sialoquent'
 Plug 'KeitaNakamura/neodark.vim'
@@ -1173,6 +1172,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('deus', 'call SwitchColorScheme("deus")', '', '', 0, '')
     "}}}
+    "{{{darcula
+    if g:VIM_Color_Scheme ==# 'darcula'
+        colorscheme darcula
+        let g:lightline.colorscheme = 'darcula'
+    endif
+    call g:quickmenu#append('darcula', 'call SwitchColorScheme("darcula")', '', '', 0, '')
+    "}}}
     "{{{neodark
     if g:VIM_Color_Scheme ==# 'neodark'
         set background=dark
@@ -1182,22 +1188,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('neodark', 'call SwitchColorScheme("neodark")', '', '', 0, '')
     "}}}
-    "{{{apprentice
-    if g:VIM_Color_Scheme ==# 'apprentice'
-        set background=dark
-        colorscheme apprentice
-        let g:lightline.colorscheme = 'snow_dark'
-    endif
-    call g:quickmenu#append('apprentice', 'call SwitchColorScheme("apprentice")', '', '', 0, '')
-    "}}}
-    "{{{sacredforest
-    if g:VIM_Color_Scheme ==# 'sacredforest'
-        set background=dark
-        colorscheme sacredforest
-        let g:lightline.colorscheme = 'nova'
-    endif
-    call g:quickmenu#append('sacredforest', 'call SwitchColorScheme("sacredforest")', '', '', 0, '')
-    "}}}
     "{{{onedark
     if g:VIM_Color_Scheme ==# 'onedark'
         set background=dark
@@ -1206,57 +1196,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'one'
     endif
     call g:quickmenu#append('onedark', 'call SwitchColorScheme("onedark")', '', '', 0, '')
-    "}}}
-    "{{{skeletor
-    if g:VIM_Color_Scheme ==# 'skeletor'
-        colorscheme skeletor
-        let g:lightline.colorscheme = 'snazzy'
-    endif
-    call g:quickmenu#append('skeletor', 'call SwitchColorScheme("skeletor")', '', '', 0, '')
-    "}}}
-    "{{{snazzy
-    if g:VIM_Color_Scheme ==# 'snazzy'
-        colorscheme snazzy
-        let g:lightline.colorscheme = 'snazzy'
-    endif
-    call g:quickmenu#append('snazzy', 'call SwitchColorScheme("snazzy")', '', '', 0, '')
-    "}}}
-    "{{{hydrangea
-    if g:VIM_Color_Scheme ==# 'hydrangea'
-        colorscheme hydrangea
-        let g:lightline.colorscheme = 'hydrangea'
-    endif
-    call g:quickmenu#append('hydrangea', 'call SwitchColorScheme("hydrangea")', '', '', 0, '')
-    "}}}
-    "{{{darcula
-    if g:VIM_Color_Scheme ==# 'darcula'
-        colorscheme darcula
-        let g:lightline.colorscheme = 'darcula'
-    endif
-    call g:quickmenu#append('darcula', 'call SwitchColorScheme("darcula")', '', '', 0, '')
-    "}}}
-    "{{{vice
-    if g:VIM_Color_Scheme ==# 'vice'
-        colorscheme vice
-        let g:lightline.colorscheme = 'vice'
-    endif
-    call g:quickmenu#append('vice', 'call SwitchColorScheme("vice")', '', '', 0, '')
-    "}}}
-    "{{{pink-moon
-    if g:VIM_Color_Scheme ==# 'pink-moon'
-        set background=dark
-        colorscheme pink-moon
-        let g:lightline.colorscheme = 'sialoquent'
-    endif
-    call g:quickmenu#append('pink-moon', 'call SwitchColorScheme("pink-moon")', '', '', 0, '')
-    "}}}
-    "{{{sialoquent
-    if g:VIM_Color_Scheme ==# 'sialoquent'
-        set background=dark
-        colorscheme sialoquent
-        let g:lightline.colorscheme = 'sialoquent'
-    endif
-    call g:quickmenu#append('sialoquent', 'call SwitchColorScheme("sialoquent")', '', '', 0, '')
     "}}}
     "{{{quantum
     if g:VIM_Color_Scheme ==# 'quantum'
@@ -1289,6 +1228,51 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('nord', 'call SwitchColorScheme("nord")', '', '', 0, '')
     "}}}
+    "{{{pink-moon
+    if g:VIM_Color_Scheme ==# 'pink-moon'
+        set background=dark
+        colorscheme pink-moon
+        let g:lightline.colorscheme = 'sialoquent'
+    endif
+    call g:quickmenu#append('pink-moon', 'call SwitchColorScheme("pink-moon")', '', '', 0, '')
+    "}}}
+    "{{{sialoquent
+    if g:VIM_Color_Scheme ==# 'sialoquent'
+        set background=dark
+        colorscheme sialoquent
+        let g:lightline.colorscheme = 'sialoquent'
+    endif
+    call g:quickmenu#append('sialoquent', 'call SwitchColorScheme("sialoquent")', '', '', 0, '')
+    "}}}
+    "{{{sacredforest
+    if g:VIM_Color_Scheme ==# 'sacredforest'
+        set background=dark
+        colorscheme sacredforest
+        let g:lightline.colorscheme = 'nova'
+    endif
+    call g:quickmenu#append('sacredforest', 'call SwitchColorScheme("sacredforest")', '', '', 0, '')
+    "}}}
+    "{{{vice
+    if g:VIM_Color_Scheme ==# 'vice'
+        colorscheme vice
+        let g:lightline.colorscheme = 'vice'
+    endif
+    call g:quickmenu#append('vice', 'call SwitchColorScheme("vice")', '', '', 0, '')
+    "}}}
+    "{{{snazzy
+    if g:VIM_Color_Scheme ==# 'snazzy'
+        colorscheme snazzy
+        let g:lightline.colorscheme = 'snazzy'
+    endif
+    call g:quickmenu#append('snazzy', 'call SwitchColorScheme("snazzy")', '', '', 0, '')
+    "}}}
+    "{{{skeletor
+    if g:VIM_Color_Scheme ==# 'skeletor'
+        colorscheme skeletor
+        let g:lightline.colorscheme = 'snazzy'
+    endif
+    call g:quickmenu#append('skeletor', 'call SwitchColorScheme("skeletor")', '', '', 0, '')
+    "}}}
     "{{{palenight
     if g:VIM_Color_Scheme ==# 'palenight'
         let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -1297,13 +1281,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'deepspace'
     endif
     call g:quickmenu#append('palenight', 'call SwitchColorScheme("palenight")', '', '', 0, '')
-    "}}}
-    "{{{iceberg
-    if g:VIM_Color_Scheme ==# 'iceberg'
-        colorscheme iceberg
-        let g:lightline.colorscheme = 'iceberg'
-    endif
-    call g:quickmenu#append('iceberg', 'call SwitchColorScheme("iceberg")', '', '', 0, '')
     "}}}
     "{{{deepspace
     if g:VIM_Color_Scheme ==# 'deepspace'
@@ -1314,26 +1291,12 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('deepspace', 'call SwitchColorScheme("deepspace")', '', '', 0, '')
     "}}}
-    "{{{archery
-    if g:VIM_Color_Scheme ==# 'archery'
-        colorscheme archery
-        let g:lightline.colorscheme = 'archery'
-    endif
-    call g:quickmenu#append('archery', 'call SwitchColorScheme("archery")', '', '', 0, '')
-    "}}}
     "{{{srcery
     if g:VIM_Color_Scheme ==# 'srcery'
         colorscheme srcery
         let g:lightline.colorscheme = 'srcery'
     endif
     call g:quickmenu#append('srcery', 'call SwitchColorScheme("srcery")', '', '', 0, '')
-    "}}}
-    "{{{fahrenheit
-    if g:VIM_Color_Scheme ==# 'fahrenheit'
-        colorscheme fahrenheit
-        let g:lightline.colorscheme = 'fahrenheit'
-    endif
-    call g:quickmenu#append('fahrenheit', 'call SwitchColorScheme("fahrenheit")', '', '', 0, '')
     "}}}
     "{{{rcabralc
     if g:VIM_Color_Scheme ==# 'rcabralc'
@@ -1343,12 +1306,40 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('rcabralc', 'call SwitchColorScheme("rcabralc")', '', '', 0, '')
     "}}}
+    "{{{fahrenheit
+    if g:VIM_Color_Scheme ==# 'fahrenheit'
+        colorscheme fahrenheit
+        let g:lightline.colorscheme = 'fahrenheit'
+    endif
+    call g:quickmenu#append('fahrenheit', 'call SwitchColorScheme("fahrenheit")', '', '', 0, '')
+    "}}}
     "{{{farout
     if g:VIM_Color_Scheme ==# 'farout'
         colorscheme farout
         let g:lightline.colorscheme = 'farout'
     endif
     call g:quickmenu#append('farout', 'call SwitchColorScheme("farout")', '', '', 0, '')
+    "}}}
+    "{{{hydrangea
+    if g:VIM_Color_Scheme ==# 'hydrangea'
+        colorscheme hydrangea
+        let g:lightline.colorscheme = 'hydrangea'
+    endif
+    call g:quickmenu#append('hydrangea', 'call SwitchColorScheme("hydrangea")', '', '', 0, '')
+    "}}}
+    "{{{iceberg
+    if g:VIM_Color_Scheme ==# 'iceberg'
+        colorscheme iceberg
+        let g:lightline.colorscheme = 'iceberg'
+    endif
+    call g:quickmenu#append('iceberg', 'call SwitchColorScheme("iceberg")', '', '', 0, '')
+    "}}}
+    "{{{archery
+    if g:VIM_Color_Scheme ==# 'archery'
+        colorscheme archery
+        let g:lightline.colorscheme = 'archery'
+    endif
+    call g:quickmenu#append('archery', 'call SwitchColorScheme("archery")', '', '', 0, '')
     "}}}
     "{{{gotham
     if g:VIM_Color_Scheme ==# 'gotham'
