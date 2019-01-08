@@ -675,7 +675,7 @@ Plug 'tpope/vim-repeat'
 "}}}
 " User Interface
 "{{{themes
-Plug 'lilydjwg/colorizer', { 'for': 'vim' }
+Plug 'lilydjwg/colorizer', { 'on': [] }
 Plug 'ajmwagar/vim-deus' | Plug 'nrhodes91/deus_one.vim'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
@@ -940,6 +940,7 @@ call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(6)', '', 
 call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
+call g:quickmenu#append('Load colorizer', "call plug#load('colorizer')", '', '', 0, '')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
 call g:quickmenu#append('IndentGuides', 'call ToggleIndentGuides()', '', '', 0, 'i')
 call g:quickmenu#append('BufExplore', 'ToggleBufExplorer', '', '', 0, 'b')
