@@ -940,7 +940,7 @@ call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(6)', '', 
 call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
-call g:quickmenu#append('Load colorizer', "call plug#load('colorizer')", '', '', 0, '')
+call g:quickmenu#append('Load colorizer', "call plug#load('colorizer')", '', '', 0, '$')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
 call g:quickmenu#append('IndentGuides', 'call ToggleIndentGuides()', '', '', 0, 'i')
 call g:quickmenu#append('BufExplore', 'ToggleBufExplorer', '', '', 0, 'b')
@@ -1154,7 +1154,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'tender'
+let g:VIM_Color_Scheme = 'ayu'
 if g:VIM_Enable_TmuxLine == 1
     let g:VIM_Color_Scheme = 'github'
 endif
@@ -1169,7 +1169,7 @@ function! ColorScheme()
         let g:seoul256_background = 236
         colo seoul256
         set background=dark
-        let g:lightline.colorscheme = 'deus_beta'
+        let g:lightline.colorscheme = 'deus_beta_light'
     endif
     call g:quickmenu#append('seoul256', 'call SwitchColorScheme("seoul256")', '', '', 0, '')
     "}}}
@@ -1178,7 +1178,7 @@ function! ColorScheme()
         set background=dark
         let g:neodark#use_256color = 1
         colorscheme neodark
-        let g:lightline.colorscheme = 'deus_beta'
+        let g:lightline.colorscheme = 'deus_beta_dark'
     endif
     call g:quickmenu#append('neodark', 'call SwitchColorScheme("neodark")', '', '', 0, '')
     "}}}
