@@ -1153,7 +1153,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'neodark'
+let g:VIM_Color_Scheme = 'tender'
 if g:VIM_Enable_TmuxLine == 1
     let g:VIM_Color_Scheme = 'github'
 endif
