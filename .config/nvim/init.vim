@@ -675,6 +675,7 @@ Plug 'tpope/vim-repeat'
 "}}}
 " User Interface
 "{{{themes
+" Plug 'lilydjwg/colorizer'
 Plug 'ajmwagar/vim-deus' | Plug 'nrhodes91/deus_one.vim'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
@@ -705,12 +706,11 @@ Plug 'srcery-colors/srcery-vim'
 Plug 'rakr/vim-two-firewatch'
 Plug 'davidklsn/vim-sialoquent'
 Plug 'KeitaNakamura/neodark.vim'
-Plug 'sainnhe/deus_beta.vim'
+Plug 'sainnhe/lightline_foobar.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'mikker/lightline-theme-pencil'
 Plug 'bcicen/vim-vice'
-Plug 'rcabralc/rcabralc-colorscheme.vim'
 Plug 'sainnhe/soft-era-vim'
 Plug 'sts10/vim-pink-moon'
 Plug 'mhartington/oceanic-next'
@@ -1310,14 +1310,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('vice', 'call SwitchColorScheme("vice")', '', '', 0, '')
     "}}}
-    "{{{rcabralc
-    if g:VIM_Color_Scheme ==# 'rcabralc'
-        set background=dark
-        colorscheme rcabralc
-        let g:lightline.colorscheme = 'rcabralc'
-    endif
-    call g:quickmenu#append('rcabralc', 'call SwitchColorScheme("rcabralc")', '', '', 0, '')
-    "}}}
     "{{{archery
     if g:VIM_Color_Scheme ==# 'archery'
         colorscheme archery
@@ -1363,7 +1355,7 @@ function! ColorScheme()
     "{{{soft-era
     if g:VIM_Color_Scheme ==# 'soft-era'
         colorscheme soft-era
-        let g:lightline.colorscheme = 'softera'
+        let g:lightline.colorscheme = 'softera_alter'
     endif
     call g:quickmenu#append('soft-era', 'call SwitchColorScheme("soft-era")', '', '', 0, '')
     "}}}
