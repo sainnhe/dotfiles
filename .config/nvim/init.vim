@@ -675,7 +675,7 @@ Plug 'tpope/vim-repeat'
 "}}}
 " User Interface
 "{{{themes
-" Plug 'lilydjwg/colorizer'
+Plug 'lilydjwg/colorizer', { 'for': 'vim' }
 Plug 'ajmwagar/vim-deus' | Plug 'nrhodes91/deus_one.vim'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
@@ -693,8 +693,8 @@ Plug 'yuttie/inkstained-vim'
 Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'nightsense/stellarized'
-Plug 'sainnhe/ayu-vim'
 Plug 'whatyouhide/vim-gotham'
+Plug 'ayu-theme/ayu-vim'
 Plug 'blueshirts/darcula'
 Plug 'kaicataldo/material.vim'
 Plug 'drewtempelmeyer/palenight.vim'
@@ -1153,7 +1153,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'tender'
+let g:VIM_Color_Scheme = 'neodark'
 if g:VIM_Enable_TmuxLine == 1
     let g:VIM_Color_Scheme = 'github'
 endif
@@ -1162,6 +1162,16 @@ function! ColorScheme()
     call quickmenu#reset()
     call g:quickmenu#append('# ColorScheme', '')
     call g:quickmenu#append('Background Transparent', 'call ToggleBG()', '', '', 0, '')
+    "{{{seoul256
+    if g:VIM_Color_Scheme ==# 'seoul256'
+        " 233 (darkest) ~ 239 (lightest)
+        let g:seoul256_background = 236
+        colo seoul256
+        set background=dark
+        let g:lightline.colorscheme = 'deus_beta'
+    endif
+    call g:quickmenu#append('seoul256', 'call SwitchColorScheme("seoul256")', '', '', 0, '')
+    "}}}
     "{{{neodark
     if g:VIM_Color_Scheme ==# 'neodark'
         set background=dark
@@ -1345,6 +1355,15 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('pencil', 'call SwitchColorScheme("pencil")', '', '', 0, '')
     "}}}
+    "{{{ayu
+    if g:VIM_Color_Scheme ==# 'ayu'
+        let g:ayucolor = 'light'
+        set background=light
+        colorscheme ayu
+        let g:lightline.colorscheme = 'ayu_light'
+    endif
+    call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu")', '', '', 0, '')
+    "}}}
     "{{{inkstained
     if g:VIM_Color_Scheme ==# 'inkstained'
         colorscheme inkstained
@@ -1403,21 +1422,6 @@ function! ColorScheme()
     call g:quickmenu#append('material-dark', 'call SwitchColorScheme("material-dark")', '', '', 0, '')
     call g:quickmenu#append('material-light', 'call SwitchColorScheme("material-light")', '', '', 0, '')
     "}}}
-    "{{{ayu*
-    if g:VIM_Color_Scheme ==# 'ayu-light'
-        let g:ayucolor = 'light'
-        set background=light
-        colorscheme ayu
-        let g:lightline.colorscheme = 'ayu_light'
-    elseif g:VIM_Color_Scheme ==# 'ayu-dark'
-        let g:ayucolor = 'dark'
-        set background=dark
-        colorscheme ayu
-        let g:lightline.colorscheme = 'ayu_dark'
-    endif
-    call g:quickmenu#append('ayu-light', 'call SwitchColorScheme("ayu-light")', '', '', 0, '')
-    call g:quickmenu#append('ayu-dark', 'call SwitchColorScheme("ayu-dark")', '', '', 0, '')
-    "}}}
     "{{{two-firewatch*
     if g:VIM_Color_Scheme ==# 'two-firewatch-light'
         set background=light
@@ -1446,24 +1450,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('snow-dark', 'call SwitchColorScheme("snow-dark")', '', '', 0, '')
     call g:quickmenu#append('snow-light', 'call SwitchColorScheme("snow-light")', '', '', 0, '')
-    "}}}
-    "{{{seoul256*
-    if g:VIM_Color_Scheme ==# 'seoul256-dark'
-        " 233 (darkest) ~ 239 (lightest)
-        let g:seoul256_background = 236
-        colo seoul256
-        set background=dark
-        let g:lightline.colorscheme = 'deus_beta'
-    endif
-    if g:VIM_Color_Scheme ==# 'seoul256-light'
-        " 252 (darkest) ~ 256 (lightest)
-        let g:seoul256_background = 252
-        colo seoul256
-        set background=light
-        let g:lightline.colorscheme = 'Tomorrow'
-    endif
-    call g:quickmenu#append('seoul256-dark', 'call SwitchColorScheme("seoul256-dark")', '', '', 0, '')
-    call g:quickmenu#append('seoul256-light', 'call SwitchColorScheme("seoul256-light")', '', '', 0, '')
     "}}}
     "{{{Tomorrow*
     if g:VIM_Color_Scheme ==# 'Tomorrow-light'
