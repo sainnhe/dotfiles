@@ -3589,12 +3589,12 @@ nnoremap <silent> <leader>T :<C-u>Yde<CR>
 let g:comfortable_motion_no_default_key_mappings = 1
 let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
-nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(200)<CR>
-nnoremap <silent> <pageup> :<C-u>call comfortable_motion#flick(-200)<CR>
-nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(200)<CR>
+nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(130)<CR>
+nnoremap <silent> <pageup> :<C-u>call comfortable_motion#flick(-130)<CR>
+nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(130)<CR>
 if has('nvim')
-    nnoremap <silent> <A-J> :<C-u>call comfortable_motion#flick(200)<CR>
-    nnoremap <silent> <A-K> :<C-u>call comfortable_motion#flick(-200)<CR>
+    nnoremap <silent> <A-J> :<C-u>call comfortable_motion#flick(130)<CR>
+    nnoremap <silent> <A-K> :<C-u>call comfortable_motion#flick(-130)<CR>
 endif
 "}}}
 "{{{vim-smooth-scroll
@@ -3646,6 +3646,7 @@ function! s:vim_manpager_mappings() abort
     nmap <silent><buffer> <Tab> ]t
     nmap <silent><buffer> <S-Tab> [t
     nmap <silent><buffer> <A-w> :<C-u>call ForceCloseRecursively()<CR>
+    nnoremap <silent><buffer> K zz:<C-u>call smooth_scroll#up(&scroll, 10, 1)<CR>
 endfunction
 augroup ManpagerAu
     autocmd!
