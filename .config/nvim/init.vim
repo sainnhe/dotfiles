@@ -2969,7 +2969,7 @@ endif
 if g:VIM_Linter ==# 'ale'
     "{{{ale-usage
     let g:ALE_MODE = 2  " 0则只在保存文件时检查，1则只在normal模式下检查，2则异步检查
-    " 普通模式下<leader><up>和<leader><down>分别跳转到上一个、下一个错误
+    " 普通模式下gk和gj分别跳转到上一个、下一个错误
     " :ALEDetail  查看详细错误信息
     "}}}
     " ls ~/.cache/vim/plugins/ale/ale_linters/
@@ -2985,9 +2985,9 @@ if g:VIM_Linter ==# 'ale'
                 \       'vim': ['vint'],
                 \}
     "查看上一个错误
-    nnoremap <silent> <leader><up> <Plug>(ale_previous_wrap)
+    nnoremap <silent> gk :ALEPrevious<CR>
     "查看下一个错误
-    nnoremap <silent> <leader><down> <Plug>(ale_next_wrap)
+    nnoremap <silent> gj :ALENext<CR>
     "自定义error和warning图标
     let g:ale_sign_error = "\uf65b"
     let g:ale_sign_warning = "\uf421"
@@ -3470,13 +3470,13 @@ function! Help_vim_bookmarks()
     echo 'Unite Actions: preview, delete, replace, open, yank, highlight, etc.'
     echo '<Leader>bb <Plug>BookmarkToggle'
     echo '<Leader>ba <Plug>BookmarkAnnotate'
-    echo '<Leader>b<down> <Plug>BookmarkNext'
-    echo '<Leader>b<up> <Plug>BookmarkPrev'
+    echo '<Leader>bj <Plug>BookmarkNext'
+    echo '<Leader>bk <Plug>BookmarkPrev'
     echo '<Leader>bc <Plug>BookmarkClear'
     echo '<Leader>bC <Plug>BookmarkClearAll'
     echo '" these will also work with a [count] prefix'
-    echo '<Leader>b<S-up> <Plug>BookmarkMoveUp'
-    echo '<Leader>b<S-down> <Plug>BookmarkMoveDown'
+    echo '<Leader>bK <Plug>BookmarkMoveUp'
+    echo '<Leader>bJ <Plug>BookmarkMoveDown'
     echo '<Leader>b<Tab> <Plug>BookmarkMoveToLine'
     echo "\n"
     echo '<Leader>b? Help'
@@ -3521,13 +3521,13 @@ let g:bookmark_no_default_key_mappings = 1
 nmap <Leader>bb <Plug>BookmarkToggle
 nmap <Leader>ba <Plug>BookmarkAnnotate
 nmap <silent> <Leader>bs :<C-u>call Bookmark_Unite()<CR>
-nmap <Leader>b<down> <Plug>BookmarkNext
-nmap <Leader>b<up> <Plug>BookmarkPrev
+nmap <Leader>bj <Plug>BookmarkNext
+nmap <Leader>bk <Plug>BookmarkPrev
 nmap <Leader>bc <Plug>BookmarkClear
 nmap <Leader>bC <Plug>BookmarkClearAll
 " these will also work with a [count] prefix
-nmap <Leader>b<S-up> <Plug>BookmarkMoveUp
-nmap <Leader>b<S-down> <Plug>BookmarkMoveDown
+nmap <Leader>bK <Plug>BookmarkMoveUp
+nmap <Leader>bJ <Plug>BookmarkMoveDown
 nmap <Leader>b<Tab> <Plug>BookmarkMoveToLine
 nmap <silent> <Leader>b? :<C-u>call Help_vim_bookmarks()<CR>
 "}}}
