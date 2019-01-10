@@ -678,7 +678,6 @@ Plug 'tpope/vim-repeat'
 Plug 'lilydjwg/colorizer', { 'on': [] }
 Plug 'ajmwagar/vim-deus' | Plug 'nrhodes91/deus_one.vim'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
-Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'nightsense/snow'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
@@ -713,7 +712,6 @@ Plug 'mikker/lightline-theme-pencil'
 Plug 'bcicen/vim-vice'
 Plug 'sainnhe/soft-era-vim'
 Plug 'sts10/vim-pink-moon'
-Plug 'mhartington/oceanic-next'
 Plug 'KKPMW/sacredforest-vim'
 Plug 'trevordmiller/nova-vim'
 Plug 'skreek/skeletor.vim'
@@ -1154,7 +1152,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'ayu'
+let g:VIM_Color_Scheme = 'tender'
 if g:VIM_Enable_TmuxLine == 1
     let g:VIM_Color_Scheme = 'github'
 endif
@@ -1428,12 +1426,12 @@ function! ColorScheme()
         set background=light
         let g:two_firewatch_italics=1
         colorscheme two-firewatch
-        let g:lightline.colorscheme = 'Atelier_Dune'
+        let g:lightline.colorscheme = 'tfw_light'
     elseif g:VIM_Color_Scheme ==# 'two-firewatch-dark'
         set background=dark
         let g:two_firewatch_italics=1
         colorscheme two-firewatch
-        let g:lightline.colorscheme = 'oceanicnext'
+        let g:lightline.colorscheme = 'tfw_dark'
     endif
     call g:quickmenu#append('two-firewatch-dark', 'call SwitchColorScheme("two-firewatch-dark")', '', '', 0, '')
     call g:quickmenu#append('two-firewatch-light', 'call SwitchColorScheme("two-firewatch-light")', '', '', 0, '')
@@ -1451,17 +1449,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('snow-dark', 'call SwitchColorScheme("snow-dark")', '', '', 0, '')
     call g:quickmenu#append('snow-light', 'call SwitchColorScheme("snow-light")', '', '', 0, '')
-    "}}}
-    "{{{Tomorrow*
-    if g:VIM_Color_Scheme ==# 'Tomorrow-light'
-        colorscheme Tomorrow
-        let g:lightline.colorscheme = 'Tomorrow'
-    elseif g:VIM_Color_Scheme ==# 'Tomorrow-dark'
-        colorscheme Tomorrow-Night-Eighties
-        let g:lightline.colorscheme = 'Tomorrow_Night_Eighties'
-    endif
-    call g:quickmenu#append('Tomorrow-dark', 'call SwitchColorScheme("Tomorrow-dark")', '', '', 0, '')
-    call g:quickmenu#append('Tomorrow-light', 'call SwitchColorScheme("Tomorrow-light")', '', '', 0, '')
     "}}}
     "{{{stellarized*
     if g:VIM_Color_Scheme ==# 'stellarized-dark'
