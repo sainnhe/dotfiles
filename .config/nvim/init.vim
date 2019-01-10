@@ -3022,6 +3022,9 @@ if g:VIM_Linter ==# 'ale'
     endif
     "}}}
     "{{{neomake
+    "{{{neomake-usage
+    " gj, gk分别跳转到下一个、上一个提示位置
+    "}}}
 elseif g:VIM_Linter ==# 'neomake'
     call neomake#configure#automake('nwri')  " when writing or reading a buffer, and on changes in insert and normal mode
     let g:neomake_error_sign = {'text': "\uf65b", 'texthl': 'NeomakeErrorSign'}
@@ -3030,6 +3033,8 @@ elseif g:VIM_Linter ==# 'neomake'
     let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
     let g:neomake_virtualtext_prefix = '▸'
     let g:neomake_cursormoved_delay = 50
+    nnoremap <silent> gj :lnext<CR>
+    nnoremap <silent> gk :lprev<CR>
 endif
 "}}}
 "{{{defx.nvim
