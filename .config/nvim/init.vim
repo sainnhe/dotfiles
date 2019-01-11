@@ -842,7 +842,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
         Plug 'mhartington/denite-neomake'
     endif
 endif
-if g:VIM_Fuzzy_Finder ==# 'fzf'
+if g:VIM_Fuzzy_Finder ==# 'fzf' || g:VIM_Fuzzy_Finder ==# 'remix'
     Plug 'junegunn/fzf.vim'
     Plug 'fszymanski/fzf-quickfix'
 endif
@@ -2584,7 +2584,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
     if g:VIM_Fuzzy_Finder ==# 'denite'
         noremap <silent> f :call quickmenu#toggle(1)<cr>
     elseif g:VIM_Fuzzy_Finder ==# 'remix'
-        noremap <silent> F :call quickmenu#toggle(1)<cr>
+        noremap <silent> <leader>F :call quickmenu#toggle(1)<cr>
     endif
     call g:quickmenu#append('# Denite', '')
     call g:quickmenu#append('      Source', 'Denite source', '', '', 0, '#')
@@ -2730,15 +2730,20 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
 endif
 "}}}
 "{{{fzf.vim
-if g:VIM_Fuzzy_Finder ==# 'fzf'
+if g:VIM_Fuzzy_Finder ==# 'fzf' || g:VIM_Fuzzy_Finder ==# 'remix'
     "{{{fzf.vim-usage
-    " f  search
     " grep中用<C-p>预览
     "}}}
     "{{{quickmenu
-    call quickmenu#current(1)
-    call quickmenu#reset()
-    noremap <silent> f :call quickmenu#toggle(1)<cr>
+    if g:VIM_Fuzzy_Finder ==# 'fzf'
+        call quickmenu#current(1)
+        call quickmenu#reset()
+        noremap <silent> f :call quickmenu#toggle(1)<cr>
+    elseif g:VIM_Fuzzy_Finder ==# 'remix'
+        call quickmenu#current(2)
+        call quickmenu#reset()
+        noremap <silent> <leader>f :call quickmenu#toggle(2)<cr>
+    endif
     call g:quickmenu#append('# FZF', '')
     call g:quickmenu#append(' Line Buffer', 'BLines', '', '', 0, 'l')
     call g:quickmenu#append(' Line All', 'Lines', '', '', 0, 'L')
@@ -2863,9 +2868,9 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
         call quickmenu#reset()
         noremap <silent> f :call quickmenu#toggle(1)<cr>
     elseif g:VIM_Fuzzy_Finder ==# 'remix'
-        call quickmenu#current(2)
+        call quickmenu#current(3)
         call quickmenu#reset()
-        noremap <silent> f :call quickmenu#toggle(2)<cr>
+        noremap <silent> f :call quickmenu#toggle(3)<cr>
     endif
     call g:quickmenu#append('# LeaderF', '')
     call g:quickmenu#append('Line', 'Leaderf line --smart-case', 'Search Line in Current Buffer', '', 0, 'l')
@@ -3081,9 +3086,9 @@ if g:VIM_Explore ==# 'defx'
     function! DefxFuzzyFind()
         if g:VIM_Fuzzy_Finder ==# 'denite'
             execute 'Denite file_rec directory_rec'
-        elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+        elseif g:VIM_Fuzzy_Finder ==# 'fzf' || g:VIM_Fuzzy_Finder ==# 'remix'
             execute 'Files'
-        elseif g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
+        elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
             execute 'Leaderf file --fullPath --smart-case'
         endif
     endfunction
@@ -3196,13 +3201,13 @@ if g:VIM_Explore ==# 'defx'
         nnoremap <silent><buffer> <C-p> :<C-u>echo getcwd(0,tabpagenr())<CR>
         nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_defx_bufexplore()<CR>
         if g:VIM_Fuzzy_Finder ==# 'fzf'
-            nnoremap <silent><buffer> F :<C-u>Ag<CR>
+            nnoremap <silent><buffer> F :<C-u>Ag
         elseif g:VIM_Fuzzy_Finder ==# 'denite'
             nnoremap <silent><buffer> F :<C-u>Denite grep<CR>
         elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
             nnoremap <silent><buffer> F :<C-u>Leaderf rg<CR>
         elseif g:VIM_Fuzzy_Finder ==# 'remix'
-            nnoremap <silent><buffer> F :<C-u>Denite grep<CR>
+            nnoremap <silent><buffer> F :<C-u>Ag
         endif
         nnoremap <silent><buffer> f :<C-u>call DefxFuzzyFind()<CR>
         nnoremap <silent><buffer> SS :<C-u>call Defx_Prosession_Switch()<CR>
