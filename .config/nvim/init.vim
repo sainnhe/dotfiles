@@ -2817,18 +2817,17 @@ if g:VIM_Fuzzy_Finder ==# 'fzf' || g:VIM_Fuzzy_Finder ==# 'remix'
     " will not override existing commands.
     command! -bang Colors
                 \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
-    command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
     command! -bang -nargs=* Ag
                 \ call fzf#vim#ag(<q-args>,
-                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+                \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+                \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', 'ctrl-p'),
                 \                 <bang>0)
     command! -bang -nargs=* Rg
                 \ call fzf#vim#grep(
-                \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-                \   <bang>0 ? fzf#vim#with_preview('up:60%')
-                \           : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-                \   <bang>0)
+                \                 'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+                \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+                \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', 'ctrl-p'),
+                \                 <bang>0)
 endif
 "}}}
 "{{{LeaderF
@@ -3201,13 +3200,13 @@ if g:VIM_Explore ==# 'defx'
         nnoremap <silent><buffer> <C-p> :<C-u>echo getcwd(0,tabpagenr())<CR>
         nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_defx_bufexplore()<CR>
         if g:VIM_Fuzzy_Finder ==# 'fzf'
-            nnoremap <silent><buffer> F :<C-u>Ag
+            nnoremap <silent><buffer> F :<C-u>Ag<CR>
         elseif g:VIM_Fuzzy_Finder ==# 'denite'
             nnoremap <silent><buffer> F :<C-u>Denite grep<CR>
         elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
             nnoremap <silent><buffer> F :<C-u>Leaderf rg<CR>
         elseif g:VIM_Fuzzy_Finder ==# 'remix'
-            nnoremap <silent><buffer> F :<C-u>Ag
+            nnoremap <silent><buffer> F :<C-u>Ag<CR>
         endif
         nnoremap <silent><buffer> f :<C-u>call DefxFuzzyFind()<CR>
         nnoremap <silent><buffer> SS :<C-u>call Defx_Prosession_Switch()<CR>
