@@ -719,6 +719,7 @@ Plug 'trevordmiller/nova-vim'
 Plug 'skreek/skeletor.vim'
 "}}}
 Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
 if g:VIM_Enable_TmuxLine == 1
     Plug 'edkolev/tmuxline.vim'
 endif
@@ -873,6 +874,12 @@ elseif g:VIM_Explore ==# 'nerdtree'
     Plug 'ryanoasis/vim-devicons'
 endif
 Plug 'jlanzarotta/bufexplorer'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tommcdo/vim-fubitive'
+Plug 'idanarye/vim-merginal'
+Plug 'sodapopcan/vim-twiggy'
 Plug 'jsfaint/gen_tags.vim'
 Plug 'majutsushi/tagbar', { 'on': [] }
 Plug 'lvht/tagbar-markdown', { 'on': [] }
@@ -948,6 +955,7 @@ call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
 call quickmenu#current(10)
 call quickmenu#reset()
 call g:quickmenu#append('# Help', '')
+call g:quickmenu#append('Fugitive', 'h fugitive-commands', '', '', 0, 'g')
 call g:quickmenu#append('Visual Multi', 'call Help_vim_visual_multi()', '', '', 0, 'v')
 call g:quickmenu#append('Prosession', 'call Help_vim_prosession()', '', '', 0, 's')
 call g:quickmenu#append('Neoformat', 'call Help_neoformat()', '', '', 0, 'f')
@@ -1043,7 +1051,7 @@ elseif g:VIM_Linter ==# 'neomake'
 endif
 let g:lightline.active = {
             \ 'left': [ [ 'mode', 'paste' ],
-            \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype', 'filesize' ]],
+            \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype' ]],
             \ 'right': [ [ 'lineinfo' ],
             \            g:Lightline_StatusIndicators,
             \            g:Lightline_Linter
@@ -1053,7 +1061,9 @@ let g:lightline.inactive = {
             \ 'right': [ [ 'lineinfo', 'percent' ] ] }
 let g:lightline.tabline = {
             \ 'left': [ [ 'vim_logo', 'tabs' ] ],
-            \ 'right': [  ] }
+            \ 'right': [ [ 'close' ],
+            \ [ 'gitbranch' ]
+            \ ] }
 let g:lightline.tab = {
             \ 'active': [ 'nicetabnum', 'filename', 'modified' ],
             \ 'inactive': [ 'nicetabnum', 'filename', 'modified' ] }
@@ -1095,6 +1105,7 @@ let g:lightline.component = {
             \ 'close': '%999X X ',
             \ 'winnr': '%{winnr()}' }
 let g:lightline.component_function = {
+            \ 'gitbranch': 'gitbranch#name',
             \}
 let g:lightline.component_expand = {
             \ 'neomake_infos': 'lightline#neomake#infos',
@@ -3296,6 +3307,9 @@ let g:bufExplorerSortBy='mru'        " Sort by most recently used.
 " let g:bufExplorerSortBy='fullpath'   " Sort by full file path name.
 " let g:bufExplorerSortBy='name'       " Sort by the buffer's name.
 " let g:bufExplorerSortBy='number'     " Sort by the buffer's number.
+"}}}
+"{{{vim-fugitive
+
 "}}}
 "{{{gen_tags.vim
 "{{{quickmenu
