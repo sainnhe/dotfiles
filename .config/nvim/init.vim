@@ -398,6 +398,8 @@ nnoremap <S-left> <Esc>0
 nnoremap <S-right> <Esc>$
 " x删除字符但不保存到剪切板
 nnoremap x "_x
+" Ctrl+X剪切当前行
+nnoremap <C-X> <ESC>"_dd
 " Alt+Backspace从当前位置删除到行开头
 nnoremap <A-BS> <Esc><left>v0"_d
 " Alt+T新建tab
@@ -466,7 +468,7 @@ inoremap <C-Z> <ESC>ua
 " Ctrl+R撤销撤销的动作
 inoremap <C-R> <ESC><C-R>a
 " Ctrl+X剪切当前行
-inoremap <C-X> <ESC>ddi
+inoremap <C-X> <ESC>"_ddi
 " Alt+Backspace从当前位置删除到行开头
 inoremap <A-BS> <Esc>v0"_dI
 " Shift加方向键加速移动
