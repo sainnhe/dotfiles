@@ -3727,5 +3727,6 @@ endfunction
 function! Func_vim_json()
     let g:vim_json_syntax_conceal = 0
     set foldmethod=syntax
+    call ToggleIndentGuides()
 endfunction
 "}}}
