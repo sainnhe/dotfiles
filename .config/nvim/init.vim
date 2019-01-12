@@ -901,6 +901,8 @@ Plug 'alvan/vim-closetag', { 'for': 'html' }
 Plug 'Valloric/MatchTagAlways', { 'for': 'html' }
             \| au BufNewFile,BufRead *.html call Func_MatchTagAlways()
 Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
+Plug 'elzr/vim-json', { 'for': 'json' }
+            \| au BufNewFile,BufRead *.json call Func_vim_json()
 "{{{
 call plug#end()
 "{{{ncm2-archived
@@ -936,12 +938,13 @@ call g:quickmenu#append('# Menu', '')
 call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(6)', '', '', 0, '`')
 call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
+call g:quickmenu#append('BufExplore', 'ToggleBufExplorer', '', '', 0, 'b')
 call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
 call g:quickmenu#append('Load colorizer', "call plug#load('colorizer')", '', '', 0, '$')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
 call g:quickmenu#append('IndentGuides', 'call ToggleIndentGuides()', '', '', 0, 'i')
-call g:quickmenu#append('BufExplore', 'ToggleBufExplorer', '', '', 0, 'b')
+call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(11)', '', '', 0, 'f')
 call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
 call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
 call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
@@ -959,6 +962,12 @@ call g:quickmenu#append('Multiple Cursors', 'call Help_vim_multiple_cursors()', 
 call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 'S')
 call g:quickmenu#append('VIM Surround', 'call Help_vim_surround()', '', '', 0, 'r')
 call g:quickmenu#append('MatchTagAlways', 'call Help_MatchTagAlways()', '', '', 0, 'M')
+call quickmenu#current(11)
+call quickmenu#reset()
+call g:quickmenu#append('# Folding Method', '')
+call g:quickmenu#append('Marker', 'set foldmethod=marker', '', '', 0, 'm')
+call g:quickmenu#append('Syntax', 'set foldmethod=syntax', '', '', 0, 's')
+call g:quickmenu#append('Indent', 'set foldmethod=indnet', '', '', 0, 'i')
 "}}}
 " User Interface
 "{{{lightline.vim
@@ -3712,5 +3721,11 @@ endfunction
 function! Func_MatchTagAlways()
     inoremap <silent><A-z><A-n> <Esc>:MtaJumpToOtherTag<CR>i
     nnoremap <silent><leader><A-n> :<C-u>MtaJumpToOtherTag<CR>
+endfunction
+"}}}
+"{{{vim-json
+function! Func_vim_json()
+    let g:vim_json_syntax_conceal = 0
+    set foldmethod=syntax
 endfunction
 "}}}
