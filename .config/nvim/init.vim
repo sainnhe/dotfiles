@@ -772,7 +772,7 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     Plug 'ncm2/ncm2-tagprefix'
     Plug 'ncm2/ncm2-gtags'
     Plug 'ncm2/ncm2-bufword'
-    Plug 'fgrsnau/ncm2-otherbuf'
+    Plug 'fgrsnau/ncm2-otherbuf', { 'branch': 'ncm2'}
     Plug 'ncm2/ncm2-path'
     Plug 'ncm2/ncm2-tagprefix'
     Plug 'filipekiss/ncm2-look.vim'
@@ -792,6 +792,8 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
         Plug 'ncm2/ncm2-ultisnips'
     elseif g:VIM_Snippets ==# 'neosnippet'
     endif
+    " Plug 'ncm2/ncm2-match-highlight'
+    " Plug 'ncm2/ncm2-highprio-pop'
 elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-tags.vim'
@@ -905,11 +907,6 @@ Plug 'elzr/vim-json', { 'for': 'json' }
             \| au BufNewFile,BufRead *.json call Func_vim_json()
 "{{{
 call plug#end()
-"{{{ncm2-archived
-" Plug 'ncm2/ncm2-gtags'
-" Plug 'ncm2/ncm2-match-highlight'
-" Plug 'ncm2/ncm2-highprio-pop'
-"}}}
 "}}}
 "}}}
 "{{{Setting
