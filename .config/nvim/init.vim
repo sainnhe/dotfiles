@@ -755,6 +755,7 @@ elseif g:VIM_Snippets ==# 'coc-snippets'
 endif
 if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'ozelentok/deoplete-gtags'
     Plug 'Shougo/neco-syntax'
     Plug 'Shougo/neoinclude.vim'
     Plug 'Shougo/context_filetype.vim'
@@ -766,7 +767,10 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 elseif g:VIM_Completion_Framework ==# 'ncm2'
     Plug 'roxma/nvim-yarp' | Plug 'ncm2/ncm2'
+    Plug 'ncm2/ncm2-tagprefix'
+    Plug 'ncm2/ncm2-gtags'
     Plug 'ncm2/ncm2-bufword'
+    Plug 'fgrsnau/ncm2-otherbuf'
     Plug 'ncm2/ncm2-path'
     Plug 'ncm2/ncm2-tagprefix'
     Plug 'filipekiss/ncm2-look.vim'
@@ -774,7 +778,6 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     Plug 'Shougo/neco-syntax' | Plug 'ncm2/ncm2-syntax'
     Plug 'Shougo/neoinclude.vim' | Plug 'ncm2/ncm2-neoinclude'
     Plug 'ncm2/ncm2-pyclang', { 'for': ['c', 'cpp'] }
-    " Plug 'ncm2/ncm2-cssomni', { 'for': 'css' }
     Plug 'ncm2/ncm2-html-subscope', { 'for': 'html' }
     Plug 'ncm2/ncm2-jedi'
     Plug 'ncm2/ncm2-markdown-subscope', { 'for': 'markdown' }
@@ -789,6 +792,7 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     endif
 elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-tags.vim'
     Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-file.vim'
     Plug 'Shougo/neco-syntax' | Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
@@ -865,6 +869,7 @@ elseif g:VIM_Explore ==# 'nerdtree'
     Plug 'ryanoasis/vim-devicons'
 endif
 Plug 'jlanzarotta/bufexplorer'
+Plug 'jsfaint/gen_tags.vim'
 Plug 'majutsushi/tagbar', { 'on': [] }
 Plug 'lvht/tagbar-markdown', { 'on': [] }
 Plug 'sbdchd/neoformat'
@@ -929,6 +934,7 @@ call g:quickmenu#append('# Menu', '')
 call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(6)', '', '', 0, '`')
 call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
+call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
 call g:quickmenu#append('Load colorizer', "call plug#load('colorizer')", '', '', 0, '$')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
@@ -1151,8 +1157,8 @@ endif
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
-    call g:quickmenu#append('# ColorScheme', '')
     call g:quickmenu#append('Background Transparent', 'call ToggleBG()', '', '', 0, '')
+    call g:quickmenu#append('# Dark', '')
     "{{{seoul256
     if g:VIM_Color_Scheme ==# 'seoul256'
         " 233 (darkest) ~ 239 (lightest)
@@ -1325,6 +1331,7 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('gotham', 'call SwitchColorScheme("gotham")', '', '', 0, '')
     "}}}
+    call g:quickmenu#append('# Light', '')
     "{{{github
     if g:VIM_Color_Scheme ==# 'github'
         colorscheme github
@@ -1385,6 +1392,7 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('forgotten', 'call SwitchColorScheme("forgotten")', '', '', 0, '')
     "}}}
+    call g:quickmenu#append('# Dark && Light', '')
     "{{{onehalf*
     if g:VIM_Color_Scheme ==# 'onehalf-dark'
         set background=dark
@@ -2268,6 +2276,13 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
                         \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
                         \ }))
         endif
+        call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+                    \ 'name': 'tags',
+                    \ 'completor': function('asyncomplete#sources#tags#completor'),
+                    \ 'config': {
+                    \    'max_file_size': 50000000,
+                    \  },
+                    \ }))
         let g:tmuxcomplete#asyncomplete_source_options = {
                     \ 'name':      'tmuxcomplete',
                     \ 'whitelist': ['*'],
@@ -2348,7 +2363,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         endif
         call coc#add_extension(
                     \   'coc-dictionary', 'coc-word', 'coc-emoji',
-                    \   g:Coc_Snippet,
+                    \   g:Coc_Snippet, 'coc-tag',
                     \   'coc-html', 'coc-css',
                     \   'coc-emmet', 'coc-pyls',
                     \   'coc-jest', 'coc-json'
@@ -3273,6 +3288,30 @@ let g:bufExplorerSortBy='mru'        " Sort by most recently used.
 " let g:bufExplorerSortBy='fullpath'   " Sort by full file path name.
 " let g:bufExplorerSortBy='name'       " Sort by the buffer's name.
 " let g:bufExplorerSortBy='number'     " Sort by the buffer's number.
+"}}}
+"{{{gen_tags.vim
+"{{{quickmenu
+call quickmenu#current(7)
+call quickmenu#reset()
+call g:quickmenu#append('# Ctags', '')
+call g:quickmenu#append(' Generate Ctags', 'GenCtags', 'Generate ctags database', '', 0, 'c')
+call g:quickmenu#append('Remove Ctags files', 'ClearCtags', 'Remove tags files', '', 0, 'rc')
+call g:quickmenu#append('Remove all Ctags files', 'ClearCtags!', 'Remove all files, include db directory', '', 0, 'Rc')
+call g:quickmenu#append('# Gtags', '')
+call g:quickmenu#append(' Generate Gtags', 'GenGTAGS', 'Generate gtags database', '', 0, 'g')
+call g:quickmenu#append('Remove Gtags files', 'ClearGTAGS', 'Remove GTAGS files', '', 0, 'rg')
+call g:quickmenu#append('Remove all Gtags files', 'ClearGTAGS', 'Remove all files, include the db directory', '', 0, 'Rg')
+call g:quickmenu#append(' Edit config', 'EditExt', 'Edit an extend configuration file for this project', '', 0, 'e')
+"}}}
+" let g:gen_tags#ctags_opts = '--c++-kinds=+px --c-kinds=+px'
+" let g:gen_tags#gtags_opts = '-c --verbose'
+let g:gen_tags#use_cache_dir = 1  " 0: use project directory to store tags; 1: $HOME/.cache/tags_dir/<project name>
+let g:gen_tags#ctags_auto_gen = 0
+let g:gen_tags#gtags_auto_gen = 0
+let g:gen_tags#ctags_auto_update = 1
+let g:gen_tags#gtags_auto_update = 1
+let g:gen_tags#blacklist = ['$HOME']
+let g:gen_tags#gtags_default_map = 0
 "}}}
 "{{{tagbar
 nnoremap <silent><A-b> :<C-u>call ToggleTagbar()<CR>
