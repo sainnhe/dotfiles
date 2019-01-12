@@ -742,10 +742,10 @@ if has('python3')
 endif
 Plug 'Shougo/vimproc.vim', { 'on': [] }
 Plug 'idanarye/vim-vebugger', { 'on': [] }
-if g:VIM_Snippets ==# 'ultisnips' && g:VIM_Completion_Framework !=# 'coc'
+if g:VIM_Snippets ==# 'ultisnips'
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
-elseif g:VIM_Snippets ==# 'neosnippet' && g:VIM_Completion_Framework !=# 'coc'
+elseif g:VIM_Snippets ==# 'neosnippet'
     Plug 'Shougo/neosnippet.vim'
     Plug 'Shougo/neosnippet-snippets'
     Plug 'honza/vim-snippets'
@@ -804,18 +804,10 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
         Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
     endif
 elseif g:VIM_Completion_Framework ==# 'coc'
-    if g:VIM_Snippets ==# 'ultisnips'
-        Plug 'SirVer/ultisnips', { 'on': [] }
-        Plug 'honza/vim-snippets', { 'on': [] }
-    elseif g:VIM_Snippets ==# 'neosnippet'
-        Plug 'Shougo/neosnippet.vim', { 'on': [] }
-        Plug 'Shougo/neosnippet-snippets', { 'on': [] }
-        Plug 'honza/vim-snippets', { 'on': [] }
-    endif
-    Plug 'Shougo/neco-vim', { 'on': [] } | Plug 'neoclide/coc-neco', { 'on': [] }
-    Plug 'Shougo/neoinclude.vim', { 'on': [] } | Plug 'jsfaint/coc-neoinclude', { 'on': [] }
-    Plug 'neoclide/coc.nvim', {'do': 'proxychains yarn install', 'on': []}
-    Plug 'iamcco/coc-action-source.nvim', { 'on': [] }
+    Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
+    Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
+    Plug 'neoclide/coc.nvim', {'do': 'proxychains yarn install'}
+    Plug 'iamcco/coc-action-source.nvim'
 elseif g:VIM_Completion_Framework ==# 'neocomplete'
     Plug 'Shougo/neocomplete.vim'
     Plug 'Shougo/neoinclude.vim'
@@ -2350,12 +2342,10 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         "}}}
         "{{{coc-load
         if g:VIM_Snippets ==# 'ultisnips'
-            call plug#load('ultisnips', 'vim-snippets')
             let g:Coc_Snippet = 'coc-ultisnips'
         elseif g:VIM_Snippets ==# 'coc-snippets'
             let g:Coc_Snippet = 'coc-snippets'
         endif
-        call plug#load('coc.nvim', 'neco-vim', 'coc-neco', 'neoinclude.vim', 'coc-neoinclude', 'coc-action-source.nvim')
         call coc#add_extension(
                     \   'coc-dictionary', 'coc-word', 'coc-emoji',
                     \   g:Coc_Snippet,
