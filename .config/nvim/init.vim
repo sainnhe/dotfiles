@@ -11,6 +11,12 @@
 "     pacman -S --noconfirm git &> /dev/null
 "     echo "installing python-neovim..."
 "     pacman -S --noconfirm python-neovim &> /dev/null
+"     echo "setting up rust..."
+"     pacman -S --noconfirm rustup &> /dev/null
+"     rustup install stable &> /dev/null
+"     rustup default stable &> /dev/null
+"     export PATH="$HOME/.cargo/bin:$PATH"
+"     rustup component add rls rust-analysis rust-src rustfmt
 "     echo "installing npm..."
 "     pacman -S --noconfirm npm &> /dev/null
 "     echo "installing yarn..."
@@ -1896,6 +1902,7 @@ if g:VIM_LSP_Client ==# 'lcn'
                 \ 'html': ['html-languageserver', '--stdio'],
                 \ 'json': ['json-languageserver', '--stdio'],
                 \ 'python': ['pyls'],
+                \ 'rust': ['rls'],
                 \ 'sh': ['bash-language-server', 'start']
                 \ }
     " AutoStart
@@ -2032,6 +2039,11 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
                     \ 'name': 'python-languageserver',
                     \ 'cmd': {server_info->['pyls']},
                     \ 'whitelist': ['python'],
+                    \ })
+        au User lsp_setup call lsp#register_server({
+                    \ 'name': 'rust language server',
+                    \ 'cmd': {server_info->['rls']},
+                    \ 'whitelist': ['rust'],
                     \ })
         au User lsp_setup call lsp#register_server({
                     \ 'name': 'bash-languageserver',
@@ -2384,7 +2396,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                     \   'coc-dictionary', 'coc-word', 'coc-emoji',
                     \   g:Coc_Snippet, 'coc-tag',
                     \   'coc-html', 'coc-css',
-                    \   'coc-emmet', 'coc-pyls',
+                    \   'coc-emmet', 'coc-pyls', 'coc-rls',
                     \   'coc-jest', 'coc-json'
                     \   )
         function! Func_Coc_Snippet_Uninstall()
@@ -2996,6 +3008,7 @@ if g:VIM_Linter ==# 'ale'
                 \       'html': ['tidy'],
                 \       'json': ['jsonlint'],
                 \       'python': ['pylint', 'flake8'],
+                \       'rust': ['rls'],
                 \       'sh': ['shellcheck'],
                 \       'vim': ['vint'],
                 \}
