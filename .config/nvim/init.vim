@@ -767,11 +767,11 @@ elseif g:VIM_Snippets ==# 'coc-snippets'
 endif
 if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'ozelentok/deoplete-gtags', { 'on': 'GenGTAGS' }
+    Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains bash ./install.sh' }
+    Plug 'ozelentok/deoplete-gtags', { 'on': [] }
     Plug 'Shougo/neco-syntax'
     Plug 'Shougo/neoinclude.vim'
     Plug 'Shougo/context_filetype.vim'
-    Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains bash ./install.sh' }
     Plug 'Shougo/neco-vim', { 'for': 'vim' }
     Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
     Plug 'Shougo/deoplete-clangx', { 'for': [ 'c', 'cpp' ] }
@@ -779,8 +779,8 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 elseif g:VIM_Completion_Framework ==# 'ncm2'
     Plug 'roxma/nvim-yarp' | Plug 'ncm2/ncm2'
-    Plug 'ncm2/ncm2-tagprefix', { 'on': 'GenCtags' }
-    Plug 'ncm2/ncm2-gtags', { 'on': 'GenGTAGS' }
+    Plug 'ncm2/ncm2-tagprefix', { 'on': [] }
+    Plug 'ncm2/ncm2-gtags', { 'on': [] }
     Plug 'ncm2/ncm2-bufword'
     Plug 'fgrsnau/ncm2-otherbuf', { 'branch': 'ncm2'}
     Plug 'ncm2/ncm2-path'
@@ -806,7 +806,7 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     " Plug 'ncm2/ncm2-highprio-pop'
 elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-tags.vim', { 'on': 'GenCtags' }
+    Plug 'prabirshrestha/asyncomplete-tags.vim', { 'on': [] }
     Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-file.vim'
     Plug 'Shougo/neco-syntax' | Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
@@ -824,7 +824,7 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
 elseif g:VIM_Completion_Framework ==# 'coc'
     Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
     Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
-    Plug 'neoclide/coc.nvim', {'do': 'proxychains yarn install'}
+    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'proxychains yarn install'}
     Plug 'iamcco/coc-action-source.nvim'
 elseif g:VIM_Completion_Framework ==# 'neocomplete'
     Plug 'Shougo/neocomplete.vim'
@@ -1178,7 +1178,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'tender'
+let g:VIM_Color_Scheme = 'two-firewatch-dark'
 if g:VIM_Enable_TmuxLine == 1
     let g:VIM_Color_Scheme = 'github'
 endif
@@ -2138,8 +2138,6 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     "}}}
     "{{{extensions
     let g:necosyntax#min_keyword_length = 3
-    " deoplete-clang
-    " https://github.com/zchee/deoplete-clang
     " deoplete-jedi
     " https://github.com/zchee/deoplete-jedi
     let g:tmuxcomplete#trigger = ''
@@ -2157,7 +2155,7 @@ if g:VIM_Completion_Framework ==# 'deoplete'
                 \ 'min_pattern_length',
                 \ 2)
     if g:VIM_Snippets ==# 'ultisnips'
-        imap <expr> <C-j> pumvisible() ? "\<A-z>\`\`\l" : "\<C-j>"
+        let g:UltiSnipsExpandTrigger            = '<C-j>'
     endif
     inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     inoremap <silent><expr> <S-TAB>
@@ -3326,14 +3324,30 @@ let g:bufExplorerSortBy='mru'        " Sort by most recently used.
 call quickmenu#current(7)
 call quickmenu#reset()
 call g:quickmenu#append('# Ctags', '')
-call g:quickmenu#append(' Generate Ctags', 'GenCtags', 'Generate ctags database', '', 0, 'c')
+call g:quickmenu#append(' Generate Ctags', 'call InitCtags()', 'Generate ctags database', '', 0, 'c')
 call g:quickmenu#append('Remove Ctags files', 'ClearCtags', 'Remove tags files', '', 0, 'rc')
 call g:quickmenu#append('Remove all Ctags files', 'ClearCtags!', 'Remove all files, include db directory', '', 0, 'Rc')
 call g:quickmenu#append('# Gtags', '')
-call g:quickmenu#append(' Generate Gtags', 'GenGTAGS', 'Generate gtags database', '', 0, 'g')
+call g:quickmenu#append(' Generate Gtags', 'call InitGtags()', 'Generate gtags database', '', 0, 'g')
 call g:quickmenu#append('Remove Gtags files', 'ClearGTAGS', 'Remove GTAGS files', '', 0, 'rg')
 call g:quickmenu#append('Remove all Gtags files', 'ClearGTAGS', 'Remove all files, include the db directory', '', 0, 'Rg')
 call g:quickmenu#append(' Edit config', 'EditExt', 'Edit an extend configuration file for this project', '', 0, 'e')
+function! InitCtags()
+    execute 'GenCtags'
+    if g:VIM_Completion_Framework ==# 'ncm2'
+        call plug#load('ncm2-tagprefix')
+    elseif g:VIM_Completion_Framework ==# 'asyncomplete'
+        call plug#load('asyncomplete-tags.vim')
+    endif
+endfunction
+function! InitGtags()
+    execute 'GenGTAGS'
+    if g:VIM_Completion_Framework ==# 'deoplete'
+        call plug#load('deoplete-gtags')
+    elseif g:VIM_Completion_Framework ==# 'ncm2'
+        call plug#load('ncm2-gtags')
+    endif
+endfunction
 "}}}
 " let g:gen_tags#ctags_opts = '--c++-kinds=+px --c-kinds=+px'
 " let g:gen_tags#gtags_opts = '-c --verbose'
