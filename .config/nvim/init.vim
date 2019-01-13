@@ -137,8 +137,6 @@ endif
 " https://github.com/search?p=21&q=vim&ref=opensearch&s=stars&type=Repositories
 " https://github.com/search?q=vim+color&ref=opensearch&s=stars
 "}}}
-let g:VIM_AutoInstall = 1
-let g:VIM_TmuxLineSync = 0
 let g:VIM_LSP_Client = 'none'  " lcn vim-lsp none
 let g:VIM_Snippets = 'coc-snippets'  " ultisnips neosnippet coc-snippets
 let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc
@@ -149,6 +147,8 @@ let g:VIM_Explore = 'defx'  " defx nerdtree
 if exists('*VIM_Global_Settings')
     call VIM_Global_Settings()
 endif
+let g:VIM_AutoInstall = 1
+let g:VIM_TmuxLineSync = 0
 let g:VIM_C_LSP = 'ccls'  " clangd cquery ccls
 "}}}
 "{{{VimConfig
