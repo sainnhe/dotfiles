@@ -78,7 +78,7 @@
     "http.proxyStrictSSL": true,
     "languageserver": {
         "clangd": {
-            "command": "clangd",
+            "command": "ccls",
             "filetypes": ["c", "cpp", "objc", "objcpp"],
             "initializationOptions": {
                 "cacheDirectory": "/tmp/ccls"

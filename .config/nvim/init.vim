@@ -83,6 +83,8 @@
 " yay_setup_func() {
 "     echo -n "make sure you have configured makepkg proxy correctly. [enter to continue]  "
 "     read inputstr
+"     echo -n "install cquery from AUR. [enter to continue]  "
+"     yay -S cquery-git
 "     echo -n "install ccls from AUR. [enter to continue]  "
 "     yay -S ccls
 "     echo -n "install global from AUR. [enter to continue]  "
@@ -147,6 +149,7 @@ let g:VIM_Explore = 'defx'  " defx nerdtree
 if exists('*VIM_Global_Settings')
     call VIM_Global_Settings()
 endif
+let g:VIM_C_LSP = 'ccls'  " clangd cquery ccls
 "}}}
 "{{{VimConfig
 "{{{Functions
@@ -764,7 +767,7 @@ elseif g:VIM_Snippets ==# 'coc-snippets'
 endif
 if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'ozelentok/deoplete-gtags'
+    Plug 'ozelentok/deoplete-gtags', { 'on': 'GenGTAGS' }
     Plug 'Shougo/neco-syntax'
     Plug 'Shougo/neoinclude.vim'
     Plug 'Shougo/context_filetype.vim'
@@ -776,8 +779,8 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 elseif g:VIM_Completion_Framework ==# 'ncm2'
     Plug 'roxma/nvim-yarp' | Plug 'ncm2/ncm2'
-    Plug 'ncm2/ncm2-tagprefix'
-    Plug 'ncm2/ncm2-gtags'
+    Plug 'ncm2/ncm2-tagprefix', { 'on': 'GenCtags' }
+    Plug 'ncm2/ncm2-gtags', { 'on': 'GenGTAGS' }
     Plug 'ncm2/ncm2-bufword'
     Plug 'fgrsnau/ncm2-otherbuf', { 'branch': 'ncm2'}
     Plug 'ncm2/ncm2-path'
@@ -803,7 +806,7 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     " Plug 'ncm2/ncm2-highprio-pop'
 elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-tags.vim'
+    Plug 'prabirshrestha/asyncomplete-tags.vim', { 'on': 'GenCtags' }
     Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-file.vim'
     Plug 'Shougo/neco-syntax' | Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
@@ -1895,9 +1898,18 @@ if g:VIM_LSP_Client ==# 'lcn'
     " l 开始
     "}}}
     " Server Register
+    "{{{VIM_C_LSP
+    if g:VIM_C_LSP ==# 'clangd'
+        let g:LCN_C_LCP = ['clangd']
+    elseif g:VIM_C_LSP ==# 'cquery'
+        let g:LCN_C_LCP = ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}']
+    elseif g:VIM_C_LSP ==# 'ccls'
+        let g:LCN_C_LCP = ['ccls']
+    endif
+    "}}}
     let g:LanguageClient_serverCommands = {
-                \ 'c': ['clangd'],
-                \ 'cpp': ['clangd'],
+                \ 'c': g:LCN_C_LCP,
+                \ 'cpp': g:LCN_C_LCP,
                 \ 'css': ['css-languageserver', '--stdio'],
                 \ 'html': ['html-languageserver', '--stdio'],
                 \ 'json': ['json-languageserver', '--stdio'],
@@ -2010,16 +2022,27 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
     let g:lsp_signs_hint = {'text': "\uf68a"}
     augroup VIM_LSP_Register
         autocmd!
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'clang',
-                    \ 'cmd': {server_info->['clangd']},
-                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-                    \ })
-        " au User lsp_setup call lsp#register_server({
-        " \ 'name': 'clangd',
-        " \ 'cmd': {server_info->['clangd']},
-        " \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-        "             \ })
+        if g:VIM_C_LSP ==# 'clangd'
+            au User lsp_setup call lsp#register_server({
+                        \ 'name': 'clangd',
+                        \ 'cmd': {server_info->['clangd']},
+                        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+                        \ })
+        elseif g:VIM_C_LSP ==# 'cquery'
+            au User lsp_setup call lsp#register_server({
+                        \ 'name': 'cquery',
+                        \ 'cmd': {server_info->['cquery']},
+                        \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/' },
+                        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+                        \ })
+        elseif g:VIM_C_LSP ==# 'ccls'
+            au User lsp_setup call lsp#register_server({
+                        \ 'name': 'ccls',
+                        \ 'cmd': {server_info->['ccls']},
+                        \ 'initialization_options': { 'cacheDirectory': '/tmp/ccls/' },
+                        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+                        \ })
+        endif
         au User lsp_setup call lsp#register_server({
                     \ 'name': 'html-languageserver',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'html-languageserver --stdio']},
@@ -2145,9 +2168,12 @@ if g:VIM_Completion_Framework ==# 'deoplete'
         let col = col('.') - 1
         return !col || getline('.')[col - 1]  =~# '\s'
     endfunction"}}}
-    inoremap <expr> <down> pumvisible() ? deoplete#close_popup()."\<down>" : "\<down>"
     inoremap <expr> <up> pumvisible() ? deoplete#close_popup()."\<up>" : "\<up>"
+    inoremap <expr> <down> pumvisible() ? deoplete#close_popup()."\<down>" : "\<down>"
+    inoremap <expr> <left> pumvisible() ? deoplete#close_popup()."\<left>" : "\<left>"
+    inoremap <expr> <right> pumvisible() ? deoplete#close_popup()."\<right>" : "\<right>"
     inoremap <expr> <CR> pumvisible() ? deoplete#close_popup()."\<CR>" : "\<CR>"
+    inoremap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
     let g:Deoplete_Word_Completion_Enable = 0
     function! Func_ToggleDeopleteWords()
         if g:Deoplete_Word_Completion_Enable == 1
@@ -2233,11 +2259,14 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
         autocmd TextChangedI * call ncm2#auto_trigger()  " enable auto complete for `<backspace>`, `<c-w>` keys
     augroup END
     set completeopt=noinsert,menuone,noselect
-    inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Plug>(ncm2_manual_trigger)\<C-n>"
-    inoremap <expr> <down> pumvisible() ? "\<left>\<right>\<down>" : "\<down>"
-    inoremap <expr> <up> pumvisible() ? "\<left>\<right>\<up>" : "\<up>"
+    inoremap <expr> <up> pumvisible() ? "\<C-y>\<up>" : "\<up>"
+    inoremap <expr> <down> pumvisible() ? "\<C-y>\<down>" : "\<down>"
+    inoremap <expr> <left> pumvisible() ? "\<C-y>\<left>" : "\<left>"
+    inoremap <expr> <right> pumvisible() ? "\<C-y>\<right>" : "\<right>"
     inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+    inoremap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
     "}}}
     "{{{asyncomplete
     "{{{asyncomplete-usage
@@ -2252,9 +2281,12 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
 elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Plug>(asyncomplete_force_refresh)\<C-n>"
-    inoremap <expr> <down> pumvisible() ? "\<left>\<right>\<down>" : "\<down>"
-    inoremap <expr> <up> pumvisible() ? "\<left>\<right>\<up>" : "\<up>"
+    inoremap <expr> <up> pumvisible() ? "\<C-y>\<up>" : "\<up>"
+    inoremap <expr> <down> pumvisible() ? "\<C-y>\<down>" : "\<down>"
+    inoremap <expr> <left> pumvisible() ? "\<C-y>\<left>" : "\<left>"
+    inoremap <expr> <right> pumvisible() ? "\<C-y>\<right>" : "\<right>"
     inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+    inoremap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
     if g:VIM_Snippets ==# 'ultisnips'
         imap <expr> <C-j> pumvisible() ? "\<A-z>\`\`\l" : "\<C-j>"
     endif
@@ -2349,6 +2381,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('Enable COC', 'CocEnable', '', '', 0, '$')
     call g:quickmenu#append('Restart COC', 'CocRestart', '', '', 0, '@')
     call g:quickmenu#append('Help Mappings', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
+    nnoremap <silent> l :<C-u>call quickmenu#toggle(5)<CR>
+    vnoremap <silent> lf <Plug>(coc-format-selected)
     call quickmenu#current(5)
     call quickmenu#reset()
     call g:quickmenu#append('Code Action', "call CocActionAsync('codeAction')", 'prompty for a code action and do it.', '', 0, 'a')
@@ -2369,84 +2403,44 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
     "}}}
     "{{{coc-init
-    inoremap <silent><expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-    augroup Load_Coc
+    if g:VIM_Snippets ==# 'ultisnips'
+        let g:Coc_Snippet = 'coc-ultisnips'
+    elseif g:VIM_Snippets ==# 'coc-snippets'
+        let g:Coc_Snippet = 'coc-snippets'
+    endif
+    call coc#add_extension(
+                \   'coc-dictionary', 'coc-word', 'coc-emoji',
+                \   g:Coc_Snippet, 'coc-tag',
+                \   'coc-html', 'coc-css',
+                \   'coc-emmet', 'coc-pyls', 'coc-rls',
+                \   'coc-jest', 'coc-json'
+                \   )
+    "}}}
+    "{{{coc-settings
+    augroup CocAu
         autocmd!
-        autocmd InsertEnter * call CocInit()
+        autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
+        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+        autocmd InsertEnter * call CocMapping()
     augroup END
-    let g:Has_Load_Coc = 0
-    function! CocInit()
-        if g:Has_Load_Coc == 0
-            let g:Has_Load_Coc = 1
-            call Func_Coc()
-        elseif g:Has_Load_Coc == 2
-            call Func_Coc_Snippet_Uninstall()
-        endif
-    endfunction
-    function! Func_Coc()
-        let g:Has_Load_Coc = 2
-        "}}}
-        "{{{coc-load
-        if g:VIM_Snippets ==# 'ultisnips'
-            let g:Coc_Snippet = 'coc-ultisnips'
-        elseif g:VIM_Snippets ==# 'coc-snippets'
-            let g:Coc_Snippet = 'coc-snippets'
-        endif
-        call coc#add_extension(
-                    \   'coc-dictionary', 'coc-word', 'coc-emoji',
-                    \   g:Coc_Snippet, 'coc-tag',
-                    \   'coc-html', 'coc-css',
-                    \   'coc-emmet', 'coc-pyls', 'coc-rls',
-                    \   'coc-jest', 'coc-json'
-                    \   )
-        function! Func_Coc_Snippet_Uninstall()
-            if g:VIM_Snippets ==# 'ultisnips' && match(CocAction('extensionStats'), 'coc-snippets') != -1
-                call CocAction('uninstallExtension', 'coc-snippets')
-            elseif g:VIM_Snippets ==# 'coc-snippets' && match(CocAction('extensionStats'), 'coc-ultisnips') != -1
-                call CocAction('uninstallExtension', 'coc-ultisnips')
-            endif
-            let g:Has_Load_Coc = 1
-        endfunction
-        "}}}
-        "{{{coc-settings
-        set completeopt=noinsert,noselect,menuone
-        highlight CocErrorHighlight ctermfg=Gray guifg=#8d8d8d
-        augroup CocAu
-            autocmd!
-            autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
-            autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-        augroup END
-        nnoremap <silent> l :<C-u>call quickmenu#toggle(5)<CR>
-        vnoremap <silent> lf <Plug>(coc-format-selected)
-        let g:CurrentLSC = 5
-        function! Toggle_LSC()
-            if g:CurrentLSC == 4
-                let g:CurrentLSC = 5
-                nnoremap <silent> l :<C-u>call quickmenu#toggle(5)<CR>
-                vnoremap <silent> lf <Plug>(coc-format-selected)
-            elseif g:CurrentLSC == 5
-                let g:CurrentLSC = 4
-                nnoremap <silent> l :<C-u>call quickmenu#toggle(4)<CR>
-                if g:VIM_LSP_Client ==# 'lcn'
-                    vnoremap <silent> lf :<C-u>call LanguageClient#textDocument_rangeFormatting()<CR>
-                elseif g:VIM_LSP_Client ==# 'vim-lsp'
-                    vnoremap lf :<C-u>LspDocumentRangeFormat<CR>
-                endif
-            endif
-        endfunction
-        "}}}
-        "{{{coc-mappings
-        inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
-        imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
-        if g:VIM_Snippets ==# 'ultisnips'
-            imap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-j>"
-        elseif g:VIM_Snippets ==# 'coc-snippets'
-            let g:UltiSnipsJumpForwardTrigger       = '<A-z>``````j'
-            let g:UltiSnipsJumpBackwardTrigger      = '<A-z>``````k'
-            imap <expr> <C-j> pumvisible() ? "\<Plug>(coc-snippets-expand)" : "\<C-j>"
-        endif
-        inoremap <expr> <down> pumvisible() ? "\<left>\<right>\<down>" : "\<down>"
-        inoremap <expr> <up> pumvisible() ? "\<left>\<right>\<up>" : "\<up>"
+    set completeopt=noinsert,noselect,menuone
+    highlight CocErrorHighlight ctermfg=Gray guifg=#8d8d8d
+    "}}}
+    "{{{coc-mappings
+    if g:VIM_Snippets ==# 'coc-snippets'
+        let g:UltiSnipsJumpForwardTrigger       = '<A-z>``````j'
+        let g:UltiSnipsJumpBackwardTrigger      = '<A-z>``````k'
+    endif
+    function! CocMapping()
+        inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+        inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
+        inoremap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-j>"
+        inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
+        inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
+        inoremap <expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
+        inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
+        inoremap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
+        inoremap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
     endfunction
     "}}}
     "}}}
@@ -2472,9 +2466,12 @@ elseif g:VIM_Completion_Framework ==# 'neocomplete'
     endif
     inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : neocomplete#start_manual_complete()."\<C-n>"
-    inoremap <expr> <down> pumvisible() ? neocomplete#smart_close_popup()."\<down>" : "\<down>"
     inoremap <expr> <up> pumvisible() ? neocomplete#smart_close_popup()."\<up>" : "\<up>"
-    inoremap <expr> <CR> pumvisible() ? "\<C-y>".neocomplete#smart_close_popup()."\<CR>" : "\<CR>"
+    inoremap <expr> <down> pumvisible() ? neocomplete#smart_close_popup()."\<down>" : "\<down>"
+    inoremap <expr> <left> pumvisible() ? neocomplete#smart_close_popup()."\<left>" : "\<left>"
+    inoremap <expr> <right> pumvisible() ? neocomplete#smart_close_popup()."\<right>" : "\<right>"
+    inoremap <expr> <CR> pumvisible() ? neocomplete#smart_close_popup()."\<CR>" : "\<CR>"
+    inoremap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
 endif
 "}}}
 "{{{denite.nvim
