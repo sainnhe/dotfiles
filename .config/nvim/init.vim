@@ -914,7 +914,9 @@ Plug 'ianva/vim-youdao-translater'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'metakirby5/codi.vim'
-Plug 'rmolin88/pomodoro.vim'
+if g:VIM_Enable_TmuxLine == 0
+    Plug 'rmolin88/pomodoro.vim'
+endif
 Plug 'lambdalisue/vim-manpager'
 Plug 'lilydjwg/fcitx.vim', { 'on': [] }
             \| au InsertEnter * call plug#load('fcitx.vim')
@@ -956,7 +958,9 @@ call quickmenu#reset()
 nnoremap <silent> <leader><Space> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
 call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(6)', '', '', 0, '`')
-call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
+if g:VIM_Enable_TmuxLine == 0
+    call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
+endif
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
 call g:quickmenu#append('BufExplore', 'ToggleBufExplorer', '', '', 0, 'b')
 call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
@@ -1027,10 +1031,14 @@ function! TmuxBindLock() abort
 endfunction
 " Pomodoro
 function! PomodoroStatus() abort
-    if pomo#remaining_time() ==# '0'
-        return "\ue001"
-    else
-        return "\ue003 ".pomo#remaining_time()
+    if g:VIM_Enable_TmuxLine == 0
+        if pomo#remaining_time() ==# '0'
+            return "\ue001"
+        else
+            return "\ue003 ".pomo#remaining_time()
+        endif
+    elseif g:VIM_Enable_TmuxLine == 1
+        return ''
     endif
 endfunction
 "}}}
@@ -1056,7 +1064,7 @@ let g:lightline#ale#indicator_warnings = "\uf529"
 let g:lightline#ale#indicator_errors = "\uf00d"
 let g:lightline#ale#indicator_ok = "\uf00c"
 if g:VIM_Enable_TmuxLine == 1
-    let g:Lightline_StatusIndicators = [ 'pomodoro', 'obsession', 'tmuxlock' ]
+    let g:Lightline_StatusIndicators = [ 'obsession', 'tmuxlock' ]
 elseif g:VIM_Enable_TmuxLine == 0
     let g:Lightline_StatusIndicators = [ 'pomodoro', 'obsession' ]
 endif
@@ -1187,6 +1195,8 @@ endif
 "{{{colorscheme
 let g:VIM_Color_Scheme = 'two-firewatch-dark'
 if g:VIM_Enable_TmuxLine == 1
+    " dark: darcula tender hydrangea vice archery material-dark snow-dark
+    " light: github pencil material-light snow_light
     let g:VIM_Color_Scheme = 'github'
 endif
 function! ColorScheme()
@@ -3688,18 +3698,20 @@ let g:codi#rightsplit = 1
 let g:codi#rightalign = 0
 "}}}
 "{{{pomodoro.vim
-let g:Pomodoro_Status = 0
-function! Toggle_Pomodoro()
-    if g:Pomodoro_Status == 0
-        let g:Pomodoro_Status = 1
-        execute 'PomodoroStart'
-    elseif g:Pomodoro_Status == 1
-        let g:Pomodoro_Status = 0
-        execute 'PomodoroStop'
-    endif
-endfunction
-let g:pomodoro_time_work = 25
-let g:pomodoro_time_slack = 5
+if g:VIM_Enable_TmuxLine == 0
+    let g:Pomodoro_Status = 0
+    function! Toggle_Pomodoro()
+        if g:Pomodoro_Status == 0
+            let g:Pomodoro_Status = 1
+            execute 'PomodoroStart'
+        elseif g:Pomodoro_Status == 1
+            let g:Pomodoro_Status = 0
+            execute 'PomodoroStop'
+        endif
+    endfunction
+    let g:pomodoro_time_work = 25
+    let g:pomodoro_time_slack = 5
+endif
 "}}}
 " {{{vim-manpager
 " {{{vim-manpager-usage
