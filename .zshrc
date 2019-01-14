@@ -100,9 +100,6 @@ set -o noclobber
 alias ls='ls --color=auto'
 alias CT='bash /home/sainnhe/Scripts/ChangeThemes/CT.sh'
 alias git-proxy='bash /home/sainnhe/Scripts/git-proxy.sh'
-alias mkpkg-less='less /etc/makepkg.conf'
-alias mkpkg-direct='sudo cp /etc/makepkg.conf.direct.bak /etc/makepkg.conf'
-alias mkpkg-proxy='sudo cp /etc/makepkg.conf.proxy.bak /etc/makepkg.conf'
 alias bebusy='/home/sainnhe/Scripts/bebusy.py'
 alias youtube-mpv='bash ~/Scripts/youtube-mpv.sh'
 alias download-youtube-subtitles='bash ~/Scripts/download-youtube-subtitles.sh'
@@ -112,9 +109,6 @@ alias gsconnect='bash ~/Scripts/gsconnect.sh'
 alias roll='bash ~/Scripts/roll.sh'
 alias zip-r='bash ~/Scripts/zip.sh'
 alias check-sync='rclone check /mnt/ExternalDisk/OneDrive/ remote:/ --checksum'
-#alias pacman-less='less /etc/pacman.conf'
-#alias pacman-direct='sudo cp /etc/pacman.conf.direct.bak /etc/pacman.conf'
-#alias pacman-proxy='sudo cp /etc/pacman.conf.proxy.bak /etc/pacman.conf'
 
 
 # ZSH_THEME="norm"

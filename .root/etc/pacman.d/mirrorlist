@@ -1,0 +1,133 @@
+##
+## Arch Linux repository mirrorlist
+## Generated on 2018-09-12
+##
+
+##Archive
+#Server=https://archive.archlinux.org/repos/2018/09/04/$repo/os/$arch
+Server=https://archive.archlinux.org/repos/last/$repo/os/$arch
+
+## Worldwide
+#Server = http://mirrors.evowise.com/archlinux/$repo/os/$arch
+#Server = http://mirror.rackspace.com/archlinux/$repo/os/$arch
+
+## China
+#Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
+#Server = https://mirrors.cloud.tencent.com/archlinux/$repo/os/$arch
+# Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+#Server = http://mirror.lzu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.shu.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.shu.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.shu6.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+# Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.zju.edu.cn/archlinux/$repo/os/$arch
+
+## Hong Kong
+#Server = http://mirror-hk.koddos.net/archlinux/$repo/os/$arch
+#Server = https://mirror-hk.koddos.net/archlinux/$repo/os/$arch
+#Server = http://mirrors.kurnode.com/archlinux/$repo/os/$arch
+#Server = https://mirrors.kurnode.com/archlinux/$repo/os/$arch
+#Server = https://arch-mirror.wtako.net/$repo/os/$arch
+#Server = http://mirror.xtom.com.hk/archlinux/$repo/os/$arch
+#Server = https://mirror.xtom.com.hk/archlinux/$repo/os/$arch
+
+## Japan
+#Server = http://mirrors.cat.net/archlinux/$repo/os/$arch
+#Server = https://mirrors.cat.net/archlinux/$repo/os/$arch
+#Server = http://ftp.tsukuba.wide.ad.jp/Linux/archlinux/$repo/os/$arch
+#Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
+#Server = https://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
+#Server = https://jpn.mirror.pkgbuild.com/$repo/os/$arch
+
+## Singapore
+#Server = http://mirror.0x.sg/archlinux/$repo/os/$arch
+#Server = https://mirror.0x.sg/archlinux/$repo/os/$arch
+#Server = https://sgp.mirror.pkgbuild.com/$repo/os/$arch
+#Server = http://mirror.nus.edu.sg/archlinux/$repo/os/$arch
+
+## South Korea
+#Server = http://ftp.kaist.ac.kr/ArchLinux/$repo/os/$arch
+#Server = http://ftp.lanet.kr/pub/archlinux/$repo/os/$arch
+#Server = https://ftp.lanet.kr/pub/archlinux/$repo/os/$arch
+#Server = http://mirror.premi.st/archlinux/$repo/os/$arch
+
+## Taiwan
+#Server = http://archlinux.cs.nctu.edu.tw/$repo/os/$arch
+#Server = http://shadow.ind.ntou.edu.tw/archlinux/$repo/os/$arch
+#Server = http://ftp.tku.edu.tw/Linux/ArchLinux/$repo/os/$arch
+#Server = http://ftp.yzu.edu.tw/Linux/archlinux/$repo/os/$arch
+
+## United States
+#Server = http://mirrors.acm.wpi.edu/archlinux/$repo/os/$arch
+#Server = http://mirrors.advancedhosters.com/archlinux/$repo/os/$arch
+#Server = http://mirrors.aggregate.org/archlinux/$repo/os/$arch
+#Server = http://ca.us.mirror.archlinux-br.org/$repo/os/$arch
+#Server = http://il.us.mirror.archlinux-br.org/$repo/os/$arch
+#Server = http://archlinux.surlyjake.com/archlinux/$repo/os/$arch
+#Server = https://archlinux.surlyjake.com/archlinux/$repo/os/$arch
+#Server = http://arlm.tyzoid.com/$repo/os/$arch
+#Server = https://arlm.tyzoid.com/$repo/os/$arch
+#Server = http://mirror.as65535.net/archlinux/$repo/os/$arch
+#Server = http://mirrors.cat.pdx.edu/archlinux/$repo/os/$arch
+#Server = http://mirror.cc.columbia.edu/pub/linux/archlinux/$repo/os/$arch
+#Server = http://centos.mbni.med.umich.edu/archlinux/$repo/os/$arch
+#Server = http://arch.mirror.constant.com/$repo/os/$arch
+#Server = https://arch.mirror.constant.com/$repo/os/$arch
+#Server = http://mirror.cs.pitt.edu/archlinux/$repo/os/$arch
+#Server = http://mirror.cs.vt.edu/pub/ArchLinux/$repo/os/$arch
+#Server = http://distro.ibiblio.org/archlinux/$repo/os/$arch
+#Server = http://mirror.epiphyte.network/archlinux/$repo/os/$arch
+#Server = https://mirror.epiphyte.network/archlinux/$repo/os/$arch
+#Server = http://mirror.es.its.nyu.edu/archlinux/$repo/os/$arch
+#Server = http://mirrors.gigenet.com/archlinux/$repo/os/$arch
+#Server = http://mirror.grig.io/archlinux/$repo/os/$arch
+#Server = https://mirror.grig.io/archlinux/$repo/os/$arch
+#Server = http://www.gtlib.gatech.edu/pub/archlinux/$repo/os/$arch
+#Server = http://mirror.hackingand.coffee/arch/$repo/os/$arch
+#Server = https://mirror.hackingand.coffee/arch/$repo/os/$arch
+#Server = http://mirrors.kernel.org/archlinux/$repo/os/$arch
+#Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch
+#Server = http://mirror.dal10.us.leaseweb.net/archlinux/$repo/os/$arch
+#Server = http://mirror.sfo12.us.leaseweb.net/archlinux/$repo/os/$arch
+#Server = http://mirror.wdc1.us.leaseweb.net/archlinux/$repo/os/$arch
+#Server = https://mirror.dal10.us.leaseweb.net/archlinux/$repo/os/$arch
+#Server = https://mirror.sfo12.us.leaseweb.net/archlinux/$repo/os/$arch
+#Server = https://mirror.wdc1.us.leaseweb.net/archlinux/$repo/os/$arch
+#Server = http://mirrors.liquidweb.com/archlinux/$repo/os/$arch
+#Server = http://mirror.lty.me/archlinux/$repo/os/$arch
+#Server = https://mirror.lty.me/archlinux/$repo/os/$arch
+#Server = http://mirrors.lug.mtu.edu/archlinux/$repo/os/$arch
+#Server = https://mirrors.lug.mtu.edu/archlinux/$repo/os/$arch
+#Server = http://mirror.math.princeton.edu/pub/archlinux/$repo/os/$arch
+#Server = http://mirror.metrocast.net/archlinux/$repo/os/$arch
+#Server = http://mirror.kaminski.io/archlinux/$repo/os/$arch
+#Server = https://mirror.kaminski.io/archlinux/$repo/os/$arch
+#Server = http://mirrors.ocf.berkeley.edu/archlinux/$repo/os/$arch
+#Server = https://mirrors.ocf.berkeley.edu/archlinux/$repo/os/$arch
+#Server = http://ftp.osuosl.org/pub/archlinux/$repo/os/$arch
+#Server = http://arch.mirrors.pair.com/$repo/os/$arch
+#Server = http://mirrors.rit.edu/archlinux/$repo/os/$arch
+#Server = https://mirrors.rit.edu/archlinux/$repo/os/$arch
+#Server = http://mirrors.rutgers.edu/archlinux/$repo/os/$arch
+#Server = https://mirrors.rutgers.edu/archlinux/$repo/os/$arch
+#Server = http://mirrors.sonic.net/archlinux/$repo/os/$arch
+#Server = https://mirrors.sonic.net/archlinux/$repo/os/$arch
+#Server = http://mirrors.sorengard.com/archlinux/$repo/os/$arch
+#Server = https://mirrors.sorengard.com/archlinux/$repo/os/$arch
+#Server = http://arch.mirror.square-r00t.net/$repo/os/$arch
+#Server = https://arch.mirror.square-r00t.net/$repo/os/$arch
+#Server = http://mirror.stephen304.com/archlinux/$repo/os/$arch
+#Server = https://mirror.stephen304.com/archlinux/$repo/os/$arch
+#Server = http://mirror.umd.edu/archlinux/$repo/os/$arch
+#Server = http://mirror.vtti.vt.edu/archlinux/$repo/os/$arch
+#Server = http://mirrors.xmission.com/archlinux/$repo/os/$arch
+#Server = http://mirrors.xtom.com/archlinux/$repo/os/$arch
+#Server = https://mirrors.xtom.com/archlinux/$repo/os/$arch
