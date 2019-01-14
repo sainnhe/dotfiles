@@ -16,51 +16,53 @@ test_cmd () {
 # sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 # https://archive.archlinux.org/packages/z/zsh-theme-powerlevel9k/zsh-theme-powerlevel9k-0.6.4-1-any.pkg.tar.xz
 # }}}
-# # {{{TMUX Init
-# alias tmux='tmux -2'
-# if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-#     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# fi
-# nvim_exist=$(test_cmd nvim)
-# if [[ "$TERM_Emulator" != "tilda" ]]; then
-#     if [[ -z "$TMUX" ]] ;then
-#         ID="`tmux ls | grep -vm1 attached | grep Alpha | cut -d: -f1`" # check if Alpha session exist
-#         if [[ -z "$ID" ]] ;then # if not, creat a new one
-#             tmux new-session -d -s Alpha -n VIM
-#             tmux new-window -t Alpha -n Shell
-#             tmux send-keys -t Alpha:VIM "cd ~" Enter
-#             if [[ "$nvim_exist" == "yes" ]]; then
-#                 tmux send-keys -t Alpha:VIM "export TERM_Emulator=$TERM_Emulator" Enter
-#                 tmux send-keys -t Alpha:VIM "nvim" Enter
-#             elif [[ "$nvim_exist" == "no" ]]; then
-#                 tmux send-keys -t Alpha:VIM "export TERM_Emulator=$TERM_Emulator" Enter
-#                 tmux send-keys -t Alpha:VIM "vim" Enter
-#             fi
-#             tmux attach -t Alpha:Shell
-#         else
-#             tmux attach-session -t Alpha # if available attach to it # else, attach it
-#         fi
-#     fi
-# elif [[ "$TERM_Emulator" == "tilda" ]]; then
-#     if [[ -z "$TMUX" ]] ;then
-#         ID="`tmux ls | grep -vm1 attached | grep Beta | cut -d: -f1`" # check if Beta session exist
-#         if [[ -z "$ID" ]] ;then # if not, creat a new one
-#             tmux new-session -d -s Beta -n VIM
-#             tmux new-window -t Beta -n Shell
-#             tmux send-keys -t Beta:VIM "cd ~" Enter
-#             if [[ "$nvim_exist" == "yes" ]]; then
-#                 tmux send-keys -t Beta:VIM "nvim" Enter
-#             elif [[ "$nvim_exist" == "no" ]]; then
-#                 tmux send-keys -t Beta:VIM "vim" Enter
-#             fi
-#             tmux attach -t Beta:Shell
-#         else
-#             tmux attach-session -t Beta # if available attach to it # else, attach it
-#         fi
-#     fi
-# fi
-# ~/.tmux_bind.sh no
-# # }}}
+# {{{TMUX Start
+tmux_start () {
+alias tmux='tmux -2'
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+nvim_exist=$(test_cmd nvim)
+if [[ "$TERM_Emulator" != "tilda" ]]; then
+    if [[ -z "$TMUX" ]] ;then
+        ID="`tmux ls | grep -vm1 attached | grep Alpha | cut -d: -f1`" # check if Alpha session exist
+        if [[ -z "$ID" ]] ;then # if not, creat a new one
+            tmux new-session -d -s Alpha -n VIM
+            tmux new-window -t Alpha -n Shell
+            tmux send-keys -t Alpha:VIM "cd ~" Enter
+            if [[ "$nvim_exist" == "yes" ]]; then
+                tmux send-keys -t Alpha:VIM "export TERM_Emulator=$TERM_Emulator" Enter
+                tmux send-keys -t Alpha:VIM "nvim" Enter
+            elif [[ "$nvim_exist" == "no" ]]; then
+                tmux send-keys -t Alpha:VIM "export TERM_Emulator=$TERM_Emulator" Enter
+                tmux send-keys -t Alpha:VIM "vim" Enter
+            fi
+            tmux attach -t Alpha:Shell
+        else
+            tmux attach-session -t Alpha # if available attach to it # else, attach it
+        fi
+    fi
+elif [[ "$TERM_Emulator" == "tilda" ]]; then
+    if [[ -z "$TMUX" ]] ;then
+        ID="`tmux ls | grep -vm1 attached | grep Beta | cut -d: -f1`" # check if Beta session exist
+        if [[ -z "$ID" ]] ;then # if not, creat a new one
+            tmux new-session -d -s Beta -n VIM
+            tmux new-window -t Beta -n Shell
+            tmux send-keys -t Beta:VIM "cd ~" Enter
+            if [[ "$nvim_exist" == "yes" ]]; then
+                tmux send-keys -t Beta:VIM "nvim" Enter
+            elif [[ "$nvim_exist" == "no" ]]; then
+                tmux send-keys -t Beta:VIM "vim" Enter
+            fi
+            tmux attach -t Beta:Shell
+        else
+            tmux attach-session -t Beta # if available attach to it # else, attach it
+        fi
+    fi
+fi
+~/.tmux_bind.sh no
+}
+# }}}
 # {{{TMUX Init
 alias tmux='tmux -2'
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
