@@ -89,9 +89,9 @@ fi
 # }}}
 # {{{manpager
 if [[ "$nvim_exist" == "yes" ]]; then
-    export MANPAGER="nvim -c MANPAGER -"
+    export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 elif [[ "$nvim_exist" == "no" ]]; then
-    export MANPAGER="vim -c MANPAGER -"
+    export MANPAGER="vim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 fi
 # }}}
 set -o ignoreeof

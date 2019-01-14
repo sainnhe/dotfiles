@@ -132,6 +132,11 @@ if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
 else
     let g:VIM_Enable_TmuxLine = 0
 endif
+if exists('g:VIM_MANPAGER')
+    let g:VIM_Enable_Startify = 0
+else
+    let g:VIM_Enable_Startify = 1
+endif
 "}}}
 "{{{Todo
 " https://github.com/search?p=21&q=vim&ref=opensearch&s=stars&type=Repositories
@@ -732,7 +737,9 @@ Plug 'itchyny/vim-gitbranch'
 if g:VIM_Enable_TmuxLine == 1
     Plug 'edkolev/tmuxline.vim'
 endif
-Plug 'mhinz/vim-startify'
+if g:VIM_Enable_Startify == 1
+    Plug 'mhinz/vim-startify'
+endif
 Plug 'CharlesGueunet/quickmenu.vim'
 Plug 'mhinz/vim-signify'
 Plug 'Yggdroot/indentLine'
@@ -1687,77 +1694,79 @@ endfunction
 "}}}
 "}}}
 "{{{vim-startify
-let g:startify_session_dir = expand('~/.cache/vim/sessions/')
-let g:startify_files_number = 5
-let g:startify_update_oldfiles = 1
-" let g:startify_session_autoload = 1
-" let g:startify_session_persistence = 1 " autoupdate sessions
-let g:startify_session_delete_buffers = 1 " delete all buffers when loading or closing a session, ignore unsaved buffers
-let g:startify_change_to_dir = 1 " when opening a file or bookmark, change to its directory
-let g:startify_fortune_use_unicode = 1 " beautiful symbols
-let g:startify_padding_left = 3 " the number of spaces used for left padding
-let g:startify_session_remove_lines = ['setlocal', 'winheight'] " lines matching any of the patterns in this list, will be removed from the session file
-let g:startify_session_sort = 1 " sort sessions by alphabet or modification time
-let g:startify_custom_indices = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5'] " MRU indices
-" line 579 for more details
-if executable('toilet')
-    let g:startify_custom_header =
-                \ map(split(system('toilet -t -f tombstone SainnheParkArchLinux'), '\n'), '"   ". v:val')
-else
-    let g:startify_custom_header = [
-                \ ' _,  _, _ _, _ _, _ _,_ __, __,  _, __, _,_  _, __,  _, _,_ _,  _ _, _ _,_ _  ,',
-                \ "(_  /_\\ | |\\ | |\\ | |_| |_  |_) /_\\ |_) |_/ / \\ |_) / ` |_| |   | |\\ | | | '\\/",
-                \ ', ) | | | | \| | \| | | |   |   | | | \ | \ |~| | \ \ , | | | , | | \| | |  /\ ',
-                \ " ~  ~ ~ ~ ~  ~ ~  ~ ~ ~ ~~~ ~   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~  ~ ~ ~~~ ~ ~  ~ `~' ~  ~",
+if g:VIM_Enable_Startify == 1
+    let g:startify_session_dir = expand('~/.cache/vim/sessions/')
+    let g:startify_files_number = 5
+    let g:startify_update_oldfiles = 1
+    " let g:startify_session_autoload = 1
+    " let g:startify_session_persistence = 1 " autoupdate sessions
+    let g:startify_session_delete_buffers = 1 " delete all buffers when loading or closing a session, ignore unsaved buffers
+    let g:startify_change_to_dir = 1 " when opening a file or bookmark, change to its directory
+    let g:startify_fortune_use_unicode = 1 " beautiful symbols
+    let g:startify_padding_left = 3 " the number of spaces used for left padding
+    let g:startify_session_remove_lines = ['setlocal', 'winheight'] " lines matching any of the patterns in this list, will be removed from the session file
+    let g:startify_session_sort = 1 " sort sessions by alphabet or modification time
+    let g:startify_custom_indices = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5'] " MRU indices
+    " line 579 for more details
+    if executable('toilet')
+        let g:startify_custom_header =
+                    \ map(split(system('toilet -t -f tombstone SainnheParkArchLinux'), '\n'), '"   ". v:val')
+    else
+        let g:startify_custom_header = [
+                    \ ' _,  _, _ _, _ _, _ _,_ __, __,  _, __, _,_  _, __,  _, _,_ _,  _ _, _ _,_ _  ,',
+                    \ "(_  /_\\ | |\\ | |\\ | |_| |_  |_) /_\\ |_) |_/ / \\ |_) / ` |_| |   | |\\ | | | '\\/",
+                    \ ', ) | | | | \| | \| | | |   |   | | | \ | \ |~| | \ \ , | | | , | | \| | |  /\ ',
+                    \ " ~  ~ ~ ~ ~  ~ ~  ~ ~ ~ ~~~ ~   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~  ~ ~ ~~~ ~ ~  ~ `~' ~  ~",
+                    \ ]
+    endif
+    " costom startify list
+    let g:startify_lists = [
+                \ { 'type': 'sessions',  'header': [" \ue62e Sessions"]       },
+                \ { 'type': 'bookmarks', 'header': [" \uf5c2 Bookmarks"]      },
+                \ { 'type': 'files',     'header': [" \ufa1eMRU Files"]            },
+                \ { 'type': 'dir',       'header': [" \ufa1eMRU Files in ". getcwd()] },
+                \ { 'type': 'commands',  'header': [" \uf085 Commands"]       },
+                \ ]
+    " on Start
+    if g:VIM_Explore ==# 'defx'
+        function! DefxStartify()
+            execute 'Startify'
+            execute 'call ToggleDefx()'
+            execute 'wincmd l'
+        endfunction
+        augroup Startify_Config
+            autocmd VimEnter *
+                        \   if !argc()
+                        \ |   call DefxStartify()
+                        \ | endif
+            " on Enter
+            autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):<C-u>call ToggleDefx()<CR>
+        augroup END
+    elseif g:VIM_Explore ==# 'nerdtree'
+        function! NerdtreeStartify()
+            execute 'Startify'
+            execute 'NERDTreeToggle'
+            execute 'wincmd l'
+        endfunction
+        augroup Startify_Config
+            autocmd VimEnter *
+                        \   if !argc()
+                        \ |   call NerdtreeStartify()
+                        \ | endif
+            " on Enter
+            autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):NERDTreeToggle<CR>
+        augroup END
+    endif
+    " list of commands to be executed before save a session
+    let g:startify_session_before_save = [
+                \ 'echo "Cleaning up before saving.."',
+                \ 'silent! NERDTreeTabsClose',
+                \ ]
+    " MRU skipped list, do not use ~
+    let g:startify_skiplist = [
+                \ '/mnt/*',
                 \ ]
 endif
-" costom startify list
-let g:startify_lists = [
-            \ { 'type': 'sessions',  'header': [" \ue62e Sessions"]       },
-            \ { 'type': 'bookmarks', 'header': [" \uf5c2 Bookmarks"]      },
-            \ { 'type': 'files',     'header': [" \ufa1eMRU Files"]            },
-            \ { 'type': 'dir',       'header': [" \ufa1eMRU Files in ". getcwd()] },
-            \ { 'type': 'commands',  'header': [" \uf085 Commands"]       },
-            \ ]
-" on Start
-if g:VIM_Explore ==# 'defx'
-    function! DefxStartify()
-        execute 'Startify'
-        execute 'call ToggleDefx()'
-        execute 'wincmd l'
-    endfunction
-    augroup Startify_Config
-        autocmd VimEnter *
-                    \   if !argc()
-                    \ |   call DefxStartify()
-                    \ | endif
-        " on Enter
-        autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):<C-u>call ToggleDefx()<CR>
-    augroup END
-elseif g:VIM_Explore ==# 'nerdtree'
-    function! NerdtreeStartify()
-        execute 'Startify'
-        execute 'NERDTreeToggle'
-        execute 'wincmd l'
-    endfunction
-    augroup Startify_Config
-        autocmd VimEnter *
-                    \   if !argc()
-                    \ |   call NerdtreeStartify()
-                    \ | endif
-        " on Enter
-        autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):NERDTreeToggle<CR>
-    augroup END
-endif
-" list of commands to be executed before save a session
-let g:startify_session_before_save = [
-            \ 'echo "Cleaning up before saving.."',
-            \ 'silent! NERDTreeTabsClose',
-            \ ]
-" MRU skipped list, do not use ~
-let g:startify_skiplist = [
-            \ '/mnt/*',
-            \ ]
 "}}}
 "{{{vim-signify
 "{{{vim-signify-usage
