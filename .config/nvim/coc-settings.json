@@ -42,7 +42,7 @@
     "coc.source.around.shortcut": "A",
     "coc.source.buffer.enable": true,
     "coc.source.buffer.shortcut": "B",
-    "coc.source.buffer.ignoreGitignore": true,
+    "coc.source.buffer.ignoreGitignore": false,
     "coc.source.file.enable": true,
     "coc.source.file.shortcut": "F",
     "coc.source.file.triggerCharacters": ["/"],
