@@ -731,6 +731,15 @@ Plug 'sts10/vim-pink-moon'
 Plug 'KKPMW/sacredforest-vim'
 Plug 'trevordmiller/nova-vim'
 Plug 'skreek/skeletor.vim'
+Plug 'tomasr/molokai'
+Plug 'nanotech/jellybeans.vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'sjl/badwolf'
+Plug '844196/lightline-badwolf.vim'
+Plug 'jnurmine/Zenburn'
+Plug 'acepukas/vim-zenburn'
+Plug 'chriskempson/vim-tomorrow-theme'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1193,7 +1202,7 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'two-firewatch-dark'
+let g:VIM_Color_Scheme = 'two-firewatch-light'
 if g:VIM_Enable_TmuxLine == 1
     " dark: darcula tender hydrangea vice archery material-dark snow-dark
     " light: github pencil material-light snow_light
@@ -1461,7 +1470,7 @@ function! ColorScheme()
     elseif g:VIM_Color_Scheme ==# 'material-light'
         set background=light
         colorscheme vim-material
-        let g:lightline.colorscheme = 'snow_light'
+        let g:lightline.colorscheme = 'ayu_light'
     endif
     call g:quickmenu#append('material-dark', 'call SwitchColorScheme("material-dark")', '', '', 0, '')
     call g:quickmenu#append('material-light', 'call SwitchColorScheme("material-light")', '', '', 0, '')
@@ -1494,20 +1503,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('snow-dark', 'call SwitchColorScheme("snow-dark")', '', '', 0, '')
     call g:quickmenu#append('snow-light', 'call SwitchColorScheme("snow-light")', '', '', 0, '')
-    "}}}
-    "{{{stellarized*
-    if g:VIM_Color_Scheme ==# 'stellarized-dark'
-        set background=dark
-        colorscheme stellarized
-        let g:lightline.colorscheme = 'stellarized_dark'
-    endif
-    if g:VIM_Color_Scheme ==# 'stellarized-light'
-        set background=light
-        colorscheme stellarized
-        let g:lightline.colorscheme = 'stellarized_light'
-    endif
-    call g:quickmenu#append('stellarized-dark', 'call SwitchColorScheme("stellarized-dark")', '', '', 0, '')
-    call g:quickmenu#append('stellarized-light', 'call SwitchColorScheme("stellarized-light")', '', '', 0, '')
     "}}}
     "{{{gruvbox*
     if g:VIM_Color_Scheme ==# 'gruvbox-dark'
@@ -1654,6 +1649,91 @@ function! ColorScheme()
     call g:quickmenu#append('Atelier_Sulphurpool-dark', 'call SwitchColorScheme("Atelier_Sulphurpool-dark")', '', '', 0, '')
     call g:quickmenu#append('Atelier_Sulphurpool-light', 'call SwitchColorScheme("Atelier_Sulphurpool-light")', '', '', 0, '')
     "}}}
+    "}}}
+    call g:quickmenu#append('# (≖_≖ )', '')
+    "{{{molokai
+    if g:VIM_Color_Scheme ==# 'molokai'
+        set background=dark
+        colorscheme molokai
+        let g:lightline.colorscheme = 'molokai'
+    endif
+    call g:quickmenu#append('molokai', 'call SwitchColorScheme("molokai")', '', '', 0, '')
+    "}}}
+    "{{{zenburn
+    if g:VIM_Color_Scheme ==# 'zenburn'
+        set background=dark
+        colorscheme zenburn
+        let g:lightline.colorscheme = 'zenburn'
+    endif
+    call g:quickmenu#append('zenburn', 'call SwitchColorScheme("zenburn")', '', '', 0, '')
+    "}}}
+    "{{{jellybeans
+    if g:VIM_Color_Scheme ==# 'jellybeans'
+        set background=dark
+        let g:jellybeans_use_term_italics = 1
+        colorscheme jellybeans
+        let g:lightline.colorscheme = 'jellybeans'
+    endif
+    call g:quickmenu#append('jellybeans', 'call SwitchColorScheme("jellybeans")', '', '', 0, '')
+    "}}}
+    "{{{hybrid
+    if g:VIM_Color_Scheme ==# 'hybrid'
+        set background=dark
+        colorscheme hybrid
+        let g:lightline.colorscheme = 'Tomorrow_Night'
+    endif
+    call g:quickmenu#append('hybrid', 'call SwitchColorScheme("hybrid")', '', '', 0, '')
+    "}}}
+    "{{{badwolf
+    if g:VIM_Color_Scheme ==# 'badwolf'
+        set background=dark
+        set background=dark
+        colorscheme badwolf
+        let g:lightline.colorscheme = 'badwolf'
+    endif
+    call g:quickmenu#append('badwolf', 'call SwitchColorScheme("badwolf")', '', '', 0, '')
+    "}}}
+    "{{{PaperColor*
+    if g:VIM_Color_Scheme ==# 'PaperColor-dark'
+        set background=dark
+        colorscheme PaperColor
+        let g:lightline.colorscheme = 'PaperColor_dark'
+    endif
+    if g:VIM_Color_Scheme ==# 'PaperColor-light'
+        set background=light
+        colorscheme PaperColor
+        let g:lightline.colorscheme = 'PaperColor_light'
+    endif
+    call g:quickmenu#append('PaperColor-dark', 'call SwitchColorScheme("PaperColor-dark")', '', '', 0, '')
+    call g:quickmenu#append('PaperColor-light', 'call SwitchColorScheme("PaperColor-light")', '', '', 0, '')
+    "}}}
+    "{{{stellarized*
+    if g:VIM_Color_Scheme ==# 'stellarized-dark'
+        set background=dark
+        colorscheme stellarized
+        let g:lightline.colorscheme = 'stellarized_dark'
+    endif
+    if g:VIM_Color_Scheme ==# 'stellarized-light'
+        set background=light
+        colorscheme stellarized
+        let g:lightline.colorscheme = 'stellarized_light'
+    endif
+    call g:quickmenu#append('stellarized-dark', 'call SwitchColorScheme("stellarized-dark")', '', '', 0, '')
+    call g:quickmenu#append('stellarized-light', 'call SwitchColorScheme("stellarized-light")', '', '', 0, '')
+    "}}}
+    "{{{Tomorrow*
+    if g:VIM_Color_Scheme ==# 'Tomorrow-dark'
+        set background=dark
+        colorscheme Tomorrow-Night
+        let g:lightline.colorscheme = 'Tomorrow_Night'
+    endif
+    if g:VIM_Color_Scheme ==# 'Tomorrow-light'
+        set background=light
+        colorscheme Tomorrow
+        let g:lightline.colorscheme = 'Tomorrow'
+    endif
+    call g:quickmenu#append('Tomorrow-dark', 'call SwitchColorScheme("Tomorrow-dark")', '', '', 0, '')
+    call g:quickmenu#append('Tomorrow-light', 'call SwitchColorScheme("Tomorrow-light")', '', '', 0, '')
     "}}}
 endfunction
 call ColorScheme()
