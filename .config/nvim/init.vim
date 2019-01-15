@@ -1202,10 +1202,11 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'two-firewatch-light'
+let g:VIM_Color_Scheme = 'onehalf-light'
 if g:VIM_Enable_TmuxLine == 1
     " dark: darcula tender hydrangea vice archery material-dark snow-dark
     " light: github pencil material-light snow_light
+    " ummmm: molokai zenburn hybrid PaperColor-dark PaperColor-light Tomorrow-dark Tomorrow-light
     let g:VIM_Color_Scheme = 'github'
 endif
 function! ColorScheme()
