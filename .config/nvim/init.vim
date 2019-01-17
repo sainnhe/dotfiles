@@ -2966,6 +2966,46 @@ if g:VIM_Fuzzy_Finder ==# 'fzf' || g:VIM_Fuzzy_Finder ==# 'remix'
                 \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
                 \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', 'ctrl-p'),
                 \                 <bang>0)
+    command! -bang -nargs=? -complete=dir Files
+                \ call fzf#vim#files(<q-args>,
+                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+                \                 <bang>0)
+    command! -bang -nargs=? GitFiles
+                \ call fzf#vim#gitfiles(<q-args>,
+                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+                \                 <bang>0)
+    command! -bang -nargs=? GFiles
+                \ call fzf#vim#gitfiles(<q-args>,
+                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+                \                 <bang>0)
+    "     command! -bar -bang -nargs=? -complete=buffer Buffers
+    "             \ call fzf#vim#buffers(<q-args>,
+    "             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+    "             \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+    "             \                 <bang>0)
+    " command! -bang -nargs=* Lines
+    "             \ call fzf#vim#lines(<q-args>,
+    "             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+    "             \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+    "             \                 <bang>0)
+    " command! -bang -nargs=* BLines
+    "             \ call fzf#vim#buffer_lines(<q-args>,
+    "             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+    "             \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+    "             \                 <bang>0)
+    " command! -bang -nargs=* Tags
+    "             \ call fzf#vim#tags(<q-args>,
+    "             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+    "             \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+    "             \                 <bang>0)
+    " command! -bang -nargs=* BTags
+    "             \ call fzf#vim#buffer_tags(<q-args>,
+    "             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+    "             \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+    "                 \                 <bang>0)
 endif
 "}}}
 "{{{LeaderF
