@@ -2831,11 +2831,18 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
     let dgs#username='sainnhe'
     let g:fruzzy#usenative = 1
     " Customize Var
-    call denite#custom#var('grep', 'command', ['ag'])
+    " call denite#custom#var('grep', 'command', ['ag'])
+    " call denite#custom#var('grep', 'default_opts',
+    "             \ ['-i', '--vimgrep'])
+    " call denite#custom#var('grep', 'recursive_opts', [])
+    " call denite#custom#var('grep', 'pattern_opt', [])
+    " call denite#custom#var('grep', 'separator', ['--'])
+    " call denite#custom#var('grep', 'final_opts', [])
+    call denite#custom#var('grep', 'command', ['rg'])
     call denite#custom#var('grep', 'default_opts',
-                \ ['-i', '--vimgrep'])
+                \ ['-i', '--vimgrep', '--no-heading', '--no-ignore'])
     call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
     call denite#custom#var('grep', 'separator', ['--'])
     call denite#custom#var('grep', 'final_opts', [])
     call denite#custom#var('outline', 'command', ['ctags'])
@@ -3018,7 +3025,7 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     call g:quickmenu#append('Marks', 'Leaderf marks --smart-case', 'Search Marks', '', 0, 'm')
     call g:quickmenu#append('Help Docs', 'Leaderf help --smart-case', 'Search Help Docs', '', 0, 'H')
     call g:quickmenu#append('Github Stars', 'LeaderfStars', 'Search Github Stars', '', 0, '*')
-    call g:quickmenu#append('Grep', 'Leaderf rg --smart-case', 'Grep', '', 0, 'G')
+    call g:quickmenu#append('Grep', 'Leaderf rg --smart-case --no-ignore', 'Grep on the Fly', '', 0, 'G')
     call g:quickmenu#append('Leaderf Help', 'call Help_LeaderF()', 'Leaderf Help', '', 0, '?')
     "}}}
     "{{{ToggleLfHiddenVar()
@@ -3265,7 +3272,7 @@ if g:VIM_Explore ==# 'defx'
         if bufwinnr('defx') > 0
             execute 'bd! ' . bufnr('defx')
         else
-            execute 'Defx -show-ignored-files -buffer-name="Explore"'
+            execute "Defx -show-ignored-files -buffer-name='Explore' `expand('%:p:h')` -search=`expand('%:p')`"
         endif
     endfunction
     nnoremap <silent> <C-b> :<C-u>call ToggleDefx()<CR>
@@ -3336,7 +3343,7 @@ if g:VIM_Explore ==# 'defx'
         elseif g:VIM_Fuzzy_Finder ==# 'denite'
             nnoremap <silent><buffer> F :<C-u>Denite grep<CR>
         elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
-            nnoremap <silent><buffer> F :<C-u>Leaderf rg<CR>
+            nnoremap <silent><buffer> F :<C-u>Leaderf rg --smart-case --no-ignore<CR>
         elseif g:VIM_Fuzzy_Finder ==# 'remix'
             nnoremap <silent><buffer> F :<C-u>Ag<CR>
         endif
