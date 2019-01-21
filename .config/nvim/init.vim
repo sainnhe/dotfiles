@@ -817,12 +817,13 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     if g:VIM_Snippets ==# 'ultisnips'
         Plug 'ncm2/ncm2-ultisnips'
     elseif g:VIM_Snippets ==# 'neosnippet'
+        Plug 'ncm2/ncm2-neosnippet'
     endif
     " Plug 'ncm2/ncm2-match-highlight'
     " Plug 'ncm2/ncm2-highprio-pop'
 elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-tags.vim', { 'on': [] }
+    Plug 'prabirshrestha/asyncomplete-tags.vim'
     Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-file.vim'
     Plug 'Shougo/neco-syntax' | Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
@@ -841,6 +842,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
     Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
     Plug 'neoclide/coc.nvim', {'do': 'proxychains yarn install'}
+    Plug 'neoclide/coc-denite'
     Plug 'iamcco/coc-action-source.nvim'
 elseif g:VIM_Completion_Framework ==# 'neocomplete'
     Plug 'Shougo/neocomplete.vim'
@@ -2318,8 +2320,9 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     if g:VIM_Snippets ==# 'ultisnips'
         imap <expr> <C-j> pumvisible() ? "\<Plug>(ncm2_ultisnips_expand_completed)" : "\<C-j>"
         "}}}
-        "{{{neosnippet.vim
+        "{{{ncm2-neosnippet
     elseif g:VIM_Snippets ==# 'neosnippet'
+        imap <expr> <C-j> pumvisible() ? "\<Plug>(ncm2_neosnippet_expand_completed)" : "\<C-j>"
     endif
     "}}}
     "{{{ncm2-pyclang
