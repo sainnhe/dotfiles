@@ -22,8 +22,8 @@ HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 autoload -U promptinit; promptinit  # prompt
 autoload -Uz compinit  # completion
-export PURE_PROMPT_SYMBOL="➢ "
-export PURE_PROMPT_VICMD_SYMBOL="➣ "
+export PURE_PROMPT_SYMBOL="➢"
+export PURE_PROMPT_VICMD_SYMBOL="➣"
 compinit  # completion
 zstyle ':completion:*' menu select  # use arrow key for completion
 setopt COMPLETE_ALIASES  # complete alias
