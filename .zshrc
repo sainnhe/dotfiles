@@ -1,7 +1,7 @@
 # {{{Install
 # sudo pacman -S powerline
 # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-# npm install --user pure-promp
+# npm install --global pure-prompt
 # }}}
 # {{{Functions
 test_cmd_pre () {
