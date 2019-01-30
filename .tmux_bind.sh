@@ -23,7 +23,8 @@ tmux bind-key -T prefix C-p run-shell "tmux-pomodoro start"
 tmux bind-key -T prefix M-p run-shell "tmux-pomodoro clear"
 
 if [[ "$1" == "yes" ]]; then
-    tmux bind-key -n C-Space run-shell -b "$HOME/.tmux_bind.sh no"
+    # tmux bind-key -n C-Space run-shell -b "$HOME/.tmux_bind.sh no"
+    tmux bind-key -T prefix C-Space run-shell -b "$HOME/.tmux_bind.sh no"
     # pane
     tmux bind-key -n C-s split-window
     tmux bind-key -n C-v split-window -h
@@ -38,7 +39,8 @@ if [[ "$1" == "yes" ]]; then
     tmux bind-key -n C-x kill-pane
     touch /tmp/.tmux_bind.lck
 elif [[ "$1" == "no" ]]; then
-    tmux bind-key -n C-Space run-shell -b "$HOME/.tmux_bind.sh yes"
+    # tmux bind-key -n C-Space run-shell -b "$HOME/.tmux_bind.sh yes"
+    tmux bind-key -T prefix C-Space run-shell -b "$HOME/.tmux_bind.sh yes"
     # pane
     tmux unbind-key -n C-s
     tmux unbind-key -n C-v
