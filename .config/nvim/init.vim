@@ -673,6 +673,9 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'Shougo/deoplete-clangx', { 'for': [ 'c', 'cpp' ] }
     Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp' ] }
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    if g:VIM_LSP_Client ==# 'vim-lsp'
+        Plug 'lighttiger2505/deoplete-vim-lsp'
+    endif
 elseif g:VIM_Completion_Framework ==# 'ncm2'
     Plug 'roxma/nvim-yarp' | Plug 'ncm2/ncm2'
     Plug 'ncm2/ncm2-tagprefix', { 'on': [] }
