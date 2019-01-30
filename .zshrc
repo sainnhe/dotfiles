@@ -41,7 +41,7 @@ alias switch-v2ray='sudo bash ~/Scripts/v2ray/v2ray_switch.sh'
 alias gsconnect='bash ~/Scripts/gsconnect.sh'
 alias roll='bash ~/Scripts/roll.sh'
 alias zip-r='bash ~/Scripts/zip.sh'
-alias check-sync='rclone check /mnt/ExternalDisk/OneDrive/ remote:/ --checksum'
+alias tmux-help='bash ~/Scripts/tmux-help.sh'
 # }}}
 # {{{manpager
 if [[ "$nvim_exist" == "yes" ]]; then
