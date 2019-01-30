@@ -285,6 +285,8 @@ nnoremap ; :
 nnoremap <silent> q :q<CR>
 " Ctrl+S保存文件
 nnoremap <C-S> :<C-u>w<CR>
+" Ctrl+Z撤销上一个动作
+nnoremap <C-z> u
 " Shift加方向键加速移动
 nnoremap <S-up> <Esc>5<up>
 nnoremap <S-down> <Esc>5<down>
@@ -2149,8 +2151,8 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     inoremap <expr> <down> pumvisible() ? deoplete#close_popup()."\<down>" : "\<down>"
     inoremap <expr> <left> pumvisible() ? deoplete#close_popup()."\<left>" : "\<left>"
     inoremap <expr> <right> pumvisible() ? deoplete#close_popup()."\<right>" : "\<right>"
-    inoremap <expr> <CR> pumvisible() ? deoplete#close_popup()."\<CR>" : "\<CR>"
-    inoremap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
+    imap <expr> <CR> pumvisible() ? deoplete#close_popup()."\<CR>" : "\<CR>"
+    imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
     let g:Deoplete_Word_Completion_Enable = 0
     function! Func_ToggleDeopleteWords()
         if g:Deoplete_Word_Completion_Enable == 1
@@ -2243,8 +2245,8 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     inoremap <expr> <down> pumvisible() ? "\<C-y>\<down>" : "\<down>"
     inoremap <expr> <left> pumvisible() ? "\<C-y>\<left>" : "\<left>"
     inoremap <expr> <right> pumvisible() ? "\<C-y>\<right>" : "\<right>"
-    inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-    inoremap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
+    imap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+    imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
     "}}}
     "{{{asyncomplete
     "{{{asyncomplete-usage
@@ -2258,13 +2260,13 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     "}}}
 elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
-    imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Plug>(asyncomplete_force_refresh)\<C-n>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Plug>(asyncomplete_force_refresh)\<C-n>"
     inoremap <expr> <up> pumvisible() ? "\<C-y>\<up>" : "\<up>"
     inoremap <expr> <down> pumvisible() ? "\<C-y>\<down>" : "\<down>"
     inoremap <expr> <left> pumvisible() ? "\<C-y>\<left>" : "\<left>"
     inoremap <expr> <right> pumvisible() ? "\<C-y>\<right>" : "\<right>"
-    inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-    inoremap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
+    imap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+    imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
     if g:VIM_Snippets ==# 'ultisnips'
         imap <expr> <C-j> pumvisible() ? "\<A-z>\`\`\l" : "\<C-j>"
     endif
@@ -2409,16 +2411,16 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         let g:UltiSnipsJumpForwardTrigger       = '<A-z>``````j'
         let g:UltiSnipsJumpBackwardTrigger      = '<A-z>``````k'
     endif
+    inoremap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-j>"
+    inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
+    inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
+    inoremap <expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
+    inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
+    imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
+    imap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
     function! CocMapping()
         inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
         inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
-        inoremap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-j>"
-        inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
-        inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
-        inoremap <expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
-        inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
-        inoremap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
-        inoremap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
     endfunction
     "}}}
     "}}}
@@ -2443,13 +2445,13 @@ elseif g:VIM_Completion_Framework ==# 'neocomplete'
         imap <expr> <C-j> pumvisible() ? "\<A-z>\`\`\l" : "\<C-j>"
     endif
     inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
-    imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : neocomplete#start_manual_complete()."\<C-n>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : neocomplete#start_manual_complete()."\<C-n>"
     inoremap <expr> <up> pumvisible() ? neocomplete#smart_close_popup()."\<up>" : "\<up>"
     inoremap <expr> <down> pumvisible() ? neocomplete#smart_close_popup()."\<down>" : "\<down>"
     inoremap <expr> <left> pumvisible() ? neocomplete#smart_close_popup()."\<left>" : "\<left>"
     inoremap <expr> <right> pumvisible() ? neocomplete#smart_close_popup()."\<right>" : "\<right>"
-    inoremap <expr> <CR> pumvisible() ? neocomplete#smart_close_popup()."\<CR>" : "\<CR>"
-    inoremap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
+    imap <expr> <CR> pumvisible() ? neocomplete#smart_close_popup()."\<CR>" : "\<CR>"
+    imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
 endif
 "}}}
 "{{{denite.nvim
