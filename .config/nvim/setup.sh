@@ -111,6 +111,7 @@ npm_global_setup() {
 # {{{npm_setup()
 npm_setup() {
     npm install stylelint-config-standard
+    npm install jsonlint
 }
 # }}}
 bash -c "$(declare -f pacman_setup_func); pacman_setup_func"
