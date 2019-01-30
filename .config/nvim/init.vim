@@ -2350,6 +2350,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call quickmenu#current(6)
     call quickmenu#reset()
     call g:quickmenu#append('# COC', '')
+    call g:quickmenu#append('List', 'CocList', '', '', 0, 'l')
     call g:quickmenu#append('Action', 'Denite coc-action', '', '', 0, '*')
     call g:quickmenu#append('Extension Commands', 'Denite coc-command', '', '', 0, 'c')
     call g:quickmenu#append('Extension Management', 'Denite coc-extension', '', '', 0, 'e')
@@ -2365,6 +2366,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     vnoremap <silent> lf <Plug>(coc-format-selected)
     call quickmenu#current(5)
     call quickmenu#reset()
+    call g:quickmenu#append('List', 'CocList', '', '', 0, 'l')
     call g:quickmenu#append('Code Action', "call CocActionAsync('codeAction')", 'prompty for a code action and do it.', '', 0, 'a')
     call g:quickmenu#append('Code Lens Action', "call CocActionAsync('codeLensAction')", 'Invoke command for codeLens of current line (or the line contains codeLens just before).', '', 0, 'A')
     call g:quickmenu#append('Symbols', 'Denite coc-symbols', '', '', 0, 's')
@@ -2376,9 +2378,9 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('References', "call CocActionAsync('jumpReferences')", 'Jump to references position of current symbol.', '', 0, 'r')
     call g:quickmenu#append('Rename', "call CocActionAsync('rename')", 'Do rename for symbol under cursor position.', '', 0, 'R')
     call g:quickmenu#append('Hover', "call CocActionAsync('doHover')", 'Show documentation of current word at preview window.', '', 0, 'h')
+    call g:quickmenu#append('Highlight', "call CocActionAsync('highlight')", 'Highlight symbols under cursor', '', 0, 'H')
     call g:quickmenu#append('Implementation', "call CocActionAsync('jumpImplementation')", 'Jump to implementation position of current symbol.', '', 0, 'i')
     call g:quickmenu#append('Format', "call CocActionAsync('format')", 'Format current buffer using language server.', '', 0, 'f')
-    call g:quickmenu#append('Highlight', "call CocActionAsync('highlight')", 'Highlight symbols under cursor', '', 0, 'l')
     call g:quickmenu#append('Open Link', "call CocActionAsync('openLink')", 'Open link under cursor.', '', 0, 'L')
     call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
     "}}}
@@ -2388,7 +2390,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     elseif g:VIM_Snippets ==# 'coc-snippets'
         let g:Coc_Snippet = 'coc-snippets'
     endif
-    call coc#add_extension(
+    call coc#add_extension( 'coc-lists',
                 \   'coc-dictionary', 'coc-word', 'coc-emoji',
                 \   g:Coc_Snippet, 'coc-tag',
                 \   'coc-html', 'coc-css',
