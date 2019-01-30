@@ -4,7 +4,7 @@
 tmux bind-key -T prefix C-f choose-tree -Zs
 
 # reload config file
-tmux bind-key r source-file ~/.tmux.conf
+tmux bind-key -T prefix r source-file ~/.tmux.conf
 
 # window
 tmux bind-key -n C-t new-window
