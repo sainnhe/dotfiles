@@ -32,6 +32,7 @@ zstyle ':completion::complete:*' gain-privileges 1  # enabling autocompletion of
 # {{{alias
 alias ls='ls --color=auto'
 alias CT='bash /home/sainnhe/Scripts/ChangeThemes/CT.sh'
+alias KCT='kcmcolorfulhelper -s -p'
 alias git-proxy='bash /home/sainnhe/Scripts/git-proxy.sh'
 alias bebusy='/home/sainnhe/Scripts/bebusy.py'
 alias youtube-mpv='bash ~/Scripts/youtube-mpv.sh'
