@@ -77,7 +77,7 @@
     "http.proxy": "",
     "http.proxyStrictSSL": true,
     "languageserver": {
-        "clangd": {
+        "ccls": {
             "command": "ccls",
             "filetypes": ["c", "cpp", "objc", "objcpp"],
             "initializationOptions": {
