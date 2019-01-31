@@ -194,6 +194,18 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:r
 if has('nvim')
     set inccommand=split
 endif
+if !has('nvim')
+    augroup VIM_CURSOR_SHAPE
+        au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+        au InsertEnter,InsertChange *
+                    \ if v:insertmode == 'i' |
+                    \   silent execute '!echo -ne "\e[5 q"' | redraw! |
+                    \ elseif v:insertmode == 'r' |
+                    \   silent execute '!echo -ne "\e[3 q"' | redraw! |
+                    \ endif
+        au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+    augroup END
+endif
 " "{{{
 " if exists('g:loaded_sensible') || &compatible
 "         finish
