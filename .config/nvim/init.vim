@@ -634,6 +634,8 @@ Plug '844196/lightline-badwolf.vim'
 Plug 'jnurmine/Zenburn'
 Plug 'acepukas/vim-zenburn'
 Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'sudorook/colorific.vim'
+Plug 'cseelus/vim-colors-tone'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -838,6 +840,9 @@ Plug 'Valloric/MatchTagAlways', { 'for': 'html' }
 Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
 Plug 'elzr/vim-json', { 'for': 'json' }
             \| au BufNewFile,BufRead *.json call Func_vim_json()
+
+" Entertainment
+Plug 'mattn/vim-starwars', { 'on': 'StarWars' }
 "{{{
 call plug#end()
 "}}}
@@ -879,6 +884,7 @@ call g:quickmenu#append('IndentGuides', 'call ToggleIndentGuides()', '', '', 0, 
 call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(11)', '', '', 0, 'f')
 call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
 call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
+call g:quickmenu#append('Entertainment', 'call quickmenu#toggle(12)', '', '', 0, '*')
 call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
 call quickmenu#current(10)
 call quickmenu#reset()
@@ -901,6 +907,10 @@ call g:quickmenu#append('# Folding Method', '')
 call g:quickmenu#append('Marker', 'set foldmethod=marker', '', '', 0, 'm')
 call g:quickmenu#append('Syntax', 'set foldmethod=syntax', '', '', 0, 's')
 call g:quickmenu#append('Indent', 'set foldmethod=indnet', '', '', 0, 'i')
+call quickmenu#current(12)
+call quickmenu#reset()
+call g:quickmenu#append('# Entertainment', '')
+call g:quickmenu#append('Star Wars', 'StarWars', '', '', 0, '')
 "}}}
 " User Interface
 "{{{lightline.vim
@@ -1198,6 +1208,14 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('snazzy', 'call SwitchColorScheme("snazzy")', '', '', 0, '')
     "}}}
+    "{{{tone
+    if g:VIM_Color_Scheme ==# 'tone'
+        set background=dark
+        colorscheme tone
+        let g:lightline.colorscheme = 'snazzy'
+    endif
+    call g:quickmenu#append('tone', 'call SwitchColorScheme("tone")', '', '', 0, '')
+    "}}}
     "{{{hydrangea
     if g:VIM_Color_Scheme ==# 'hydrangea'
         colorscheme hydrangea
@@ -1315,6 +1333,15 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'ayu_light'
     endif
     call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu")', '', '', 0, '')
+    "}}}
+    "{{{colorific
+    if g:VIM_Color_Scheme ==# 'colorific'
+        let g:colorific_style = 'light'
+        set background=light
+        colorscheme colorific
+        let g:lightline.colorscheme = 'one'
+    endif
+    call g:quickmenu#append('colorific', 'call SwitchColorScheme("colorific")', '', '', 0, '')
     "}}}
     "{{{inkstained
     if g:VIM_Color_Scheme ==# 'inkstained'
