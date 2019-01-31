@@ -2142,9 +2142,6 @@ if g:VIM_Completion_Framework ==# 'deoplete'
                 \   'mark_below': '[↓]',
                 \   'mark_changes': '[*]',
                 \})
-    " call deoplete#custom#source('LanguageClient',
-    "             \ 'min_pattern_length',
-    "             \ 2)
     if g:VIM_Snippets ==# 'ultisnips'
         let g:UltiSnipsExpandTrigger            = '<C-j>'
     endif
