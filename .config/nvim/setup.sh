@@ -9,6 +9,7 @@ pacman_setup_func() {
     pacman -S --noconfirm python python2 &> /dev/null
     pacman -S --noconfirm python-neovim &> /dev/null
     pacman -S --noconfirm python2-neovim &> /dev/null
+    pacman -S --noconfirm python-pip python2-pip &> /dev/null
     echo "installing git..."
     pacman -S --noconfirm git &> /dev/null
     echo "installing npm..."

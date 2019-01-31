@@ -2132,9 +2132,19 @@ if g:VIM_Completion_Framework ==# 'deoplete'
                 \ 'auto_complete_delay': 0,
                 \ 'smart_case': v:true,
                 \ })
-    call deoplete#custom#source('LanguageClient',
-                \ 'min_pattern_length',
-                \ 2)
+    if !has('nvim')
+        call deoplete#custom#option({'yarp': v:true})
+    endif
+    call deoplete#custom#var('around', {
+                \   'range_above': 100,
+                \   'range_below': 100,
+                \   'mark_above': '[↑]',
+                \   'mark_below': '[↓]',
+                \   'mark_changes': '[*]',
+                \})
+    " call deoplete#custom#source('LanguageClient',
+    "             \ 'min_pattern_length',
+    "             \ 2)
     if g:VIM_Snippets ==# 'ultisnips'
         let g:UltiSnipsExpandTrigger            = '<C-j>'
     endif
