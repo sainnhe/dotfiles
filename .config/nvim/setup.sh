@@ -1,20 +1,16 @@
 #!/bin/bash
 # {{{pacman_setup_func()
 pacman_setup_func() {
-    echo -n "make sure you have configured locale correctly. [enter to continue]  "
+    echo -n "make sure you have configured proxy and locale correctly. [enter to continue]  "
     read inputstr
     echo "updating cache..."
     pacman -Syy &> /dev/null
+    echo "setting up python provider..."
+    pacman -S --noconfirm python python2 &> /dev/null
+    pacman -S --noconfirm python-neovim &> /dev/null
+    pacman -S --noconfirm python2-neovim &> /dev/null
     echo "installing git..."
     pacman -S --noconfirm git &> /dev/null
-    echo "installing python-neovim..."
-    pacman -S --noconfirm python-neovim &> /dev/null
-    echo "setting up rust..."
-    pacman -S --noconfirm rustup &> /dev/null
-    rustup install stable &> /dev/null
-    rustup default stable &> /dev/null
-    export PATH="$HOME/.cargo/bin:$PATH"
-    rustup component add rls rust-analysis rust-src rustfmt
     echo "installing npm..."
     pacman -S --noconfirm npm &> /dev/null
     echo "installing yarn..."
