@@ -27,7 +27,6 @@ let g:VIM_Snippets = 'coc-snippets'  " ultisnips neosnippet coc-snippets
 let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc
 let g:VIM_Fuzzy_Finder = 'remix'  " remix denite fzf leaderf
 let g:VIM_Linter = 'ale'  " ale neomake
-let g:VIM_Explore = 'defx'  " defx nerdtree
 " :UpdateRemotePlugins
 if exists('*VIM_Global_Settings')
     call VIM_Global_Settings()
@@ -311,11 +310,7 @@ nnoremap <C-X> <ESC>"_dd
 " Alt+Backspace从当前位置删除到行开头
 nnoremap <A-BS> <Esc><left>v0"_d
 " Alt+T新建tab
-if g:VIM_Explore ==# 'defx'
-    nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call DefxStartify()<CR>
-elseif g:VIM_Explore ==# 'nerdtree'
-    nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call NerdtreeStartify()<CR>
-endif
+nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call NerdtreeStartify()<CR>
 " Alt+W关闭当前标签
 nnoremap <silent> <A-w> :<C-u>call CloseOnLastTab()<CR>
 " Alt+上下左右可以跳转和移动窗口
@@ -791,15 +786,9 @@ elseif g:VIM_Linter ==# 'neomake'
     endif
 endif
 Plug 'mcchrish/nnn.vim'
-if g:VIM_Explore ==# 'defx'
-    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'kristijanhusak/defx-git'
-    Plug 'kristijanhusak/defx-icons'
-elseif g:VIM_Explore ==# 'nerdtree'
-    Plug 'scrooloose/nerdtree'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'ryanoasis/vim-devicons'
-endif
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -876,7 +865,6 @@ if g:VIM_Enable_TmuxLine == 0
     call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 endif
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
-call g:quickmenu#append('BufExplore', 'ToggleBufExplorer', '', '', 0, 'b')
 call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
 call g:quickmenu#append('Load colorizer', "call plug#load('colorizer')", '', '', 0, '$')
@@ -1746,35 +1734,19 @@ if g:VIM_Enable_Startify == 1
                 \ { 'type': 'commands',  'header': [" \uf085 Commands"]       },
                 \ ]
     " on Start
-    if g:VIM_Explore ==# 'defx'
-        function! DefxStartify()
-            execute 'Startify'
-            execute 'call ToggleDefx()'
-            execute 'wincmd l'
-        endfunction
-        augroup Startify_Config
-            autocmd VimEnter *
-                        \   if !argc()
-                        \ |   call DefxStartify()
-                        \ | endif
-            " on Enter
-            autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):<C-u>call ToggleDefx()<CR>
-        augroup END
-    elseif g:VIM_Explore ==# 'nerdtree'
-        function! NerdtreeStartify()
-            execute 'Startify'
-            execute 'NERDTreeToggle'
-            execute 'wincmd l'
-        endfunction
-        augroup Startify_Config
-            autocmd VimEnter *
-                        \   if !argc()
-                        \ |   call NerdtreeStartify()
-                        \ | endif
-            " on Enter
-            autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):NERDTreeToggle<CR>
-        augroup END
-    endif
+    function! NerdtreeStartify()
+        execute 'Startify'
+        execute 'NERDTreeToggle'
+        execute 'wincmd l'
+    endfunction
+    augroup Startify_Config
+        autocmd VimEnter *
+                    \   if !argc()
+                    \ |   call NerdtreeStartify()
+                    \ | endif
+        " on Enter
+        autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):NERDTreeToggle<CR>
+    augroup END
     " list of commands to be executed before save a session
     let g:startify_session_before_save = [
                 \ 'echo "Cleaning up before saving.."',
@@ -1856,7 +1828,7 @@ let g:signify_vcs_cmds_diffmode = {
 " :LeadingSpaceToggle  切换显示Leading Space
 " :IndentLinesToggle  切换显示indentLine
 "}}}
-let g:ExcludeIndentFileType_Universal = [ 'startify', 'defx', 'codi', 'help', 'man' ]
+let g:ExcludeIndentFileType_Universal = [ 'startify', 'nerdtree', 'codi', 'help', 'man' ]
 let g:ExcludeIndentFileType_Special = [ 'markdown', 'json' ]
 let g:indentLine_enabled = 1
 let g:indentLine_leadingSpaceEnabled = 0
@@ -3144,254 +3116,54 @@ elseif g:VIM_Linter ==# 'neomake'
 endif
 "}}}
 "{{{nnn.vim
+"{{{nnn.vim-usage
+" <leader>e  打开nnn
+"}}}
 let g:nnn#set_default_mappings = 0
-nnoremap <silent> <leader>n :<C-u>NnnPicker '%:p:h'<CR>
+nnoremap <silent> <leader>e :<C-u>NnnPicker '%:p:h'<CR>
 let g:nnn#action = {
-      \ '<c-t>': 'tab split',
-      \ '<c-x>': 'split',
-      \ '<c-v>': 'vsplit' }
+            \ '<c-t>': 'tab split',
+            \ '<c-x>': 'split',
+            \ '<c-v>': 'vsplit' }
 " let g:nnn#command = 'nnn -l'
 " let g:nnn#layout = 'new' "or vnew, tabnew, etc.
 " let g:nnn#layout = { 'left': '~20%' }
 "}}}
-"{{{defx.nvim
-if g:VIM_Explore ==# 'defx'
-    "{{{defx.nvim-usage
-    " defx中按?显示帮助
-    function! Help_defx()
-        echo "<CR>  打开文件或目录并关闭defx\n"
-        echo 'v  垂直打开'
-        echo 's  水平打开'
-        echo 't  在新标签页打开'
-        echo "<right>  打开文件或目录，同时自动切换到目录下\n"
-        echo "<left>  返回上一级目录，同时自动切换到目录下\n"
-        echo "nd  新建目录\n"
-        echo "nf  新建文件\n"
-        echo "<Tab>  选中\n"
-        echo "<S-Tab>  全部选中\n"
-        echo ".  切换隐藏文件\n"
-        echo "c  复制文件\n"
-        echo "m  移动文件\n"
-        echo "p  粘贴要移动和复制的文件\n"
-        echo "D  彻底删除文件\n"
-        echo "r  重命名文件\n"
-        echo "x  执行文件\n"
-        echo "yy  复制路径\n"
-        echo "<C-p>  打印Defx的工作目录\n"
-        echo "<A-p>  打印当前文件路径\n"
-        echo "~  回到$HOME目录\n"
-        echo "<S-left>  跳转到上一个git标识的位置\n"
-        echo "<S-right>  跳转到下一个git标识的位置\n"
-        echo "<F5>  刷新\n"
-        echo "<A-b>  切换bufexplore\n"
-        echo 'f  搜索文件'
-        echo 'F  Grep'
-        echo 'SS  Prosession Switch'
-        echo 'SD  Prosession Delete'
-        echo 'SF  Prosession Fuzzy Find'
-        echo "q  退出\n"
-        echo '?  帮助'
-    endfunction
-    "}}}
-    "{{{defx-git
-    let g:defx_git#indicators = {
-                \ 'Modified'  : '✹',
-                \ 'Staged'    : '✚',
-                \ 'Untracked' : '✭',
-                \ 'Renamed'   : '➜',
-                \ 'Unmerged'  : '═',
-                \ 'Ignored'   : '☒',
-                \ 'Deleted'   : '✖',
-                \ 'Unknown'   : '?'
-                \ }
-    let g:defx_git#column_length = 2
-    let g:defx_git#show_ignored = 0
-    "}}}
-    "{{{FuzzyFinderIntegration
-    function! DefxFuzzyFind()
-        if g:VIM_Fuzzy_Finder ==# 'denite'
-            execute 'Denite file_rec directory_rec'
-        elseif g:VIM_Fuzzy_Finder ==# 'fzf' || g:VIM_Fuzzy_Finder ==# 'remix'
-            execute 'Files'
-        elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
-            execute 'Leaderf file --fullPath --smart-case'
-        endif
-    endfunction
-    "}}}
-    "{{{Defx_Prosession
-    function! Defx_Prosession_Switch()
-        let s:Defx_cwd = getcwd()
-        execute 'Prosession'.s:Defx_cwd
-    endfunction
-    function! Defx_Prosession_Delete()
-        let s:Defx_cwd = getcwd()
-        execute 'ProsessionDelete'.s:Defx_cwd
-    endfunction
-    function! Defx_Prosession_FuzzyFind()
-        if g:VIM_Fuzzy_Finder ==# 'remix'
-            execute 'LeaderfProsessions'
-        elseif g:VIM_Fuzzy_Finder ==# 'denite'
-            execute 'Denite prosession'
-        elseif g:VIM_Fuzzy_Finder ==# 'fzf'
-            execute 'ProsessionList'
-        elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
-            execute 'LeaderfProsessions'
-        endif
-    endfunction
-    "}}}
-    call defx#custom#option('_', {
-                \   'columns': 'mark:icons:filename:git:size:time',
-                \   'direction': 'topleft',
-                \   'split': 'vertical',
-                \   'winwidth': 35
-                \ })
-    call defx#custom#column('filename', {
-                \ 'min_width': 19,
-                \ 'max_width': 19,
-                \ })
-    call defx#custom#column('mark', {
-                \ 'directory_icon': ' ',
-                \ 'readonly_icon': "\ue0a2",
-                \ 'root_icon': "\u2BB2",
-                \ 'selected_icon': "\uf058",
-                \ })
-    function! ToggleDefx()
-        if bufwinnr('defx') > 0
-            execute 'bd! ' . bufnr('defx')
-        else
-            execute "Defx -show-ignored-files -buffer-name='Explore' `expand('%:p:h')` -search=`expand('%:p')`"
-        endif
-    endfunction
-    nnoremap <silent> <C-b> :<C-u>call ToggleDefx()<CR>
-    let g:defx_icons_enable_syntax_highlight = 1
-    let g:defx_icons_column_length = 1
-    let g:defx_icons_directory_icon = ''
-    let g:defx_icons_mark_icon = "\uf9cd"
-    let g:defx_icons_parent_icon = ''
-    let g:defx_icons_default_icon = "\uf15b"
-    let g:defx_icons_directory_symlink_icon = ''
-    " close vim if the only window left open is defx
-    augroup Defx_Config
-        autocmd!
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:defx")) | q | endif
-        autocmd FileType defx call s:defx_my_settings()
-        autocmd FileType bufexplorer call s:bufexplore_defx_mappings()
-    augroup END
-    function! s:defx_my_settings() abort
-        " Define Mappings
-        nmap <silent><buffer><expr> <CR> defx#async_action('open', 'wincmd w \| drop')."\<C-b>"
-        nmap <silent><buffer><expr> v
-                    \ defx#async_action('open', [':vsplit'])."\<C-b>"
-        nmap <silent><buffer> s v:wincmd t<CR>:wincmd K<CR>
-        nnoremap <silent><buffer><expr> t
-                    \ defx#async_action('open', [':tabedit'])
-        nnoremap <silent><buffer><expr> <right>
-                    \ defx#async_action('open', 'wincmd w \| drop').defx#do_action('change_vim_cwd')
-        nnoremap <silent><buffer><expr> <left>
-                    \ defx#async_action('cd', ['..']).defx#do_action('change_vim_cwd')
-        nnoremap <silent><buffer><expr> nd
-                    \ defx#async_action('new_directory')
-        nnoremap <silent><buffer><expr> nf
-                    \ defx#async_action('new_file')
-        nnoremap <silent><buffer><expr> c
-                    \ defx#async_action('copy')
-        nnoremap <silent><buffer><expr> m
-                    \ defx#async_action('move')
-        nnoremap <silent><buffer><expr> p
-                    \ defx#async_action('paste')
-        nnoremap <silent><buffer><expr> <A-p>
-                    \ defx#async_action('print')
-        nnoremap <silent><buffer><expr> D
-                    \ defx#async_action('remove')
-        nnoremap <silent><buffer><expr> r
-                    \ defx#async_action('rename')
-        nnoremap <silent><buffer><expr> x
-                    \ defx#async_action('execute_system')
-        nnoremap <silent><buffer><expr> <Tab>
-                    \ defx#async_action('toggle_select')
-        nnoremap <silent><buffer><expr> <S-Tab>
-                    \ defx#async_action('toggle_select_all')
-        nnoremap <silent><buffer><expr> yy
-                    \ defx#async_action('yank_path')
-        nnoremap <silent><buffer><expr> .
-                    \ defx#async_action('toggle_ignored_files')
-        nnoremap <silent><buffer><expr> ~
-                    \ defx#async_action('cd')
-        nnoremap <silent><buffer><expr> q
-                    \ defx#async_action('quit')
-        nnoremap <silent><buffer><expr> <F5>
-                    \ defx#async_action('redraw')
-        nnoremap <silent><buffer> <S-left> <Plug>(defx-git-prev)
-        nnoremap <silent><buffer> <S-right> <Plug>(defx-git-next)
-        nnoremap <silent><buffer> <C-p> :<C-u>echo getcwd(0,tabpagenr())<CR>
-        nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_defx_bufexplore()<CR>
-        if g:VIM_Fuzzy_Finder ==# 'fzf'
-            nnoremap <silent><buffer> F :<C-u>Ag<CR>
-        elseif g:VIM_Fuzzy_Finder ==# 'denite'
-            nnoremap <silent><buffer> F :<C-u>Denite grep<CR>
-        elseif g:VIM_Fuzzy_Finder ==# 'leaderf'
-            nnoremap <silent><buffer> F :<C-u>Leaderf rg --smart-case --no-ignore<CR>
-        elseif g:VIM_Fuzzy_Finder ==# 'remix'
-            nnoremap <silent><buffer> F :<C-u>Ag<CR>
-        endif
-        nnoremap <silent><buffer> f :<C-u>call DefxFuzzyFind()<CR>
-        nnoremap <silent><buffer> SS :<C-u>call Defx_Prosession_Switch()<CR>
-        nnoremap <silent><buffer> SD :<C-u>call Defx_Prosession_Delete()<CR>
-        nnoremap <silent><buffer> SF :<C-u>call Defx_Prosession_FuzzyFind()<CR>
-        nnoremap <silent><buffer> ? :<C-u>call Help_defx()<CR>
-    endfunction
-    "}}}
-    "{{{nerdtree
-elseif g:VIM_Explore ==# 'nerdtree'
-    nnoremap <silent> <C-B> :<C-u>NERDTreeToggle<CR>
-    augroup NERDTreeAu
-        autocmd!
-        " open NERDTree automatically when vim starts up on opening a directory
-        autocmd StdinReadPre * let s:std_in=1
-        autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-        " close vim if the only window left open is a NERDTree
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    augroup END
-    let g:NERDTreeDirArrowExpandable = ''
-    let g:NERDTreeDirArrowCollapsible = ''
-    let g:NERDTreeIndicatorMapCustom = {
-                \ 'Modified'  : '✹',
-                \ 'Staged'    : '✚',
-                \ 'Untracked' : '✭',
-                \ 'Renamed'   : '➜',
-                \ 'Unmerged'  : '═',
-                \ 'Deleted'   : '✖',
-                \ 'Dirty'     : '✗',
-                \ 'Clean'     : '✔︎',
-                \ 'Ignored'   : '☒',
-                \ 'Unknown'   : '?'
-                \ }
-endif
+"{{{nerdtree
+nnoremap <silent> <C-B> :<C-u>NERDTreeToggle<CR>
+function! s:nerdtree_mappings() abort
+endfunction
+augroup NERDTreeAu
+    autocmd!
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    autocmd FileType nerdtree call s:nerdtree_mappings()
+augroup END
+let NERDTreeMinimalUI=1
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+let g:NERDTreeIndicatorMapCustom = {
+            \ 'Modified'  : '✹',
+            \ 'Staged'    : '✚',
+            \ 'Untracked' : '✭',
+            \ 'Renamed'   : '➜',
+            \ 'Unmerged'  : '═',
+            \ 'Deleted'   : '✖',
+            \ 'Dirty'     : '✗',
+            \ 'Clean'     : '✔︎',
+            \ 'Ignored'   : '☒',
+            \ 'Unknown'   : '?'
+            \ }
 "}}}
 "{{{bufexplore
 "{{{bufexplore-usage
-" defx中<A-b>  切换bufexplorer, <C-b>退出
+" <leader>B 打开bufexplore
 " ?  显示帮助文档
-" 主菜单可以打开bufexplore
-"}}}
-"{{{Toggle_defx_bufexplore()
-function! Toggle_defx_bufexplore()
-    if &filetype ==# 'defx'
-        execute 'ToggleBufExplorer'
-    elseif &filetype ==# 'bufexplorer'
-        execute 'ToggleBufExplorer'
-        execute 'q'
-        call ToggleDefx()
-    endif
-endfunction
 "}}}
 " Use Default Mappings
 let g:bufExplorerDisableDefaultKeyMapping=1
-function! s:bufexplore_defx_mappings() abort
-    nnoremap <silent><buffer> <A-b> :<C-u>call Toggle_defx_bufexplore()<CR>
-    nnoremap <silent><buffer> <C-b> :<C-u>q<CR>
-    nmap <silent><buffer> ? <F1>
-endfunction
+nnoremap <silent> <leader>B :<C-u>BufExplorer<CR>
 function! s:bufexplore_mappings() abort
     nmap <buffer> ? <F1>
 endfunction
