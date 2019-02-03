@@ -62,6 +62,7 @@ zplug "zdharma/fast-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search"
+zplug "skywind3000/z.lua"
 zplug load
 fast-theme q-jmnemonic > /dev/null
 # {{{zsh-autosuggestions
@@ -73,6 +74,13 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+# }}}
+# {{{z.lua
+export _ZL_DATA="$HOME/.cache/.zlua"
+export _ZL_MATCH_MODE=1
+alias zc='z -c'      # 严格匹配当前路径的子路径
+alias zz='z -i'      # 使用交互式选择模式
+alias zf='z -I'      # 使用 fzf 对多个结果进行选择
 # }}}
 # }}}
 # {{{TMUX
