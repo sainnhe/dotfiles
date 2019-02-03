@@ -577,6 +577,7 @@ if !has('nvim') && has('python3')
 endif
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
+Plug 'ryanoasis/vim-devicons'
 "}}}
 " User Interface
 "{{{themes
@@ -788,7 +789,9 @@ endif
 Plug 'mcchrish/nnn.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
+Plug 'low-ghost/nerdtree-fugitive'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ivalkeen/nerdtree-execute'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -1736,7 +1739,7 @@ if g:VIM_Enable_Startify == 1
     " on Start
     function! NerdtreeStartify()
         execute 'Startify'
-        execute 'NERDTreeToggle'
+        execute 'NERDTreeVCS'
         execute 'wincmd l'
     endfunction
     augroup Startify_Config
@@ -3130,8 +3133,44 @@ let g:nnn#action = {
 " let g:nnn#layout = { 'left': '~20%' }
 "}}}
 "{{{nerdtree
+"{{{nerdtree-usage
+" <C-b>  切换
+" ?  呼出帮助菜单
+" ~  回到VCS root
+"}}}
+"{{{extensions
+"{{{nerdtree-git-plugin
+" let g:NERDTreeShowIgnoredStatus = 1
+let g:NERDTreeIndicatorMapCustom = {
+            \ 'Modified'  : '✸',
+            \ 'Staged'    : "\uf5d8",
+            \ 'Untracked' : '✩',
+            \ 'Renamed'   : '➠',
+            \ 'Unmerged'  : '⮴',
+            \ 'Deleted'   : "\uf6bf",
+            \ 'Dirty'     : '✘',
+            \ 'Clean'     : '✔',
+            \ 'Ignored'   : "\ufb12",
+            \ 'Unknown'   : "\uf128"
+            \ }
+"}}}
+"{{{vim-nerdtree-syntax-highlight
+" disable highlight
+" let g:NERDTreeDisableFileExtensionHighlight = 1
+" let g:NERDTreeDisableExactMatchHighlight = 1
+" let g:NERDTreeDisablePatternMatchHighlight = 1
+" highlight fullname
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+" highlight folders using exact match
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+"}}}
+"}}}
 nnoremap <silent> <C-B> :<C-u>NERDTreeToggle<CR>
 function! s:nerdtree_mappings() abort
+    nnoremap <silent><buffer> ~ :<C-u>NERDTreeVCS<CR>
 endfunction
 augroup NERDTreeAu
     autocmd!
@@ -3140,21 +3179,11 @@ augroup NERDTreeAu
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     autocmd FileType nerdtree call s:nerdtree_mappings()
 augroup END
-let NERDTreeMinimalUI=1
+let NERDTreeMinimalUI = 1
+let NERDTreeWinSize = 35
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
-let g:NERDTreeIndicatorMapCustom = {
-            \ 'Modified'  : '✹',
-            \ 'Staged'    : '✚',
-            \ 'Untracked' : '✭',
-            \ 'Renamed'   : '➜',
-            \ 'Unmerged'  : '═',
-            \ 'Deleted'   : '✖',
-            \ 'Dirty'     : '✗',
-            \ 'Clean'     : '✔︎',
-            \ 'Ignored'   : '☒',
-            \ 'Unknown'   : '?'
-            \ }
+" let NERDTreeShowHidden = 1
 "}}}
 "{{{bufexplore
 "{{{bufexplore-usage
