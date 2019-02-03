@@ -790,6 +790,7 @@ elseif g:VIM_Linter ==# 'neomake'
         Plug 'Palpatineli/lightline-lsc-nvim'
     endif
 endif
+Plug 'mcchrish/nnn.vim'
 if g:VIM_Explore ==# 'defx'
     Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'kristijanhusak/defx-git'
@@ -3141,6 +3142,17 @@ elseif g:VIM_Linter ==# 'neomake'
     nnoremap <silent> gj :lnext<CR>
     nnoremap <silent> gk :lprev<CR>
 endif
+"}}}
+"{{{nnn.vim
+let g:nnn#set_default_mappings = 0
+nnoremap <silent> <leader>n :<C-u>NnnPicker '%:p:h'<CR>
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-x>': 'split',
+      \ '<c-v>': 'vsplit' }
+" let g:nnn#command = 'nnn -l'
+" let g:nnn#layout = 'new' "or vnew, tabnew, etc.
+" let g:nnn#layout = { 'left': '~20%' }
 "}}}
 "{{{defx.nvim
 if g:VIM_Explore ==# 'defx'
