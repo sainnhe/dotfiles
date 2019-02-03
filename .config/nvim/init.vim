@@ -1942,6 +1942,11 @@ if g:VIM_LSP_Client ==# 'lcn'
                 \ 'python': ['pyls'],
                 \ 'sh': ['bash-language-server', 'start']
                 \ }
+    " snippets
+    if g:VIM_Snippets ==# 'ultisnips'
+    elseif g:VIM_Snippets ==# 'neosnippet'
+        let g:neosnippet#enable_complete_done = 1
+    endif
     " AutoStart
     let g:LanguageClient_autoStart = 1
     " hoverPreview: Never Auto Always
