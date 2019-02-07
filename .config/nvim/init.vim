@@ -631,6 +631,7 @@ Plug 'acepukas/vim-zenburn'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'sudorook/colorific.vim'
 Plug 'cseelus/vim-colors-tone'
+Plug 'beikome/cosme.vim'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -812,6 +813,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/suda.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+Plug 'airblade/vim-rooter'
 Plug 'ianva/vim-youdao-translater'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'terryma/vim-smooth-scroll'
@@ -1225,6 +1227,13 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'hydrangea'
     endif
     call g:quickmenu#append('hydrangea', 'call SwitchColorScheme("hydrangea")', '', '', 0, '')
+    "}}}
+    "{{{cosme
+    if g:VIM_Color_Scheme ==# 'cosme'
+        colorscheme cosme
+        let g:lightline.colorscheme = 'vice'
+    endif
+    call g:quickmenu#append('cosme', 'call SwitchColorScheme("cosme")', '', '', 0, '')
     "}}}
     "{{{srcery
     if g:VIM_Color_Scheme ==# 'srcery'
