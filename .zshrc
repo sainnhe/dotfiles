@@ -40,7 +40,7 @@ alias download-youtube-subtitles='bash ~/Scripts/download-youtube-subtitles.sh'
 alias CLEAN='bash ~/Scripts/CLEAN.sh'
 alias switch-v2ray='sudo bash ~/Scripts/v2ray/v2ray_switch.sh'
 alias gsconnect='bash ~/Scripts/gsconnect.sh'
-alias roll='bash ~/Scripts/roll.sh'
+alias roll='zplug update && bash ~/Scripts/roll.sh'
 alias zip-r='bash ~/Scripts/zip.sh'
 alias tmux-help='bash ~/Scripts/tmux-help.sh'
 # }}}
