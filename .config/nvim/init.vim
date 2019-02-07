@@ -577,7 +577,6 @@ if !has('nvim') && has('python3')
 endif
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
-Plug 'ryanoasis/vim-devicons'
 "}}}
 " User Interface
 "{{{themes
@@ -837,6 +836,7 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 " Entertainment
 Plug 'mattn/vim-starwars', { 'on': 'StarWars' }
 "{{{
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 "}}}
 "}}}
@@ -951,6 +951,15 @@ function! PomodoroStatus() abort
         return ''
     endif
 endfunction
+" devicons
+function! Devicons_Filetype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'no ft') : ''
+    " return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! Devicons_Fileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
 "}}}
 set laststatus=2  " Basic
 set noshowmode  " Disable show mode info
@@ -985,13 +994,13 @@ elseif g:VIM_Linter ==# 'neomake'
 endif
 let g:lightline.active = {
             \ 'left': [ [ 'mode', 'paste' ],
-            \           [ 'readonly', 'filename', 'modified', 'fileformat', 'filetype' ]],
+            \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ]],
             \ 'right': [ [ 'lineinfo' ],
             \            g:Lightline_StatusIndicators,
             \            g:Lightline_Linter
             \] }
 let g:lightline.inactive = {
-            \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'filetype', 'filesize' ]],
+            \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
             \ 'right': [ [ 'lineinfo', 'percent' ] ] }
 let g:lightline.tabline = {
             \ 'left': [ [ 'vim_logo', 'tabs' ] ],
@@ -1040,6 +1049,8 @@ let g:lightline.component = {
             \ 'winnr': '%{winnr()}' }
 let g:lightline.component_function = {
             \ 'gitbranch': 'gitbranch#name',
+            \ 'devicons_filetype': 'Devicons_Filetype',
+            \ 'devicons_fileformat': 'Devicons_Fileformat',
             \}
 let g:lightline.component_expand = {
             \ 'neomake_infos': 'lightline#neomake#infos',
@@ -1837,7 +1848,7 @@ let g:indentLine_enabled = 1
 let g:indentLine_leadingSpaceEnabled = 0
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 2
-let g:indentLine_char = '¦'  " ¦┆│⎸ ▏
+let g:indentLine_char = "\ue621"  " ¦┆│⎸ ▏  e621
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_fileTypeExclude = g:ExcludeIndentFileType_Universal + g:ExcludeIndentFileType_Special
 " let g:indentLine_setColors = 0  " disable set grey by default, use colorscheme instead
@@ -3174,6 +3185,7 @@ function! s:nerdtree_mappings() abort
 endfunction
 augroup NERDTreeAu
     autocmd!
+    autocmd FileType nerdtree setlocal signcolumn=no
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -3181,8 +3193,10 @@ augroup NERDTreeAu
 augroup END
 let NERDTreeMinimalUI = 1
 let NERDTreeWinSize = 35
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
+let NERDTreeChDirMode = 0
+let g:NERDTreeDirArrowExpandable = "\u00a0"
+let g:NERDTreeDirArrowCollapsible = "\u00a0"
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 " let NERDTreeShowHidden = 1
 "}}}
 "{{{bufexplore
@@ -3661,4 +3675,13 @@ function! Func_vim_json()
     set foldmethod=syntax
     call ToggleIndentGuides()
 endfunction
+"}}}
+"{{{vim-devicons
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[''] = "\uf15b"
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
+let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "}}}
