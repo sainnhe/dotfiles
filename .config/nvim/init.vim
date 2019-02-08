@@ -649,7 +649,11 @@ Plug 'sainnhe/artify.vim'
 
 " Productivity
 if g:VIM_LSP_Client ==# 'lcn'
-    Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'proxychains bash install.sh' }
+    if executable('proxychains')
+        Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'proxychains bash install.sh' }
+    else
+        Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+    endif
 elseif g:VIM_LSP_Client ==# 'vim-lsp'
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
@@ -672,7 +676,11 @@ elseif g:VIM_Snippets ==# 'coc-snippets'
 endif
 if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains bash ./install.sh' }
+    if executable('proxychains')
+        Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains bash ./install.sh' }
+    else
+        Plug 'tbodt/deoplete-tabnine', { 'do': 'bash ./install.sh' }
+    endif
     Plug 'ozelentok/deoplete-gtags', { 'on': [] }
     Plug 'Shougo/neco-syntax'
     Plug 'Shougo/neoinclude.vim'
@@ -733,7 +741,11 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
 elseif g:VIM_Completion_Framework ==# 'coc'
     Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
     Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
-    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'proxychains yarn install'}
+    if executable('proxychains')
+        Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'proxychains yarn install'}
+    else
+        Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install'}
+    endif
     Plug 'neoclide/coc-denite'
     Plug 'iamcco/coc-action-source.nvim'
 elseif g:VIM_Completion_Framework ==# 'neocomplete'
@@ -819,8 +831,10 @@ if g:VIM_Enable_TmuxLine == 0
     Plug 'rmolin88/pomodoro.vim'
 endif
 Plug 'lambdalisue/vim-manpager'
-Plug 'lilydjwg/fcitx.vim', { 'on': [] }
-            \| au InsertEnter * call plug#load('fcitx.vim')
+if executable('fcitx')
+    Plug 'lilydjwg/fcitx.vim', { 'on': [] }
+                \| au InsertEnter * call plug#load('fcitx.vim')
+endif
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
             \| au BufNewFile,BufRead *.html,*.css call Func_emmet_vim()
 Plug 'gko/vim-coloresque', { 'for': ['html', 'css'] }
