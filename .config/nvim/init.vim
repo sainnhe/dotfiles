@@ -21,6 +21,7 @@ endif
 "{{{Todo
 " https://github.com/search?p=21&q=vim&ref=opensearch&s=stars&type=Repositories
 " https://github.com/search?q=vim+color&ref=opensearch&s=stars
+" https://github.com/search?p=16&q=vim+color+NOT+dotfiles+NOT+config+stars%3A1..100&ref=opensearch&s=stars&type=Repositories
 "}}}
 let g:VIM_LSP_Client = 'none'  " lcn vim-lsp none
 let g:VIM_Snippets = 'coc-snippets'  " ultisnips neosnippet coc-snippets
@@ -629,9 +630,10 @@ Plug '844196/lightline-badwolf.vim'
 Plug 'jnurmine/Zenburn'
 Plug 'acepukas/vim-zenburn'
 Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'sudorook/colorific.vim'
 Plug 'cseelus/vim-colors-tone'
 Plug 'beikome/cosme.vim'
+Plug 'machakann/vim-colorscheme-imas'
+Plug 'Marfisc/vorange'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1116,7 +1118,21 @@ if g:VIM_Enable_TmuxLine == 1
 endif
 "}}}
 "{{{colorscheme
-let g:VIM_Color_Scheme = 'material-light'
+"{{{Functions
+"{{{SwitchColorScheme()
+function! SwitchColorScheme(name)
+    let g:VIM_Color_Scheme = a:name
+    call ColorScheme()
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+    if g:VIM_Enable_TmuxLine == 1
+        execute 'Tmuxline lightline'
+    endif
+endfunction
+"}}}
+"}}}
+let g:VIM_Color_Scheme = 'imas'
 if g:VIM_Enable_TmuxLine == 1
     " dark: darcula tender hydrangea vice archery material-dark snow-dark
     " light: github pencil material-light snow_light
@@ -1231,16 +1247,25 @@ function! ColorScheme()
     "{{{cosme
     if g:VIM_Color_Scheme ==# 'cosme'
         colorscheme cosme
-        let g:lightline.colorscheme = 'vice'
+        let g:lightline.colorscheme = 'colored_drk'
     endif
     call g:quickmenu#append('cosme', 'call SwitchColorScheme("cosme")', '', '', 0, '')
     "}}}
     "{{{srcery
     if g:VIM_Color_Scheme ==# 'srcery'
+        set background=dark
         colorscheme srcery
         let g:lightline.colorscheme = 'srcery'
     endif
     call g:quickmenu#append('srcery', 'call SwitchColorScheme("srcery")', '', '', 0, '')
+    "}}}
+    "{{{vorange
+    if g:VIM_Color_Scheme ==# 'vorange'
+        set background=dark
+        colorscheme vorange
+        let g:lightline.colorscheme = 'vorange_alter'
+    endif
+    call g:quickmenu#append('vorange', 'call SwitchColorScheme("vorange")', '', '', 0, '')
     "}}}
     "{{{sacredforest
     if g:VIM_Color_Scheme ==# 'sacredforest'
@@ -1346,14 +1371,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu")', '', '', 0, '')
     "}}}
-    "{{{colorific
-    if g:VIM_Color_Scheme ==# 'colorific'
-        let g:colorific_style = 'light'
+    "{{{imas
+    if g:VIM_Color_Scheme ==# 'imas'
         set background=light
-        colorscheme colorific
+        colorscheme imas
         let g:lightline.colorscheme = 'one'
     endif
-    call g:quickmenu#append('colorific', 'call SwitchColorScheme("colorific")', '', '', 0, '')
+    call g:quickmenu#append('imas', 'call SwitchColorScheme("imas")', '', '', 0, '')
     "}}}
     "{{{inkstained
     if g:VIM_Color_Scheme ==# 'inkstained'
@@ -1689,18 +1713,6 @@ function! InitBG()
     endif
 endfunction
 call InitBG()
-"}}}
-"{{{SwitchColorScheme()
-function! SwitchColorScheme(name)
-    let g:VIM_Color_Scheme = a:name
-    call ColorScheme()
-    call lightline#init()
-    call lightline#colorscheme()
-    call lightline#update()
-    if g:VIM_Enable_TmuxLine == 1
-        execute 'Tmuxline lightline'
-    endif
-endfunction
 "}}}
 "{{{TransparentBG()
 function! TransparentBG()
