@@ -18,11 +18,6 @@ else
     let g:VIM_Enable_Startify = 1
 endif
 "}}}
-"{{{Todo
-" https://github.com/search?p=21&q=vim&ref=opensearch&s=stars&type=Repositories
-" https://github.com/search?q=vim+color&ref=opensearch&s=stars
-" https://github.com/search?p=16&q=vim+color+NOT+dotfiles+NOT+config+stars%3A1..100&ref=opensearch&s=stars&type=Repositories
-"}}}
 let g:VIM_LSP_Client = 'none'  " lcn vim-lsp none
 let g:VIM_Snippets = 'coc-snippets'  " ultisnips neosnippet coc-snippets
 let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc
