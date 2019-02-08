@@ -1132,7 +1132,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'imas'
+let g:VIM_Color_Scheme = 'cosme'
 if g:VIM_Enable_TmuxLine == 1
     " dark: darcula tender hydrangea vice archery material-dark snow-dark
     " light: github pencil material-light snow_light
@@ -1247,7 +1247,7 @@ function! ColorScheme()
     "{{{cosme
     if g:VIM_Color_Scheme ==# 'cosme'
         colorscheme cosme
-        let g:lightline.colorscheme = 'colored_drk'
+        let g:lightline.colorscheme = 'colored_dark'
     endif
     call g:quickmenu#append('cosme', 'call SwitchColorScheme("cosme")', '', '', 0, '')
     "}}}
@@ -1263,7 +1263,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'vorange'
         set background=dark
         colorscheme vorange
-        let g:lightline.colorscheme = 'vorange_alter'
+        let g:lightline.colorscheme = 'srcery_alter'
     endif
     call g:quickmenu#append('vorange', 'call SwitchColorScheme("vorange")', '', '', 0, '')
     "}}}

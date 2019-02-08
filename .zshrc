@@ -68,7 +68,7 @@ zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/pass", from:oh-my-zsh
 zplug load
-fast-theme q-jmnemonic > /dev/null
+fast-theme clean > /dev/null
 # {{{zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 bindkey '^l' autosuggest-accept
