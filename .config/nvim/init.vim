@@ -627,7 +627,6 @@ Plug 'acepukas/vim-zenburn'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'cseelus/vim-colors-tone'
 Plug 'beikome/cosme.vim'
-Plug 'machakann/vim-colorscheme-imas'
 Plug 'Marfisc/vorange'
 "}}}
 Plug 'itchyny/lightline.vim'
@@ -1379,14 +1378,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'ayu_light'
     endif
     call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu")', '', '', 0, '')
-    "}}}
-    "{{{imas
-    if g:VIM_Color_Scheme ==# 'imas'
-        set background=light
-        colorscheme imas
-        let g:lightline.colorscheme = 'one'
-    endif
-    call g:quickmenu#append('imas', 'call SwitchColorScheme("imas")', '', '', 0, '')
     "}}}
     "{{{inkstained
     if g:VIM_Color_Scheme ==# 'inkstained'
