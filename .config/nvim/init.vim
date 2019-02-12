@@ -739,9 +739,9 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
     Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
     if executable('proxychains')
-        Plug 'neoclide/coc.nvim', {'do': 'proxychains yarn install'}
+        Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'proxychains yarn install'}
     else
-        Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
+        Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install'}
     endif
     Plug 'neoclide/coc-denite'
     Plug 'iamcco/coc-action-source.nvim'
