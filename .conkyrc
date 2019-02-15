@@ -1,0 +1,92 @@
+######################
+# - Conky settings - #
+######################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 1
+if_up_strictness link
+
+imlib_cache_size 0
+double_buffer yes
+no_buffers yes
+
+format_human_readable
+
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont Liberation Sans:size=12
+override_utf8_locale yes
+text_buffer_size 2048
+
+#############################
+# - Window specifications - #
+#############################
+own_window_class Conky
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_argb_value 200
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+alignment middle_right
+gap_x 36
+gap_y 0
+minimum_size 500 1000
+maximum_width 500
+
+default_bar_size 60 8
+
+#########################
+# - Graphics settings - #
+#########################
+draw_shades no
+
+default_color cccccc
+
+color0 white
+# color1 30B6BF
+color1 a8cbfd #显示数据的颜色
+color2 white
+color3 0E97B9
+color4 a8cbfd #logo的颜色
+
+TEXT
+${voffset 55}${font Liberation Sans:style=Bold:size=16}SYSTEM $stippled_hr${font}
+##############
+# - SYSTEM - #
+##############
+${color4}${voffset 20}${offset 20}${font ConkyColorsLogos:size=16}a${font}${color}${voffset -60}
+${color0}${font ConkyColors:size=32}b${font}${color}
+${goto 100}${voffset -90}Kernel: ${alignr}${color2}${kernel}${color}
+${goto 100}Uptime: ${alignr}${color2}${uptime}${color}
+# |--CPU
+${voffset 20}${color0}${font ConkyColors:size=32}c${font}${color}${voffset -50}${goto 100}CPU1: ${font Liberation Sans:style=Bold:size=12}${color1}${cpu cpu1}%${color}${font} ${alignr}${color2}${cpugraph cpu1 18,160 4080FF 0E97B9}${color}
+${goto 100}CPU2: ${font Liberation Sans:style=Bold:size=12}${color1}${cpu cpu2}%${color}${font} ${alignr}${color2}${cpugraph cpu2 18,160 4080FF 0E97B9}${color}
+${goto 100}CPU3: ${font Liberation Sans:style=Bold:size=12}${color1}${cpu cpu3}%${color}${font} ${alignr}${color2}${cpugraph cpu3 18,160 4080FF 0E97B9}${color}
+${goto 100}CPU4: ${font Liberation Sans:style=Bold:size=12}${color1}${cpu cpu4}%${color}${font} ${alignr}${color2}${cpugraph cpu4 18,160 4080FF 0E97B9}${color}
+# |--MEM
+${color0}${font ConkyColors:size=32}g${font}${color}${goto 100}${voffset -35}RAM: ${font Liberation Sans:style=Bold:size=12}${color1}$memperc%${color}${font}${alignr}${color0}${membar 18,160}
+${voffset 10}${color}${goto 100}F: ${font Liberation Sans:style=Bold:size=12}${color2}${memeasyfree}${offset 76}${color}${font} U: ${font Liberation Sans:style=Bold:size=12}${color2}${mem}${color}${font}
+###############
+# - NETWORK - #
+###############
+${voffset 10}${font Liberation Sans:style=Bold:size=16}NETWORK $stippled_hr${font}
+# |--wlp1s0
+${if_up wlp1s0}
+${voffset -30}${color0}${font ConkyColors:size=32}s${font}${color}${goto 100}${voffset -50}Up: ${font Liberation Sans:style=Bold:size=11}${color1}${upspeed wlp1s0}${color}${font} ${alignr}${color2}${upspeedgraph wlp1s0 18,160 4080FF 0E97B9}${color}
+${goto 100}${voffset -7}Total: ${font Liberation Sans:style=Bold:size=11}${color2}${totalup wlp1s0}${color}${font}
+${voffset 20}${color0}${font ConkyColors:size=32}t${font}${color}${goto 100}${voffset -50}Down: ${font Liberation Sans:style=Bold:size=11}${color1}${downspeed wlp1s0}${color}${font} ${alignr}${color2}${downspeedgraph wlp1s0 18,160 4080FF 0E97B9}${color}
+${goto 100}${voffset -7}Total: ${font Liberation Sans:style=Bold:size=11}${color2}${totaldown wlp1s0}${color}${font}
+${voffset 20}${color0}${font ConkyColors:size=32}j${font}${color}${voffset -35}${goto 100}Signal: ${font Liberation Sans:style=Bold:size=12}${color1}${wireless_link_qual_perc wlp1s0}%${color}${font} ${alignr}${color2}${wireless_link_bar 18,160 wlp1s0}${color}
+${voffset 40}${color0}${font ConkyColors:size=32}B${font}${color}${goto 100}${voffset -35}Local IP: ${alignr}${color2}${addr wlp1s0}${color}
+# |--lo
+${else}${if_up lo}
+${voffset -30}${color0}${font ConkyColors:size=32}s${font}${color}${goto 100}${voffset -50}Up: ${font Liberation Sans:style=Bold:size=11}${color1}${upspeed lo}${color}${font} ${alignr}${color2}${upspeedgraph lo 18,160 4080FF 0E97B9}${color}
+${goto 100}${voffset -7}Total: ${font Liberation Sans:style=Bold:size=11}${color2}${totalup lo}${color}${font}
+${voffset 20}${color0}${font ConkyColors:size=32}t${font}${color}${goto 100}${voffset -50}Down: ${font Liberation Sans:style=Bold:size=11}${color1}${downspeed lo}${color}${font} ${alignr}${color2}${downspeedgraph lo 18,160 4080FF 0E97B9}${color}
+${goto 100}${voffset -7}Total: ${font Liberation Sans:style=Bold:size=11}${color2}${totaldown lo}${color}${font}
+${voffset 40}${color0}${font ConkyColors:size=32}B${font}${color}${goto 100}${voffset -35}Local IP: ${alignr}${color2}${addr lo}${color}${endif}${endif}
