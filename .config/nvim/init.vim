@@ -810,6 +810,8 @@ Plug 'majutsushi/tagbar', { 'on': [] }
 Plug 'lvht/tagbar-markdown', { 'on': [] }
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'albertomontesg/lightline-asyncrun'
 Plug 'mg979/vim-visual-multi', {'branch': 'test'}
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
@@ -1004,30 +1006,32 @@ elseif g:VIM_Linter ==# 'neomake'
 endif
 let g:lightline.active = {
             \ 'left': [ [ 'mode', 'paste' ],
-            \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ]],
+            \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
             \ 'right': [ [ 'lineinfo' ],
-            \            g:Lightline_StatusIndicators,
-            \            g:Lightline_Linter
-            \] }
+            \            g:Lightline_StatusIndicators + g:Lightline_Linter,
+            \           [ 'asyncrun_status' ] ]
+            \ }
 let g:lightline.inactive = {
             \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
-            \ 'right': [ [ 'lineinfo', 'percent' ] ] }
+            \ 'right': [ [ 'lineinfo', 'percent' ] ]
+            \ }
 let g:lightline.tabline = {
             \ 'left': [ [ 'vim_logo', 'tabs' ] ],
             \ 'right': [ [ 'close' ],
-            \ [ 'gitbranch' ]
-            \ ] }
+            \ [ 'gitbranch' ] ]
+            \ }
 let g:lightline.tab = {
             \ 'active': [ 'nicetabnum', 'filename', 'modified' ],
             \ 'inactive': [ 'nicetabnum', 'filename', 'modified' ] }
 let g:lightline.tab_component = {
-            \}
+            \ }
 let g:lightline.tab_component_function = {
             \ 'nicetabnum': 'NiceTabNum',
             \ 'filename': 'lightline#tab#filename',
             \ 'modified': 'lightline#tab#modified',
             \ 'readonly': 'lightline#tab#readonly',
-            \ 'tabnum': 'lightline#tab#tabnum' }
+            \ 'tabnum': 'lightline#tab#tabnum'
+            \ }
 let g:lightline.component = {
             \ 'bufinfo': '%{bufname("%")}:%{bufnr("%")}',
             \ 'obsession': '%{ObsessionStatusEnhance()}',
@@ -1056,12 +1060,13 @@ let g:lightline.component = {
             \ 'line': '%l',
             \ 'column': '%c',
             \ 'close': '%999X X ',
-            \ 'winnr': '%{winnr()}' }
+            \ 'winnr': '%{winnr()}'
+            \ }
 let g:lightline.component_function = {
             \ 'gitbranch': 'gitbranch#name',
             \ 'devicons_filetype': 'Devicons_Filetype',
-            \ 'devicons_fileformat': 'Devicons_Fileformat',
-            \}
+            \ 'devicons_fileformat': 'Devicons_Fileformat'
+            \ }
 let g:lightline.component_expand = {
             \ 'neomake_infos': 'lightline#neomake#infos',
             \ 'neomake_warnings': 'lightline#neomake#warnings',
@@ -1075,6 +1080,7 @@ let g:lightline.component_expand = {
             \ 'linter_warnings': 'lightline#ale#warnings',
             \ 'linter_errors': 'lightline#ale#errors',
             \ 'linter_ok': 'lightline#ale#ok',
+            \ 'asyncrun_status': 'lightline#asyncrun#status'
             \ }
 let g:lightline.component_type = {
             \ 'neomake_warnings': 'warning',
@@ -1087,7 +1093,7 @@ let g:lightline.component_type = {
             \ 'linter_checking': 'middle',
             \ 'linter_warnings': 'warning',
             \ 'linter_errors': 'error',
-            \ 'linter_ok': 'middle',
+            \ 'linter_ok': 'middle'
             \ }
 "}}}
 "{{{tmuxline.vim
@@ -3426,6 +3432,10 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
+"}}}
+"{{{async.vim
+let g:lightline#asyncrun#indicator_none = ''
+let g:lightline#asyncrun#indicator_run = 'Running...'
 "}}}
 "{{{vim-visual-multi
 "{{{vim-visual-multi-usage
