@@ -29,6 +29,7 @@ if exists('*VIM_Global_Settings')
 endif
 let g:VIM_AutoInstall = 1
 let g:VIM_TmuxLineSync = 0
+let g:VIM_Enable_Autopairs = 1
 let g:VIM_C_LSP = 'ccls'  " clangd cquery ccls
 "}}}
 "{{{VimConfig
@@ -303,8 +304,6 @@ nnoremap <S-right> <Esc>$
 nnoremap x "_x
 " Ctrl+X剪切当前行
 nnoremap <C-X> <ESC>"_dd
-" Alt+Backspace从当前位置删除到行开头
-nnoremap <A-BS> <Esc><left>v0"_d
 " Alt+T新建tab
 nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call NerdtreeStartify()<CR>
 " Alt+W关闭当前标签
@@ -368,8 +367,6 @@ inoremap <C-Z> <ESC>ua
 inoremap <C-R> <ESC><C-R>a
 " Ctrl+X剪切当前行
 inoremap <C-X> <ESC>"_ddi
-" Alt+Backspace从当前位置删除到行开头
-inoremap <A-BS> <Esc>v0"_dI
 " Shift加方向键加速移动
 inoremap <S-up> <up><up><up><up><up>
 inoremap <S-down> <down><down><down><down><down>
@@ -819,13 +816,17 @@ Plug 'Shougo/unite.vim', { 'on': [] }
 Plug 'thinca/vim-qfreplace', { 'on': [] }
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/suda.vim'
-Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-rooter'
 Plug 'ianva/vim-youdao-translater'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'metakirby5/codi.vim'
+if g:VIM_Enable_Autopairs == 1
+    Plug 'jiangmiao/auto-pairs'
+elseif g:VIM_Completion_Framework !=# 'coc'
+    Plug 'Shougo/neopairs.vim'
+endif
 if g:VIM_Enable_TmuxLine == 0
     Plug 'rmolin88/pomodoro.vim'
 endif
@@ -2234,6 +2235,7 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     augroup Deoplete_Au
         autocmd!
         autocmd InsertEnter * call deoplete#enable()
+        autocmd InsertEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
     call deoplete#custom#option({
                 \ 'auto_complete_delay': 0,
@@ -2252,7 +2254,6 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     if g:VIM_Snippets ==# 'ultisnips'
         let g:UltiSnipsExpandTrigger            = '<C-j>'
     endif
-    inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     inoremap <silent><expr> <S-TAB>
                 \ pumvisible() ? "\<C-p>" :
                 \ <SID>check_back_space() ? "\<S-TAB>" :
@@ -2351,9 +2352,9 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
         autocmd!
         autocmd BufEnter * call ncm2#enable_for_buffer()
         autocmd TextChangedI * call ncm2#auto_trigger()  " enable auto complete for `<backspace>`, `<c-w>` keys
+        autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     augroup END
     set completeopt=noinsert,menuone,noselect
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Plug>(ncm2_manual_trigger)\<C-n>"
     inoremap <expr> <up> pumvisible() ? "\<C-y>\<up>" : "\<up>"
     inoremap <expr> <down> pumvisible() ? "\<C-y>\<down>" : "\<down>"
@@ -2373,7 +2374,6 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     call g:quickmenu#append('# Asyncomplete', '')
     "}}}
 elseif g:VIM_Completion_Framework ==# 'asyncomplete'
-    inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Plug>(asyncomplete_force_refresh)\<C-n>"
     inoremap <expr> <up> pumvisible() ? "\<C-y>\<up>" : "\<up>"
     inoremap <expr> <down> pumvisible() ? "\<C-y>\<down>" : "\<down>"
@@ -2391,6 +2391,7 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     augroup Asyncomplete_Au
         autocmd!
         autocmd InsertEnter * call Asyncomplete_Register()
+        autocmd InsertEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
     function! Asyncomplete_Register()
         call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
@@ -2511,13 +2512,16 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \   'coc-emmet', 'coc-pyls',
                 \   'coc-jest', 'coc-json'
                 \   )
+    if g:VIM_Enable_Autopairs == 0
+        call coc#add_extension( 'coc-pairs' )
+    endif
     "}}}
     "{{{coc-settings
     augroup CocAu
         autocmd!
         autocmd CursorHoldI,CursorMovedI * call CocActionAsync('showSignatureHelp')
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-        autocmd InsertEnter * call CocMapping()
+        autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     augroup END
     set completeopt=noinsert,noselect,menuone
     highlight CocErrorHighlight ctermfg=Gray guifg=#8d8d8d
@@ -2534,10 +2538,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
     imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
     imap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
-    function! CocMapping()
-        inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-        inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
-    endfunction
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
     "}}}
     "}}}
     "{{{neocomplete.vim
@@ -2555,12 +2556,12 @@ elseif g:VIM_Completion_Framework ==# 'neocomplete'
         autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        autocmd InsertEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
     let g:tmuxcomplete#trigger = ''
     if g:VIM_Snippets ==# 'ultisnips'
         imap <expr> <C-j> pumvisible() ? "\<A-z>\`\`\l" : "\<C-j>"
     endif
-    inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : neocomplete#start_manual_complete()."\<C-n>"
     inoremap <expr> <up> pumvisible() ? neocomplete#smart_close_popup()."\<up>" : "\<up>"
     inoremap <expr> <down> pumvisible() ? neocomplete#smart_close_popup()."\<down>" : "\<down>"
@@ -3599,26 +3600,6 @@ nmap <silent> <Leader>b? :<C-u>call Help_vim_bookmarks()<CR>
 command! -nargs=1 E  edit  suda://<args>
 command W w suda://%
 "}}}
-"{{{auto-pairs
-"{{{auto-pairs-usage
-" 主quickmenu
-function! Help_auto_pairs()
-    echo '插入模式下：'
-    echo '<A-z><A-w>  fast wrap'
-    echo '<A-n>  jump to next closed pair'
-    echo '<A-z>[key]  不pairs'
-endfunction
-"}}}
-let g:AutoPairsShortcutToggle = '<A-z>`asdxcvdsf'
-let g:AutoPairsShortcutFastWrap = '<A-z><A-w>'
-let g:AutoPairsShortcutJump = '<A-n>'
-inoremap <A-z>' '
-inoremap <A-z>" "
-inoremap <A-z>[ [
-inoremap <A-z>{ {
-inoremap <A-z>( (
-inoremap <A-z><Backspace> <Backspace>
-"}}}
 "{{{vim-surround
 "{{{vim-surround-usage
 " 主quickmenu
@@ -3666,6 +3647,42 @@ nnoremap <silent> J zz:<C-u>call smooth_scroll#down(&scroll, 10, 1)<CR>
 let g:codi#width = 40
 let g:codi#rightsplit = 1
 let g:codi#rightalign = 0
+"}}}
+"{{{auto-pairs
+if g:VIM_Enable_Autopairs == 1
+    "{{{auto-pairs-usage
+    " 主quickmenu
+    function! Help_auto_pairs()
+        echo '插入模式下：'
+        echo '<A-z>p  toggle auto-pairs'
+        echo '<A-n>  jump to next closed pair'
+        echo '<A-Backspace>  delete without pairs'
+        echo '<A-z>[key]  insert without pairs'
+    endfunction
+    "}}}
+    let g:AutoPairsShortcutToggle = '<A-z>p'
+    let g:AutoPairsShortcutFastWrap = '<A-z>`sadsfvf'
+    let g:AutoPairsShortcutJump = '<A-n>'
+    let g:AutoPairsWildClosedPair = ''
+    let g:AutoPairsMultilineClose = 0
+    let g:AutoPairsFlyMode = 0
+    let g:AutoPairsMapCh = 0
+    inoremap <A-z>' '
+    inoremap <A-z>" "
+    inoremap <A-z>` `
+    inoremap <A-z>( (
+    inoremap <A-z>[ [
+    inoremap <A-z>{ {
+    inoremap <A-z>) )
+    inoremap <A-z>] ]
+    inoremap <A-z>} }
+    inoremap <A-Backspace> <Space><Esc><left>"_xa<Backspace>
+    " imap <A-Backspace> <A-z>p<Backspace><A-z>p
+    augroup AutoPairsAu
+        autocmd!
+        " au Filetype html let b:AutoPairs = {"<": ">"}
+    augroup END
+endif
 "}}}
 "{{{pomodoro.vim
 if g:VIM_Enable_TmuxLine == 0
