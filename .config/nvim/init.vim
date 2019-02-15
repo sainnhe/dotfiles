@@ -3378,7 +3378,25 @@ endfunction
 "{{{neoformat-usage
 function! Help_neoformat()
     echo '<leader><Tab>  普通模式和可视模式排版'
-    echo '<leader><S-Tab>  普通模式和可视模式自定义排版'
+    echo ''
+    echo 'Normal Mode Syntax'
+    echo ':<C-u>Neoformat python'
+    echo ':<C-u>Neoformat yapf'
+    echo ''
+    echo 'Visual Mode Syntax'
+    echo ':Neoformat! python'
+    echo ':Neoformat! yapf'
+endfunction
+"}}}
+"{{{Neoformat_Default_Filetype_Formatter
+function! Neoformat_Default_Filetype_Formatter()
+    if &filetype ==# 'c'
+        execute 'Neoformat astyle'
+    elseif &filetype ==# 'cpp'
+        execute 'Neoformat astyle'
+    else
+        execute 'Neoformat'
+    endif
 endfunction
 "}}}
 " :h neoformat-supported-filetypes
@@ -3393,10 +3411,8 @@ let g:neoformat_basic_format_align = 1
 let g:neoformat_basic_format_retab = 1
 " Enable trimmming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
-nnoremap <silent> <leader><Tab> :<C-u>Neoformat<CR>
+nnoremap <silent> <leader><Tab> :<C-u>call Neoformat_Default_Filetype_Formatter()<CR>
 vnoremap <silent> <leader><Tab> :Neoformat! &ft<CR>
-nnoremap <silent> <leader><S-Tab> :<C-u>Neoformat
-vnoremap <silent> <leader><S-Tab> :Neoformat! &ft
 "}}}
 "{{{nerdcommenter
 "{{{nerdcommenter-usage
