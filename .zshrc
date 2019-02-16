@@ -45,11 +45,12 @@ alias zip-r='bash ~/Scripts/zip.sh'
 alias tmux-help='bash ~/Scripts/tmux-help.sh'
 # }}}
 # {{{manpager
-if [[ "$nvim_exist" == "yes" ]]; then
-    export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
-elif [[ "$nvim_exist" == "no" ]]; then
-    export MANPAGER="vim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
-fi
+# if [[ "$nvim_exist" == "yes" ]]; then
+#     export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
+# elif [[ "$nvim_exist" == "no" ]]; then
+#     export MANPAGER="vim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
+# fi
+export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 # }}}
 # }}}
 # {{{Plugins

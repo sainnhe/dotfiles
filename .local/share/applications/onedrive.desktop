@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=OneDrive
+Exec=chromium --app=https://onedrive.live.com/
+Icon=/usr/share/icons/Numix-Circle/48/apps/onedrive.svg
+Categories=Office;Education;

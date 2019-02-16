@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Netease Cloud Music
+Icon=google-music
+Exec=chromium --app=https://music.163.com/ --no-proxy-server
+Type=Application
+Terminal=falie
+Categories=GNOME;GTK;Network;
+StartupNotify=true

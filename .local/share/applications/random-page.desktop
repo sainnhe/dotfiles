@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Random Page
+Exec=chromium --new-window http://vim.wikia.com/wiki/Special:Random https://wiki.archlinux.org/index.php/Special:Random
+Icon=/usr/share/icons/Arc-X-P/status/128@2x/dialog-question.png
+Categories=Network;

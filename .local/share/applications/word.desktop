@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Word
+Exec=chromium --app=https://office.live.com/start/Word.aspx?omkt=en&auth=1&nf=1
+Icon=/usr/share/icons/Griffin-Mono-v3.5/scalable/apps/ms-word.svg
+Categories=Office;Education;
