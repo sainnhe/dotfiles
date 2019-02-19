@@ -20,6 +20,8 @@ pacman_setup_func() {
     pacman -S --noconfirm go &> /dev/null
     echo "installing lua..."
     pacman -S --noconfirm lua &> /dev/null
+    echo "installing xorg-xmodmap..."
+    pacman -S --noconfirm xorg-xmodmap &> /dev/null
     echo "installing nnn..."
     pacman -S --noconfirm nnn &> /dev/null
     echo "installing boost..."

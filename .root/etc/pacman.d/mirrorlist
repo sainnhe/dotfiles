@@ -4,7 +4,7 @@
 ##
 
 ##Archive
-#Server=https://archive.archlinux.org/repos/2018/09/04/$repo/os/$arch
+# Server=https://archive.archlinux.org/repos/2019/02/15/$repo/os/$arch
 Server=https://archive.archlinux.org/repos/last/$repo/os/$arch
 
 ## Worldwide

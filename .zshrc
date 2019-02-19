@@ -16,6 +16,12 @@ export TERM=xterm-256color
 export PATH="$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
 export TERM_Emulator=$(ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))")
 # }}}
+# {{{Mappings
+xmodmap_exist=$(test_cmd xmodmap)
+if [[ "$xmodmap_exist" == "yes" ]]; then
+    xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+fi
+# }}}
 # {{{Settings
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=999999999
