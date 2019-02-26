@@ -1145,7 +1145,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'cosme'
+let g:VIM_Color_Scheme = 'neodark'
 if g:VIM_Enable_TmuxLine == 1
     " dark: darcula tender hydrangea vice archery material-dark snow-dark
     " light: github pencil material-light snow_light
@@ -2516,7 +2516,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \   g:Coc_Snippet, 'coc-tag',
                 \   'coc-html', 'coc-css',
                 \   'coc-emmet', 'coc-pyls',
-                \   'coc-jest', 'coc-json'
+                \   'coc-jest', 'coc-json',
+                \   'coc-yaml'
                 \   )
     if g:VIM_Enable_Autopairs == 0
         call coc#add_extension( 'coc-pairs' )

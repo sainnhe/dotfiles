@@ -92,10 +92,6 @@
             "filetypes": ["sh"],
             "args": ["start"]
         },
-        "yaml": {
-            "command": "yaml-language-server",
-            "filetypes": ["yaml"]
-        },
         "MPLS": {
             "command": "dotnet",
             "args": ["exec", "/home/sainnhe/.cache/python-language-server/output/bin/Release/Microsoft.Python.LanguageServer.dll"],
