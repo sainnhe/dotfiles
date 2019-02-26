@@ -43,6 +43,7 @@ alias gsconnect='bash ~/Scripts/gsconnect.sh'
 alias roll='bash ~/Scripts/roll.sh'
 alias zip-r='bash ~/Scripts/zip.sh'
 alias tmux-help='bash ~/Scripts/tmux-help.sh'
+alias browsh='docker run --rm -it browsh/browsh'
 # }}}
 # {{{manpager
 # if [[ "$nvim_exist" == "yes" ]]; then
