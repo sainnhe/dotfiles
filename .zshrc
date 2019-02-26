@@ -29,22 +29,6 @@ zstyle ':completion:*' menu select  # use arrow key for completion
 setopt COMPLETE_ALIASES  # complete alias
 setopt HIST_IGNORE_DUPS  # eliminate duplicate entries in history
 zstyle ':completion::complete:*' gain-privileges 1  # enabling autocompletion of privileged environments in privileged commands
-# {{{alias
-alias ls='ls --color=auto'
-alias CT='bash /home/sainnhe/Scripts/ChangeThemes/CT.sh'
-alias KCT='kcmcolorfulhelper -s -p'
-alias git-proxy='bash /home/sainnhe/Scripts/git-proxy.sh'
-alias bebusy='/home/sainnhe/Scripts/bebusy.py'
-alias youtube-mpv='bash ~/Scripts/youtube-mpv.sh'
-alias download-youtube-subtitles='bash ~/Scripts/download-youtube-subtitles.sh'
-alias CLEAN='bash ~/Scripts/CLEAN.sh'
-alias switch-v2ray='sudo bash ~/Scripts/v2ray/v2ray_switch.sh'
-alias gsconnect='bash ~/Scripts/gsconnect.sh'
-alias roll='bash ~/Scripts/roll.sh'
-alias zip-r='bash ~/Scripts/zip.sh'
-alias tmux-help='bash ~/Scripts/tmux-help.sh'
-alias browsh='docker run --rm -it browsh/browsh'
-# }}}
 # {{{manpager
 # if [[ "$nvim_exist" == "yes" ]]; then
 #     export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
@@ -52,6 +36,32 @@ alias browsh='docker run --rm -it browsh/browsh'
 #     export MANPAGER="vim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 # fi
 export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
+# }}}
+# }}}
+# {{{alias
+alias ls='ls --color=auto'
+alias GCT='bash /home/sainnhe/Scripts/ChangeThemes/GCT.sh'
+alias KCT='kcmcolorfulhelper -s -p'
+alias git-proxy='bash /home/sainnhe/Scripts/git-proxy.sh'
+alias bebusy='/home/sainnhe/Scripts/bebusy.py'
+alias youtube-mpv='bash ~/Scripts/youtube-mpv.sh'
+alias download-youtube-subtitles='bash ~/Scripts/download-youtube-subtitles.sh'
+alias CLEAN='bash ~/Scripts/CLEAN.sh'
+alias switch-v2ray='bash ~/Scripts/v2ray/v2ray_switch.sh'
+alias gsconnect='bash ~/Scripts/gsconnect.sh'
+alias roll='bash ~/Scripts/roll.sh'
+alias zip-r='bash ~/Scripts/zip.sh'
+alias browsh='docker run --rm -it browsh/browsh'
+alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
+# {{{help
+alias help-bleachbit="bash ~/Scripts/help.sh bleachbit.md"
+alias help-gcc="bash ~/Scripts/help.sh gcc.md"
+alias help-git="bash ~/Scripts/help.sh git.md"
+alias help-octave="bash ~/Scripts/help.sh octave.md"
+alias help-pkgman="bash ~/Scripts/help.sh package_manager.md"
+alias help-tmux="bash ~/Scripts/help.sh tmux.md"
+alias help-zipped="bash ~/Scripts/help.sh zipped.md"
+alias help-vim="bash ~/Scripts/help.sh vim.md"
 # }}}
 # }}}
 # {{{Plugins
