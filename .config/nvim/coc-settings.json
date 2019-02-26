@@ -73,7 +73,10 @@
     "coc.source.snippets.loadFromExtensions": true,
     "coc.source.emmet.showExpandedAbbreviation": true,
     "coc.source.emmet.showAbbreviationSuggestions": true,
-    "coc.source.emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact"},
+    "coc.source.emmet.includeLanguages": {
+        "vue-html": "html",
+        "javascript": "javascriptreact"
+    },
     "http.proxy": "",
     "http.proxyStrictSSL": true,
     "languageserver": {
@@ -88,6 +91,10 @@
             "command": "bash-language-server",
             "filetypes": ["sh"],
             "args": ["start"]
+        },
+        "yaml": {
+            "command": "yaml-language-server",
+            "filetypes": ["yaml"]
         },
         "MPLS": {
             "command": "dotnet",

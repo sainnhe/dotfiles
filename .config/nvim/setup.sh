@@ -2,7 +2,7 @@
 # {{{pacman_setup_func()
 pacman_setup_func() {
     echo -n "make sure you have configured proxy and locale correctly. [enter to continue]  "
-    read inputstr
+    read -r
     echo "updating cache..."
     pacman -Syy &> /dev/null
     echo "setting up python provider..."
@@ -83,11 +83,13 @@ pacman_setup_func() {
 # {{{yay_setup_func()
 yay_setup_func() {
     echo -n "make sure you have configured makepkg proxy correctly. [enter to continue]  "
-    read inputstr
+    read -r
     echo -n "install cquery from AUR. [enter to continue]  "
     yay -S cquery-git
     echo -n "install ccls from AUR. [enter to continue]  "
     yay -S ccls
+    echo -n "install yaml-language-server-bin from AUR. [enter to continue]  "
+    yay -S yaml-language-server-bin
     echo -n "install global from AUR. [enter to continue]  "
     yay -S global
     echo -n "install toilet from AUR. [enter to continue]  "

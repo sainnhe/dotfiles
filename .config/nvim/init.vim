@@ -2004,7 +2004,8 @@ if g:VIM_LSP_Client ==# 'lcn'
                 \ 'html': ['html-languageserver', '--stdio'],
                 \ 'json': ['json-languageserver', '--stdio'],
                 \ 'python': ['pyls'],
-                \ 'sh': ['bash-language-server', 'start']
+                \ 'sh': ['bash-language-server', 'start'],
+                \ 'yaml': ['yaml-language-server']
                 \ }
     " snippets
     if g:VIM_Snippets ==# 'ultisnips'
@@ -2161,6 +2162,11 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
                     \ 'name': 'bash-languageserver',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
                     \ 'whitelist': ['sh'],
+                    \ })
+        au User lsp_setup call lsp#register_server({
+                    \ 'name': 'yaml-languageserver',
+                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server']},
+                    \ 'whitelist': ['yaml'],
                     \ })
     augroup END
     nnoremap <silent> l :<C-u>call quickmenu#toggle(4)<CR>
