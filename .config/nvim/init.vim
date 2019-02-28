@@ -1145,7 +1145,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'neodark'
+let g:VIM_Color_Scheme = 'onehalf-dark'
 if g:VIM_Enable_TmuxLine == 1
     " dark: darcula tender hydrangea vice archery material-dark snow-dark
     " light: github pencil material-light snow_light
