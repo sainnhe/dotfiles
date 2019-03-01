@@ -2576,7 +2576,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     augroup END
     set completeopt=noinsert,noselect,menuone
-    highlight CocErrorHighlight ctermfg=Gray guifg=#8d8d8d
+    highlight CocErrorHighlight ctermfg=Gray guifg=#888888
+    highlight CocCodeLens ctermfg=Gray guifg=#888888
     "}}}
     "{{{coc-mappings
     if g:VIM_Snippets ==# 'coc-snippets'
@@ -3226,9 +3227,9 @@ if g:VIM_Linter ==# 'ale'
     let g:ale_virtualtext_prefix = '▸'
     " highlight ALEVirtualTextError ctermfg=Gray guifg=#8d6e6e
     " highlight ALEVirtualTextWarning ctermfg=Gray guifg=#8d816e
-    highlight ALEVirtualTextError ctermfg=Gray guifg=#8d8d8d
-    highlight ALEVirtualTextWarning ctermfg=Gray guifg=#8d8d8d
-    highlight ALEVirtualTextInfo ctermfg=Gray guifg=#8d8d8d
+    highlight ALEVirtualTextError ctermfg=Gray guifg=#888888
+    highlight ALEVirtualTextWarning ctermfg=Gray guifg=#888888
+    highlight ALEVirtualTextInfo ctermfg=Gray guifg=#888888
     highlight link ALEVirtualTextStyleError ALEVirtualTextError
     highlight link ALEVirtualTextStyleWarning ALEVirtualTextWarning
     " ale-mode
