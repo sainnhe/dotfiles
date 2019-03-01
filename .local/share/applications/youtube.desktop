@@ -3,5 +3,5 @@ Version=1.0
 Type=Application
 Name=YouTube
 Exec=chromium --app=https://www.youtube.com
-Icon=YouTube-youtube.com
+Icon=youtube
 Categories=Network;

@@ -3,5 +3,5 @@ Version=1.0
 Type=Application
 Name=Murmur
 Exec=chromium --app=https://asoftmurmur.com/
-Icon=/usr/share/icons/Griffin-Mono-v3.5/scalable/apps/soundcloud.svg
+Icon=soundcloud
 Categories=Network;

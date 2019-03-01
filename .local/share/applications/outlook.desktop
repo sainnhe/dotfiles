@@ -3,5 +3,5 @@ Version=1.0
 Type=Application
 Name=Outlook
 Exec=chromium --app=https://outlook.live.com/
-Icon=/usr/share/icons/Numix-Circle/48/apps/web-outlook.svg
+Icon=outlook
 Categories=Office;Education;

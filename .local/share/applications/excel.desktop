@@ -3,5 +3,5 @@ Version=1.0
 Type=Application
 Name=Excel
 Exec=chromium --app=https://office.live.com/start/Excel.aspx?omkt=en&auth=1&nf=1
-Icon=/usr/share/icons/Griffin-Mono-v3.5/scalable/apps/ms-excel.svg
+Icon=excel
 Categories=Office;Education;
