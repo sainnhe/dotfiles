@@ -53,6 +53,7 @@ alias roll='bash ~/Scripts/roll.sh'
 alias zip-r='bash ~/Scripts/zip.sh'
 alias browsh='docker run --rm -it browsh/browsh'
 alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
+alias net-test="bash ~/Scripts/net-test.sh"
 # {{{help
 alias help-bleachbit="bash ~/Scripts/help.sh bleachbit.md"
 alias help-gcc="bash ~/Scripts/help.sh gcc.md"
