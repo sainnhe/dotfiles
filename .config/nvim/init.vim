@@ -569,6 +569,7 @@ if !has('nvim') && has('python3')
 endif
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
+Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 "}}}
 " User Interface
 "{{{themes
@@ -604,7 +605,6 @@ Plug 'davidklsn/vim-sialoquent'
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'sainnhe/lightline_foobar.vim'
 Plug 'reedes/vim-colors-pencil'
-Plug 'mikker/lightline-theme-pencil'
 Plug 'bcicen/vim-vice'
 Plug 'sainnhe/soft-era-vim'
 Plug 'sts10/vim-pink-moon'
@@ -794,11 +794,11 @@ elseif g:VIM_Linter ==# 'neomake'
     endif
 endif
 Plug 'mcchrish/nnn.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'low-ghost/nerdtree-fugitive'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ivalkeen/nerdtree-execute'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
+Plug 'low-ghost/nerdtree-fugitive', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
+Plug 'ivalkeen/nerdtree-execute', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -806,7 +806,7 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'idanarye/vim-merginal'
 Plug 'sodapopcan/vim-twiggy'
-Plug 'jsfaint/gen_tags.vim'
+Plug 'jsfaint/gen_tags.vim', { 'on': [] }
 Plug 'majutsushi/tagbar', { 'on': [] }
 Plug 'lvht/tagbar-markdown', { 'on': [] }
 Plug 'sbdchd/neoformat'
@@ -3372,6 +3372,7 @@ call g:quickmenu#append('Remove Gtags files', 'ClearGTAGS', 'Remove GTAGS files'
 call g:quickmenu#append('Remove all Gtags files', 'ClearGTAGS', 'Remove all files, include the db directory', '', 0, 'Rg')
 call g:quickmenu#append(' Edit config', 'EditExt', 'Edit an extend configuration file for this project', '', 0, 'e')
 function! InitCtags()
+    call Init_gen_tags()
     execute 'GenCtags'
     if g:VIM_Completion_Framework ==# 'ncm2'
         call plug#load('ncm2-tagprefix')
@@ -3380,6 +3381,7 @@ function! InitCtags()
     endif
 endfunction
 function! InitGtags()
+    call Init_gen_tags()
     execute 'GenGTAGS'
     if g:VIM_Completion_Framework ==# 'deoplete'
         call plug#load('deoplete-gtags')
@@ -3388,15 +3390,18 @@ function! InitGtags()
     endif
 endfunction
 "}}}
-" let g:gen_tags#ctags_opts = '--c++-kinds=+px --c-kinds=+px'
-" let g:gen_tags#gtags_opts = '-c --verbose'
-let g:gen_tags#use_cache_dir = 1  " 0: use project directory to store tags; 1: $HOME/.cache/tags_dir/<project name>
-let g:gen_tags#ctags_auto_gen = 0
-let g:gen_tags#gtags_auto_gen = 0
-let g:gen_tags#ctags_auto_update = 1
-let g:gen_tags#gtags_auto_update = 1
-let g:gen_tags#blacklist = ['$HOME']
-let g:gen_tags#gtags_default_map = 0
+function! Init_gen_tags()
+    call plug#load('gen_tags.vim')
+    " let g:gen_tags#ctags_opts = '--c++-kinds=+px --c-kinds=+px'
+    " let g:gen_tags#gtags_opts = '-c --verbose'
+    let g:gen_tags#use_cache_dir = 1  " 0: use project directory to store tags; 1: $HOME/.cache/tags_dir/<project name>
+    let g:gen_tags#ctags_auto_gen = 0
+    let g:gen_tags#gtags_auto_gen = 0
+    let g:gen_tags#ctags_auto_update = 1
+    let g:gen_tags#gtags_auto_update = 1
+    let g:gen_tags#blacklist = ['$HOME']
+    let g:gen_tags#gtags_default_map = 0
+endfunction
 "}}}
 "{{{tagbar
 nnoremap <silent><A-b> :<C-u>call ToggleTagbar()<CR>
