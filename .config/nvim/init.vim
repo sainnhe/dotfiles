@@ -569,12 +569,12 @@ if !has('nvim') && has('python3')
 endif
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
-Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 "}}}
 " User Interface
 "{{{themes
 Plug 'lilydjwg/colorizer', { 'on': [] }
-Plug 'ajmwagar/vim-deus' | Plug 'nrhodes91/deus_one.vim'
+Plug 'sainnhe/lightline_foobar.vim'
+Plug 'ajmwagar/vim-deus'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'nightsense/snow'
 Plug 'morhetz/gruvbox'
@@ -594,16 +594,15 @@ Plug 'whatyouhide/vim-gotham'
 Plug 'ayu-theme/ayu-vim'
 Plug 'blueshirts/darcula'
 Plug 'kaicataldo/material.vim'
+Plug 'hzchirs/vim-material'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'nightsense/forgotten'
 Plug 'nightsense/nemo'
-Plug 'hzchirs/vim-material'
 Plug 'bellma101/vim-snazzy'
 Plug 'srcery-colors/srcery-vim'
 Plug 'rakr/vim-two-firewatch'
 Plug 'davidklsn/vim-sialoquent'
 Plug 'KeitaNakamura/neodark.vim'
-Plug 'sainnhe/lightline_foobar.vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'bcicen/vim-vice'
 Plug 'sainnhe/soft-era-vim'
@@ -616,9 +615,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sjl/badwolf'
-Plug '844196/lightline-badwolf.vim'
 Plug 'jnurmine/Zenburn'
-Plug 'acepukas/vim-zenburn'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'cseelus/vim-colors-tone'
 Plug 'beikome/cosme.vim'
@@ -826,6 +823,7 @@ Plug 'ianva/vim-youdao-translater'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'metakirby5/codi.vim'
+Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 if g:VIM_Enable_Autopairs == 1
     Plug 'jiangmiao/auto-pairs'
 elseif g:VIM_Completion_Framework !=# 'coc'
@@ -1150,7 +1148,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'typewriter-dark'
+let g:VIM_Color_Scheme = 'sacredforest'
 if g:VIM_Enable_TmuxLine == 1
     " dark: darcula tender hydrangea vice archery material-dark snow-dark
     " light: github pencil material-light snow_light
@@ -1226,7 +1224,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'sacredforest'
         set background=dark
         colorscheme sacredforest
-        let g:lightline.colorscheme = 'nova'
+        let g:lightline.colorscheme = 'sacredforest'
     endif
     call g:quickmenu#append('sacredforest', 'call SwitchColorScheme("sacredforest")', '', '', 0, '')
     "}}}
@@ -1584,6 +1582,72 @@ function! ColorScheme()
     call quickmenu#current(96)
     call quickmenu#reset()
     call g:quickmenu#append('# Dark', '')
+    "{{{deus
+    if g:VIM_Color_Scheme ==# 'deus'
+        set background=dark
+        colorscheme deus
+        let g:lightline.colorscheme = 'deus'
+    endif
+    call g:quickmenu#append('deus', 'call SwitchColorScheme("deus")', '', '', 0, '')
+    "}}}
+    "{{{stellarized
+    if g:VIM_Color_Scheme ==# 'stellarized-dark'
+        set background=dark
+        colorscheme stellarized
+        let g:lightline.colorscheme = 'stellarized_dark'
+    endif
+    call g:quickmenu#append('stellarized', 'call SwitchColorScheme("stellarized-dark")', '', '', 0, '')
+    "}}}
+    "{{{darcula
+    if g:VIM_Color_Scheme ==# 'darcula'
+        colorscheme darcula
+        let g:lightline.colorscheme = 'darcula'
+    endif
+    call g:quickmenu#append('darcula', 'call SwitchColorScheme("darcula")', '', '', 0, '')
+    "}}}
+    "{{{snow
+    if g:VIM_Color_Scheme ==# 'snow-dark'
+        set background=dark
+        colorscheme snow
+        let g:lightline.colorscheme = 'snow_dark'
+    endif
+    call g:quickmenu#append('snow', 'call SwitchColorScheme("snow-dark")', '', '', 0, '')
+    "}}}
+    "{{{nord
+    if g:VIM_Color_Scheme ==# 'nord'
+        let g:nord_italic = 1
+        let g:nord_underline = 1
+        let g:nord_italic_comments = 1
+        let g:nord_uniform_status_lines = 1
+        let g:nord_uniform_diff_background = 1
+        colorscheme nord
+        let g:lightline.colorscheme = 'nord'
+    endif
+    call g:quickmenu#append('nord', 'call SwitchColorScheme("nord")', '', '', 0, '')
+    "}}}
+    "{{{archery
+    if g:VIM_Color_Scheme ==# 'archery'
+        colorscheme archery
+        let g:lightline.colorscheme = 'archery'
+    endif
+    call g:quickmenu#append('archery', 'call SwitchColorScheme("archery")', '', '', 0, '')
+    "}}}
+    "{{{deepspace
+    if g:VIM_Color_Scheme ==# 'deepspace'
+        set background=dark
+        let g:deepspace_italics=1
+        colorscheme deep-space
+        let g:lightline.colorscheme = 'deepspace'
+    endif
+    call g:quickmenu#append('deepspace', 'call SwitchColorScheme("deepspace")', '', '', 0, '')
+    "}}}
+    "{{{iceberg
+    if g:VIM_Color_Scheme ==# 'iceberg'
+        colorscheme iceberg
+        let g:lightline.colorscheme = 'iceberg'
+    endif
+    call g:quickmenu#append('iceberg', 'call SwitchColorScheme("iceberg")', '', '', 0, '')
+    "}}}
     "{{{PaperColor
     if g:VIM_Color_Scheme ==# 'PaperColor-dark'
         set background=dark
@@ -1600,20 +1664,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('Tomorrow', 'call SwitchColorScheme("Tomorrow-dark")', '', '', 0, '')
     "}}}
-    "{{{deus
-    if g:VIM_Color_Scheme ==# 'deus'
+    "{{{Tomorrow-Eighties
+    if g:VIM_Color_Scheme ==# 'Tomorrow-eighties'
         set background=dark
-        colorscheme deus
-        let g:lightline.colorscheme = 'deus_one'  " set background=dark
+        colorscheme Tomorrow-Night-Eighties
+        let g:lightline.colorscheme = 'Tomorrow_Night_Eighties'
     endif
-    call g:quickmenu#append('deus', 'call SwitchColorScheme("deus")', '', '', 0, '')
-    "}}}
-    "{{{darcula
-    if g:VIM_Color_Scheme ==# 'darcula'
-        colorscheme darcula
-        let g:lightline.colorscheme = 'darcula'
-    endif
-    call g:quickmenu#append('darcula', 'call SwitchColorScheme("darcula")', '', '', 0, '')
+    call g:quickmenu#append('Tomorrow-Eighties', 'call SwitchColorScheme("Tomorrow-eighties")', '', '', 0, '')
     "}}}
     "{{{molokai
     if g:VIM_Color_Scheme ==# 'molokai'
@@ -1627,7 +1684,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'zenburn'
         set background=dark
         colorscheme zenburn
-        let g:lightline.colorscheme = 'zenburn'
+        let g:lightline.colorscheme = 'Tomorrow_Night'
     endif
     call g:quickmenu#append('zenburn', 'call SwitchColorScheme("zenburn")', '', '', 0, '')
     "}}}
@@ -1653,9 +1710,17 @@ function! ColorScheme()
         set background=dark
         set background=dark
         colorscheme badwolf
-        let g:lightline.colorscheme = 'badwolf'
+        let g:lightline.colorscheme = 'srcery_alter'
     endif
     call g:quickmenu#append('badwolf', 'call SwitchColorScheme("badwolf")', '', '', 0, '')
+    "}}}
+    "{{{nova
+    if g:VIM_Color_Scheme ==# 'nova'
+        set background=dark
+        colorscheme nova
+        let g:lightline.colorscheme = 'nova'
+    endif
+    call g:quickmenu#append('nova', 'call SwitchColorScheme("nova")', '', '', 0, '')
     "}}}
     "{{{skeletor
     if g:VIM_Color_Scheme ==# 'skeletor'
@@ -1693,13 +1758,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('vice', 'call SwitchColorScheme("vice")', '', '', 0, '')
     "}}}
-    "{{{archery
-    if g:VIM_Color_Scheme ==# 'archery'
-        colorscheme archery
-        let g:lightline.colorscheme = 'archery'
-    endif
-    call g:quickmenu#append('archery', 'call SwitchColorScheme("archery")', '', '', 0, '')
-    "}}}
     "{{{gotham
     if g:VIM_Color_Scheme ==# 'gotham'
         colorscheme gotham256
@@ -1707,51 +1765,30 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('gotham', 'call SwitchColorScheme("gotham")', '', '', 0, '')
     "}}}
-    "{{{stellarized
-    if g:VIM_Color_Scheme ==# 'stellarized-dark'
-        set background=dark
-        colorscheme stellarized
-        let g:lightline.colorscheme = 'stellarized_dark'
-    endif
-    call g:quickmenu#append('stellarized', 'call SwitchColorScheme("stellarized-dark")', '', '', 0, '')
-    "}}}
-    "{{{nord
-    if g:VIM_Color_Scheme ==# 'nord'
-        let g:nord_italic = 1
-        let g:nord_underline = 1
-        let g:nord_italic_comments = 1
-        let g:nord_uniform_status_lines = 1
-        let g:nord_uniform_diff_background = 1
-        colorscheme nord
-        let g:lightline.colorscheme = 'nord'
-    endif
-    call g:quickmenu#append('nord', 'call SwitchColorScheme("nord")', '', '', 0, '')
-    "}}}
-    "{{{snow
-    if g:VIM_Color_Scheme ==# 'snow-dark'
-        set background=dark
-        colorscheme snow
-        let g:lightline.colorscheme = 'snow_dark'
-    endif
-    call g:quickmenu#append('snow', 'call SwitchColorScheme("snow-dark")', '', '', 0, '')
-    "}}}
-    "{{{deepspace
-    if g:VIM_Color_Scheme ==# 'deepspace'
-        set background=dark
-        let g:deepspace_italics=1
-        colorscheme deep-space
-        let g:lightline.colorscheme = 'deepspace'
-    endif
-    call g:quickmenu#append('deepspace', 'call SwitchColorScheme("deepspace")', '', '', 0, '')
-    "}}}
-    "{{{iceberg
-    if g:VIM_Color_Scheme ==# 'iceberg'
-        colorscheme iceberg
-        let g:lightline.colorscheme = 'iceberg'
-    endif
-    call g:quickmenu#append('iceberg', 'call SwitchColorScheme("iceberg")', '', '', 0, '')
-    "}}}
     call g:quickmenu#append('# Light', '')
+    "{{{nemo
+    if g:VIM_Color_Scheme ==# 'nemo'
+        set background=light
+        colorscheme nemo-light
+        let g:lightline.colorscheme = 'Atelier_Sulphurpool'
+    endif
+    call g:quickmenu#append('nemo', 'call SwitchColorScheme("nemo")', '', '', 0, '')
+    "}}}
+    "{{{forgotten
+    if g:VIM_Color_Scheme ==# 'forgotten'
+        set background=light
+        colorscheme forgotten-light
+        let g:lightline.colorscheme = 'Atelier_Lakeside'
+    endif
+    call g:quickmenu#append('forgotten', 'call SwitchColorScheme("forgotten")', '', '', 0, '')
+    "}}}
+    "{{{inkstained
+    if g:VIM_Color_Scheme ==# 'inkstained'
+        colorscheme inkstained
+        let g:lightline.colorscheme = 'inkstained'
+    endif
+    call g:quickmenu#append('inkstained', 'call SwitchColorScheme("inkstained")', '', '', 0, '')
+    "}}}
     "{{{PaperColor
     if g:VIM_Color_Scheme ==# 'PaperColor-light'
         set background=light
@@ -1768,13 +1805,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('Tomorrow', 'call SwitchColorScheme("Tomorrow-light")', '', '', 0, '')
     "}}}
-    "{{{inkstained
-    if g:VIM_Color_Scheme ==# 'inkstained'
-        colorscheme inkstained
-        let g:lightline.colorscheme = 'inkstained'
-    endif
-    call g:quickmenu#append('inkstained', 'call SwitchColorScheme("inkstained")', '', '', 0, '')
-    "}}}
     "{{{rusticated
     if g:VIM_Color_Scheme ==# 'rusticated'
         set background=light
@@ -1782,22 +1812,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'rusticated'
     endif
     call g:quickmenu#append('rusticated', 'call SwitchColorScheme("rusticated")', '', '', 0, '')
-    "}}}
-    "{{{nemo
-    if g:VIM_Color_Scheme ==# 'nemo'
-        set background=light
-        colorscheme nemo-light
-        let g:lightline.colorscheme = 'Atelier_Sulphurpool'
-    endif
-    call g:quickmenu#append('nemo', 'call SwitchColorScheme("nemo")', '', '', 0, '')
-    "}}}
-    "{{{forgotten
-    if g:VIM_Color_Scheme ==# 'forgotten'
-        set background=light
-        colorscheme forgotten-light
-        let g:lightline.colorscheme = 'Atelier_Lakeside'
-    endif
-    call g:quickmenu#append('forgotten', 'call SwitchColorScheme("forgotten")', '', '', 0, '')
     "}}}
 endfunction
 call ColorScheme()
