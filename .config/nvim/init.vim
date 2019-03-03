@@ -623,8 +623,8 @@ Plug 'nightsense/cosmic_latte'
 Plug 'nightsense/rusticated'
 Plug 'nightsense/carbonized'
 Plug 'logico-dev/typewriter'
-Plug 'rhysd/vim-color-spring-night'
 Plug 'zefei/cake16'
+Plug 'sainnhe/vim-color-forest-night'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1149,7 +1149,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'soft-era'
+let g:VIM_Color_Scheme = 'forest-night'
 if g:VIM_Enable_TmuxLine == 1
     " dark: darcula tender hydrangea vice archery material-dark snow-dark
     " light: github pencil material-light snow_light
@@ -1221,22 +1221,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('sacredforest', 'call SwitchColorScheme("sacredforest")', '', '', 0, '')
     "}}}
-    "{{{spring-night
-    if g:VIM_Color_Scheme ==# 'spring-night'
+    "{{{forest-night
+    if g:VIM_Color_Scheme ==# 'forest-night'
         set background=dark
-        colorscheme spring-night
-        let g:lightline.colorscheme = 'sacredforest'
-        execute 'hi Normal           ctermbg=239  ctermfg=229   cterm=NONE      guibg=#3C4C55 guifg=#FFEBC3   gui=NONE'
-        execute 'hi SignColumn       ctermbg=243  ctermfg=NONE  cterm=NONE      guibg=#616c72 guifg=NONE      gui=NONE'
-        execute 'hi Pmenu            ctermbg=243  ctermfg=229   cterm=NONE      guibg=#616c72 guifg=#ffebc3   gui=NONE'
-        execute 'hi PmenuSel         ctermbg=243  ctermfg=229   cterm=REVERSE   guibg=#616c72 guifg=#ffebc3   gui=REVERSE'
-        execute 'hi PmenuSbar        ctermbg=243  ctermfg=NONE  cterm=NONE      guibg=#616c72 guifg=NONE      gui=NONE'
-        execute 'hi PmenuThumb       ctermbg=229  ctermfg=NONE  cterm=NONE      guibg=#ffebc3 guifg=NONE      gui=NONE'
-        execute 'hi VertSplit        ctermbg=NONE ctermfg=243   cterm=NONE      guibg=NONE    guifg=#616c72   gui=NONE'
-        execute 'hi Folded           ctermbg=NONE ctermfg=110   cterm=NONE      guibg=NONE    guifg=#7fc1ca   gui=NONE'
-        execute 'hi FoldColumn       ctermbg=NONE ctermfg=110   cterm=NONE      guibg=NONE    guifg=#7fc1ca   gui=NONE'
+        colorscheme forest-night
+        let g:lightline.colorscheme = 'forest_night'
     endif
-    call g:quickmenu#append('spring-night', 'call SwitchColorScheme("spring-night")', '', '', 0, '')
+    call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
     "}}}
     "{{{sialoquent
     if g:VIM_Color_Scheme ==# 'sialoquent'
