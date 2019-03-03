@@ -595,7 +595,6 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'blueshirts/darcula'
 Plug 'kaicataldo/material.vim'
 Plug 'hzchirs/vim-material'
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'nightsense/forgotten'
 Plug 'nightsense/nemo'
 Plug 'bellma101/vim-snazzy'
@@ -605,7 +604,7 @@ Plug 'davidklsn/vim-sialoquent'
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'bcicen/vim-vice'
-Plug 'sainnhe/soft-era-vim'
+Plug 'soft-aesthetic/soft-era-vim'
 Plug 'sts10/vim-pink-moon'
 Plug 'KKPMW/sacredforest-vim'
 Plug 'trevordmiller/nova-vim'
@@ -623,7 +622,9 @@ Plug 'Marfisc/vorange'
 Plug 'nightsense/cosmic_latte'
 Plug 'nightsense/rusticated'
 Plug 'nightsense/carbonized'
-Plug 'sainnhe/typewriter'
+Plug 'logico-dev/typewriter'
+Plug 'rhysd/vim-color-spring-night'
+Plug 'zefei/cake16'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1148,7 +1149,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'sacredforest'
+let g:VIM_Color_Scheme = 'soft-era'
 if g:VIM_Enable_TmuxLine == 1
     " dark: darcula tender hydrangea vice archery material-dark snow-dark
     " light: github pencil material-light snow_light
@@ -1174,16 +1175,7 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('one', 'call SwitchColorScheme("one-dark")', '', '', 0, '')
     "}}}
-    "{{{palenight
-    if g:VIM_Color_Scheme ==# 'palenight'
-        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-        set background=dark
-        colorscheme palenight
-        let g:lightline.colorscheme = 'deepspace'
-    endif
-    call g:quickmenu#append('palenight', 'call SwitchColorScheme("palenight")', '', '', 0, '')
-    "}}}
-    "{{{material
+    "{{{material-dark
     if g:VIM_Color_Scheme ==# 'material-dark'
         set background=dark
         let g:material_theme_style = 'dark'
@@ -1229,6 +1221,23 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('sacredforest', 'call SwitchColorScheme("sacredforest")', '', '', 0, '')
     "}}}
+    "{{{spring-night
+    if g:VIM_Color_Scheme ==# 'spring-night'
+        set background=dark
+        colorscheme spring-night
+        let g:lightline.colorscheme = 'sacredforest'
+        execute 'hi Normal           ctermbg=239  ctermfg=229   cterm=NONE      guibg=#3C4C55 guifg=#FFEBC3   gui=NONE'
+        execute 'hi SignColumn       ctermbg=243  ctermfg=NONE  cterm=NONE      guibg=#616c72 guifg=NONE      gui=NONE'
+        execute 'hi Pmenu            ctermbg=243  ctermfg=229   cterm=NONE      guibg=#616c72 guifg=#ffebc3   gui=NONE'
+        execute 'hi PmenuSel         ctermbg=243  ctermfg=229   cterm=REVERSE   guibg=#616c72 guifg=#ffebc3   gui=REVERSE'
+        execute 'hi PmenuSbar        ctermbg=243  ctermfg=NONE  cterm=NONE      guibg=#616c72 guifg=NONE      gui=NONE'
+        execute 'hi PmenuThumb       ctermbg=229  ctermfg=NONE  cterm=NONE      guibg=#ffebc3 guifg=NONE      gui=NONE'
+        execute 'hi VertSplit        ctermbg=NONE ctermfg=243   cterm=NONE      guibg=NONE    guifg=#616c72   gui=NONE'
+        execute 'hi Folded           ctermbg=NONE ctermfg=110   cterm=NONE      guibg=NONE    guifg=#7fc1ca   gui=NONE'
+        execute 'hi FoldColumn       ctermbg=NONE ctermfg=110   cterm=NONE      guibg=NONE    guifg=#7fc1ca   gui=NONE'
+    endif
+    call g:quickmenu#append('spring-night', 'call SwitchColorScheme("spring-night")', '', '', 0, '')
+    "}}}
     "{{{sialoquent
     if g:VIM_Color_Scheme ==# 'sialoquent'
         set background=dark
@@ -1269,6 +1278,16 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('vorange', 'call SwitchColorScheme("vorange")', '', '', 0, '')
     "}}}
+    "{{{material-palenight
+    if g:VIM_Color_Scheme ==# 'material-palenight'
+        set background=dark
+        let g:material_theme_style = 'palenight'
+        let g:material_terminal_italics = 1
+        colorscheme material
+        let g:lightline.colorscheme = 'material_vim'
+    endif
+    call g:quickmenu#append('palenight', 'call SwitchColorScheme("material-palenight")', '', '', 0, '')
+    "}}}
     "{{{cosme
     if g:VIM_Color_Scheme ==# 'cosme'
         colorscheme cosme
@@ -1300,6 +1319,14 @@ function! ColorScheme()
         set background=dark
         colorscheme typewriter-night
         let g:lightline.colorscheme = 'typewriter_dark'
+        execute 'hi ExtraWhitespace             NONE                       NONE'
+        execute 'hi Directory       ctermfg=254 ctermbg=235  guifg=#BCBCBC guibg=#262626'
+        execute 'hi Folded          ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#262626'
+        execute 'hi FoldColumn      ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#262626'
+        execute 'hi DiffAdd         ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#87D7AF'
+        execute 'hi DiffText        ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#AFD7FF'
+        execute 'hi DiffDelete      ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#CD5555'
+        execute 'hi DiffChange      ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#C38A43'
     endif
     call g:quickmenu#append('typewriter', 'call SwitchColorScheme("typewriter-dark")', '', '', 0, '')
     "}}}
@@ -1461,6 +1488,14 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('cosmic_latte', 'call SwitchColorScheme("cosmic_latte")', '', '', 0, '')
     "}}}
+    "{{{cake16
+    if g:VIM_Color_Scheme ==# 'cake16'
+        set background=light
+        colorscheme cake16
+        let g:lightline.colorscheme = 'Atelier_Dune'
+    endif
+    call g:quickmenu#append('cake16', 'call SwitchColorScheme("cake16")', '', '', 0, '')
+    "}}}
     "{{{stellarized
     if g:VIM_Color_Scheme ==# 'stellarized-light'
         set background=light
@@ -1486,8 +1521,33 @@ function! ColorScheme()
     "}}}
     "{{{soft-era
     if g:VIM_Color_Scheme ==# 'soft-era'
+        set background=light
         colorscheme soft-era
         let g:lightline.colorscheme = 'softera_alter'
+        hi Conceal guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi Cursor guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi CursorIM guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi FoldColumn guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi SignColumn guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi ModeMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi MoreMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi PmenuSbar guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi PmenuThumb guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi Question guifg=#eceafa ctermfg=10 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+        hi SpecialKey guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi SpellBad guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi SpellLocal guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi SpellCap guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi SpellRare guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi StatusLine guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi StatusLineNC guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi TabLine guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi TabLineFill guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi TabLineSel guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi Title guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi VisualNOS guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi WarningMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi WildMenu guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('soft-era', 'call SwitchColorScheme("soft-era")', '', '', 0, '')
     "}}}
@@ -1496,6 +1556,14 @@ function! ColorScheme()
         set background=light
         colorscheme typewriter
         let g:lightline.colorscheme = 'typewriter_light'
+        execute 'hi ExtraWhitespace             NONE                       NONE'
+        execute 'hi Directory       ctermfg=239 ctermbg=NONE guifg=#4E4E4E guibg=NONE'
+        execute 'hi Folded          ctermfg=235 ctermbg=255  guifg=#424242 guibg=#EEEEEE'
+        execute 'hi FoldColumn      ctermfg=235 ctermbg=255  guifg=#424242 guibg=#EEEEEE'
+        execute 'hi DiffAdd         ctermfg=235 ctermbg=121  guifg=#424242 guibg=#C3E9DB'
+        execute 'hi DiffText        ctermfg=235 ctermbg=153  guifg=#424242 guibg=#C1E7F4'
+        execute 'hi DiffDelete      ctermfg=235 ctermbg=153  guifg=#424242 guibg=#F2CBCB'
+        execute 'hi DiffChange      ctermfg=235 ctermbg=153  guifg=#424242 guibg=#F5F5DC'
     endif
     call g:quickmenu#append('typewriter', 'call SwitchColorScheme("typewriter-light")', '', '', 0, '')
     "}}}
