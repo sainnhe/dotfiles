@@ -1270,6 +1270,15 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('vorange', 'call SwitchColorScheme("vorange")', '', '', 0, '')
     "}}}
+    "{{{neodark
+    if g:VIM_Color_Scheme ==# 'neodark'
+        set background=dark
+        let g:neodark#use_256color = 1
+        colorscheme neodark
+        let g:lightline.colorscheme = 'neodark_alter'
+    endif
+    call g:quickmenu#append('neodark', 'call SwitchColorScheme("neodark")', '', '', 0, '')
+    "}}}
     "{{{material-palenight
     if g:VIM_Color_Scheme ==# 'material-palenight'
         set background=dark
@@ -1286,15 +1295,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'colored_dark'
     endif
     call g:quickmenu#append('cosme', 'call SwitchColorScheme("cosme")', '', '', 0, '')
-    "}}}
-    "{{{neodark
-    if g:VIM_Color_Scheme ==# 'neodark'
-        set background=dark
-        let g:neodark#use_256color = 1
-        colorscheme neodark
-        let g:lightline.colorscheme = 'neodark_alter'
-    endif
-    call g:quickmenu#append('neodark', 'call SwitchColorScheme("neodark")', '', '', 0, '')
     "}}}
     "{{{seoul256
     if g:VIM_Color_Scheme ==# 'seoul256'
