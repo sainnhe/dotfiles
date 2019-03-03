@@ -6,6 +6,11 @@
     "coc.preferences.diagnostic.infoSign": "ℹ",
     "coc.preferences.diagnostic.hintSign": "➤",
     "coc.preferences.diagnostic.displayByAle": true,
+    "list.indicator": "➣",
+    "list.maxHeight": 15,
+    "list.insertMappings": {
+        "<C-p>": "action:preview"
+    },
     "$schema": "./data/schema.json",
     "coc.preferences.autoTrigger": "always",
     "coc.preferences.snippets.enable": true,

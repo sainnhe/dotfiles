@@ -574,8 +574,8 @@ Plug 'tpope/vim-repeat'
 "{{{themes
 Plug 'lilydjwg/colorizer', { 'on': [] }
 Plug 'sainnhe/lightline_foobar.vim'
+Plug 'rakr/vim-one'
 Plug 'ajmwagar/vim-deus'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'nightsense/snow'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
@@ -1165,13 +1165,14 @@ function! ColorScheme()
     call quickmenu#current(98)
     call quickmenu#reset()
     call g:quickmenu#append('# Dark', '')
-    "{{{onehalf
-    if g:VIM_Color_Scheme ==# 'onehalf-dark'
+    "{{{one
+    if g:VIM_Color_Scheme ==# 'one-dark'
         set background=dark
-        colorscheme onehalfdark
+        let g:one_allow_italics = 1
+        colorscheme one
         let g:lightline.colorscheme = 'one'
     endif
-    call g:quickmenu#append('onehalf', 'call SwitchColorScheme("onehalf-dark")', '', '', 0, '')
+    call g:quickmenu#append('one', 'call SwitchColorScheme("one-dark")', '', '', 0, '')
     "}}}
     "{{{palenight
     if g:VIM_Color_Scheme ==# 'palenight'
@@ -1280,7 +1281,7 @@ function! ColorScheme()
         set background=dark
         let g:neodark#use_256color = 1
         colorscheme neodark
-        let g:lightline.colorscheme = 'deus_beta_dark'
+        let g:lightline.colorscheme = 'neodark_alter'
     endif
     call g:quickmenu#append('neodark', 'call SwitchColorScheme("neodark")', '', '', 0, '')
     "}}}
@@ -1387,13 +1388,14 @@ function! ColorScheme()
     call quickmenu#current(97)
     call quickmenu#reset()
     call g:quickmenu#append('# Light', '')
-    "{{{onehalf
-    if g:VIM_Color_Scheme ==# 'onehalf-light'
+    "{{{one
+    if g:VIM_Color_Scheme ==# 'one-light'
         set background=light
-        colorscheme onehalflight
+        let g:one_allow_italics = 1
+        colorscheme one
         let g:lightline.colorscheme = 'one'
     endif
-    call g:quickmenu#append('onehalf', 'call SwitchColorScheme("onehalf-light")', '', '', 0, '')
+    call g:quickmenu#append('one', 'call SwitchColorScheme("one-light")', '', '', 0, '')
     "}}}
     "{{{ayu
     if g:VIM_Color_Scheme ==# 'ayu'
@@ -2889,7 +2891,6 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
                 \ 'noremap'
                 \)
     "}}}
-    let g:spacevim_commandline_prompt = '➣'
     augroup DeniteAu
         autocmd!
         autocmd User CocQuickfixChange :Denite -mode=normal quickfix
