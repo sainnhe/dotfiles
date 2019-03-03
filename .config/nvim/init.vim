@@ -771,6 +771,7 @@ if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
     endif
 endif
 if g:VIM_Fuzzy_Finder ==# 'fzf' || g:VIM_Fuzzy_Finder ==# 'remix'
+    Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'fszymanski/fzf-quickfix'
 endif
