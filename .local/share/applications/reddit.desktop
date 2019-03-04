@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Reddit
+Exec=chromium --app=https://www.reddup.co/
+Icon=reddit
+Categories=Network;
