@@ -572,6 +572,9 @@ Plug 'tpope/vim-repeat'
 "}}}
 " User Interface
 "{{{themes
+"{{{enhanced syntax highlighting
+Plug 'bfrg/vim-cpp-modern'
+"}}}
 Plug 'lilydjwg/colorizer', { 'on': [] }
 Plug 'sainnhe/lightline_foobar.vim'
 Plug 'rakr/vim-one'
