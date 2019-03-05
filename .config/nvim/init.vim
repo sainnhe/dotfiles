@@ -657,7 +657,7 @@ endif
 if has('python3')
     Plug 'vim-vdebug/vdebug', { 'on': [] }
 endif
-Plug 'Shougo/vimproc.vim', { 'on': [] }
+Plug 'Shougo/vimproc.vim', { 'on': [], 'do' : 'make' }
 Plug 'idanarye/vim-vebugger', { 'on': [] }
 if g:VIM_Snippets ==# 'ultisnips'
     Plug 'SirVer/ultisnips'
