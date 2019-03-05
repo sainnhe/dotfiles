@@ -562,7 +562,7 @@ command PU PlugUpdate | PlugUpgrade
 
 call plug#begin('~/.cache/vim/plugins')
 if !has('nvim') && has('python3')
-    if g:VIM_Completion_Framework !=# 'ncm2'
+    if g:VIM_Completion_Framework !=# 'ncm2'  " avoid duplication
         Plug 'roxma/nvim-yarp'
     endif
     Plug 'roxma/vim-hug-neovim-rpc'
@@ -572,9 +572,6 @@ Plug 'tpope/vim-repeat'
 "}}}
 " User Interface
 "{{{themes
-"{{{enhanced syntax highlighting
-Plug 'bfrg/vim-cpp-modern'
-"}}}
 Plug 'lilydjwg/colorizer', { 'on': [] }
 Plug 'sainnhe/lightline_foobar.vim'
 Plug 'rakr/vim-one'
@@ -852,7 +849,6 @@ Plug 'Valloric/MatchTagAlways', { 'for': 'html' }
 Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
 Plug 'elzr/vim-json', { 'for': 'json' }
             \| au BufNewFile,BufRead *.json call Func_vim_json()
-Plug 'maralla/vim-toml-enhance', { 'for': 'toml' }
 
 " Entertainment
 Plug 'mattn/vim-starwars', { 'on': 'StarWars' }
@@ -893,7 +889,7 @@ call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
 call g:quickmenu#append('Load colorizer', "call plug#load('colorizer')", '', '', 0, '$')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
-call g:quickmenu#append('IndentGuides', 'call ToggleIndentGuides()', '', '', 0, 'i')
+call g:quickmenu#append('Toggle Indent', 'call ToggleIndent()', '', '', 0, 'i')
 call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(11)', '', '', 0, 'f')
 call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
 call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
@@ -2052,7 +2048,7 @@ let g:indentLine_conceallevel = 2
 let g:indentLine_char = "\ue621"  " ¦┆│⎸ ▏  e621
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_fileTypeExclude = g:ExcludeIndentFileType_Universal + g:ExcludeIndentFileType_Special
-" let g:indentLine_setColors = 0  " disable set grey by default, use colorscheme instead
+let g:indentLine_setColors = 0  " disable overwrite with grey by default, use colorscheme instead
 "}}}
 "{{{vim-indent-guides
 "{{{vim-indent-guides-usage
@@ -2060,19 +2056,21 @@ let g:indentLine_fileTypeExclude = g:ExcludeIndentFileType_Universal + g:Exclude
 "}}}
 let g:HasLoadIndentGuides = 0
 function! InitIndentGuides()
-    call plug#load('vim-indent-guides')
     let g:indent_guides_enable_on_vim_startup = 0
     let g:indent_guides_exclude_filetypes = g:ExcludeIndentFileType_Universal
     let g:indent_guides_color_change_percent = 10
     let g:indent_guides_guide_size = 1
     let g:indent_guides_default_mapping = 0
+    call plug#load('vim-indent-guides')
 endfunction
-function! ToggleIndentGuides()
+function! ToggleIndent()
     if g:HasLoadIndentGuides == 0
         call InitIndentGuides()
+        execute 'IndentGuidesToggle'
         let g:HasLoadIndentGuides = 1
+    else
+        execute 'IndentGuidesToggle'
     endif
-    execute 'IndentGuidesToggle'
 endfunction
 "}}}
 "{{{limelight.vim
@@ -3469,7 +3467,6 @@ function! InitGtags()
 endfunction
 "}}}
 function! Init_gen_tags()
-    call plug#load('gen_tags.vim')
     " let g:gen_tags#ctags_opts = '--c++-kinds=+px --c-kinds=+px'
     " let g:gen_tags#gtags_opts = '-c --verbose'
     let g:gen_tags#use_cache_dir = 1  " 0: use project directory to store tags; 1: $HOME/.cache/tags_dir/<project name>
@@ -3479,6 +3476,7 @@ function! Init_gen_tags()
     let g:gen_tags#gtags_auto_update = 1
     let g:gen_tags#blacklist = ['$HOME']
     let g:gen_tags#gtags_default_map = 0
+    call plug#load('gen_tags.vim')
 endfunction
 "}}}
 "{{{tagbar
@@ -3494,7 +3492,6 @@ function! ToggleTagbar()
     endif
 endfunction
 function! TagbarInit()
-    call plug#load('tagbar', 'tagbar-markdown')
     let g:tagbar_sort = 0
     let g:tagbar_width = 35
     let g:tagbar_autoclose = 1
@@ -3508,6 +3505,7 @@ function! TagbarInit()
                 \ 'i:identities'
                 \ ]
                 \ }
+    call plug#load('tagbar', 'tagbar-markdown')
 endfunction
 "}}}
 "{{{neoformat
@@ -3922,7 +3920,7 @@ endfunction
 function! Func_vim_json()
     let g:vim_json_syntax_conceal = 0
     set foldmethod=syntax
-    call ToggleIndentGuides()
+    call ToggleIndent()
 endfunction
 "}}}
 "{{{vim-devicons
