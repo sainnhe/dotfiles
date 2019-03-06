@@ -29,7 +29,7 @@ if exists('*VIM_Global_Settings')
 endif
 let g:VIM_AutoInstall = 1
 let g:VIM_TmuxLineSync = 0
-let g:VIM_TmuxLinePomorodo = 1
+let g:VIM_TmuxLinePomorodo = 0
 let g:VIM_Enable_Autopairs = 1
 let g:VIM_C_LSP = 'ccls'  " clangd cquery ccls
 "}}}
@@ -1130,7 +1130,7 @@ if g:VIM_Enable_TmuxLine == 1
                     \'c'    : '',
                     \'win'  : ['#I', '#W'],
                     \'cwin' : ['#I', '#W', '#F'],
-                    \'x'    : [''],
+                    \'x'    : ['#(bash /home/sainnhe/Scripts/tmux_lock.sh)'],
                     \'y'    : '%R %a',
                     \'z'    : '#H'
                     \}
@@ -1141,7 +1141,7 @@ if g:VIM_Enable_TmuxLine == 1
                     \'c'    : '',
                     \'win'  : ['#I', '#W'],
                     \'cwin' : ['#I', '#W', '#F'],
-                    \'x'    : ['#(bash /home/sainnhe/Scripts/tmux_lock.sh)'],
+                    \'x'    : ['#(tmux-pomodoro status)\ue0bd #(bash /home/sainnhe/Scripts/tmux_lock.sh)'],
                     \'y'    : '%R %a',
                     \'z'    : '#H'
                     \}
