@@ -13,7 +13,7 @@ websocket-port = 3334
 
 [firefox]
 # The path to your Firefox binary
-path = "firefox-developer-edition"
+path = "/usr/bin/firefox-developer-edition"
 # Browsh has its own profile, seperate from the normal user's. But you can change that.
 profile = "browsh-default"
 # Don't let Browsh launch Firefox, but make it try to connect to an existing one. Note
