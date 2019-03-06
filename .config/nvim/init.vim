@@ -638,6 +638,7 @@ Plug 'CharlesGueunet/quickmenu.vim'
 Plug 'mhinz/vim-signify'
 Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides', { 'on': [] }
+Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'roman/golden-ratio'
