@@ -1,0 +1,27 @@
+[user]
+        name = Sainnhepark
+        email = sainnhe@gmail.com
+[core]
+        editor = nvim
+[merge]
+        tool = vimdiff
+[http]
+        proxy = socks5h://127.0.0.1:1080
+[alias]
+        ps = push origin master
+        dj = diff --color
+        dk = diff --staged --color
+        cm = commit -m
+        logs = log --graph --pretty=format:\"(%h)  %an, %ar: %s\"
+        acm = commit -am
+        unstage = reset HEAD --
+        logl = log -1 HEAD
+        logp = !git log | nvim --cmd \"let g:VIM_MANPAGER = 1\" -c MANPAGER -
+        st = status
+        co = checkout
+        br = branch
+        edit = !nvim `git ls-files -m --other --exclude-standard` -p
+        rg = !rg $(git rev-parse --show-toplevel) --column --smart-case -e
+        rg-ls = !rg $(git rev-parse --show-toplevel) --files
+        rg-all = !rg $(git rev-parse --show-toplevel) --column --smart-case --no-ignore --hidden -g '!.git' -e
+        rg-all-ls = !rg $(git rev-parse --show-toplevel) --no-ignore --hidden -g '!.git' --files

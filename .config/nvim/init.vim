@@ -1182,6 +1182,7 @@ function! ColorScheme()
         let g:material_terminal_italics = 1
         colorscheme material
         let g:lightline.colorscheme = 'material_vim'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('material', 'call SwitchColorScheme("material-dark")', '', '', 0, '')
     "}}}
