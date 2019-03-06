@@ -1152,10 +1152,9 @@ endfunction
 "}}}
 let g:VIM_Color_Scheme = 'forest-night'
 if g:VIM_Enable_TmuxLine == 1
-    " dark: darcula tender hydrangea vice archery material-dark snow-dark
-    " light: github pencil material-light snow_light
-    " ummmm: molokai zenburn hybrid PaperColor-dark PaperColor-light Tomorrow-dark Tomorrow-light
-    let g:VIM_Color_Scheme = 'github'
+    " dark: material-dark 
+    " light: snow github
+    let g:VIM_Color_Scheme = 'material-dark'
 endif
 function! ColorScheme()
     call quickmenu#current(99)
