@@ -53,6 +53,17 @@ elif [[ "$1" == "no" ]]; then
     tmux unbind-key -n C-=
     tmux unbind-key -n C--
     tmux unbind-key -n C-x
+    tmux bind-key -T prefix C-s split-window
+    tmux bind-key -T prefix C-v split-window -h
+    tmux bind-key -T prefix C-h select-pane -L
+    tmux bind-key -T prefix C-j select-pane -D
+    tmux bind-key -T prefix C-k select-pane -U
+    tmux bind-key -T prefix C-l select-pane -R
+    tmux bind-key -T prefix C-, resize-pane -L
+    tmux bind-key -T prefix C-- resize-pane -D
+    tmux bind-key -T prefix C-= resize-pane -U
+    tmux bind-key -T prefix C-. resize-pane -R
+    tmux bind-key -T prefix C-x kill-pane
     if [ -e "/tmp/.tmux_bind.lck" ]; then
         rm /tmp/.tmux_bind.lck
     fi
