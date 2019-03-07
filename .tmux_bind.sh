@@ -26,6 +26,17 @@ if [[ "$1" == "yes" ]]; then
     # tmux bind-key -n C-Space run-shell -b "$HOME/.tmux_bind.sh no"
     tmux bind-key -T prefix C-Space run-shell -b "$HOME/.tmux_bind.sh no"
     # pane
+    tmux unbind-key -T prefix C-s
+    tmux unbind-key -T prefix C-v
+    tmux unbind-key -T prefix C-h
+    tmux unbind-key -T prefix C-j
+    tmux unbind-key -T prefix C-k
+    tmux unbind-key -T prefix C-l
+    tmux unbind-key -T prefix C-,
+    tmux unbind-key -T prefix C--
+    tmux unbind-key -T prefix C-=
+    tmux unbind-key -T prefix C-.
+    tmux unbind-key -T prefix C-x
     tmux bind-key -n C-s split-window
     tmux bind-key -n C-v split-window -h
     tmux bind-key -n C-h select-pane -L
