@@ -2127,7 +2127,17 @@ nmap <A-g> <Plug>(golden_ratio_toggle)
 "{{{LanguageClient-neovim
 if g:VIM_LSP_Client ==# 'lcn'
     "{{{LanguageClient-neovim-usage
-    " l 开始
+    " <leader>l 主菜单
+    function! Help_Language_Client_neovim()
+        echo 'lh hover'
+        echo 'ld definition'
+        echo 'lt typeDefinition'
+        echo 'lI implementation'
+        echo 'lr references'
+        echo 'lR rename'
+        echo 'la codeAction'
+        echo 'lf formatting'
+    endfunction
     "}}}
     " Server Register
     "{{{VIM_C_LSP
@@ -2150,6 +2160,7 @@ if g:VIM_LSP_Client ==# 'lcn'
                 \ 'yaml': ['yaml-language-server']
                 \ }
     " snippets
+    let g:LanguageClient_hasSnippetSupport = 1
     if g:VIM_Snippets ==# 'ultisnips'
     elseif g:VIM_Snippets ==# 'neosnippet'
         let g:neosnippet#enable_complete_done = 1
@@ -2167,22 +2178,24 @@ if g:VIM_LSP_Client ==# 'lcn'
     " Interface
     " let g:LanguageClient_selectionUI = 'fzf'  " fzf quickfix location-list
     " Mappings
+    nnoremap <silent> lh :<C-u>call LanguageClient#textDocument_hover()<CR>
+    nnoremap <silent> ld :<C-u>call LanguageClient#textDocument_definition()<CR>
+    nnoremap <silent> lt :<C-u>call LanguageClient#textDocument_typeDefinition()<CR>
+    nnoremap <silent> lI :<C-u>call LanguageClient#textDocument_implementation()<CR>
+    nnoremap <silent> lr :<C-u>call LanguageClient#textDocument_references()<CR>
+    nnoremap <silent> lR :<C-u>call LanguageClient#textDocument_rename()<CR>
+    nnoremap <silent> la :<C-u>call LanguageClient#textDocument_codeAction()<CR>
+    nnoremap <silent> lf :<C-u>call LanguageClient#textDocument_formatting()<CR>
     vnoremap <silent> lf :<C-u>call LanguageClient#textDocument_rangeFormatting()<CR>
-    nnoremap <silent> l :<C-u>call quickmenu#toggle(4)<CR>
+    nnoremap <silent> <leader>l :<C-u>call quickmenu#toggle(4)<CR>
     if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
         call quickmenu#current(4)
         call quickmenu#reset()
         call g:quickmenu#append('# LSC', '')
+        call g:quickmenu#append('Context Menu', 'call LanguageClient_contextMenu()', 'Show context menu.', '', 0, '#')
         call g:quickmenu#append('Code Action', 'Denite codeAction', 'Show code actions at current location.', '', 0, 'a')
         call g:quickmenu#append('Symbol', 'Denite documentSymbol', "List of current buffer's symbols.", '', 0, 's')
         call g:quickmenu#append('Workspace Symbol', 'Denite workspaceSymbol', "List of project's symbols.", '', 0, 'S')
-        call g:quickmenu#append('Definition', 'call LanguageClient#textDocument_definition()', 'Goto definition under cursor.', '', 0, 'd')
-        call g:quickmenu#append('Type Definition', 'call LanguageClient#textDocument_typeDefinition()', 'Goto type definition under cursor.', '', 0, 'D')
-        call g:quickmenu#append('Reference', 'Denite references', 'List all references of identifier under cursor.', '', 0, 'r')
-        call g:quickmenu#append('Rename', 'call LanguageClient#textDocument_rename()', 'Rename identifier under cursor.', '', 0, 'R')
-        call g:quickmenu#append('Hover', 'call LanguageClient#textDocument_hover()', 'Show type info (and short doc) of identifier under cursor.', '', 0, 'h')
-        call g:quickmenu#append('Implementation', 'call LanguageClient#textDocument_implementation()', 'Goto implementation under cursor.', '', 0, 'i')
-        call g:quickmenu#append('Formatting', 'call LanguageClient#textDocument_formatting()', 'Format current document.', '', 0, 'f')
         call g:quickmenu#append('Highlight', 'call LanguageClient#textDocument_documentHighlight()', 'Highlight usages of the symbol under the cursor.', '', 0, 'l')
         call g:quickmenu#append('Clear Highlight', 'call LanguageClient#clearDocumentHighlight()', 'Clear the symbol usages highlighting.', '', 0, 'L')
         call g:quickmenu#append('Apply Edit', 'call LanguageClient#workspace_applyEdit()', 'Apply a workspace edit.', '', 0, 'A')
@@ -2190,20 +2203,15 @@ if g:VIM_LSP_Client ==# 'lcn'
         call g:quickmenu#append('Notify', 'call LanguageClient#Notify()', 'Send a notification to the current language server.', '', 0, 'n')
         call g:quickmenu#append('Start LSC', 'LanguageClientStart', '', '', 0, '$')
         call g:quickmenu#append('Stop LSC', 'LanguageClientStop', '', '', 0, '#')
+        call g:quickmenu#append('Help', 'call Help_Language_Client_neovim()', '', '', 0, 'h')
     else
         call quickmenu#current(4)
         call quickmenu#reset()
         call g:quickmenu#append('# LSC', '')
+        call g:quickmenu#append('Context Menu', 'call LanguageClient_contextMenu()', 'Show context menu.', '', 0, '#')
         call g:quickmenu#append('Code Action', 'call LanguageClient#textDocument_codeAction()', 'Show code actions at current location.', '', 0, 'a')
         call g:quickmenu#append('Symbol', 'call LanguageClient#textDocument_documentSymbol()', "List of current buffer's symbols.", '', 0, 's')
         call g:quickmenu#append('Workspace Symbol', 'call LanguageClient#workspace_symbol()', "List of project's symbols.", '', 0, 'S')
-        call g:quickmenu#append('Definition', 'call LanguageClient#textDocument_definition()', 'Goto definition under cursor.', '', 0, 'd')
-        call g:quickmenu#append('Type Definition', 'call LanguageClient#textDocument_typeDefinition()', 'Goto type definition under cursor.', '', 0, 'D')
-        call g:quickmenu#append('Reference', 'call LanguageClient#textDocument_references()', 'List all references of identifier under cursor.', '', 0, 'r')
-        call g:quickmenu#append('Rename', 'call LanguageClient#textDocument_rename()', 'Rename identifier under cursor.', '', 0, 'R')
-        call g:quickmenu#append('Hover', 'call LanguageClient#textDocument_hover()', 'Show type info (and short doc) of identifier under cursor.', '', 0, 'h')
-        call g:quickmenu#append('Implementation', 'call LanguageClient#textDocument_implementation()', 'Goto implementation under cursor.', '', 0, 'i')
-        call g:quickmenu#append('Formatting', 'call LanguageClient#textDocument_formatting()', 'Format current document.', '', 0, 'f')
         call g:quickmenu#append('Highlight', 'call LanguageClient#textDocument_documentHighlight()', 'Highlight usages of the symbol under the cursor.', '', 0, 'l')
         call g:quickmenu#append('Clear Highlight', 'call LanguageClient#clearDocumentHighlight()', 'Clear the symbol usages highlighting.', '', 0, 'L')
         call g:quickmenu#append('Apply Edit', 'call LanguageClient#workspace_applyEdit()', 'Apply a workspace edit.', '', 0, 'A')
@@ -2211,6 +2219,7 @@ if g:VIM_LSP_Client ==# 'lcn'
         call g:quickmenu#append('Notify', 'call LanguageClient#Notify()', 'Send a notification to the current language server.', '', 0, 'n')
         call g:quickmenu#append('Start LSC', 'LanguageClientStart', '', '', 0, '$')
         call g:quickmenu#append('Stop LSC', 'LanguageClientStop', '', '', 0, '#')
+        call g:quickmenu#append('Help', 'call Help_Language_Client_neovim()', '', '', 0, 'h')
     endif
     let g:LanguageClient_diagnosticsDisplay = {
                 \ 1: {
@@ -2248,8 +2257,19 @@ if g:VIM_LSP_Client ==# 'lcn'
     "{{{vim-lsp
 elseif g:VIM_LSP_Client ==# 'vim-lsp'
     "{{{vim-lsp-usage
-    " mappings
-    " :LspStatus
+    " <leader>l 主菜单
+    function! Help_vim_lsp()
+        echo 'la CodeAction'
+        echo 'ld Definition'
+        echo 'lD Declaration'
+        echo 'lt TypeDefinition'
+        echo 'lr References'
+        echo 'lR Rename'
+        echo 'lI Implementation'
+        echo 'lf DocumentFormat'
+        echo 'lJ NextError'
+        echo 'lK PreviousError'
+    endfunction
     "}}}
     let g:lsp_auto_enable = 1
     let g:lsp_signs_enabled = 1         " enable signs
@@ -2311,26 +2331,29 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
                     \ 'whitelist': ['yaml'],
                     \ })
     augroup END
-    nnoremap <silent> l :<C-u>call quickmenu#toggle(4)<CR>
+    nnoremap <silent> la <plug>(lsp-code-action)
+    nnoremap <silent> ld <plug>(lsp-definition)
+    nnoremap <silent> lD <plug>(lsp-declaration)
+    nnoremap <silent> lt <plug>(lsp-type-definition)
+    nnoremap <silent> lr <plug>(lsp-references)
+    nnoremap <silent> lR <plug>(lsp-rename)
+    nnoremap <silent> lI <plug>(lsp-implementation)
+    nnoremap <silent> lJ <plug>(lsp-next-error)
+    nnoremap <silent> lK <plug>(lsp-previous-error)
+    nnoremap <silent> lf :<C-u>LspDocumentFormat<CR>
+    vnoremap <silent> lf :<C-u>LspDocumentRangeFormat<CR>
+    nnoremap <silent> <leader>l :<C-u>call quickmenu#toggle(4)<CR>
     call quickmenu#current(4)
     call quickmenu#reset()
     call g:quickmenu#append('# LSC', '')
-    call g:quickmenu#append('Code Action', 'LspCodeAction', 'Gets a list of possible commands that can be applied to a file so it can be fixed (quickfix)', '', 0, 'a')
     call g:quickmenu#append('DocumentSymbol', 'LspDocumentSymbol', 'Gets the symbols for the current document.', '', 0, 's')
     call g:quickmenu#append('WorkspaceSymbols', 'LspWorkspaceSymbols', 'Search and show workspace symbols.', '', 0, 'S')
-    call g:quickmenu#append('Definition', 'LspDefinition', 'Go to definition.', '', 0, 'd')
-    call g:quickmenu#append('TypeDefinition', 'LspTypeDefinition', 'Go to the type definition.', '', 0, 'D')
     call g:quickmenu#append('Diagnostics', 'LspDocumentDiagnostics', 'Gets the current document diagnostics.', '', 0, 'e')
-    call g:quickmenu#append('References', 'LspReferences', 'Find all references.', '', 0, 'r')
-    call g:quickmenu#append('Rename', 'LspRename', 'Rename the symbol.', '', 0, 'R')
     call g:quickmenu#append('Hover', 'LspHover', 'Gets the hover information. Close preview window: <c-w><c-z>', '', 0, 'h')
-    call g:quickmenu#append('Implementation', 'LspImplementation', 'Find all implementation of interface.', '', 0, 'i')
-    call g:quickmenu#append('DocumentFormat', 'LspDocumentFormat', 'Format the entire document.', '', 0, 'f')
     call g:quickmenu#append('Status', 'LspStatus', '', '', 0, '*')
     call g:quickmenu#append('Start LSC', 'call lsp#enable()', '', '', 0, '$')
     call g:quickmenu#append('Stop LSC', 'call lsp#disable()', '', '', 0, '#')
-    call g:quickmenu#append('NextError', 'LspNextError', 'Jump to Next err diagnostics', '', 0, '<down>')
-    call g:quickmenu#append('PreviousError', 'LspPreviousError', 'Jump to Previous err diagnostics', '', 0, '<up>')
+    call g:quickmenu#append('Help', 'call Help_vim_lsp()', '', '', 0, 'h')
     vnoremap lf :<C-u>LspDocumentRangeFormat<CR>
 endif
 "}}}
@@ -2607,7 +2630,25 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     "{{{coc.nvim
 elseif g:VIM_Completion_Framework ==# 'coc'
     "{{{coc.nvim-usage
-    " 主quickmenu中打开COC
+    " <leader>l 主菜单
+    function Help_COC_LSP()
+        echo 'lJ <Plug>(coc-diagnostic-next)'
+        echo 'lJ <Plug>(coc-diagnostic-next)'
+        echo 'lK <Plug>(coc-diagnostic-prev)'
+        echo 'li <Plug>(coc-diagnostic-info)'
+        echo 'lI <Plug>(coc-implementation)'
+        echo 'ld <Plug>(coc-definition)'
+        echo 'lD <Plug>(coc-declaration)'
+        echo 'lt <Plug>(coc-type-definition)'
+        echo 'lr <Plug>(coc-references)'
+        echo 'lR <Plug>(coc-rename)'
+        echo 'lf <Plug>(coc-format)'
+        echo 'lf <Plug>(coc-format-selected)'
+        echo 'lF <Plug>(coc-fix-current)'
+        echo 'la <Plug>(coc-codeaction)'
+        echo 'la <Plug>(coc-codeaction-selected)'
+        echo 'lA <Plug>(coc-codelens-action)'
+    endfunction
     "}}}
     "{{{quickmenu
     call quickmenu#current(6)
@@ -2625,26 +2666,15 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('Enable COC', 'CocEnable', '', '', 0, '$')
     call g:quickmenu#append('Restart COC', 'CocRestart', '', '', 0, '@')
     call g:quickmenu#append('Help Mappings', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
-    nnoremap <silent> l :<C-u>call quickmenu#toggle(5)<CR>
-    vnoremap <silent> lf <Plug>(coc-format-selected)
+    nnoremap <silent> <leader>l :<C-u>call quickmenu#toggle(5)<CR>
     call quickmenu#current(5)
     call quickmenu#reset()
     call g:quickmenu#append('List', 'CocList', '', '', 0, 'l')
-    call g:quickmenu#append('Code Action', "call CocActionAsync('codeAction')", 'prompty for a code action and do it.', '', 0, 'a')
-    call g:quickmenu#append('Code Lens Action', "call CocActionAsync('codeLensAction')", 'Invoke command for codeLens of current line (or the line contains codeLens just before).', '', 0, 'A')
     call g:quickmenu#append('Symbols', 'Denite coc-symbols', '', '', 0, 's')
     call g:quickmenu#append('Symbols Workspace', 'Denite coc-workspace', '', '', 0, 'S')
-    call g:quickmenu#append('Definition', "call CocActionAsync('jumpDefinition')", 'jump to definition position of current symbol.', '', 0, 'd')
-    call g:quickmenu#append('Type Definition', "call CocActionAsync('jumpTypeDefinition')", 'Jump to type definition position of current symbol.', '', 0, 'D')
-    call g:quickmenu#append('Diagnostics', "call CocActionAsync('diagnosticInfo')", 'Show diagnostic message at current position, no truncate.', '', 0, 'e')
     call g:quickmenu#append('Diagnostic Lists', 'Denite coc-diagnostic', '', '', 0, 'E')
-    call g:quickmenu#append('References', "call CocActionAsync('jumpReferences')", 'Jump to references position of current symbol.', '', 0, 'r')
-    call g:quickmenu#append('Rename', "call CocActionAsync('rename')", 'Do rename for symbol under cursor position.', '', 0, 'R')
-    call g:quickmenu#append('Hover', "call CocActionAsync('doHover')", 'Show documentation of current word at preview window.', '', 0, 'h')
-    call g:quickmenu#append('Implementation', "call CocActionAsync('jumpImplementation')", 'Jump to implementation position of current symbol.', '', 0, 'i')
-    call g:quickmenu#append('Format', "call CocActionAsync('format')", 'Format current buffer using language server.', '', 0, 'f')
-    call g:quickmenu#append('Open Link', "call CocActionAsync('openLink')", 'Open link under cursor.', '', 0, 'L')
     call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
+    call g:quickmenu#append('Help', 'call Help_COC_LSP()', '', '', 0, 'h')
     "}}}
     "{{{coc-init
     if g:VIM_Snippets ==# 'ultisnips'
@@ -2696,6 +2726,21 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
     imap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
+    nnoremap <silent> lJ <Plug>(coc-diagnostic-next)
+    nnoremap <silent> lK <Plug>(coc-diagnostic-prev)
+    nnoremap <silent> li <Plug>(coc-diagnostic-info)
+    nnoremap <silent> lI <Plug>(coc-implementation)
+    nnoremap <silent> ld <Plug>(coc-definition)
+    nnoremap <silent> lD <Plug>(coc-declaration)
+    nnoremap <silent> lt <Plug>(coc-type-definition)
+    nnoremap <silent> lr <Plug>(coc-references)
+    nnoremap <silent> lR <Plug>(coc-rename)
+    nnoremap <silent> lf <Plug>(coc-format)
+    vnoremap <silent> lf <Plug>(coc-format-selected)
+    nnoremap <silent> lF <Plug>(coc-fix-current)
+    nnoremap <silent> la <Plug>(coc-codeaction)
+    vnoremap <silent> la <Plug>(coc-codeaction-selected)
+    nnoremap <silent> lA <Plug>(coc-codelens-action)
     "}}}
     "}}}
     "{{{neocomplete.vim
@@ -3293,7 +3338,7 @@ endif
 if g:VIM_Linter ==# 'ale'
     "{{{ale-usage
     let g:ALE_MODE = 1  " 0则只在保存文件时检查，1则只在normal模式下检查，2则异步检查
-    " 普通模式下gk和gj分别跳转到上一个、下一个错误
+    " 普通模式下lk和lj分别跳转到上一个、下一个错误
     " :ALEDetail  查看详细错误信息
     "}}}
     " ls ~/.cache/vim/plugins/ale/ale_linters/
@@ -3310,9 +3355,9 @@ if g:VIM_Linter ==# 'ale'
                 \       'vim': ['vint'],
                 \}
     "查看上一个错误
-    nnoremap <silent> gk :ALEPrevious<CR>
+    nnoremap <silent> lk :ALEPrevious<CR>
     "查看下一个错误
-    nnoremap <silent> gj :ALENext<CR>
+    nnoremap <silent> lj :ALENext<CR>
     "自定义error和warning图标
     let g:ale_sign_error = "\uf65b"
     let g:ale_sign_warning = "\uf421"
