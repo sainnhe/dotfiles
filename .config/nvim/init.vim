@@ -1122,7 +1122,7 @@ if g:VIM_Enable_TmuxLine == 1
             autocmd VimEnter * Tmuxline lightline
         augroup END
     endif
-                    " \'x'    : ['#(tmux-pomodoro status)'],
+    " \'x'    : ['#(tmux-pomodoro status)'],
     if g:VIM_TmuxLinePomorodo == 0
         let g:tmuxline_preset = {
                     \'a'    : '#S',
@@ -2652,9 +2652,9 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     elseif g:VIM_Snippets ==# 'coc-snippets'
         let g:Coc_Snippet = 'coc-snippets'
     endif
+    " \       'coc-highlight',
     call coc#add_extension(
                 \       'coc-lists',
-                \       'coc-highlight',
                 \       g:Coc_Snippet,
                 \       'coc-tag',
                 \       'coc-emoji',
@@ -2676,7 +2676,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd!
         autocmd CursorHoldI,CursorMovedI * call CocActionAsync('showSignatureHelp')
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-        autocmd CursorHold * silent call CocActionAsync('highlight')
+        " autocmd CursorHold * silent call CocActionAsync('highlight')
         autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     augroup END
     set completeopt=noinsert,noselect,menuone
