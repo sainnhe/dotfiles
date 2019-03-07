@@ -1,18 +1,6 @@
 {
-    "coc.preferences.snippetIndicator": "\ue796",
-    "coc.preferences.minTriggerInputLength": 1,
-    "coc.preferences.diagnostic.errorSign": "\uf65b",
-    "coc.preferences.diagnostic.warningSign": "\uf421",
-    "coc.preferences.diagnostic.infoSign": "ℹ",
-    "coc.preferences.diagnostic.hintSign": "➤",
-    "coc.preferences.diagnostic.displayByAle": true,
-    "list.indicator": "➣",
-    "list.maxHeight": 15,
-    "list.insertMappings": {
-        "<C-p>": "action:preview"
-    },
-    "$schema": "./data/schema.json",
-    "coc.preferences.autoTrigger": "always",
+    "$schema": "$HOME/.cache/vim/plugins/coc.nvim/data/schema.json",
+    "suggest.autoTrigger": "always",
     "coc.preferences.snippets.enable": true,
     "coc.preferences.colorSupport": true,
     "coc.preferences.hoverTarget": "preview",
@@ -43,8 +31,6 @@
     "coc.source.dictionary.priority": 20,
     "coc.source.word.priority": 21,
     "coc.source.emoji.priority": 22,
-    "coc.source.around.enable": true,
-    "coc.source.around.shortcut": "A",
     "coc.source.buffer.enable": true,
     "coc.source.buffer.shortcut": "B",
     "coc.source.buffer.ignoreGitignore": false,
@@ -84,6 +70,28 @@
     },
     "http.proxy": "",
     "http.proxyStrictSSL": true,
+
+    "suggest.enablePreview": true,
+    "suggest.maxPreviewWidth": 35,
+    "suggest.detailMaxLength": 10,
+    "suggest.detailField": "preview",
+    "suggest.snippetIndicator": "\ue796",
+    "diagnostic.level": "hint",
+    "diagnostic.refreshOnInsertMode": "true",
+    "diagnostic.displayByAle": true,
+    "diagnostic.virtualText": true,
+    "diagnostic.errorSign": "\uf65b",
+    "diagnostic.warningSign": "\uf421",
+    "diagnostic.infoSign": "ℹ",
+    "diagnostic.hintSign": "➤",
+    "codeLens.enable": true,
+    "codeLens.separator": "‣",
+    "coc.source.around.shortcut": "L",
+    "list.indicator": "➣",
+    "list.maxHeight": 15,
+    "list.insertMappings": {
+        "<C-p>": "action:preview"
+    },
     "languageserver": {
         "ccls": {
             "command": "ccls",

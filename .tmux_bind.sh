@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # session
-tmux bind-key -T prefix C-f choose-tree -Zs
+tmux bind-key -T prefix e choose-tree -Zs
 
 # reload config file
 tmux bind-key -T prefix r source-file ~/.tmux.conf
@@ -15,7 +15,7 @@ tmux bind-key -n C-up swap-window -t -1
 tmux bind-key -n C-down swap-window -t +1
 
 # copy mode
-tmux bind-key -T prefix C-v copy-mode
+tmux bind-key -T prefix Space copy-mode
 tmux bind-key -T copy-mode v send-keys -X begin-selection
 
 # plugins
