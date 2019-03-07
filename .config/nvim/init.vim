@@ -2005,7 +2005,7 @@ function Help_vim_signify()
 endfunction
 nnoremap <leader>g? :call Help_vim_signify()<CR>
 "}}}
-let g:signify_realtime = 1
+let g:signify_realtime = 0
 let g:signify_disable_by_default = 0
 let g:signify_line_highlight = 0
 let g:signify_sign_show_count = 1
@@ -3292,7 +3292,7 @@ endif
 "{{{ale
 if g:VIM_Linter ==# 'ale'
     "{{{ale-usage
-    let g:ALE_MODE = 2  " 0则只在保存文件时检查，1则只在normal模式下检查，2则异步检查
+    let g:ALE_MODE = 1  " 0则只在保存文件时检查，1则只在normal模式下检查，2则异步检查
     " 普通模式下gk和gj分别跳转到上一个、下一个错误
     " :ALEDetail  查看详细错误信息
     "}}}
@@ -3351,7 +3351,7 @@ if g:VIM_Linter ==# 'ale'
     " gj, gk分别跳转到下一个、上一个提示位置
     "}}}
 elseif g:VIM_Linter ==# 'neomake'
-    call neomake#configure#automake('nwri')  " when writing or reading a buffer, and on changes in insert and normal mode
+    call neomake#configure#automake('nwr')  " 'nwri'  when writing or reading a buffer, and on changes in insert and normal mode
     let g:neomake_error_sign = {'text': "\uf65b", 'texthl': 'NeomakeErrorSign'}
     let g:neomake_warning_sign = {'text': "\uf421",'texthl': 'NeomakeWarningSign'}
     let g:neomake_message_sign = {'text': '➤','texthl': 'NeomakeMessageSign'}
