@@ -2641,7 +2641,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('References', "call CocActionAsync('jumpReferences')", 'Jump to references position of current symbol.', '', 0, 'r')
     call g:quickmenu#append('Rename', "call CocActionAsync('rename')", 'Do rename for symbol under cursor position.', '', 0, 'R')
     call g:quickmenu#append('Hover', "call CocActionAsync('doHover')", 'Show documentation of current word at preview window.', '', 0, 'h')
-    call g:quickmenu#append('Highlight', "call CocActionAsync('highlight')", 'Highlight symbols under cursor', '', 0, 'H')
     call g:quickmenu#append('Implementation', "call CocActionAsync('jumpImplementation')", 'Jump to implementation position of current symbol.', '', 0, 'i')
     call g:quickmenu#append('Format', "call CocActionAsync('format')", 'Format current buffer using language server.', '', 0, 'f')
     call g:quickmenu#append('Open Link', "call CocActionAsync('openLink')", 'Open link under cursor.', '', 0, 'L')
@@ -2653,13 +2652,20 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     elseif g:VIM_Snippets ==# 'coc-snippets'
         let g:Coc_Snippet = 'coc-snippets'
     endif
-    call coc#add_extension( 'coc-lists',
-                \   'coc-dictionary', 'coc-word', 'coc-emoji',
-                \   g:Coc_Snippet, 'coc-tag',
-                \   'coc-html', 'coc-css',
-                \   'coc-emmet', 'coc-pyls',
-                \   'coc-jest', 'coc-json',
-                \   'coc-yaml'
+    call coc#add_extension(
+                \       'coc-lists',
+                \       'coc-highlight',
+                \       g:Coc_Snippet,
+                \       'coc-tag',
+                \       'coc-emoji',
+                \       'coc-word',
+                \       'coc-dictionary',
+                \       'coc-html',
+                \       'coc-css',
+                \       'coc-emmet',
+                \       'coc-pyls',
+                \       'coc-json',
+                \       'coc-yaml'
                 \   )
     if g:VIM_Enable_Autopairs == 0
         call coc#add_extension( 'coc-pairs' )
@@ -2670,6 +2676,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd!
         autocmd CursorHoldI,CursorMovedI * call CocActionAsync('showSignatureHelp')
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+        autocmd CursorHold * silent call CocActionAsync('highlight')
         autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     augroup END
     set completeopt=noinsert,noselect,menuone
