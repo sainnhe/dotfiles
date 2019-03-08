@@ -45,6 +45,7 @@ alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias fzf="fzf -m --height=50% --layout=reverse --prompt='➣ ' --ansi --tabstop=4"
 alias fzy="fzy --lines=20 --prompt='➣ '"
 alias help="bash ~/Scripts/help.sh"
+alias help-tldr='tldr $(tldr --list | tr ", " "\n" | fzf) | vimpager'
 alias GCT='bash /home/sainnhe/Scripts/ChangeThemes/GCT.sh'
 alias KCT='kcmcolorfulhelper -s -p'
 alias git-proxy='bash /home/sainnhe/Scripts/git-proxy.sh'
