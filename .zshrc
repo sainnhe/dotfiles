@@ -64,6 +64,7 @@ alias help-pkgman="bash ~/Scripts/help.sh package_manager.md"
 alias help-tmux="bash ~/Scripts/help.sh tmux.md"
 alias help-zipped="bash ~/Scripts/help.sh zipped.md"
 alias help-vim="bash ~/Scripts/help.sh vim.md"
+alias help-vim="bash ~/Scripts/help.sh aria2.md"
 # }}}
 # }}}
 # {{{Plugins
