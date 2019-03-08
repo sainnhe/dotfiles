@@ -41,8 +41,10 @@ export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 # }}}
 # {{{alias
 alias ls='ls --color=auto'
+alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias fzf="fzf -m --height=50% --layout=reverse --prompt='➣ ' --ansi --tabstop=4"
 alias fzy="fzy --lines=20 --prompt='➣ '"
+alias help="bash ~/Scripts/help.sh"
 alias GCT='bash /home/sainnhe/Scripts/ChangeThemes/GCT.sh'
 alias KCT='kcmcolorfulhelper -s -p'
 alias git-proxy='bash /home/sainnhe/Scripts/git-proxy.sh'
@@ -55,19 +57,7 @@ alias gsconnect='bash ~/Scripts/gsconnect.sh'
 alias roll='bash ~/Scripts/roll.sh'
 alias zip-r='bash ~/Scripts/zip.sh'
 alias browsh-docker='docker run --rm -it browsh/browsh'
-alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias net-test="bash ~/Scripts/net-test.sh"
-# {{{help
-alias help-bleachbit="bash ~/Scripts/help.sh bleachbit.md"
-alias help-gcc="bash ~/Scripts/help.sh gcc.md"
-alias help-git="bash ~/Scripts/help.sh git.md"
-alias help-octave="bash ~/Scripts/help.sh octave.md"
-alias help-pkgman="bash ~/Scripts/help.sh package_manager.md"
-alias help-tmux="bash ~/Scripts/help.sh tmux.md"
-alias help-zipped="bash ~/Scripts/help.sh zipped.md"
-alias help-vim="bash ~/Scripts/help.sh vim.md"
-alias help-aria2="bash ~/Scripts/help.sh aria2.md"
-# }}}
 # }}}
 # {{{Plugins
 # https://github.com/zplug/zplug
