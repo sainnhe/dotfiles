@@ -1237,7 +1237,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'sacredforest'
         set background=dark
         colorscheme sacredforest
-        let g:lightline.colorscheme = 'sacredforest'
+        let g:lightline.colorscheme = 'sacredforest_alter'
     endif
     call g:quickmenu#append('sacredforest', 'call SwitchColorScheme("sacredforest")', '', '', 0, '')
     "}}}
