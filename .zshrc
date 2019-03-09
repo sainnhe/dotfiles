@@ -43,7 +43,7 @@ export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias ls='ls --color=auto'
 alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias fzf="fzf -m --height=50% --layout=reverse --prompt='➣ ' --ansi --tabstop=4"
-alias fzy="fzy --lines=20 --prompt='➣ '"
+alias fzy="fzy --lines=15 --prompt='➣ '"
 alias help="bash ~/Scripts/help.sh"
 alias GCT='bash /home/sainnhe/Scripts/ChangeThemes/GCT.sh'
 alias KCT='kcmcolorfulhelper -s -p'
