@@ -36,6 +36,7 @@ zstyle ':completion::complete:*' gain-privileges 1 # enabling autocompletion of 
 # elif [[ "$nvim_exist" == "no" ]]; then
 #     export MANPAGER="vim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 # fi
+export PAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 # }}}
 # }}}

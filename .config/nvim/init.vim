@@ -828,6 +828,9 @@ Plug 'yuttie/comfortable-motion.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'metakirby5/codi.vim'
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
+if exists('g:VIM_MANPAGER')
+    Plug 'lambdalisue/vim-manpager'
+endif
 if g:VIM_Enable_Autopairs == 1
     Plug 'jiangmiao/auto-pairs'
 elseif g:VIM_Completion_Framework !=# 'coc'
@@ -836,7 +839,6 @@ endif
 if g:VIM_Enable_TmuxLine == 0 || g:VIM_TmuxLinePomorodo == 0
     Plug 'rmolin88/pomodoro.vim'
 endif
-Plug 'lambdalisue/vim-manpager'
 if executable('fcitx')
     Plug 'lilydjwg/fcitx.vim', { 'on': [] }
                 \| au InsertEnter * call plug#load('fcitx.vim')
@@ -3923,36 +3925,40 @@ if g:VIM_Enable_TmuxLine == 0 || g:VIM_TmuxLinePomorodo == 0
 endif
 "}}}
 " {{{vim-manpager
-" {{{vim-manpager-usage
-function! Help_vim_manpager()
-    echo 'shell里"man foo"启动'
-    echo '<CR>  打开当前word的manual page'
-    echo '<C-o>  跳转到之前的位置'
-    echo '<Tab>  跳转到下一个keyword'
-    echo '<S-Tab>  跳转到上一个keyword'
-    echo 'f  FuzzyFind'
-    echo '<A-w>  quit'
-    echo '?  Help'
-endfunction
-" }}}
-function! s:vim_manpager_mappings() abort
-    if g:VIM_Fuzzy_Finder ==# 'denite'
-        nnoremap <silent><buffer> f :<C-u>Denite line:buffer<CR>
-    elseif g:VIM_Fuzzy_Finder ==# 'fzf'
-        nnoremap <silent><buffer> f :<C-u>BLines<CR>
-    elseif g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
-        nnoremap <silent><buffer> f :<C-u>LeaderfLine<CR>
-    endif
-    nnoremap <silent><buffer> ? :<C-u>call Help_vim_manpager()<CR>
-    nmap <silent><buffer> <Tab> ]t
-    nmap <silent><buffer> <S-Tab> [t
-    nmap <silent><buffer> <A-w> :<C-u>call ForceCloseRecursively()<CR>
-    nnoremap <silent><buffer> K zz:<C-u>call smooth_scroll#up(&scroll, 10, 1)<CR>
-endfunction
-augroup ManpagerAu
-    autocmd!
-    autocmd FileType man call s:vim_manpager_mappings()
-augroup END
+if exists('g:VIM_MANPAGER')
+    " {{{vim-manpager-usage
+    function! Help_vim_manpager()
+        echo 'shell里"man foo"启动'
+        echo '<CR>  打开当前word的manual page'
+        echo '<C-o>  跳转到之前的位置'
+        echo '<Tab>  跳转到下一个keyword'
+        echo '<S-Tab>  跳转到上一个keyword'
+        echo 'f  FuzzyFind'
+        echo 'E  set modifiable'
+        echo '<A-w>  quit'
+        echo '?  Help'
+    endfunction
+    " }}}
+    function! s:vim_manpager_mappings() abort
+        if g:VIM_Fuzzy_Finder ==# 'denite'
+            nnoremap <silent><buffer> f :<C-u>Denite line:buffer<CR>
+        elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+            nnoremap <silent><buffer> f :<C-u>BLines<CR>
+        elseif g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
+            nnoremap <silent><buffer> f :<C-u>LeaderfLine<CR>
+        endif
+        nnoremap <silent><buffer> ? :<C-u>call Help_vim_manpager()<CR>
+        nmap <silent><buffer> <Tab> ]t
+        nmap <silent><buffer> <S-Tab> [t
+        nmap <silent><buffer> <A-w> :<C-u>call ForceCloseRecursively()<CR>
+        nnoremap <silent><buffer> K zz:<C-u>call smooth_scroll#up(&scroll, 10, 1)<CR>
+        nnoremap <silent><buffer> E :<C-u>set modifiable<CR>
+    endfunction
+    augroup ManpagerAu
+        autocmd!
+        autocmd FileType man call s:vim_manpager_mappings()
+    augroup END
+endif
 " }}}
 "{{{emmet-vim
 "{{{emmet-vim-usage
