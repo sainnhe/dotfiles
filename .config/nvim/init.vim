@@ -3931,8 +3931,10 @@ if exists('g:VIM_MANPAGER')
         echo 'shell里"man foo"启动'
         echo '<CR>  打开当前word的manual page'
         echo '<C-o>  跳转到之前的位置'
-        echo '<Tab>  跳转到下一个keyword'
-        echo '<S-Tab>  跳转到上一个keyword'
+        echo '<Tab>  跳转到下一个历史'
+        echo '<S-Tab>  跳转到上一个历史'
+        echo '<C-j>  跳转到下一个keyword'
+        echo '<C-k>  跳转到上一个keyword'
         echo 'f  FuzzyFind'
         echo 'E  set modifiable'
         echo '<A-w>  quit'
@@ -3948,8 +3950,8 @@ if exists('g:VIM_MANPAGER')
             nnoremap <silent><buffer> f :<C-u>LeaderfLine<CR>
         endif
         nnoremap <silent><buffer> ? :<C-u>call Help_vim_manpager()<CR>
-        nmap <silent><buffer> <Tab> ]t
-        nmap <silent><buffer> <S-Tab> [t
+        nmap <silent><buffer> <C-j> ]t
+        nmap <silent><buffer> <C-k> [t
         nmap <silent><buffer> <A-w> :<C-u>call ForceCloseRecursively()<CR>
         nnoremap <silent><buffer> K zz:<C-u>call smooth_scroll#up(&scroll, 10, 1)<CR>
         nnoremap <silent><buffer> E :<C-u>set modifiable<CR>
