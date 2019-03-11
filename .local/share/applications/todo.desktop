@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Todo
+Exec=chromium --app=https://to-do.microsoft.com/
+Icon=todo
+Categories=Office;Education;
