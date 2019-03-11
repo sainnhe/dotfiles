@@ -2685,12 +2685,12 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         let g:Coc_Snippet = 'coc-snippets'
     endif
     " \       'coc-highlight',
+    " \       'coc-word',
     call coc#add_extension(
                 \       'coc-lists',
                 \       g:Coc_Snippet,
                 \       'coc-tag',
                 \       'coc-emoji',
-                \       'coc-word',
                 \       'coc-dictionary',
                 \       'coc-html',
                 \       'coc-css',
