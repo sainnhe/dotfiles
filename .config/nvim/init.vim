@@ -943,6 +943,12 @@ function! NiceTabNum(n) abort
     return RomaNumber(a:n)
     " return RomaNumber(tabpagenr('$'))
 endfunction
+function! Artify_lightline_tab_filename(s) abort
+    return Artify(lightline#tab#filename(a:s), 'monospace')
+endfunction
+function! Artify_lightline_mode() abort
+    return Artify(lightline#mode(), 'monospace')
+endfunction
 function! ObsessionStatusEnhance() abort
     if ObsessionStatus() ==# '[$]'
         " return \uf94a
@@ -1018,7 +1024,7 @@ elseif g:VIM_Linter ==# 'neomake'
     let g:Lightline_Linter = [ 'neomake_warnings', 'neomake_errors', 'neomake_infos', 'neomake_ok', 'lsc_ok', 'lsc_errors', 'lsc_checking', 'lsc_warnings' ]
 endif
 let g:lightline.active = {
-            \ 'left': [ [ 'mode', 'paste' ],
+            \ 'left': [ [ 'artify_mode', 'paste' ],
             \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
             \ 'right': [ [ 'lineinfo' ],
             \            g:Lightline_StatusIndicators + g:Lightline_Linter,
@@ -1034,12 +1040,13 @@ let g:lightline.tabline = {
             \ [ 'gitbranch' ] ]
             \ }
 let g:lightline.tab = {
-            \ 'active': [ 'nicetabnum', 'filename', 'modified' ],
+            \ 'active': [ 'nicetabnum', 'artify_filename', 'modified' ],
             \ 'inactive': [ 'nicetabnum', 'filename', 'modified' ] }
 let g:lightline.tab_component = {
             \ }
 let g:lightline.tab_component_function = {
             \ 'nicetabnum': 'NiceTabNum',
+            \ 'artify_filename': 'Artify_lightline_tab_filename',
             \ 'filename': 'lightline#tab#filename',
             \ 'modified': 'lightline#tab#modified',
             \ 'readonly': 'lightline#tab#readonly',
@@ -1053,6 +1060,7 @@ let g:lightline.component = {
             \ 'pomodoro': '%{PomodoroStatus()}',
             \ 'nicewinnumber': '%{NegativeCircledNumber(tabpagewinnr(tabpagenr()))}',
             \ 'mode': '%{lightline#mode()}',
+            \ 'artify_mode': '%{Artify_lightline_mode()}',
             \ 'absolutepath': '%F',
             \ 'relativepath': '%f',
             \ 'filename': '%t',
