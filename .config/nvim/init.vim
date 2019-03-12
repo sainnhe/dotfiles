@@ -629,6 +629,9 @@ Plug 'sainnhe/vim-color-forest-night'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
+if has('nvim')
+    Plug 'macthecadillac/lightline-gitdiff'
+endif
 if g:VIM_Enable_TmuxLine == 1
     Plug 'edkolev/tmuxline.vim'
 endif
@@ -932,33 +935,18 @@ call g:quickmenu#append('Star Wars', 'StarWars', '', '', 0, '')
 " :h g:lightline.component
 "}}}
 "{{{functions
-function! SwitchLightlineColorScheme(color)
+function! SwitchLightlineColorScheme(color)"{{{
     let g:lightline.colorscheme = a:color
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
-endfunction
-function! NiceTabNum(n) abort
+endfunction"}}}
+function! NiceTabNum(n) abort"{{{
     " \ 'globalinfo': 'T%{NiceNumber(tabpagenr())} B%{bufnr("%")} W%{tabpagewinnr(tabpagenr())}',
     return RomaNumber(a:n)
     " return RomaNumber(tabpagenr('$'))
-endfunction
-function! Artify_lightline_tab_filename(s) abort
-    return Artify(lightline#tab#filename(a:s), 'monospace')
-endfunction
-function! Artify_lightline_mode() abort
-    return Artify(lightline#mode(), 'monospace')
-endfunction
-function! Artify_line_percent() abort
-    return Artify(string((100*line('.'))/line('$')), 'monospace')
-endfunction
-function! Artify_line_num() abort
-    return Artify(string(line('.')), 'monospace')
-endfunction
-function! Artify_col_num() abort
-    return Artify(string(getcurpos()[2]), 'monospace')
-endfunction
-function! ObsessionStatusEnhance() abort
+endfunction"}}}
+function! ObsessionStatusEnhance() abort"{{{
     if ObsessionStatus() ==# '[$]'
         " return \uf94a
         return '⏺'
@@ -966,17 +954,15 @@ function! ObsessionStatusEnhance() abort
         " return \uf949
         return '⏹'
     endif
-endfunction
-" TmuxBindLock
-function! TmuxBindLock() abort
+endfunction"}}}
+function! TmuxBindLock() abort"{{{
     if filereadable('/tmp/.tmux_bind.lck')
         return "\uf13e"
     else
         return "\uf023"
     endif
-endfunction
-" Pomodoro
-function! PomodoroStatus() abort
+endfunction"}}}
+function! PomodoroStatus() abort"{{{
     if g:VIM_Enable_TmuxLine == 0 || g:VIM_TmuxLinePomorodo == 0
         if pomo#remaining_time() ==# '0'
             return "\ue001"
@@ -986,16 +972,32 @@ function! PomodoroStatus() abort
     elseif g:VIM_Enable_TmuxLine == 1
         return ''
     endif
-endfunction
-" devicons
-function! Devicons_Filetype()
+endfunction"}}}
+function! Devicons_Filetype()"{{{
     " return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'no ft') : ''
     return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-
-function! Devicons_Fileformat()
+endfunction"}}}
+function! Devicons_Fileformat()"{{{
     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
+endfunction"}}}
+function! Artify_lightline_tab_filename(s) abort"{{{
+    return Artify(lightline#tab#filename(a:s), 'monospace')
+endfunction"}}}
+function! Artify_lightline_mode() abort"{{{
+    return Artify(lightline#mode(), 'monospace')
+endfunction"}}}
+function! Artify_line_percent() abort"{{{
+    return Artify(string((100*line('.'))/line('$')), 'monospace')
+endfunction"}}}
+function! Artify_line_num() abort"{{{
+    return Artify(string(line('.')), 'monospace')
+endfunction"}}}
+function! Artify_col_num() abort"{{{
+    return Artify(string(getcurpos()[2]), 'monospace')
+endfunction"}}}
+function! Artify_gitbranch() abort"{{{
+    return Artify(gitbranch#name(), 'monospace')
+endfunction"}}}
 "}}}
 set laststatus=2  " Basic
 set noshowmode  " Disable show mode info
@@ -1018,6 +1020,16 @@ let g:lightline#ale#indicator_checking = "\uf110"
 let g:lightline#ale#indicator_warnings = "\uf529"
 let g:lightline#ale#indicator_errors = "\uf00d"
 let g:lightline#ale#indicator_ok = "\uf00c"
+let g:Lightline_GitStatus = has('nvim') ? 'gitstatus' : ''
+if has('nvim')
+    let g:lightline_gitdiff#indicator_added = '+'
+    let g:lightline_gitdiff#indicator_deleted = '-'
+    let g:lightline_gitdiff#indicator_modified = '*'
+    let g:lightline_gitdiff#min_winwidth = '70'
+    let g:lightline.component_visible_condition = {
+                \     'gitstatus': 'lightline_gitdiff#get_status() !=# ""'
+                \   }
+endif
 if g:VIM_Enable_TmuxLine == 1
     if g:VIM_TmuxLinePomorodo == 0
         let g:Lightline_StatusIndicators = [ 'pomodoro', 'obsession', 'tmuxlock' ]
@@ -1045,8 +1057,8 @@ let g:lightline.inactive = {
             \ }
 let g:lightline.tabline = {
             \ 'left': [ [ 'vim_logo', 'tabs' ] ],
-            \ 'right': [ [ 'close' ],
-            \ [ 'gitbranch' ] ]
+            \ 'right': [ [ 'artify_gitbranch' ],
+            \ [ g:Lightline_GitStatus ] ]
             \ }
 let g:lightline.tab = {
             \ 'active': [ 'nicetabnum', 'artify_filename', 'modified' ],
@@ -1062,6 +1074,8 @@ let g:lightline.tab_component_function = {
             \ 'tabnum': 'lightline#tab#tabnum'
             \ }
 let g:lightline.component = {
+            \ 'artify_gitbranch' : '%{Artify_gitbranch()}',
+            \ 'gitstatus' : has('nvim') ? '%{lightline_gitdiff#get_status()}' : '',
             \ 'bufinfo': '%{bufname("%")}:%{bufnr("%")}',
             \ 'obsession': '%{ObsessionStatusEnhance()}',
             \ 'tmuxlock': '%{TmuxBindLock()}',
