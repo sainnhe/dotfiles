@@ -412,10 +412,10 @@ if has('nvim')
     " Alt+X进入普通模式
     tnoremap <A-x> <C-\><C-n>
     " Shift+方向键加速移动
-    tnoremap <S-down> <C-E>
-    tnoremap <S-up> <C-A>
-    tnoremap <S-left> <C-left>
-    tnoremap <S-right> <C-right>
+    tnoremap <S-left> <C-a>
+    tnoremap <S-right> <C-e>
+    nnoremap <silent> <A-Z> :call nvim_open_win(bufnr('%'), v:true, winwidth(0), 2*winheight(0)/5, {'relative': 'editor', 'anchor': 'NW', 'row': 1, 'col': 0})<CR>:terminal<CR>a
+    tnoremap <silent> <C-x> <C-\><C-n>:q<CR>
 endif
 "}}}
 "}}}
