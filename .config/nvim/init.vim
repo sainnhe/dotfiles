@@ -949,6 +949,15 @@ endfunction
 function! Artify_lightline_mode() abort
     return Artify(lightline#mode(), 'monospace')
 endfunction
+function! Artify_line_percent() abort
+    return Artify(string((100*line('.'))/line('$')), 'monospace')
+endfunction
+function! Artify_line_num() abort
+    return Artify(string(line('.')), 'monospace')
+endfunction
+function! Artify_col_num() abort
+    return Artify(string(getcurpos()[2]), 'monospace')
+endfunction
 function! ObsessionStatusEnhance() abort
     if ObsessionStatus() ==# '[$]'
         " return \uf94a
@@ -1026,13 +1035,13 @@ endif
 let g:lightline.active = {
             \ 'left': [ [ 'artify_mode', 'paste' ],
             \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
-            \ 'right': [ [ 'lineinfo' ],
+            \ 'right': [ [ 'artify_lineinfo' ],
             \            g:Lightline_StatusIndicators + g:Lightline_Linter,
             \           [ 'asyncrun_status' ] ]
             \ }
 let g:lightline.inactive = {
             \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
-            \ 'right': [ [ 'lineinfo', 'percent' ] ]
+            \ 'right': [ [ 'artify_lineinfo', 'percent' ] ]
             \ }
 let g:lightline.tabline = {
             \ 'left': [ [ 'vim_logo', 'tabs' ] ],
@@ -1078,6 +1087,7 @@ let g:lightline.component = {
             \ 'percentwin': '%P',
             \ 'spell': '%{&spell?&spelllang:""}',
             \ 'lineinfo': '%2p%% %3l:%-2v',
+            \ 'artify_lineinfo': "%2{Artify_line_percent()}\uf295 %3{Artify_line_num()}:%-2{Artify_col_num()}",
             \ 'line': '%l',
             \ 'column': '%c',
             \ 'close': '%999X X ',
