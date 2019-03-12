@@ -66,17 +66,17 @@ alias net-test="bash ~/Scripts/net-test.sh"
 # https://github.com/zplug/zplug
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview
 source ~/.zplug/init.zsh
-zplug "zplug/zplug", hook-build:'zplug --self-manage'
-zplug "mafredri/zsh-async", from:github
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-zplug "zdharma/fast-syntax-highlighting"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "skywind3000/z.lua"
-zplug "plugins/vi-mode", from:oh-my-zsh
-zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "plugins/pass", from:oh-my-zsh
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug 'mafredri/zsh-async', from:github
+zplug 'sindresorhus/pure', use:pure.zsh, from:github, as:theme
+zplug 'zdharma/fast-syntax-highlighting'
+zplug 'zsh-users/zsh-completions'
+zplug 'zsh-users/zsh-autosuggestions'
+zplug 'zsh-users/zsh-history-substring-search'
+zplug 'skywind3000/z.lua'
+zplug 'plugins/vi-mode', from:oh-my-zsh
+zplug 'plugins/command-not-found', from:oh-my-zsh
+zplug 'plugins/pass', from:oh-my-zsh
 zplug load
 fast-theme default >/dev/null
 # {{{zsh-autosuggestions
