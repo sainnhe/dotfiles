@@ -1029,6 +1029,8 @@ if has('nvim')
     let g:lightline.component_visible_condition = {
                 \     'gitstatus': 'lightline_gitdiff#get_status() !=# ""'
                 \   }
+    nnoremap <C-s> :<C-u>w<CR>:call lightline_gitdiff#query_git()<CR>
+    inoremap <C-s> <Esc>:<C-u>w<CR>:call lightline_gitdiff#query_git()<CR>a
 endif
 if g:VIM_Enable_TmuxLine == 1
     if g:VIM_TmuxLinePomorodo == 0
