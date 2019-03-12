@@ -1053,13 +1053,13 @@ endif
 let g:lightline.active = {
             \ 'left': [ [ 'artify_mode', 'paste' ],
             \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
-            \ 'right': [ [ 'artify_lineinfo' ],
+            \ 'right': [ [ 'lineinfo' ],
             \            g:Lightline_StatusIndicators + g:Lightline_Linter,
             \           [ 'asyncrun_status' ] ]
             \ }
 let g:lightline.inactive = {
             \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
-            \ 'right': [ [ 'artify_lineinfo' ] ]
+            \ 'right': [ [ 'lineinfo' ] ]
             \ }
 let g:lightline.tabline = {
             \ 'left': [ [ 'vim_logo', 'tabs' ] ],
