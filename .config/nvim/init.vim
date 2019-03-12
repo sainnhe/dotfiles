@@ -996,7 +996,11 @@ function! Artify_col_num() abort"{{{
     return Artify(string(getcurpos()[2]), 'monospace')
 endfunction"}}}
 function! Artify_gitbranch() abort"{{{
-    return Artify(gitbranch#name(), 'monospace')
+    if gitbranch#name() !=# ''
+        return Artify(gitbranch#name(), 'monospace')." \ue725"
+    else
+        return "\ue61b"
+    endif
 endfunction"}}}
 "}}}
 set laststatus=2  " Basic
