@@ -3389,9 +3389,11 @@ if g:VIM_Linter ==# 'ale'
                 \       'css': ['stylelint'],
                 \       'html': ['tidy'],
                 \       'json': ['jsonlint'],
+                \       'markdown': ['languagetool'],
                 \       'python': ['pylint', 'flake8'],
                 \       'rust': ['rls'],
                 \       'sh': ['shellcheck'],
+                \       'text': ['languagetool'],
                 \       'vim': ['vint'],
                 \}
     "查看上一个错误

@@ -40,6 +40,8 @@ pacman_setup_func() {
     pacman -S --noconfirm php &> /dev/null
     echo "installing python-wcwidth..."
     pacman -S --noconfirm python-wcwidth &> /dev/null
+    echo "installing languagetool..."
+    pacman -S --noconfirm languagetool &> /dev/null
     echo "installing clang..."
     pacman -S --noconfirm clang &> /dev/null
     echo "installing tidy..."
