@@ -1041,7 +1041,7 @@ let g:lightline.active = {
             \ }
 let g:lightline.inactive = {
             \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
-            \ 'right': [ [ 'artify_lineinfo', 'percent' ] ]
+            \ 'right': [ [ 'artify_lineinfo' ] ]
             \ }
 let g:lightline.tabline = {
             \ 'left': [ [ 'vim_logo', 'tabs' ] ],
