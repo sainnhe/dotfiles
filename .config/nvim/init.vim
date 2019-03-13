@@ -1209,7 +1209,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'forest-night'
+let g:VIM_Color_Scheme = 'one-dark'
 if g:VIM_Enable_TmuxLine == 1
     " dark: material-dark
     " light: snow github
@@ -1231,6 +1231,7 @@ function! ColorScheme()
         let g:one_allow_italics = 1
         colorscheme one
         let g:lightline.colorscheme = 'one'
+        let g:lightline#colorscheme#one#palette.tabline.right[1] = g:lightline#colorscheme#one#palette.normal.middle[0]
     endif
     call g:quickmenu#append('one', 'call SwitchColorScheme("one-dark")', '', '', 0, '')
     "}}}
@@ -1261,6 +1262,7 @@ function! ColorScheme()
         let g:material_theme_style = 'dark'
         let g:lightline.colorscheme = 'material_vim'
         colorscheme tender
+        hi Conceal guifg=#666666 ctermfg=255 guibg=#282828 ctermbg=235 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('tender', 'call SwitchColorScheme("tender")', '', '', 0, '')
     "}}}
@@ -1270,6 +1272,7 @@ function! ColorScheme()
         let g:two_firewatch_italics=1
         colorscheme two-firewatch
         let g:lightline.colorscheme = 'tfw_dark'
+        hi Conceal guifg=#666666 ctermfg=255 guibg=#282c34 ctermbg=235 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('two-firewatch', 'call SwitchColorScheme("two-firewatch-dark")', '', '', 0, '')
     "}}}
@@ -1294,6 +1297,12 @@ function! ColorScheme()
         set background=dark
         colorscheme sialoquent
         let g:lightline.colorscheme = 'sialoquent'
+        hi Conceal guifg=#666666 ctermfg=255 guibg=#393f4c ctermbg=16 gui=NONE cterm=NONE
+        let g:lightline#colorscheme#sialoquent#palette.tabline.right = g:lightline#colorscheme#sialoquent#palette.normal.left
+        let g:lightline#colorscheme#sialoquent#palette.normal.right = g:lightline#colorscheme#sialoquent#palette.normal.left
+        let g:lightline#colorscheme#sialoquent#palette.insert.left[0][1] = '#A3BE8C'
+        let g:lightline#colorscheme#sialoquent#palette.insert.right = g:lightline#colorscheme#sialoquent#palette.insert.left
+        let g:lightline#colorscheme#sialoquent#palette.visual.right = g:lightline#colorscheme#sialoquent#palette.visual.left
     endif
     call g:quickmenu#append('sialoquent', 'call SwitchColorScheme("sialoquent")', '', '', 0, '')
     "}}}
@@ -1301,7 +1310,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'pink-moon'
         set background=dark
         colorscheme pink-moon
-        let g:lightline.colorscheme = 'sialoquent'
+        let g:lightline.colorscheme = 'moons'
     endif
     call g:quickmenu#append('pink-moon', 'call SwitchColorScheme("pink-moon")', '', '', 0, '')
     "}}}
@@ -1310,6 +1319,10 @@ function! ColorScheme()
         set background=dark
         colorscheme gruvbox
         let g:lightline.colorscheme = 'gruvbox'
+        let g:lightline#colorscheme#gruvbox#palette.tabline.right = [ g:lightline#colorscheme#gruvbox#palette.tabline.right[0], g:lightline#colorscheme#gruvbox#palette.normal.middle[0] ]
+        let g:lightline#colorscheme#gruvbox#palette.tabline.right[1][1] = g:lightline#colorscheme#gruvbox#palette.tabline.middle[0][1]
+        let g:lightline#colorscheme#gruvbox#palette.insert.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
+        let g:lightline#colorscheme#gruvbox#palette.visual.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
     endif
     call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-dark")', '', '', 0, '')
     "}}}
@@ -1345,6 +1358,7 @@ function! ColorScheme()
         let g:material_terminal_italics = 1
         colorscheme material
         let g:lightline.colorscheme = 'material_vim'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('palenight', 'call SwitchColorScheme("material-palenight")', '', '', 0, '')
     "}}}
@@ -1352,6 +1366,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'cosme'
         colorscheme cosme
         let g:lightline.colorscheme = 'colored_dark'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('cosme', 'call SwitchColorScheme("cosme")', '', '', 0, '')
     "}}}
@@ -1361,7 +1376,8 @@ function! ColorScheme()
         let g:seoul256_background = 236
         colo seoul256
         set background=dark
-        let g:lightline.colorscheme = 'deus_beta_light'
+        let g:lightline.colorscheme = 'seoul256_alter'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('seoul256', 'call SwitchColorScheme("seoul256")', '', '', 0, '')
     "}}}
@@ -1378,6 +1394,7 @@ function! ColorScheme()
         execute 'hi DiffText        ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#AFD7FF'
         execute 'hi DiffDelete      ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#CD5555'
         execute 'hi DiffChange      ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#C38A43'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('typewriter', 'call SwitchColorScheme("typewriter-dark")', '', '', 0, '')
     "}}}
@@ -1472,6 +1489,7 @@ function! ColorScheme()
         let g:one_allow_italics = 1
         colorscheme one
         let g:lightline.colorscheme = 'one'
+        let g:lightline#colorscheme#one#palette.tabline.right[1] = g:lightline#colorscheme#one#palette.normal.middle[0]
     endif
     call g:quickmenu#append('one', 'call SwitchColorScheme("one-light")', '', '', 0, '')
     "}}}
@@ -1497,6 +1515,7 @@ function! ColorScheme()
         set background=light
         colorscheme snow
         let g:lightline.colorscheme = 'snow_light'
+        let g:lightline#colorscheme#snow_light#palette.tabline.right[0] = g:lightline#colorscheme#snow_light#palette.normal.right[0]
     endif
     call g:quickmenu#append('snow', 'call SwitchColorScheme("snow-light")', '', '', 0, '')
     "}}}
@@ -1520,6 +1539,7 @@ function! ColorScheme()
         let g:two_firewatch_italics=1
         colorscheme two-firewatch
         let g:lightline.colorscheme = 'tfw_light'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('two-firewatch', 'call SwitchColorScheme("two-firewatch-light")', '', '', 0, '')
     "}}}
@@ -1528,6 +1548,7 @@ function! ColorScheme()
         set background=light
         colorscheme carbonized-light
         let g:lightline.colorscheme = 'carbonized_alter'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('carbonized', 'call SwitchColorScheme("carbonized")', '', '', 0, '')
     "}}}
@@ -1536,6 +1557,7 @@ function! ColorScheme()
         set background=light
         colorscheme cosmic_latte
         let g:lightline.colorscheme = 'cosmic_latte_light'
+        let g:lightline#colorscheme#cosmic_latte_light#palette.tabline.right = g:lightline#colorscheme#cosmic_latte_light#palette.normal.left
     endif
     call g:quickmenu#append('cosmic_latte', 'call SwitchColorScheme("cosmic_latte")', '', '', 0, '')
     "}}}
@@ -1544,6 +1566,7 @@ function! ColorScheme()
         set background=light
         colorscheme cake16
         let g:lightline.colorscheme = 'Atelier_Dune'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('cake16', 'call SwitchColorScheme("cake16")', '', '', 0, '')
     "}}}
@@ -1552,6 +1575,7 @@ function! ColorScheme()
         set background=light
         colorscheme stellarized
         let g:lightline.colorscheme = 'stellarized_light'
+        let g:lightline#colorscheme#stellarized_light#palette.tabline.right = g:lightline#colorscheme#stellarized_light#palette.normal.left
     endif
     call g:quickmenu#append('stellarized', 'call SwitchColorScheme("stellarized-light")', '', '', 0, '')
     "}}}
@@ -1560,6 +1584,10 @@ function! ColorScheme()
         set background=light
         colorscheme gruvbox
         let g:lightline.colorscheme = 'gruvbox'
+        let g:lightline#colorscheme#gruvbox#palette.tabline.right = [ g:lightline#colorscheme#gruvbox#palette.tabline.right[0], g:lightline#colorscheme#gruvbox#palette.normal.middle[0] ]
+        let g:lightline#colorscheme#gruvbox#palette.tabline.right[1][1] = g:lightline#colorscheme#gruvbox#palette.tabline.middle[0][1]
+        let g:lightline#colorscheme#gruvbox#palette.insert.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
+        let g:lightline#colorscheme#gruvbox#palette.visual.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
     endif
     call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-light")', '', '', 0, '')
     "}}}
@@ -1567,6 +1595,8 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'github'
         colorscheme github
         let g:lightline.colorscheme = 'github'
+        let g:lightline#colorscheme#github#palette.tabline.right = [ g:lightline#colorscheme#github#palette.tabline.right[0], g:lightline#colorscheme#github#palette.normal.middle[0] ]
+        let g:lightline#colorscheme#github#palette.tabline.right[1][1] = g:lightline#colorscheme#github#palette.tabline.middle[0][1]
     endif
     call g:quickmenu#append('github', 'call SwitchColorScheme("github")', '', '', 0, '')
     "}}}
@@ -1615,6 +1645,7 @@ function! ColorScheme()
         execute 'hi DiffText        ctermfg=235 ctermbg=153  guifg=#424242 guibg=#C1E7F4'
         execute 'hi DiffDelete      ctermfg=235 ctermbg=153  guifg=#424242 guibg=#F2CBCB'
         execute 'hi DiffChange      ctermfg=235 ctermbg=153  guifg=#424242 guibg=#F5F5DC'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('typewriter', 'call SwitchColorScheme("typewriter-light")', '', '', 0, '')
     "}}}
