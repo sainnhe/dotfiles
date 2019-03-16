@@ -158,6 +158,70 @@ endfunction
 nnoremap <silent> gi :<c-u>call <SID>go_indent(v:count1, 1)<cr>
 nnoremap <silent> gpi :<c-u>call <SID>go_indent(v:count1, -1)<cr>
 "}}}
+"{{{TerminalToggle
+function! TerminalCreate() abort
+    if !has('nvim')
+        return v:false
+    endif
+
+    if !exists('g:terminal')
+        let g:terminal = {
+                    \ 'opts': {},
+                    \ 'term': {
+                    \ 'loaded': v:null,
+                    \ 'bufferid': v:null
+                    \ },
+                    \ 'origin': {
+                    \ 'bufferid': v:null
+                    \ }
+                    \ }
+
+        function! g:terminal.opts.on_exit(jobid, data, event) abort
+            silent execute 'buffer' g:terminal.origin.bufferid
+            silent execute 'bdelete!' g:terminal.term.bufferid
+
+            let g:terminal.term.loaded = v:null
+            let g:terminal.term.bufferid = v:null
+            let g:terminal.origin.bufferid = v:null
+        endfunction
+    endif
+
+    if g:terminal.term.loaded
+        return v:false
+    endif
+
+    let g:terminal.origin.bufferid = bufnr('')
+
+    enew
+    call termopen(&shell, g:terminal.opts)
+
+    let g:terminal.term.loaded = v:true
+    let g:terminal.term.bufferid = bufnr('')
+    startinsert
+endfunction
+function! TerminalToggle()
+    if !has('nvim')
+        return v:false
+    endif
+
+    " Create the terminal buffer.
+    if !exists('g:terminal') || !g:terminal.term.loaded
+        return TerminalCreate()
+    endif
+
+    " Go back to origin buffer if current buffer is terminal.
+    if g:terminal.term.bufferid ==# bufnr('')
+        silent execute 'buffer' g:terminal.origin.bufferid
+
+        " Launch terminal buffer and start insert mode.
+    else
+        let g:terminal.origin.bufferid = bufnr('')
+
+        silent execute 'buffer' g:terminal.term.bufferid
+        startinsert
+    endif
+endfunction
+"}}}
 "}}}
 "{{{Config
 set encoding=utf-8 nobomb
@@ -413,8 +477,8 @@ if has('nvim')
     " Shift+方向键加速移动
     tnoremap <S-left> <C-a>
     tnoremap <S-right> <C-e>
-    nnoremap <silent> <A-Z> :call nvim_open_win(bufnr('%'), v:true, winwidth(0), 2*winheight(0)/5, {'relative': 'editor', 'anchor': 'NW', 'row': 1, 'col': 0})<CR>:terminal<CR>a
-    tnoremap <silent> <C-x> <C-\><C-n>:q<CR>
+    nnoremap <silent> <A-Z> :call nvim_open_win(bufnr('%'), v:true, winwidth(0), 2*winheight(0)/5, {'relative': 'editor', 'anchor': 'NW', 'row': 1, 'col': 0})<CR>:call TerminalToggle()<CR>
+    tnoremap <silent> <A-Z> <C-\><C-n>:call TerminalToggle()<CR>:q<CR>
 endif
 "}}}
 "}}}
@@ -1036,7 +1100,7 @@ if has('nvim')
     inoremap <silent> <C-s> <Esc>:<C-u>w<CR>:call lightline_gitdiff#query_git()<CR>a
 endif
 if g:VIM_Enable_TmuxLine == 1
-        let g:Lightline_StatusIndicators = [ 'obsession', 'tmuxlock' ]
+    let g:Lightline_StatusIndicators = [ 'obsession', 'tmuxlock' ]
 elseif g:VIM_Enable_TmuxLine == 0
     let g:Lightline_StatusIndicators = [ 'pomodoro', 'obsession' ]
 endif
@@ -1157,16 +1221,16 @@ if g:VIM_Enable_TmuxLine == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
             autocmd VimEnter * Tmuxline lightline
         augroup END
     endif
-        let g:tmuxline_preset = {
-                    \'a'    : '#S',
-                    \'b'    : ['#W'],
-                    \'c'    : '',
-                    \'win'  : ['#I', '#W'],
-                    \'cwin' : ['#I', '#W', '#F'],
-                    \'x'    : ['#(bash /home/sainnhe/Scripts/tmux_pomodoro.sh) \ue0bd #(bash /home/sainnhe/Scripts/tmux_lock.sh)'],
-                    \'y'    : '%R %a',
-                    \'z'    : '#H'
-                    \}
+    let g:tmuxline_preset = {
+                \'a'    : '#S',
+                \'b'    : ['#W'],
+                \'c'    : '',
+                \'win'  : ['#I', '#W'],
+                \'cwin' : ['#I', '#W', '#F'],
+                \'x'    : ['#(bash /home/sainnhe/Scripts/tmux_pomodoro.sh) \ue0bd #(bash /home/sainnhe/Scripts/tmux_lock.sh)'],
+                \'y'    : '%R %a',
+                \'z'    : '#H'
+                \}
     let g:tmuxline_separators = {
                 \ 'left' : "\ue0bc",
                 \ 'left_alt': "\ue0bd",
