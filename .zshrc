@@ -11,10 +11,17 @@ test_cmd() {
     test_cmd_pre "$1" && echo 'yes' || echo 'no'
 }
 switch_tmuxline() {
+    echo ""
     echo "archery iceberg darcula_* deus_* github_* hydrangea_* inkstained_* material_* molokai_* vice_* disable"
     echo ""
     read -r TMUXLINE_COLOR_SCHEME
-    tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
+    while [ "$TMUXLINE_COLOR_SCHEME"x != "q"x ]; do
+        tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
+        echo ""
+        echo "archery iceberg darcula_* deus_* github_* hydrangea_* inkstained_* material_* molokai_* vice_* disable"
+        echo ""
+        read -r TMUXLINE_COLOR_SCHEME
+    done
 }
 # }}}
 # {{{Variables
