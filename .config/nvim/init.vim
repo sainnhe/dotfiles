@@ -1184,13 +1184,13 @@ function! SwitchColorScheme(name)
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
-    if g:VIM_Enable_TmuxLine == 1
+    if g:VIM_Enable_TmuxLine == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
         execute 'Tmuxline lightline'
     endif
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'neodark'
+let g:VIM_Color_Scheme = 'cosme'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
