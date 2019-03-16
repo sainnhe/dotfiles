@@ -7,7 +7,7 @@ endif
 if !filereadable(expand('~/.vim/autoload/plug.vim'))
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
-if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
+if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# '' && $TMUXLINE_COLOR_SCHEME ==# 'disable'
     let g:VIM_Enable_TmuxLine = 1
 else
     let g:VIM_Enable_TmuxLine = 0
@@ -29,7 +29,6 @@ if exists('*VIM_Global_Settings')
 endif
 let g:VIM_AutoInstall = 1
 let g:VIM_TmuxLineSync = 0
-let g:VIM_TmuxLinePomorodo = 0
 let g:VIM_Enable_Autopairs = 1
 let g:VIM_C_LSP = 'ccls'  " clangd cquery ccls
 "}}}
@@ -839,7 +838,7 @@ if g:VIM_Enable_Autopairs == 1
 elseif g:VIM_Completion_Framework !=# 'coc'
     Plug 'Shougo/neopairs.vim'
 endif
-if g:VIM_Enable_TmuxLine == 0 || g:VIM_TmuxLinePomorodo == 0
+if g:VIM_Enable_TmuxLine == 0
     Plug 'rmolin88/pomodoro.vim'
 endif
 if executable('fcitx')
@@ -888,7 +887,7 @@ call quickmenu#reset()
 nnoremap <silent> <leader><Space> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
 call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(6)', '', '', 0, '`')
-if g:VIM_Enable_TmuxLine == 0 || g:VIM_TmuxLinePomorodo == 0
+if g:VIM_Enable_TmuxLine == 0
     call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 endif
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
@@ -963,7 +962,7 @@ function! TmuxBindLock() abort"{{{
     endif
 endfunction"}}}
 function! PomodoroStatus() abort"{{{
-    if g:VIM_Enable_TmuxLine == 0 || g:VIM_TmuxLinePomorodo == 0
+    if g:VIM_Enable_TmuxLine == 0
         if pomo#remaining_time() ==# '0'
             return "\ue001"
         else
@@ -1037,11 +1036,7 @@ if has('nvim')
     inoremap <silent> <C-s> <Esc>:<C-u>w<CR>:call lightline_gitdiff#query_git()<CR>a
 endif
 if g:VIM_Enable_TmuxLine == 1
-    if g:VIM_TmuxLinePomorodo == 0
-        let g:Lightline_StatusIndicators = [ 'pomodoro', 'obsession', 'tmuxlock' ]
-    else
         let g:Lightline_StatusIndicators = [ 'obsession', 'tmuxlock' ]
-    endif
 elseif g:VIM_Enable_TmuxLine == 0
     let g:Lightline_StatusIndicators = [ 'pomodoro', 'obsession' ]
 endif
@@ -1162,30 +1157,16 @@ if g:VIM_Enable_TmuxLine == 1
             autocmd VimEnter * Tmuxline lightline
         augroup END
     endif
-    " \'x'    : ['#(tmux-pomodoro status)'],
-    if g:VIM_TmuxLinePomorodo == 0
         let g:tmuxline_preset = {
                     \'a'    : '#S',
                     \'b'    : ['#W'],
                     \'c'    : '',
                     \'win'  : ['#I', '#W'],
                     \'cwin' : ['#I', '#W', '#F'],
-                    \'x'    : ['#(bash /home/sainnhe/Scripts/tmux_lock.sh)'],
+                    \'x'    : ['#(bash /home/sainnhe/Scripts/tmux_pomodoro.sh) \ue0bd #(bash /home/sainnhe/Scripts/tmux_lock.sh)'],
                     \'y'    : '%R %a',
                     \'z'    : '#H'
                     \}
-    else
-        let g:tmuxline_preset = {
-                    \'a'    : '#S',
-                    \'b'    : ['#W'],
-                    \'c'    : '',
-                    \'win'  : ['#I', '#W'],
-                    \'cwin' : ['#I', '#W', '#F'],
-                    \'x'    : ['#(tmux-pomodoro status)\ue0bd #(bash /home/sainnhe/Scripts/tmux_lock.sh)'],
-                    \'y'    : '%R %a',
-                    \'z'    : '#H'
-                    \}
-    endif
     let g:tmuxline_separators = {
                 \ 'left' : "\ue0bc",
                 \ 'left_alt': "\ue0bd",
@@ -1209,12 +1190,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'one-dark'
-if g:VIM_Enable_TmuxLine == 1
-    " dark: material-dark
-    " light: snow github
-    let g:VIM_Color_Scheme = 'material-dark'
-endif
+let g:VIM_Color_Scheme = 'neodark'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -3980,7 +3956,7 @@ if g:VIM_Enable_Autopairs == 1
 endif
 "}}}
 "{{{pomodoro.vim
-if g:VIM_Enable_TmuxLine == 0 || g:VIM_TmuxLinePomorodo == 0
+if g:VIM_Enable_TmuxLine == 0
     let g:Pomodoro_Status = 0
     function! Toggle_Pomodoro()
         if g:Pomodoro_Status == 0

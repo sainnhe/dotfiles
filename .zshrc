@@ -98,6 +98,7 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # }}}
 # {{{TMUX
+export TMUXLINE_COLOR_SCHEME="material"  # disable material github
 # {{{TMUX Start
 tmux_start() {
     alias tmux='tmux -2'
@@ -110,6 +111,7 @@ tmux_start() {
             ID="$(tmux ls | grep -vm1 attached | grep Alpha | cut -d: -f1)" # check if Alpha session exist
             if [[ -z "$ID" ]]; then # if not, creat a new one
                 tmux new-session -d -s Alpha -n VIM
+                tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
                 tmux new-window -t Alpha -n Shell
                 tmux send-keys -t Alpha:VIM "cd ~" Enter
                 if [[ "$nvim_exist" == "yes" ]]; then
@@ -129,6 +131,7 @@ tmux_start() {
             ID="$(tmux ls | grep -vm1 attached | grep Beta | cut -d: -f1)" # check if Beta session exist
             if [[ -z "$ID" ]]; then # if not, creat a new one
                 tmux new-session -d -s Beta -n VIM
+                tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
                 tmux new-window -t Beta -n Shell
                 tmux send-keys -t Beta:VIM "cd ~" Enter
                 if [[ "$nvim_exist" == "yes" ]]; then
@@ -156,6 +159,7 @@ if [[ "$TERM_Emulator" == "tilda" ]]; then
         ID="$(tmux ls | grep -vm1 attached | grep Beta | cut -d: -f1)" # check if Beta session exist
         if [[ -z "$ID" ]]; then # if not, creat a new one
             tmux new-session -d -s Beta -n VIM
+            tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
             tmux new-window -t Beta -n Shell
             tmux send-keys -t Beta:VIM "cd ~" Enter
             if [[ "$nvim_exist" == "yes" ]]; then
