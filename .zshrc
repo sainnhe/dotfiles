@@ -10,6 +10,12 @@ test_cmd_pre() {
 test_cmd() {
     test_cmd_pre "$1" && echo 'yes' || echo 'no'
 }
+switch_tmuxline() {
+    echo "archery iceberg darcula_* deus_* github_* hydrangea_* inkstained_* material_* molokai_* vice_* disable"
+    echo ""
+    read -r TMUXLINE_COLOR_SCHEME
+    tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
+}
 # }}}
 # {{{Variables
 export TERM=xterm-256color
@@ -98,7 +104,7 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # }}}
 # {{{TMUX
-export TMUXLINE_COLOR_SCHEME="material_insert"  # disable material_* github_*
+export TMUXLINE_COLOR_SCHEME="vice_insert"
 # {{{TMUX Start
 tmux_start() {
     alias tmux='tmux -2'
