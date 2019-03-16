@@ -7,7 +7,7 @@ endif
 if !filereadable(expand('~/.vim/autoload/plug.vim'))
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
-if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# '' && $TMUXLINE_COLOR_SCHEME ==# 'disable'
+if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
     let g:VIM_Enable_TmuxLine = 1
 else
     let g:VIM_Enable_TmuxLine = 0
@@ -631,7 +631,7 @@ Plug 'itchyny/vim-gitbranch'
 if has('nvim')
     Plug 'macthecadillac/lightline-gitdiff'
 endif
-if g:VIM_Enable_TmuxLine == 1
+if g:VIM_Enable_TmuxLine == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
     Plug 'edkolev/tmuxline.vim'
 endif
 if g:VIM_Enable_Startify == 1
@@ -1143,7 +1143,7 @@ let g:lightline.component_type = {
             \ }
 "}}}
 "{{{tmuxline.vim
-if g:VIM_Enable_TmuxLine == 1
+if g:VIM_Enable_TmuxLine == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
     if g:VIM_TmuxLineSync == 1
         augroup TmuxlineAu
             autocmd!
