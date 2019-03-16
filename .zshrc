@@ -98,7 +98,7 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # }}}
 # {{{TMUX
-export TMUXLINE_COLOR_SCHEME="material"  # disable material github
+export TMUXLINE_COLOR_SCHEME="material_insert"  # disable material_* github_*
 # {{{TMUX Start
 tmux_start() {
     alias tmux='tmux -2'
