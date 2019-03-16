@@ -159,6 +159,8 @@ nnoremap <silent> gi :<c-u>call <SID>go_indent(v:count1, 1)<cr>
 nnoremap <silent> gpi :<c-u>call <SID>go_indent(v:count1, -1)<cr>
 "}}}
 "{{{TerminalToggle
+nnoremap <silent> <A-Z> :call nvim_open_win(bufnr('%'), v:true, winwidth(0), 2*winheight(0)/5, {'relative': 'editor', 'anchor': 'NW', 'row': 1, 'col': 0})<CR>:call TerminalToggle()<CR>
+tnoremap <silent> <A-Z> <C-\><C-n>:call TerminalToggle()<CR>:q<CR>
 function! TerminalCreate() abort
     if !has('nvim')
         return v:false
@@ -477,8 +479,6 @@ if has('nvim')
     " Shift+方向键加速移动
     tnoremap <S-left> <C-a>
     tnoremap <S-right> <C-e>
-    nnoremap <silent> <A-Z> :call nvim_open_win(bufnr('%'), v:true, winwidth(0), 2*winheight(0)/5, {'relative': 'editor', 'anchor': 'NW', 'row': 1, 'col': 0})<CR>:call TerminalToggle()<CR>
-    tnoremap <silent> <A-Z> <C-\><C-n>:call TerminalToggle()<CR>:q<CR>
 endif
 "}}}
 "}}}
