@@ -30,6 +30,7 @@ export PATH="$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
 export TERM_Emulator=$(ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))")
 # }}}
 # {{{Settings
+umask 077
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
@@ -65,6 +66,8 @@ alias cdf='pushd +$( dirs -v | fzy | grep -o "[[:digit:]]") > /dev/null'
 alias cdc='popd +$( dirs -v | fzy | grep -o "[[:digit:]]") > /dev/null'
 alias du='du -hc'
 alias df='df -h'
+alias cp='cp -ip'
+alias mv='mv -i'
 alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias help="bash ~/Scripts/help.sh"
 alias GCT='bash /home/sainnhe/Scripts/ChangeThemes/GCT.sh'
