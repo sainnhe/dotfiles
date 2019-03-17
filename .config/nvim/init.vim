@@ -159,7 +159,7 @@ nnoremap <silent> gi :<c-u>call <SID>go_indent(v:count1, 1)<cr>
 nnoremap <silent> gpi :<c-u>call <SID>go_indent(v:count1, -1)<cr>
 "}}}
 "{{{TerminalToggle
-nnoremap <silent> <A-Z> :call nvim_open_win(bufnr('%'), v:true, winwidth(0), 2*winheight(0)/5, {'relative': 'editor', 'anchor': 'NW', 'row': 1, 'col': 0})<CR>:call TerminalToggle()<CR>
+nnoremap <silent> <A-Z> :call nvim_open_win(bufnr('%'), v:true, {'relative': 'editor', 'anchor': 'NW', 'width': winwidth(0), 'height': 2*winheight(0)/5, 'row': 1, 'col': 0})<CR>:call TerminalToggle()<CR>
 tnoremap <silent> <A-Z> <C-\><C-n>:call TerminalToggle()<CR>:q<CR>
 function! TerminalCreate() abort
     if !has('nvim')
