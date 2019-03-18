@@ -360,8 +360,6 @@ nnoremap ; :
 nnoremap <silent> q :q<CR>
 " Ctrl+S保存文件
 nnoremap <C-S> :<C-u>w<CR>
-" Ctrl+Z撤销上一个动作
-nnoremap <C-z> u
 " Shift加方向键加速移动
 nnoremap <S-up> <Esc>5<up>
 nnoremap <S-down> <Esc>5<down>
