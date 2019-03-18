@@ -27,7 +27,8 @@ switch_tmuxline() {
 # {{{Variables
 export TERM=xterm-256color
 export PATH="$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
-export TERM_Emulator=$(ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))")
+export TERM_Emulator=$(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$)))))))
+export EDITOR=nvim
 # }}}
 # {{{Settings
 set -o monitor
