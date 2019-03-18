@@ -75,6 +75,7 @@ alias jobj='fg %-'
 alias jobf="fg %\$(jobs | grep '[[[:digit:]]*]' | fzy --lines=15 --prompt='➣ ' | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
 alias jobb="bg %\$(jobs | grep '[[[:digit:]]*]' | fzy --lines=15 --prompt='➣ ' | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
 alias jobk="kill %\$(jobs | grep '[[[:digit:]]*]' | fzy --lines=15 --prompt='➣ ' | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
+alias nnn='PAGER= nnn'
 alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias help="bash ~/Scripts/help.sh"
 alias GCT='bash /home/sainnhe/Scripts/ChangeThemes/GCT.sh'
