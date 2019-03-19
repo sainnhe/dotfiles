@@ -73,7 +73,7 @@
     "help_json": "https://github.com/neoclide/coc-json",
     "help_yaml": "https://github.com/neoclide/coc-yaml",
     "languageserver": {
-        "ccls": {
+        "CCLS": {
             "command": "ccls",
             "filetypes": ["c", "cpp", "objc", "objcpp"],
             "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
@@ -83,9 +83,14 @@
                 }
             }
         },
-        "bash": {
+        "CLANGD": {
+            "command": "clangd",
+            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["c", "cpp", "objc", "objcpp"]
+        },
+        "SHLS": {
             "command": "bash-language-server",
-            "filetypes": ["sh"],
+            "filetypes": ["sh", "zsh"],
             "args": ["start"]
         },
         "MPLS": {
