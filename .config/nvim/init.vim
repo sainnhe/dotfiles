@@ -2816,7 +2816,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     "{{{coc-settings
     augroup CocAu
         autocmd!
-        autocmd CursorHoldI,CursorMovedI * call CocActionAsync('showSignatureHelp')
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
         " autocmd CursorHold * silent call CocActionAsync('highlight')
         autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
