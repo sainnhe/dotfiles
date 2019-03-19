@@ -2804,6 +2804,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \       'coc-html',
                 \       'coc-css',
                 \       'coc-emmet',
+                \       'coc-ccls',
                 \       'coc-pyls',
                 \       'coc-json',
                 \       'coc-yaml'
@@ -2817,7 +2818,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd!
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
         autocmd CursorHoldI * call CocActionAsync('showSignatureHelp')
-        autocmd CursorHold,CursorHoldI * silent call CocActionAsync('doHover')
+        autocmd CursorHold * silent call CocActionAsync('doHover')
         autocmd CursorHold * silent call CocActionAsync('highlight')
         autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     augroup END

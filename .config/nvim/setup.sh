@@ -87,22 +87,31 @@ yay_setup_func() {
     echo -n "make sure you have configured makepkg proxy correctly. [enter to continue]  "
     read -r
     echo -n "install cquery from AUR. [enter to continue]  "
+    read -r
     yay -S cquery-git
     echo -n "install ccls from AUR. [enter to continue]  "
+    read -r
     yay -S ccls
     echo -n "install yaml-language-server-bin from AUR. [enter to continue]  "
+    read -r
     yay -S yaml-language-server-bin
     echo -n "install global from AUR. [enter to continue]  "
+    read -r
     yay -S global
     echo -n "install toilet from AUR. [enter to continue]  "
+    read -r
     yay -S toilet
     echo -n "install toilet-fonts from AUR. [enter to continue]  "
+    read -r
     yay -S toilet-fonts
     echo -n "install stylelint from AUR. [enter to continue]  "
+    read -r
     yay -S stylelint
     echo -n "install nodejs-jsonlint from AUR. [enter to continue]  "
+    read -r
     yay -S nodejs-jsonlint
     echo -n "install js-beautify from AUR. [enter to continue]  "
+    read -r
     yay -S js-beautify
 }
 # }}}

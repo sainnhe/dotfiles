@@ -92,20 +92,6 @@
             "command": "bash-language-server",
             "filetypes": ["sh", "zsh"],
             "args": ["start"]
-        },
-        "MPLS": {
-            "command": "dotnet",
-            "args": ["exec", "/home/sainnhe/.cache/python-language-server/output/bin/Release/Microsoft.Python.LanguageServer.dll"],
-            "filetypes": ["python"],
-            "initializationOptions": {
-                "interpreter": {
-                    "properties": {
-                        "InterpreterPath": "/bin/python3",
-                        "UseDefaultDatabase": true,
-                        "Version": "3.7.1"
-                    }
-                }
-            }
         }
     }
 }
