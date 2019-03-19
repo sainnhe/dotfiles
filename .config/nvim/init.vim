@@ -2814,11 +2814,16 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     endif
     "}}}
     "{{{coc-settings
+    function! CocHover() abort
+        if !coc#util#has_float()
+            call CocActionAsync('doHover')
+        endif
+    endfunction
     augroup CocAu
         autocmd!
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
         autocmd CursorHoldI * call CocActionAsync('showSignatureHelp')
-        autocmd CursorHold * silent call CocActionAsync('doHover')
+        autocmd CursorHold * silent call CocHover()
         autocmd CursorHold * silent call CocActionAsync('highlight')
         autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     augroup END
