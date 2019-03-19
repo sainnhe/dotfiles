@@ -242,7 +242,7 @@ set termguicolors                       " 开启GUI颜色支持
 set smartindent                         " 智能缩进
 set hlsearch                            " 高亮搜索
 set undofile                            " 始终保留undo文件
-set undodir=$HOME/.cache/vim/undo             " 设置undo文件的目录
+set undodir=$HOME/.cache/vim/undo       " 设置undo文件的目录
 set timeoutlen=5000                     " 超时时间为5秒
 set clipboard=unnamedplus               " 开启系统剪切板，需要安装xclip
 set foldmethod=marker                   " 折叠方式为按照marker折叠
@@ -253,6 +253,7 @@ set viminfo='1000                       " 文件历史个数
 set autoindent                          " 自动对齐
 set wildmenu                            " 命令框Tab呼出菜单
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
+set updatetime=100
 if has('nvim')
     set inccommand=split
     set wildoptions=pum
@@ -2241,7 +2242,6 @@ if g:VIM_LSP_Client ==# 'lcn'
     "{{{LanguageClient-neovim-usage
     " <leader>l 主菜单
     function! Help_Language_Client_neovim()
-        echo 'lh hover'
         echo 'ld definition'
         echo 'lt typeDefinition'
         echo 'lI implementation'
@@ -2271,6 +2271,15 @@ if g:VIM_LSP_Client ==# 'lcn'
                 \ 'sh': ['bash-language-server', 'start'],
                 \ 'yaml': ['yaml-language-server']
                 \ }
+    " Events
+    augroup LanguageClientAu
+        autocmd!
+        autocmd User LanguageClientStarted setlocal signcolumn=auto
+        autocmd User LanguageClientStopped setlocal signcolumn=auto
+        autocmd CursorHold,CursorHoldI call LanguageClient#textDocument_hover()
+        autocmd CursorHold call LanguageClient#textDocument_documentHighlight()
+        autocmd CursorMoved call LanguageClient#textDocument_clearDocumentHighlight()
+    augroup END
     " snippets
     let g:LanguageClient_hasSnippetSupport = 1
     if g:VIM_Snippets ==# 'ultisnips'
@@ -2290,7 +2299,6 @@ if g:VIM_LSP_Client ==# 'lcn'
     " Interface
     " let g:LanguageClient_selectionUI = 'fzf'  " fzf quickfix location-list
     " Mappings
-    nnoremap <silent> lh :<C-u>call LanguageClient#textDocument_hover()<CR>
     nnoremap <silent> ld :<C-u>call LanguageClient#textDocument_definition()<CR>
     nnoremap <silent> lt :<C-u>call LanguageClient#textDocument_typeDefinition()<CR>
     nnoremap <silent> lI :<C-u>call LanguageClient#textDocument_implementation()<CR>
@@ -2308,8 +2316,6 @@ if g:VIM_LSP_Client ==# 'lcn'
         call g:quickmenu#append('Code Action', 'Denite codeAction', 'Show code actions at current location.', '', 0, 'a')
         call g:quickmenu#append('Symbol', 'Denite documentSymbol', "List of current buffer's symbols.", '', 0, 's')
         call g:quickmenu#append('Workspace Symbol', 'Denite workspaceSymbol', "List of project's symbols.", '', 0, 'S')
-        call g:quickmenu#append('Highlight', 'call LanguageClient#textDocument_documentHighlight()', 'Highlight usages of the symbol under the cursor.', '', 0, 'l')
-        call g:quickmenu#append('Clear Highlight', 'call LanguageClient#clearDocumentHighlight()', 'Clear the symbol usages highlighting.', '', 0, 'L')
         call g:quickmenu#append('Apply Edit', 'call LanguageClient#workspace_applyEdit()', 'Apply a workspace edit.', '', 0, 'A')
         call g:quickmenu#append('Command', 'call LanguageClient#workspace_executeCommand()', 'Execute a workspace command.', '', 0, 'c')
         call g:quickmenu#append('Notify', 'call LanguageClient#Notify()', 'Send a notification to the current language server.', '', 0, 'n')
@@ -2324,8 +2330,6 @@ if g:VIM_LSP_Client ==# 'lcn'
         call g:quickmenu#append('Code Action', 'call LanguageClient#textDocument_codeAction()', 'Show code actions at current location.', '', 0, 'a')
         call g:quickmenu#append('Symbol', 'call LanguageClient#textDocument_documentSymbol()', "List of current buffer's symbols.", '', 0, 's')
         call g:quickmenu#append('Workspace Symbol', 'call LanguageClient#workspace_symbol()', "List of project's symbols.", '', 0, 'S')
-        call g:quickmenu#append('Highlight', 'call LanguageClient#textDocument_documentHighlight()', 'Highlight usages of the symbol under the cursor.', '', 0, 'l')
-        call g:quickmenu#append('Clear Highlight', 'call LanguageClient#clearDocumentHighlight()', 'Clear the symbol usages highlighting.', '', 0, 'L')
         call g:quickmenu#append('Apply Edit', 'call LanguageClient#workspace_applyEdit()', 'Apply a workspace edit.', '', 0, 'A')
         call g:quickmenu#append('Command', 'call LanguageClient#workspace_executeCommand()', 'Execute a workspace command.', '', 0, 'c')
         call g:quickmenu#append('Notify', 'call LanguageClient#Notify()', 'Send a notification to the current language server.', '', 0, 'n')
@@ -2359,12 +2363,6 @@ if g:VIM_LSP_Client ==# 'lcn'
                 \ 'signTexthl': 'ALEInfoSign',
                 \ },
                 \ }
-    " Events
-    augroup LanguageClient_config
-        autocmd!
-        autocmd User LanguageClientStarted setlocal signcolumn=auto
-        autocmd User LanguageClientStopped setlocal signcolumn=auto
-    augroup END
     "}}}
     "{{{vim-lsp
 elseif g:VIM_LSP_Client ==# 'vim-lsp'
@@ -2760,6 +2758,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         echo 'la codeaction'
         echo 'la codeaction-selected'
         echo 'lA codelens-action'
+        echo '<C-j>/<C-k> scroll'
     endfunction
     "}}}
     "{{{quickmenu
@@ -2794,12 +2793,12 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     elseif g:VIM_Snippets ==# 'coc-snippets'
         let g:Coc_Snippet = 'coc-snippets'
     endif
-    " \       'coc-highlight',
     " \       'coc-word',
     call coc#add_extension(
                 \       'coc-lists',
                 \       g:Coc_Snippet,
                 \       'coc-tag',
+                \       'coc-highlight',
                 \       'coc-emoji',
                 \       'coc-dictionary',
                 \       'coc-html',
@@ -2817,10 +2816,13 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     augroup CocAu
         autocmd!
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-        " autocmd CursorHold * silent call CocActionAsync('highlight')
+        autocmd CursorHoldI * call CocActionAsync('showSignatureHelp')
+        autocmd CursorHold,CursorHoldI * silent call CocActionAsync('doHover')
+        autocmd CursorHold * silent call CocActionAsync('highlight')
         autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     augroup END
     set completeopt=noinsert,noselect,menuone
+    highlight CocHighlightText cterm=bold gui=bold
     highlight CocErrorHighlight ctermfg=Gray guifg=#888888
     highlight CocCodeLens ctermfg=Gray guifg=#888888
     "}}}
@@ -2837,6 +2839,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
     imap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
+    nnoremap <expr><C-j> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-j>"
+    nnoremap <expr><C-k> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-k>"
     nnoremap <silent> lJ <Plug>(coc-diagnostic-next)
     nnoremap <silent> lK <Plug>(coc-diagnostic-prev)
     nnoremap <silent> li <Plug>(coc-diagnostic-info)
