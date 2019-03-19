@@ -2276,7 +2276,7 @@ if g:VIM_LSP_Client ==# 'lcn'
         autocmd!
         autocmd User LanguageClientStarted setlocal signcolumn=auto
         autocmd User LanguageClientStopped setlocal signcolumn=auto
-        autocmd CursorHold,CursorHoldI call LanguageClient#textDocument_hover()
+        autocmd CursorHold call LanguageClient#textDocument_hover()
         autocmd CursorHold call LanguageClient#textDocument_documentHighlight()
         autocmd CursorMoved call LanguageClient#textDocument_clearDocumentHighlight()
     augroup END
