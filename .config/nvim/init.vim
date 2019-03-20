@@ -2762,7 +2762,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     endfunction
     "}}}
     "{{{coc-functions
-    let g:CocFloatingLock = 0
+    let g:CocFloatingLock = 1
     function! CocFloatingLockToggle()
         if g:CocFloatingLock == 0
             let g:CocFloatingLock = 1
@@ -2839,6 +2839,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd CursorHold * silent call CocHover()
         autocmd CursorHold * silent call CocActionAsync('highlight')
         autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+        autocmd InsertEnter * call coc#util#float_hide()
     augroup END
     set completeopt=noinsert,noselect,menuone
     highlight CocHighlightText cterm=bold gui=bold
