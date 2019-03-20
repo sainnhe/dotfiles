@@ -2761,6 +2761,23 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         echo '<C-j>/<C-k> scroll'
     endfunction
     "}}}
+    "{{{coc-functions
+    let g:CocFloatingLock = 0
+    function! CocFloatingLockToggle()
+        if g:CocFloatingLock == 0
+            let g:CocFloatingLock = 1
+        elseif g:CocFloatingLock == 1
+            let g:CocFloatingLock = 0
+        endif
+    endfunction
+    function! CocHover() abort
+        if g:CocFloatingLock == 1 && !coc#util#has_float()
+            call CocActionAsync('doHover')
+        elseif g:CocFloatingLock == 0
+            call CocActionAsync('doHover')
+        endif
+    endfunction
+    "}}}
     "{{{quickmenu
     call quickmenu#current(6)
     call quickmenu#reset()
@@ -2776,6 +2793,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('Disable COC', 'CocDisable', '', '', 0, '#')
     call g:quickmenu#append('Enable COC', 'CocEnable', '', '', 0, '$')
     call g:quickmenu#append('Restart COC', 'CocRestart', '', '', 0, '@')
+    call g:quickmenu#append('Toggle Floating Lock', 'call CocFloatingLockToggle()', '', '', 0, 't')
     call g:quickmenu#append('Help Mappings', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
     nnoremap <silent> <leader>l :<C-u>call quickmenu#toggle(5)<CR>
     call quickmenu#current(5)
@@ -2783,7 +2801,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('List', 'CocList', '', '', 0, 'l')
     call g:quickmenu#append('Symbols', 'Denite coc-symbols', '', '', 0, 's')
     call g:quickmenu#append('Symbols Workspace', 'Denite coc-workspace', '', '', 0, 'S')
-    call g:quickmenu#append('Diagnostic Lists', 'Denite coc-diagnostic', '', '', 0, 'E')
+    call g:quickmenu#append('Diagnostic Lists', 'Denite coc-diagnostic', '', '', 0, 'd')
     call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
     call g:quickmenu#append('Help', 'call Help_COC_LSP()', '', '', 0, 'h')
     "}}}
@@ -2814,11 +2832,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     endif
     "}}}
     "{{{coc-settings
-    function! CocHover() abort
-        if !coc#util#has_float()
-            call CocActionAsync('doHover')
-        endif
-    endfunction
     augroup CocAu
         autocmd!
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
