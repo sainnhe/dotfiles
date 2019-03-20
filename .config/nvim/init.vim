@@ -2516,7 +2516,7 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     augroup Deoplete_Au
         autocmd!
         autocmd InsertEnter * call deoplete#enable()
-        autocmd InsertEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
+        autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
     call deoplete#custom#option({
                 \ 'auto_complete_delay': 0,
@@ -2633,7 +2633,7 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
         autocmd!
         autocmd BufEnter * call ncm2#enable_for_buffer()
         autocmd TextChangedI * call ncm2#auto_trigger()  " enable auto complete for `<backspace>`, `<c-w>` keys
-        autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+        autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
     set completeopt=noinsert,menuone,noselect
     imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Plug>(ncm2_manual_trigger)\<C-n>"
@@ -2672,7 +2672,7 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     augroup Asyncomplete_Au
         autocmd!
         autocmd InsertEnter * call Asyncomplete_Register()
-        autocmd InsertEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
+        autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
     function! Asyncomplete_Register()
         call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
@@ -2838,8 +2838,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd CursorHoldI * call CocActionAsync('showSignatureHelp')
         autocmd CursorHold * silent call CocHover()
         autocmd CursorHold * silent call CocActionAsync('highlight')
-        autocmd InsertEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
         autocmd InsertEnter * call coc#util#float_hide()
+        autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
     set completeopt=noinsert,noselect,menuone
     highlight CocHighlightText cterm=bold gui=bold
@@ -2893,7 +2893,7 @@ elseif g:VIM_Completion_Framework ==# 'neocomplete'
         autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        autocmd InsertEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
+        autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
     let g:tmuxcomplete#trigger = ''
     if g:VIM_Snippets ==# 'ultisnips'
