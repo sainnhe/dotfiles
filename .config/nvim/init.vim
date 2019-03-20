@@ -2811,8 +2811,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     elseif g:VIM_Snippets ==# 'coc-snippets'
         let g:Coc_Snippet = 'coc-snippets'
     endif
-    " \       'coc-word',
-    " \       'coc-pyls',
     call coc#add_extension(
                 \       'coc-lists',
                 \       g:Coc_Snippet,
@@ -2843,6 +2841,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
     set completeopt=noinsert,noselect,menuone
+    set dictionary+=/usr/share/dict/words
+    set dictionary+=/usr/share/dict/american-english
     highlight CocHighlightText cterm=bold gui=bold
     highlight CocErrorHighlight ctermfg=Gray guifg=#888888
     highlight CocCodeLens ctermfg=Gray guifg=#888888
