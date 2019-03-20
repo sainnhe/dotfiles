@@ -2812,6 +2812,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         let g:Coc_Snippet = 'coc-snippets'
     endif
     " \       'coc-word',
+    " \       'coc-pyls',
     call coc#add_extension(
                 \       'coc-lists',
                 \       g:Coc_Snippet,
@@ -2823,7 +2824,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \       'coc-css',
                 \       'coc-emmet',
                 \       'coc-ccls',
-                \       'coc-pyls',
                 \       'coc-json',
                 \       'coc-yaml'
                 \   )

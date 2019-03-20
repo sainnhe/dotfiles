@@ -88,6 +88,22 @@
             "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
             "filetypes": ["c", "cpp", "objc", "objcpp"]
         },
+        "MPLS": {
+            "command": "mspyls",
+            "filetypes": ["python"],
+            "initializationOptions": {
+                "interpreter": {
+                    "properties": {
+                        "InterpreterPath": "/usr/bin/python3",
+                        "Version": "3.7",
+                        "UseDefaultDatabase": true
+                    }
+                },
+                "searchPaths": [
+                    "/usr/bin"
+                ]
+            }
+        },
         "SHLS": {
             "command": "bash-language-server",
             "filetypes": ["sh", "zsh"],
