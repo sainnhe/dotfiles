@@ -99,9 +99,20 @@
                         "UseDefaultDatabase": true
                     }
                 },
+                "displayOptions": {
+                    "preferredFormat": "markdown",
+                    "trimDocumentationLines": false,
+                    "maxDocumentationLineLength": 0,
+                    "trimDocumentationText": false,
+                    "maxDocumentationTextLength": 0
+                },
                 "searchPaths": [
                     "/usr/bin"
-                ]
+                ],
+                "testEnvironment": false,
+                "analysisUpdates": true,
+                "traceLogging": true,
+                "asyncStartup": true
             }
         },
         "SHLS": {
