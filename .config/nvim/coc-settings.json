@@ -83,11 +83,6 @@
                 }
             }
         },
-        "CLANGD": {
-            "command": "clangd",
-            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-            "filetypes": ["c", "cpp", "objc", "objcpp"]
-        },
         "MPLS": {
             "command": "mspyls",
             "filetypes": ["python"],
@@ -95,7 +90,6 @@
                 "interpreter": {
                     "properties": {
                         "InterpreterPath": "/usr/bin/python3",
-                        "Version": "3.7",
                         "UseDefaultDatabase": true
                     }
                 },
