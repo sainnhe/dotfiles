@@ -2816,6 +2816,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call coc#add_extension(
                 \       'coc-lists',
                 \       g:Coc_Snippet,
+                \       'coc-syntax',
                 \       'coc-tag',
                 \       'coc-highlight',
                 \       'coc-emoji',
