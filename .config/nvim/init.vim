@@ -257,6 +257,7 @@ set updatetime=100
 if has('nvim')
     set inccommand=split
     set wildoptions=pum
+    set pumblend=15
 endif
 if !has('nvim')
     augroup VIM_CURSOR_SHAPE
