@@ -132,7 +132,7 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # }}}
 # {{{TMUX
-export TMUXLINE_COLOR_SCHEME="github_normal"
+export TMUXLINE_COLOR_SCHEME="github_insert"
 # {{{TMUX Start
 tmux_start() {
     alias tmux='tmux -2'

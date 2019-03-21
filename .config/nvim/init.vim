@@ -1260,7 +1260,7 @@ endfunction
 if g:VIM_Is_In_Tmux == 0
     let g:VIM_Color_Scheme = 'forest-night'
 else
-    let g:VIM_Color_Scheme = 'typewriter-light'
+    let g:VIM_Color_Scheme = 'snow-light'
 endif
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1644,6 +1644,7 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'github'
         let g:lightline#colorscheme#github#palette.tabline.right = [ g:lightline#colorscheme#github#palette.tabline.right[0], g:lightline#colorscheme#github#palette.normal.middle[0] ]
         let g:lightline#colorscheme#github#palette.tabline.right[1][1] = g:lightline#colorscheme#github#palette.tabline.middle[0][1]
+        let g:lightline#colorscheme#github#palette.insert.middle = g:lightline#colorscheme#github#palette.normal.middle
     endif
     call g:quickmenu#append('github', 'call SwitchColorScheme("github")', '', '', 0, '')
     "}}}
