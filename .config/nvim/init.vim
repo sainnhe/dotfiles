@@ -2759,7 +2759,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         echo 'la codeaction'
         echo 'la codeaction-selected'
         echo 'lA codelens-action'
-        echo '<C-j>/<C-k> scroll'
+        echo '<C-l> jump to floating window'
     endfunction
     "}}}
     "{{{coc-functions
@@ -2861,8 +2861,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
     imap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
-    nnoremap <expr><C-j> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-j>"
-    nnoremap <expr><C-k> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-k>"
+    nnoremap <expr><C-l> coc#util#has_float() ? win_gotoid(coc#util#get_float()) : "\<C-l>"
     nnoremap <silent> lJ <Plug>(coc-diagnostic-next)
     nnoremap <silent> lK <Plug>(coc-diagnostic-prev)
     nnoremap <silent> li <Plug>(coc-diagnostic-info)
