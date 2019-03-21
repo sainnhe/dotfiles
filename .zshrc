@@ -94,6 +94,7 @@ alias dtop='gotop -b -c vice'
 alias ltop='gotop -b -c monokai'
 alias browsh-docker='docker run --rm -it browsh/browsh'
 alias net-test="bash ~/Scripts/net-test.sh"
+alias t='goldendict'
 # }}}
 # {{{Plugins
 # https://github.com/zplug/zplug
