@@ -7,4 +7,4 @@ GenericName=Multiformat Dictionary
 Comment=GoldenDict
 Encoding=UTF-8
 Icon=goldendict
-Exec=goldendict
+Exec=sh /home/sainnhe/Scripts/goldendict.sh

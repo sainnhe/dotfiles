@@ -8,9 +8,9 @@ if !filereadable(expand('~/.vim/autoload/plug.vim'))
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
-    let g:VIM_Enable_TmuxLine = 1
+    let g:VIM_Is_In_Tmux = 1
 else
-    let g:VIM_Enable_TmuxLine = 0
+    let g:VIM_Is_In_Tmux = 0
 endif
 if exists('g:VIM_MANPAGER')
     let g:VIM_Enable_Startify = 0
@@ -696,7 +696,7 @@ Plug 'itchyny/vim-gitbranch'
 if has('nvim')
     Plug 'macthecadillac/lightline-gitdiff'
 endif
-if g:VIM_Enable_TmuxLine == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
+if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
     Plug 'edkolev/tmuxline.vim'
 endif
 if g:VIM_Enable_Startify == 1
@@ -905,7 +905,7 @@ if g:VIM_Enable_Autopairs == 1
 elseif g:VIM_Completion_Framework !=# 'coc'
     Plug 'Shougo/neopairs.vim'
 endif
-if g:VIM_Enable_TmuxLine == 0
+if g:VIM_Is_In_Tmux == 0
     Plug 'rmolin88/pomodoro.vim'
 endif
 if executable('fcitx')
@@ -954,7 +954,7 @@ call quickmenu#reset()
 nnoremap <silent> <leader><Space> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
 call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(6)', '', '', 0, '`')
-if g:VIM_Enable_TmuxLine == 0
+if g:VIM_Is_In_Tmux == 0
     call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 endif
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
@@ -1029,13 +1029,13 @@ function! TmuxBindLock() abort"{{{
     endif
 endfunction"}}}
 function! PomodoroStatus() abort"{{{
-    if g:VIM_Enable_TmuxLine == 0
+    if g:VIM_Is_In_Tmux == 0
         if pomo#remaining_time() ==# '0'
             return "\ue001"
         else
             return "\ue003 ".pomo#remaining_time()
         endif
-    elseif g:VIM_Enable_TmuxLine == 1
+    elseif g:VIM_Is_In_Tmux == 1
         return ''
     endif
 endfunction"}}}
@@ -1102,9 +1102,9 @@ if has('nvim')
     nnoremap <silent> <C-s> :<C-u>w<CR>:call lightline_gitdiff#query_git()<CR>
     inoremap <silent> <C-s> <Esc>:<C-u>w<CR>:call lightline_gitdiff#query_git()<CR>a
 endif
-if g:VIM_Enable_TmuxLine == 1
+if g:VIM_Is_In_Tmux == 1
     let g:Lightline_StatusIndicators = [ 'obsession', 'tmuxlock' ]
-elseif g:VIM_Enable_TmuxLine == 0
+elseif g:VIM_Is_In_Tmux == 0
     let g:Lightline_StatusIndicators = [ 'pomodoro', 'obsession' ]
 endif
 if g:VIM_Linter ==# 'ale'
@@ -1210,7 +1210,7 @@ let g:lightline.component_type = {
             \ }
 "}}}
 "{{{tmuxline.vim
-if g:VIM_Enable_TmuxLine == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
+if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
     if g:VIM_TmuxLineSync == 1
         augroup TmuxlineAu
             autocmd!
@@ -1251,13 +1251,17 @@ function! SwitchColorScheme(name)
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
-    if g:VIM_Enable_TmuxLine == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
+    if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
         execute 'Tmuxline lightline'
     endif
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'cosme'
+if g:VIM_Is_In_Tmux == 0
+    let g:VIM_Color_Scheme = 'forest-night'
+else
+    let g:VIM_Color_Scheme = 'typewriter-light'
+endif
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -4045,7 +4049,7 @@ if g:VIM_Enable_Autopairs == 1
 endif
 "}}}
 "{{{pomodoro.vim
-if g:VIM_Enable_TmuxLine == 0
+if g:VIM_Is_In_Tmux == 0
     let g:Pomodoro_Status = 0
     function! Toggle_Pomodoro()
         if g:Pomodoro_Status == 0

@@ -86,7 +86,7 @@ alias bebusy='/home/sainnhe/Scripts/bebusy.py'
 alias youtube-mpv='bash ~/Scripts/youtube-mpv.sh'
 alias download-youtube-subtitles='bash ~/Scripts/download-youtube-subtitles.sh'
 alias CLEAN='bash ~/Scripts/CLEAN.sh'
-alias switch-v2ray='bash ~/Scripts/v2ray/v2ray_switch.sh'
+alias switch_v2ray='bash ~/Scripts/v2ray/v2ray_switch.sh'
 alias gsconnect='bash ~/Scripts/gsconnect.sh'
 alias roll='bash ~/Scripts/roll.sh'
 alias zip-r='bash ~/Scripts/zip.sh'
@@ -132,7 +132,7 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # }}}
 # {{{TMUX
-export TMUXLINE_COLOR_SCHEME="vice_insert"
+export TMUXLINE_COLOR_SCHEME="github_normal"
 # {{{TMUX Start
 tmux_start() {
     alias tmux='tmux -2'

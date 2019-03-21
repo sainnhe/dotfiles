@@ -44,29 +44,29 @@
   <languageCodes></languageCodes>
  </forvo>
  <mediawikis>
-  <mediawiki icon="" name="English Wikipedia" url="https://en.wikipedia.org/w" id="ae6f89aac7151829681b85f035d54e48" enabled="1"/>
-  <mediawiki icon="" name="English Wiktionary" url="https://en.wiktionary.org/w" id="affcf9678e7bfe701c9b071f97eccba3" enabled="0"/>
-  <mediawiki icon="" name="Russian Wikipedia" url="https://ru.wikipedia.org/w" id="8e0c1c2b6821dab8bdba8eb869ca7176" enabled="0"/>
-  <mediawiki icon="" name="Russian Wiktionary" url="https://ru.wiktionary.org/w" id="b09947600ae3902654f8ad4567ae8567" enabled="0"/>
-  <mediawiki icon="" name="German Wikipedia" url="https://de.wikipedia.org/w" id="a8a66331a1242ca2aeb0b4aed361c41d" enabled="0"/>
-  <mediawiki icon="" name="German Wiktionary" url="https://de.wiktionary.org/w" id="21c64bca5ec10ba17ff19f3066bc962a" enabled="0"/>
-  <mediawiki icon="" name="Portuguese Wikipedia" url="https://pt.wikipedia.org/w" id="96957cb2ad73a20c7a1d561fc83c253a" enabled="0"/>
-  <mediawiki icon="" name="Portuguese Wiktionary" url="https://pt.wiktionary.org/w" id="ed4c3929196afdd93cc08b9a903aad6a" enabled="0"/>
-  <mediawiki icon="" name="Greek Wikipedia" url="https://el.wikipedia.org/w" id="f3b4ec8531e52ddf5b10d21e4577a7a2" enabled="0"/>
-  <mediawiki icon="" name="Greek Wiktionary" url="https://el.wiktionary.org/w" id="5d45232075d06e002dea72fe3e137da1" enabled="0"/>
+  <mediawiki url="https://en.wikipedia.org/w" enabled="1" icon="" name="English Wikipedia" id="ae6f89aac7151829681b85f035d54e48"/>
+  <mediawiki url="https://en.wiktionary.org/w" enabled="0" icon="" name="English Wiktionary" id="affcf9678e7bfe701c9b071f97eccba3"/>
+  <mediawiki url="https://ru.wikipedia.org/w" enabled="0" icon="" name="Russian Wikipedia" id="8e0c1c2b6821dab8bdba8eb869ca7176"/>
+  <mediawiki url="https://ru.wiktionary.org/w" enabled="0" icon="" name="Russian Wiktionary" id="b09947600ae3902654f8ad4567ae8567"/>
+  <mediawiki url="https://de.wikipedia.org/w" enabled="0" icon="" name="German Wikipedia" id="a8a66331a1242ca2aeb0b4aed361c41d"/>
+  <mediawiki url="https://de.wiktionary.org/w" enabled="0" icon="" name="German Wiktionary" id="21c64bca5ec10ba17ff19f3066bc962a"/>
+  <mediawiki url="https://pt.wikipedia.org/w" enabled="0" icon="" name="Portuguese Wikipedia" id="96957cb2ad73a20c7a1d561fc83c253a"/>
+  <mediawiki url="https://pt.wiktionary.org/w" enabled="0" icon="" name="Portuguese Wiktionary" id="ed4c3929196afdd93cc08b9a903aad6a"/>
+  <mediawiki url="https://el.wikipedia.org/w" enabled="0" icon="" name="Greek Wikipedia" id="f3b4ec8531e52ddf5b10d21e4577a7a2"/>
+  <mediawiki url="https://el.wiktionary.org/w" enabled="0" icon="" name="Greek Wiktionary" id="5d45232075d06e002dea72fe3e137da1"/>
  </mediawikis>
  <websites>
-  <website icon="" name="Youdao" url="http://dict.youdao.com/search?q=%GDWORD%&amp;ue=utf8" id="380b2408ec686e9de9ab1aaa3645b37b" enabled="0"/>
-  <website icon="" name="Bing" url="https://cn.bing.com/dict/search?q=%GDWORD%" id="b1257e0abee0d30af7cac5ecf84104a8" enabled="1"/>
-  <website icon="" name="ICIBA" url="http://www.iciba.com/%GDWORD%/" id="a407773cc009417404e65c9020b2495f" enabled="0"/>
+  <website url="http://dict.youdao.com/search?q=%GDWORD%&amp;ue=utf8" enabled="0" icon="" name="Youdao" id="380b2408ec686e9de9ab1aaa3645b37b"/>
+  <website url="https://cn.bing.com/dict/search?q=%GDWORD%" enabled="1" icon="" name="Bing" id="b1257e0abee0d30af7cac5ecf84104a8"/>
+  <website url="http://www.iciba.com/%GDWORD%/" enabled="0" icon="" name="ICIBA" id="a407773cc009417404e65c9020b2495f"/>
  </websites>
  <dictservers/>
  <programs/>
  <voiceEngines/>
  <mutedDictionaries/>
  <popupMutedDictionaries>
-  <mutedDictionary>7f40483835b40539e3809f3e20854623</mutedDictionary>
   <mutedDictionary>30e57dcf21a6eb78e615c400eefd6fcf</mutedDictionary>
+  <mutedDictionary>7f40483835b40539e3809f3e20854623</mutedDictionary>
   <mutedDictionary>9397e9b4c642e4b430a7acfca3897289</mutedDictionary>
   <mutedDictionary>bad5ffa4d474993f6cbae154c12d773f</mutedDictionary>
  </popupMutedDictionaries>
@@ -82,7 +82,7 @@
   <enableTrayIcon>1</enableTrayIcon>
   <startToTray>1</startToTray>
   <closeToTray>1</closeToTray>
-  <autoStart>1</autoStart>
+  <autoStart>0</autoStart>
   <doubleClickTranslates>1</doubleClickTranslates>
   <selectWordBySingleClick>0</selectWordBySingleClick>
   <escKeyHidesMainWindow>1</escKeyHidesMainWindow>
@@ -111,7 +111,7 @@
   <alwaysOnTop>0</alwaysOnTop>
   <searchInDock>0</searchInDock>
   <historyStoreInterval>0</historyStoreInterval>
-  <proxyserver useSystemProxy="0" enabled="0">
+  <proxyserver enabled="0" useSystemProxy="0">
    <type>0</type>
    <host>127.0.0.1</host>
    <port>1080</port>
@@ -147,10 +147,10 @@
  </preferences>
  <lastMainGroupId>0</lastMainGroupId>
  <lastPopupGroupId>0</lastPopupGroupId>
- <popupWindowState>AAAA/wAAAAH9AAAAAAAABmIAAAMlAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAQAAAAEAAAAaAGQAaQBjAHQAaQBvAG4AYQByAHkAQgBhAHIDAAAAAP////8AAAAAAAAAAA==</popupWindowState>
- <popupWindowGeometry>AdnQywADAAAAAALTAAACXgAACWEAAAWCAAAC0wAAAl4AAAlhAAAFggAAAAAAAAAACrAAAALTAAACXgAACWEAAAWC</popupWindowGeometry>
+ <popupWindowState>AAAA/wAAAAH9AAAAAAAABmoAAAMlAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAQAAAAEAAAAaAGQAaQBjAHQAaQBvAG4AYQByAHkAQgBhAHIDAAAAAP////8AAAAAAAAAAA==</popupWindowState>
+ <popupWindowGeometry>AdnQywADAAAAAAIQAAACYAAACJ4AAAWEAAACEAAAAmAAAAieAAAFhAAAAAAAAAAACrAAAAIQAAACYAAACJ4AAAWE</popupWindowGeometry>
  <pinPopupWindow>0</pinPopupWindow>
- <mainWindowState>AAAA/wAAAAH9AAAAAgAAAAAAAAAAAAAAAPwCAAAAAfsAAAAUAHMAZQBhAHIAYwBoAFAAYQBuAGUAAAAAAP////8AAAD7AP///wAAAAEAAAD9AAAEvfwCAAAAAvsAAAASAGQAaQBjAHQAcwBQAGEAbgBlAQAAAHEAAAJxAAAAuwD////7AAAAFgBoAGkAcwB0AG8AcgB5AFAAYQBuAGUBAAAC7gAAAkAAAAC7AP///wAABwAAAAS9AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAUAG4AYQB2AFQAbwBvAGwAYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABoAZABpAGMAdABpAG8AbgBhAHIAeQBCAGEAcgEAAAQJ/////wAAAAAAAAAA</mainWindowState>
+ <mainWindowState>AAAA/wAAAAH9AAAAAgAAAAAAAAAAAAAAAPwCAAAAAfsAAAAUAHMAZQBhAHIAYwBoAFAAYQBuAGUAAAAAAP////8AAACLAP///wAAAAEAAAD9AAAE8PwCAAAAAvsAAAASAGQAaQBjAHQAcwBQAGEAbgBlAQAAAD4AAAKPAAAAZAD////7AAAAFgBoAGkAcwB0AG8AcgB5AFAAYQBuAGUBAAAC0wAAAlsAAABkAP///wAABwYAAATwAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAUAG4AYQB2AFQAbwBvAGwAYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABoAZABpAGMAdABpAG8AbgBhAHIAeQBCAGEAcgEAAAJT/////wAAAAAAAAAA</mainWindowState>
  <mainWindowGeometry>AdnQywADAAAAAAEC////yAAACQoAAAUtAAABAgAAAAAAAAkKAAAFLQAAAAAAAAAACrAAAAECAAAAAAAACQoAAAUt</mainWindowGeometry>
  <helpWindowGeometry>AdnQywADAAAAAAAAAAAAAAAACq8AAAcfAAAEIQAAAmQAAAZ4AAAEJQAAAAACAAAACrAAAAAAAAAAAAAACq8AAAcf</helpWindowGeometry>
  <helpSplitterState>AAAA/wAAAAEAAAACAAABBAAABAAB/////wEAAAABAA==</helpSplitterState>
