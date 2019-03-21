@@ -3,22 +3,22 @@
   <path recursive="1">/home/sainnhe/.cache/dict</path>
  </paths>
  <sounddirs/>
- <dictionaryOrder id="0" name="">
+ <dictionaryOrder name="" id="0">
   <dictionary name="简明英汉必应版">d9e9dbccb52effb2fbcbb2c93abb7a85</dictionary>
   <dictionary name="Bing">b1257e0abee0d30af7cac5ecf84104a8</dictionary>
   <dictionary name="Longman">747f86c82011e489ab16c6ea96230150</dictionary>
   <dictionary name="English Wikipedia">ae6f89aac7151829681b85f035d54e48</dictionary>
   <mutedDictionaries/>
  </dictionaryOrder>
- <inactiveDictionaries id="0" name="">
+ <inactiveDictionaries name="" id="0">
   <mutedDictionaries/>
  </inactiveDictionaries>
  <groups nextId="3">
-  <group id="1" name="Dict">
+  <group name="Dict" id="1">
    <dictionary name="简明英汉必应版">d9e9dbccb52effb2fbcbb2c93abb7a85</dictionary>
    <mutedDictionaries/>
   </group>
-  <group id="2" name="Wiki">
+  <group name="Wiki" id="2">
    <dictionary name="English Wikipedia">ae6f89aac7151829681b85f035d54e48</dictionary>
    <mutedDictionaries/>
   </group>
@@ -44,30 +44,30 @@
   <languageCodes></languageCodes>
  </forvo>
  <mediawikis>
-  <mediawiki icon="" id="ae6f89aac7151829681b85f035d54e48" enabled="1" name="English Wikipedia" url="https://en.wikipedia.org/w"/>
-  <mediawiki icon="" id="affcf9678e7bfe701c9b071f97eccba3" enabled="0" name="English Wiktionary" url="https://en.wiktionary.org/w"/>
-  <mediawiki icon="" id="8e0c1c2b6821dab8bdba8eb869ca7176" enabled="0" name="Russian Wikipedia" url="https://ru.wikipedia.org/w"/>
-  <mediawiki icon="" id="b09947600ae3902654f8ad4567ae8567" enabled="0" name="Russian Wiktionary" url="https://ru.wiktionary.org/w"/>
-  <mediawiki icon="" id="a8a66331a1242ca2aeb0b4aed361c41d" enabled="0" name="German Wikipedia" url="https://de.wikipedia.org/w"/>
-  <mediawiki icon="" id="21c64bca5ec10ba17ff19f3066bc962a" enabled="0" name="German Wiktionary" url="https://de.wiktionary.org/w"/>
-  <mediawiki icon="" id="96957cb2ad73a20c7a1d561fc83c253a" enabled="0" name="Portuguese Wikipedia" url="https://pt.wikipedia.org/w"/>
-  <mediawiki icon="" id="ed4c3929196afdd93cc08b9a903aad6a" enabled="0" name="Portuguese Wiktionary" url="https://pt.wiktionary.org/w"/>
-  <mediawiki icon="" id="f3b4ec8531e52ddf5b10d21e4577a7a2" enabled="0" name="Greek Wikipedia" url="https://el.wikipedia.org/w"/>
-  <mediawiki icon="" id="5d45232075d06e002dea72fe3e137da1" enabled="0" name="Greek Wiktionary" url="https://el.wiktionary.org/w"/>
+  <mediawiki icon="" name="English Wikipedia" url="https://en.wikipedia.org/w" id="ae6f89aac7151829681b85f035d54e48" enabled="1"/>
+  <mediawiki icon="" name="English Wiktionary" url="https://en.wiktionary.org/w" id="affcf9678e7bfe701c9b071f97eccba3" enabled="0"/>
+  <mediawiki icon="" name="Russian Wikipedia" url="https://ru.wikipedia.org/w" id="8e0c1c2b6821dab8bdba8eb869ca7176" enabled="0"/>
+  <mediawiki icon="" name="Russian Wiktionary" url="https://ru.wiktionary.org/w" id="b09947600ae3902654f8ad4567ae8567" enabled="0"/>
+  <mediawiki icon="" name="German Wikipedia" url="https://de.wikipedia.org/w" id="a8a66331a1242ca2aeb0b4aed361c41d" enabled="0"/>
+  <mediawiki icon="" name="German Wiktionary" url="https://de.wiktionary.org/w" id="21c64bca5ec10ba17ff19f3066bc962a" enabled="0"/>
+  <mediawiki icon="" name="Portuguese Wikipedia" url="https://pt.wikipedia.org/w" id="96957cb2ad73a20c7a1d561fc83c253a" enabled="0"/>
+  <mediawiki icon="" name="Portuguese Wiktionary" url="https://pt.wiktionary.org/w" id="ed4c3929196afdd93cc08b9a903aad6a" enabled="0"/>
+  <mediawiki icon="" name="Greek Wikipedia" url="https://el.wikipedia.org/w" id="f3b4ec8531e52ddf5b10d21e4577a7a2" enabled="0"/>
+  <mediawiki icon="" name="Greek Wiktionary" url="https://el.wiktionary.org/w" id="5d45232075d06e002dea72fe3e137da1" enabled="0"/>
  </mediawikis>
  <websites>
-  <website icon="" id="380b2408ec686e9de9ab1aaa3645b37b" enabled="0" name="Youdao" url="http://dict.youdao.com/search?q=%GDWORD%&amp;ue=utf8"/>
-  <website icon="" id="b1257e0abee0d30af7cac5ecf84104a8" enabled="0" name="Bing" url="https://cn.bing.com/dict/search?q=%GDWORD%"/>
-  <website icon="" id="a407773cc009417404e65c9020b2495f" enabled="0" name="ICIBA" url="http://www.iciba.com/%GDWORD%/"/>
+  <website icon="" name="Youdao" url="http://dict.youdao.com/search?q=%GDWORD%&amp;ue=utf8" id="380b2408ec686e9de9ab1aaa3645b37b" enabled="0"/>
+  <website icon="" name="Bing" url="https://cn.bing.com/dict/search?q=%GDWORD%" id="b1257e0abee0d30af7cac5ecf84104a8" enabled="1"/>
+  <website icon="" name="ICIBA" url="http://www.iciba.com/%GDWORD%/" id="a407773cc009417404e65c9020b2495f" enabled="0"/>
  </websites>
  <dictservers/>
  <programs/>
  <voiceEngines/>
  <mutedDictionaries/>
  <popupMutedDictionaries>
-  <mutedDictionary>9397e9b4c642e4b430a7acfca3897289</mutedDictionary>
   <mutedDictionary>7f40483835b40539e3809f3e20854623</mutedDictionary>
   <mutedDictionary>30e57dcf21a6eb78e615c400eefd6fcf</mutedDictionary>
+  <mutedDictionary>9397e9b4c642e4b430a7acfca3897289</mutedDictionary>
   <mutedDictionary>bad5ffa4d474993f6cbae154c12d773f</mutedDictionary>
  </popupMutedDictionaries>
  <preferences>
@@ -111,7 +111,7 @@
   <alwaysOnTop>0</alwaysOnTop>
   <searchInDock>0</searchInDock>
   <historyStoreInterval>0</historyStoreInterval>
-  <proxyserver enabled="0" useSystemProxy="0">
+  <proxyserver useSystemProxy="0" enabled="0">
    <type>0</type>
    <host>127.0.0.1</host>
    <port>1080</port>
