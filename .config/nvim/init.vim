@@ -3494,6 +3494,7 @@ if g:VIM_Linter ==# 'ale'
                 \       'python': ['pylint', 'flake8'],
                 \       'rust': ['rls'],
                 \       'sh': ['shellcheck'],
+                \       'zsh': ['shellcheck'],
                 \       'text': ['languagetool'],
                 \       'vim': ['vint'],
                 \}
