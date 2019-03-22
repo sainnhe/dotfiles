@@ -2769,20 +2769,31 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     "}}}
     "{{{coc-functions
     let g:CocFloatingLock = 1
-    function! CocFloatingLockToggle()
+    function! CocFloatingLockToggle()"{{{
         if g:CocFloatingLock == 0
             let g:CocFloatingLock = 1
         elseif g:CocFloatingLock == 1
             let g:CocFloatingLock = 0
         endif
-    endfunction
-    function! CocHover() abort
-        if g:CocFloatingLock == 1 && !coc#util#has_float()
-            call CocActionAsync('doHover')
+    endfunction"}}}
+    function! CocHover() abort"{{{
+        if g:CocFloatingLock == 1
+            if !coc#util#has_float()
+                call CocActionAsync('doHover')
+            endif
         elseif g:CocFloatingLock == 0
             call CocActionAsync('doHover')
         endif
-    endfunction
+    endfunction"}}}
+    function! CocSignatureHelp() abort"{{{
+        if g:CocFloatingLock == 1
+            if !coc#util#has_float()
+                call CocActionAsync('showSignatureHelp')
+            endif
+        elseif g:CocFloatingLock == 0
+            call CocActionAsync('showSignatureHelp')
+        endif
+    endfunction"}}}
     "}}}
     "{{{quickmenu
     call quickmenu#current(6)
@@ -2839,9 +2850,9 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     "{{{coc-settings
     augroup CocAu
         autocmd!
-        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-        autocmd CursorHoldI * call CocActionAsync('showSignatureHelp')
         autocmd CursorHold * silent call CocHover()
+        autocmd CursorHold * silent call CocSignatureHelp()
+        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
         autocmd CursorHold * silent call CocActionAsync('highlight')
         autocmd InsertEnter * call coc#util#float_hide()
         autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")

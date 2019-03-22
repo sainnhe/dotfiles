@@ -44,21 +44,21 @@
   <languageCodes></languageCodes>
  </forvo>
  <mediawikis>
-  <mediawiki id="ae6f89aac7151829681b85f035d54e48" icon="" name="English Wikipedia" url="https://en.wikipedia.org/w" enabled="1"/>
-  <mediawiki id="affcf9678e7bfe701c9b071f97eccba3" icon="" name="English Wiktionary" url="https://en.wiktionary.org/w" enabled="0"/>
-  <mediawiki id="8e0c1c2b6821dab8bdba8eb869ca7176" icon="" name="Russian Wikipedia" url="https://ru.wikipedia.org/w" enabled="0"/>
-  <mediawiki id="b09947600ae3902654f8ad4567ae8567" icon="" name="Russian Wiktionary" url="https://ru.wiktionary.org/w" enabled="0"/>
-  <mediawiki id="a8a66331a1242ca2aeb0b4aed361c41d" icon="" name="German Wikipedia" url="https://de.wikipedia.org/w" enabled="0"/>
-  <mediawiki id="21c64bca5ec10ba17ff19f3066bc962a" icon="" name="German Wiktionary" url="https://de.wiktionary.org/w" enabled="0"/>
-  <mediawiki id="96957cb2ad73a20c7a1d561fc83c253a" icon="" name="Portuguese Wikipedia" url="https://pt.wikipedia.org/w" enabled="0"/>
-  <mediawiki id="ed4c3929196afdd93cc08b9a903aad6a" icon="" name="Portuguese Wiktionary" url="https://pt.wiktionary.org/w" enabled="0"/>
-  <mediawiki id="f3b4ec8531e52ddf5b10d21e4577a7a2" icon="" name="Greek Wikipedia" url="https://el.wikipedia.org/w" enabled="0"/>
-  <mediawiki id="5d45232075d06e002dea72fe3e137da1" icon="" name="Greek Wiktionary" url="https://el.wiktionary.org/w" enabled="0"/>
+  <mediawiki id="ae6f89aac7151829681b85f035d54e48" name="English Wikipedia" url="https://en.wikipedia.org/w" icon="" enabled="1"/>
+  <mediawiki id="affcf9678e7bfe701c9b071f97eccba3" name="English Wiktionary" url="https://en.wiktionary.org/w" icon="" enabled="0"/>
+  <mediawiki id="8e0c1c2b6821dab8bdba8eb869ca7176" name="Russian Wikipedia" url="https://ru.wikipedia.org/w" icon="" enabled="0"/>
+  <mediawiki id="b09947600ae3902654f8ad4567ae8567" name="Russian Wiktionary" url="https://ru.wiktionary.org/w" icon="" enabled="0"/>
+  <mediawiki id="a8a66331a1242ca2aeb0b4aed361c41d" name="German Wikipedia" url="https://de.wikipedia.org/w" icon="" enabled="0"/>
+  <mediawiki id="21c64bca5ec10ba17ff19f3066bc962a" name="German Wiktionary" url="https://de.wiktionary.org/w" icon="" enabled="0"/>
+  <mediawiki id="96957cb2ad73a20c7a1d561fc83c253a" name="Portuguese Wikipedia" url="https://pt.wikipedia.org/w" icon="" enabled="0"/>
+  <mediawiki id="ed4c3929196afdd93cc08b9a903aad6a" name="Portuguese Wiktionary" url="https://pt.wiktionary.org/w" icon="" enabled="0"/>
+  <mediawiki id="f3b4ec8531e52ddf5b10d21e4577a7a2" name="Greek Wikipedia" url="https://el.wikipedia.org/w" icon="" enabled="0"/>
+  <mediawiki id="5d45232075d06e002dea72fe3e137da1" name="Greek Wiktionary" url="https://el.wiktionary.org/w" icon="" enabled="0"/>
  </mediawikis>
  <websites>
-  <website id="380b2408ec686e9de9ab1aaa3645b37b" icon="" name="Youdao" url="http://dict.youdao.com/search?q=%GDWORD%&amp;ue=utf8" enabled="0"/>
-  <website id="b1257e0abee0d30af7cac5ecf84104a8" icon="" name="Bing" url="https://cn.bing.com/dict/search?q=%GDWORD%" enabled="1"/>
-  <website id="a407773cc009417404e65c9020b2495f" icon="" name="ICIBA" url="http://www.iciba.com/%GDWORD%/" enabled="0"/>
+  <website id="380b2408ec686e9de9ab1aaa3645b37b" name="Youdao" url="http://dict.youdao.com/search?q=%GDWORD%&amp;ue=utf8" icon="" enabled="0"/>
+  <website id="b1257e0abee0d30af7cac5ecf84104a8" name="Bing" url="https://cn.bing.com/dict/search?q=%GDWORD%" icon="" enabled="1"/>
+  <website id="a407773cc009417404e65c9020b2495f" name="ICIBA" url="http://www.iciba.com/%GDWORD%/" icon="" enabled="0"/>
  </websites>
  <dictservers/>
  <programs/>
@@ -67,8 +67,8 @@
  <popupMutedDictionaries>
   <mutedDictionary>9397e9b4c642e4b430a7acfca3897289</mutedDictionary>
   <mutedDictionary>7f40483835b40539e3809f3e20854623</mutedDictionary>
-  <mutedDictionary>30e57dcf21a6eb78e615c400eefd6fcf</mutedDictionary>
   <mutedDictionary>bad5ffa4d474993f6cbae154c12d773f</mutedDictionary>
+  <mutedDictionary>30e57dcf21a6eb78e615c400eefd6fcf</mutedDictionary>
  </popupMutedDictionaries>
  <preferences>
   <interfaceLanguage></interfaceLanguage>
@@ -151,7 +151,7 @@
  <popupWindowGeometry>AdnQywADAAAAAAIQAAACjQAACJ4AAAWxAAACEAAAAo0AAAieAAAFsQAAAAAAAAAACrAAAAIQAAACjQAACJ4AAAWx</popupWindowGeometry>
  <pinPopupWindow>0</pinPopupWindow>
  <mainWindowState>AAAA/wAAAAH9AAAAAgAAAAAAAAAAAAAAAPwCAAAAAfsAAAAUAHMAZQBhAHIAYwBoAFAAYQBuAGUAAAAAAP////8AAAD7AP///wAAAAEAAAD9AAAEvfwCAAAAAvsAAAASAGQAaQBjAHQAcwBQAGEAbgBlAQAAAHEAAAJxAAAAuwD////7AAAAFgBoAGkAcwB0AG8AcgB5AFAAYQBuAGUBAAAC7gAAAkAAAAC7AP///wAABwAAAAS9AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAUAG4AYQB2AFQAbwBvAGwAYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABoAZABpAGMAdABpAG8AbgBhAHIAeQBCAGEAcgEAAAQJ/////wAAAAAAAAAA</mainWindowState>
- <mainWindowGeometry>AdnQywADAAAAAAEC////zAAACQoAAAUtAAABAgAAAAAAAAkKAAAFLQAAAAAAAAAACrAAAAECAAAAAAAACQoAAAUt</mainWindowGeometry>
+ <mainWindowGeometry>AdnQywADAAAAAAECAAAAAAAACQoAAAUtAAABAgAAAAAAAAkKAAAFLQAAAAAAAAAACrAAAAECAAAAAAAACQoAAAUt</mainWindowGeometry>
  <helpWindowGeometry>AdnQywADAAAAAAAAAAAAAAAACq8AAAcfAAAEIQAAAmQAAAZ4AAAEJQAAAAACAAAACrAAAAAAAAAAAAAACq8AAAcf</helpWindowGeometry>
  <helpSplitterState>AAAA/wAAAAEAAAACAAABBAAABAAB/////wEAAAABAA==</helpSplitterState>
  <dictInfoGeometry></dictInfoGeometry>
