@@ -2785,15 +2785,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
             call CocActionAsync('doHover')
         endif
     endfunction"}}}
-    function! CocSignatureHelp() abort"{{{
-        if g:CocFloatingLock == 1
-            if !coc#util#has_float()
-                call CocActionAsync('showSignatureHelp')
-            endif
-        elseif g:CocFloatingLock == 0
-            call CocActionAsync('showSignatureHelp')
-        endif
-    endfunction"}}}
     "}}}
     "{{{quickmenu
     call quickmenu#current(6)
@@ -2851,9 +2842,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     augroup CocAu
         autocmd!
         autocmd CursorHold * silent call CocHover()
-        autocmd CursorHold * silent call CocSignatureHelp()
-        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
         autocmd CursorHold * silent call CocActionAsync('highlight')
+        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
         autocmd InsertEnter * call coc#util#float_hide()
         autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
