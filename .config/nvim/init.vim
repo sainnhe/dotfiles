@@ -1258,7 +1258,7 @@ endfunction
 "}}}
 "}}}
 if g:VIM_Is_In_Tmux == 0
-    let g:VIM_Color_Scheme = 'forest-night'
+    let g:VIM_Color_Scheme = 'one-light'
 else
     let g:VIM_Color_Scheme = 'snow-light'
 endif
