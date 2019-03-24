@@ -111,6 +111,7 @@ zplug 'skywind3000/z.lua'
 zplug 'plugins/vi-mode', from:oh-my-zsh
 zplug 'plugins/command-not-found', from:oh-my-zsh
 zplug 'plugins/pass', from:oh-my-zsh
+zplug 'RobSis/zsh-completion-generator'
 zplug load
 fast-theme default >/dev/null
 # {{{zsh-autosuggestions
@@ -129,6 +130,10 @@ export _ZL_MATCH_MODE=1
 alias zc='z -c' # 严格匹配当前路径的子路径
 alias zz='z -i' # 使用交互式选择模式
 alias zf='z -I' # 使用 fzf 对多个结果进行选择
+# }}}
+# {{{zsh-completion-generator
+# manually: gencomp command; compinit
+zstyle :plugin:zsh-completion-generator programs   gotop
 # }}}
 # }}}
 # {{{TMUX
