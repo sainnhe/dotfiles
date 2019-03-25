@@ -2830,7 +2830,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \       'coc-html',
                 \       'coc-css',
                 \       'coc-emmet',
-                \       'coc-ccls',
                 \       'coc-json',
                 \       'coc-yaml'
                 \   )
