@@ -637,7 +637,6 @@ Plug 'tpope/vim-repeat'
 "}}}
 " User Interface
 "{{{themes
-Plug 'lilydjwg/colorizer', { 'on': [] }
 Plug 'sainnhe/lightline_foobar.vim'
 Plug 'rakr/vim-one'
 Plug 'ajmwagar/vim-deus'
@@ -915,7 +914,6 @@ if executable('fcitx')
 endif
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
             \| au BufNewFile,BufRead *.html,*.css call Func_emmet_vim()
-Plug 'gko/vim-coloresque', { 'for': ['html', 'css'] }
 Plug 'alvan/vim-closetag', { 'for': 'html' }
             \| au BufNewFile,BufRead *.html,*.css call Func_vim_closetag()
 Plug 'Valloric/MatchTagAlways', { 'for': 'html' }
@@ -961,7 +959,6 @@ endif
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
 call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
-call g:quickmenu#append('Load colorizer', "call plug#load('colorizer')", '', '', 0, '$')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
 call g:quickmenu#append('Toggle Indent', 'call ToggleIndent()', '', '', 0, 'i')
 call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(11)', '', '', 0, 'f')
