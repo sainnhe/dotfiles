@@ -1281,6 +1281,10 @@ function! ColorScheme()
         colorscheme one
         let g:lightline.colorscheme = 'one'
         let g:lightline#colorscheme#one#palette.tabline.right[1] = g:lightline#colorscheme#one#palette.normal.middle[0]
+        let g:lightline#colorscheme#one#palette.normal.right[1] = g:lightline#colorscheme#one#palette.normal.left[1]
+        let g:lightline#colorscheme#one#palette.insert.right[1] = g:lightline#colorscheme#one#palette.insert.left[1]
+        let g:lightline#colorscheme#one#palette.visual.right[1] = g:lightline#colorscheme#one#palette.visual.left[1]
+        let g:lightline#colorscheme#one#palette.replace.right[1] = g:lightline#colorscheme#one#palette.replace.left[1]
     endif
     call g:quickmenu#append('one', 'call SwitchColorScheme("one-dark")', '', '', 0, '')
     "}}}
@@ -1539,6 +1543,10 @@ function! ColorScheme()
         colorscheme one
         let g:lightline.colorscheme = 'one'
         let g:lightline#colorscheme#one#palette.tabline.right[1] = g:lightline#colorscheme#one#palette.normal.middle[0]
+        let g:lightline#colorscheme#one#palette.normal.right[1] = g:lightline#colorscheme#one#palette.normal.left[1]
+        let g:lightline#colorscheme#one#palette.insert.right[1] = g:lightline#colorscheme#one#palette.insert.left[1]
+        let g:lightline#colorscheme#one#palette.visual.right[1] = g:lightline#colorscheme#one#palette.visual.left[1]
+        let g:lightline#colorscheme#one#palette.replace.right[1] = g:lightline#colorscheme#one#palette.replace.left[1]
     endif
     call g:quickmenu#append('one', 'call SwitchColorScheme("one-light")', '', '', 0, '')
     "}}}
