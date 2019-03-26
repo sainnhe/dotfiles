@@ -896,6 +896,7 @@ Plug 'ianva/vim-youdao-translater'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'metakirby5/codi.vim'
+Plug 'mbbill/fencview', { 'on': [ 'FencAutoDetect', 'FencView' ] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 if exists('g:VIM_MANPAGER')
     Plug 'lambdalisue/vim-manpager'
@@ -966,6 +967,7 @@ call g:quickmenu#append('Toggle Indent', 'call ToggleIndent()', '', '', 0, 'i')
 call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(11)', '', '', 0, 'f')
 call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
 call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
+call g:quickmenu#append('FencAutoDetect', 'FencAutoDetect', 'FencAutoDetect && FencView', '', 0, '^')
 call g:quickmenu#append('Entertainment', 'call quickmenu#toggle(12)', '', '', 0, '*')
 call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
 call quickmenu#current(10)
