@@ -60,29 +60,29 @@ endfun
 fun! RomaNumber(number) abort
     let l:number = a:number
     if l:number ==# '1'
-        let l:nicenumber = 'Ⅰ'
+        let l:romanumber = 'Ⅰ'
     elseif l:number ==# '2'
-        let l:nicenumber = 'Ⅱ'
+        let l:romanumber = 'Ⅱ'
     elseif l:number ==# '3'
-        let l:nicenumber = 'Ⅲ'
+        let l:romanumber = 'Ⅲ'
     elseif l:number ==# '4'
-        let l:nicenumber = 'Ⅳ'
+        let l:romanumber = 'Ⅳ'
     elseif l:number ==# '5'
-        let l:nicenumber = 'Ⅴ'
+        let l:romanumber = 'Ⅴ'
     elseif l:number ==# '6'
-        let l:nicenumber = 'Ⅵ'
+        let l:romanumber = 'Ⅵ'
     elseif l:number ==# '7'
-        let l:nicenumber = 'Ⅶ'
+        let l:romanumber = 'Ⅶ'
     elseif l:number ==# '8'
-        let l:nicenumber = 'Ⅷ'
+        let l:romanumber = 'Ⅷ'
     elseif l:number ==# '9'
-        let l:nicenumber = 'Ⅸ'
+        let l:romanumber = 'Ⅸ'
     elseif l:number ==# '10'
-        let l:nicenumber = 'Ⅹ'
+        let l:romanumber = 'Ⅹ'
     else
-        let l:nicenumber = a:number
+        let l:romanumber = a:number
     endif
-    return l:nicenumber
+    return l:romanumber
 endfun
 "}}}
 "{{{NegativeCircledNumber
@@ -1007,10 +1007,11 @@ function! SwitchLightlineColorScheme(color)"{{{
     call lightline#colorscheme()
     call lightline#update()
 endfunction"}}}
-function! NiceTabNum(n) abort"{{{
-    " \ 'globalinfo': 'T%{NiceNumber(tabpagenr())} B%{bufnr("%")} W%{tabpagewinnr(tabpagenr())}',
-    return RomaNumber(a:n)
-    " return RomaNumber(tabpagenr('$'))
+function! ArtifyActiveTabNum(n) abort"{{{
+    return Artify(a:n, 'bold')." \ue0bb"
+endfunction"}}}
+function! ArtifyInactiveTabNum(n) abort"{{{
+    return Artify(a:n, 'double_struck')." \ue0bb"
 endfunction"}}}
 function! ObsessionStatusEnhance() abort"{{{
     if ObsessionStatus() ==# '[$]'
@@ -1129,12 +1130,13 @@ let g:lightline.tabline = {
             \ [ g:Lightline_GitStatus ] ]
             \ }
 let g:lightline.tab = {
-            \ 'active': [ 'nicetabnum', 'artify_filename', 'modified' ],
-            \ 'inactive': [ 'nicetabnum', 'filename', 'modified' ] }
+            \ 'active': [ 'artifyactivetabnum', 'artify_filename', 'modified' ],
+            \ 'inactive': [ 'artifyinactivetabnum', 'filename', 'modified' ] }
 let g:lightline.tab_component = {
             \ }
 let g:lightline.tab_component_function = {
-            \ 'nicetabnum': 'NiceTabNum',
+            \ 'artifyactivetabnum': 'ArtifyActiveTabNum',
+            \ 'artifyinactivetabnum': 'ArtifyInactiveTabNum',
             \ 'artify_filename': 'Artify_lightline_tab_filename',
             \ 'filename': 'lightline#tab#filename',
             \ 'modified': 'lightline#tab#modified',
