@@ -1006,12 +1006,6 @@ function! SwitchLightlineColorScheme(color)"{{{
     call lightline#colorscheme()
     call lightline#update()
 endfunction"}}}
-function! ArtifyActiveTabNum(n) abort"{{{
-    return Artify(a:n, 'bold')." \ue0bb"
-endfunction"}}}
-function! ArtifyInactiveTabNum(n) abort"{{{
-    return Artify(a:n, 'double_struck')." \ue0bb"
-endfunction"}}}
 function! ObsessionStatusEnhance() abort"{{{
     if ObsessionStatus() ==# '[$]'
         " return \uf94a
@@ -1045,6 +1039,12 @@ function! Devicons_Filetype()"{{{
 endfunction"}}}
 function! Devicons_Fileformat()"{{{
     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction"}}}
+function! Articy_active_tab_num(n) abort"{{{
+    return Artify(a:n, 'bold')." \ue0bb"
+endfunction"}}}
+function! Artify_inactive_tab_num(n) abort"{{{
+    return Artify(a:n, 'double_struck')." \ue0bb"
 endfunction"}}}
 function! Artify_lightline_tab_filename(s) abort"{{{
     return Artify(lightline#tab#filename(a:s), 'monospace')
@@ -1129,13 +1129,13 @@ let g:lightline.tabline = {
             \ [ g:Lightline_GitStatus ] ]
             \ }
 let g:lightline.tab = {
-            \ 'active': [ 'artifyactivetabnum', 'artify_filename', 'modified' ],
-            \ 'inactive': [ 'artifyinactivetabnum', 'filename', 'modified' ] }
+            \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
+            \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }
 let g:lightline.tab_component = {
             \ }
 let g:lightline.tab_component_function = {
-            \ 'artifyactivetabnum': 'ArtifyActiveTabNum',
-            \ 'artifyinactivetabnum': 'ArtifyInactiveTabNum',
+            \ 'artify_activetabnum': 'Articy_active_tab_num',
+            \ 'artify_inactivetabnum': 'Artify_inactive_tab_num',
             \ 'artify_filename': 'Artify_lightline_tab_filename',
             \ 'filename': 'lightline#tab#filename',
             \ 'modified': 'lightline#tab#modified',
