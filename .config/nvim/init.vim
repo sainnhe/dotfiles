@@ -1404,7 +1404,7 @@ function! ColorScheme()
         let g:material_theme_style = 'palenight'
         let g:material_terminal_italics = 1
         colorscheme material
-        let g:lightline.colorscheme = 'material_vim'
+        let g:lightline.colorscheme = 'palenight_alter'
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('palenight', 'call SwitchColorScheme("material-palenight")', '', '', 0, '')
@@ -2823,7 +2823,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \       'coc-lists',
                 \       g:Coc_Snippet,
                 \       'coc-syntax',
-                \       'coc-tag',
                 \       'coc-highlight',
                 \       'coc-emoji',
                 \       'coc-dictionary',
@@ -3693,6 +3692,9 @@ function! Init_gen_tags()
     let g:gen_tags#blacklist = ['$HOME']
     let g:gen_tags#gtags_default_map = 0
     call plug#load('gen_tags.vim')
+    if g:VIM_Completion_Framework ==# 'coc'
+        call coc#add_extension('coc-tag')
+    endif
 endfunction
 "}}}
 "{{{tagbar
