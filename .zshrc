@@ -111,9 +111,13 @@ zplug 'skywind3000/z.lua'
 zplug 'plugins/vi-mode', from:oh-my-zsh
 zplug 'plugins/command-not-found', from:oh-my-zsh
 zplug 'plugins/pass', from:oh-my-zsh
+zplug 'plugins/colored-man-pages', from:oh-my-zsh
+zplug 'mollifier/cd-gitroot'
 zplug 'RobSis/zsh-completion-generator'
+zplug 'sinetoami/web-search'
+zplug 'thetic/extract'
 zplug load
-fast-theme default >/dev/null
+fast-theme q-jmnemonic >/dev/null
 # {{{zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 bindkey '^l' autosuggest-accept
