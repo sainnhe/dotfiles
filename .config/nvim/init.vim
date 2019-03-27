@@ -30,7 +30,6 @@ endif
 let g:VIM_AutoInstall = 1
 let g:VIM_TmuxLineSync = 0
 let g:VIM_Enable_Autopairs = 1
-let g:VIM_C_LSP = 'ccls'  " clangd cquery ccls
 "}}}
 "{{{VimConfig
 "{{{Functions
@@ -2267,18 +2266,11 @@ if g:VIM_LSP_Client ==# 'lcn'
     endfunction
     "}}}
     " Server Register
-    "{{{VIM_C_LSP
-    if g:VIM_C_LSP ==# 'clangd'
-        let g:LCN_C_LCP = ['clangd']
-    elseif g:VIM_C_LSP ==# 'cquery'
-        let g:LCN_C_LCP = ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}']
-    elseif g:VIM_C_LSP ==# 'ccls'
-        let g:LCN_C_LCP = ['ccls']
-    endif
-    "}}}
     let g:LanguageClient_serverCommands = {
-                \ 'c': g:LCN_C_LCP,
-                \ 'cpp': g:LCN_C_LCP,
+                \ 'c': ['ccls', '--init={"cache": {"directory": "/tmp/ccls"}}'],
+                \ 'cpp': ['ccls', '--init={"cache": {"directory": "/tmp/ccls"}}'],
+                \ 'objc': ['ccls', '--init={"cache": {"directory": "/tmp/ccls"}}'],
+                \ 'objcpp': ['ccls', '--init={"cache": {"directory": "/tmp/ccls"}}'],
                 \ 'css': ['css-languageserver', '--stdio'],
                 \ 'html': ['html-languageserver', '--stdio'],
                 \ 'json': ['json-languageserver', '--stdio'],
@@ -2404,27 +2396,12 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
     let g:lsp_signs_hint = {'text': "\uf68a"}
     augroup VIM_LSP_Register
         autocmd!
-        if g:VIM_C_LSP ==# 'clangd'
-            au User lsp_setup call lsp#register_server({
-                        \ 'name': 'clangd',
-                        \ 'cmd': {server_info->['clangd']},
-                        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-                        \ })
-        elseif g:VIM_C_LSP ==# 'cquery'
-            au User lsp_setup call lsp#register_server({
-                        \ 'name': 'cquery',
-                        \ 'cmd': {server_info->['cquery']},
-                        \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/' },
-                        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-                        \ })
-        elseif g:VIM_C_LSP ==# 'ccls'
-            au User lsp_setup call lsp#register_server({
-                        \ 'name': 'ccls',
-                        \ 'cmd': {server_info->['ccls']},
-                        \ 'initialization_options': { 'cacheDirectory': '/tmp/ccls/' },
-                        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-                        \ })
-        endif
+        au User lsp_setup call lsp#register_server({
+                    \ 'name': 'ccls',
+                    \ 'cmd': {server_info->['ccls']},
+                    \ 'initialization_options': { 'cacheDirectory': '/tmp/ccls/' },
+                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+                    \ })
         au User lsp_setup call lsp#register_server({
                     \ 'name': 'html-languageserver',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'html-languageserver --stdio']},
