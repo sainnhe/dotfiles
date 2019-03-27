@@ -1,7 +1,15 @@
+# {{{Init
 # {{{Install
-# sudo pacman -S powerline
 # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 # npm install --global pure-prompt
+# }}}
+zmodload zsh/zprof  # zprof | vimpager
+export TERM=xterm-256color
+export PATH="$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
+export TERM_Emulator=$(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$)))))))
+export EDITOR=nvim
+export PAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
+export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 # }}}
 # {{{Functions
 test_cmd_pre() {
@@ -24,12 +32,6 @@ switch_tmuxline() {
     done
 }
 # }}}
-# {{{Variables
-export TERM=xterm-256color
-export PATH="$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
-export TERM_Emulator=$(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$)))))))
-export EDITOR=nvim
-# }}}
 # {{{Settings
 set -o monitor
 set +o nonotify
@@ -47,15 +49,6 @@ zstyle ':completion:*' menu select                 # use arrow key for completio
 setopt COMPLETE_ALIASES                            # complete alias
 setopt HIST_IGNORE_DUPS                            # eliminate duplicate entries in history
 zstyle ':completion::complete:*' gain-privileges 1 # enabling autocompletion of privileged environments in privileged commands
-# {{{manpager
-# if [[ "$nvim_exist" == "yes" ]]; then
-#     export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
-# elif [[ "$nvim_exist" == "no" ]]; then
-#     export MANPAGER="vim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
-# fi
-export PAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
-export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
-# }}}
 # }}}
 # {{{alias
 alias ls='ls --color=auto -F'
