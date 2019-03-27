@@ -806,11 +806,11 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
     Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
     if executable('proxychains')
-        " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'proxychains yarn install'}
-        Plug 'neoclide/coc.nvim', {'do': 'proxychains yarn install'}
+        " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'proxychains yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc.nvim', {'do': 'proxychains yarn install --frozen-lockfile'}
     else
-        " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install'}
-        Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
+        " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     endif
     Plug 'neoclide/coc-denite'
     Plug 'iamcco/coc-action-source.nvim'
@@ -2839,7 +2839,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \       'coc-css',
                 \       'coc-emmet',
                 \       'coc-json',
-                \       'coc-yaml'
+                \       'coc-yaml',
+                \       'coc-python'
                 \   )
     if g:VIM_Enable_Autopairs == 0
         call coc#add_extension( 'coc-pairs' )

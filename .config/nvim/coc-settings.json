@@ -71,6 +71,7 @@
     "help_css": "https://github.com/neoclide/coc-css",
     "help_json": "https://github.com/neoclide/coc-json",
     "help_yaml": "https://github.com/neoclide/coc-yaml",
+    "help_python": "https://github.com/neoclide/coc-python",
     "languageserver": {
         "CCLS": {
             "command": "ccls",
@@ -82,9 +83,14 @@
                 }
             }
         },
+        "SHLS": {
+            "command": "bash-language-server",
+            "filetypes": ["sh", "zsh"],
+            "args": ["start"]
+        },
         "MPLS": {
             "command": "mspyls",
-            "filetypes": ["python"],
+            "filetypes": ["none"],
             "initializationOptions": {
                 "interpreter": {
                     "properties": {
@@ -107,11 +113,6 @@
                 "traceLogging": true,
                 "asyncStartup": true
             }
-        },
-        "SHLS": {
-            "command": "bash-language-server",
-            "filetypes": ["sh", "zsh"],
-            "args": ["start"]
         }
     }
 }
