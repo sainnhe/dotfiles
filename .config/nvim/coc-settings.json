@@ -87,32 +87,6 @@
             "command": "bash-language-server",
             "filetypes": ["sh", "zsh"],
             "args": ["start"]
-        },
-        "MPLS": {
-            "command": "mspyls",
-            "filetypes": ["none"],
-            "initializationOptions": {
-                "interpreter": {
-                    "properties": {
-                        "InterpreterPath": "/usr/bin/python3",
-                        "UseDefaultDatabase": true
-                    }
-                },
-                "displayOptions": {
-                    "preferredFormat": "markdown",
-                    "trimDocumentationLines": false,
-                    "maxDocumentationLineLength": 0,
-                    "trimDocumentationText": false,
-                    "maxDocumentationTextLength": 0
-                },
-                "searchPaths": [
-                    "/usr/bin"
-                ],
-                "testEnvironment": false,
-                "analysisUpdates": true,
-                "traceLogging": true,
-                "asyncStartup": true
-            }
         }
     }
 }
