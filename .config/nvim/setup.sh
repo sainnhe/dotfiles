@@ -86,15 +86,9 @@ pacman_setup_func() {
 yay_setup_func() {
     echo -n "make sure you have configured makepkg proxy correctly. [enter to continue]  "
     read -r
-    echo -n "install cquery from AUR. [enter to continue]  "
-    read -r
-    yay -S cquery-git
     echo -n "install ccls from AUR. [enter to continue]  "
     read -r
     yay -S ccls
-    echo -n "install mpls from AUR. [enter to continue]  "
-    read -r
-    yay -S microsoft-python-language-server
     echo -n "install yaml-language-server-bin from AUR. [enter to continue]  "
     read -r
     yay -S yaml-language-server-bin
