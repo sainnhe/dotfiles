@@ -137,7 +137,16 @@ export PURE_PROMPT_VICMD_SYMBOL="➣"
 # }}}
 # {{{fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_DEFAULT_OPTS="-m --height=50% --layout=reverse --prompt='➣ ' --ansi --tabstop=4"
+export FZF_DEFAULT_OPTS="
+-m --height=50%
+--layout=reverse
+--prompt='➣ '
+--ansi
+--tabstop=4
+--color=dark
+--color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
+--color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
+"
 source /usr/share/fzf/completion.zsh  # 模糊匹配路径，**<Tab>触发
 # }}}
 # {{{zsh-autosuggestions
