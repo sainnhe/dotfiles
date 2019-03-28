@@ -42,6 +42,7 @@ set +o nonotify
 umask 077
 setopt HIST_IGNORE_DUPS                         # eliminate duplicate entries in history
 setopt correctall                               # enable auto correction
+setopt autopushd pushdignoredups                # auto push dir into stack and and don’t duplicate them
 # }}}
 # {{{prompt
 autoload -U promptinit
@@ -72,7 +73,6 @@ alias help=run-help
 alias ls='ls --color=auto -F'
 alias lsv='ls --color=auto -F -ilsh'
 alias fzy="fzy --lines=15 --prompt='➣ '"
-cd() { builtin pushd $1 > /dev/null; }
 alias cdl='dirs -vl | fzy'
 alias cdC='dirs -c'
 alias cdf='pushd +$( dirs -v | fzy | grep -o "[[:digit:]]") > /dev/null'
