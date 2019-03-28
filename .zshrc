@@ -51,11 +51,17 @@ autoload -Uz compinit # completion
 compinit
 zstyle ':completion:*' menu select                 # use arrow key for completion
 zstyle ':completion::complete:*' gain-privileges 1 # enabling autocompletion of privileged environments in privileged commands
-setopt menu_complete                               # <Tab> to select item
+setopt menu_complete                               # press <Tab> once to select item
 setopt COMPLETE_ALIASES                            # complete alias
 # }}}
+# {{{help
+# $ run-help [command]<Tab>
+autoload -Uz run-help
+unalias run-help
+alias help=run-help
 # }}}
-# {{{alias
+# }}}
+# {{{Alias
 alias ls='ls --color=auto -F'
 alias lsv='ls --color=auto -F -ilsh'
 alias fzy="fzy --lines=15 --prompt='➣ '"
