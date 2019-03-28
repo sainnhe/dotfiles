@@ -167,8 +167,8 @@ alias zz='z -i' # 使用交互式选择模式
 alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # {{{zsh-completion-generator
-# manually: gencomp command; compinit
-zstyle :plugin:zsh-completion-generator programs   gotop
+# gencomp gotop
+# gencomp fzf
 # }}}
 # }}}
 # {{{TMUX
