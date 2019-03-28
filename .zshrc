@@ -40,7 +40,8 @@ switch_tmuxline() {
 set -o monitor
 set +o nonotify
 umask 077
-setopt HIST_IGNORE_DUPS                            # eliminate duplicate entries in history
+setopt HIST_IGNORE_DUPS                         # eliminate duplicate entries in history
+setopt correctall                               # enable auto correction
 # }}}
 # {{{prompt
 autoload -U promptinit
