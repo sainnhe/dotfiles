@@ -146,12 +146,12 @@ zplug 'ytet5uy4/fzf-widgets'
 zplug load
 # {{{theme
 fast-theme q-jmnemonic >/dev/null
-# export PURE_PROMPT_SYMBOL="➤"
-# export PURE_PROMPT_VICMD_SYMBOL="⮞"
+export PURE_PROMPT_SYMBOL="➤"
+export PURE_PROMPT_VICMD_SYMBOL="⮞"
 # export PURE_PROMPT_SYMBOL="➢"
 # export PURE_PROMPT_VICMD_SYMBOL="➣"
-export PURE_PROMPT_SYMBOL="❯"
-export PURE_PROMPT_VICMD_SYMBOL="❮"
+# export PURE_PROMPT_SYMBOL="❯"
+# export PURE_PROMPT_VICMD_SYMBOL="❮"
 # }}}
 # {{{fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
