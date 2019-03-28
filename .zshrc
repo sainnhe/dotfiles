@@ -42,8 +42,6 @@ SAVEHIST=$HISTSIZE
 autoload -U promptinit
 promptinit            # prompt
 autoload -Uz compinit # completion
-export PURE_PROMPT_SYMBOL="➢"
-export PURE_PROMPT_VICMD_SYMBOL="➣"
 compinit                                           # completion
 zstyle ':completion:*' menu select                 # use arrow key for completion
 setopt COMPLETE_ALIASES                            # complete alias
@@ -109,7 +107,13 @@ zplug 'RobSis/zsh-completion-generator'
 zplug 'sinetoami/web-search'
 zplug 'thetic/extract'
 zplug load
+# {{{theme
 fast-theme q-jmnemonic >/dev/null
+export PURE_PROMPT_SYMBOL="➢"
+export PURE_PROMPT_VICMD_SYMBOL="➣"
+# export PURE_PROMPT_SYMBOL="❯"
+# export PURE_PROMPT_VICMD_SYMBOL="❮"
+# }}}
 # {{{fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="-m --height=50% --layout=reverse --prompt='➣ ' --ansi --tabstop=4"
