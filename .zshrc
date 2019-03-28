@@ -4,8 +4,11 @@
 # npm install --global pure-prompt
 # }}}
 zmodload zsh/zprof  # zprof | vimpager
-export TERM=xterm-256color
 export PATH="$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
+export TERM=xterm-256color
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=999999999
+export SAVEHIST=$HISTSIZE
 export TERM_Emulator=$(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$)))))))
 export EDITOR=nvim
 export PAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
@@ -33,20 +36,24 @@ switch_tmuxline() {
 }
 # }}}
 # {{{Settings
+# {{{general
 set -o monitor
 set +o nonotify
 umask 077
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=999999999
-SAVEHIST=$HISTSIZE
-autoload -U promptinit
-promptinit            # prompt
-autoload -Uz compinit # completion
-compinit                                           # completion
-zstyle ':completion:*' menu select                 # use arrow key for completion
-setopt COMPLETE_ALIASES                            # complete alias
 setopt HIST_IGNORE_DUPS                            # eliminate duplicate entries in history
+# }}}
+# {{{prompt
+autoload -U promptinit
+promptinit
+# }}}
+# {{{completion
+autoload -Uz compinit # completion
+compinit
+zstyle ':completion:*' menu select                 # use arrow key for completion
 zstyle ':completion::complete:*' gain-privileges 1 # enabling autocompletion of privileged environments in privileged commands
+setopt menu_complete                               # <Tab> to select item
+setopt COMPLETE_ALIASES                            # complete alias
+# }}}
 # }}}
 # {{{alias
 alias ls='ls --color=auto -F'
