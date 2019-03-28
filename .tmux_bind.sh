@@ -16,7 +16,7 @@ tmux bind-key -n C-down swap-window -t +1
 
 # copy mode
 tmux bind-key -T prefix Space copy-mode
-tmux bind-key -T copy-mode v send-keys -X begin-selection
+tmux bind-key -T copy-mode-vi 'v' send -X begin-selection
 
 # plugins
 tmux bind-key -T prefix C-p run-shell "tmux-pomodoro start"
