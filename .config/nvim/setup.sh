@@ -32,8 +32,6 @@ pacman_setup_func() {
     pacman -S --noconfirm the_silver_searcher &> /dev/null
     echo "installing ripgrep..."
     pacman -S --noconfirm ripgrep &> /dev/null
-    echo "installing fzf..."
-    pacman -S --noconfirm fzf &> /dev/null
     echo "installing ctags..."
     pacman -S --noconfirm ctags &> /dev/null
     echo "installing php..."

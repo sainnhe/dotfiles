@@ -53,7 +53,6 @@ zstyle ':completion::complete:*' gain-privileges 1 # enabling autocompletion of 
 # {{{alias
 alias ls='ls --color=auto -F'
 alias lsv='ls --color=auto -F -ilsh'
-alias fzf="fzf -m --height=50% --layout=reverse --prompt='➣ ' --ansi --tabstop=4"
 alias fzy="fzy --lines=15 --prompt='➣ '"
 cd() { builtin pushd $1 > /dev/null; }
 alias cdl='dirs -vl | fzy'
@@ -111,6 +110,11 @@ zplug 'sinetoami/web-search'
 zplug 'thetic/extract'
 zplug load
 fast-theme q-jmnemonic >/dev/null
+# {{{fzf
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_OPTS="-m --height=50% --layout=reverse --prompt='➣ ' --ansi --tabstop=4"
+source /usr/share/fzf/completion.zsh  # 模糊匹配路径，**<Tab>触发
+# }}}
 # {{{zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 bindkey '^l' autosuggest-accept
