@@ -15,13 +15,13 @@ export PAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 # }}}
 # {{{Functions
-test_cmd_pre() {
+test_cmd_pre() { # {{{
     command -v "$1" >/dev/null
-}
-test_cmd() {
+} # }}}
+test_cmd() { # {{{
     test_cmd_pre "$1" && echo 'yes' || echo 'no'
-}
-switch_tmuxline() {
+} # }}}
+switch_tmuxline() { # {{{
     echo ""
     echo "archery iceberg darcula_* deus_* github_* hydrangea_* inkstained_* material_* molokai_* vice_* disable"
     echo ""
@@ -33,7 +33,21 @@ switch_tmuxline() {
         echo ""
         read -r TMUXLINE_COLOR_SCHEME
     done
+} # }}}
+# {{{fzy
+# fuzzy match dirs and cd
+cdf() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzy --lines=15 --prompt='➣ ') &&
+  cd "$dir"
 }
+# include hidden dirs
+cdfa() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzy --lines=15 --prompt='➣ ') && cd "$dir"
+}
+# }}}
 # }}}
 # {{{Settings
 # {{{general
@@ -75,7 +89,7 @@ alias lsv='ls --color=auto -F -ilsh'
 alias fzy="fzy --lines=15 --prompt='➣ '"
 alias cdl='dirs -vl | fzy'
 alias cdC='dirs -c'
-alias cdf='pushd +$( dirs -v | fzy | grep -o "[[:digit:]]") > /dev/null'
+alias cdh='pushd +$( dirs -v | fzy | grep -o "[[:digit:]]") > /dev/null'
 alias cdc='popd +$( dirs -v | fzy | grep -o "[[:digit:]]") > /dev/null'
 alias cdr='cd $(git rev-parse --show-toplevel)'
 alias du='du -hc'
@@ -127,6 +141,7 @@ zplug 'plugins/web-search', from:oh-my-zsh
 zplug 'plugins/extract', from:oh-my-zsh
 zplug 'plugins/frontend-search', from:oh-my-zsh
 zplug 'RobSis/zsh-completion-generator'
+zplug 'ytet5uy4/fzf-widgets'
 zplug load
 # {{{theme
 fast-theme q-jmnemonic >/dev/null
@@ -148,10 +163,13 @@ export FZF_DEFAULT_OPTS="
 --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
 "
 source /usr/share/fzf/completion.zsh  # 模糊匹配路径，**<Tab>触发
+bindkey '^Fl'  fzf-select-widget
+bindkey '^Fh'  fzf-insert-history
+bindkey '^Ff' fzf-insert-files
+bindkey '^Fd' fzf-insert-directory
 # }}}
 # {{{zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
-bindkey '^l' autosuggest-accept
 # }}}
 # {{{zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
