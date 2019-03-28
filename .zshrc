@@ -55,6 +55,9 @@ zstyle ':completion::complete:*' gain-privileges 1                      # enabli
 zstyle ':completion:*' rehash true                                      # auto rehash new command
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'                 # beautify completion style
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'  # beautify completion style
+zstyle ':completion:*' completer _complete _match _approximate          # fuzzy match completions
+zstyle ':completion:*:match:*' original only                            # fuzzy match completions
+zstyle ':completion:*:approximate:*' max-errors 1 numeric               # fuzzy match completions
 setopt menu_complete                                                    # press <Tab> once to select item
 setopt COMPLETE_ALIASES                                                 # complete alias
 # }}}
