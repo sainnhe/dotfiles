@@ -125,6 +125,7 @@ zplug 'plugins/pass', from:oh-my-zsh
 zplug 'plugins/colored-man-pages', from:oh-my-zsh
 zplug 'plugins/web-search', from:oh-my-zsh
 zplug 'plugins/extract', from:oh-my-zsh
+zplug 'plugins/frontend-search', from:oh-my-zsh
 zplug 'RobSis/zsh-completion-generator'
 zplug load
 # {{{theme
