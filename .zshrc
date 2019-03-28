@@ -84,8 +84,9 @@ alias help=run-help
 # }}}
 # }}}
 # {{{Alias
-alias ls='ls --color=auto -F'
-alias lsv='ls --color=auto -F -ilsh'
+alias ls='lsd'
+alias ls-rec='lsd --tree'
+alias ls-all='ls --color=auto -F -ilsh'
 alias fzy="fzy --lines=15 --prompt='➣ '"
 alias cdl='dirs -vl | fzy'
 alias cdC='dirs -c'
@@ -200,7 +201,7 @@ tmux_start() {
     nvim_exist=$(test_cmd nvim)
     if [[ "$TERM_Emulator" != "tilda" ]]; then
         if [[ -z "$TMUX" ]]; then
-            ID="$(tmux ls | grep -vm1 attached | grep Alpha | cut -d: -f1)" # check if Alpha session exist
+            ID="$(tmux /usr/bin/ls | grep -vm1 attached | grep Alpha | cut -d: -f1)" # check if Alpha session exist
             if [[ -z "$ID" ]]; then # if not, creat a new one
                 tmux new-session -d -s Alpha -n VIM
                 tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
@@ -220,7 +221,7 @@ tmux_start() {
         fi
     elif [[ "$TERM_Emulator" == "tilda" ]]; then
         if [[ -z "$TMUX" ]]; then
-            ID="$(tmux ls | grep -vm1 attached | grep Beta | cut -d: -f1)" # check if Beta session exist
+            ID="$(tmux /usr/bin/ls | grep -vm1 attached | grep Beta | cut -d: -f1)" # check if Beta session exist
             if [[ -z "$ID" ]]; then # if not, creat a new one
                 tmux new-session -d -s Beta -n VIM
                 tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
@@ -248,7 +249,7 @@ fi
 nvim_exist=$(test_cmd nvim)
 if [[ "$TERM_Emulator" == "tilda" ]]; then
     if [[ -z "$TMUX" ]]; then
-        ID="$(tmux ls | grep -vm1 attached | grep Beta | cut -d: -f1)" # check if Beta session exist
+        ID="$(tmux /usr/bin/ls | grep -vm1 attached | grep Beta | cut -d: -f1)" # check if Beta session exist
         if [[ -z "$ID" ]]; then # if not, creat a new one
             tmux new-session -d -s Beta -n VIM
             tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
