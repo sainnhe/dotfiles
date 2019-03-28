@@ -80,34 +80,34 @@ pacman_setup_func() {
     pacman -S --noconfirm bash-language-server &> /dev/null
 }
 # }}}
-# {{{yay_setup_func()
-yay_setup_func() {
+# {{{pikaur_setup_func()
+pikaur_setup_func() {
     echo -n "make sure you have configured makepkg proxy correctly. [enter to continue]  "
     read -r
     echo -n "install ccls from AUR. [enter to continue]  "
     read -r
-    yay -S ccls
+    pikaur --noedit -S ccls
     echo -n "install yaml-language-server-bin from AUR. [enter to continue]  "
     read -r
-    yay -S yaml-language-server-bin
+    pikaur --noedit -S yaml-language-server-bin
     echo -n "install global from AUR. [enter to continue]  "
     read -r
-    yay -S global
+    pikaur --noedit -S global
     echo -n "install toilet from AUR. [enter to continue]  "
     read -r
-    yay -S toilet
+    pikaur --noedit -S toilet
     echo -n "install toilet-fonts from AUR. [enter to continue]  "
     read -r
-    yay -S toilet-fonts
+    pikaur --noedit -S toilet-fonts
     echo -n "install stylelint from AUR. [enter to continue]  "
     read -r
-    yay -S stylelint
+    pikaur --noedit -S stylelint
     echo -n "install nodejs-jsonlint from AUR. [enter to continue]  "
     read -r
-    yay -S nodejs-jsonlint
+    pikaur --noedit -S nodejs-jsonlint
     echo -n "install js-beautify from AUR. [enter to continue]  "
     read -r
-    yay -S js-beautify
+    pikaur --noedit -S js-beautify
 }
 # }}}
 # {{{npm_global_setup()
@@ -124,7 +124,7 @@ npm_setup() {
 }
 # }}}
 bash -c "$(declare -f pacman_setup_func); pacman_setup_func"
-su sainnhe -c "$(declare -f yay_setup_func); yay_setup_func"
+su sainnhe -c "$(declare -f pikaur_setup_func); pikaur_setup_func"
 bash -c "$(declare -f npm_global_setup); npm_global_setup"
 su sainnhe -c "$(declare -f npm_setup); npm_setup"
 printf "\n\ninstall mpls manually\nhttps://microsoft.github.io/language-server-protocol/implementors/servers/\n"
