@@ -49,11 +49,13 @@ promptinit
 # {{{completion
 autoload -Uz compinit # completion
 compinit
-zstyle ':completion:*' menu select                 # use arrow key for completion
-zstyle ':completion::complete:*' gain-privileges 1 # enabling autocompletion of privileged environments in privileged commands
-zstyle ':completion:*' rehash true                 # auto rehash new command
-setopt menu_complete                               # press <Tab> once to select item
-setopt COMPLETE_ALIASES                            # complete alias
+zstyle ':completion:*' menu select                                      # use arrow key for completion
+zstyle ':completion::complete:*' gain-privileges 1                      # enabling autocompletion of privileged environments in privileged commands
+zstyle ':completion:*' rehash true                                      # auto rehash new command
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'                 # beautify completion style
+zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'  # beautify completion style
+setopt menu_complete                                                    # press <Tab> once to select item
+setopt COMPLETE_ALIASES                                                 # complete alias
 # }}}
 # {{{help
 # $ run-help [command]<Tab>
