@@ -77,6 +77,7 @@ alias cdl='dirs -vl | fzy'
 alias cdC='dirs -c'
 alias cdf='pushd +$( dirs -v | fzy | grep -o "[[:digit:]]") > /dev/null'
 alias cdc='popd +$( dirs -v | fzy | grep -o "[[:digit:]]") > /dev/null'
+alias cdr='cd $(git rev-parse --show-toplevel)'
 alias du='du -hc'
 alias df='df -h'
 alias cp='cp -ip'
@@ -122,10 +123,9 @@ zplug 'plugins/vi-mode', from:oh-my-zsh
 zplug 'plugins/command-not-found', from:oh-my-zsh
 zplug 'plugins/pass', from:oh-my-zsh
 zplug 'plugins/colored-man-pages', from:oh-my-zsh
-zplug 'mollifier/cd-gitroot'
+zplug 'plugins/web-search', from:oh-my-zsh
+zplug 'plugins/extract', from:oh-my-zsh
 zplug 'RobSis/zsh-completion-generator'
-zplug 'sinetoami/web-search'
-zplug 'thetic/extract'
 zplug load
 # {{{theme
 fast-theme q-jmnemonic >/dev/null
