@@ -896,6 +896,7 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'metakirby5/codi.vim'
 Plug 'mbbill/fencview', { 'on': [ 'FencAutoDetect', 'FencView' ] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
+Plug 'andymass/vim-matchup'
 if exists('g:VIM_MANPAGER')
     Plug 'lambdalisue/vim-manpager'
 endif
@@ -915,8 +916,6 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
             \| au BufNewFile,BufRead *.html,*.css call Func_emmet_vim()
 Plug 'alvan/vim-closetag', { 'for': 'html' }
             \| au BufNewFile,BufRead *.html,*.css call Func_vim_closetag()
-Plug 'Valloric/MatchTagAlways', { 'for': 'html' }
-            \| au BufNewFile,BufRead *.html call Func_MatchTagAlways()
 Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
 Plug 'elzr/vim-json', { 'for': 'json' }
             \| au BufNewFile,BufRead *.json call Func_vim_json()
@@ -980,7 +979,7 @@ call g:quickmenu#append('Close Tag', 'call Help_vim_closetag()', '', '', 0, 't')
 call g:quickmenu#append('Multiple Cursors', 'call Help_vim_multiple_cursors()', '', '', 0, 'm')
 call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 'S')
 call g:quickmenu#append('VIM Surround', 'call Help_vim_surround()', '', '', 0, 'r')
-call g:quickmenu#append('MatchTagAlways', 'call Help_MatchTagAlways()', '', '', 0, 'M')
+call g:quickmenu#append('VIM Matchup', 'call Help_vim_matchup()', '', '', 0, 'M')
 call quickmenu#current(11)
 call quickmenu#reset()
 call g:quickmenu#append('# Folding Method', '')
@@ -4055,6 +4054,43 @@ if g:VIM_Is_In_Tmux == 0
     let g:pomodoro_time_slack = 5
 endif
 "}}}
+"{{{vim-matchup
+"{{{vim-matchup-usage
+function! Help_vim_matchup()
+    echo 'surrounding match highlight bold, word match highlight underline'
+    echo ''
+    echo 'Match Word Jump:'
+    echo '%     jump to next word match current cursor position'
+    echo 'g%    jump to previous word match current cursor position'
+    echo '[%    jump to first word match current cursor position'
+    echo ']%    jump to last word match current cursor position'
+    echo '[%    if at the beginning of current outer, jump to previous outer'
+    echo ']%    if at the end of current outer, jump to next outer'
+    echo ''
+    echo 'Match Surrounding Jump:'
+    echo 'z%    jump inside the nearest surrounding'
+    echo '[%    jump to the beginning of current surrounding'
+    echo ']%    jump to the end of current surrounding'
+    echo '[%    if at the beginning of current surrounding, jump to previous outer surrounding'
+    echo ']%    if at the end of current surrounding, jump to next outer surrounding'
+    echo ''
+    echo 'Exception:'
+    echo '%     if not recognize, seek forwards to one and then jump to its match (surrounding or word)'
+    echo 'g%    if at an open word, cycle around to the corresponding open word'
+    echo 'g%    if the cursor is not on a word, seek forwards to one and then jump to its match'
+    echo ''
+    echo 'support [count][motion] and [action][motion] syntax'
+    echo
+endfunction
+"}}}
+let g:matchup_matchparen_deferred = 1  " highlight surrounding
+let g:matchup_matchparen_hi_surround_always = 1  " highlight surrounding
+let g:matchup_delim_noskips = 2  " don't recognize anything in comments
+hi MatchParen cterm=bold gui=bold
+hi MatchParenCur cterm=bold gui=bold
+hi MatchWord cterm=underline gui=underline
+hi MatchWordCur cterm=underline gui=underline
+"}}}
 " {{{vim-manpager
 if exists('g:VIM_MANPAGER')
     " {{{vim-manpager-usage
@@ -4106,7 +4142,9 @@ endfunction
 "{{{vim-closetag
 "{{{vim-closetag-usage
 function! Help_vim_closetag()
+    echo ''
     echo '<A-z>>  Add > at current position without closing the current tag'
+    echo ''
 endfunction
 "}}}
 function! Func_vim_closetag()
@@ -4114,17 +4152,6 @@ function! Func_vim_closetag()
     let g:closetag_shortcut = '>'
     " Add > at current position without closing the current tag, default is ''
     let g:closetag_close_shortcut = '<A-z>>'
-endfunction
-"}}}
-"{{{MatchTagAlways
-"{{{MatchTagAlways-usage
-function! Help_MatchTagAlways()
-    echo '<leader><A-n>  普通模式和插入模式跳转tag'
-endfunction
-"}}}
-function! Func_MatchTagAlways()
-    inoremap <silent><A-z><A-n> <Esc>:MtaJumpToOtherTag<CR>i
-    nnoremap <silent><leader><A-n> :<C-u>MtaJumpToOtherTag<CR>
 endfunction
 "}}}
 "{{{vim-json
