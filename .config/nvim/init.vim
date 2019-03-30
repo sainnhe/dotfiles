@@ -2851,7 +2851,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
     imap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
-    nnoremap <expr><C-l> coc#util#has_float() ? win_gotoid(coc#util#get_float()) : "\<C-l>"
+    " nnoremap <expr><C-l> coc#util#has_float() ? win_gotoid(coc#util#get_float()) : "\<C-l>"
+    nnoremap <silent> <C-l> :<C-u>wincmd p<CR>
     nnoremap <silent> lJ <Plug>(coc-diagnostic-next)
     nnoremap <silent> lK <Plug>(coc-diagnostic-prev)
     nnoremap <silent> li <Plug>(coc-diagnostic-info)
