@@ -810,8 +810,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install --frozen-lockfile'}
         Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     endif
-    Plug 'neoclide/coc-denite'
-    Plug 'iamcco/coc-action-source.nvim'
 elseif g:VIM_Completion_Framework ==# 'neocomplete'
     Plug 'Shougo/neocomplete.vim'
     Plug 'Shougo/neoinclude.vim'
@@ -949,7 +947,7 @@ call quickmenu#current(0)
 call quickmenu#reset()
 nnoremap <silent> <leader><Space> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
-call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(6)', '', '', 0, '`')
+call g:quickmenu#append('Servers', 'call quickmenu#toggle(4)', '', '', 0, 'l')
 if g:VIM_Is_In_Tmux == 0
     call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 endif
@@ -1256,7 +1254,7 @@ endfunction
 "}}}
 "}}}
 if g:VIM_Is_In_Tmux == 0
-    let g:VIM_Color_Scheme = 'one-light'
+    let g:VIM_Color_Scheme = 'ayu'
 else
     let g:VIM_Color_Scheme = 'snow-light'
 endif
@@ -2312,35 +2310,38 @@ if g:VIM_LSP_Client ==# 'lcn'
     nnoremap <silent> la :<C-u>call LanguageClient#textDocument_codeAction()<CR>
     nnoremap <silent> lf :<C-u>call LanguageClient#textDocument_formatting()<CR>
     vnoremap <silent> lf :<C-u>call LanguageClient#textDocument_rangeFormatting()<CR>
-    nnoremap <silent> <leader>l :<C-u>call quickmenu#toggle(4)<CR>
     if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
         call quickmenu#current(4)
         call quickmenu#reset()
-        call g:quickmenu#append('# LSC', '')
+        call g:quickmenu#append('# Language Server', '')
         call g:quickmenu#append('Context Menu', 'call LanguageClient_contextMenu()', 'Show context menu.', '', 0, '#')
         call g:quickmenu#append('Code Action', 'Denite codeAction', 'Show code actions at current location.', '', 0, 'a')
         call g:quickmenu#append('Symbol', 'Denite documentSymbol', "List of current buffer's symbols.", '', 0, 's')
         call g:quickmenu#append('Workspace Symbol', 'Denite workspaceSymbol', "List of project's symbols.", '', 0, 'S')
         call g:quickmenu#append('Apply Edit', 'call LanguageClient#workspace_applyEdit()', 'Apply a workspace edit.', '', 0, 'A')
-        call g:quickmenu#append('Command', 'call LanguageClient#workspace_executeCommand()', 'Execute a workspace command.', '', 0, 'c')
+        call g:quickmenu#append('Command', 'call LanguageClient#workspace_executeCommand()', 'Execute a workspace command.', '', 0, 'C')
         call g:quickmenu#append('Notify', 'call LanguageClient#Notify()', 'Send a notification to the current language server.', '', 0, 'n')
         call g:quickmenu#append('Start LSC', 'LanguageClientStart', '', '', 0, '$')
-        call g:quickmenu#append('Stop LSC', 'LanguageClientStop', '', '', 0, '#')
+        call g:quickmenu#append('Stop LSC', 'LanguageClientStop', '', '', 0, '!')
         call g:quickmenu#append('Help', 'call Help_Language_Client_neovim()', '', '', 0, 'h')
+        call g:quickmenu#append('# Completion Framework', '')
+        call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(5)', '', '', 0, 'c')
     else
         call quickmenu#current(4)
         call quickmenu#reset()
-        call g:quickmenu#append('# LSC', '')
+        call g:quickmenu#append('# Language Server', '')
         call g:quickmenu#append('Context Menu', 'call LanguageClient_contextMenu()', 'Show context menu.', '', 0, '#')
         call g:quickmenu#append('Code Action', 'call LanguageClient#textDocument_codeAction()', 'Show code actions at current location.', '', 0, 'a')
         call g:quickmenu#append('Symbol', 'call LanguageClient#textDocument_documentSymbol()', "List of current buffer's symbols.", '', 0, 's')
         call g:quickmenu#append('Workspace Symbol', 'call LanguageClient#workspace_symbol()', "List of project's symbols.", '', 0, 'S')
         call g:quickmenu#append('Apply Edit', 'call LanguageClient#workspace_applyEdit()', 'Apply a workspace edit.', '', 0, 'A')
-        call g:quickmenu#append('Command', 'call LanguageClient#workspace_executeCommand()', 'Execute a workspace command.', '', 0, 'c')
+        call g:quickmenu#append('Command', 'call LanguageClient#workspace_executeCommand()', 'Execute a workspace command.', '', 0, 'C')
         call g:quickmenu#append('Notify', 'call LanguageClient#Notify()', 'Send a notification to the current language server.', '', 0, 'n')
         call g:quickmenu#append('Start LSC', 'LanguageClientStart', '', '', 0, '$')
-        call g:quickmenu#append('Stop LSC', 'LanguageClientStop', '', '', 0, '#')
+        call g:quickmenu#append('Stop LSC', 'LanguageClientStop', '', '', 0, '!')
         call g:quickmenu#append('Help', 'call Help_Language_Client_neovim()', '', '', 0, 'h')
+        call g:quickmenu#append('# Completion Framework', '')
+        call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(5)', '', '', 0, 'c')
     endif
     let g:LanguageClient_diagnosticsDisplay = {
                 \ 1: {
@@ -2442,18 +2443,19 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
     nnoremap <silent> lK <plug>(lsp-previous-error)
     nnoremap <silent> lf :<C-u>LspDocumentFormat<CR>
     vnoremap <silent> lf :<C-u>LspDocumentRangeFormat<CR>
-    nnoremap <silent> <leader>l :<C-u>call quickmenu#toggle(4)<CR>
     call quickmenu#current(4)
     call quickmenu#reset()
-    call g:quickmenu#append('# LSC', '')
+    call g:quickmenu#append('# Language Server', '')
     call g:quickmenu#append('DocumentSymbol', 'LspDocumentSymbol', 'Gets the symbols for the current document.', '', 0, 's')
     call g:quickmenu#append('WorkspaceSymbols', 'LspWorkspaceSymbols', 'Search and show workspace symbols.', '', 0, 'S')
     call g:quickmenu#append('Diagnostics', 'LspDocumentDiagnostics', 'Gets the current document diagnostics.', '', 0, 'e')
     call g:quickmenu#append('Hover', 'LspHover', 'Gets the hover information. Close preview window: <c-w><c-z>', '', 0, 'h')
     call g:quickmenu#append('Status', 'LspStatus', '', '', 0, '*')
     call g:quickmenu#append('Start LSC', 'call lsp#enable()', '', '', 0, '$')
-    call g:quickmenu#append('Stop LSC', 'call lsp#disable()', '', '', 0, '#')
-    call g:quickmenu#append('Help', 'call Help_vim_lsp()', '', '', 0, 'h')
+    call g:quickmenu#append('Stop LSC', 'call lsp#disable()', '', '', 0, '!')
+    call g:quickmenu#append('Help', 'call Help_vim_lsp()', '', '', 0, 'H')
+    call g:quickmenu#append('# Completion Framework', '')
+    call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(5)', '', '', 0, 'c')
     vnoremap lf :<C-u>LspDocumentRangeFormat<CR>
 endif
 "}}}
@@ -2491,7 +2493,7 @@ if g:VIM_Completion_Framework ==# 'deoplete'
     " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
     "}}}
     "{{{quickmenu
-    call quickmenu#current(6)
+    call quickmenu#current(5)
     call quickmenu#reset()
     call g:quickmenu#append('# Deoplete', '')
     call g:quickmenu#append('Toggle Word Completion', 'call Func_ToggleDeopleteWords()', '', '', 0, 'w')
@@ -2575,7 +2577,7 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
     "}}}
     "{{{quickmenu
-    call quickmenu#current(6)
+    call quickmenu#current(5)
     call quickmenu#reset()
     call g:quickmenu#append('# NCM2', '')
     call g:quickmenu#append('Toggle Word Completion', 'call Func_ToggleNcm2Look()', '', '', 0, 'w')
@@ -2635,16 +2637,16 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
     "}}}
     "{{{asyncomplete
+elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     "{{{asyncomplete-usage
     " <Tab> <S-Tab> 分别向下和向上选中，
     " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
     "}}}
     "{{{quickmenu
-    call quickmenu#current(6)
+    call quickmenu#current(5)
     call quickmenu#reset()
     call g:quickmenu#append('# Asyncomplete', '')
     "}}}
-elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Plug>(asyncomplete_force_refresh)\<C-n>"
     inoremap <expr> <up> pumvisible() ? "\<C-y>\<up>" : "\<up>"
     inoremap <expr> <down> pumvisible() ? "\<C-y>\<down>" : "\<down>"
@@ -2771,31 +2773,22 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     endfunction"}}}
     "}}}
     "{{{quickmenu
-    call quickmenu#current(6)
-    call quickmenu#reset()
-    call g:quickmenu#append('# COC', '')
-    call g:quickmenu#append('List', 'CocList', '', '', 0, 'l')
-    call g:quickmenu#append('Action', 'Denite coc-action', '', '', 0, '*')
-    call g:quickmenu#append('Extension Commands', 'Denite coc-command', '', '', 0, 'c')
-    call g:quickmenu#append('Extension Management', 'Denite coc-extension', '', '', 0, 'e')
-    call g:quickmenu#append('Update Extensions', 'CocUpdate', '', '', 0, 'U')
-    call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
-    call g:quickmenu#append('Edit COC Config', 'CocConfig', '', '', 0, 'E')
-    call g:quickmenu#append('Language Server Management', 'Denite coc-service', '', '', 0, 'm')
-    call g:quickmenu#append('Disable COC', 'CocDisable', '', '', 0, '#')
-    call g:quickmenu#append('Enable COC', 'CocEnable', '', '', 0, '$')
-    call g:quickmenu#append('Restart COC', 'CocRestart', '', '', 0, '@')
-    call g:quickmenu#append('Toggle Floating Lock', 'call CocFloatingLockToggle()', '', '', 0, 't')
-    call g:quickmenu#append('Help Mappings', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
-    nnoremap <silent> <leader>l :<C-u>call quickmenu#toggle(5)<CR>
-    call quickmenu#current(5)
+    call quickmenu#current(4)
     call quickmenu#reset()
     call g:quickmenu#append('List', 'CocList', '', '', 0, 'l')
+    call g:quickmenu#append('# Language Server', '')
     call g:quickmenu#append('Symbols', 'Denite coc-symbols', '', '', 0, 's')
     call g:quickmenu#append('Symbols Workspace', 'Denite coc-workspace', '', '', 0, 'S')
     call g:quickmenu#append('Diagnostic Lists', 'Denite coc-diagnostic', '', '', 0, 'd')
     call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
     call g:quickmenu#append('Help', 'call Help_COC_LSP()', '', '', 0, 'h')
+    call g:quickmenu#append('# Completion Framework', '')
+    call g:quickmenu#append('Restart', 'CocRestart', '', '', 0, '@')
+    call g:quickmenu#append('Update Extensions', 'CocUpdate', '', '', 0, 'U')
+    call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
+    call g:quickmenu#append('Info', 'CocInfo', ':h CocOpenLog for log', '', 0, '@')
+    call g:quickmenu#append('Toggle Floating Lock', 'call CocFloatingLockToggle()', '', '', 0, 't')
+    call g:quickmenu#append('Help Mappings', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
     "}}}
     "{{{coc-init
     if g:VIM_Snippets ==# 'ultisnips'
@@ -2830,6 +2823,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd InsertEnter * call coc#util#float_hide()
         autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
+    set hidden
     set completeopt=noinsert,noselect,menuone
     set dictionary+=/usr/share/dict/words
     set dictionary+=/usr/share/dict/american-english
