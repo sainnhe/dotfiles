@@ -734,7 +734,6 @@ elseif g:VIM_Snippets ==# 'neosnippet'
     Plug 'Shougo/neosnippet-snippets'
     Plug 'honza/vim-snippets'
 elseif g:VIM_Snippets ==# 'coc-snippets'
-    Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
 endif
 if g:VIM_Completion_Framework ==# 'deoplete'
@@ -2839,10 +2838,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     highlight CocCodeLens ctermfg=Gray guifg=#888888
     "}}}
     "{{{coc-mappings
-    if g:VIM_Snippets ==# 'coc-snippets'
-        let g:UltiSnipsJumpForwardTrigger       = '<A-z>``````j'
-        let g:UltiSnipsJumpBackwardTrigger      = '<A-z>``````k'
-    endif
     inoremap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-j>"
     inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
     inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"

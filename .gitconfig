@@ -5,8 +5,6 @@
         editor = nvim
 [merge]
         tool = vimdiff
-[http]
-	proxy = socks5://127.0.0.1:1080
 [alias]
         ps = push origin master
         dj = diff --color
@@ -31,3 +29,5 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[http]
+	proxy = socks5://127.0.0.1:1080
