@@ -2804,8 +2804,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \       'coc-css',
                 \       'coc-emmet',
                 \       'coc-json',
-                \       'coc-yaml',
-                \       'coc-python'
+                \       'coc-yaml'
                 \   )
     if g:VIM_Enable_Autopairs == 0
         call coc#add_extension( 'coc-pairs' )

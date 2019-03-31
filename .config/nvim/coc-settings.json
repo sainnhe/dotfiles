@@ -63,15 +63,12 @@
         "vue-html": "html",
         "javascript": "javascriptreact"
     },
-    "help_pyls": "https://github.com/neoclide/coc-pyls",
-    "pyls.commandPath": "/usr/bin/pyls",
     "help_pairs": "https://github.com/neoclide/coc-pairs",
     "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
     "help_html": "https://github.com/neoclide/coc-html",
     "help_css": "https://github.com/neoclide/coc-css",
     "help_json": "https://github.com/neoclide/coc-json",
     "help_yaml": "https://github.com/neoclide/coc-yaml",
-    "help_python": "https://github.com/neoclide/coc-python",
     "languageserver": {
         "CCLS": {
             "command": "ccls",
@@ -81,6 +78,32 @@
                 "cache": {
                     "directory": "/tmp/ccls"
                 }
+            }
+        },
+        "MPLS": {
+            "command": "mspyls",
+            "filetypes": ["python"],
+            "initializationOptions": {
+                "interpreter": {
+                    "properties": {
+                        "InterpreterPath": "/usr/bin/python3",
+                        "UseDefaultDatabase": true
+                    }
+                },
+                "displayOptions": {
+                    "preferredFormat": "markdown",
+                    "trimDocumentationLines": false,
+                    "maxDocumentationLineLength": 0,
+                    "trimDocumentationText": false,
+                    "maxDocumentationTextLength": 0
+                },
+                "searchPaths": [
+                    "/usr/bin"
+                ],
+                "testEnvironment": false,
+                "analysisUpdates": true,
+                "traceLogging": true,
+                "asyncStartup": true
             }
         },
         "SHLS": {

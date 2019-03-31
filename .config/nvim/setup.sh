@@ -87,6 +87,9 @@ pikaur_setup_func() {
     echo -n "install ccls from AUR. [enter to continue]  "
     read -r
     pikaur --noedit -S ccls
+    echo -n "install microsoft-python-language-server from AUR. [enter to continue]  "
+    read -r
+    pikaur --noedit -S microsoft-python-language-server
     echo -n "install yaml-language-server-bin from AUR. [enter to continue]  "
     read -r
     pikaur --noedit -S yaml-language-server-bin
