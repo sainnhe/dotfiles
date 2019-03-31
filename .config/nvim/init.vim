@@ -2250,7 +2250,6 @@ nmap <A-g> <Plug>(golden_ratio_toggle)
 "{{{LanguageClient-neovim
 if g:VIM_LSP_Client ==# 'lcn'
     "{{{LanguageClient-neovim-usage
-    " <leader>l 主菜单
     function! Help_Language_Client_neovim()
         echo 'ld definition'
         echo 'lt typeDefinition'
@@ -2373,7 +2372,6 @@ if g:VIM_LSP_Client ==# 'lcn'
     "{{{vim-lsp
 elseif g:VIM_LSP_Client ==# 'vim-lsp'
     "{{{vim-lsp-usage
-    " <leader>l 主菜单
     function! Help_vim_lsp()
         echo 'la CodeAction'
         echo 'ld Definition'
@@ -2732,7 +2730,6 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     "{{{coc.nvim
 elseif g:VIM_Completion_Framework ==# 'coc'
     "{{{coc.nvim-usage
-    " <leader>l 主菜单
     function Help_COC_LSP()
         echo 'lJ diagnostic-next'
         echo 'lJ diagnostic-next'
