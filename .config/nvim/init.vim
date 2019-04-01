@@ -655,7 +655,7 @@ Plug 'cormacrelf/vim-colors-github'
 Plug 'nightsense/stellarized'
 Plug 'whatyouhide/vim-gotham'
 Plug 'ayu-theme/ayu-vim'
-Plug 'blueshirts/darcula'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'kaicataldo/material.vim'
 Plug 'hzchirs/vim-material'
 Plug 'nightsense/forgotten'
@@ -1781,12 +1781,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('stellarized', 'call SwitchColorScheme("stellarized-dark")', '', '', 0, '')
     "}}}
-    "{{{darcula
-    if g:VIM_Color_Scheme ==# 'darcula'
-        colorscheme darcula
-        let g:lightline.colorscheme = 'darcula'
+    "{{{dracula
+    if g:VIM_Color_Scheme ==# 'dracula'
+        colorscheme dracula
+        let g:lightline.colorscheme = 'dracula'
+        let g:lightline#colorscheme#dracula#palette.tabline.right[1] = g:lightline#colorscheme#dracula#palette.normal.middle[0]
     endif
-    call g:quickmenu#append('darcula', 'call SwitchColorScheme("darcula")', '', '', 0, '')
+    call g:quickmenu#append('dracula', 'call SwitchColorScheme("dracula")', '', '', 0, '')
     "}}}
     "{{{snow
     if g:VIM_Color_Scheme ==# 'snow-dark'
