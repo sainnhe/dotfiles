@@ -637,58 +637,58 @@ Plug 'tpope/vim-repeat'
 " User Interface
 "{{{themes
 Plug 'sainnhe/lightline_foobar.vim'
-Plug 'rakr/vim-one'
-Plug 'ajmwagar/vim-deus'
-Plug 'nightsense/snow'
-Plug 'morhetz/gruvbox'
-Plug 'junegunn/seoul256.vim'
-Plug 'jacoborus/tender.vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'tyrannicaltoucan/vim-quantum'
-Plug 'Badacadabra/vim-archery'
-Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'yuttie/hydrangea-vim'
-Plug 'yuttie/inkstained-vim'
-Plug 'atelierbram/vim-colors_atelier-schemes'
-Plug 'cormacrelf/vim-colors-github'
-Plug 'nightsense/stellarized'
-Plug 'whatyouhide/vim-gotham'
-Plug 'ayu-theme/ayu-vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'kaicataldo/material.vim'
-Plug 'hzchirs/vim-material'
-Plug 'nightsense/forgotten'
-Plug 'nightsense/nemo'
-Plug 'bellma101/vim-snazzy'
-Plug 'srcery-colors/srcery-vim'
-Plug 'rakr/vim-two-firewatch'
-Plug 'davidklsn/vim-sialoquent'
-Plug 'KeitaNakamura/neodark.vim'
-Plug 'reedes/vim-colors-pencil'
-Plug 'bcicen/vim-vice'
-Plug 'soft-aesthetic/soft-era-vim'
-Plug 'sts10/vim-pink-moon'
-Plug 'KKPMW/sacredforest-vim'
-Plug 'trevordmiller/nova-vim'
-Plug 'skreek/skeletor.vim'
-Plug 'tomasr/molokai'
-Plug 'nanotech/jellybeans.vim'
-Plug 'w0ng/vim-hybrid'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'sjl/badwolf'
-Plug 'jnurmine/Zenburn'
-Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'cseelus/vim-colors-tone'
-Plug 'beikome/cosme.vim'
-Plug 'Marfisc/vorange'
-Plug 'nightsense/cosmic_latte'
-Plug 'nightsense/rusticated'
-Plug 'nightsense/carbonized'
-Plug 'logico-dev/typewriter'
-Plug 'zefei/cake16'
 Plug 'sainnhe/vim-color-forest-night'
-Plug 'romainl/flattened'
+Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
+Plug 'ajmwagar/vim-deus', { 'as': 'vim-color-deus' }
+Plug 'nightsense/snow', { 'as': 'vim-color-snow' }
+Plug 'morhetz/gruvbox', { 'as': 'vim-color-gruvbox' }
+Plug 'junegunn/seoul256.vim', { 'as': 'vim-color-seoul256' }
+Plug 'jacoborus/tender.vim', { 'as': 'vim-color-tender' }
+Plug 'arcticicestudio/nord-vim', { 'as': 'vim-color-nova' }
+Plug 'cocopon/iceberg.vim', { 'as': 'vim-color-iceberg' }
+Plug 'tyrannicaltoucan/vim-quantum', { 'as': 'vim-color-quantum' }
+Plug 'Badacadabra/vim-archery', { 'as': 'vim-color-archery' }
+Plug 'tyrannicaltoucan/vim-deep-space', { 'as': 'vim-color-deepspace' }
+Plug 'yuttie/hydrangea-vim', { 'as': 'vim-color-hydrangea' }
+Plug 'yuttie/inkstained-vim', { 'as': 'vim-color-inkstained' }
+Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
+Plug 'cormacrelf/vim-colors-github', { 'as': 'vim-color-github' }
+Plug 'nightsense/stellarized', { 'as': 'vim-color-stellarized' }
+Plug 'whatyouhide/vim-gotham', { 'as': 'vim-color-gotham' }
+Plug 'ayu-theme/ayu-vim', { 'as': 'vim-color-ayu' }
+Plug 'dracula/vim', { 'as': 'vim-color-dracula' }
+Plug 'kaicataldo/material.vim', { 'as': 'vim-color-material-vim' }
+Plug 'hzchirs/vim-material', { 'as': 'vim-color-material' }
+Plug 'nightsense/forgotten', { 'as': 'vim-color-forgotten' }
+Plug 'nightsense/nemo', { 'as': 'vim-color-nemo' }
+Plug 'bellma101/vim-snazzy', { 'as': 'vim-color-snazzy' }
+Plug 'srcery-colors/srcery-vim', { 'as': 'vim-color-srcery' }
+Plug 'rakr/vim-two-firewatch', { 'as': 'vim-color-two-firewatch' }
+Plug 'davidklsn/vim-sialoquent', { 'as': 'vim-color-sialoquent' }
+Plug 'KeitaNakamura/neodark.vim', { 'as': 'vim-color-neodark' }
+Plug 'reedes/vim-colors-pencil', { 'as': 'vim-color-pencil' }
+Plug 'bcicen/vim-vice', { 'as': 'vim-color-vice' }
+Plug 'soft-aesthetic/soft-era-vim', { 'as': 'vim-color-soft-era' }
+Plug 'sts10/vim-pink-moon', { 'as': 'vim-color-pink-moon' }
+Plug 'KKPMW/sacredforest-vim', { 'as': 'vim-color-sacredforest' }
+Plug 'trevordmiller/nova-vim', { 'as': 'vim-color-nova' }
+Plug 'skreek/skeletor.vim', { 'as': 'vim-color-skeletor' }
+Plug 'tomasr/molokai', { 'as': 'vim-color-molokai' }
+Plug 'nanotech/jellybeans.vim', { 'as': 'vim-color-jellybeans' }
+Plug 'w0ng/vim-hybrid', { 'as': 'vim-color-hybrid' }
+Plug 'NLKNguyen/papercolor-theme', { 'as': 'vim-color-papercolor' }
+Plug 'sjl/badwolf', { 'as': 'vim-color-badwolf' }
+Plug 'jnurmine/Zenburn', { 'as': 'vim-color-zenburn' }
+Plug 'chriskempson/vim-tomorrow-theme', { 'as': 'vim-color-tomorrow' }
+Plug 'cseelus/vim-colors-tone', { 'as': 'vim-color-tone' }
+Plug 'beikome/cosme.vim', { 'as': 'vim-color-cosme' }
+Plug 'Marfisc/vorange', { 'as': 'vim-color-vorange' }
+Plug 'nightsense/cosmic_latte', { 'as': 'vim-color-cosmic_latte' }
+Plug 'nightsense/rusticated', { 'as': 'vim-color-rusticated' }
+Plug 'nightsense/carbonized', { 'as': 'vim-color-carbonized' }
+Plug 'logico-dev/typewriter', { 'as': 'vim-color-typewriter' }
+Plug 'zefei/cake16', { 'as': 'vim-color-cake16' }
+Plug 'romainl/flattened', { 'as': 'vim-color-flattened' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
