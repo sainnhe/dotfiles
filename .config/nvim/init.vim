@@ -688,7 +688,6 @@ Plug 'nightsense/carbonized'
 Plug 'logico-dev/typewriter'
 Plug 'zefei/cake16'
 Plug 'sainnhe/vim-color-forest-night'
-Plug 'BrainDeath0/Hypsteria'
 Plug 'romainl/flattened'
 "}}}
 Plug 'itchyny/lightline.vim'
@@ -1378,14 +1377,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'srcery_alter'
     endif
     call g:quickmenu#append('vorange', 'call SwitchColorScheme("vorange")', '', '', 0, '')
-    "}}}
-    "{{{hypsteria
-    if g:VIM_Color_Scheme ==# 'hypsteria'
-        set background=dark
-        colorscheme hypsteria
-        let g:lightline.colorscheme = 'srcery_alter'
-    endif
-    call g:quickmenu#append('hypsteria', 'call SwitchColorScheme("hypsteria")', '', '', 0, '')
     "}}}
     "{{{gruvbox
     if g:VIM_Color_Scheme ==# 'gruvbox-dark'
