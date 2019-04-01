@@ -1390,25 +1390,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-dark")', '', '', 0, '')
     "}}}
-    "{{{flattened
-    if g:VIM_Color_Scheme ==# 'flattened-dark'
-        set background=dark
-        colorscheme flattened_dark
-        let g:lightline.colorscheme = 'flattened_dark'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
-        let g:lightline#colorscheme#flattened_dark#palette.tabline.right[1] = g:lightline#colorscheme#flattened_dark#palette.normal.middle[0]
-    endif
-    call g:quickmenu#append('flattened', 'call SwitchColorScheme("flattened-dark")', '', '', 0, '')
-    "}}}
-    "{{{ayu
-    if g:VIM_Color_Scheme ==# 'ayu-dark'
-        let g:ayucolor = 'dark'
-        set background=dark
-        colorscheme ayu
-        let g:lightline.colorscheme = 'ayu_dark'
-    endif
-    call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu-dark")', '', '', 0, '')
-    "}}}
     "{{{neodark
     if g:VIM_Color_Scheme ==# 'neodark'
         set background=dark
@@ -1682,38 +1663,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('github', 'call SwitchColorScheme("github")', '', '', 0, '')
     "}}}
-    "{{{soft-era
-    if g:VIM_Color_Scheme ==# 'soft-era'
-        set background=light
-        colorscheme soft-era
-        let g:lightline.colorscheme = 'softera_alter'
-        hi Conceal guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi Cursor guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi CursorIM guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi FoldColumn guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi SignColumn guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi ModeMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi MoreMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi PmenuSbar guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi PmenuThumb guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi Question guifg=#eceafa ctermfg=10 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-        hi SpecialKey guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi SpellBad guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi SpellLocal guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi SpellCap guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi SpellRare guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi StatusLine guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi StatusLineNC guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi TabLine guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi TabLineFill guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi TabLineSel guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi Title guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi VisualNOS guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi WarningMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi WildMenu guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-    endif
-    call g:quickmenu#append('soft-era', 'call SwitchColorScheme("soft-era")', '', '', 0, '')
-    "}}}
     "{{{typewriter
     if g:VIM_Color_Scheme ==# 'typewriter-light'
         set background=light
@@ -1882,6 +1831,16 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('iceberg', 'call SwitchColorScheme("iceberg")', '', '', 0, '')
     "}}}
+    "{{{flattened
+    if g:VIM_Color_Scheme ==# 'flattened-dark'
+        set background=dark
+        colorscheme flattened_dark
+        let g:lightline.colorscheme = 'flattened_dark'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        let g:lightline#colorscheme#flattened_dark#palette.tabline.right[1] = g:lightline#colorscheme#flattened_dark#palette.normal.middle[0]
+    endif
+    call g:quickmenu#append('flattened', 'call SwitchColorScheme("flattened-dark")', '', '', 0, '')
+    "}}}
     "{{{PaperColor
     if g:VIM_Color_Scheme ==# 'PaperColor-dark'
         set background=dark
@@ -2000,6 +1959,38 @@ function! ColorScheme()
     call g:quickmenu#append('gotham', 'call SwitchColorScheme("gotham")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Light', '')
+    "{{{soft-era
+    if g:VIM_Color_Scheme ==# 'soft-era'
+        set background=light
+        colorscheme soft-era
+        let g:lightline.colorscheme = 'softera_alter'
+        hi Conceal guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi Cursor guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi CursorIM guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi FoldColumn guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi SignColumn guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi ModeMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi MoreMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi PmenuSbar guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi PmenuThumb guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi Question guifg=#eceafa ctermfg=10 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+        hi SpecialKey guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi SpellBad guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi SpellLocal guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi SpellCap guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi SpellRare guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi StatusLine guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi StatusLineNC guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi TabLine guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi TabLineFill guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi TabLineSel guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi Title guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi VisualNOS guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi WarningMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+        hi WildMenu guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
+    endif
+    call g:quickmenu#append('soft-era', 'call SwitchColorScheme("soft-era")', '', '', 0, '')
+    "}}}
     "{{{nemo
     if g:VIM_Color_Scheme ==# 'nemo'
         set background=light
