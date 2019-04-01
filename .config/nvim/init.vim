@@ -688,6 +688,8 @@ Plug 'nightsense/carbonized'
 Plug 'logico-dev/typewriter'
 Plug 'zefei/cake16'
 Plug 'sainnhe/vim-color-forest-night'
+Plug 'BrainDeath0/Hypsteria'
+Plug 'romainl/flattened'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1254,7 +1256,7 @@ endfunction
 "}}}
 "}}}
 if g:VIM_Is_In_Tmux == 0
-    let g:VIM_Color_Scheme = 'ayu'
+    let g:VIM_Color_Scheme = 'flattened-light'
 else
     let g:VIM_Color_Scheme = 'snow-light'
 endif
@@ -1361,18 +1363,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('pink-moon', 'call SwitchColorScheme("pink-moon")', '', '', 0, '')
     "}}}
-    "{{{gruvbox
-    if g:VIM_Color_Scheme ==# 'gruvbox-dark'
-        set background=dark
-        colorscheme gruvbox
-        let g:lightline.colorscheme = 'gruvbox'
-        let g:lightline#colorscheme#gruvbox#palette.tabline.right = [ g:lightline#colorscheme#gruvbox#palette.tabline.right[0], g:lightline#colorscheme#gruvbox#palette.normal.middle[0] ]
-        let g:lightline#colorscheme#gruvbox#palette.tabline.right[1][1] = g:lightline#colorscheme#gruvbox#palette.tabline.middle[0][1]
-        let g:lightline#colorscheme#gruvbox#palette.insert.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
-        let g:lightline#colorscheme#gruvbox#palette.visual.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
-    endif
-    call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-dark")', '', '', 0, '')
-    "}}}
     "{{{srcery
     if g:VIM_Color_Scheme ==# 'srcery'
         set background=dark
@@ -1385,9 +1375,48 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'vorange'
         set background=dark
         colorscheme vorange
-        let g:lightline.colorscheme = 'srcery_alter'
+        let g:lightline.colorscheme = 'vorange_alter'
     endif
     call g:quickmenu#append('vorange', 'call SwitchColorScheme("vorange")', '', '', 0, '')
+    "}}}
+    "{{{hypsteria
+    if g:VIM_Color_Scheme ==# 'hypsteria'
+        set background=dark
+        colorscheme hypsteria
+        let g:lightline.colorscheme = 'hypsteria_alter'
+    endif
+    call g:quickmenu#append('hypsteria', 'call SwitchColorScheme("hypsteria")', '', '', 0, '')
+    "}}}
+    "{{{gruvbox
+    if g:VIM_Color_Scheme ==# 'gruvbox-dark'
+        set background=dark
+        colorscheme gruvbox
+        let g:lightline.colorscheme = 'gruvbox'
+        let g:lightline#colorscheme#gruvbox#palette.tabline.right = [ g:lightline#colorscheme#gruvbox#palette.tabline.right[0], g:lightline#colorscheme#gruvbox#palette.normal.middle[0] ]
+        let g:lightline#colorscheme#gruvbox#palette.tabline.right[1][1] = g:lightline#colorscheme#gruvbox#palette.tabline.middle[0][1]
+        let g:lightline#colorscheme#gruvbox#palette.insert.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
+        let g:lightline#colorscheme#gruvbox#palette.visual.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
+    endif
+    call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-dark")', '', '', 0, '')
+    "}}}
+    "{{{flattened
+    if g:VIM_Color_Scheme ==# 'flattened-dark'
+        set background=dark
+        colorscheme flattened_dark
+        let g:lightline.colorscheme = 'flattened_dark'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        let g:lightline#colorscheme#flattened_dark#palette.tabline.right[1] = g:lightline#colorscheme#flattened_dark#palette.normal.middle[0]
+    endif
+    call g:quickmenu#append('flattened', 'call SwitchColorScheme("flattened-dark")', '', '', 0, '')
+    "}}}
+    "{{{ayu
+    if g:VIM_Color_Scheme ==# 'ayu-dark'
+        let g:ayucolor = 'dark'
+        set background=dark
+        colorscheme ayu
+        let g:lightline.colorscheme = 'ayu_dark'
+    endif
+    call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu-dark")', '', '', 0, '')
     "}}}
     "{{{neodark
     if g:VIM_Color_Scheme ==# 'neodark'
@@ -1545,13 +1574,13 @@ function! ColorScheme()
     call g:quickmenu#append('one', 'call SwitchColorScheme("one-light")', '', '', 0, '')
     "}}}
     "{{{ayu
-    if g:VIM_Color_Scheme ==# 'ayu'
+    if g:VIM_Color_Scheme ==# 'ayu-light'
         let g:ayucolor = 'light'
         set background=light
         colorscheme ayu
         let g:lightline.colorscheme = 'ayu_light'
     endif
-    call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu")', '', '', 0, '')
+    call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu-light")', '', '', 0, '')
     "}}}
     "{{{material
     if g:VIM_Color_Scheme ==# 'material-light'
@@ -1641,6 +1670,16 @@ function! ColorScheme()
         let g:lightline#colorscheme#gruvbox#palette.visual.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
     endif
     call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-light")', '', '', 0, '')
+    "}}}
+    "{{{flattened
+    if g:VIM_Color_Scheme ==# 'flattened-light'
+        set background=light
+        colorscheme flattened_light
+        let g:lightline.colorscheme = 'flattened_light'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        let g:lightline#colorscheme#flattened_light#palette.tabline.right[1] = g:lightline#colorscheme#flattened_light#palette.normal.middle[0]
+    endif
+    call g:quickmenu#append('flattened', 'call SwitchColorScheme("flattened-light")', '', '', 0, '')
     "}}}
     "{{{github
     if g:VIM_Color_Scheme ==# 'github'
