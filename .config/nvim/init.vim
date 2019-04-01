@@ -1375,7 +1375,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'vorange'
         set background=dark
         colorscheme vorange
-        let g:lightline.colorscheme = 'vorange_alter'
+        let g:lightline.colorscheme = 'srcery_alter'
     endif
     call g:quickmenu#append('vorange', 'call SwitchColorScheme("vorange")', '', '', 0, '')
     "}}}
@@ -1383,7 +1383,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'hypsteria'
         set background=dark
         colorscheme hypsteria
-        let g:lightline.colorscheme = 'hypsteria_alter'
+        let g:lightline.colorscheme = 'srcery_alter'
     endif
     call g:quickmenu#append('hypsteria', 'call SwitchColorScheme("hypsteria")', '', '', 0, '')
     "}}}
