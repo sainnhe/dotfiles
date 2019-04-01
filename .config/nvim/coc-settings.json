@@ -82,6 +82,7 @@
         },
         "MPLS": {
             "command": "mspyls",
+            "trace.server": "verbose",
             "filetypes": ["python"],
             "initializationOptions": {
                 "interpreter": {
