@@ -46,8 +46,14 @@ pacman_setup_func() {
     pacman -S --noconfirm tidy &> /dev/null
     echo "installing jedi..."
     pacman -S --noconfirm python-jedi &> /dev/null
+    echo "installing pylint..."
+    pacman -S --noconfirm python-pylint python2-pylint &> /dev/null
     echo "installing flake8..."
-    pacman -S --noconfirm flake8 &> /dev/null
+    pacman -S --noconfirm flake8 python2-flake8 &> /dev/null
+    echo "installing mypy..."
+    pacman -S --noconfirm mypy &> /dev/null
+    echo "installing pydocstyle..."
+    pacman -S --noconfirm python-pydocstyle python2-pydocstyle &> /dev/null
     echo "installing flawfinder..."
     pacman -S --noconfirm flawfinder &> /dev/null
     echo "installing cppcheck..."
@@ -56,14 +62,6 @@ pacman_setup_func() {
     pacman -S --noconfirm shellcheck &> /dev/null
     echo "installing vint..."
     pacman -S --noconfirm vint &> /dev/null
-    echo "installing python-pyflakes..."
-    pacman -S --noconfirm python-pyflakes &> /dev/null
-    echo "installing python-pycodestyle..."
-    pacman -S --noconfirm python-pycodestyle &> /dev/null
-    echo "installing python-pydocstyle..."
-    pacman -S --noconfirm python-pydocstyle &> /dev/null
-    echo "installing python-pylint..."
-    pacman -S --noconfirm python-pylint &> /dev/null
     echo "installing astyle..."
     pacman -S --noconfirm astyle &> /dev/null
     echo "installing prettier..."
@@ -86,7 +84,7 @@ pikaur_setup_func() {
     read -r
     echo -n "install ccls from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S ccls
+    pikaur --noedit -S ccls-git
     echo -n "install microsoft-python-language-server from AUR. [enter to continue]  "
     read -r
     pikaur --noedit -S microsoft-python-language-server

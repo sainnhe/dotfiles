@@ -76,7 +76,13 @@
             "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
             "initializationOptions": {
                 "cache": {
-                    "directory": "/tmp/ccls"
+                    "directory": "/tmp/ccls",
+                    "format": "json"
+                },
+                "diagnostics": {
+                    "onOpen": 0,
+                    "onChange": 1,
+                    "onSave": 0
                 }
             }
         },
