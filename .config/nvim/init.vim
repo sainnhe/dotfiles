@@ -689,6 +689,7 @@ Plug 'nightsense/carbonized', { 'as': 'vim-color-carbonized' }
 Plug 'logico-dev/typewriter', { 'as': 'vim-color-typewriter' }
 Plug 'zefei/cake16', { 'as': 'vim-color-cake16' }
 Plug 'romainl/flattened', { 'as': 'vim-color-flattened' }
+Plug 'KKPMW/oldbook-vim', { 'as': 'vim-color-oldbook' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1259,6 +1260,7 @@ if g:VIM_Is_In_Tmux == 0
 else
     let g:VIM_Color_Scheme = 'snow-light'
 endif
+let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1339,6 +1341,14 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'forest_night'
     endif
     call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
+    "}}}
+    "{{{oldbook
+    if g:VIM_Color_Scheme ==# 'oldbook'
+        set background=dark
+        colorscheme oldbook
+        let g:lightline.colorscheme = 'oldbook_alter'
+    endif
+    call g:quickmenu#append('oldbook', 'call SwitchColorScheme("oldbook")', '', '', 0, '')
     "}}}
     "{{{sialoquent
     if g:VIM_Color_Scheme ==# 'sialoquent'
