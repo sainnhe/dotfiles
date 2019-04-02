@@ -656,7 +656,6 @@ Plug 'cormacrelf/vim-colors-github', { 'as': 'vim-color-github' }
 Plug 'nightsense/stellarized', { 'as': 'vim-color-stellarized' }
 Plug 'whatyouhide/vim-gotham', { 'as': 'vim-color-gotham' }
 Plug 'ayu-theme/ayu-vim', { 'as': 'vim-color-ayu' }
-Plug 'dracula/vim', { 'as': 'vim-color-dracula' }
 Plug 'kaicataldo/material.vim', { 'as': 'vim-color-material-vim' }
 Plug 'hzchirs/vim-material', { 'as': 'vim-color-material' }
 Plug 'nightsense/forgotten', { 'as': 'vim-color-forgotten' }
@@ -684,12 +683,13 @@ Plug 'cseelus/vim-colors-tone', { 'as': 'vim-color-tone' }
 Plug 'beikome/cosme.vim', { 'as': 'vim-color-cosme' }
 Plug 'Marfisc/vorange', { 'as': 'vim-color-vorange' }
 Plug 'nightsense/cosmic_latte', { 'as': 'vim-color-cosmic_latte' }
-Plug 'nightsense/rusticated', { 'as': 'vim-color-rusticated' }
 Plug 'nightsense/carbonized', { 'as': 'vim-color-carbonized' }
 Plug 'logico-dev/typewriter', { 'as': 'vim-color-typewriter' }
 Plug 'zefei/cake16', { 'as': 'vim-color-cake16' }
-Plug 'romainl/flattened', { 'as': 'vim-color-flattened' }
+Plug 'lifepillar/vim-solarized8', { 'as': 'vim-color-solarized8' }
 Plug 'KKPMW/oldbook-vim', { 'as': 'vim-color-oldbook' }
+Plug 'dracula/vim', { 'as': 'vim-color-dracula' }
+Plug 'blueshirts/darcula', { 'as': 'vim-color-darcula' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1256,7 +1256,7 @@ endfunction
 "}}}
 "}}}
 if g:VIM_Is_In_Tmux == 0
-    let g:VIM_Color_Scheme = 'flattened-light'
+    let g:VIM_Color_Scheme = 'solarized8-light'
 else
     let g:VIM_Color_Scheme = 'snow-light'
 endif
@@ -1653,15 +1653,20 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-light")', '', '', 0, '')
     "}}}
-    "{{{flattened
-    if g:VIM_Color_Scheme ==# 'flattened-light'
+    "{{{solarized8
+    if g:VIM_Color_Scheme ==# 'solarized8-light'
+        let g:solarized_extra_hi_groups = 1
+        let g:solarized_term_italics = 1
+        let g:solarized_visibility = 'normal'  " normal low flat
+        let g:solarized_diffmode = 'normal'  " normal low flat
+        let g:solarized_statusline = 'normal'  " normal low flat
+        let g:solarized_termtrans = 0
         set background=light
-        colorscheme flattened_light
-        let g:lightline.colorscheme = 'flattened_light'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
-        let g:lightline#colorscheme#flattened_light#palette.tabline.right[1] = g:lightline#colorscheme#flattened_light#palette.normal.middle[0]
+        colorscheme solarized8
+        let g:lightline.colorscheme = 'solarized'
+        let g:lightline#colorscheme#solarized#palette.tabline.right[1] = g:lightline#colorscheme#solarized#palette.normal.middle[0]
     endif
-    call g:quickmenu#append('flattened', 'call SwitchColorScheme("flattened-light")', '', '', 0, '')
+    call g:quickmenu#append('solarized8', 'call SwitchColorScheme("solarized8-light")', '', '', 0, '')
     "}}}
     "{{{github
     if g:VIM_Color_Scheme ==# 'github'
@@ -1775,13 +1780,20 @@ function! ColorScheme()
     call quickmenu#current(96)
     call quickmenu#reset()
     call g:quickmenu#append('# Dark', '')
-    "{{{deus
-    if g:VIM_Color_Scheme ==# 'deus'
+    "{{{solarized8
+    if g:VIM_Color_Scheme ==# 'solarized8-dark'
+        let g:solarized_extra_hi_groups = 1
+        let g:solarized_term_italics = 1
+        let g:solarized_visibility = 'normal'  " normal low flat
+        let g:solarized_diffmode = 'normal'  " normal low flat
+        let g:solarized_statusline = 'normal'  " normal low flat
+        let g:solarized_termtrans = 0
         set background=dark
-        colorscheme deus
-        let g:lightline.colorscheme = 'deus'
+        colorscheme solarized8
+        let g:lightline.colorscheme = 'solarized'
+        let g:lightline#colorscheme#solarized#palette.tabline.right[1] = g:lightline#colorscheme#solarized#palette.normal.middle[0]
     endif
-    call g:quickmenu#append('deus', 'call SwitchColorScheme("deus")', '', '', 0, '')
+    call g:quickmenu#append('solarized8', 'call SwitchColorScheme("solarized8-dark")', '', '', 0, '')
     "}}}
     "{{{stellarized
     if g:VIM_Color_Scheme ==# 'stellarized-dark'
@@ -1791,6 +1803,14 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('stellarized', 'call SwitchColorScheme("stellarized-dark")', '', '', 0, '')
     "}}}
+    "{{{deus
+    if g:VIM_Color_Scheme ==# 'deus'
+        set background=dark
+        colorscheme deus
+        let g:lightline.colorscheme = 'deus'
+    endif
+    call g:quickmenu#append('deus', 'call SwitchColorScheme("deus")', '', '', 0, '')
+    "}}}
     "{{{dracula
     if g:VIM_Color_Scheme ==# 'dracula'
         colorscheme dracula
@@ -1798,6 +1818,14 @@ function! ColorScheme()
         let g:lightline#colorscheme#dracula#palette.tabline.right[1] = g:lightline#colorscheme#dracula#palette.normal.middle[0]
     endif
     call g:quickmenu#append('dracula', 'call SwitchColorScheme("dracula")', '', '', 0, '')
+    "}}}
+    "{{{darcula
+    if g:VIM_Color_Scheme ==# 'darcula'
+        colorscheme darcula
+        let g:lightline.colorscheme = 'darcula'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+    endif
+    call g:quickmenu#append('darcula', 'call SwitchColorScheme("darcula")', '', '', 0, '')
     "}}}
     "{{{snow
     if g:VIM_Color_Scheme ==# 'snow-dark'
@@ -2040,14 +2068,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'Tomorrow'
     endif
     call g:quickmenu#append('Tomorrow', 'call SwitchColorScheme("Tomorrow-light")', '', '', 0, '')
-    "}}}
-    "{{{rusticated
-    if g:VIM_Color_Scheme ==# 'rusticated'
-        set background=light
-        colorscheme rusticated
-        let g:lightline.colorscheme = 'rusticated'
-    endif
-    call g:quickmenu#append('rusticated', 'call SwitchColorScheme("rusticated")', '', '', 0, '')
     "}}}
 endfunction
 call ColorScheme()
