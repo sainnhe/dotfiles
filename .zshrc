@@ -86,7 +86,7 @@ alias help=run-help
 # {{{Alias
 alias ls='lsd'
 alias ls-rec='lsd --tree'
-alias ls-all='ls --color=auto -F -ilsh'
+alias ls-all='/usr/bin/ls --color=auto -F -ilsh'
 alias fzy="fzy --lines=15 --prompt='➤ '"
 alias cdl='dirs -vl | fzy'
 alias cdC='dirs -c'
