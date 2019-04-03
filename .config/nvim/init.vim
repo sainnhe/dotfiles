@@ -433,11 +433,21 @@ inoremap <C-Z> <ESC>ua
 inoremap <C-R> <ESC><C-R>a
 " Ctrl+X剪切当前行
 inoremap <C-X> <ESC>"_ddi
+" Alt+hjkl移动
+inoremap <A-h> <left>
+inoremap <A-j> <down>
+inoremap <A-k> <up>
+inoremap <A-l> <right>
 " Shift加方向键加速移动
 inoremap <S-up> <up><up><up><up><up>
 inoremap <S-down> <down><down><down><down><down>
 inoremap <S-left> <ESC>I
 inoremap <S-right> <ESC>A
+" Alt+Shift+hjkl加速移动
+inoremap <A-H> <ESC>I
+inoremap <A-J> <down><down><down><down><down>
+inoremap <A-K> <up><up><up><up><up>
+inoremap <A-L> <ESC>A
 " Alt+上下左右可以跳转和移动窗口
 inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
 inoremap <silent> <A-right> <Esc>:wincmd l<CR>i
@@ -2303,13 +2313,13 @@ nmap <A-g> <Plug>(golden_ratio_toggle)
 if g:VIM_LSP_Client ==# 'lcn'
     "{{{LanguageClient-neovim-usage
     function! Help_Language_Client_neovim()
-        echo 'ld definition'
-        echo 'lt typeDefinition'
-        echo 'lI implementation'
-        echo 'lr references'
-        echo 'lR rename'
-        echo 'la codeAction'
-        echo 'lf formatting'
+        echo '<leader>ld definition'
+        echo '<leader>lt typeDefinition'
+        echo '<leader>lI implementation'
+        echo '<leader>lr references'
+        echo '<leader>lR rename'
+        echo '<leader>la codeAction'
+        echo '<leader>lf formatting'
     endfunction
     "}}}
     " Server Register
@@ -2353,14 +2363,14 @@ if g:VIM_LSP_Client ==# 'lcn'
     " Interface
     " let g:LanguageClient_selectionUI = 'fzf'  " fzf quickfix location-list
     " Mappings
-    nnoremap <silent> ld :<C-u>call LanguageClient#textDocument_definition()<CR>
-    nnoremap <silent> lt :<C-u>call LanguageClient#textDocument_typeDefinition()<CR>
-    nnoremap <silent> lI :<C-u>call LanguageClient#textDocument_implementation()<CR>
-    nnoremap <silent> lr :<C-u>call LanguageClient#textDocument_references()<CR>
-    nnoremap <silent> lR :<C-u>call LanguageClient#textDocument_rename()<CR>
-    nnoremap <silent> la :<C-u>call LanguageClient#textDocument_codeAction()<CR>
-    nnoremap <silent> lf :<C-u>call LanguageClient#textDocument_formatting()<CR>
-    vnoremap <silent> lf :<C-u>call LanguageClient#textDocument_rangeFormatting()<CR>
+    nnoremap <silent> <leader>ld :<C-u>call LanguageClient#textDocument_definition()<CR>
+    nnoremap <silent> <leader>lt :<C-u>call LanguageClient#textDocument_typeDefinition()<CR>
+    nnoremap <silent> <leader>lI :<C-u>call LanguageClient#textDocument_implementation()<CR>
+    nnoremap <silent> <leader>lr :<C-u>call LanguageClient#textDocument_references()<CR>
+    nnoremap <silent> <leader>lR :<C-u>call LanguageClient#textDocument_rename()<CR>
+    nnoremap <silent> <leader>la :<C-u>call LanguageClient#textDocument_codeAction()<CR>
+    nnoremap <silent> <leader>lf :<C-u>call LanguageClient#textDocument_formatting()<CR>
+    vnoremap <silent> <leader>lf :<C-u>call LanguageClient#textDocument_rangeFormatting()<CR>
     if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
         call quickmenu#current(4)
         call quickmenu#reset()
@@ -2425,16 +2435,16 @@ if g:VIM_LSP_Client ==# 'lcn'
 elseif g:VIM_LSP_Client ==# 'vim-lsp'
     "{{{vim-lsp-usage
     function! Help_vim_lsp()
-        echo 'la CodeAction'
-        echo 'ld Definition'
-        echo 'lD Declaration'
-        echo 'lt TypeDefinition'
-        echo 'lr References'
-        echo 'lR Rename'
-        echo 'lI Implementation'
-        echo 'lf DocumentFormat'
-        echo 'lJ NextError'
-        echo 'lK PreviousError'
+        echo '<leader>la CodeAction'
+        echo '<leader>ld Definition'
+        echo '<leader>lD Declaration'
+        echo '<leader>lt TypeDefinition'
+        echo '<leader>lr References'
+        echo '<leader>lR Rename'
+        echo '<leader>lI Implementation'
+        echo '<leader>lf DocumentFormat'
+        echo '<leader>lJ NextError'
+        echo '<leader>lK PreviousError'
     endfunction
     "}}}
     let g:lsp_auto_enable = 1
@@ -2482,17 +2492,17 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
                     \ 'whitelist': ['yaml'],
                     \ })
     augroup END
-    nnoremap <silent> la <plug>(lsp-code-action)
-    nnoremap <silent> ld <plug>(lsp-definition)
-    nnoremap <silent> lD <plug>(lsp-declaration)
-    nnoremap <silent> lt <plug>(lsp-type-definition)
-    nnoremap <silent> lr <plug>(lsp-references)
-    nnoremap <silent> lR <plug>(lsp-rename)
-    nnoremap <silent> lI <plug>(lsp-implementation)
-    nnoremap <silent> lJ <plug>(lsp-next-error)
-    nnoremap <silent> lK <plug>(lsp-previous-error)
-    nnoremap <silent> lf :<C-u>LspDocumentFormat<CR>
-    vnoremap <silent> lf :<C-u>LspDocumentRangeFormat<CR>
+    nnoremap <silent> <leader>la <plug>(lsp-code-action)
+    nnoremap <silent> <leader>ld <plug>(lsp-definition)
+    nnoremap <silent> <leader>lD <plug>(lsp-declaration)
+    nnoremap <silent> <leader>lt <plug>(lsp-type-definition)
+    nnoremap <silent> <leader>lr <plug>(lsp-references)
+    nnoremap <silent> <leader>lR <plug>(lsp-rename)
+    nnoremap <silent> <leader>lI <plug>(lsp-implementation)
+    nnoremap <silent> <leader>lJ <plug>(lsp-next-error)
+    nnoremap <silent> <leader>lK <plug>(lsp-previous-error)
+    nnoremap <silent> <leader>lf :<C-u>LspDocumentFormat<CR>
+    vnoremap <silent> <leader>lf :<C-u>LspDocumentRangeFormat<CR>
     call quickmenu#current(4)
     call quickmenu#reset()
     call g:quickmenu#append('# Language Server', '')
@@ -2783,22 +2793,22 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
 elseif g:VIM_Completion_Framework ==# 'coc'
     "{{{coc.nvim-usage
     function Help_COC_LSP()
-        echo 'lJ diagnostic-next'
-        echo 'lJ diagnostic-next'
-        echo 'lK diagnostic-prev'
-        echo 'li diagnostic-info'
-        echo 'lI implementation'
-        echo 'ld definition'
-        echo 'lD declaration'
-        echo 'lt type-definition'
-        echo 'lr references'
-        echo 'lR rename'
-        echo 'lf format'
-        echo 'lf format-selected'
-        echo 'lF fix-current'
-        echo 'la codeaction'
-        echo 'la codeaction-selected'
-        echo 'lA codelens-action'
+        echo '<leader>lJ diagnostic-next'
+        echo '<leader>lJ diagnostic-next'
+        echo '<leader>lK diagnostic-prev'
+        echo '<leader>li diagnostic-info'
+        echo '<leader>lI implementation'
+        echo '<leader>ld definition'
+        echo '<leader>lD declaration'
+        echo '<leader>lt type-definition'
+        echo '<leader>lr references'
+        echo '<leader>lR rename'
+        echo '<leader>lf format'
+        echo '<leader>lf format-selected'
+        echo '<leader>lF fix-current'
+        echo '<leader>la codeaction'
+        echo '<leader>la codeaction-selected'
+        echo '<leader>lA codelens-action'
         echo '<C-l> jump to floating window'
     endfunction
     "}}}
@@ -2890,21 +2900,21 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
     " nnoremap <expr><C-l> coc#util#has_float() ? win_gotoid(coc#util#get_float()) : "\<C-l>"
     nnoremap <silent> <C-l> :<C-u>wincmd p<CR>
-    nnoremap <silent> lJ <Plug>(coc-diagnostic-next)
-    nnoremap <silent> lK <Plug>(coc-diagnostic-prev)
-    nnoremap <silent> li <Plug>(coc-diagnostic-info)
-    nnoremap <silent> lI <Plug>(coc-implementation)
-    nnoremap <silent> ld <Plug>(coc-definition)
-    nnoremap <silent> lD <Plug>(coc-declaration)
-    nnoremap <silent> lt <Plug>(coc-type-definition)
-    nnoremap <silent> lr <Plug>(coc-references)
-    nnoremap <silent> lR <Plug>(coc-rename)
-    nnoremap <silent> lf <Plug>(coc-format)
-    vnoremap <silent> lf <Plug>(coc-format-selected)
-    nnoremap <silent> lF <Plug>(coc-fix-current)
-    nnoremap <silent> la <Plug>(coc-codeaction)
-    vnoremap <silent> la <Plug>(coc-codeaction-selected)
-    nnoremap <silent> lA <Plug>(coc-codelens-action)
+    nnoremap <silent> <leader>lJ <Plug>(coc-diagnostic-next)
+    nnoremap <silent> <leader>lK <Plug>(coc-diagnostic-prev)
+    nnoremap <silent> <leader>li <Plug>(coc-diagnostic-info)
+    nnoremap <silent> <leader>lI <Plug>(coc-implementation)
+    nnoremap <silent> <leader>ld <Plug>(coc-definition)
+    nnoremap <silent> <leader>lD <Plug>(coc-declaration)
+    nnoremap <silent> <leader>lt <Plug>(coc-type-definition)
+    nnoremap <silent> <leader>lr <Plug>(coc-references)
+    nnoremap <silent> <leader>lR <Plug>(coc-rename)
+    nnoremap <silent> <leader>lf <Plug>(coc-format)
+    vnoremap <silent> <leader>lf <Plug>(coc-format-selected)
+    nnoremap <silent> <leader>lF <Plug>(coc-fix-current)
+    nnoremap <silent> <leader>la <Plug>(coc-codeaction)
+    vnoremap <silent> <leader>la <Plug>(coc-codeaction-selected)
+    nnoremap <silent> <leader>lA <Plug>(coc-codelens-action)
     "}}}
     "}}}
     "{{{neocomplete.vim
@@ -3502,7 +3512,7 @@ endif
 if g:VIM_Linter ==# 'ale'
     "{{{ale-usage
     let g:ALE_MODE = 1  " 0则只在保存文件时检查，1则只在normal模式下检查，2则异步检查
-    " 普通模式下lk和lj分别跳转到上一个、下一个错误
+    " 普通模式下<leader>lk和<leader>lj分别跳转到上一个、下一个错误
     " :ALEDetail  查看详细错误信息
     "}}}
     " ls ~/.cache/vim/plugins/ale/ale_linters/
@@ -3522,9 +3532,9 @@ if g:VIM_Linter ==# 'ale'
                 \       'vim': ['vint'],
                 \}
     "查看上一个错误
-    nnoremap <silent> lk :ALEPrevious<CR>
+    nnoremap <silent> <leader>lk :ALEPrevious<CR>
     "查看下一个错误
-    nnoremap <silent> lj :ALENext<CR>
+    nnoremap <silent> <leader>lj :ALENext<CR>
     "自定义error和warning图标
     let g:ale_sign_error = "\uf65b"
     let g:ale_sign_warning = "\uf421"
