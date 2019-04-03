@@ -174,6 +174,8 @@ bindkey '^Fd' fzf-insert-directory
 # }}}
 # {{{zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
+bindkey '^[^M' autosuggest-execute
 # }}}
 # {{{zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
