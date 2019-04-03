@@ -971,6 +971,8 @@ call g:quickmenu#append('Toggle Indent', 'call ToggleIndent()', '', '', 0, 'i')
 call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(11)', '', '', 0, 'f')
 call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
 call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
+call g:quickmenu#append('Ratio Resize', 'GoldenRatioResize', ':GoldenRatioResize  " resize current window', '', 0, 'g')
+call g:quickmenu#append('Ratio Toggle', 'GoldenRatioToggle', ':GoldenRatioToggle  " toggle golden ratio', '', 0, 'G')
 call g:quickmenu#append('FencAutoDetect', 'FencAutoDetect', 'FencAutoDetect && FencView', '', 0, '^')
 call g:quickmenu#append('Entertainment', 'call quickmenu#toggle(12)', '', '', 0, '*')
 call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
@@ -2301,12 +2303,10 @@ nnoremap <leader>mr :<C-u>Goyo<CR>
 "}}}
 "{{{golden-ratio
 "{{{golden-ratio-usage
-" <A-g>  切换
+" 主quickmenu
 "}}}
 " 默认关闭
 let g:golden_ratio_autocommand = 0
-" Mapping
-nmap <A-g> <Plug>(golden_ratio_toggle)
 "}}}
 " Productivity
 "{{{LanguageClient-neovim
