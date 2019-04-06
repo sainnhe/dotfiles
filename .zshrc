@@ -27,7 +27,12 @@ switch_tmuxline() { # {{{
     echo ""
     read -r TMUXLINE_COLOR_SCHEME
     while [ "$TMUXLINE_COLOR_SCHEME"x != "q"x ]; do
-        tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
+        if [[ "$TMUXLINE_COLOR_SCHEME" == "disable" ]]; then
+            echo ""
+            echo 'export TMUXLINE_COLOR_SCHEME="disable"'
+        else
+            tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
+        fi
         echo ""
         echo "archery iceberg darcula_* deus_* github_* hydrangea_* inkstained_* material_* molokai_* vice_* disable"
         echo ""
@@ -107,6 +112,7 @@ alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias help="bash ~/Scripts/help.sh"
 alias GCT='bash /home/sainnhe/Scripts/ChangeThemes/GCT.sh'
 alias KCT='kcmcolorfulhelper -s -p'
+alias tmux='tmux -2'
 alias git-proxy='bash /home/sainnhe/Scripts/git-proxy.sh'
 alias bebusy='/home/sainnhe/Scripts/bebusy.py'
 alias youtube-mpv='bash ~/Scripts/youtube-mpv.sh'
@@ -146,6 +152,7 @@ zplug 'RobSis/zsh-completion-generator'
 zplug 'ytet5uy4/fzf-widgets'
 zplug load
 # {{{theme
+export TMUXLINE_COLOR_SCHEME="github_insert"
 fast-theme q-jmnemonic >/dev/null
 export PURE_PROMPT_SYMBOL="➤"
 export PURE_PROMPT_VICMD_SYMBOL="⮞"
@@ -196,7 +203,6 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # }}}
 # {{{TMUX
-export TMUXLINE_COLOR_SCHEME="github_insert"
 # {{{TMUX Start
 tmux_start() {
     alias tmux='tmux -2'
@@ -245,32 +251,13 @@ tmux_start() {
     fi
     ~/.tmux_bind.sh no
 }
+# if [[ "$TERM_Emulator" == "tilda" ]]; then
+# fi
 # }}}
-# {{{TMUX Init
-alias tmux='tmux -2'
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 nvim_exist=$(test_cmd nvim)
-if [[ "$TERM_Emulator" == "tilda" ]]; then
-    if [[ -z "$TMUX" ]]; then
-        ID="$(tmux ls | grep -vm1 attached | grep Beta | cut -d: -f1)" # check if Beta session exist
-        if [[ -z "$ID" ]]; then # if not, creat a new one
-            tmux new-session -d -s Beta -n VIM
-            tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
-            tmux new-window -t Beta -n Shell
-            tmux send-keys -t Beta:VIM "cd ~" Enter
-            if [[ "$nvim_exist" == "yes" ]]; then
-                tmux send-keys -t Beta:VIM "nvim" Enter
-            elif [[ "$nvim_exist" == "no" ]]; then
-                tmux send-keys -t Beta:VIM "vim" Enter
-            fi
-            tmux attach -t Beta:Shell
-        else
-            tmux attach-session -t Beta # if available attach to it # else, attach it
-        fi
-    fi
-fi
+tmux_start
 ~/.tmux_bind.sh no
-# }}}
 # }}}
