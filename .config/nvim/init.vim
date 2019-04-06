@@ -9,6 +9,9 @@ if !filereadable(expand('~/.vim/autoload/plug.vim'))
 endif
 if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
     let g:VIM_Is_In_Tmux = 1
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
 else
     let g:VIM_Is_In_Tmux = 0
 endif
@@ -1267,11 +1270,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-if g:VIM_Is_In_Tmux == 0
-    let g:VIM_Color_Scheme = 'solarized8-light'
-else
-    let g:VIM_Color_Scheme = 'snow-light'
-endif
+let g:VIM_Color_Scheme = 'github'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
