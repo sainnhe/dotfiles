@@ -226,6 +226,14 @@ function! TerminalToggle()
     endif
 endfunction
 "}}}
+"{{{SynStack
+function! SynStack()
+  if !exists('*synstack')
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+"}}}
 "}}}
 "{{{Config
 set encoding=utf-8 nobomb
@@ -437,10 +445,10 @@ inoremap <C-R> <ESC><C-R>a
 " Ctrl+X剪切当前行
 inoremap <C-X> <ESC>"_ddi
 " Alt+hjkl移动
-inoremap <A-h> <left>
-inoremap <A-j> <down>
-inoremap <A-k> <up>
-inoremap <A-l> <right>
+imap <A-h> <left>
+imap <A-j> <down>
+imap <A-k> <up>
+imap <A-l> <right>
 " Shift加方向键加速移动
 inoremap <S-up> <up><up><up><up><up>
 inoremap <S-down> <down><down><down><down><down>
@@ -1270,7 +1278,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'github'
+let g:VIM_Color_Scheme = 'two-firewatch-light'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
