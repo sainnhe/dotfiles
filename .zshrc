@@ -68,8 +68,8 @@ autoload -U promptinit
 promptinit
 # }}}
 # {{{completion
-autoload -Uz compinit # completion
-compinit
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
 zstyle ':completion:*' menu select                                      # use arrow key for completion
 zstyle ':completion::complete:*' gain-privileges 1                      # enabling autocompletion of privileged environments in privileged commands
 zstyle ':completion:*' rehash true                                      # auto rehash new command
