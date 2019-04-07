@@ -78,6 +78,7 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'  # beauti
 zstyle ':completion:*' completer _complete _match _approximate          # fuzzy match completions
 zstyle ':completion:*:match:*' original only                            # fuzzy match completions
 zstyle ':completion:*:approximate:*' max-errors 1 numeric               # fuzzy match completions
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';      #highlight prefix
 setopt menu_complete                                                    # press <Tab> once to select item
 setopt COMPLETE_ALIASES                                                 # complete alias
 # }}}
