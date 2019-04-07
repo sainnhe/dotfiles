@@ -199,8 +199,11 @@ alias zz='z -i' # 使用交互式选择模式
 alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # {{{zsh-completion-generator
-# gencomp gotop
 # gencomp fzf
+# gencomp fzy
+# gencomp firefox-developer-edition
+# gencomp gotop
+# gencomp browsh
 # }}}
 # }}}
 # {{{TMUX
