@@ -714,9 +714,7 @@ Plug 'blueshirts/darcula', { 'as': 'vim-color-darcula' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
-if has('nvim')
-    Plug 'macthecadillac/lightline-gitdiff'
-endif
+Plug 'niklaas/lightline-gitdiff'
 if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
     Plug 'edkolev/tmuxline.vim'
 endif
@@ -1020,6 +1018,13 @@ call g:quickmenu#append('Star Wars', 'StarWars', '', '', 0, '')
 " :h g:lightline.component
 "}}}
 "{{{functions
+function! Lightline_gitdiff() abort
+    if &filetype ==# 'startify' || &filetype ==# 'nerdtree'
+        return ''
+    else
+        return lightline#gitdiff#get()
+    endif
+endfunction
 function! SwitchLightlineColorScheme(color)"{{{
     let g:lightline.colorscheme = a:color
     call lightline#init()
@@ -1110,18 +1115,10 @@ let g:lightline#ale#indicator_checking = "\uf110"
 let g:lightline#ale#indicator_warnings = "\uf529"
 let g:lightline#ale#indicator_errors = "\uf00d"
 let g:lightline#ale#indicator_ok = "\uf00c"
-let g:Lightline_GitStatus = has('nvim') ? 'gitstatus' : ''
-if has('nvim')
-    let g:lightline_gitdiff#indicator_added = '+'
-    let g:lightline_gitdiff#indicator_deleted = '-'
-    let g:lightline_gitdiff#indicator_modified = '*'
-    let g:lightline_gitdiff#min_winwidth = '70'
-    let g:lightline.component_visible_condition = {
-                \     'gitstatus': 'lightline_gitdiff#get_status() !=# ""'
-                \   }
-    nnoremap <silent> <C-s> :<C-u>w<CR>:call lightline_gitdiff#query_git()<CR>
-    inoremap <silent> <C-s> <Esc>:<C-u>w<CR>:call lightline_gitdiff#query_git()<CR>a
-endif
+let g:lightline#gitdiff#indicator_added = '+'
+let g:lightline#gitdiff#indicator_deleted = '-'
+let g:lightline#gitdiff#indicator_modified = '*'
+let g:lightline#gitdiff#separator = ' '
 if g:VIM_Is_In_Tmux == 1
     let g:Lightline_StatusIndicators = [ 'obsession', 'tmuxlock' ]
 elseif g:VIM_Is_In_Tmux == 0
@@ -1146,7 +1143,7 @@ let g:lightline.inactive = {
 let g:lightline.tabline = {
             \ 'left': [ [ 'vim_logo', 'tabs' ] ],
             \ 'right': [ [ 'artify_gitbranch' ],
-            \ [ g:Lightline_GitStatus ] ]
+            \ [ 'gitdiff' ] ]
             \ }
 let g:lightline.tab = {
             \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
@@ -1163,8 +1160,8 @@ let g:lightline.tab_component_function = {
             \ 'tabnum': 'lightline#tab#tabnum'
             \ }
 let g:lightline.component = {
+            \ 'gitdiff': '%{Lightline_gitdiff()}',
             \ 'artify_gitbranch' : '%{Artify_gitbranch()}',
-            \ 'gitstatus' : has('nvim') ? '%{lightline_gitdiff#get_status()}' : '',
             \ 'bufinfo': '%{bufname("%")}:%{bufnr("%")}',
             \ 'obsession': '%{ObsessionStatusEnhance()}',
             \ 'tmuxlock': '%{TmuxBindLock()}',
