@@ -681,7 +681,7 @@ Plug 'sts10/vim-pink-moon', { 'as': 'vim-color-pink-moon' }
 Plug 'KKPMW/sacredforest-vim', { 'as': 'vim-color-sacredforest' }
 Plug 'trevordmiller/nova-vim', { 'as': 'vim-color-nova' }
 Plug 'skreek/skeletor.vim', { 'as': 'vim-color-skeletor' }
-Plug 'tomasr/molokai', { 'as': 'vim-color-molokai' }
+Plug 'crusoexia/vim-monokai', { 'as': 'vim-color-monokai' }
 Plug 'nanotech/jellybeans.vim', { 'as': 'vim-color-jellybeans' }
 Plug 'w0ng/vim-hybrid', { 'as': 'vim-color-hybrid' }
 Plug 'NLKNguyen/papercolor-theme', { 'as': 'vim-color-papercolor' }
@@ -1901,13 +1901,14 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('Tomorrow-Eighties', 'call SwitchColorScheme("Tomorrow-eighties")', '', '', 0, '')
     "}}}
-    "{{{molokai
-    if g:VIM_Color_Scheme ==# 'molokai'
+    "{{{monokai
+    if g:VIM_Color_Scheme ==# 'monokai'
         set background=dark
-        colorscheme molokai
+        colorscheme monokai
         let g:lightline.colorscheme = 'molokai'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
-    call g:quickmenu#append('molokai', 'call SwitchColorScheme("molokai")', '', '', 0, '')
+    call g:quickmenu#append('monokai', 'call SwitchColorScheme("monokai")', '', '', 0, '')
     "}}}
     "{{{zenburn
     if g:VIM_Color_Scheme ==# 'zenburn'
