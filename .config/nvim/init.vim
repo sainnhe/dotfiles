@@ -1691,9 +1691,9 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'github'
         colorscheme github
         let g:lightline.colorscheme = 'github'
-        let g:lightline#colorscheme#github#palette.tabline.right = [ g:lightline#colorscheme#github#palette.tabline.right[0], g:lightline#colorscheme#github#palette.normal.middle[0] ]
-        let g:lightline#colorscheme#github#palette.tabline.right[1][1] = g:lightline#colorscheme#github#palette.tabline.middle[0][1]
+        let g:lightline#colorscheme#github#palette.tabline.right = [ g:lightline#colorscheme#github#palette.tabline.right[0], g:lightline#colorscheme#github#palette.normal.left[1] ]
         let g:lightline#colorscheme#github#palette.insert.middle = g:lightline#colorscheme#github#palette.normal.middle
+        let g:lightline#colorscheme#github#palette.tabline.tabsel[0][1] = g:lightline#colorscheme#github#palette.normal.middle[0][1]
     endif
     call g:quickmenu#append('github', 'call SwitchColorScheme("github")', '', '', 0, '')
     "}}}
@@ -1888,16 +1888,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'iceberg'
     endif
     call g:quickmenu#append('iceberg', 'call SwitchColorScheme("iceberg")', '', '', 0, '')
-    "}}}
-    "{{{flattened
-    if g:VIM_Color_Scheme ==# 'flattened-dark'
-        set background=dark
-        colorscheme flattened_dark
-        let g:lightline.colorscheme = 'flattened_dark'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
-        let g:lightline#colorscheme#flattened_dark#palette.tabline.right[1] = g:lightline#colorscheme#flattened_dark#palette.normal.middle[0]
-    endif
-    call g:quickmenu#append('flattened', 'call SwitchColorScheme("flattened-dark")', '', '', 0, '')
     "}}}
     "{{{PaperColor
     if g:VIM_Color_Scheme ==# 'PaperColor-dark'
