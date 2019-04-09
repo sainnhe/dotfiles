@@ -82,12 +82,6 @@ zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:
 setopt menu_complete                                                    # press <Tab> once to select item
 setopt COMPLETE_ALIASES                                                 # complete alias
 # }}}
-# {{{help
-# $ run-help [command]<Tab>
-autoload -Uz run-help
-unalias run-help
-alias help=run-help
-# }}}
 # }}}
 # {{{Alias
 alias ls='lsd'
