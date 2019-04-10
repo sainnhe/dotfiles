@@ -267,7 +267,7 @@ set updatetime=100
 if has('nvim')
     set inccommand=split
     set wildoptions=pum
-    set pumblend=15
+    " set pumblend=15
 endif
 " "{{{
 " if exists('g:loaded_sensible') || &compatible
