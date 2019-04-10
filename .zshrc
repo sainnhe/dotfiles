@@ -9,7 +9,9 @@ export TERM=xterm-256color
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
-export TERM_Emulator=$(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$)))))))
+if [[ $(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$))))))) != *"tmux"* ]]; then
+    export TERM_Emulator=$(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$)))))))
+fi
 export EDITOR=nvim
 export PAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
@@ -123,6 +125,13 @@ alias ltop='gotop -b -c monokai'
 alias browsh-docker='docker run --rm -it browsh/browsh'
 alias net-test="bash ~/Scripts/net-test.sh"
 alias t='goldendict'
+if [[ "$TERM_Emulator" == "tilda" ]]; then
+    alias g='BROWSER=w3m proxychains -q googler -x -n 3 -N -c us -l en --color nJmkxy'
+    alias d='BROWSER=w3m proxychains -q ddgr -n 3 -x --unsafe --color mJklxy'
+else
+    alias g='BROWSER=w3m proxychains -q googler -x -n 7 -N -c us -l en --color nJmkxy'
+    alias d='BROWSER=w3m proxychains -q ddgr -n 7 -x --unsafe --color mJklxy'
+fi
 # }}}
 # {{{Plugins
 # https://github.com/zplug/zplug
