@@ -126,8 +126,8 @@ alias browsh-docker='docker run --rm -it browsh/browsh'
 alias net-test="bash ~/Scripts/net-test.sh"
 alias t='goldendict'
 if [[ "$TERM_Emulator" == "tilda" ]]; then
-    alias g='BROWSER=w3m proxychains -q googler -x -n 3 -N -c us -l en --color nJmkxy'
-    alias d='BROWSER=w3m proxychains -q ddgr -n 3 -x --unsafe --color mJklxy'
+    alias g='BROWSER=w3m proxychains -q googler -x -n 2 -N -c us -l en --color nJmkxy'
+    alias d='BROWSER=w3m proxychains -q ddgr -n 2 -x --unsafe --color mJklxy'
 else
     alias g='BROWSER=w3m proxychains -q googler -x -n 7 -N -c us -l en --color nJmkxy'
     alias d='BROWSER=w3m proxychains -q ddgr -n 7 -x --unsafe --color mJklxy'
@@ -156,7 +156,7 @@ zplug 'RobSis/zsh-completion-generator'
 zplug 'ytet5uy4/fzf-widgets'
 zplug load
 # {{{theme
-export TMUXLINE_COLOR_SCHEME="github_insert"
+export TMUXLINE_COLOR_SCHEME="material_normal"
 fast-theme q-jmnemonic >/dev/null
 export PURE_PROMPT_SYMBOL="➤"
 export PURE_PROMPT_VICMD_SYMBOL="⮞"
