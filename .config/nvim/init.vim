@@ -690,6 +690,9 @@ Plug 'lifepillar/vim-solarized8', { 'as': 'vim-color-solarized8' }
 Plug 'KKPMW/oldbook-vim', { 'as': 'vim-color-oldbook' }
 Plug 'dracula/vim', { 'as': 'vim-color-dracula' }
 Plug 'blueshirts/darcula', { 'as': 'vim-color-darcula' }
+Plug 'fcpg/vim-orbital', { 'as': 'vim-color-orbital' }
+Plug 'dunstontc/vim-vscode-theme', { 'as': 'vim-color-dark-plus' }
+Plug 'bluz71/vim-moonfly-colors', { 'as': 'vim-color-moonfly' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1255,7 +1258,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'sialoquent'
+let g:VIM_Color_Scheme = 'Atelier_Dune-light'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1308,6 +1311,7 @@ function! ColorScheme()
         let g:quantum_italics=1
         colorscheme quantum
         let g:lightline.colorscheme = 'quantum'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('quantum', 'call SwitchColorScheme("quantum")', '', '', 0, '')
     "}}}
@@ -1321,6 +1325,15 @@ function! ColorScheme()
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('palenight', 'call SwitchColorScheme("material-palenight")', '', '', 0, '')
+    "}}}
+    "{{{darkplus
+    if g:VIM_Color_Scheme ==# 'darkplus'
+        set background=dark
+        colorscheme dark_plus
+        highlight EndOfBuffer ctermfg=0 guifg=#505050 ctermbg=0 guibg=##1e1e1e cterm=NONE gui=NONE
+        let g:lightline.colorscheme = 'dark_plus_alter'
+    endif
+    call g:quickmenu#append('darkplus', 'call SwitchColorScheme("darkplus")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Relax', '')
     "{{{sacredforest
@@ -1471,6 +1484,21 @@ function! ColorScheme()
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('monokai', 'call SwitchColorScheme("monokai")', '', '', 0, '')
+    "}}}
+    "{{{gotham
+    if g:VIM_Color_Scheme ==# 'gotham'
+        colorscheme gotham256
+        let g:lightline.colorscheme = 'gotham256'
+    endif
+    call g:quickmenu#append('gotham', 'call SwitchColorScheme("gotham")', '', '', 0, '')
+    "}}}
+    "{{{orbital
+    if g:VIM_Color_Scheme ==# 'orbital'
+        colorscheme orbital
+        let g:lightline.colorscheme = 'orbital'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+    endif
+    call g:quickmenu#append('orbital', 'call SwitchColorScheme("orbital")', '', '', 0, '')
     "}}}
     "{{{typewriter
     if g:VIM_Color_Scheme ==# 'typewriter-dark'
@@ -1797,6 +1825,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('nova', 'call SwitchColorScheme("nova")', '', '', 0, '')
     "}}}
+    "{{{moonfly
+    if g:VIM_Color_Scheme ==# 'moonfly'
+        colorscheme moonfly
+        let g:lightline.colorscheme = 'moonfly'
+    endif
+    call g:quickmenu#append('moonfly', 'call SwitchColorScheme("moonfly")', '', '', 0, '')
+    "}}}
     "{{{dracula
     if g:VIM_Color_Scheme ==# 'dracula'
         colorscheme dracula
@@ -1833,13 +1868,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'vice'
     endif
     call g:quickmenu#append('vice', 'call SwitchColorScheme("vice")', '', '', 0, '')
-    "}}}
-    "{{{gotham
-    if g:VIM_Color_Scheme ==# 'gotham'
-        colorscheme gotham256
-        let g:lightline.colorscheme = 'gotham256'
-    endif
-    call g:quickmenu#append('gotham', 'call SwitchColorScheme("gotham")', '', '', 0, '')
     "}}}
     "{{{deus
     if g:VIM_Color_Scheme ==# 'deus'
