@@ -724,7 +724,7 @@ Plug 'sainnhe/artify.vim'
 " Productivity
 if g:VIM_LSP_Client ==# 'lcn'
     if executable('proxychains')
-        Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'proxychains bash install.sh' }
+        Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'proxychains -q bash install.sh' }
     else
         Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
     endif
@@ -750,7 +750,7 @@ endif
 if g:VIM_Completion_Framework ==# 'deoplete'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     if executable('proxychains')
-        Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains bash ./install.sh' }
+        Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains -q bash ./install.sh' }
     else
         Plug 'tbodt/deoplete-tabnine', { 'do': 'bash ./install.sh' }
     endif
@@ -815,10 +815,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
     Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
     if executable('proxychains')
-        " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'proxychains yarn install --frozen-lockfile'}
-        Plug 'neoclide/coc.nvim', {'do': 'proxychains yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc.nvim', {'do': 'proxychains -q yarn install --frozen-lockfile'}
     else
-        " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install --frozen-lockfile'}
         Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     endif
 elseif g:VIM_Completion_Framework ==# 'neocomplete'
