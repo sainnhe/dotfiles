@@ -1372,15 +1372,14 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('oldbook', 'call SwitchColorScheme("oldbook")', '', '', 0, '')
     "}}}
-    "{{{two-firewatch
-    if g:VIM_Color_Scheme ==# 'two-firewatch-dark'
+    "{{{nova
+    if g:VIM_Color_Scheme ==# 'nova'
         set background=dark
-        let g:two_firewatch_italics=1
-        colorscheme two-firewatch
-        let g:lightline.colorscheme = 'tfw_dark'
-        hi Conceal guifg=#666666 ctermfg=255 guibg=#282c34 ctermbg=235 gui=NONE cterm=NONE
+        colorscheme nova
+        let g:lightline.colorscheme = 'nova'
+        let g:lightline#colorscheme#nova#palette.tabline.right[0] = g:lightline#colorscheme#nova#palette.normal.left[1]
     endif
-    call g:quickmenu#append('two-firewatch', 'call SwitchColorScheme("two-firewatch-dark")', '', '', 0, '')
+    call g:quickmenu#append('nova', 'call SwitchColorScheme("nova")', '', '', 0, '')
     "}}}
     "{{{sialoquent
     if g:VIM_Color_Scheme ==# 'sialoquent'
@@ -1475,6 +1474,16 @@ function! ColorScheme()
         hi Conceal guifg=#666666 ctermfg=255 guibg=#282828 ctermbg=235 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('tender', 'call SwitchColorScheme("tender")', '', '', 0, '')
+    "}}}
+    "{{{two-firewatch
+    if g:VIM_Color_Scheme ==# 'two-firewatch-dark'
+        set background=dark
+        let g:two_firewatch_italics=1
+        colorscheme two-firewatch
+        let g:lightline.colorscheme = 'tfw_dark'
+        hi Conceal guifg=#666666 ctermfg=255 guibg=#282c34 ctermbg=235 gui=NONE cterm=NONE
+    endif
+    call g:quickmenu#append('two-firewatch', 'call SwitchColorScheme("two-firewatch-dark")', '', '', 0, '')
     "}}}
     "{{{monokai
     if g:VIM_Color_Scheme ==# 'monokai'
@@ -1816,14 +1825,6 @@ function! ColorScheme()
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('iceberg', 'call SwitchColorScheme("iceberg")', '', '', 0, '')
-    "}}}
-    "{{{nova
-    if g:VIM_Color_Scheme ==# 'nova'
-        set background=dark
-        colorscheme nova
-        let g:lightline.colorscheme = 'nova'
-    endif
-    call g:quickmenu#append('nova', 'call SwitchColorScheme("nova")', '', '', 0, '')
     "}}}
     "{{{moonfly
     if g:VIM_Color_Scheme ==# 'moonfly'
