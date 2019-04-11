@@ -708,6 +708,7 @@ Plug 'blueshirts/darcula', { 'as': 'vim-color-darcula' }
 Plug 'fcpg/vim-orbital', { 'as': 'vim-color-orbital' }
 Plug 'dunstontc/vim-vscode-theme', { 'as': 'vim-color-dark-plus' }
 Plug 'bluz71/vim-moonfly-colors', { 'as': 'vim-color-moonfly' }
+Plug 'mhartington/oceanic-next', { 'as': 'vim-color-oceanic-next' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1386,15 +1387,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('oldbook', 'call SwitchColorScheme("oldbook")', '', '', 0, '')
     "}}}
-    "{{{nova
-    if g:VIM_Color_Scheme ==# 'nova'
-        set background=dark
-        colorscheme nova
-        let g:lightline.colorscheme = 'nova'
-        let g:lightline#colorscheme#nova#palette.tabline.right[0] = g:lightline#colorscheme#nova#palette.normal.left[1]
-    endif
-    call g:quickmenu#append('nova', 'call SwitchColorScheme("nova")', '', '', 0, '')
-    "}}}
     "{{{sialoquent
     if g:VIM_Color_Scheme ==# 'sialoquent'
         set background=dark
@@ -1408,6 +1400,15 @@ function! ColorScheme()
         let g:lightline#colorscheme#sialoquent#palette.visual.right = g:lightline#colorscheme#sialoquent#palette.visual.left
     endif
     call g:quickmenu#append('sialoquent', 'call SwitchColorScheme("sialoquent")', '', '', 0, '')
+    "}}}
+    "{{{nova
+    if g:VIM_Color_Scheme ==# 'nova'
+        set background=dark
+        colorscheme nova
+        let g:lightline.colorscheme = 'nova'
+        let g:lightline#colorscheme#nova#palette.tabline.right[0] = g:lightline#colorscheme#nova#palette.normal.left[1]
+    endif
+    call g:quickmenu#append('nova', 'call SwitchColorScheme("nova")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Warm', '')
     "{{{srcery
@@ -1451,6 +1452,14 @@ function! ColorScheme()
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('nord', 'call SwitchColorScheme("nord")', '', '', 0, '')
+    "}}}
+    "{{{oceanic-next
+    if g:VIM_Color_Scheme ==# 'oceanic-next-dark'
+        set background=dark
+        colorscheme OceanicNext
+        let g:lightline.colorscheme = 'oceanicnext_alter'
+    endif
+    call g:quickmenu#append('oceanic-next', 'call SwitchColorScheme("oceanic-next-dark")', '', '', 0, '')
     "}}}
     "{{{darcula
     if g:VIM_Color_Scheme ==# 'darcula'
@@ -1705,6 +1714,14 @@ function! ColorScheme()
         let g:lightline#colorscheme#github#palette.tabline.tabsel[0][1] = g:lightline#colorscheme#github#palette.normal.middle[0][1]
     endif
     call g:quickmenu#append('github', 'call SwitchColorScheme("github")', '', '', 0, '')
+    "}}}
+    "{{{oceanic-next
+    if g:VIM_Color_Scheme ==# 'oceanic-next-light'
+        set background=light
+        colorscheme OceanicNextLight
+        let g:lightline.colorscheme = 'oceanicnextlight_alter'
+    endif
+    call g:quickmenu#append('oceanic-next', 'call SwitchColorScheme("oceanic-next-light")', '', '', 0, '')
     "}}}
     "{{{typewriter
     if g:VIM_Color_Scheme ==# 'typewriter-light'
