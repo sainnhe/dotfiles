@@ -482,10 +482,10 @@ vnoremap <S-down> <down><down><down><down><down>
 vnoremap <S-left> 0
 vnoremap <S-right> $<left>
 " Shift+HJKL快速移动
-vnoremap K <Esc>5<up>
-vnoremap J <Esc>5<down>
-vnoremap H <Esc>0
-vnoremap L <Esc>$
+vnoremap K 5<up>
+vnoremap J 5<down>
+vnoremap H 0
+vnoremap L $
 "}}}
 "{{{CommandMode
 " Alt+X进入普通模式
