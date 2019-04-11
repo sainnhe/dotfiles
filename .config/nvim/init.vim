@@ -365,6 +365,11 @@ nnoremap <S-up> <Esc>5<up>
 nnoremap <S-down> <Esc>5<down>
 nnoremap <S-left> <Esc>0
 nnoremap <S-right> <Esc>$
+" Shift+HJKL快速移动
+nnoremap K <Esc>5<up>
+nnoremap J <Esc>5<down>
+nnoremap H <Esc>0
+nnoremap L <Esc>$
 " x删除字符但不保存到剪切板
 nnoremap x "_x
 " Ctrl+X剪切当前行
@@ -401,6 +406,11 @@ nnoremap z<left> zk
 nnoremap z<right> zj
 nnoremap z<up> [z
 nnoremap z<down> ]z
+" z+hjkl快速跳转
+nnoremap zh zk
+nnoremap zl zj
+nnoremap zj ]z
+nnoremap zk [z
 " zo递归局部打开折叠，zc递归局部关闭折叠
 nnoremap zo zO
 nnoremap zc zC
@@ -471,6 +481,11 @@ vnoremap <S-up> <up><up><up><up><up>
 vnoremap <S-down> <down><down><down><down><down>
 vnoremap <S-left> 0
 vnoremap <S-right> $<left>
+" Shift+HJKL快速移动
+vnoremap K <Esc>5<up>
+vnoremap J <Esc>5<down>
+vnoremap H <Esc>0
+vnoremap L <Esc>$
 "}}}
 "{{{CommandMode
 " Alt+X进入普通模式
@@ -892,7 +907,6 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-rooter'
 Plug 'ianva/vim-youdao-translater'
 Plug 'yuttie/comfortable-motion.vim'
-Plug 'terryma/vim-smooth-scroll'
 Plug 'metakirby5/codi.vim'
 Plug 'mbbill/fencview', { 'on': [ 'FencAutoDetect', 'FencView' ] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
@@ -3969,16 +3983,10 @@ let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
 nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(130)<CR>
 nnoremap <silent> <pageup> :<C-u>call comfortable_motion#flick(-130)<CR>
-nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(130)<CR>
 if has('nvim')
     nnoremap <silent> <A-J> :<C-u>call comfortable_motion#flick(130)<CR>
     nnoremap <silent> <A-K> :<C-u>call comfortable_motion#flick(-130)<CR>
 endif
-"}}}
-"{{{vim-smooth-scroll
-" 行数，延迟，一次滑动多少行
-nnoremap <silent> K zz:<C-u>call smooth_scroll#up(&scroll, 10, 1)<CR>
-nnoremap <silent> J zz:<C-u>call smooth_scroll#down(&scroll, 10, 1)<CR>
 "}}}
 "{{{codi.vim
 let g:codi#width = 40
