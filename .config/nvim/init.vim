@@ -228,10 +228,10 @@ endfunction
 "}}}
 "{{{SynStack
 function! SynStack()
-  if !exists('*synstack')
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+    if !exists('*synstack')
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 "}}}
 "}}}
@@ -712,9 +712,7 @@ Plug 'mhartington/oceanic-next', { 'as': 'vim-color-oceanic-next' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
-if has('nvim')
-    Plug 'macthecadillac/lightline-gitdiff'
-endif
+Plug 'macthecadillac/lightline-gitdiff'
 if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
     Plug 'edkolev/tmuxline.vim'
 endif
@@ -1086,6 +1084,10 @@ endfunction"}}}
 "}}}
 set laststatus=2  " Basic
 set noshowmode  " Disable show mode info
+augroup Lightline_Au
+    autocmd!
+    autocmd BufWritePost * call lightline_gitdiff#query_git() | call lightline#update()
+augroup END
 let g:lightline = {}
 let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
 let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
@@ -1105,18 +1107,10 @@ let g:lightline#ale#indicator_checking = "\uf110"
 let g:lightline#ale#indicator_warnings = "\uf529"
 let g:lightline#ale#indicator_errors = "\uf00d"
 let g:lightline#ale#indicator_ok = "\uf00c"
-let g:Lightline_GitStatus = has('nvim') ? 'gitstatus' : ''
-if has('nvim')
-    let g:lightline_gitdiff#indicator_added = '+'
-    let g:lightline_gitdiff#indicator_deleted = '-'
-    let g:lightline_gitdiff#indicator_modified = '*'
-    let g:lightline_gitdiff#min_winwidth = '70'
-    let g:lightline.component_visible_condition = {
-                \     'gitstatus': 'lightline_gitdiff#get_status() !=# ""'
-                \   }
-    nnoremap <silent> <C-s> :<C-u>w<CR>:call lightline_gitdiff#query_git()<CR>
-    inoremap <silent> <C-s> <Esc>:<C-u>w<CR>:call lightline_gitdiff#query_git()<CR>a
-endif
+let g:lightline_gitdiff#indicator_added = '+'
+let g:lightline_gitdiff#indicator_deleted = '-'
+let g:lightline_gitdiff#indicator_modified = '*'
+let g:lightline_gitdiff#min_winwidth = '70'
 if g:VIM_Is_In_Tmux == 1
     let g:Lightline_StatusIndicators = [ 'obsession', 'tmuxlock' ]
 elseif g:VIM_Is_In_Tmux == 0
@@ -1141,7 +1135,7 @@ let g:lightline.inactive = {
 let g:lightline.tabline = {
             \ 'left': [ [ 'vim_logo', 'tabs' ] ],
             \ 'right': [ [ 'artify_gitbranch' ],
-            \ [ g:Lightline_GitStatus ] ]
+            \ [ 'gitstatus' ] ]
             \ }
 let g:lightline.tab = {
             \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
@@ -1159,7 +1153,7 @@ let g:lightline.tab_component_function = {
             \ }
 let g:lightline.component = {
             \ 'artify_gitbranch' : '%{Artify_gitbranch()}',
-            \ 'gitstatus' : has('nvim') ? '%{lightline_gitdiff#get_status()}' : '',
+            \ 'gitstatus' : '%{lightline_gitdiff#get_status()}',
             \ 'bufinfo': '%{bufname("%")}:%{bufnr("%")}',
             \ 'obsession': '%{ObsessionStatusEnhance()}',
             \ 'tmuxlock': '%{TmuxBindLock()}',
@@ -1224,6 +1218,9 @@ let g:lightline.component_type = {
             \ 'linter_errors': 'error',
             \ 'linter_ok': 'middle'
             \ }
+let g:lightline.component_visible_condition = {
+            \     'gitstatus': 'lightline_gitdiff#get_status() !=# ""'
+            \   }
 "}}}
 "{{{tmuxline.vim
 if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
