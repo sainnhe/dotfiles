@@ -945,10 +945,10 @@ call plug#end()
 let g:quickmenu_options = 'HL'  " enable cursorline (L) and cmdline help (H)
 " startify
 let g:startify_bookmarks = [
+            \ {'R': '~/repo/'},
             \ {'N': '~/Documents/Notes'},
             \ {'n': '~/Documents/Notes/CSS/w3schools.md'},
             \ {'n': '~/Documents/Notes/Python/w3schools.md'},
-            \ {'S': '~/Scripts/'},
             \ {'P': '~/Documents/PlayGround/'},
             \ {'c': '~/.config/nvim/init.vim'},
             \ {'c': '~/.zshrc'},
@@ -1243,7 +1243,7 @@ if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
                 \'c'    : '',
                 \'win'  : ['#I', '#W'],
                 \'cwin' : ['#I', '#W', '#F'],
-                \'x'    : ['#(bash /home/sainnhe/Scripts/tmux_pomodoro.sh) \ue0bd #(bash /home/sainnhe/Scripts/tmux_lock.sh)'],
+                \'x'    : ['#(bash /home/sainnhe/repo/scripts/func/tmux_pomodoro.sh) \ue0bd #(bash /home/sainnhe/repo/scripts/func/tmux_lock.sh)'],
                 \'y'    : '%R %a',
                 \'z'    : '#H'
                 \}

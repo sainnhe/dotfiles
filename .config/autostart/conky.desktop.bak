@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Conky
-Exec=sh /home/sainnhe/Scripts/conky.sh
+Exec=sh /home/sainnhe/repo/scripts/startup/conky.sh
 Icon=conky
 Terminal=false
 Type=Application

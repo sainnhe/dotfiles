@@ -25,7 +25,7 @@ test_cmd() { # {{{
 } # }}}
 switch_tmuxline() { # {{{
     echo ""
-    echo "archery iceberg darcula_* deus_* github_* hydrangea_* inkstained_* material_* molokai_* vice_* disable"
+    echo "iceberg darcula_* deus_* github_* material_* monokai_* vice_* neodark_* disable"
     echo ""
     read -r TMUXLINE_COLOR_SCHEME
     while [ "$TMUXLINE_COLOR_SCHEME"x != "q"x ]; do
@@ -106,24 +106,20 @@ alias jobb="bg %\$(jobs | grep '[[[:digit:]]*]' | fzy --lines=15 --prompt='➤ '
 alias jobk="kill %\$(jobs | grep '[[[:digit:]]*]' | fzy --lines=15 --prompt='➤ ' | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
 alias nnn='PAGER= nnn'
 alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
-alias help="bash ~/Scripts/help.sh"
-alias GCT='bash /home/sainnhe/Scripts/ChangeThemes/GCT.sh'
+alias help='bash ~/repo/scripts/func/help.sh'
+alias GCT='bash ~/repo/scripts/func/GCT.sh'
 alias KCT='kcmcolorfulhelper -s -p'
 alias tmux='tmux -2'
-alias git-proxy='bash /home/sainnhe/Scripts/git-proxy.sh'
-alias bebusy='/home/sainnhe/Scripts/bebusy.py'
-alias youtube-mpv='bash ~/Scripts/youtube-mpv.sh'
-alias download-youtube-subtitles='bash ~/Scripts/download-youtube-subtitles.sh'
-alias CLEAN='bash ~/Scripts/CLEAN.sh'
-alias switch_v2ray='bash ~/Scripts/v2ray/v2ray_switch.sh'
-alias gsconnect='bash ~/Scripts/gsconnect.sh'
-alias termcolorlist='bash ~/Scripts/termcolor.sh'
-alias roll='bash ~/Scripts/roll.sh'
-alias zip-r='bash ~/Scripts/zip.sh'
+alias git-proxy='bash ~/repo/scripts/func/git-proxy.sh'
+alias bebusy='python ~/repo/scripts/func/bebusy.py'
+alias clean='bash ~/repo/scripts/func/clean.sh'
+alias switch_v2ray='bash ~/repo/scripts/func/v2ray/v2ray_switch.sh'
+alias roll='bash ~/repo/scripts/func/roll.sh'
+alias zip-r='bash ~/repo/scripts/func/zip.sh'
 alias dtop='gotop -b -c vice'
 alias ltop='gotop -b -c monokai'
 alias browsh-docker='docker run --rm -it browsh/browsh'
-alias net-test="bash ~/Scripts/net-test.sh"
+alias net-test="bash ~/repo/scripts/func/net-test.sh"
 alias t='goldendict'
 if [[ "$TERM_Emulator" == "tilda" ]]; then
     alias g='BROWSER=w3m proxychains -q googler -x -n 2 -N -c us -l en --color nJmkxy'
@@ -156,7 +152,7 @@ zplug 'RobSis/zsh-completion-generator'
 zplug 'ytet5uy4/fzf-widgets'
 zplug load
 # {{{theme
-export TMUXLINE_COLOR_SCHEME="material_normal"
+export TMUXLINE_COLOR_SCHEME="neodark_normal"
 fast-theme q-jmnemonic >/dev/null
 export PURE_PROMPT_SYMBOL="➤"
 export PURE_PROMPT_VICMD_SYMBOL="⮞"
