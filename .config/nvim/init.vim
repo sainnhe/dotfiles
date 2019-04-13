@@ -1299,7 +1299,8 @@ function! ColorScheme()
     "{{{neodark
     if g:VIM_Color_Scheme ==# 'neodark'
         set background=dark
-        let g:neodark#use_256color = 1
+        let g:neodark#italics = 1
+        let g:neodark#background = '#2a2a2a'
         colorscheme neodark
         let g:lightline.colorscheme = 'neodark_alter'
     endif
