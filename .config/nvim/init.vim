@@ -2096,17 +2096,12 @@ if g:VIM_Enable_Startify == 1
     let g:startify_session_sort = 1 " sort sessions by alphabet or modification time
     let g:startify_custom_indices = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5'] " MRU indices
     " line 579 for more details
-    if executable('toilet')
-        let g:startify_custom_header =
-                    \ map(split(system('toilet -t -f tombstone SainnheParkArchLinux'), '\n'), '"   ". v:val')
-    else
-        let g:startify_custom_header = [
-                    \ ' _,  _, _ _, _ _, _ _,_ __, __,  _, __, _,_  _, __,  _, _,_ _,  _ _, _ _,_ _  ,',
-                    \ "(_  /_\\ | |\\ | |\\ | |_| |_  |_) /_\\ |_) |_/ / \\ |_) / ` |_| |   | |\\ | | | '\\/",
-                    \ ', ) | | | | \| | \| | | |   |   | | | \ | \ |~| | \ \ , | | | , | | \| | |  /\ ',
-                    \ " ~  ~ ~ ~ ~  ~ ~  ~ ~ ~ ~~~ ~   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~  ~ ~ ~~~ ~ ~  ~ `~' ~  ~",
-                    \ ]
-    endif
+    let g:startify_custom_header = [
+                \ ' _,  _, _ _, _ _, _ _,_ __, __,  _, __, _,_  _, __,  _, _,_ _,  _ _, _ _,_ _  ,',
+                \ "(_  /_\\ | |\\ | |\\ | |_| |_  |_) /_\\ |_) |_/ / \\ |_) / ` |_| |   | |\\ | | | '\\/",
+                \ ', ) | | | | \| | \| | | |   |   | | | \ | \ |~| | \ \ , | | | , | | \| | |  /\ ',
+                \ " ~  ~ ~ ~ ~  ~ ~  ~ ~ ~ ~~~ ~   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~  ~ ~ ~~~ ~ ~  ~ `~' ~  ~",
+                \ ]
     " costom startify list
     let g:startify_lists = [
                 \ { 'type': 'sessions',  'header': [" \ue62e Sessions"]       },
