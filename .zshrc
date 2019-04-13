@@ -1,8 +1,4 @@
 # {{{Init
-# {{{Install
-# curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-# npm install --global pure-prompt
-# }}}
 zmodload zsh/zprof  # zprof | vimpager
 export PATH="$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
 export TERM=xterm-256color
