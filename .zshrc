@@ -257,6 +257,8 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 nvim_exist=$(test_cmd nvim)
-tmux_start
+if [[ "$TERM_Emulator" != "mosh-server" && "$TERM_Emulator" != "tilix" ]]; then
+    tmux_start
+fi
 ~/.tmux_bind.sh no
 # }}}
