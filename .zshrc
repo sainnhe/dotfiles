@@ -140,7 +140,6 @@ zplug 'skywind3000/z.lua'
 zplug 'plugins/vi-mode', from:oh-my-zsh
 zplug 'plugins/command-not-found', from:oh-my-zsh
 zplug 'plugins/pass', from:oh-my-zsh
-zplug 'plugins/colored-man-pages', from:oh-my-zsh
 zplug 'plugins/web-search', from:oh-my-zsh
 zplug 'plugins/extract', from:oh-my-zsh
 zplug 'plugins/frontend-search', from:oh-my-zsh
