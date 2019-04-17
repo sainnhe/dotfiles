@@ -1224,6 +1224,16 @@ let g:lightline.component_visible_condition = {
 "}}}
 "{{{tmuxline.vim
 if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
+    "{{{TmuxlineGen
+    function! TmuxlineGen(str)
+        execute 'Tmuxline lightline'
+        execute 'TmuxlineSnapshot! ~/.tmux/tmuxline/'.a:str.'_normal.tmux.conf'
+        execute 'Tmuxline lightline_insert'
+        execute 'TmuxlineSnapshot! ~/.tmux/tmuxline/'.a:str.'_insert.tmux.conf'
+        execute 'Tmuxline lightline_visual'
+        execute 'TmuxlineSnapshot! ~/.tmux/tmuxline/'.a:str.'_visual.tmux.conf'
+    endfunction
+    "}}}
     if g:VIM_TmuxLineSync == 1
         augroup TmuxlineAu
             autocmd!
@@ -1237,15 +1247,16 @@ if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
             autocmd VimEnter * Tmuxline lightline
         augroup END
     endif
+    " '#{sysstat_cpu} #{sysstat_mem} #{sysstat_swap}'
     let g:tmuxline_preset = {
                 \'a'    : '#S',
-                \'b'    : ['#W'],
-                \'c'    : '',
-                \'win'  : ['#I', '#W'],
-                \'cwin' : ['#I', '#W', '#F'],
-                \'x'    : ['#(bash /home/sainnhe/repo/scripts/func/tmux_pomodoro.sh) \ue0bd #(bash /home/sainnhe/repo/scripts/func/tmux_lock.sh)'],
-                \'y'    : '%R %a',
-                \'z'    : '#H'
+                \'b'    : '%R %a',
+                \'c'    : [ '#{sysstat_mem} #[fg=blue]\ufa51#{upload_speed}' ],
+                \'win'  : [ '#I', '#W' ],
+                \'cwin' : [ '#I', '#W', '#F' ],
+                \'x'    : [ "#[fg=blue]#{download_speed} \uf6d9 #{sysstat_cpu}" ],
+                \'y'    : [ '#(bash /home/sainnhe/repo/scripts/func/tmux_pomodoro.sh) \ue0bd #(bash /home/sainnhe/repo/scripts/func/tmux_lock.sh)' ],
+                \'z'    : '#H #{prefix_highlight}'
                 \}
     let g:tmuxline_separators = {
                 \ 'left' : "\ue0bc",

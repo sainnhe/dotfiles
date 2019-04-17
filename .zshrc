@@ -212,18 +212,18 @@ tmux_start() {
         if [[ -z "$TMUX" ]]; then
             ID="$(tmux ls | grep -vm1 attached | grep Alpha | cut -d: -f1)" # check if Alpha session exist
             if [[ -z "$ID" ]]; then # if not, creat a new one
-                tmux new-session -d -s Alpha -n VIM
+                tmux new-session -d -s Alpha
                 tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
-                tmux new-window -t Alpha -n Shell
-                tmux send-keys -t Alpha:VIM "cd ~" Enter
+                tmux new-window -t Alpha
+                tmux send-keys -t Alpha:0 "cd ~" Enter
                 if [[ "$nvim_exist" == "yes" ]]; then
-                    tmux send-keys -t Alpha:VIM "export TERM_Emulator=$TERM_Emulator" Enter
-                    tmux send-keys -t Alpha:VIM "nvim" Enter
+                    tmux send-keys -t Alpha:0 "export TERM_Emulator=$TERM_Emulator" Enter
+                    tmux send-keys -t Alpha:0 "nvim" Enter
                 elif [[ "$nvim_exist" == "no" ]]; then
-                    tmux send-keys -t Alpha:VIM "export TERM_Emulator=$TERM_Emulator" Enter
-                    tmux send-keys -t Alpha:VIM "vim" Enter
+                    tmux send-keys -t Alpha:0 "export TERM_Emulator=$TERM_Emulator" Enter
+                    tmux send-keys -t Alpha:0 "vim" Enter
                 fi
-                tmux attach -t Alpha:Shell
+                tmux attach -t Alpha:1
             else
                 tmux attach-session -t Alpha # if available attach to it # else, attach it
             fi
@@ -232,16 +232,16 @@ tmux_start() {
         if [[ -z "$TMUX" ]]; then
             ID="$(tmux ls | grep -vm1 attached | grep Beta | cut -d: -f1)" # check if Beta session exist
             if [[ -z "$ID" ]]; then # if not, creat a new one
-                tmux new-session -d -s Beta -n VIM
+                tmux new-session -d -s Beta
                 tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
-                tmux new-window -t Beta -n Shell
-                tmux send-keys -t Beta:VIM "cd ~" Enter
+                tmux new-window -t Beta
+                tmux send-keys -t Beta:0 "cd ~" Enter
                 if [[ "$nvim_exist" == "yes" ]]; then
-                    tmux send-keys -t Beta:VIM "nvim" Enter
+                    tmux send-keys -t Beta:0 "nvim" Enter
                 elif [[ "$nvim_exist" == "no" ]]; then
-                    tmux send-keys -t Beta:VIM "vim" Enter
+                    tmux send-keys -t Beta:0 "vim" Enter
                 fi
-                tmux attach -t Beta:Shell
+                tmux attach -t Beta:1
             else
                 tmux attach-session -t Beta # if available attach to it # else, attach it
             fi
