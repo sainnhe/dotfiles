@@ -248,6 +248,7 @@ tmux_start() {
         fi
     fi
     ~/.tmux_bind.sh no
+    tmux source "$HOME/.tmux.conf"
 }
 # if [[ "$TERM_Emulator" == "tilda" ]]; then
 # fi
