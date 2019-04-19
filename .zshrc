@@ -21,7 +21,7 @@ test_cmd() { # {{{
 } # }}}
 switch_tmuxline() { # {{{
     echo ""
-    echo "iceberg darcula_* deus_* github_* material_* monokai_* vice_* neodark_* disable"
+    ls ~/.tmux/tmuxline/ | sed 's/\..*//g'
     echo ""
     read -r TMUXLINE_COLOR_SCHEME
     while [ "$TMUXLINE_COLOR_SCHEME"x != "q"x ]; do
@@ -33,7 +33,7 @@ switch_tmuxline() { # {{{
             tmux source-file "$HOME/.tmux.conf"
         fi
         echo ""
-        echo "archery iceberg darcula_* deus_* github_* hydrangea_* inkstained_* material_* molokai_* vice_* disable"
+        ls ~/.tmux/tmuxline/ | sed 's/\..*//g'
         echo ""
         read -r TMUXLINE_COLOR_SCHEME
     done
@@ -148,7 +148,7 @@ zplug 'RobSis/zsh-completion-generator'
 zplug 'ytet5uy4/fzf-widgets'
 zplug load
 # {{{theme
-export TMUXLINE_COLOR_SCHEME="neodark_normal"
+export TMUXLINE_COLOR_SCHEME="github_insert"
 fast-theme q-jmnemonic >/dev/null
 export PURE_PROMPT_SYMBOL="➤"
 export PURE_PROMPT_VICMD_SYMBOL="⮞"
