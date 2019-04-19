@@ -30,6 +30,7 @@ switch_tmuxline() { # {{{
             echo 'export TMUXLINE_COLOR_SCHEME="disable"'
         else
             tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
+            tmux source-file "$HOME/.tmux.conf"
         fi
         echo ""
         echo "archery iceberg darcula_* deus_* github_* hydrangea_* inkstained_* material_* molokai_* vice_* disable"
