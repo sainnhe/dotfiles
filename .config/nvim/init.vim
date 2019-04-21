@@ -889,8 +889,7 @@ Plug 'tommcdo/vim-fubitive'
 Plug 'idanarye/vim-merginal'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'jsfaint/gen_tags.vim', { 'on': [] }
-Plug 'majutsushi/tagbar', { 'on': [] }
-Plug 'lvht/tagbar-markdown', { 'on': [] }
+Plug 'liuchengxu/vista.vim'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'skywind3000/asyncrun.vim'
@@ -3701,34 +3700,42 @@ function! Init_gen_tags()
     endif
 endfunction
 "}}}
-"{{{tagbar
-nnoremap <silent><A-b> :<C-u>call ToggleTagbar()<CR>
-let g:TagBarLoad = 0
-function! ToggleTagbar()
-    if g:TagBarLoad == 0
-        let g:TagBarLoad = 1
-        call TagbarInit()
-        execute 'TagbarToggle'
-    elseif g:TagBarLoad == 1
-        execute 'TagbarToggle'
-    endif
+"{{{vista.vim
+"{{{g:vim_vista_lsp_client
+if g:VIM_LSP_Client ==# 'lcn'
+    let g:vim_vista_lsp_client = 'lcn'
+elseif g:VIM_LSP_Client ==# 'vim-lsp'
+    let g:vim_vista_lsp_client = 'vim_lsp'
+endif
+if g:VIM_Completion_Framework ==# 'coc'
+    let g:vim_vista_lsp_client = 'coc'
+endif
+"}}}
+nnoremap <silent><A-b> :<C-u>Vista!!<CR>
+let g:vista_icon_indent = ['╰─▸ ', '├─▸ ']
+let g:vista_sidebar_width = 35
+let g:vista_default_executive = 'ctags'
+let g:vista_executive_for = {
+            \ 'c': g:vim_vista_lsp_client,
+            \ 'cpp': g:vim_vista_lsp_client
+            \ }
+let g:vista_fzf_preview = ['right:50%']
+let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#icons = {
+            \ 'function': "\uf794",
+            \ 'variable': "\uf71b",
+            \ }
+function! s:vista_mappings() abort
+    nnoremap <silent><buffer> <A-b> :Vista!!<CR>
+    nnoremap <silent><buffer> q :Vista!!<CR>
+    nnoremap <silent><buffer> f :Vista finder<CR>
+    nnoremap <silent><buffer> F :execute "Vista finder ".g:vim_vista_lsp_client<CR>
 endfunction
-function! TagbarInit()
-    let g:tagbar_sort = 0
-    let g:tagbar_width = 35
-    let g:tagbar_autoclose = 1
-    let g:tagbar_foldlevel = 2
-    let g:tagbar_iconchars = ['▶', '◿']
-    let g:tagbar_type_css = {
-                \ 'ctagstype' : 'Css',
-                \ 'kinds'     : [
-                \ 'c:classes',
-                \ 's:selectors',
-                \ 'i:identities'
-                \ ]
-                \ }
-    call plug#load('tagbar', 'tagbar-markdown')
-endfunction
+augroup VistaAu
+    autocmd!
+    autocmd FileType vista_kind call s:vista_mappings()
+    autocmd FileType markdown nnoremap <silent><A-b> :<C-u>Vista toc<CR>
+augroup END
 "}}}
 "{{{neoformat
 "{{{neoformat-usage
