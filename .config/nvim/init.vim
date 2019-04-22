@@ -34,8 +34,8 @@ let g:VIM_AutoInstall = 1
 let g:VIM_TmuxLineSync = 0
 let g:VIM_Enable_Autopairs = 1
 "}}}
-"{{{VimConfig
-"{{{Functions
+"{{{Global
+"{{{Function
 "{{{CloseOnLastTab
 function! CloseOnLastTab()
     if tabpagenr('$') == 1
@@ -235,7 +235,7 @@ function! SynStack()
 endfunc
 "}}}
 "}}}
-"{{{Config
+"{{{Setting
 set encoding=utf-8 nobomb
 set termencoding=utf-8
 set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
@@ -322,7 +322,7 @@ endif
 " endif
 " "}}}
 "}}}
-"{{{Mappings
+"{{{Mapping
 "{{{VIM-Compatible
 " sed -n l
 " https://stackoverflow.com/questions/5379837/is-it-possible-to-mapping-alt-hjkl-in-insert-mode
@@ -506,14 +506,14 @@ if has('nvim')
 endif
 "}}}
 "}}}
-"{{{Commands
+"{{{Command
 " Q强制退出
 command Q q!
 "}}}
-"{{{TempConfig
+"{{{Temp
 "}}}
 "}}}
-"{{{Plugins
+"{{{Plugin
 "{{{vim-plug-usage
 " 安装插件：
 " :PlugInstall
@@ -938,72 +938,6 @@ Plug 'mattn/vim-starwars', { 'on': 'StarWars' }
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 "}}}
-"}}}
-"{{{Setting
-" quickmenu
-let g:quickmenu_options = 'HL'  " enable cursorline (L) and cmdline help (H)
-" startify
-let g:startify_bookmarks = [
-            \ {'R': '~/repo/'},
-            \ {'N': '~/Documents/Notes'},
-            \ {'n': '~/Documents/Notes/CSS/w3schools.md'},
-            \ {'n': '~/Documents/Notes/Python/w3schools.md'},
-            \ {'P': '~/Documents/PlayGround/'},
-            \ {'c': '~/.config/nvim/init.vim'},
-            \ {'c': '~/.zshrc'},
-            \ ]
-if has('nvim')
-    let g:startify_commands = [
-                \ {'1': 'terminal'},
-                \ ]
-endif
-
-call quickmenu#current(0)
-call quickmenu#reset()
-nnoremap <silent> <leader><Space> :call quickmenu#toggle(0)<cr>
-call g:quickmenu#append('# Menu', '')
-call g:quickmenu#append('Servers', 'call quickmenu#toggle(4)', '', '', 0, 'l')
-if g:VIM_Is_In_Tmux == 0
-    call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
-endif
-call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
-call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
-call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
-call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
-call g:quickmenu#append('Toggle Indent', 'call ToggleIndent()', '', '', 0, 'i')
-call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(11)', '', '', 0, 'f')
-call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
-call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
-call g:quickmenu#append('Ratio Resize', 'GoldenRatioResize', ':GoldenRatioResize  " resize current window', '', 0, 'g')
-call g:quickmenu#append('Ratio Toggle', 'GoldenRatioToggle', ':GoldenRatioToggle  " toggle golden ratio', '', 0, 'G')
-call g:quickmenu#append('FencAutoDetect', 'FencAutoDetect', 'FencAutoDetect && FencView', '', 0, '^')
-call g:quickmenu#append('Entertainment', 'call quickmenu#toggle(12)', '', '', 0, '*')
-call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
-call quickmenu#current(10)
-call quickmenu#reset()
-call g:quickmenu#append('# Help', '')
-call g:quickmenu#append('Fugitive', 'h fugitive-commands', '', '', 0, 'g')
-call g:quickmenu#append('Visual Multi', 'call Help_vim_visual_multi()', '', '', 0, 'v')
-call g:quickmenu#append('Prosession', 'call Help_vim_prosession()', '', '', 0, 's')
-call g:quickmenu#append('Neoformat', 'call Help_neoformat()', '', '', 0, 'f')
-call g:quickmenu#append('Auto Pairs', 'call Help_auto_pairs()', '', '', 0, 'p')
-call g:quickmenu#append('Nerd Commenter', 'call Help_nerdcommenter()', '', '', 0, 'c')
-call g:quickmenu#append('Bookmarks', 'call Help_vim_bookmarks()', '', '', 0, 'b')
-call g:quickmenu#append('Close Tag', 'call Help_vim_closetag()', '', '', 0, 't')
-call g:quickmenu#append('Multiple Cursors', 'call Help_vim_multiple_cursors()', '', '', 0, 'm')
-call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 'S')
-call g:quickmenu#append('VIM Surround', 'call Help_vim_surround()', '', '', 0, 'r')
-call g:quickmenu#append('VIM Matchup', 'call Help_vim_matchup()', '', '', 0, 'M')
-call quickmenu#current(11)
-call quickmenu#reset()
-call g:quickmenu#append('# Folding Method', '')
-call g:quickmenu#append('Marker', 'set foldmethod=marker', '', '', 0, 'm')
-call g:quickmenu#append('Syntax', 'set foldmethod=syntax', '', '', 0, 's')
-call g:quickmenu#append('Indent', 'set foldmethod=indnet', '', '', 0, 'i')
-call quickmenu#current(12)
-call quickmenu#reset()
-call g:quickmenu#append('# Entertainment', '')
-call g:quickmenu#append('Star Wars', 'StarWars', '', '', 0, '')
 "}}}
 " User Interface
 "{{{lightline.vim
@@ -2106,6 +2040,19 @@ if g:VIM_Enable_Startify == 1
     let g:startify_session_sort = 1 " sort sessions by alphabet or modification time
     let g:startify_custom_indices = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5'] " MRU indices
     " line 579 for more details
+    let g:startify_bookmarks = [
+                \ {'R': '~/repo/'},
+                \ {'N': '~/repo/notes'},
+                \ {'P': '~/Documents/PlayGround/'},
+                \ {'c': '~/.config/nvim/init.vim'},
+                \ {'c': '~/.zshrc'},
+                \ {'c': '~/.tmux.conf'}
+                \ ]
+    if has('nvim')
+        let g:startify_commands = [
+                    \ {'1': 'terminal'},
+                    \ ]
+    endif
     let g:startify_custom_header = [
                 \ ' _,  _, _ _, _ _, _ _,_ __, __,  _, __, _,_  _, __,  _, _,_ _,  _ _, _ _,_ _  ,',
                 \ "(_  /_\\ | |\\ | |\\ | |_| |_  |_) /_\\ |_) |_/ / \\ |_) / ` |_| |   | |\\ | | | '\\/",
@@ -2144,6 +2091,56 @@ if g:VIM_Enable_Startify == 1
                 \ '/mnt/*',
                 \ ]
 endif
+"}}}
+"{{{quickmenu.vim
+let g:quickmenu_options = 'HL'  " enable cursorline (L) and cmdline help (H)
+
+call quickmenu#current(0)
+call quickmenu#reset()
+nnoremap <silent> <leader><leader> :call quickmenu#toggle(0)<cr>
+call g:quickmenu#append('# Menu', '')
+call g:quickmenu#append('Servers', 'call quickmenu#toggle(4)', '', '', 0, 'l')
+if g:VIM_Is_In_Tmux == 0
+    call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
+endif
+call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
+call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
+call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
+call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
+call g:quickmenu#append('Toggle Indent', 'call ToggleIndent()', '', '', 0, 'i')
+call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(11)', '', '', 0, 'f')
+call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
+call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
+call g:quickmenu#append('Ratio Resize', 'GoldenRatioResize', ':GoldenRatioResize  " resize current window', '', 0, 'g')
+call g:quickmenu#append('Ratio Toggle', 'GoldenRatioToggle', ':GoldenRatioToggle  " toggle golden ratio', '', 0, 'G')
+call g:quickmenu#append('FencAutoDetect', 'FencAutoDetect', 'FencAutoDetect && FencView', '', 0, '^')
+call g:quickmenu#append('Entertainment', 'call quickmenu#toggle(12)', '', '', 0, '*')
+call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
+call quickmenu#current(10)
+call quickmenu#reset()
+call g:quickmenu#append('# Help', '')
+call g:quickmenu#append('Fugitive', 'h fugitive-commands', '', '', 0, 'g')
+call g:quickmenu#append('Visual Multi', 'call Help_vim_visual_multi()', '', '', 0, 'v')
+call g:quickmenu#append('Prosession', 'call Help_vim_prosession()', '', '', 0, 's')
+call g:quickmenu#append('Neoformat', 'call Help_neoformat()', '', '', 0, 'f')
+call g:quickmenu#append('Auto Pairs', 'call Help_auto_pairs()', '', '', 0, 'p')
+call g:quickmenu#append('Nerd Commenter', 'call Help_nerdcommenter()', '', '', 0, 'c')
+call g:quickmenu#append('Bookmarks', 'call Help_vim_bookmarks()', '', '', 0, 'b')
+call g:quickmenu#append('Close Tag', 'call Help_vim_closetag()', '', '', 0, 't')
+call g:quickmenu#append('Multiple Cursors', 'call Help_vim_multiple_cursors()', '', '', 0, 'm')
+call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 'S')
+call g:quickmenu#append('VIM Surround', 'call Help_vim_surround()', '', '', 0, 'r')
+call g:quickmenu#append('VIM Matchup', 'call Help_vim_matchup()', '', '', 0, 'M')
+call quickmenu#current(11)
+call quickmenu#reset()
+call g:quickmenu#append('# Folding Method', '')
+call g:quickmenu#append('Marker', 'set foldmethod=marker', '', '', 0, 'm')
+call g:quickmenu#append('Syntax', 'set foldmethod=syntax', '', '', 0, 's')
+call g:quickmenu#append('Indent', 'set foldmethod=indnet', '', '', 0, 'i')
+call quickmenu#current(12)
+call quickmenu#reset()
+call g:quickmenu#append('# Entertainment', '')
+call g:quickmenu#append('Star Wars', 'StarWars', '', '', 0, '')
 "}}}
 "{{{vim-signify
 "{{{vim-signify-usage
