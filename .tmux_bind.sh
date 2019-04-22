@@ -8,7 +8,7 @@ tmux bind-key -T prefix r source-file ~/.tmux.conf
 
 # window
 tmux bind-key -n C-t new-window
-tmux bind-key -n C-w kill-window
+tmux bind-key -n C-w unlink-window -k
 tmux bind-key -n C-left prev
 tmux bind-key -n C-right next
 tmux bind-key -n C-up swap-window -t -1
