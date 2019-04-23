@@ -3709,6 +3709,7 @@ if g:VIM_Completion_Framework ==# 'coc'
 endif
 "}}}
 nnoremap <silent><A-b> :<C-u>Vista!!<CR>
+let g:vista_echo_cursor_strategy = 'both'
 let g:vista_icon_indent = ['╰─▸ ', '├─▸ ']
 let g:vista_sidebar_width = 35
 let g:vista_default_executive = 'ctags'
