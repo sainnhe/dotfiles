@@ -1214,7 +1214,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'one-light'
+let g:VIM_Color_Scheme = 'solarized8-light'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)

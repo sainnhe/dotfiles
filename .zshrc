@@ -43,13 +43,13 @@ switch_tmuxline() { # {{{
 cdf() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzy --lines=15 --prompt='➤ ') &&
+                  -o -type d -print 2> /dev/null | fzf) &&
   cd "$dir"
 }
 # include hidden dirs
 cdfa() {
   local dir
-  dir=$(find ${1:-.} -type d 2> /dev/null | fzy --lines=15 --prompt='➤ ') && cd "$dir"
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf) && cd "$dir"
 }
 # }}}
 # }}}
@@ -87,10 +87,10 @@ alias ls='lsd'
 alias ls-rec='lsd --tree'
 alias ls-all='/usr/bin/ls --color=auto -F -ilsh'
 alias fzy="fzy --lines=15 --prompt='➤ '"
-alias cdl='dirs -vl | fzy'
+alias cdl='dirs -vl | fzf'
 alias cdC='dirs -c'
-alias cdh='pushd +$( dirs -v | fzy | grep -o "[[:digit:]]") > /dev/null'
-alias cdc='popd +$( dirs -v | fzy | grep -o "[[:digit:]]") > /dev/null'
+alias cdh='pushd +$( dirs -v | fzf | grep -o "[[:digit:]]") > /dev/null'
+alias cdc='popd +$( dirs -v | fzf | grep -o "[[:digit:]]") > /dev/null'
 alias cdr='cd $(git rev-parse --show-toplevel)'
 alias du='du -hc'
 alias df='df -h'
@@ -98,9 +98,9 @@ alias cp='cp -ip'
 alias mv='mv -i'
 alias jobl='jobs -l'
 alias jobj='fg %-'
-alias jobf="fg %\$(jobs | grep '[[[:digit:]]*]' | fzy --lines=15 --prompt='➤ ' | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
-alias jobb="bg %\$(jobs | grep '[[[:digit:]]*]' | fzy --lines=15 --prompt='➤ ' | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
-alias jobk="kill %\$(jobs | grep '[[[:digit:]]*]' | fzy --lines=15 --prompt='➤ ' | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
+alias jobf="fg %\$(jobs | grep '[[[:digit:]]*]' | fzf | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
+alias jobb="bg %\$(jobs | grep '[[[:digit:]]*]' | fzf | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
+alias jobk="kill %\$(jobs | grep '[[[:digit:]]*]' | fzf | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
 alias nnn='PAGER= nnn'
 alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias help='bash ~/repo/scripts/func/help.sh'
