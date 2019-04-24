@@ -3,6 +3,7 @@
         email = sainnhe@gmail.com
 [core]
         editor = nvim
+	pager = nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -
 [merge]
         tool = vimdiff
 [alias]
@@ -10,11 +11,10 @@
         dj = diff --color
         dk = diff --staged --color
         cm = commit -m
-        logs = log --graph --pretty=format:\"(%h)  %an, %ar: %s\"
+        logs = log --oneline --decorate --graph --pretty=format:\"(%h)  %an, %ar: %s\"
+        logs-all = log --oneline --decorate --graph --all --pretty=format:\"(%h)  %an, %ar: %s\"
         acm = commit -am
         unstage = reset HEAD --
-        logl = log -1 HEAD
-        logp = !git log | nvim --cmd \"let g:VIM_MANPAGER = 1\" -c MANPAGER -
         st = status
         co = checkout
         br = branch
