@@ -11,6 +11,7 @@ fi
 export EDITOR=nvim
 export PAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
+export FuzzyFinder="fzf"
 # }}}
 # {{{Functions
 test_cmd_pre() { # {{{
@@ -38,18 +39,107 @@ switch_tmuxline() { # {{{
         read -r TMUXLINE_COLOR_SCHEME
     done
 } # }}}
-# {{{fzy
+# {{{FuzzyFinder
 # fuzzy match dirs and cd
 cdf() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf) &&
-  cd "$dir"
-}
+    local dir
+    dir=$(find ${1:-.} -path '*/\.*' -prune \
+        -o -type d -print 2> /dev/null | "$FuzzyFinder") &&
+        cd "$dir"
+    }
 # include hidden dirs
-cdfa() {
-  local dir
-  dir=$(find ${1:-.} -type d 2> /dev/null | fzf) && cd "$dir"
+cdf_all() {
+    local dir
+    dir=$(find ${1:-.} -type d 2> /dev/null | grep -v ".git/" | "$FuzzyFinder") && cd "$dir"
+}
+# job to fore
+job_fore() {
+    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
+    fg %"$JOB_ID"
+}
+
+# job to back
+job_back() {
+    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
+    bg %"$JOB_ID"
+}
+
+# job kill
+job_kill() {
+    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
+    kill %"$JOB_ID"
+}
+
+# proc ls
+proc_ls() {
+    PROC_ID_ORIGIN=$(ps -alf | "$FuzzyFinder")
+    if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
+        PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
+        echo "$PROC_ID_ORIGIN"
+    fi
+}
+
+# proc ls all
+proc_ls_all() {
+    PROC_ID_ORIGIN=$(ps -elf | "$FuzzyFinder")
+    if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
+        PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
+        echo "$PROC_ID_ORIGIN"
+    fi
+}
+
+# proc info
+proc_info() {
+    PROC_ID_ORIGIN=$(ps -alf | "$FuzzyFinder")
+    if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
+        PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
+        top -p "$PROC_ID"
+    fi
+}
+
+# proc info all
+proc_info_all() {
+    PROC_ID_ORIGIN=$(ps -elf | "$FuzzyFinder")
+    if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
+        PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
+        top -p "$PROC_ID"
+    fi
+}
+
+# proc tree
+proc_tree() {
+    PROC_ID_ORIGIN=$(ps -alf | "$FuzzyFinder")
+    if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
+        PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
+        pstree -p "$PROC_ID"
+    fi
+}
+
+# proc tree all
+proc_tree_all() {
+    PROC_ID_ORIGIN=$(ps -elf | "$FuzzyFinder")
+    if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
+        PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
+        pstree -p "$PROC_ID"
+    fi
+}
+
+# proc kill
+proc_kill() {
+    PROC_ID_ORIGIN=$(ps -alf | "$FuzzyFinder")
+    if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
+        PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
+        kill -p "$PROC_ID"
+    fi
+}
+
+# proc kill
+proc_kill_all() {
+    PROC_ID_ORIGIN=$(ps -elf | "$FuzzyFinder")
+    if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
+        PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
+        kill -p "$PROC_ID"
+    fi
 }
 # }}}
 # }}}
@@ -87,20 +177,29 @@ alias ls='lsd'
 alias ls-rec='lsd --tree'
 alias ls-all='/usr/bin/ls --color=auto -F -ilsh'
 alias fzy="fzy --lines=15 --prompt='➤ '"
-alias cdl='dirs -vl | fzf'
-alias cdC='dirs -c'
-alias cdh='pushd +$( dirs -v | fzf | grep -o "[[:digit:]]") > /dev/null'
-alias cdc='popd +$( dirs -v | fzf | grep -o "[[:digit:]]") > /dev/null'
-alias cdr='cd $(git rev-parse --show-toplevel)'
 alias du='du -hc'
 alias df='df -h'
 alias cp='cp -ip'
 alias mv='mv -i'
-alias jobl='jobs -l'
-alias jobj='fg %-'
-alias jobf="fg %\$(jobs | grep '[[[:digit:]]*]' | fzf | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
-alias jobb="bg %\$(jobs | grep '[[[:digit:]]*]' | fzf | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
-alias jobk="kill %\$(jobs | grep '[[[:digit:]]*]' | fzf | grep -o '[[[:digit:]]*]' | grep -o '[[:digit:]]*')"
+alias cdf-all='cdf_all'
+alias cdh='pushd +$( dirs -v | "$FuzzyFinder" | grep -o "[[:digit:]]") > /dev/null'
+alias cdh-ls='dirs -vl | "$FuzzyFinder"'
+alias cdh-clean='popd +$( dirs -v | "$FuzzyFinder" | grep -o "[[:digit:]]") > /dev/null'
+alias cdh-clean-all='dirs -c'
+alias cdr='cd $(git rev-parse --show-toplevel)'
+alias ps-ls='proc_ls'
+alias ps-ls-all='proc_ls_all'
+alias ps-info='proc_info'
+alias ps-info-all='proc_info_all'
+alias ps-tree='proc_tree'
+alias ps-tree-all='proc_tree_all'
+alias ps-kill='proc_kill'
+alias ps-kill-all='proc_kill_all'
+alias job-='fg %-'
+alias job-ls='jobs -l'
+alias job-fore='job_fore'
+alias job-back='job_back'
+alias job-kill='job_kill'
 alias nnn='PAGER= nnn'
 alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias help='bash ~/repo/scripts/func/help.sh'
