@@ -2780,7 +2780,12 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     "}}}
     "{{{coc-functions
     let g:CocFloatingLock = 1
-    function! CocFloatingLockToggle()"{{{
+    function! CocHighlight() abort"{{{
+        if &filetype !=# 'markdown'
+            call CocActionAsync('highlight')
+        endif
+    endfunction"}}}
+    function! CocFloatingLockToggle() abort"{{{
         if g:CocFloatingLock == 0
             let g:CocFloatingLock = 1
         elseif g:CocFloatingLock == 1
@@ -2842,7 +2847,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     augroup CocAu
         autocmd!
         autocmd CursorHold * silent call CocHover()
-        autocmd CursorHold * silent call CocActionAsync('highlight')
+        autocmd CursorHold * silent call CocHighlight()
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
         autocmd InsertEnter * call coc#util#float_hide()
         autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
