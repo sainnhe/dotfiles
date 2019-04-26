@@ -1170,14 +1170,15 @@ if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
     if g:VIM_TmuxLineSync == 1
         augroup TmuxlineAu
             autocmd!
-            autocmd BufEnter * Tmuxline lightline
-            autocmd InsertLeave * Tmuxline lightline
-            autocmd InsertEnter * Tmuxline lightline_insert
+            autocmd VimEnter * Tmuxline lightline | AsyncRun tmux source-file ~/.tmux.conf
+            autocmd InsertLeave * Tmuxline lightline | AsyncRun tmux source-file ~/.tmux.conf
+            autocmd InsertEnter * Tmuxline lightline_insert | AsyncRun tmux source-file ~/.tmux.conf
+            autocmd InsertEnter * Tmuxline lightline_insert | AsyncRun tmux source-file ~/.tmux.conf
         augroup END
     else
         augroup TmuxlineAu
             autocmd!
-            autocmd VimEnter * Tmuxline lightline
+            autocmd VimEnter * Tmuxline lightline | AsyncRun tmux source-file ~/.tmux.conf
         augroup END
     endif
     " '#{sysstat_cpu} #{sysstat_mem} #{sysstat_swap}'
