@@ -245,6 +245,7 @@ zplug 'plugins/extract', from:oh-my-zsh
 zplug 'plugins/frontend-search', from:oh-my-zsh
 zplug 'RobSis/zsh-completion-generator'
 zplug 'ytet5uy4/fzf-widgets'
+zplug 'srijanshetty/zsh-pip-completion'
 zplug load
 # {{{theme
 export TMUXLINE_COLOR_SCHEME="github_insert"
