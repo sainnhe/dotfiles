@@ -9,9 +9,15 @@ if [[ $(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$))))))) != *"tmu
     export TERM_Emulator=$(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$)))))))
 fi
 export EDITOR=nvim
+export BROWSER="chromium"
 export PAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 export FuzzyFinder="fzf"
+# {{{rtv
+export RTV_EDITOR="nvim"
+export RTV_BROWSER="w3m"
+export RTV_URLVIEWER="urlscan"
+# }}}
 # }}}
 # {{{Functions
 test_cmd_pre() { # {{{
@@ -207,6 +213,7 @@ alias GCT='bash ~/repo/scripts/func/GCT.sh'
 alias KCT='kcmcolorfulhelper -s -p'
 alias tmux='tmux -2'
 alias haxor-news='proxychains -q haxor-news'
+alias rtv='proxychains -q rtv'
 alias hn='proxychains -q hn'
 alias git-proxy='bash ~/repo/scripts/func/git-proxy.sh'
 alias bebusy='python ~/repo/scripts/func/bebusy.py'
