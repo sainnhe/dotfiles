@@ -298,6 +298,7 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # gencomp firefox-developer-edition
 # gencomp gotop
 # gencomp browsh
+# gencomp pip
 # }}}
 # }}}
 # {{{TMUX
