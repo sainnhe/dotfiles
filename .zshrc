@@ -213,6 +213,7 @@ alias GCT='bash ~/repo/scripts/func/GCT.sh'
 alias KCT='kcmcolorfulhelper -s -p'
 alias tmux='tmux -2'
 alias haxor-news='proxychains -q haxor-news'
+alias gitsome='proxychains -q gitsome'
 alias rtv='proxychains -q rtv'
 alias hn='proxychains -q hn'
 alias git-proxy='bash ~/repo/scripts/func/git-proxy.sh'
@@ -363,6 +364,16 @@ tmux_start() {
 }
 # if [[ "$TERM_Emulator" == "tilda" ]]; then
 # fi
+# }}}
+# {{{relax
+relax () {
+    tmux new-session -d -s Alt -c "$HOME" -n "github"
+    tmux send-keys -t Alt:0 "gitsome" Enter
+    tmux new-window -t Alt:1 -n "hackernews"
+    tmux send-keys -t Alt:1 "haxor-news" Enter
+    tmux new-window -t Alt:2 -n "reddit"
+    tmux send-keys -t Alt:2 "rtv" Enter
+}
 # }}}
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
