@@ -250,7 +250,7 @@ zplug 'ytet5uy4/fzf-widgets'
 zplug 'srijanshetty/zsh-pip-completion'
 zplug load
 # {{{theme
-export TMUXLINE_COLOR_SCHEME="github_insert"
+export TMUXLINE_COLOR_SCHEME="github_normal"
 fast-theme q-jmnemonic >/dev/null
 export PURE_PROMPT_SYMBOL="➤"
 export PURE_PROMPT_VICMD_SYMBOL="⮞"
