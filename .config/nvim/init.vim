@@ -882,6 +882,7 @@ Plug 'low-ghost/nerdtree-fugitive', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'ivalkeen/nerdtree-execute', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'jlanzarotta/bufexplorer'
+Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
@@ -2107,6 +2108,7 @@ endif
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
 call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
+call g:quickmenu#append('Undo Tree', 'UndotreeToggle', '', '', 0, 'u')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
 call g:quickmenu#append('Toggle Indent', 'call ToggleIndent()', '', '', 0, 'i')
 call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(11)', '', '', 0, 'f')
@@ -3651,6 +3653,15 @@ let g:bufExplorerSortBy='mru'        " Sort by most recently used.
 " let g:bufExplorerSortBy='fullpath'   " Sort by full file path name.
 " let g:bufExplorerSortBy='name'       " Sort by the buffer's name.
 " let g:bufExplorerSortBy='number'     " Sort by the buffer's number.
+"}}}
+"{{{undotree
+if has('persistent_undo')
+    set undodir=$HOME."/.vim/undo"
+    set undofile
+endif
+let g:undotree_WindowLayout = 3
+let g:undotree_SplitWidth = 35
+let g:undotree_DiffpanelHeight = 10
 "}}}
 "{{{vim-fugitive
 
