@@ -253,6 +253,9 @@ zplug 'plugins/pass', from:oh-my-zsh
 zplug 'plugins/web-search', from:oh-my-zsh
 zplug 'plugins/extract', from:oh-my-zsh
 zplug 'plugins/frontend-search', from:oh-my-zsh
+zplug 'plugins/gitfast', from:oh-my-zsh
+zplug 'plugins/github', from:oh-my-zsh
+zplug 'peterhurford/git-it-on.zsh'
 zplug 'RobSis/zsh-completion-generator'
 zplug 'ytet5uy4/fzf-widgets'
 zplug 'srijanshetty/zsh-pip-completion'
