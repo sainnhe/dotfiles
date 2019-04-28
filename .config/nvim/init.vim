@@ -887,8 +887,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
-Plug 'idanarye/vim-merginal'
 Plug 'sodapopcan/vim-twiggy'
+Plug 'junegunn/gv.vim'
 Plug 'jsfaint/gen_tags.vim', { 'on': [] }
 Plug 'liuchengxu/vista.vim'
 Plug 'sbdchd/neoformat'
@@ -3660,7 +3660,39 @@ let g:undotree_SplitWidth = 35
 let g:undotree_DiffpanelHeight = 10
 "}}}
 "{{{vim-fugitive
-
+"{{{twiggy
+command Gbranch Twiggy
+let g:twiggy_local_branch_sort = 'mru'
+let g:twiggy_num_columns = 35
+let g:twiggy_close_on_fugitive_command = 1
+let g:twiggy_remote_branch_sort = 'date'
+let g:twiggy_show_full_ui = 0
+let g:twiggy_git_log_command = 'GV'
+"}}}
+"{{{gv
+function! Help_GV()
+    echo 'Commands'
+    echo ':GV           open commit browser'
+    echo ':GV!          only list commits that affected the current file'
+    echo ':GV?          fills the location list with the revisions of the current file'
+    echo ''
+    echo 'Mappings'
+    echo 'o or <cr> on a commit to display the content of it'
+    echo 'o or <cr> on commits to display the diff in the range'
+    echo 'O opens a new tab instead'
+    echo 'gb for :Gbrowse'
+    echo ']] and [[ to move between commits'
+    echo '. to start command-line with :Git [CURSOR] SHA via fugitive'
+    echo 'q to close'
+endfunction
+function! s:GV_Mappings() abort
+    nnoremap <silent><buffer> ? :call Help_GV()<CR>
+endfunction
+augroup GV_Au
+    autocmd!
+    autocmd FileType GV call s:GV_Mappings()
+augroup END
+"}}}
 "}}}
 "{{{gen_tags.vim
 "{{{quickmenu
