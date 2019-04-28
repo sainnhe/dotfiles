@@ -3655,10 +3655,6 @@ let g:bufExplorerSortBy='mru'        " Sort by most recently used.
 " let g:bufExplorerSortBy='number'     " Sort by the buffer's number.
 "}}}
 "{{{undotree
-if has('persistent_undo')
-    set undodir=$HOME."/.vim/undo"
-    set undofile
-endif
 let g:undotree_WindowLayout = 3
 let g:undotree_SplitWidth = 35
 let g:undotree_DiffpanelHeight = 10
