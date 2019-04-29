@@ -2167,15 +2167,15 @@ call g:quickmenu#append('Star Wars', 'StarWars', '', '', 0, '')
 "{{{vim-signify-usage
 " <leader>g? 显示帮助
 function Help_vim_signify()
-    echo "<leader>gj  next hunk\n"
-    echo "<leader>gk  previous hunk\n"
-    echo "<leader>gJ  last hunk\n"
-    echo "<leader>gK  first hunk\n"
-    echo "<leader>gt  :SignifyToggle\n"
-    echo "<leader>gh  :SignifyToggleHighlight\n"
-    echo "<leader>gr  :SignifyRefresh\n"
-    echo "<leader>gd  :SignifyDebug\n"
-    echo "<leader>g?  Show this help\n"
+    echo "<leader>gj    next hunk\n"
+    echo "<leader>gk    previous hunk\n"
+    echo "<leader>gJ    last hunk\n"
+    echo "<leader>gK    first hunk\n"
+    echo "<leader>gt    :SignifyToggle\n"
+    echo "<leader>gh    :SignifyToggleHighlight\n"
+    echo "<leader>gr    :SignifyRefresh\n"
+    echo "<leader>gd    :SignifyDebug\n"
+    echo "<leader>g?    Show this help\n"
 endfunction
 nnoremap <leader>g? :call Help_vim_signify()<CR>
 "}}}
@@ -2300,13 +2300,13 @@ let g:golden_ratio_autocommand = 0
 if g:VIM_LSP_Client ==# 'lcn'
     "{{{LanguageClient-neovim-usage
     function! Help_Language_Client_neovim()
-        echo '<leader>ld definition'
-        echo '<leader>lt typeDefinition'
-        echo '<leader>lI implementation'
-        echo '<leader>lr references'
-        echo '<leader>lR rename'
-        echo '<leader>la codeAction'
-        echo '<leader>lf formatting'
+        echo '<leader>ld        definition'
+        echo '<leader>lt        typeDefinition'
+        echo '<leader>lI        implementation'
+        echo '<leader>lr        references'
+        echo '<leader>lR        rename'
+        echo '<leader>la        codeAction'
+        echo '<leader>lf        formatting'
     endfunction
     "}}}
     " Server Register
@@ -2422,16 +2422,16 @@ if g:VIM_LSP_Client ==# 'lcn'
 elseif g:VIM_LSP_Client ==# 'vim-lsp'
     "{{{vim-lsp-usage
     function! Help_vim_lsp()
-        echo '<leader>la CodeAction'
-        echo '<leader>ld Definition'
-        echo '<leader>lD Declaration'
-        echo '<leader>lt TypeDefinition'
-        echo '<leader>lr References'
-        echo '<leader>lR Rename'
-        echo '<leader>lI Implementation'
-        echo '<leader>lf DocumentFormat'
-        echo '<leader>lJ NextError'
-        echo '<leader>lK PreviousError'
+        echo '<leader>la        CodeAction'
+        echo '<leader>ld        Definition'
+        echo '<leader>lD        Declaration'
+        echo '<leader>lt        TypeDefinition'
+        echo '<leader>lr        References'
+        echo '<leader>lR        Rename'
+        echo '<leader>lI        Implementation'
+        echo '<leader>lf        DocumentFormat'
+        echo '<leader>lJ        NextError'
+        echo '<leader>lK        PreviousError'
     endfunction
     "}}}
     let g:lsp_auto_enable = 1
@@ -2780,23 +2780,23 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
 elseif g:VIM_Completion_Framework ==# 'coc'
     "{{{coc.nvim-usage
     function Help_COC_LSP()
-        echo '<leader>lJ diagnostic-next'
-        echo '<leader>lJ diagnostic-next'
-        echo '<leader>lK diagnostic-prev'
-        echo '<leader>li diagnostic-info'
-        echo '<leader>lI implementation'
-        echo '<leader>ld definition'
-        echo '<leader>lD declaration'
-        echo '<leader>lt type-definition'
-        echo '<leader>lr references'
-        echo '<leader>lR rename'
-        echo '<leader>lf format'
-        echo '<leader>lf format-selected'
-        echo '<leader>lF fix-current'
-        echo '<leader>la codeaction'
-        echo '<leader>la codeaction-selected'
-        echo '<leader>lA codelens-action'
-        echo '<C-l> jump to floating window'
+        echo '<leader>lJ        diagnostic-next'
+        echo '<leader>lJ        diagnostic-next'
+        echo '<leader>lK        diagnostic-prev'
+        echo '<leader>li        diagnostic-info'
+        echo '<leader>lI        implementation'
+        echo '<leader>ld        definition'
+        echo '<leader>lD        declaration'
+        echo '<leader>lt        type-definition'
+        echo '<leader>lr        references'
+        echo '<leader>lR        rename'
+        echo '<leader>lf        format'
+        echo '<leader>lf        format-selected'
+        echo '<leader>lF        fix-current'
+        echo '<leader>la        codeaction'
+        echo '<leader>la        codeaction-selected'
+        echo '<leader>lA        codelens-action'
+        echo '<C-l>             jump to floating window'
     endfunction
     "}}}
     "{{{coc-functions
@@ -3376,22 +3376,22 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     "{{{LeaderF-usage
     " f  search
     function Help_LeaderF()
-        echo '<Tab>  切换到普通模式'
-        echo '<C-c> <Esc>  退出'
-        echo '<C-r>  在Fuzzy和Regex模式间切换'
-        echo '<C-f>  在FullPath和NameOnly模式间切换'
-        echo '<C-v>  从剪切板粘贴'
-        echo '<C-u>  清空输入框'
-        echo '<CR> <C-X> <C-]> <A-t>  在当前窗口、新的水平窗口、新的竖直窗口、新的tab中打开'
-        echo '<F5>  刷新缓存'
-        echo '<C-s>  选择多个文件'
-        echo '<C-a>  选择所有文件'
-        echo '<C-l>  清空选择'
-        echo '<C-p>  预览'
-        echo '<S-left>  光标移到最左端'
-        echo '<S-right>  光标移到最右端'
-        echo '.  切换搜索隐藏文件的变量(normal mode)'
-        echo '?  呼出帮助窗口(normal mode)'
+        echo '<Tab>                     切换到普通模式'
+        echo '<C-c> <Esc>               退出'
+        echo '<C-r>                     在Fuzzy和Regex模式间切换'
+        echo '<C-f>                     在FullPath和NameOnly模式间切换'
+        echo '<C-v>                     从剪切板粘贴'
+        echo '<C-u>                     清空输入框'
+        echo '<CR> <C-X> <C-]> <A-t>    在当前窗口、新的水平窗口、新的竖直窗口、新的tab中打开'
+        echo '<F5>                      刷新缓存'
+        echo '<C-s>                     选择多个文件'
+        echo '<C-a>                     选择所有文件'
+        echo '<C-l>                     清空选择'
+        echo '<C-p>                     预览'
+        echo '<S-left>                  光标移到最左端'
+        echo '<S-right>                 光标移到最右端'
+        echo '.                         切换搜索隐藏文件的变量(normal mode)'
+        echo '?                         呼出帮助窗口(normal mode)'
         echo "\n"
         echo 'Commands'
         echo '-i, --ignore-case'
@@ -3813,7 +3813,7 @@ augroup END
 "{{{neoformat
 "{{{neoformat-usage
 function! Help_neoformat()
-    echo '<leader><Tab>  普通模式和可视模式排版'
+    echo '<leader><Tab>         普通模式和可视模式排版'
     echo ''
     echo 'Normal Mode Syntax'
     echo ':<C-u>Neoformat python'
@@ -3854,18 +3854,18 @@ vnoremap <silent> <leader><Tab> :Neoformat! &ft<CR>
 "{{{nerdcommenter-usage
 " <leader>c?  显示帮助
 function! Help_nerdcommenter()
-    echo "[count]<Leader>cc NERDComComment, Comment out the current [count] line or text selected in visual mode\n"
-    echo "[count]<Leader>cu NERDComUncommentLine, Uncomments the selected line(s)\n"
-    echo "[count]<Leader>cn NERDComNestedComment, Same as <Leader>cc but forces nesting\n"
-    echo "[count]<Leader>c<space> NERDComToggleComment, Toggles the comment state of the selected line(s). If the topmost selected, line is commented, all selected lines are uncommented and vice versa.\n"
-    echo "[count]<Leader>cm NERDComMinimalComment, Comments the given lines using only one set of multipart delimiters\n"
-    echo "[count]<Leader>ci NERDComInvertComment, Toggles the comment state of the selected line(s) individually\n"
-    echo "[count]<Leader>cs NERDComSexyComment, Comments out the selected lines sexily'\n"
-    echo "[count]<Leader>cy NERDComYankComment, Same as <Leader>cc except that the commented line(s) are yanked first\n"
-    echo "<Leader>c$ NERDComEOLComment, Comments the current line from the cursor to the end of line\n"
-    echo "<Leader>cA NERDComAppendComment, Adds comment delimiters to the end of line and goes into insert mode between them\n"
-    echo "<Leader>ca NERDComAltDelim, Switches to the alternative set of delimiters\n"
-    echo '[count]<Leader>cl && [count]<Leader>cb NERDComAlignedComment, Same as NERDComComment except that the delimiters are aligned down the left side (<Leader>cl) or both sides (<Leader>cb)'
+    echo "[count]<Leader>cc                             NERDComComment, Comment out the current [count] line or text selected in visual mode\n"
+    echo "[count]<Leader>cu                             NERDComUncommentLine, Uncomments the selected line(s)\n"
+    echo "[count]<Leader>cn                             NERDComNestedComment, Same as <Leader>cc but forces nesting\n"
+    echo "[count]<Leader>c<space>                       NERDComToggleComment, Toggles the comment state of the selected line(s). If the topmost selected, line is commented, all selected lines are uncommented and vice versa.\n"
+    echo "[count]<Leader>cm                             NERDComMinimalComment, Comments the given lines using only one set of multipart delimiters\n"
+    echo "[count]<Leader>ci                             NERDComInvertComment, Toggles the comment state of the selected line(s) individually\n"
+    echo "[count]<Leader>cs                             NERDComSexyComment, Comments out the selected lines sexily'\n"
+    echo "[count]<Leader>cy                             NERDComYankComment, Same as <Leader>cc except that the commented line(s) are yanked first\n"
+    echo "<Leader>c$                                    NERDComEOLComment, Comments the current line from the cursor to the end of line\n"
+    echo "<Leader>cA                                    NERDComAppendComment, Adds comment delimiters to the end of line and goes into insert mode between them\n"
+    echo "<Leader>ca                                    NERDComAltDelim, Switches to the alternative set of delimiters\n"
+    echo '[count]<Leader>cl && [count]<Leader>cb        NERDComAlignedComment, Same as NERDComComment except that the delimiters are aligned down the left side (<Leader>cl) or both sides (<Leader>cb)'
 endfunction
 nnoremap <silent> <leader>c? :<C-u>call Help_nerdcommenter()<CR>
 "}}}
@@ -3893,53 +3893,53 @@ let g:lightline#asyncrun#indicator_run = 'Running...'
 "{{{vim-visual-multi
 "{{{vim-visual-multi-usage
 function! Help_vim_visual_multi()
-    echo '<F1>  help'
+    echo '<F1>          help'
     echo "\n"
     echo 'word 匹配'
     echo 'visual mode选中文本，<leader>]  开始匹配'
-    echo ']  匹配下一个'
-    echo '[  匹配上一个'
-    echo '}  跳转到下一个选中'
-    echo '{  跳转到上一个选中'
-    echo '<C-f>  跳转到最后一个选中'
-    echo '<C-b>  跳转到第一个选中'
-    echo 'q  删除当前选中'
-    echo 'Q  删除选中区域'
+    echo ']             匹配下一个'
+    echo '[             匹配上一个'
+    echo '}             跳转到下一个选中'
+    echo '{             跳转到上一个选中'
+    echo '<C-f>         跳转到最后一个选中'
+    echo '<C-b>         跳转到第一个选中'
+    echo 'q             删除当前选中'
+    echo 'Q             删除选中区域'
     echo '选中完成后，按i或a进入插入模式，也可以返回普通模式'
     echo '普通模式下h, j, k, l来整体挪移光标'
-    echo '<Space> 切换Extend模式'
-    echo '<Esc>  退出'
+    echo '<Space>       切换Extend模式'
+    echo '<Esc>         退出'
     echo "\n"
     echo 'position 选中'
     echo 'normal mode中，<Tab>选中当前位置'
     echo '普通模式下h, j, k, l来整体挪移光标'
-    echo '<Tab>  extend mode'
-    echo ']  跳转到下一个选中'
-    echo '[  跳转到上一个选中'
-    echo '}  跳转到下一个选中'
-    echo '{  跳转到上一个选中'
-    echo '<C-f>  跳转到最后一个选中'
-    echo '<C-b>  跳转到第一个选中'
-    echo 'q  删除当前选中'
-    echo 'Q  删除选中区域'
+    echo '<Tab>         extend mode'
+    echo ']             跳转到下一个选中'
+    echo '[             跳转到上一个选中'
+    echo '}             跳转到下一个选中'
+    echo '{             跳转到上一个选中'
+    echo '<C-f>         跳转到最后一个选中'
+    echo '<C-b>         跳转到第一个选中'
+    echo 'q             删除当前选中'
+    echo 'Q             删除选中区域'
     echo '选中完成后，按i或a进入插入模式，也可以返回普通模式'
     echo '普通模式下h, j, k, l来整体挪移光标'
-    echo '<Space> 切换Extend模式'
-    echo '<Esc>  退出'
+    echo '<Space>       切换Extend模式'
+    echo '<Esc>         退出'
     echo "\n"
     echo 'visual mode 选中'
     echo 'visual mode选中后，<Tab>添加光标'
     echo '或者在visual mode选中后，按g/搜索，将会匹配所有搜索结果并进入Extend mode'
     echo '选中完成后，按i或a进入插入模式，也可以返回普通模式'
     echo '普通模式下h, j, k, l来整体挪移光标'
-    echo '<Space> 切换Extend模式'
-    echo '<Esc>  退出'
+    echo '<Space>       切换Extend模式'
+    echo '<Esc>         退出'
     echo "\n"
     echo 'Extend 模式'
     echo '相当于visual模式'
     echo 'h, j, k, l来选中区域'
-    echo '<Space> 切换Extend模式'
-    echo '<Esc>  退出'
+    echo '<Space>       切换Extend模式'
+    echo '<Esc>         退出'
 endfunction
 "}}}
 " https://github.com/mg979/vim-visual-multi/wiki
@@ -3963,9 +3963,9 @@ call Init_visual_multi()
 "{{{vim-prosession
 "{{{vim-prosession-usage
 function! Help_vim_prosession()
-    echo ':Prosession {dir}   switch to the session of {dir}, if doesnt exist, creat a new session'
-    echo ':ProsessionDelete [{dir}]   if no {dir} specified, delete current active session'
-    echo ':ProsessionList {filter}   if no {filter} specified, list all session'
+    echo ':Prosession {dir}             switch to the session of {dir}, if doesnt exist, creat a new session'
+    echo ':ProsessionDelete [{dir}]     if no {dir} specified, delete current active session'
+    echo ':ProsessionList {filter}      if no {filter} specified, list all session'
 endfunction
 "}}}
 augroup SessionAu
@@ -3981,18 +3981,18 @@ command! -nargs=? ProsessionList echo prosession#ListSessions(<q-args>)
 function! Help_vim_bookmarks()
     echo '<Leader>bs Search and Manage Bookmarks using unite'
     echo 'Unite Actions: preview, delete, replace, open, yank, highlight, etc.'
-    echo '<Leader>bb <Plug>BookmarkToggle'
-    echo '<Leader>ba <Plug>BookmarkAnnotate'
-    echo '<Leader>bj <Plug>BookmarkNext'
-    echo '<Leader>bk <Plug>BookmarkPrev'
-    echo '<Leader>bc <Plug>BookmarkClear'
-    echo '<Leader>bC <Plug>BookmarkClearAll'
+    echo '<Leader>bb            <Plug>BookmarkToggle'
+    echo '<Leader>ba            <Plug>BookmarkAnnotate'
+    echo '<Leader>bj            <Plug>BookmarkNext'
+    echo '<Leader>bk            <Plug>BookmarkPrev'
+    echo '<Leader>bc            <Plug>BookmarkClear'
+    echo '<Leader>bC            <Plug>BookmarkClearAll'
     echo '" these will also work with a [count] prefix'
-    echo '<Leader>bK <Plug>BookmarkMoveUp'
-    echo '<Leader>bJ <Plug>BookmarkMoveDown'
-    echo '<Leader>b<Tab> <Plug>BookmarkMoveToLine'
+    echo '<Leader>bK            <Plug>BookmarkMoveUp'
+    echo '<Leader>bJ            <Plug>BookmarkMoveDown'
+    echo '<Leader>b<Tab>        <Plug>BookmarkMoveToLine'
     echo "\n"
-    echo '<Leader>b? Help'
+    echo '<Leader>b?            Help'
 endfunction
 "}}}
 "{{{Bookmark_Unite
@@ -4056,11 +4056,11 @@ command W w suda://%
 "{{{vim-surround-usage
 " 主quickmenu
 function! Help_vim_surround()
-    echo 'ds([  delete surround'
-    echo 'cs([  change surround () to []'
-    echo 'ysw[  add surround [] from current position to the end of this word'
-    echo 'ysiw[  add surround [] from the begin of this word to the end'
-    echo 'yss[  add surround [] from the begin of this line to the end'
+    echo 'ds([          delete surround'
+    echo 'cs([          change surround () to []'
+    echo 'ysw[          add surround [] from current position to the end of this word'
+    echo 'ysiw[         add surround [] from the begin of this word to the end'
+    echo 'yss[          add surround [] from the begin of this line to the end'
 endfunction
 "}}}
 "}}}
@@ -4100,10 +4100,10 @@ if g:VIM_Enable_Autopairs == 1
     " 主quickmenu
     function! Help_auto_pairs()
         echo '插入模式下：'
-        echo '<A-z>p  toggle auto-pairs'
-        echo '<A-n>  jump to next closed pair'
-        echo '<A-Backspace>  delete without pairs'
-        echo '<A-z>[key]  insert without pairs'
+        echo '<A-z>p            toggle auto-pairs'
+        echo '<A-n>             jump to next closed pair'
+        echo '<A-Backspace>     delete without pairs'
+        echo '<A-z>[key]        insert without pairs'
     endfunction
     "}}}
     let g:AutoPairsShortcutToggle = '<A-z>p'
@@ -4188,16 +4188,16 @@ if exists('g:VIM_MANPAGER')
     " {{{vim-manpager-usage
     function! Help_vim_manpager()
         echo 'shell里"man foo"启动'
-        echo '<CR>  打开当前word的manual page'
-        echo '<C-o>  跳转到之前的位置'
-        echo '<Tab>  跳转到下一个历史'
-        echo '<S-Tab>  跳转到上一个历史'
-        echo '<C-j>  跳转到下一个keyword'
-        echo '<C-k>  跳转到上一个keyword'
-        echo 'f  FuzzyFind'
-        echo 'E  set modifiable'
-        echo '<A-w>  quit'
-        echo '?  Help'
+        echo '<CR>              打开当前word的manual page'
+        echo '<C-o>             跳转到之前的位置'
+        echo '<Tab>             跳转到下一个历史'
+        echo '<S-Tab>           跳转到上一个历史'
+        echo '<C-j>             跳转到下一个keyword'
+        echo '<C-k>             跳转到上一个keyword'
+        echo 'f                 FuzzyFind'
+        echo 'E                 set modifiable'
+        echo '<A-w>             quit'
+        echo '?                 Help'
     endfunction
     " }}}
     function! s:vim_manpager_mappings() abort
