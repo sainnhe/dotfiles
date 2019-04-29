@@ -3587,6 +3587,7 @@ endfunction
 "}}}
 map ' <Plug>Sneak_;
 map " <Plug>Sneak_,
+imap <A-s> <Esc>s
 "}}}
 "{{{nnn.vim
 "{{{nnn.vim-usage
