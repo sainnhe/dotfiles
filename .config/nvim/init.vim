@@ -876,6 +876,7 @@ elseif g:VIM_Linter ==# 'neomake'
         Plug 'Palpatineli/lightline-lsc-nvim'
     endif
 endif
+Plug 'justinmk/vim-sneak'
 Plug 'mcchrish/nnn.vim'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
@@ -2139,9 +2140,9 @@ call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
 call quickmenu#current(10)
 call quickmenu#reset()
 call g:quickmenu#append('# Help', '')
-call g:quickmenu#append('Fugitive', 'h fugitive-commands', '', '', 0, 'g')
 call g:quickmenu#append('Visual Multi', 'call Help_vim_visual_multi()', '', '', 0, 'v')
-call g:quickmenu#append('Prosession', 'call Help_vim_prosession()', '', '', 0, 's')
+call g:quickmenu#append('Sneak', 'call Help_vim_sneak', '', '', 0, 's')
+call g:quickmenu#append('Prosession', 'call Help_vim_prosession()', '', '', 0, 'S')
 call g:quickmenu#append('Neoformat', 'call Help_neoformat()', '', '', 0, 'f')
 call g:quickmenu#append('Auto Pairs', 'call Help_auto_pairs()', '', '', 0, 'p')
 call g:quickmenu#append('Nerd Commenter', 'call Help_nerdcommenter()', '', '', 0, 'c')
@@ -3571,6 +3572,21 @@ elseif g:VIM_Linter ==# 'neomake'
     nnoremap <silent> gj :lnext<CR>
     nnoremap <silent> gk :lprev<CR>
 endif
+"}}}
+"{{{vim-sneak
+"{{{vim-sneak-help
+function! Help_vim_sneak()
+    echo 'Normal Mode & Visual Mode:'
+    echo 's[char][char]                 forward search and highlight'
+    echo 'S[char][char]                 backward search and highlight'
+    echo "' \"                          repeat motion"
+    echo "[num]' [num]\"                repeat motion multiple times"
+    echo 'C-o                           jump to start point'
+    echo 's[Enter] S[Enter]             repeat last search'
+endfunction
+"}}}
+map ' <Plug>Sneak_;
+map " <Plug>Sneak_,
 "}}}
 "{{{nnn.vim
 "{{{nnn.vim-usage
