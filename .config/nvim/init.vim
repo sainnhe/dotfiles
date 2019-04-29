@@ -709,6 +709,7 @@ Plug 'fcpg/vim-orbital', { 'as': 'vim-color-orbital' }
 Plug 'dunstontc/vim-vscode-theme', { 'as': 'vim-color-dark-plus' }
 Plug 'bluz71/vim-moonfly-colors', { 'as': 'vim-color-moonfly' }
 Plug 'mhartington/oceanic-next', { 'as': 'vim-color-oceanic-next' }
+Plug 'liuchengxu/space-vim-theme', { 'as': 'vim-color-spacevim' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1216,7 +1217,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'oceanic-next-light'
+let g:VIM_Color_Scheme = 'Atelier_Dune-light'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1424,6 +1425,14 @@ function! ColorScheme()
     call g:quickmenu#append('deepspace', 'call SwitchColorScheme("deepspace")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Meta', '')
+    "{{{space-vim
+    if g:VIM_Color_Scheme ==# 'space-vim-dark'
+        set background=dark
+        colorscheme space_vim_theme
+        let g:lightline.colorscheme = 'space_vim_dark'
+    endif
+    call g:quickmenu#append('space-vim', 'call SwitchColorScheme("space-vim-dark")', '', '', 0, '')
+    "}}}
     "{{{cosme
     if g:VIM_Color_Scheme ==# 'cosme'
         colorscheme cosme
@@ -1639,6 +1648,14 @@ function! ColorScheme()
     call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-light")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Meta', '')
+    "{{{space-vim
+    if g:VIM_Color_Scheme ==# 'space-vim-light'
+        set background=light
+        colorscheme space_vim_theme
+        let g:lightline.colorscheme = 'space_vim_light'
+    endif
+    call g:quickmenu#append('space-vim', 'call SwitchColorScheme("space-vim-light")', '', '', 0, '')
+    "}}}
     "{{{two-firewatch
     if g:VIM_Color_Scheme ==# 'two-firewatch-light'
         set background=light
