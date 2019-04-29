@@ -2799,7 +2799,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     endfunction
     "}}}
     "{{{coc-functions
-    let g:CocFloatingLock = 1
     function! CocHighlight() abort"{{{
         if &filetype !=# 'markdown'
             call CocActionAsync('highlight')
@@ -2813,12 +2812,9 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         endif
     endfunction"}}}
     function! CocHover() abort"{{{
-        if g:CocFloatingLock == 1
-            if !coc#util#has_float()
-                call CocActionAsync('doHover')
-            endif
-        elseif g:CocFloatingLock == 0
+        if !coc#util#has_float() && g:CocHoverEnable == 1
             call CocActionAsync('doHover')
+            call CocActionAsync('showSignatureHelp')
         endif
     endfunction"}}}
     "}}}
@@ -2837,7 +2833,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('Update Extensions', 'CocUpdate', '', '', 0, 'U')
     call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
     call g:quickmenu#append('Info', 'CocInfo', ':h CocOpenLog for log', '', 0, '@')
-    call g:quickmenu#append('Toggle Floating Lock', 'call CocFloatingLockToggle()', '', '', 0, 't')
+    call g:quickmenu#append('Toggle Hover', 'let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1', '', '', 0, 't')
     call g:quickmenu#append('Help Mappings', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
     "}}}
     "{{{coc-init
@@ -2872,6 +2868,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd InsertEnter * call coc#util#float_hide()
         autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
+    let g:CocHoverEnable = 1
     set hidden
     set completeopt=noinsert,noselect,menuone
     set dictionary+=/usr/share/dict/words
