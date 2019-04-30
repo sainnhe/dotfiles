@@ -1237,6 +1237,7 @@ function! ColorScheme()
     call g:quickmenu#append('Light', 'call quickmenu#toggle(97)', '', '', 0, '')
     call g:quickmenu#append('Archived', 'call quickmenu#toggle(96)', '', '', 0, '')
     call g:quickmenu#append('Background Transparent', 'call ToggleBG()', '', '', 0, '')
+    " {{{dark
     call quickmenu#current(98)
     call quickmenu#reset()
     call g:quickmenu#append('# One', '')
@@ -1512,6 +1513,10 @@ function! ColorScheme()
     call g:quickmenu#append('typewriter', 'call SwitchColorScheme("typewriter-dark")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# More', '')
+    call g:quickmenu#append('Atelier*', 'call quickmenu#toggle(95)', '', '', 0, '')
+    call g:quickmenu#append('Base2Tone*', 'call quickmenu#toggle(94)', '', '', 0, '')
+    call quickmenu#current(95)
+    call quickmenu#reset()
     "{{{Atelier*
     "{{{Atelier_Cave
     if g:VIM_Color_Scheme ==# 'Atelier_Cave-dark'
@@ -1594,7 +1599,9 @@ function! ColorScheme()
     call g:quickmenu#append('Atelier_Sulphurpool', 'call SwitchColorScheme("Atelier_Sulphurpool-dark")', '', '', 0, '')
     "}}}
     "}}}
-    "{{{Base2Tone
+    call quickmenu#current(94)
+    call quickmenu#reset()
+    "{{{Base2Tone*
     "{{{Base2Tone_Cave
     if g:VIM_Color_Scheme ==# 'Base2Tone_Cave-dark'
         set background=dark
@@ -1700,6 +1707,8 @@ function! ColorScheme()
     call g:quickmenu#append('Base2Tone_Space', 'call SwitchColorScheme("Base2Tone_Space-dark")', '', '', 0, '')
     "}}}
     "}}}
+    " }}}
+    " {{{light
     call quickmenu#current(97)
     call quickmenu#reset()
     call g:quickmenu#append('# One', '')
@@ -1819,6 +1828,10 @@ function! ColorScheme()
     call g:quickmenu#append('typewriter', 'call SwitchColorScheme("typewriter-light")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# More', '')
+    call g:quickmenu#append('Atelier*', 'call quickmenu#toggle(93)', '', '', 0, '')
+    call g:quickmenu#append('Base2Tone*', 'call quickmenu#toggle(92)', '', '', 0, '')
+    call quickmenu#current(93)
+    call quickmenu#reset()
     "{{{Atelier*
     "{{{Atelier_Cave
     if g:VIM_Color_Scheme ==# 'Atelier_Cave-light'
@@ -1901,7 +1914,9 @@ function! ColorScheme()
     call g:quickmenu#append('Atelier_Sulphurpool', 'call SwitchColorScheme("Atelier_Sulphurpool-light")', '', '', 0, '')
     "}}}
     "}}}
-    "{{{Base2Tone
+    call quickmenu#current(92)
+    call quickmenu#reset()
+    "{{{Base2Tone*
     "{{{Base2Tone_Cave
     if g:VIM_Color_Scheme ==# 'Base2Tone_Cave-light'
         set background=light
@@ -2007,6 +2022,8 @@ function! ColorScheme()
     call g:quickmenu#append('Base2Tone_Space', 'call SwitchColorScheme("Base2Tone_Space-light")', '', '', 0, '')
     "}}}
     "}}}
+    " }}}
+    " {{{archived
     call quickmenu#current(96)
     call quickmenu#reset()
     call g:quickmenu#append('# Dark', '')
@@ -2193,6 +2210,7 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('Tomorrow', 'call SwitchColorScheme("Tomorrow-light")', '', '', 0, '')
     "}}}
+    " }}}
 endfunction
 call ColorScheme()
 "{{{InitBG()
