@@ -328,24 +328,36 @@ endif
 " https://stackoverflow.com/questions/5379837/is-it-possible-to-mapping-alt-hjkl-in-insert-mode
 " https://vi.stackexchange.com/questions/2350/how-to-map-alt-key
 if !has('nvim')
-    execute "set <M-w>=\ew"
-    execute "set <M-v>=\ev"
-    execute "set <M-h>=\eh"
-    execute "set <M-j>=\ej"
-    execute "set <M-k>=\ek"
-    execute "set <M-s>=\es"
-    execute "set <M-l>=\el"
+    execute "set <M-a>=\ea"
+    execute "set <M-b>=\eb"
+    execute "set <M-c>=\ec"
+    execute "set <M-d>=\ed" 
+    execute "set <M-e>=\ee" 
+    execute "set <M-f>=\ef" 
+    execute "set <M-g>=\eg"
+    execute "set <M-h>=\eh" 
+    execute "set <M-i>=\ei" 
+    execute "set <M-j>=\ej" 
+    execute "set <M-k>=\ek" 
+    execute "set <M-l>=\el" 
+    execute "set <M-m>=\em" 
+    execute "set <M-n>=\en" 
+    execute "set <M-o>=\eo" 
+    execute "set <M-p>=\ep" 
+    execute "set <M-q>=\eq" 
+    execute "set <M-r>=\er" 
+    execute "set <M-s>=\es" 
+    execute "set <M-t>=\et"
+    execute "set <M-u>=\eu" 
+    execute "set <M-v>=\ev" 
+    execute "set <M-w>=\ew" 
+    execute "set <M-x>=\ex" 
+    execute "set <M-y>=\ey" 
+    execute "set <M-z>=\ez"
     execute "set <M-,>=\e,"
     execute "set <M-.>=\e."
     execute "set <M-->=\e-"
     execute "set <M-=>=\e="
-    execute "set <M-b>=\eb"
-    execute "set <M-z>=\ez"
-    execute "set <M-x>=\ex"
-    execute "set <M-g>=\eg"
-    execute "set <M-n>=\en"
-    execute "set <M-p>=\ep"
-    execute "set <M-t>=\et"
 endif
 "}}}
 "{{{NormalMode
@@ -877,12 +889,12 @@ elseif g:VIM_Linter ==# 'neomake'
     endif
 endif
 Plug 'justinmk/vim-sneak'
-Plug 'mcchrish/nnn.vim'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'low-ghost/nerdtree-fugitive', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'ivalkeen/nerdtree-execute', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
+Plug 'mcchrish/nnn.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
@@ -3589,25 +3601,18 @@ map ' <Plug>Sneak_;
 map " <Plug>Sneak_,
 imap <A-s> <Esc>s
 "}}}
-"{{{nnn.vim
-"{{{nnn.vim-usage
-" <leader>e  打开nnn
-"}}}
-let g:nnn#set_default_mappings = 0
-nnoremap <silent> <leader>e :<C-u>NnnPicker '%:p:h'<CR>
-let g:nnn#action = {
-            \ '<c-t>': 'tab split',
-            \ '<c-x>': 'split',
-            \ '<c-v>': 'vsplit' }
-let g:nnn#command = 'PAGER= nnn'
-" let g:nnn#layout = 'new' "or vnew, tabnew, etc.
-" let g:nnn#layout = { 'left': '~20%' }
-"}}}
 "{{{nerdtree
 "{{{nerdtree-usage
-" <C-b>  切换
-" ?  呼出帮助菜单
-" ~  回到VCS root
+function! Help_nerdtree()
+    echo '<C-b>         切换nerdtree'
+    echo '?             切换官方帮助'
+    echo 'h             查看帮助'
+    echo '~             回到project root'
+    echo '<A-f>         FuzzyFinder'
+    echo '<A-g>         Grep'
+    echo '<A-e>         打开nnn (或者直接buffer里<leader><A-e>)'
+    echo '<A-b>         打开bufexplorer(或直接buffer里<leader><A-b>)'
+endfunction
 "}}}
 "{{{extensions
 "{{{nerdtree-git-plugin
@@ -3642,6 +3647,11 @@ let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 nnoremap <silent> <C-B> :<C-u>NERDTreeToggle<CR>
 function! s:nerdtree_mappings() abort
     nnoremap <silent><buffer> ~ :<C-u>NERDTreeVCS<CR>
+    nnoremap <silent><buffer> <A-f> :call Nerdtree_Fuzzy_Finder()<CR>
+    nnoremap <silent><buffer> <A-g> :call Nerdtree_Grep()<CR>
+    nnoremap <silent><buffer> h :call Help_nerdtree()<CR>
+    nmap <silent><buffer> <A-e> <C-b>:<C-u>NnnPicker '%:p:h'<CR>
+    nmap <silent><buffer> <A-b> <C-b>:<C-u>BufExplorer<CR>
 endfunction
 augroup NERDTreeAu
     autocmd!
@@ -3658,15 +3668,53 @@ let g:NERDTreeDirArrowExpandable = "\u00a0"
 let g:NERDTreeDirArrowCollapsible = "\u00a0"
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 " let NERDTreeShowHidden = 1
+function! Nerdtree_Fuzzy_Finder()
+    if g:VIM_Fuzzy_Finder ==# 'leaderf'
+        execute 'LeaderfFile'
+    elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+        execute 'Files'
+    elseif g:VIM_Fuzzy_Finder ==# 'denite'
+        execute 'Denite file_rec'
+    elseif g:VIM_Fuzzy_Finder ==# 'remix'
+        execute 'LeaderfFile'
+    endif
+endfunction
+function! Nerdtree_Grep()
+    if g:VIM_Fuzzy_Finder ==# 'leaderf'
+        execute 'Leaderf rg'
+    elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+        execute 'Ag'
+    elseif g:VIM_Fuzzy_Finder ==# 'denite'
+        execute 'Denite grep'
+    elseif g:VIM_Fuzzy_Finder ==# 'remix'
+        execute 'Ag'
+    endif
+endfunction
+"}}}
+"{{{nnn.vim
+"{{{nnn.vim-usage
+" <leader><A-e>  打开nnn
+" nerdtree里 <A-e>  打开nnn
+"}}}
+let g:nnn#set_default_mappings = 0
+nnoremap <silent> <leader><A-e> :<C-u>NnnPicker '%:p:h'<CR>
+let g:nnn#action = {
+            \ '<c-t>': 'tab split',
+            \ '<c-x>': 'split',
+            \ '<c-v>': 'vsplit' }
+let g:nnn#command = 'PAGER= nnn'
+" let g:nnn#layout = 'new' "or vnew, tabnew, etc.
+" let g:nnn#layout = { 'left': '~20%' }
 "}}}
 "{{{bufexplore
 "{{{bufexplore-usage
-" <leader>B 打开bufexplore
+" <leader><A-b> 打开bufexplorer
+" nerdtree里 <A-b> 打开bufexplorer
 " ?  显示帮助文档
 "}}}
 " Use Default Mappings
 let g:bufExplorerDisableDefaultKeyMapping=1
-nnoremap <silent> <leader>B :<C-u>BufExplorer<CR>
+nnoremap <silent> <leader><A-b> :<C-u>BufExplorer<CR>
 function! s:bufexplore_mappings() abort
     nmap <buffer> ? <F1>
 endfunction
