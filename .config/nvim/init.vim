@@ -835,6 +835,7 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
 elseif g:VIM_Completion_Framework ==# 'coc'
     Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
     Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
+    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
     if executable('proxychains')
         Plug 'neoclide/coc.nvim', {'do': 'proxychains -q yarn install --frozen-lockfile'}
     else
@@ -2882,6 +2883,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
     let g:CocHoverEnable = 1
+    let g:tmuxcomplete#trigger = ''
     set hidden
     set completeopt=noinsert,noselect,menuone
     set dictionary+=/usr/share/dict/words
