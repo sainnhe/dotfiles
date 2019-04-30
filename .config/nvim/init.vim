@@ -1265,6 +1265,19 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('neodark', 'call SwitchColorScheme("neodark")', '', '', 0, '')
     "}}}
+    "{{{eighties
+    if g:VIM_Color_Scheme ==# 'eighties'
+        set background=dark
+        colorscheme base16-eighties
+        let g:lightline.colorscheme = 'base16_eighties'
+        let g:lightline#colorscheme#base16_eighties#palette.tabline.tabsel[0] = g:lightline#colorscheme#base16_eighties#palette.normal.left[0]
+        let g:lightline#colorscheme#base16_eighties#palette.normal.right = g:lightline#colorscheme#base16_eighties#palette.normal.left
+        let g:lightline#colorscheme#base16_eighties#palette.insert.right = g:lightline#colorscheme#base16_eighties#palette.insert.left
+        let g:lightline#colorscheme#base16_eighties#palette.visual.right = g:lightline#colorscheme#base16_eighties#palette.visual.left
+        let g:lightline#colorscheme#base16_eighties#palette.replace.right = g:lightline#colorscheme#base16_eighties#palette.replace.left
+    endif
+    call g:quickmenu#append('eighties', 'call SwitchColorScheme("eighties")', '', '', 0, '')
+    "}}}
     "{{{material-dark
     if g:VIM_Color_Scheme ==# 'material-dark'
         set background=dark
@@ -1356,6 +1369,15 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('nova', 'call SwitchColorScheme("nova")', '', '', 0, '')
     "}}}
+    "{{{brushtrees
+    if g:VIM_Color_Scheme ==# 'brushtrees-dark'
+        set background=dark
+        colorscheme base16-brushtrees-dark
+        let g:lightline.colorscheme = 'base16_brushtrees_dark'
+        let g:lightline#colorscheme#base16_brushtrees_dark#palette.tabline.tabsel[0] = g:lightline#colorscheme#base16_brushtrees_dark#palette.normal.right[0]
+    endif
+    call g:quickmenu#append('brushtrees', 'call SwitchColorScheme("brushtrees-dark")', '', '', 0, '')
+    "}}}
     call g:quickmenu#append('# Warm', '')
     "{{{srcery
     if g:VIM_Color_Scheme ==# 'srcery'
@@ -1399,15 +1421,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('nord', 'call SwitchColorScheme("nord")', '', '', 0, '')
     "}}}
-    "{{{ocean
-    if g:VIM_Color_Scheme ==# 'ocean'
-        set background=dark
-        colorscheme base16-ocean
-        let g:lightline.colorscheme = 'base16_ocean'
-        let  g:lightline#colorscheme#base16_ocean#palette.tabline.tabsel[0] =  g:lightline#colorscheme#base16_ocean#palette.normal.left[0]
-    endif
-    call g:quickmenu#append('ocean', 'call SwitchColorScheme("ocean")', '', '', 0, '')
-    "}}}
     "{{{oceanic-next
     if g:VIM_Color_Scheme ==# 'oceanic-next-dark'
         set background=dark
@@ -1415,14 +1428,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'oceanicnext_alter'
     endif
     call g:quickmenu#append('oceanic-next', 'call SwitchColorScheme("oceanic-next-dark")', '', '', 0, '')
-    "}}}
-    "{{{darcula
-    if g:VIM_Color_Scheme ==# 'darcula'
-        colorscheme darcula
-        let g:lightline.colorscheme = 'darcula'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
-    endif
-    call g:quickmenu#append('darcula', 'call SwitchColorScheme("darcula")', '', '', 0, '')
     "}}}
     "{{{deepspace
     if g:VIM_Color_Scheme ==# 'deepspace'
@@ -1434,6 +1439,31 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('deepspace', 'call SwitchColorScheme("deepspace")', '', '', 0, '')
     "}}}
+    "{{{ashes
+    if g:VIM_Color_Scheme ==# 'ashes'
+        set background=dark
+        colorscheme base16-ashes
+        let g:lightline.colorscheme = 'base16_ashes'
+    endif
+    call g:quickmenu#append('ashes', 'call SwitchColorScheme("ashes")', '', '', 0, '')
+    "}}}
+    "{{{darcula
+    if g:VIM_Color_Scheme ==# 'darcula'
+        colorscheme darcula
+        let g:lightline.colorscheme = 'darcula'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+    endif
+    call g:quickmenu#append('darcula', 'call SwitchColorScheme("darcula")', '', '', 0, '')
+    "}}}
+    "{{{ocean
+    if g:VIM_Color_Scheme ==# 'ocean'
+        set background=dark
+        colorscheme base16-ocean
+        let g:lightline.colorscheme = 'base16_ocean'
+        let  g:lightline#colorscheme#base16_ocean#palette.tabline.tabsel[0] =  g:lightline#colorscheme#base16_ocean#palette.normal.left[0]
+    endif
+    call g:quickmenu#append('ocean', 'call SwitchColorScheme("ocean")', '', '', 0, '')
+    "}}}
     call g:quickmenu#append('# Meta', '')
     "{{{space-vim
     if g:VIM_Color_Scheme ==# 'space-vim-dark'
@@ -1442,6 +1472,19 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'space_vim_dark'
     endif
     call g:quickmenu#append('space-vim', 'call SwitchColorScheme("space-vim-dark")', '', '', 0, '')
+    "}}}
+    "{{{google
+    if g:VIM_Color_Scheme ==# 'google-dark'
+        set background=dark
+        colorscheme base16-google-dark
+        let g:lightline.colorscheme = 'base16_google_dark'
+        let g:lightline#colorscheme#base16_google_dark#palette.tabline.tabsel[0] = g:lightline#colorscheme#base16_google_dark#palette.normal.left[0]
+        let g:lightline#colorscheme#base16_google_dark#palette.normal.right = g:lightline#colorscheme#base16_google_dark#palette.normal.left
+        let g:lightline#colorscheme#base16_google_dark#palette.insert.right = g:lightline#colorscheme#base16_google_dark#palette.insert.left
+        let g:lightline#colorscheme#base16_google_dark#palette.visual.right = g:lightline#colorscheme#base16_google_dark#palette.visual.left
+        let g:lightline#colorscheme#base16_google_dark#palette.replace.right = g:lightline#colorscheme#base16_google_dark#palette.replace.left
+    endif
+    call g:quickmenu#append('google', 'call SwitchColorScheme("google-dark")', '', '', 0, '')
     "}}}
     "{{{cosme
     if g:VIM_Color_Scheme ==# 'cosme'
@@ -1782,15 +1825,18 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('space-vim', 'call SwitchColorScheme("space-vim-light")', '', '', 0, '')
     "}}}
-    "{{{two-firewatch
-    if g:VIM_Color_Scheme ==# 'two-firewatch-light'
+    "{{{google
+    if g:VIM_Color_Scheme ==# 'google-light'
         set background=light
-        let g:two_firewatch_italics=1
-        colorscheme two-firewatch
-        let g:lightline.colorscheme = 'tfw_light'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        colorscheme base16-google-light
+        let g:lightline.colorscheme = 'base16_google_light'
+        let g:lightline#colorscheme#base16_google_light#palette.tabline.tabsel[0] = g:lightline#colorscheme#base16_google_light#palette.normal.left[0]
+        let g:lightline#colorscheme#base16_google_light#palette.normal.right = g:lightline#colorscheme#base16_google_light#palette.normal.left
+        let g:lightline#colorscheme#base16_google_light#palette.insert.right = g:lightline#colorscheme#base16_google_light#palette.insert.left
+        let g:lightline#colorscheme#base16_google_light#palette.visual.right = g:lightline#colorscheme#base16_google_light#palette.visual.left
+        let g:lightline#colorscheme#base16_google_light#palette.replace.right = g:lightline#colorscheme#base16_google_light#palette.replace.left
     endif
-    call g:quickmenu#append('two-firewatch', 'call SwitchColorScheme("two-firewatch-light")', '', '', 0, '')
+    call g:quickmenu#append('google', 'call SwitchColorScheme("google-light")', '', '', 0, '')
     "}}}
     "{{{github
     if g:VIM_Color_Scheme ==# 'github'
@@ -1802,6 +1848,16 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('github', 'call SwitchColorScheme("github")', '', '', 0, '')
     "}}}
+    "{{{two-firewatch
+    if g:VIM_Color_Scheme ==# 'two-firewatch-light'
+        set background=light
+        let g:two_firewatch_italics=1
+        colorscheme two-firewatch
+        let g:lightline.colorscheme = 'tfw_light'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+    endif
+    call g:quickmenu#append('two-firewatch', 'call SwitchColorScheme("two-firewatch-light")', '', '', 0, '')
+    "}}}
     "{{{oceanic-next
     if g:VIM_Color_Scheme ==# 'oceanic-next-light'
         set background=light
@@ -1809,6 +1865,33 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'oceanicnextlight_alter'
     endif
     call g:quickmenu#append('oceanic-next', 'call SwitchColorScheme("oceanic-next-light")', '', '', 0, '')
+    "}}}
+    "{{{brushtrees
+    if g:VIM_Color_Scheme ==# 'brushtrees-light'
+        set background=light
+        colorscheme base16-brushtrees
+        let g:lightline.colorscheme = 'base16_brushtrees'
+        let g:lightline#colorscheme#base16_brushtrees#palette.tabline.tabsel[0] = g:lightline#colorscheme#base16_brushtrees#palette.normal.right[0]
+    endif
+    call g:quickmenu#append('brushtrees', 'call SwitchColorScheme("brushtrees-light")', '', '', 0, '')
+    "}}}
+    "{{{harmonic
+    if g:VIM_Color_Scheme ==# 'harmonic-light'
+        set background=light
+        colorscheme base16-harmonic-light
+        let g:lightline.colorscheme = 'base16_harmonic_light'
+        let g:lightline#colorscheme#base16_harmonic_light#palette.tabline.tabsel[0] = g:lightline#colorscheme#base16_harmonic_light#palette.normal.right[0]
+    endif
+    call g:quickmenu#append('harmonic', 'call SwitchColorScheme("harmonic-light")', '', '', 0, '')
+    "}}}
+    "{{{cupcake
+    if g:VIM_Color_Scheme ==# 'cupcake-light'
+        set background=light
+        colorscheme base16-cupcake
+        let g:lightline.colorscheme = 'base16_cupcake'
+        let g:lightline#colorscheme#base16_cupcake#palette.tabline.tabsel[0] = g:lightline#colorscheme#base16_cupcake#palette.normal.right[0]
+    endif
+    call g:quickmenu#append('cupcake', 'call SwitchColorScheme("cupcake-light")', '', '', 0, '')
     "}}}
     "{{{typewriter
     if g:VIM_Color_Scheme ==# 'typewriter-light'
