@@ -331,28 +331,28 @@ if !has('nvim')
     execute "set <M-a>=\ea"
     execute "set <M-b>=\eb"
     execute "set <M-c>=\ec"
-    execute "set <M-d>=\ed" 
-    execute "set <M-e>=\ee" 
-    execute "set <M-f>=\ef" 
+    execute "set <M-d>=\ed"
+    execute "set <M-e>=\ee"
+    execute "set <M-f>=\ef"
     execute "set <M-g>=\eg"
-    execute "set <M-h>=\eh" 
-    execute "set <M-i>=\ei" 
-    execute "set <M-j>=\ej" 
-    execute "set <M-k>=\ek" 
-    execute "set <M-l>=\el" 
-    execute "set <M-m>=\em" 
-    execute "set <M-n>=\en" 
-    execute "set <M-o>=\eo" 
-    execute "set <M-p>=\ep" 
-    execute "set <M-q>=\eq" 
-    execute "set <M-r>=\er" 
-    execute "set <M-s>=\es" 
+    execute "set <M-h>=\eh"
+    execute "set <M-i>=\ei"
+    execute "set <M-j>=\ej"
+    execute "set <M-k>=\ek"
+    execute "set <M-l>=\el"
+    execute "set <M-m>=\em"
+    execute "set <M-n>=\en"
+    execute "set <M-o>=\eo"
+    execute "set <M-p>=\ep"
+    execute "set <M-q>=\eq"
+    execute "set <M-r>=\er"
+    execute "set <M-s>=\es"
     execute "set <M-t>=\et"
-    execute "set <M-u>=\eu" 
-    execute "set <M-v>=\ev" 
-    execute "set <M-w>=\ew" 
-    execute "set <M-x>=\ex" 
-    execute "set <M-y>=\ey" 
+    execute "set <M-u>=\eu"
+    execute "set <M-v>=\ev"
+    execute "set <M-w>=\ew"
+    execute "set <M-x>=\ex"
+    execute "set <M-y>=\ey"
     execute "set <M-z>=\ez"
     execute "set <M-,>=\e,"
     execute "set <M-.>=\e."
@@ -672,8 +672,12 @@ Plug 'tpope/vim-repeat'
 "}}}
 " User Interface
 "{{{themes
+Plug 'chriskempson/base16-vim', { 'as': 'vim-color-base16' }
+Plug 'mike-hearn/base16-vim-lightline', { 'as': 'vim-lightline-base16' }
 Plug 'sainnhe/lightline_foobar.vim'
 Plug 'sainnhe/vim-color-forest-night'
+Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
+Plug 'atelierbram/Base2Tone-vim', { 'as': 'vim-color-base2tone' }
 Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
 Plug 'ajmwagar/vim-deus', { 'as': 'vim-color-deus' }
 Plug 'morhetz/gruvbox', { 'as': 'vim-color-gruvbox' }
@@ -681,16 +685,12 @@ Plug 'junegunn/seoul256.vim', { 'as': 'vim-color-seoul256' }
 Plug 'jacoborus/tender.vim', { 'as': 'vim-color-tender' }
 Plug 'arcticicestudio/nord-vim', { 'as': 'vim-color-nord' }
 Plug 'cocopon/iceberg.vim', { 'as': 'vim-color-iceberg' }
-Plug 'tyrannicaltoucan/vim-quantum', { 'as': 'vim-color-quantum' }
 Plug 'Badacadabra/vim-archery', { 'as': 'vim-color-archery' }
 Plug 'tyrannicaltoucan/vim-deep-space', { 'as': 'vim-color-deepspace' }
-Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
 Plug 'cormacrelf/vim-colors-github', { 'as': 'vim-color-github' }
-Plug 'nightsense/stellarized', { 'as': 'vim-color-stellarized' }
 Plug 'whatyouhide/vim-gotham', { 'as': 'vim-color-gotham' }
 Plug 'ayu-theme/ayu-vim', { 'as': 'vim-color-ayu' }
 Plug 'kaicataldo/material.vim', { 'as': 'vim-color-material-vim' }
-Plug 'hzchirs/vim-material', { 'as': 'vim-color-material' }
 Plug 'bellma101/vim-snazzy', { 'as': 'vim-color-snazzy' }
 Plug 'srcery-colors/srcery-vim', { 'as': 'vim-color-srcery' }
 Plug 'rakr/vim-two-firewatch', { 'as': 'vim-color-two-firewatch' }
@@ -704,14 +704,12 @@ Plug 'KKPMW/sacredforest-vim', { 'as': 'vim-color-sacredforest' }
 Plug 'trevordmiller/nova-vim', { 'as': 'vim-color-nova' }
 Plug 'skreek/skeletor.vim', { 'as': 'vim-color-skeletor' }
 Plug 'crusoexia/vim-monokai', { 'as': 'vim-color-monokai' }
-Plug 'nanotech/jellybeans.vim', { 'as': 'vim-color-jellybeans' }
 Plug 'NLKNguyen/papercolor-theme', { 'as': 'vim-color-papercolor' }
 Plug 'sjl/badwolf', { 'as': 'vim-color-badwolf' }
 Plug 'chriskempson/vim-tomorrow-theme', { 'as': 'vim-color-tomorrow' }
 Plug 'cseelus/vim-colors-tone', { 'as': 'vim-color-tone' }
 Plug 'beikome/cosme.vim', { 'as': 'vim-color-cosme' }
 Plug 'Marfisc/vorange', { 'as': 'vim-color-vorange' }
-Plug 'nightsense/cosmic_latte', { 'as': 'vim-color-cosmic_latte' }
 Plug 'logico-dev/typewriter', { 'as': 'vim-color-typewriter' }
 Plug 'lifepillar/vim-solarized8', { 'as': 'vim-color-solarized8' }
 Plug 'KKPMW/oldbook-vim', { 'as': 'vim-color-oldbook' }
@@ -719,7 +717,6 @@ Plug 'dracula/vim', { 'as': 'vim-color-dracula' }
 Plug 'blueshirts/darcula', { 'as': 'vim-color-darcula' }
 Plug 'fcpg/vim-orbital', { 'as': 'vim-color-orbital' }
 Plug 'dunstontc/vim-vscode-theme', { 'as': 'vim-color-dark-plus' }
-Plug 'bluz71/vim-moonfly-colors', { 'as': 'vim-color-moonfly' }
 Plug 'mhartington/oceanic-next', { 'as': 'vim-color-oceanic-next' }
 Plug 'liuchengxu/space-vim-theme', { 'as': 'vim-color-spacevim' }
 "}}}
@@ -1278,17 +1275,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('material', 'call SwitchColorScheme("material-dark")', '', '', 0, '')
     "}}}
-    "{{{quantum
-    if g:VIM_Color_Scheme ==# 'quantum'
-        set background=dark
-        let g:quantum_black=1
-        let g:quantum_italics=1
-        colorscheme quantum
-        let g:lightline.colorscheme = 'quantum'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
-    endif
-    call g:quickmenu#append('quantum', 'call SwitchColorScheme("quantum")', '', '', 0, '')
-    "}}}
     "{{{material-palenight
     if g:VIM_Color_Scheme ==# 'material-palenight'
         set background=dark
@@ -1412,6 +1398,15 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('nord', 'call SwitchColorScheme("nord")', '', '', 0, '')
     "}}}
+    "{{{ocean
+    if g:VIM_Color_Scheme ==# 'ocean'
+        set background=dark
+        colorscheme base16-ocean
+        let g:lightline.colorscheme = 'base16_ocean'
+        let  g:lightline#colorscheme#base16_ocean#palette.tabline.tabsel[0] =  g:lightline#colorscheme#base16_ocean#palette.normal.left[0]
+    endif
+    call g:quickmenu#append('ocean', 'call SwitchColorScheme("ocean")', '', '', 0, '')
+    "}}}
     "{{{oceanic-next
     if g:VIM_Color_Scheme ==# 'oceanic-next-dark'
         set background=dark
@@ -1516,7 +1511,7 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('typewriter', 'call SwitchColorScheme("typewriter-dark")', '', '', 0, '')
     "}}}
-    call g:quickmenu#append('# Atelier', '')
+    call g:quickmenu#append('# More', '')
     "{{{Atelier*
     "{{{Atelier_Cave
     if g:VIM_Color_Scheme ==# 'Atelier_Cave-dark'
@@ -1599,6 +1594,112 @@ function! ColorScheme()
     call g:quickmenu#append('Atelier_Sulphurpool', 'call SwitchColorScheme("Atelier_Sulphurpool-dark")', '', '', 0, '')
     "}}}
     "}}}
+    "{{{Base2Tone
+    "{{{Base2Tone_Cave
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Cave-dark'
+        set background=dark
+        colorscheme Base2Tone_CaveDark
+        let g:lightline.colorscheme = 'Base2Tone_Cave'
+    endif
+    call g:quickmenu#append('Base2Tone_Cave', 'call SwitchColorScheme("Base2Tone_Cave-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Desert
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Desert-dark'
+        set background=dark
+        colorscheme Base2Tone_DesertDark
+        let g:lightline.colorscheme = 'Base2Tone_Desert'
+    endif
+    call g:quickmenu#append('Base2Tone_Desert', 'call SwitchColorScheme("Base2Tone_Desert-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Drawbridge
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Drawbridge-dark'
+        set background=dark
+        colorscheme Base2Tone_DrawbridgeDark
+        let g:lightline.colorscheme = 'Base2Tone_Drawbridge'
+    endif
+    call g:quickmenu#append('Base2Tone_Drawbridge', 'call SwitchColorScheme("Base2Tone_Drawbridge-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Earth
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Earth-dark'
+        set background=dark
+        colorscheme Base2Tone_EarthDark
+        let g:lightline.colorscheme = 'Base2Tone_Earth'
+    endif
+    call g:quickmenu#append('Base2Tone_Earth', 'call SwitchColorScheme("Base2Tone_Earth-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Evening
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Evening-dark'
+        set background=dark
+        colorscheme Base2Tone_EveningDark
+        let g:lightline.colorscheme = 'Base2Tone_Evening'
+    endif
+    call g:quickmenu#append('Base2Tone_Evening', 'call SwitchColorScheme("Base2Tone_Evening-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Forest
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Forest-dark'
+        set background=dark
+        colorscheme Base2Tone_ForestDark
+        let g:lightline.colorscheme = 'Base2Tone_Forest'
+    endif
+    call g:quickmenu#append('Base2Tone_Forest', 'call SwitchColorScheme("Base2Tone_Forest-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Heath
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Heath-dark'
+        set background=dark
+        colorscheme Base2Tone_HeathDark
+        let g:lightline.colorscheme = 'Base2Tone_Heath'
+    endif
+    call g:quickmenu#append('Base2Tone_Heath', 'call SwitchColorScheme("Base2Tone_Heath-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Lake
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Lake-dark'
+        set background=dark
+        colorscheme Base2Tone_LakeDark
+        let g:lightline.colorscheme = 'Base2Tone_Lake'
+    endif
+    call g:quickmenu#append('Base2Tone_Lake', 'call SwitchColorScheme("Base2Tone_Lake-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Meadow
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Meadow-dark'
+        set background=dark
+        colorscheme Base2Tone_MeadowDark
+        let g:lightline.colorscheme = 'Base2Tone_Meadow'
+    endif
+    call g:quickmenu#append('Base2Tone_Meadow', 'call SwitchColorScheme("Base2Tone_Meadow-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Morning
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Morning-dark'
+        set background=dark
+        colorscheme Base2Tone_MorningDark
+        let g:lightline.colorscheme = 'Base2Tone_Morning'
+    endif
+    call g:quickmenu#append('Base2Tone_Morning', 'call SwitchColorScheme("Base2Tone_Morning-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Pool
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Pool-dark'
+        set background=dark
+        colorscheme Base2Tone_PoolDark
+        let g:lightline.colorscheme = 'Base2Tone_Pool'
+    endif
+    call g:quickmenu#append('Base2Tone_Pool', 'call SwitchColorScheme("Base2Tone_Pool-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Sea
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Sea-dark'
+        set background=dark
+        colorscheme Base2Tone_SeaDark
+        let g:lightline.colorscheme = 'Base2Tone_Sea'
+    endif
+    call g:quickmenu#append('Base2Tone_Sea', 'call SwitchColorScheme("Base2Tone_Sea-dark")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Space
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Space-dark'
+        set background=dark
+        colorscheme Base2Tone_SpaceDark
+        let g:lightline.colorscheme = 'Base2Tone_Space'
+    endif
+    call g:quickmenu#append('Base2Tone_Space', 'call SwitchColorScheme("Base2Tone_Space-dark")', '', '', 0, '')
+    "}}}
+    "}}}
     call quickmenu#current(97)
     call quickmenu#reset()
     call g:quickmenu#append('# One', '')
@@ -1616,11 +1717,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('one', 'call SwitchColorScheme("one-light")', '', '', 0, '')
     "}}}
-    "{{{material
+    "{{{material-light
     if g:VIM_Color_Scheme ==# 'material-light'
         set background=light
-        colorscheme vim-material
-        let g:lightline.colorscheme = 'ayu_light'
+        colorscheme base16-material-lighter
+        hi StartifyFile ctermfg=7 ctermbg=0 guifg=#80CBC4 guibg=#FAFAFA
+        hi QuickmenuOption ctermfg=7 ctermbg=0 guifg=#80CBC4 guibg=#FAFAFA
+        let g:lightline.colorscheme = 'material_light_alter'
     endif
     call g:quickmenu#append('material', 'call SwitchColorScheme("material-light")', '', '', 0, '')
     "}}}
@@ -1647,7 +1750,7 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'solarized'
         let g:lightline#colorscheme#solarized#palette.tabline.right[1] = g:lightline#colorscheme#solarized#palette.normal.middle[0]
     endif
-    call g:quickmenu#append('solarized8', 'call SwitchColorScheme("solarized8-light")', '', '', 0, '')
+    call g:quickmenu#append('solarized', 'call SwitchColorScheme("solarized8-light")', '', '', 0, '')
     "}}}
     "{{{gruvbox
     if g:VIM_Color_Scheme ==# 'gruvbox-light'
@@ -1715,7 +1818,7 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('typewriter', 'call SwitchColorScheme("typewriter-light")', '', '', 0, '')
     "}}}
-    call g:quickmenu#append('# Atelier', '')
+    call g:quickmenu#append('# More', '')
     "{{{Atelier*
     "{{{Atelier_Cave
     if g:VIM_Color_Scheme ==# 'Atelier_Cave-light'
@@ -1798,17 +1901,115 @@ function! ColorScheme()
     call g:quickmenu#append('Atelier_Sulphurpool', 'call SwitchColorScheme("Atelier_Sulphurpool-light")', '', '', 0, '')
     "}}}
     "}}}
+    "{{{Base2Tone
+    "{{{Base2Tone_Cave
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Cave-light'
+        set background=light
+        colorscheme Base2Tone_CaveLight
+        let g:lightline.colorscheme = 'Base2Tone_Cave'
+    endif
+    call g:quickmenu#append('Base2Tone_Cave', 'call SwitchColorScheme("Base2Tone_Cave-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Desert
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Desert-light'
+        set background=light
+        colorscheme Base2Tone_DesertLight
+        let g:lightline.colorscheme = 'Base2Tone_Desert'
+    endif
+    call g:quickmenu#append('Base2Tone_Desert', 'call SwitchColorScheme("Base2Tone_Desert-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Drawbridge
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Drawbridge-light'
+        set background=light
+        colorscheme Base2Tone_DrawbridgeLight
+        let g:lightline.colorscheme = 'Base2Tone_Drawbridge'
+    endif
+    call g:quickmenu#append('Base2Tone_Drawbridge', 'call SwitchColorScheme("Base2Tone_Drawbridge-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Earth
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Earth-light'
+        set background=light
+        colorscheme Base2Tone_EarthLight
+        let g:lightline.colorscheme = 'Base2Tone_Earth'
+    endif
+    call g:quickmenu#append('Base2Tone_Earth', 'call SwitchColorScheme("Base2Tone_Earth-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Evening
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Evening-light'
+        set background=light
+        colorscheme Base2Tone_EveningLight
+        let g:lightline.colorscheme = 'Base2Tone_Evening'
+    endif
+    call g:quickmenu#append('Base2Tone_Evening', 'call SwitchColorScheme("Base2Tone_Evening-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Forest
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Forest-light'
+        set background=light
+        colorscheme Base2Tone_ForestLight
+        let g:lightline.colorscheme = 'Base2Tone_Forest'
+    endif
+    call g:quickmenu#append('Base2Tone_Forest', 'call SwitchColorScheme("Base2Tone_Forest-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Heath
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Heath-light'
+        set background=light
+        colorscheme Base2Tone_HeathLight
+        let g:lightline.colorscheme = 'Base2Tone_Heath'
+    endif
+    call g:quickmenu#append('Base2Tone_Heath', 'call SwitchColorScheme("Base2Tone_Heath-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Lake
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Lake-light'
+        set background=light
+        colorscheme Base2Tone_LakeLight
+        let g:lightline.colorscheme = 'Base2Tone_Lake'
+    endif
+    call g:quickmenu#append('Base2Tone_Lake', 'call SwitchColorScheme("Base2Tone_Lake-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Meadow
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Meadow-light'
+        set background=light
+        colorscheme Base2Tone_MeadowLight
+        let g:lightline.colorscheme = 'Base2Tone_Meadow'
+    endif
+    call g:quickmenu#append('Base2Tone_Meadow', 'call SwitchColorScheme("Base2Tone_Meadow-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Morning
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Morning-light'
+        set background=light
+        colorscheme Base2Tone_MorningLight
+        let g:lightline.colorscheme = 'Base2Tone_Morning'
+    endif
+    call g:quickmenu#append('Base2Tone_Morning', 'call SwitchColorScheme("Base2Tone_Morning-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Pool
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Pool-light'
+        set background=light
+        colorscheme Base2Tone_PoolLight
+        let g:lightline.colorscheme = 'Base2Tone_Pool'
+    endif
+    call g:quickmenu#append('Base2Tone_Pool', 'call SwitchColorScheme("Base2Tone_Pool-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Sea
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Sea-light'
+        set background=light
+        colorscheme Base2Tone_SeaLight
+        let g:lightline.colorscheme = 'Base2Tone_Sea'
+    endif
+    call g:quickmenu#append('Base2Tone_Sea', 'call SwitchColorScheme("Base2Tone_Sea-light")', '', '', 0, '')
+    "}}}
+    "{{{Base2Tone_Space
+    if g:VIM_Color_Scheme ==# 'Base2Tone_Space-light'
+        set background=light
+        colorscheme Base2Tone_SpaceLight
+        let g:lightline.colorscheme = 'Base2Tone_Space'
+    endif
+    call g:quickmenu#append('Base2Tone_Space', 'call SwitchColorScheme("Base2Tone_Space-light")', '', '', 0, '')
+    "}}}
+    "}}}
     call quickmenu#current(96)
     call quickmenu#reset()
     call g:quickmenu#append('# Dark', '')
-    "{{{stellarized
-    if g:VIM_Color_Scheme ==# 'stellarized-dark'
-        set background=dark
-        colorscheme stellarized
-        let g:lightline.colorscheme = 'stellarized_dark'
-    endif
-    call g:quickmenu#append('stellarized', 'call SwitchColorScheme("stellarized-dark")', '', '', 0, '')
-    "}}}
     "{{{pink-moon
     if g:VIM_Color_Scheme ==# 'pink-moon'
         set background=dark
@@ -1831,13 +2032,6 @@ function! ColorScheme()
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('iceberg', 'call SwitchColorScheme("iceberg")', '', '', 0, '')
-    "}}}
-    "{{{moonfly
-    if g:VIM_Color_Scheme ==# 'moonfly'
-        colorscheme moonfly
-        let g:lightline.colorscheme = 'moonfly'
-    endif
-    call g:quickmenu#append('moonfly', 'call SwitchColorScheme("moonfly")', '', '', 0, '')
     "}}}
     "{{{dracula
     if g:VIM_Color_Scheme ==# 'dracula'
@@ -1873,6 +2067,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'vice'
         colorscheme vice
         let g:lightline.colorscheme = 'vice'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('vice', 'call SwitchColorScheme("vice")', '', '', 0, '')
     "}}}
@@ -1897,16 +2092,7 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'solarized'
         let g:lightline#colorscheme#solarized#palette.tabline.right[1] = g:lightline#colorscheme#solarized#palette.normal.middle[0]
     endif
-    call g:quickmenu#append('solarized8', 'call SwitchColorScheme("solarized8-dark")', '', '', 0, '')
-    "}}}
-    "{{{jellybeans
-    if g:VIM_Color_Scheme ==# 'jellybeans'
-        set background=dark
-        let g:jellybeans_use_term_italics = 1
-        colorscheme jellybeans
-        let g:lightline.colorscheme = 'jellybeans'
-    endif
-    call g:quickmenu#append('jellybeans', 'call SwitchColorScheme("jellybeans")', '', '', 0, '')
+    call g:quickmenu#append('solarized', 'call SwitchColorScheme("solarized8-dark")', '', '', 0, '')
     "}}}
     "{{{badwolf
     if g:VIM_Color_Scheme ==# 'badwolf'
@@ -1930,6 +2116,7 @@ function! ColorScheme()
         set background=dark
         colorscheme Tomorrow-Night
         let g:lightline.colorscheme = 'Tomorrow_Night'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('Tomorrow', 'call SwitchColorScheme("Tomorrow-dark")', '', '', 0, '')
     "}}}
@@ -1938,6 +2125,7 @@ function! ColorScheme()
         set background=dark
         colorscheme Tomorrow-Night-Eighties
         let g:lightline.colorscheme = 'Tomorrow_Night_Eighties'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('Tomorrow-Eighties', 'call SwitchColorScheme("Tomorrow-eighties")', '', '', 0, '')
     "}}}
@@ -1988,24 +2176,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('pencil', 'call SwitchColorScheme("pencil")', '', '', 0, '')
     "}}}
-    "{{{cosmic_latte
-    if g:VIM_Color_Scheme ==# 'cosmic_latte'
-        set background=light
-        colorscheme cosmic_latte
-        let g:lightline.colorscheme = 'cosmic_latte_light'
-        let g:lightline#colorscheme#cosmic_latte_light#palette.tabline.right = g:lightline#colorscheme#cosmic_latte_light#palette.normal.left
-    endif
-    call g:quickmenu#append('cosmic_latte', 'call SwitchColorScheme("cosmic_latte")', '', '', 0, '')
-    "}}}
-    "{{{stellarized
-    if g:VIM_Color_Scheme ==# 'stellarized-light'
-        set background=light
-        colorscheme stellarized
-        let g:lightline.colorscheme = 'stellarized_light'
-        let g:lightline#colorscheme#stellarized_light#palette.tabline.right = g:lightline#colorscheme#stellarized_light#palette.normal.left
-    endif
-    call g:quickmenu#append('stellarized', 'call SwitchColorScheme("stellarized-light")', '', '', 0, '')
-    "}}}
     "{{{PaperColor
     if g:VIM_Color_Scheme ==# 'PaperColor-light'
         set background=light
@@ -2019,6 +2189,7 @@ function! ColorScheme()
         set background=light
         colorscheme Tomorrow
         let g:lightline.colorscheme = 'Tomorrow'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('Tomorrow', 'call SwitchColorScheme("Tomorrow-light")', '', '', 0, '')
     "}}}
