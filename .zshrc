@@ -259,9 +259,10 @@ zplug 'peterhurford/git-it-on.zsh'
 zplug 'RobSis/zsh-completion-generator'
 zplug 'ytet5uy4/fzf-widgets'
 zplug 'srijanshetty/zsh-pip-completion'
+zplug 'ryutok/rust-zsh-completions'
 zplug load
 # {{{theme
-export TMUXLINE_COLOR_SCHEME="github_normal"
+export TMUXLINE_COLOR_SCHEME="material_light_normal"
 fast-theme q-jmnemonic >/dev/null
 export PURE_PROMPT_SYMBOL="➤"
 export PURE_PROMPT_VICMD_SYMBOL="⮞"
