@@ -2606,6 +2606,7 @@ if g:VIM_LSP_Client ==# 'lcn'
                 \ 'html': ['html-languageserver', '--stdio'],
                 \ 'json': ['json-languageserver', '--stdio'],
                 \ 'python': ['pyls'],
+                \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
                 \ 'sh': ['bash-language-server', 'start'],
                 \ 'yaml': ['yaml-language-server']
                 \ }
@@ -2754,6 +2755,12 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
                     \ 'name': 'python-languageserver',
                     \ 'cmd': {server_info->['pyls']},
                     \ 'whitelist': ['python'],
+                    \ })
+        au User lsp_setup call lsp#register_server({
+                    \ 'name': 'rls',
+                    \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+                    \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+                    \ 'whitelist': ['rust'],
                     \ })
         au User lsp_setup call lsp#register_server({
                     \ 'name': 'bash-languageserver',
@@ -3140,6 +3147,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \       'coc-html',
                 \       'coc-css',
                 \       'coc-emmet',
+                \       'coc-rls',
                 \       'coc-json',
                 \       'coc-yaml'
                 \   )
@@ -3802,7 +3810,7 @@ if g:VIM_Linter ==# 'ale'
                 \       'json': [],
                 \       'markdown': ['languagetool'],
                 \       'python': ['pylint', 'flake8', 'mypy', 'pydocstyle'],
-                \       'rust': [],
+                \       'rust': ['cargo', 'rustc'],
                 \       'sh': ['shellcheck'],
                 \       'zsh': ['shell'],
                 \       'text': ['languagetool'],
