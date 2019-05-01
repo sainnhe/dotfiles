@@ -1767,6 +1767,8 @@ function! ColorScheme()
         colorscheme base16-material-lighter
         hi StartifyFile ctermfg=7 ctermbg=0 guifg=#80CBC4 guibg=#FAFAFA
         hi QuickmenuOption ctermfg=7 ctermbg=0 guifg=#80CBC4 guibg=#FAFAFA
+        hi PmenuSbar ctermbg=8 guibg=#ccd7da
+        hi PmenuThumb ctermbg=18 guibg=#e7eaec
         let g:lightline.colorscheme = 'material_light_alter'
     endif
     call g:quickmenu#append('material', 'call SwitchColorScheme("material-light")', '', '', 0, '')
