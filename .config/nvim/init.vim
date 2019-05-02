@@ -3810,7 +3810,7 @@ if g:VIM_Linter ==# 'ale'
                 \       'json': [],
                 \       'markdown': ['languagetool'],
                 \       'python': ['pylint', 'flake8', 'mypy', 'pydocstyle'],
-                \       'rust': ['cargo', 'rustc'],
+                \       'rust': ['cargo'],
                 \       'sh': ['shellcheck'],
                 \       'zsh': ['shell'],
                 \       'text': ['languagetool'],
