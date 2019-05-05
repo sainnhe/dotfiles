@@ -135,7 +135,7 @@ proc_kill() {
     PROC_ID_ORIGIN=$(ps -alf | "$FuzzyFinder")
     if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
         PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
-        kill -p "$PROC_ID"
+        kill -9 "$PROC_ID"
     fi
 }
 
@@ -144,7 +144,7 @@ proc_kill_all() {
     PROC_ID_ORIGIN=$(ps -elf | "$FuzzyFinder")
     if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
         PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
-        kill -p "$PROC_ID"
+        kill -9 "$PROC_ID"
     fi
 }
 # }}}
