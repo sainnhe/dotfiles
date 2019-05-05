@@ -258,6 +258,7 @@ zplug 'plugins/github', from:oh-my-zsh
 zplug 'peterhurford/git-it-on.zsh'
 zplug 'RobSis/zsh-completion-generator'
 zplug 'ytet5uy4/fzf-widgets'
+zplug 'urbainvaes/fzf-marks'
 zplug 'srijanshetty/zsh-pip-completion'
 zplug 'ryutok/rust-zsh-completions'
 zplug load
@@ -288,6 +289,11 @@ bindkey '^Fl'  fzf-select-widget
 bindkey '^Fh'  fzf-insert-history
 bindkey '^Ff' fzf-insert-files
 bindkey '^Fd' fzf-insert-directory
+# }}}
+# {{{fzf-marks
+# Usage: mark fzm C-d
+FZF_MARKS_FILE="$HOME/.cache/fzf-marks"
+FZF_MARKS_COMMAND="fzf"
 # }}}
 # {{{zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
