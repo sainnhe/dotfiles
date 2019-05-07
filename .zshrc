@@ -294,6 +294,7 @@ bindkey '^Fd' fzf-insert-directory
 # Usage: mark fzm C-d
 FZF_MARKS_FILE="$HOME/.cache/fzf-marks"
 FZF_MARKS_COMMAND="fzf"
+FZF_MARKS_COLOR_RHS="249"
 # }}}
 # {{{zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
