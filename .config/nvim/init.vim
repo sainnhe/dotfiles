@@ -691,7 +691,7 @@ Plug 'cormacrelf/vim-colors-github', { 'as': 'vim-color-github' }
 Plug 'whatyouhide/vim-gotham', { 'as': 'vim-color-gotham' }
 Plug 'ayu-theme/ayu-vim', { 'as': 'vim-color-ayu' }
 Plug 'kaicataldo/material.vim', { 'as': 'vim-color-material-vim' }
-Plug 'bellma101/vim-snazzy', { 'as': 'vim-color-snazzy' }
+Plug 'connorholyday/vim-snazzy', { 'as': 'vim-color-snazzy' }
 Plug 'srcery-colors/srcery-vim', { 'as': 'vim-color-srcery' }
 Plug 'rakr/vim-two-firewatch', { 'as': 'vim-color-two-firewatch' }
 Plug 'davidklsn/vim-sialoquent', { 'as': 'vim-color-sialoquent' }
@@ -2149,13 +2149,17 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'skeletor'
         colorscheme skeletor
         let g:lightline.colorscheme = 'snazzy'
+        let g:lightline#colorscheme#snazzy#palette.tabline.middle = g:lightline#colorscheme#snazzy#palette.normal.middle
+        let g:lightline#colorscheme#snazzy#palette.tabline.tabsel[0] = g:lightline#colorscheme#snazzy#palette.normal.right[0]
     endif
     call g:quickmenu#append('skeletor', 'call SwitchColorScheme("skeletor")', '', '', 0, '')
     "}}}
     "{{{snazzy
     if g:VIM_Color_Scheme ==# 'snazzy'
-        colorscheme snazzy
+        colorscheme base16-snazzy
         let g:lightline.colorscheme = 'snazzy'
+        let g:lightline#colorscheme#snazzy#palette.tabline.middle = g:lightline#colorscheme#snazzy#palette.normal.middle
+        let g:lightline#colorscheme#snazzy#palette.tabline.tabsel[0] = g:lightline#colorscheme#snazzy#palette.normal.right[0]
     endif
     call g:quickmenu#append('snazzy', 'call SwitchColorScheme("snazzy")', '', '', 0, '')
     "}}}
@@ -2164,6 +2168,8 @@ function! ColorScheme()
         set background=dark
         colorscheme tone
         let g:lightline.colorscheme = 'snazzy'
+        let g:lightline#colorscheme#snazzy#palette.tabline.middle = g:lightline#colorscheme#snazzy#palette.normal.middle
+        let g:lightline#colorscheme#snazzy#palette.tabline.tabsel[0] = g:lightline#colorscheme#snazzy#palette.normal.right[0]
     endif
     call g:quickmenu#append('tone', 'call SwitchColorScheme("tone")', '', '', 0, '')
     "}}}
