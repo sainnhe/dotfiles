@@ -21,8 +21,8 @@
         co = checkout
         co-rs = checkout --
         co-rs-fzf = !zsh $HOME/repo/scripts/func/forgit.zsh restore
-        cm = commit -m
-        acm = commit -am
+        cm = commit
+        acm = commit -a
         cm-a = commit --amend
         ad = add
         ad-u = reset HEAD --
