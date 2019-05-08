@@ -258,6 +258,7 @@ zplug 'plugins/github', from:oh-my-zsh
 zplug 'peterhurford/git-it-on.zsh'
 zplug 'ytet5uy4/fzf-widgets'
 zplug 'urbainvaes/fzf-marks'
+zplug 'hlissner/zsh-autopair'
 zplug 'RobSis/zsh-completion-generator'
 zplug 'srijanshetty/zsh-pip-completion'
 zplug 'ryutok/rust-zsh-completions'
