@@ -979,7 +979,7 @@ function! ObsessionStatusEnhance() abort"{{{
     endif
 endfunction"}}}
 function! TmuxBindLock() abort"{{{
-    if filereadable('/tmp/.tmux_bind.lck')
+    if filereadable('/tmp/.tmux-bind.lck')
         return "\uf13e"
     else
         return "\uf023"

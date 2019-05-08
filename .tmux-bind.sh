@@ -23,8 +23,8 @@ tmux bind-key -T prefix C-p run-shell "tmux-pomodoro start"
 tmux bind-key -T prefix M-p run-shell "tmux-pomodoro clear"
 
 if [[ "$1" == "yes" ]]; then
-    # tmux bind-key -n C-Space run-shell -b "$HOME/.tmux_bind.sh no"
-    tmux bind-key -T prefix C-Space run-shell -b "$HOME/.tmux_bind.sh no"
+    # tmux bind-key -n C-Space run-shell -b "$HOME/.tmux-bind.sh no"
+    tmux bind-key -T prefix C-Space run-shell -b "$HOME/.tmux-bind.sh no"
     # pane
     tmux unbind-key -T prefix C-s
     tmux unbind-key -T prefix C-v
@@ -48,10 +48,10 @@ if [[ "$1" == "yes" ]]; then
     tmux bind-key -n C-= resize-pane -U
     tmux bind-key -n C-. resize-pane -R
     tmux bind-key -n C-x kill-pane
-    touch /tmp/.tmux_bind.lck
+    touch /tmp/.tmux-bind.lck
 elif [[ "$1" == "no" ]]; then
-    # tmux bind-key -n C-Space run-shell -b "$HOME/.tmux_bind.sh yes"
-    tmux bind-key -T prefix C-Space run-shell -b "$HOME/.tmux_bind.sh yes"
+    # tmux bind-key -n C-Space run-shell -b "$HOME/.tmux-bind.sh yes"
+    tmux bind-key -T prefix C-Space run-shell -b "$HOME/.tmux-bind.sh yes"
     # pane
     tmux unbind-key -n C-s
     tmux unbind-key -n C-v
@@ -75,7 +75,7 @@ elif [[ "$1" == "no" ]]; then
     tmux bind-key -T prefix C-= resize-pane -U
     tmux bind-key -T prefix C-. resize-pane -R
     tmux bind-key -T prefix C-x kill-pane
-    if [ -e "/tmp/.tmux_bind.lck" ]; then
-        rm /tmp/.tmux_bind.lck
+    if [ -e "/tmp/.tmux-bind.lck" ]; then
+        rm /tmp/.tmux-bind.lck
     fi
 fi

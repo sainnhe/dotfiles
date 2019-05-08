@@ -359,7 +359,7 @@ tmux_start() {
             fi
         fi
     fi
-    ~/.tmux_bind.sh no
+    ~/.tmux-bind.sh no
     tmux source "$HOME/.tmux.conf"
 }
 # if [[ "$TERM_Emulator" == "tilda" ]]; then
@@ -382,5 +382,5 @@ nvim_exist=$(test_cmd nvim)
 if [[ "$TERM_Emulator" == "tilda" ]]; then
     tmux_start
 fi
-~/.tmux_bind.sh no
+~/.tmux-bind.sh no
 # }}}
