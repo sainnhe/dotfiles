@@ -277,10 +277,7 @@ export FZF_DEFAULT_OPTS="
 --color=info:#c678dd,prompt:#c678dd,pointer:#98c379,marker:#98c379,spinner:#61afef,header:#98c379
 "
 source /usr/share/fzf/completion.zsh  # 模糊匹配路径，**<Tab>触发
-bindkey '^Fl'  fzf-select-widget
-bindkey '^Fh'  fzf-insert-history
-bindkey '^Ff' fzf-insert-files
-bindkey '^Fd' fzf-insert-directory
+bindkey '^F'  fzf-select-widget
 # }}}
 # {{{fzf-marks
 # Usage: mark fzm C-d
