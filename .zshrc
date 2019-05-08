@@ -241,8 +241,7 @@ fi
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview
 source ~/.zplug/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug 'mafredri/zsh-async', from:github
-zplug 'sindresorhus/pure', use:pure.zsh, from:github, as:theme
+zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
 zplug 'zdharma/fast-syntax-highlighting'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-autosuggestions'
@@ -257,22 +256,13 @@ zplug 'plugins/frontend-search', from:oh-my-zsh
 zplug 'plugins/gitfast', from:oh-my-zsh
 zplug 'plugins/github', from:oh-my-zsh
 zplug 'peterhurford/git-it-on.zsh'
-zplug 'RobSis/zsh-completion-generator'
 zplug 'ytet5uy4/fzf-widgets'
 zplug 'urbainvaes/fzf-marks'
+zplug 'RobSis/zsh-completion-generator'
 zplug 'srijanshetty/zsh-pip-completion'
 zplug 'ryutok/rust-zsh-completions'
 zplug load
-# {{{theme
-export TMUXLINE_COLOR_SCHEME="material_light_normal"
-fast-theme q-jmnemonic >/dev/null
-export PURE_PROMPT_SYMBOL="➤"
-export PURE_PROMPT_VICMD_SYMBOL="⮞"
-# export PURE_PROMPT_SYMBOL="➢"
-# export PURE_PROMPT_VICMD_SYMBOL="➣"
-# export PURE_PROMPT_SYMBOL="❯"
-# export PURE_PROMPT_VICMD_SYMBOL="❮"
-# }}}
+source "$HOME/.zsh-theme"
 # {{{fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
