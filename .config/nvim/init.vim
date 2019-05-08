@@ -3911,7 +3911,7 @@ endfunction
 " let g:NERDTreeShowIgnoredStatus = 1
 let g:NERDTreeIndicatorMapCustom = {
             \ 'Modified'  : '✸',
-            \ 'Staged'    : "\uf5d8",
+            \ 'Staged'    : '',
             \ 'Untracked' : '✩',
             \ 'Renamed'   : '➠',
             \ 'Unmerged'  : '⮴',
