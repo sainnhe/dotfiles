@@ -238,29 +238,30 @@ else
 fi
 # }}}
 # {{{Plugins
-# https://github.com/tarjoilija/zgen
+# https://github.com/zdharma/zplugin
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview
 # https://github.com/sorin-ionescu/prezto
-source "${HOME}/.zgen/zgen.zsh"
-if ! zgen saved; then
-    zgen load romkatv/powerlevel10k powerlevel10k
-    zgen load zdharma/fast-syntax-highlighting
-    zgen load zsh-users/zsh-autosuggestions
-    zgen load zsh-users/zsh-history-substring-search
-    zgen load skywind3000/z.lua
-    zgen load peterhurford/git-it-on.zsh
-    zgen load ytet5uy4/fzf-widgets
-    zgen load urbainvaes/fzf-marks
-    zgen load hlissner/zsh-autopair
-    zgen load RobSis/zsh-completion-generator
-    zgen load zsh-users/zsh-completions
-    zgen load ryutok/rust-zsh-completions
-    zgen oh-my-zsh plugins/vi-mode
-    zgen oh-my-zsh plugins/command-not-found
-    zgen oh-my-zsh plugins/extract
-    zgen oh-my-zsh plugins/gitfast
-    zgen save
-fi
+source ~/.zplugin/bin/zplugin.zsh
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+zplugin light romkatv/powerlevel10k
+zplugin light zdharma/fast-syntax-highlighting
+zplugin light zsh-users/zsh-autosuggestions
+zplugin ice lucid wait"0"; zplugin light zsh-users/zsh-history-substring-search
+zplugin ice lucid wait"0"; zplugin light skywind3000/z.lua
+zplugin ice lucid wait"1"; zplugin light ytet5uy4/fzf-widgets
+zplugin ice lucid wait"0"; zplugin light urbainvaes/fzf-marks
+zplugin ice lucid wait"1"; zplugin light hlissner/zsh-autopair
+zplugin ice lucid wait"1"; zplugin light peterhurford/git-it-on.zsh
+zplugin ice lucid wait"0"; zplugin snippet OMZ::lib/functions.zsh
+zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
+zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
+zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/web-search/web-search.plugin.zsh
+zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/frontend-search/frontend-search.plugin.zsh
+zplugin ice lucid wait"0" blockf; zplugin light zsh-users/zsh-completions
+zplugin ice lucid wait"0" blockf; zplugin light ryutok/rust-zsh-completions
+zplugin ice lucid wait"1" atload"zpcompinit; zpcdreplay"; zplugin light RobSis/zsh-completion-generator
 source "$HOME/.zsh-theme"
 # {{{fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
@@ -307,6 +308,7 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # gencomp firefox-developer-edition
 # gencomp gotop
 # gencomp browsh
+# gencomp pip
 # }}}
 # }}}
 # {{{TMUX
