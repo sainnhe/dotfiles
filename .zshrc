@@ -162,21 +162,6 @@ setopt autopushd pushdignoredups                # auto push dir into stack and a
 autoload -U promptinit
 promptinit
 # }}}
-# {{{completion
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-zstyle ':completion:*' menu select                                      # use arrow key for completion
-zstyle ':completion::complete:*' gain-privileges 1                      # enabling autocompletion of privileged environments in privileged commands
-zstyle ':completion:*' rehash true                                      # auto rehash new command
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'                 # beautify completion style
-zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'  # beautify completion style
-zstyle ':completion:*' completer _complete _match _approximate          # fuzzy match completions
-zstyle ':completion:*:match:*' original only                            # fuzzy match completions
-zstyle ':completion:*:approximate:*' max-errors 1 numeric               # fuzzy match completions
-zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';      #highlight prefix
-setopt menu_complete                                                    # press <Tab> once to select item
-setopt COMPLETE_ALIASES                                                 # complete alias
-# }}}
 # }}}
 # {{{Alias
 alias ls='lsd'
@@ -259,10 +244,25 @@ zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/command-not-found/comman
 zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
 zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/web-search/web-search.plugin.zsh
 zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/frontend-search/frontend-search.plugin.zsh
+zplugin ice lucid wait"1"; zplugin light RobSis/zsh-completion-generator
 zplugin ice lucid wait"0" blockf; zplugin light zsh-users/zsh-completions
 zplugin ice lucid wait"0" blockf; zplugin light ryutok/rust-zsh-completions
-zplugin ice lucid wait"1" atload"zpcompinit; zpcdreplay"; zplugin light RobSis/zsh-completion-generator
 source "$HOME/.zsh-theme"
+# {{{completion settings
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+zstyle ':completion:*' menu select                                      # use arrow key for completion
+zstyle ':completion::complete:*' gain-privileges 1                      # enabling autocompletion of privileged environments in privileged commands
+zstyle ':completion:*' rehash true                                      # auto rehash new command
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'                 # beautify completion style
+zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'  # beautify completion style
+zstyle ':completion:*' completer _complete _match _approximate          # fuzzy match completions
+zstyle ':completion:*:match:*' original only                            # fuzzy match completions
+zstyle ':completion:*:approximate:*' max-errors 1 numeric               # fuzzy match completions
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';      #highlight prefix
+setopt menu_complete                                                    # press <Tab> once to select item
+setopt COMPLETE_ALIASES                                                 # complete alias
+# }}}
 # {{{fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
