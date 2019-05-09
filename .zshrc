@@ -254,7 +254,6 @@ if ! zgen saved; then
     zgen load hlissner/zsh-autopair
     zgen load RobSis/zsh-completion-generator
     zgen load zsh-users/zsh-completions
-    zgen load srijanshetty/zsh-pip-completion
     zgen load ryutok/rust-zsh-completions
     zgen oh-my-zsh plugins/vi-mode
     zgen oh-my-zsh plugins/command-not-found
@@ -308,7 +307,6 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # gencomp firefox-developer-edition
 # gencomp gotop
 # gencomp browsh
-# gencomp pip
 # }}}
 # }}}
 # {{{TMUX
