@@ -238,32 +238,30 @@ else
 fi
 # }}}
 # {{{Plugins
-# https://github.com/zplug/zplug
+# https://github.com/tarjoilija/zgen
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview
-source ~/.zplug/init.zsh
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
-zplug 'zdharma/fast-syntax-highlighting'
-zplug 'zsh-users/zsh-completions'
-zplug 'zsh-users/zsh-autosuggestions'
-zplug 'zsh-users/zsh-history-substring-search'
-zplug 'skywind3000/z.lua'
-zplug 'plugins/vi-mode', from:oh-my-zsh
-zplug 'plugins/command-not-found', from:oh-my-zsh
-zplug 'plugins/pass', from:oh-my-zsh
-zplug 'plugins/web-search', from:oh-my-zsh
-zplug 'plugins/extract', from:oh-my-zsh
-zplug 'plugins/frontend-search', from:oh-my-zsh
-zplug 'plugins/gitfast', from:oh-my-zsh
-zplug 'plugins/github', from:oh-my-zsh
-zplug 'peterhurford/git-it-on.zsh'
-zplug 'ytet5uy4/fzf-widgets'
-zplug 'urbainvaes/fzf-marks'
-zplug 'hlissner/zsh-autopair'
-zplug 'RobSis/zsh-completion-generator'
-zplug 'srijanshetty/zsh-pip-completion'
-zplug 'ryutok/rust-zsh-completions'
-zplug load
+# https://github.com/sorin-ionescu/prezto
+source "${HOME}/.zgen/zgen.zsh"
+if ! zgen saved; then
+    zgen load romkatv/powerlevel10k powerlevel10k
+    zgen load zdharma/fast-syntax-highlighting
+    zgen load zsh-users/zsh-autosuggestions
+    zgen load zsh-users/zsh-history-substring-search
+    zgen load skywind3000/z.lua
+    zgen load peterhurford/git-it-on.zsh
+    zgen load ytet5uy4/fzf-widgets
+    zgen load urbainvaes/fzf-marks
+    zgen load hlissner/zsh-autopair
+    zgen load RobSis/zsh-completion-generator
+    zgen load zsh-users/zsh-completions
+    zgen load srijanshetty/zsh-pip-completion
+    zgen load ryutok/rust-zsh-completions
+    zgen oh-my-zsh plugins/vi-mode
+    zgen oh-my-zsh plugins/command-not-found
+    zgen oh-my-zsh plugins/extract
+    zgen oh-my-zsh plugins/gitfast
+    zgen save
+fi
 source "$HOME/.zsh-theme"
 # {{{fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
