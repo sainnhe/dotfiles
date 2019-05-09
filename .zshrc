@@ -327,7 +327,7 @@ tmux_start() {
                 tmux new-session -d -s Alpha
                 tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
                 tmux new-window -t Alpha
-                tmux send-keys -t Alpha:0 "cd ~" Enter
+                # tmux send-keys -t Alpha:0 "cd ~" Enter
                 if [[ "$nvim_exist" == "yes" ]]; then
                     tmux send-keys -t Alpha:0 "export TERM_Emulator=$TERM_Emulator" Enter
                     tmux send-keys -t Alpha:0 "nvim" Enter
@@ -347,7 +347,7 @@ tmux_start() {
                 tmux new-session -d -s Beta
                 tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
                 tmux new-window -t Beta
-                tmux send-keys -t Beta:0 "cd ~" Enter
+                # tmux send-keys -t Beta:0 "cd ~" Enter
                 if [[ "$nvim_exist" == "yes" ]]; then
                     tmux send-keys -t Beta:0 "nvim" Enter
                 elif [[ "$nvim_exist" == "no" ]]; then
