@@ -28,13 +28,12 @@ test_cmd() { # {{{
 } # }}}
 switch_tmuxline() { # {{{
     echo ""
-    ls ~/.tmux/tmuxline/ | sed 's/\..*//g'
+    ls ~/.tmux/tmuxline/ | sed 's/\..*//g' | sed -e '$a sync\nnormal\ninsert\nvisual'
     echo ""
     read -r TMUXLINE_COLOR_SCHEME
     while [ "$TMUXLINE_COLOR_SCHEME"x != "q"x ]; do
-        if [[ "$TMUXLINE_COLOR_SCHEME" == "disable" ]]; then
-            echo ""
-            echo 'export TMUXLINE_COLOR_SCHEME="disable"'
+        if [[ "$TMUXLINE_COLOR_SCHEME" == "sync" || "$TMUXLINE_COLOR_SCHEME" == "normal" || "$TMUXLINE_COLOR_SCHEME" == "insert" || "$TMUXLINE_COLOR_SCHEME" == "visual" ]]; then
+            echo "export TMUXLINE_COLOR_SCHEME=$TMUXLINE_COLOR_SCHEME" | xclip -selection c
         else
             tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
             tmux source-file "$HOME/.tmux.conf"

@@ -31,7 +31,6 @@ if exists('*VIM_Global_Settings')
     call VIM_Global_Settings()
 endif
 let g:VIM_AutoInstall = 1
-let g:VIM_TmuxLineSync = 0
 let g:VIM_Enable_Autopairs = 1
 "}}}
 "{{{Global
@@ -725,8 +724,10 @@ Plug 'liuchengxu/space-vim-theme', { 'as': 'vim-color-spacevim' }
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'macthecadillac/lightline-gitdiff'
-if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
-    Plug 'sainnhe/tmuxline.vim', {'branch': 'dev'}
+if g:VIM_Is_In_Tmux == 1
+    if $TMUXLINE_COLOR_SCHEME ==# 'normal' || $TMUXLINE_COLOR_SCHEME ==# 'insert' || $TMUXLINE_COLOR_SCHEME ==# 'visual' || $TMUXLINE_COLOR_SCHEME ==# 'sync'
+        Plug 'sainnhe/tmuxline.vim', {'branch': 'dev'}
+    endif
 endif
 if g:VIM_Enable_Startify == 1
     Plug 'mhinz/vim-startify'
@@ -1173,47 +1174,59 @@ let g:lightline.component_visible_condition = {
             \   }
 "}}}
 "{{{tmuxline.vim
-if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
-    "{{{TmuxlineGen
-    function! TmuxlineGen(str)
-        execute 'Tmuxline lightline'
-        execute 'TmuxlineSnapshot! ~/.tmux/tmuxline/'.a:str.'_normal.tmux.conf'
-        execute 'Tmuxline lightline_insert'
-        execute 'TmuxlineSnapshot! ~/.tmux/tmuxline/'.a:str.'_insert.tmux.conf'
-        execute 'Tmuxline lightline_visual'
-        execute 'TmuxlineSnapshot! ~/.tmux/tmuxline/'.a:str.'_visual.tmux.conf'
-    endfunction
-    "}}}
-    if g:VIM_TmuxLineSync == 1
-        augroup TmuxlineAu
-            autocmd!
-            autocmd VimEnter * Tmuxline lightline | AsyncRun tmux source-file ~/.tmux.conf
-            autocmd InsertLeave * Tmuxline lightline | AsyncRun tmux source-file ~/.tmux.conf
-            autocmd InsertEnter * Tmuxline lightline_insert | AsyncRun tmux source-file ~/.tmux.conf
-            autocmd InsertEnter * Tmuxline lightline_insert | AsyncRun tmux source-file ~/.tmux.conf
-        augroup END
-    else
-        augroup TmuxlineAu
-            autocmd!
-            autocmd VimEnter * Tmuxline lightline | AsyncRun tmux source-file ~/.tmux.conf
-        augroup END
+if g:VIM_Is_In_Tmux == 1
+    if $TMUXLINE_COLOR_SCHEME ==# 'normal' || $TMUXLINE_COLOR_SCHEME ==# 'insert' || $TMUXLINE_COLOR_SCHEME ==# 'visual' || $TMUXLINE_COLOR_SCHEME ==# 'sync'
+        "{{{TmuxlineGen
+        function! TmuxlineGen(str)
+            execute 'Tmuxline lightline'
+            execute 'TmuxlineSnapshot! ~/.tmux/tmuxline/'.a:str.'_normal.tmux.conf'
+            execute 'Tmuxline lightline_insert'
+            execute 'TmuxlineSnapshot! ~/.tmux/tmuxline/'.a:str.'_insert.tmux.conf'
+            execute 'Tmuxline lightline_visual'
+            execute 'TmuxlineSnapshot! ~/.tmux/tmuxline/'.a:str.'_visual.tmux.conf'
+        endfunction
+        "}}}
+        if $TMUXLINE_COLOR_SCHEME ==# 'sync'
+            augroup TmuxlineAu
+                autocmd!
+                autocmd VimEnter * Tmuxline lightline | AsyncRun tmux source-file ~/.tmux.conf
+                autocmd InsertLeave * Tmuxline lightline | AsyncRun tmux source-file ~/.tmux.conf
+                autocmd InsertEnter * Tmuxline lightline_insert | AsyncRun tmux source-file ~/.tmux.conf
+                autocmd InsertEnter * Tmuxline lightline_insert | AsyncRun tmux source-file ~/.tmux.conf
+            augroup END
+        elseif $TMUXLINE_COLOR_SCHEME ==# 'normal'
+            augroup TmuxlineAu
+                autocmd!
+                autocmd VimEnter * Tmuxline lightline | AsyncRun tmux source-file ~/.tmux.conf
+            augroup END
+        elseif $TMUXLINE_COLOR_SCHEME ==# 'insert'
+            augroup TmuxlineAu
+                autocmd!
+                autocmd VimEnter * Tmuxline lightline_insert | AsyncRun tmux source-file ~/.tmux.conf
+            augroup END
+        elseif $TMUXLINE_COLOR_SCHEME ==# 'visual'
+            augroup TmuxlineAu
+                autocmd!
+                autocmd VimEnter * Tmuxline lightline_visual | AsyncRun tmux source-file ~/.tmux.conf
+            augroup END
+        endif
+        let g:tmuxline_preset = {
+                    \'a'    : '#S',
+                    \'b'    : '%R %a',
+                    \'c'    : [ '#{sysstat_mem} #[fg=blue]\ufa51#{upload_speed}' ],
+                    \'win'  : [ '#I', '#W' ],
+                    \'cwin' : [ '#I', '#W', '#F' ],
+                    \'x'    : [ "#[fg=blue]#{download_speed} \uf6d9 #{sysstat_cpu}" ],
+                    \'y'    : [ '#(bash /home/sainnhe/repo/scripts/func/tmux_pomodoro.sh) \ue0bd #(bash /home/sainnhe/repo/scripts/func/tmux_lock.sh)' ],
+                    \'z'    : '#H #{prefix_highlight}'
+                    \}
+        let g:tmuxline_separators = {
+                    \ 'left' : "\ue0bc",
+                    \ 'left_alt': "\ue0bd",
+                    \ 'right' : "\ue0ba",
+                    \ 'right_alt' : "\ue0bd",
+                    \ 'space' : ' '}
     endif
-    let g:tmuxline_preset = {
-                \'a'    : '#S',
-                \'b'    : '%R %a',
-                \'c'    : [ '#{sysstat_mem} #[fg=blue]\ufa51#{upload_speed}' ],
-                \'win'  : [ '#I', '#W' ],
-                \'cwin' : [ '#I', '#W', '#F' ],
-                \'x'    : [ "#[fg=blue]#{download_speed} \uf6d9 #{sysstat_cpu}" ],
-                \'y'    : [ '#(bash /home/sainnhe/repo/scripts/func/tmux_pomodoro.sh) \ue0bd #(bash /home/sainnhe/repo/scripts/func/tmux_lock.sh)' ],
-                \'z'    : '#H #{prefix_highlight}'
-                \}
-    let g:tmuxline_separators = {
-                \ 'left' : "\ue0bc",
-                \ 'left_alt': "\ue0bd",
-                \ 'right' : "\ue0ba",
-                \ 'right_alt' : "\ue0bd",
-                \ 'space' : ' '}
 endif
 "}}}
 "{{{colorscheme
@@ -1225,8 +1238,10 @@ function! SwitchColorScheme(name)
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
-    if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
-        execute 'Tmuxline lightline'
+    if g:VIM_Is_In_Tmux == 1
+        if $TMUXLINE_COLOR_SCHEME ==# 'normal' || $TMUXLINE_COLOR_SCHEME ==# 'insert' || $TMUXLINE_COLOR_SCHEME ==# 'visual' || $TMUXLINE_COLOR_SCHEME ==# 'sync'
+            execute 'Tmuxline lightline'
+        endif
     endif
 endfunction
 "}}}
