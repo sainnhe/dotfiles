@@ -246,6 +246,7 @@ zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/web-search/web-search.pl
 zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/frontend-search/frontend-search.plugin.zsh
 zplugin ice lucid wait"1"; zplugin light RobSis/zsh-completion-generator
 zplugin ice lucid wait"0" blockf; zplugin light zsh-users/zsh-completions
+zplugin ice lucid wait"0" blockf svn; zplugin snippet https://github.com/zchee/zsh-completions/trunk/src/zsh
 zplugin ice lucid wait"0" blockf; zplugin light ryutok/rust-zsh-completions
 source "$HOME/.zsh-theme"
 # {{{completion settings
