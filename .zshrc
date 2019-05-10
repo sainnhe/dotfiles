@@ -148,6 +148,24 @@ proc_kill_all() {
     fi
 }
 # }}}
+# {{{comp_gen
+comp_gen () {
+    echo "[1] manpage  [2] help"
+    read -r var
+    if [[ "$var"x == "1"x ]]; then
+        find -L /usr/share/man -type f -print -o -type l \
+            -print -o  \( -path '*/\.*' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \) \
+            -prune 2> /dev/null |\
+            sed 's|\./||g' |\
+            fzf |\
+            xargs -i sh ~/.zplugin/plugins/nevesnunes---sh-manpage-completions/gencomp-manpage {}
+    elif [[ "$var"x == "2"x ]]; then
+        TARGET=$(compgen -cb | fzf)
+        gencomp "$TARGET"
+    fi
+    zpcompinit
+}
+# }}}
 # }}}
 # {{{Settings
 # {{{general
@@ -161,6 +179,23 @@ setopt autopushd pushdignoredups                # auto push dir into stack and a
 # {{{prompt
 autoload -U promptinit
 promptinit
+# }}}
+# {{{completion
+zcomp_init () {
+    autoload -U +X compinit && compinit
+    autoload -U +X bashcompinit && bashcompinit
+    zstyle ':completion:*' menu select                                      # use arrow key for completion
+    zstyle ':completion::complete:*' gain-privileges 1                      # enabling autocompletion of privileged environments in privileged commands
+    zstyle ':completion:*' rehash true                                      # auto rehash new command
+    zstyle ':completion:*:descriptions' format '%U%B%d%b%u'                 # beautify completion style
+    zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'  # beautify completion style
+    zstyle ':completion:*' completer _complete _match _approximate          # fuzzy match completions
+    zstyle ':completion:*:match:*' original only                            # fuzzy match completions
+    zstyle ':completion:*:approximate:*' max-errors 1 numeric               # fuzzy match completions
+    zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';      #highlight prefix
+    setopt menu_complete                                                    # press <Tab> once to select item
+    setopt COMPLETE_ALIASES                                                 # complete alias
+}
 # }}}
 # }}}
 # {{{Alias
@@ -214,6 +249,8 @@ alias ltop='gotop -b -c monokai'
 alias browsh-docker='docker run --rm -it browsh/browsh'
 alias net-test="bash ~/repo/scripts/func/net-test.sh"
 alias t='goldendict'
+alias gencomp-help='gencomp'
+alias comp-gen='comp_gen'
 if [[ "$TERM_Emulator" == "tilda" ]]; then
     alias g='BROWSER=w3m proxychains -q googler -x -n 2 -N -c us -l en --color nJmkxy'
     alias d='BROWSER=w3m proxychains -q ddgr -n 2 -x --unsafe --color mJklxy'
@@ -244,26 +281,12 @@ zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/command-not-found/comman
 zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
 zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/web-search/web-search.plugin.zsh
 zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/frontend-search/frontend-search.plugin.zsh
-zplugin ice lucid wait"1"; zplugin light RobSis/zsh-completion-generator
 zplugin ice lucid wait"0" blockf; zplugin light zsh-users/zsh-completions
 zplugin ice lucid wait"0" blockf svn; zplugin snippet https://github.com/zchee/zsh-completions/trunk/src/zsh
 zplugin ice lucid wait"0" blockf; zplugin light ryutok/rust-zsh-completions
+zplugin ice lucid wait"0"; zplugin light RobSis/zsh-completion-generator
+zplugin ice lucid wait"0" atload"export FPATH=$HOME/.zplugin/plugins/RobSis---zsh-completion-generator/completions:$HOME/.zplugin/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH; zcomp_init" as"program" atclone"mv run.sh gencomp-manpage; sed -i -e '1i pushd ~/.zplugin/plugins/nevesnunes---sh-manpage-completions/' -e '\$a popd' gencomp-manpage" pick"run.sh"; zplugin light nevesnunes/sh-manpage-completions
 source "$HOME/.zsh-theme"
-# {{{completion settings
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-zstyle ':completion:*' menu select                                      # use arrow key for completion
-zstyle ':completion::complete:*' gain-privileges 1                      # enabling autocompletion of privileged environments in privileged commands
-zstyle ':completion:*' rehash true                                      # auto rehash new command
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'                 # beautify completion style
-zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'  # beautify completion style
-zstyle ':completion:*' completer _complete _match _approximate          # fuzzy match completions
-zstyle ':completion:*:match:*' original only                            # fuzzy match completions
-zstyle ':completion:*:approximate:*' max-errors 1 numeric               # fuzzy match completions
-zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';      #highlight prefix
-setopt menu_complete                                                    # press <Tab> once to select item
-setopt COMPLETE_ALIASES                                                 # complete alias
-# }}}
 # {{{fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
@@ -375,9 +398,6 @@ relax () {
     tmux send-keys -t Alt:2 "rtv" Enter
 }
 # }}}
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
 nvim_exist=$(test_cmd nvim)
 if [[ "$TERM_Emulator" == "tilda" ]]; then
     tmux_start
