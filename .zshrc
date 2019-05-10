@@ -149,7 +149,7 @@ proc_kill_all() {
 }
 # }}}
 # {{{comp_gen
-comp_gen () {
+zcomp_gen () {
     echo "[1] manpage  [2] help"
     read -r var
     if [[ "$var"x == "1"x ]]; then
@@ -260,7 +260,7 @@ alias browsh-docker='docker run --rm -it browsh/browsh'
 alias net-test="bash ~/repo/scripts/func/net-test.sh"
 alias t='goldendict'
 alias gencomp-help='gencomp'
-alias comp-gen='comp_gen'
+alias zcomp-gen='zcomp_gen'
 if [[ "$TERM_Emulator" == "tilda" ]]; then
     alias g='BROWSER=w3m proxychains -q googler -x -n 2 -N -c us -l en --color nJmkxy'
     alias d='BROWSER=w3m proxychains -q ddgr -n 2 -x --unsafe --color mJklxy'
