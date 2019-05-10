@@ -148,10 +148,13 @@ proc_kill_all() {
     fi
 }
 # }}}
-# {{{comp_gen
+# {{{zcomp_gen
 zcomp_gen () {
     echo "[1] manpage  [2] help"
     read -r var
+    if [[ "$var"x == ""x ]]; then
+        var=1
+    fi
     if [[ "$var"x == "1"x ]]; then
         TARGET=$(find -L /usr/share/man -type f -print -o -type l \
             -print -o  \( -path '*/\.*' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \) \
