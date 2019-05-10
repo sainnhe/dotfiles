@@ -726,7 +726,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'macthecadillac/lightline-gitdiff'
 if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
-    Plug 'edkolev/tmuxline.vim'
+    Plug 'sainnhe/tmuxline.vim', {'branch': 'dev'}
 endif
 if g:VIM_Enable_Startify == 1
     Plug 'mhinz/vim-startify'
@@ -911,7 +911,7 @@ Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'albertomontesg/lightline-asyncrun'
-Plug 'mg979/vim-visual-multi', {'branch': 'test'}
+Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'Shougo/unite.vim', { 'on': [] }
@@ -1198,7 +1198,6 @@ if g:VIM_Is_In_Tmux == 1 && $TMUXLINE_COLOR_SCHEME ==# 'disable'
             autocmd VimEnter * Tmuxline lightline | AsyncRun tmux source-file ~/.tmux.conf
         augroup END
     endif
-    " '#{sysstat_cpu} #{sysstat_mem} #{sysstat_swap}'
     let g:tmuxline_preset = {
                 \'a'    : '#S',
                 \'b'    : '%R %a',
@@ -1232,7 +1231,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'material-light'
+let g:VIM_Color_Scheme = 'one-dark'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
