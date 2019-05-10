@@ -1,4 +1,4 @@
-export TMUXLINE_COLOR_SCHEME="cosme_normal"
+export TMUXLINE_COLOR_SCHEME="normal"
 fast-theme q-jmnemonic >/dev/null
 
 # Original location: https://github.com/romkatv/dotfiles-public/blob/master/.purepower.

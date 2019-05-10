@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+
+# {{{
+typeset -Ag snippets
+
+snippet-add() {
+    snippets[$1]="$2"
+}
+
+snippet-expand() {
+    emulate -L zsh
+    setopt extendedglob
+    local MATCH
+
+    LBUFFER=${LBUFFER%%(#m)[.\-+:|_a-zA-Z0-9]#}
+    LBUFFER+=${snippets[$MATCH]:-$MATCH}
+}
+zle -N snippet-expand
+
+bindkey '^\' snippet-expand
+# }}}
+
+snippet-add f           "fzf "
+snippet-add fp          "| fzf "
+snippet-add vp          "vimpager "
+snippet-add vpp         "| vimpager "
