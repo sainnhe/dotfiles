@@ -153,17 +153,27 @@ comp_gen () {
     echo "[1] manpage  [2] help"
     read -r var
     if [[ "$var"x == "1"x ]]; then
-        find -L /usr/share/man -type f -print -o -type l \
+        TARGET=$(find -L /usr/share/man -type f -print -o -type l \
             -print -o  \( -path '*/\.*' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \) \
             -prune 2> /dev/null |\
             sed 's|\./||g' |\
-            fzf |\
-            xargs -i sh ~/.zplugin/plugins/nevesnunes---sh-manpage-completions/gencomp-manpage {}
+            sed '1i [cancel]' |\
+            fzf)
+        if [[ "$TARGET"x == "[cancel]"x ]]; then
+            echo ""
+        else
+            echo "$TARGET" | xargs -i sh ~/.zplugin/plugins/nevesnunes---sh-manpage-completions/gencomp-manpage {}
+            zpcompinit
+        fi
     elif [[ "$var"x == "2"x ]]; then
-        TARGET=$(compgen -cb | fzf)
-        gencomp "$TARGET"
+        TARGET=$(compgen -cb | sed '1i [cancel]' | fzf)
+        if [[ "$TARGET"x == "[cancel]"x ]]; then
+            echo ""
+        else
+            gencomp "$TARGET"
+            zpcompinit
+        fi
     fi
-    zpcompinit
 }
 # }}}
 # }}}
