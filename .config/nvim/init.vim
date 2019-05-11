@@ -836,6 +836,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
     Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
     Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
+    Plug 'tjdevries/coc-zsh'
     if executable('proxychains')
         Plug 'neoclide/coc.nvim', {'do': 'proxychains -q yarn install --frozen-lockfile'}
     else
@@ -3173,7 +3174,8 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \       'coc-emmet',
                 \       'coc-rls',
                 \       'coc-json',
-                \       'coc-yaml'
+                \       'coc-yaml',
+                \       'coc-vimlsp'
                 \   )
     if g:VIM_Enable_Autopairs == 0
         call coc#add_extension( 'coc-pairs' )
