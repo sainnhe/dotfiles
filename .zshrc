@@ -1,5 +1,6 @@
-# {{{Init
+# {{{Settings
 # zmodload zsh/zprof
+# {{{env
 export PATH="$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
 export TERM=xterm-256color
 export HISTFILE="$HOME/.zsh_history"
@@ -13,6 +14,41 @@ export BROWSER="chromium"
 export PAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 export MANPAGER="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 export FuzzyFinder="fzf"
+# }}}
+# {{{general
+set -o monitor
+set +o nonotify
+umask 077
+setopt hist_save_no_dups hist_ignore_dups       # eliminate duplicate entries in history
+setopt correctall                               # enable auto correction
+setopt autopushd pushdignoredups                # auto push dir into stack and and don’t duplicate them
+# }}}
+# {{{prompt
+autoload -U promptinit
+promptinit
+# }}}
+# {{{completion
+zcomp_init () {
+    autoload -U +X compinit && compinit
+    autoload -U +X bashcompinit && bashcompinit
+    zstyle ':completion:*' menu select                                      # use arrow key for completion
+    zstyle ':completion::complete:*' gain-privileges 1                      # enabling autocompletion of privileged environments in privileged commands
+    zstyle ':completion:*' rehash true                                      # auto rehash new command
+    zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'     # beautify completion style
+    zstyle ':completion:*:descriptions' format $'\e[2m -- %d --\e[0m'                   # beautify completion style
+    zstyle ':completion:*:corrections' format $'\e[01;33m -- %d (errors: %e) --\e[0m'   # beautify completion style
+    zstyle ':completion:*' completer _complete _match _approximate          # fuzzy match completions
+    zstyle ':completion:*:match:*' original only                            # fuzzy match completions
+    zstyle ':completion:*:approximate:*' max-errors 1 numeric               # fuzzy match completions
+    zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';      #highlight prefix
+    setopt menu_complete                                                    # press <Tab> once to select item
+    setopt completealiases                                                  # complete alias
+    zstyle ':completion:*' use-cache on                                     # cache
+    _cache_dir=${XDG_CACHE_HOME:-$HOME/.cache}/zsh                          # cache
+    zstyle ':completion:*' cache-path $_cache_dir                           # cache
+    unset _cache_dir                                                        # cache
+}
+# }}}
 # {{{rtv
 export RTV_EDITOR="nvim"
 export RTV_BROWSER="w3m"
@@ -176,37 +212,6 @@ zcomp-gen () {
             zpcompinit
         fi
     fi
-}
-# }}}
-# }}}
-# {{{Settings
-# {{{general
-set -o monitor
-set +o nonotify
-umask 077
-setopt HIST_IGNORE_DUPS                         # eliminate duplicate entries in history
-setopt correctall                               # enable auto correction
-setopt autopushd pushdignoredups                # auto push dir into stack and and don’t duplicate them
-# }}}
-# {{{prompt
-autoload -U promptinit
-promptinit
-# }}}
-# {{{completion
-zcomp_init () {
-    autoload -U +X compinit && compinit
-    autoload -U +X bashcompinit && bashcompinit
-    zstyle ':completion:*' menu select                                      # use arrow key for completion
-    zstyle ':completion::complete:*' gain-privileges 1                      # enabling autocompletion of privileged environments in privileged commands
-    zstyle ':completion:*' rehash true                                      # auto rehash new command
-    zstyle ':completion:*:descriptions' format '%U%B%d%b%u'                 # beautify completion style
-    zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'  # beautify completion style
-    zstyle ':completion:*' completer _complete _match _approximate          # fuzzy match completions
-    zstyle ':completion:*:match:*' original only                            # fuzzy match completions
-    zstyle ':completion:*:approximate:*' max-errors 1 numeric               # fuzzy match completions
-    zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';      #highlight prefix
-    setopt menu_complete                                                    # press <Tab> once to select item
-    setopt COMPLETE_ALIASES                                                 # complete alias
 }
 # }}}
 # }}}
