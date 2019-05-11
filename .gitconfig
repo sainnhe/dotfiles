@@ -11,7 +11,7 @@
         ft = fetch
         pl = pull
         mg = merge
-        mgt = mergetool
+        mt = mergetool
         st = status
         br = branch
         dt = difftool
