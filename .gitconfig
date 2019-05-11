@@ -10,7 +10,8 @@
         ps = push
         ft = fetch
         pl = pull
-        mg = mergetool
+        mg = merge
+        mgt = mergetool
         st = status
         br = branch
         dt = difftool
