@@ -1,5 +1,5 @@
 # {{{Init
-zmodload zsh/zprof  # zprof | vimpager
+# zmodload zsh/zprof
 export PATH="$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
 export TERM=xterm-256color
 export HISTFILE="$HOME/.zsh_history"
@@ -402,4 +402,6 @@ if [[ "$TERM_Emulator" == "tilda" ]]; then
     tmux-start
 fi
 ~/.tmux-bind.sh no
+# zprof  # 取消注释首行和本行，然后执行 time zsh -i -c exit
+# 若直接执行 zprof，将会测试包括 lazyload 在内的所有启动时间
 # }}}
