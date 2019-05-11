@@ -26,7 +26,7 @@ test_cmd_pre() { # {{{
 test_cmd() { # {{{
     test_cmd_pre "$1" && echo 'yes' || echo 'no'
 } # }}}
-switch_tmuxline() { # {{{
+switch-tmuxline() { # {{{
     echo ""
     ls ~/.tmux/tmuxline/ | sed 's/\..*//g' | sed -e '$a sync\nnormal\ninsert\nvisual'
     echo ""
@@ -53,30 +53,30 @@ cdf() {
         cd "$dir"
     }
 # include hidden dirs
-cdf_all() {
+cdf-all() {
     local dir
     dir=$(find ${1:-.} -type d 2> /dev/null | grep -v ".git/" | "$FuzzyFinder") && cd "$dir"
 }
 # job to fore
-job_fore() {
+job-fore() {
     JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
     fg %"$JOB_ID"
 }
 
 # job to back
-job_back() {
+job-back() {
     JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
     bg %"$JOB_ID"
 }
 
 # job kill
-job_kill() {
+job-kill() {
     JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
     kill %"$JOB_ID"
 }
 
-# proc ls
-proc_ls() {
+# ps ls
+ps-ls() {
     PROC_ID_ORIGIN=$(ps -alf | "$FuzzyFinder")
     if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
         PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
@@ -84,8 +84,8 @@ proc_ls() {
     fi
 }
 
-# proc ls all
-proc_ls_all() {
+# ps ls all
+ps-ls-all() {
     PROC_ID_ORIGIN=$(ps -elf | "$FuzzyFinder")
     if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
         PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
@@ -93,8 +93,8 @@ proc_ls_all() {
     fi
 }
 
-# proc info
-proc_info() {
+# ps info
+ps-info() {
     PROC_ID_ORIGIN=$(ps -alf | "$FuzzyFinder")
     if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
         PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
@@ -102,8 +102,8 @@ proc_info() {
     fi
 }
 
-# proc info all
-proc_info_all() {
+# ps info all
+ps-info-all() {
     PROC_ID_ORIGIN=$(ps -elf | "$FuzzyFinder")
     if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
         PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
@@ -111,8 +111,8 @@ proc_info_all() {
     fi
 }
 
-# proc tree
-proc_tree() {
+# ps tree
+ps-tree() {
     PROC_ID_ORIGIN=$(ps -alf | "$FuzzyFinder")
     if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
         PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
@@ -120,8 +120,8 @@ proc_tree() {
     fi
 }
 
-# proc tree all
-proc_tree_all() {
+# ps tree all
+ps-tree-all() {
     PROC_ID_ORIGIN=$(ps -elf | "$FuzzyFinder")
     if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
         PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
@@ -129,8 +129,8 @@ proc_tree_all() {
     fi
 }
 
-# proc kill
-proc_kill() {
+# ps kill
+ps-kill() {
     PROC_ID_ORIGIN=$(ps -alf | "$FuzzyFinder")
     if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
         PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
@@ -138,8 +138,8 @@ proc_kill() {
     fi
 }
 
-# proc kill
-proc_kill_all() {
+# ps kill
+ps-kill-all() {
     PROC_ID_ORIGIN=$(ps -elf | "$FuzzyFinder")
     if [[ $(echo "$PROC_ID_ORIGIN" | grep "UID[[:blank:]]*PID")x == ""x ]]; then
         PROC_ID=$(echo "$PROC_ID_ORIGIN" | grep -o '^[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*[[:blank:]]*[^[:blank:]]*' | grep -o '[[:digit:]]*$')
@@ -147,8 +147,8 @@ proc_kill_all() {
     fi
 }
 # }}}
-# {{{zcomp_gen
-zcomp_gen () {
+# {{{zcomp-gen
+zcomp-gen () {
     echo "[1] manpage  [2] help"
     read -r var
     if [[ "$var"x == ""x ]]; then
@@ -219,32 +219,19 @@ alias du='du -hc'
 alias df='df -h'
 alias cp='cp -ip'
 alias mv='mv -i'
-alias cdf-all='cdf_all'
 alias cdh='pushd +$( dirs -v | "$FuzzyFinder" | grep -o "[[:digit:]]") > /dev/null'
 alias cdh-ls='dirs -vl | "$FuzzyFinder"'
 alias cdh-clean='popd +$( dirs -v | "$FuzzyFinder" | grep -o "[[:digit:]]") > /dev/null'
 alias cdh-clean-all='dirs -c'
 alias cdr='cd $(git rev-parse --show-toplevel)'
-alias ps-ls='proc_ls'
-alias ps-ls-all='proc_ls_all'
-alias ps-info='proc_info'
-alias ps-info-all='proc_info_all'
-alias ps-tree='proc_tree'
-alias ps-tree-all='proc_tree_all'
-alias ps-kill='proc_kill'
-alias ps-kill-all='proc_kill_all'
 alias job-='fg %-'
 alias job-ls='jobs -l'
-alias job-fore='job_fore'
-alias job-back='job_back'
-alias job-kill='job_kill'
 alias nnn='PAGER= nnn'
 alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias help='bash ~/repo/scripts/func/help.sh'
 alias GCT='bash ~/repo/scripts/func/GCT.sh'
 alias KCT='kcmcolorfulhelper -s -p'
 alias tmux='tmux -2'
-alias tmux-start='tmux_start'
 alias haxor-news='proxychains -q haxor-news'
 alias gitsome='proxychains -q gitsome'
 alias rtv='proxychains -q rtv'
@@ -252,7 +239,7 @@ alias hn='proxychains -q hn'
 alias git-proxy='bash ~/repo/scripts/func/git-proxy.sh'
 alias bebusy='python ~/repo/scripts/func/bebusy.py'
 alias clean='bash ~/repo/scripts/func/clean.sh'
-alias switch_v2ray='bash ~/repo/scripts/func/v2ray/v2ray_switch.sh'
+alias switch-v2ray='bash ~/repo/scripts/func/v2ray/v2ray_switch.sh'
 alias roll-all='bash ~/repo/scripts/func/roll.sh all'
 alias roll-aur='bash ~/repo/scripts/func/roll.sh'
 alias zip-r='bash ~/repo/scripts/func/zip.sh'
@@ -262,7 +249,6 @@ alias browsh-docker='docker run --rm -it browsh/browsh'
 alias net-test="bash ~/repo/scripts/func/net-test.sh"
 alias t='goldendict'
 alias gencomp-help='gencomp'
-alias zcomp-gen='zcomp_gen'
 if [[ "$TERM_Emulator" == "tilda" ]]; then
     alias g='BROWSER=w3m proxychains -q googler -x -n 2 -N -c us -l en --color nJmkxy'
     alias d='BROWSER=w3m proxychains -q ddgr -n 2 -x --unsafe --color mJklxy'
@@ -350,7 +336,7 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # {{{TMUX
 # {{{TMUX Start
-tmux_start() {
+tmux-start() {
     alias tmux='tmux -2'
     if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -413,7 +399,7 @@ relax () {
 # }}}
 nvim_exist=$(test_cmd nvim)
 if [[ "$TERM_Emulator" == "tilda" ]]; then
-    tmux_start
+    tmux-start
 fi
 ~/.tmux-bind.sh no
 # }}}
