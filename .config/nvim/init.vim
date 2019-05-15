@@ -699,7 +699,7 @@ Plug 'davidklsn/vim-sialoquent', { 'as': 'vim-color-sialoquent' }
 Plug 'KeitaNakamura/neodark.vim', { 'as': 'vim-color-neodark' }
 Plug 'reedes/vim-colors-pencil', { 'as': 'vim-color-pencil' }
 Plug 'bcicen/vim-vice', { 'as': 'vim-color-vice' }
-Plug 'soft-aesthetic/soft-era-vim', { 'as': 'vim-color-soft-era' }
+Plug 'sainnhe/soft-era-vim', { 'as': 'vim-color-soft-era' }
 Plug 'sts10/vim-pink-moon', { 'as': 'vim-color-pink-moon' }
 Plug 'KKPMW/sacredforest-vim', { 'as': 'vim-color-sacredforest' }
 Plug 'trevordmiller/nova-vim', { 'as': 'vim-color-nova' }
@@ -1499,7 +1499,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'ashes'
         set background=dark
         colorscheme base16-ashes
-        let g:lightline.colorscheme = 'base16_ashes'
+        let g:lightline.colorscheme = 'base16_ashes_alter'
     endif
     call g:quickmenu#append('ashes', 'call SwitchColorScheme("ashes")', '', '', 0, '')
     "}}}
@@ -2249,30 +2249,6 @@ function! ColorScheme()
         set background=light
         colorscheme soft-era
         let g:lightline.colorscheme = 'softera_alter'
-        hi Conceal guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi Cursor guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi CursorIM guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi FoldColumn guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi SignColumn guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi ModeMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi MoreMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi PmenuSbar guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi PmenuThumb guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi Question guifg=#eceafa ctermfg=10 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-        hi SpecialKey guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi SpellBad guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi SpellLocal guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi SpellCap guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi SpellRare guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi StatusLine guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi StatusLineNC guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi TabLine guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi TabLineFill guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi TabLineSel guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi Title guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi VisualNOS guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi WarningMsg guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
-        hi WildMenu guifg=#ff6f6f ctermfg=9 guibg=#eceafa ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('soft-era', 'call SwitchColorScheme("soft-era")', '', '', 0, '')
     "}}}
