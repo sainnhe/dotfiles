@@ -1274,29 +1274,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('one', 'call SwitchColorScheme("one-dark")', '', '', 0, '')
     "}}}
-    "{{{neodark
-    if g:VIM_Color_Scheme ==# 'neodark'
-        set background=dark
-        let g:neodark#italics = 1
-        let g:neodark#background = '#2a2a2a'
-        colorscheme neodark
-        let g:lightline.colorscheme = 'neodark_alter'
-    endif
-    call g:quickmenu#append('neodark', 'call SwitchColorScheme("neodark")', '', '', 0, '')
-    "}}}
-    "{{{eighties
-    if g:VIM_Color_Scheme ==# 'eighties'
-        set background=dark
-        colorscheme base16-eighties
-        let g:lightline.colorscheme = 'base16_eighties'
-        let g:lightline#colorscheme#base16_eighties#palette.tabline.tabsel[0] = g:lightline#colorscheme#base16_eighties#palette.normal.left[0]
-        let g:lightline#colorscheme#base16_eighties#palette.normal.right = g:lightline#colorscheme#base16_eighties#palette.normal.left
-        let g:lightline#colorscheme#base16_eighties#palette.insert.right = g:lightline#colorscheme#base16_eighties#palette.insert.left
-        let g:lightline#colorscheme#base16_eighties#palette.visual.right = g:lightline#colorscheme#base16_eighties#palette.visual.left
-        let g:lightline#colorscheme#base16_eighties#palette.replace.right = g:lightline#colorscheme#base16_eighties#palette.replace.left
-    endif
-    call g:quickmenu#append('eighties', 'call SwitchColorScheme("eighties")', '', '', 0, '')
-    "}}}
     "{{{material-dark
     if g:VIM_Color_Scheme ==# 'material-dark'
         set background=dark
@@ -1307,6 +1284,16 @@ function! ColorScheme()
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('material', 'call SwitchColorScheme("material-dark")', '', '', 0, '')
+    "}}}
+    "{{{neodark
+    if g:VIM_Color_Scheme ==# 'neodark'
+        set background=dark
+        let g:neodark#italics = 1
+        let g:neodark#background = '#2a2a2a'
+        colorscheme neodark
+        let g:lightline.colorscheme = 'neodark_alter'
+    endif
+    call g:quickmenu#append('neodark', 'call SwitchColorScheme("neodark")', '', '', 0, '')
     "}}}
     "{{{material-palenight
     if g:VIM_Color_Scheme ==# 'material-palenight'
