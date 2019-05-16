@@ -682,7 +682,6 @@ Plug 'atelierbram/Base2Tone-vim', { 'as': 'vim-color-base2tone' }
 Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
 Plug 'ajmwagar/vim-deus', { 'as': 'vim-color-deus' }
 Plug 'morhetz/gruvbox', { 'as': 'vim-color-gruvbox' }
-Plug 'junegunn/seoul256.vim', { 'as': 'vim-color-seoul256' }
 Plug 'jacoborus/tender.vim', { 'as': 'vim-color-tender' }
 Plug 'arcticicestudio/nord-vim', { 'as': 'vim-color-nord' }
 Plug 'cocopon/iceberg.vim', { 'as': 'vim-color-iceberg' }
@@ -690,7 +689,6 @@ Plug 'Badacadabra/vim-archery', { 'as': 'vim-color-archery' }
 Plug 'tyrannicaltoucan/vim-deep-space', { 'as': 'vim-color-deepspace' }
 Plug 'cormacrelf/vim-colors-github', { 'as': 'vim-color-github' }
 Plug 'whatyouhide/vim-gotham', { 'as': 'vim-color-gotham' }
-Plug 'ayu-theme/ayu-vim', { 'as': 'vim-color-ayu' }
 Plug 'kaicataldo/material.vim', { 'as': 'vim-color-material-vim' }
 Plug 'connorholyday/vim-snazzy', { 'as': 'vim-color-snazzy' }
 Plug 'srcery-colors/srcery-vim', { 'as': 'vim-color-srcery' }
@@ -1247,7 +1245,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'forest-night'
+let g:VIM_Color_Scheme = 'one-dark'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1280,10 +1278,20 @@ function! ColorScheme()
         let g:material_theme_style = 'dark'
         let g:material_terminal_italics = 1
         colorscheme material
-        let g:lightline.colorscheme = 'material_vim'
+        let g:lightline.colorscheme = 'material_dark_alter'
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('material', 'call SwitchColorScheme("material-dark")', '', '', 0, '')
+    "}}}
+    "{{{tender
+    if g:VIM_Color_Scheme ==# 'tender'
+        set background=dark
+        let g:material_theme_style = 'dark'
+        let g:lightline.colorscheme = 'tender_alter'
+        colorscheme tender
+        hi Conceal guifg=#666666 ctermfg=255 guibg=#282828 ctermbg=235 gui=NONE cterm=NONE
+    endif
+    call g:quickmenu#append('tender', 'call SwitchColorScheme("tender")', '', '', 0, '')
     "}}}
     "{{{neodark
     if g:VIM_Color_Scheme ==# 'neodark'
@@ -1322,17 +1330,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'forest_night'
     endif
     call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
-    "}}}
-    "{{{seoul256
-    if g:VIM_Color_Scheme ==# 'seoul256'
-        " 233 (darkest) ~ 239 (lightest)
-        let g:seoul256_background = 236
-        colo seoul256
-        set background=dark
-        let g:lightline.colorscheme = 'seoul256_alter'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
-    endif
-    call g:quickmenu#append('seoul256', 'call SwitchColorScheme("seoul256")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Grace', '')
     "{{{oldbook
@@ -1405,6 +1402,14 @@ function! ColorScheme()
     call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-dark")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Cold', '')
+    "{{{ashes
+    if g:VIM_Color_Scheme ==# 'ashes'
+        set background=dark
+        colorscheme base16-ashes
+        let g:lightline.colorscheme = 'base16_ashes_alter'
+    endif
+    call g:quickmenu#append('ashes', 'call SwitchColorScheme("ashes")', '', '', 0, '')
+    "}}}
     "{{{ocean
     if g:VIM_Color_Scheme ==# 'ocean'
         set background=dark
@@ -1477,16 +1482,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('two-firewatch', 'call SwitchColorScheme("two-firewatch-dark")', '', '', 0, '')
     "}}}
-    "{{{tender
-    if g:VIM_Color_Scheme ==# 'tender'
-        set background=dark
-        let g:material_theme_style = 'dark'
-        let g:lightline.colorscheme = 'material_vim'
-        colorscheme tender
-        hi Conceal guifg=#666666 ctermfg=255 guibg=#282828 ctermbg=235 gui=NONE cterm=NONE
-    endif
-    call g:quickmenu#append('tender', 'call SwitchColorScheme("tender")', '', '', 0, '')
-    "}}}
     "{{{cosme
     if g:VIM_Color_Scheme ==# 'cosme'
         colorscheme cosme
@@ -1494,14 +1489,6 @@ function! ColorScheme()
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('cosme', 'call SwitchColorScheme("cosme")', '', '', 0, '')
-    "}}}
-    "{{{ashes
-    if g:VIM_Color_Scheme ==# 'ashes'
-        set background=dark
-        colorscheme base16-ashes
-        let g:lightline.colorscheme = 'base16_ashes_alter'
-    endif
-    call g:quickmenu#append('ashes', 'call SwitchColorScheme("ashes")', '', '', 0, '')
     "}}}
     "{{{darkplus
     if g:VIM_Color_Scheme ==# 'darkplus'
@@ -1778,15 +1765,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'material_light_alter'
     endif
     call g:quickmenu#append('material', 'call SwitchColorScheme("material-light")', '', '', 0, '')
-    "}}}
-    "{{{ayu
-    if g:VIM_Color_Scheme ==# 'ayu-light'
-        let g:ayucolor = 'light'
-        set background=light
-        colorscheme ayu
-        let g:lightline.colorscheme = 'ayu_light'
-    endif
-    call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu-light")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Relax', '')
     "{{{solarized8
