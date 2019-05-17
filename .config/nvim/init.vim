@@ -673,6 +673,7 @@ Plug 'tpope/vim-repeat'
 "}}}
 " User Interface
 "{{{themes
+Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-color-c-highlight' }
 Plug 'chriskempson/base16-vim', { 'as': 'vim-color-base16' }
 Plug 'mike-hearn/base16-vim-lightline', { 'as': 'vim-lightline-base16' }
 Plug 'sainnhe/lightline_foobar.vim'
@@ -1245,7 +1246,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'one-dark'
+let g:VIM_Color_Scheme = 'forest-night'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
