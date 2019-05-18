@@ -1,0 +1,180 @@
+--langdef=ansible
+--langmap=ansible:.yml
+--regex-ansible=/^\s*- name:(.*)/\1/t,task/
+--langdef=asciidoc
+--langmap=asciidoc:.ad.adoc.asciidoc
+--regex-asciidoc=/^=[ \t]+(.*)/# \1/h/
+--regex-asciidoc=/^==[ \t]+(.*)/. \1/h/
+--regex-asciidoc=/^===[ \t]+(.*)/. . \1/h/
+--regex-asciidoc=/^====[ \t]+(.*)/. . . \1/h/
+--regex-asciidoc=/^=====[ \t]+(.*)/. . . . \1/h/
+--regex-asciidoc=/^======[ \t]+(.*)/. . . . \1/h/
+--regex-asciidoc=/^=======[ \t]+(.*)/. . . . \1/h/
+--regex-asciidoc=/\[\[([^]]+)\]\]/\1/a/
+--regex-asciidoc=/^\.([^ \t].+)/\1/t/
+--regex-asciidoc=/image::([^\[]+)/\1/i/
+--regex-asciidoc=/image:([^:][^\[]+)/\1/I/
+--regex-asciidoc=/include::([^\[]+)/\1/n/
+--langdef=bib
+--langmap=bib:.bib
+--regex-bib=/^@article\{([^,]*)/\1/a,article/i
+--regex-bib=/^@book\{([^,]*)/\1/b,book/i
+--regex-bib=/^@booklet\{([^,]*)/\1/L,booklet/i
+--regex-bib=/^@conference\{([^,]*)/\1/c,conference/i
+--regex-bib=/^@inbook\{([^,]*)/\1/B,inbook/i
+--regex-bib=/^@incollection\{([^,]*)/\1/C,incollection/i
+--regex-bib=/^@inproceedings\{([^,]*)/\1/P,inproceedings/i
+--regex-bib=/^@manual\{([^,]*)/\1/m,manual/i
+--regex-bib=/^@mastersthesis\{([^,]*)/\1/T,mastersthesis/i
+--regex-bib=/^@misc\{([^,]*)/\1/M,misc/i
+--regex-bib=/^@phdthesis\{([^,]*)/\1/t,phdthesis/i
+--regex-bib=/^@proceedings\{([^,]*)/\1/p,proceedings/i
+--regex-bib=/^@techreport\{([^,]*)/\1/r,techreport/i
+--regex-bib=/^@unpublished\{([^,]*)/\1/u,unpublished/i
+--langmap=Lisp:+.clj
+--langdef=coffee
+--langmap=coffee:.coffee
+--regex-coffee=/(^|=[ \t])*class ([A-Za-z_][A-Za-z0-9_]+\.)*([A-Za-z_][A-Za-z0-9_]+)( extends ([A-Za-z][A-Za-z0-9_.]*)+)?$/\3/c,class/
+--regex-coffee=/^[ \t]*(module\.)?(exports\.)?@?(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*:.*[-=]>.*$/\3/m,method/
+--regex-coffee=/^[ \t]*(module\.)?(exports\.)?(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=.*[-=]>.*$/\3/f,function/
+--regex-coffee=/^[ \t]*(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=[^->\n]*$/\1/v,variable/
+--regex-coffee=/^[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=[^->\n]*$/\1/f,field/
+--regex-coffee=/^[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+):[^->\n]*$/\1/f,static field/
+--regex-coffee=/^[ \t]*(([A-Za-z][A-Za-z0-9_.]*)+):[^->\n]*$/\1/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?/\3/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){0}/\8/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){1}/\8/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){2}/\8/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){3}/\8/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){4}/\8/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){5}/\8/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){6}/\8/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){7}/\8/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){8}/\8/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){9}/\8/f,field/'
+--langdef=fountain
+--langmap=fountain:.fountain
+--regex-fountain=/(((INT|E(S|X)T|INT\.?\/EXT|I\.?\/E)\.? .*)|ESTABLISHING|\.[A-Z]+[A-Z ]*)/\1/h,heading/
+--regex-fountain=/^#( ?)([^#]+)/\2/s,section/
+--langdef=groovy
+--langmap=groovy:.groovy
+--regex-groovy=/^[ \t]*package[ \t]+([a-zA-Z0-9.-_]+)/\1/p,package/
+--regex-groovy=/^[ \t]*(private|public)?[ \t]*(abstract|final|static)?[ \t]*class[ \t]+([A-Za-z0-9_]+)/\3/c,class/
+--regex-groovy=/^[ \t]*(private|public)?[ \t]*interface[ \t]+([A-Za-z0-9_]+)/\2/i,interface/
+--regex-groovy=/^[ \t]*(private|public)?[ \t]*trait[ \t]+([A-Za-z0-9_]+)/\2/t,trait/
+--regex-groovy=/^[ \t]*(private|public)?[ \t]*enum[ \t]+([A-Za-z0-9_]+)/\2/e,enum/
+--regex-groovy=/^[ \t]*[(abstract|final|static) \t]*((def|void|byte|int|short|long|float|double|boolean|char|[A-Z][a-zA-Z0-9_]*)[ \t]+)?([a-zA-Z0-9_]+\(.*\))[ \t]+/~\3/m,package method/
+--regex-groovy=/^[ \t]*public[ \t]+[(abstract|final|static) \t]*((def|void|byte|int|short|long|float|double|boolean|char|[A-Z][a-zA-Z0-9_]*)[ \t]+)?([a-zA-Z0-9_]+\(.*\))[ \t]+/+\3/m,public method/
+--regex-groovy=/^[ \t]*protected[ \t]+[(abstract|final|static) \t]*((def|void|byte|int|short|long|float|double|boolean|char|[A-Z][a-zA-Z0-9_]*)[ \t]+)?([a-zA-Z0-9_]+\(.*\))[ \t]+/#\3/m,protected method/
+--regex-groovy=/^[ \t]*private[ \t]+[(abstract|final|static) \t]*((def|void|byte|int|short|long|float|double|boolean|char|[A-Z][a-zA-Z0-9_]*)[ \t]+)?([a-zA-Z0-9_]+\(.*\))[ \t]+/-\3/m,private method/
+--regex-groovy=/^[ \t]*[(final|static|synchronized) \t]*(def|byte|int|short|long|float|double|boolean|char|[A-Z][A-Za-z0-9_]*)[ \t]+([a-zA-Z0-9_]+)([ \t]*[\/]+.*)?/~\2/f,property/
+--regex-groovy=/^[ \t]*public[ \t]+[(final|static|synchronized) \t]*(def|byte|int|short|long|float|double|boolean|char|[A-Z][a-zA-Z0-9_]*)[ \t]+([a-zA-Z0-9_]+)([ \t]*[\/]+.*)?/+\2/f,public field/
+--regex-groovy=/^[ \t]*protected[ \t]+[(final|static|synchronized) \t]*(def|byte|int|short|long|float|double|boolean|char|[A-Z][a-zA-Z0-9_]*)[ \t]+([a-zA-Z0-9_]+)([ \t]*[\/]+.*)?/#\2/f,protected field/
+--regex-groovy=/^[ \t]*private[ \t]+[(final|static|synchronized) \t]*(def|byte|int|short|long|float|double|boolean|char|[A-Z][a-zA-Z0-9_]*)[ \t]+([a-zA-Z0-9_]+)([ \t]*[\/]+.*)?/-\2/f,private field/
+--langdef=IDL
+--langmap=IDL:.pro
+--regex-IDL=/^[ \t]*function[ \t]+([a-zA-Z0-9_:]+)/\1/f,function/i
+--regex-IDL=/^[ \t]*pro[ \t]+([a-zA-Z0-9_:]+)/\1/p,procedure/i
+--regex-IDL=/^[ \t]*common[ \t]+([a-zA-Z0-9_:]+)/\1/c,common/i
+--langdef=julia
+--langmap=julia:.jl
+--regex-julia=/^[ \t]*(@with_kw[ \t]+)?(abstract type|primitive type|struct|mutable struct|typealias)[ \t]+([^ \t({[]+).*$/\3/t,type/
+--regex-julia=/^[ \t]*(macro)[ \t]+([^ \t({[]+).*$/\2/m,macro/
+--regex-julia=/^[ \t]*(@inline[ \t]+|@noinline[ \t]+)?(function)[ \t]+([^ \t({[]+)[^(]*\([ \t]*([^ \t;,=)({]+).*$/\3 (\4, …)/f,function/
+--regex-julia=/^[ \t]*(@inline[ \t]+|@noinline[ \t]+)?(function)[ \t]+([^ \t({[]+)[^(]*(\([ \t]*\).*|\([ \t]*)$/\3/f,function/
+--regex-julia=/^[ \t]*(@inline[ \t]+|@noinline[ \t]+)?(([^@#$ \t({[]+)|\(([^@#$ \t({[]+)\)|\((\$)\))[ \t]*(\{.*\})?[ \t]*\([ \t]*\)[ \t]*=([^=].*$|$)/\3\4\5/f,function/
+--regex-julia=/^[ \t]*(@inline[ \t]+|@noinline[ \t]+)?(([^@#$ \t({[]+)|\(([^@#$ \t({[]+)\)|\((\$)\))[ \t]*(\{.*\})?[ \t]*\([ \t]*([^ \t;,=)({]+).*\)[ \t]*=([^=].*$|$)/\3\4\5 (\7, …)/f,function/
+--regex-julia=/^(const)[ \t]+([^ \t({[]+).*[ ]*=.*$/\2/c,const/
+--regex-make=/^([^# \t]*):/\1/t,target/
+--langdef=MediaWiki
+--langmap=MediaWiki:.mw
+--regex-MediaWiki=/^==[ \t]+(.*)[ \t]+==/\1/c,chapters/
+--regex-MediaWiki=/^===[ \t]+(.*)[ \t]+===/\1/s,sections/
+--regex-MediaWiki=/^====[ \t]+(.*)[ \t]+====/\1/u,subsections/
+--regex-MediaWiki=/^=====[ \t]+(.*)[ \t]+=====/\1/b,subsubsections/
+--langdef=nasl
+--langmap=nasl:.inc
+--regex-nasl=/^[ \t]*function[ \t]+([_a-zA-Z][_a-zA-Z0-9]*)/\1/f,function/
+--regex-nasl=/^[ \t]*private function[ \t]+([_a-zA-Z][_a-zA-Z0-9]*)/\1/r,private function/
+--regex-nasl=/^[ \t]*public function[ \t]+([_a-zA-Z][_a-zA-Z0-9]*)/\1/u,public function/
+--regex-nasl=/^(var)? ?([_a-zA-Z][_a-zA-Z0-9]*)[ \t]*=/\1/v,variable/
+--regex-nasl=/^[ \t]*global_var ([_a-zA-Z][_a-zA-Z0-9]*)/\1/g,global/
+--regex-nasl=/^namespace ([_a-zA-Z][_a-zA-Z0-9]*)/\1/n,namespace/
+--regex-nasl=/^[ \t]*object ([_a-zA-Z][_a-zA-Z0-9]*)/\1/o,object/
+--langmap=perl:+.pod
+--regex-perl=/with[ \t]+([^;]+)[ \t]*?;/\1/w,role,roles/
+--regex-perl=/extends[ \t]+['"]([^'"]+)['"][ \t]*?;/\1/e,extends/
+--regex-perl=/^[ \t]*?use[ \t]+base[ \t]+['"]([^'"]+)['"][ \t]*?;/\1/e,extends/
+--regex-perl=/^[ \t]*?use[ \t]+parent[ \t]+['"]([^'"]+)['"][ \t]*?;/\1/e,extends/
+--regex-perl=/^[ \t]*?use[ \t]+Mojo::Base[ \t]+['"]([^'"]+)['"][ \t]*?;/\1/e,extends/
+--regex-perl=/^[ \t]*?use[ \t]+([^;]+)[ \t]*?;/\1/u,use,uses/
+--regex-perl=/^[ \t]*?require[ \t]+((\w|\:)+)/\1/r,require,requires/
+--regex-perl=/^[ \t]*?has[ \t]+['"]?(\w+)['"]?/\1/a,property,properties/
+--regex-perl=/^[ \t]*?\*(\w+)[ \t]*?=/\1/b,alias,aliases/
+--regex-perl=/->helper\([ \t]?['"]?(\w+)['"]?/\1/h,helper,helpers/
+--regex-perl=/^[ \t]*?our[ \t]*?[\$@%](\w+)/\1/o,our,ours/
+--regex-perl=/^[ \t]*?my[ \t]*?(\$\w+)[ \t]*?=[ \t]*?sub/\1/s,private subroutine,private subroutines/
+--regex-perl=/^\=head1[ \t]+(.+)/\1/d,pod,POD/
+--regex-perl=/^\=head2[ \t]+(.+)/-- \1/d,pod,POD/
+--regex-perl=/^\=head[3][ \t]+(.+)/--- \1/d,pod,POD/
+--regex-perl=/^\=head[4][ \t]+(.+)/---- \1/d,pod,POD/
+-R
+--langdef=puppet
+--langmap=puppet:.pp
+--regex-puppet=/^class[ \t]*([:a-zA-Z0-9_\-]+)[ \t]*/\1/c,class/
+--regex-puppet=/^site[ \t]*([a-zA-Z0-9_\-]+)[ \t]*/\1/s,site/
+--regex-puppet=/^node[ \t]*([a-zA-Z0-9_\-]+)[ \t]*/\1/n,node/
+--regex-puppet=/^define[ \t]*([:a-zA-Z0-9_\-]+)[ \t]*/\1/d,definition/
+--langdef=R
+--langmap=r:.R.r
+--regex-R=/^[ \t]*"?([.A-Za-z][.A-Za-z0-9_]*)"?[ \t]*<-[ \t]function/\1/f,Functions/
+--regex-R=/^"?([.A-Za-z][.A-Za-z0-9_]*)"?[ \t]*<-[ \t][^f][^u][^n][^c][^t][^i][^o][^n]/\1/g,GlobalVars/
+--regex-R=/[ \t]"?([.A-Za-z][.A-Za-z0-9_]*)"?[ \t]*<-[ \t][^f][^u][^n][^c][^t][^i][^o][^n]/\1/v,FunctionVariables/
+--langdef=scala
+--langmap=scala:.scala
+
+--regex-scala=/^[ \t]*((abstract|final|sealed|implicit|lazy)[ \t]*)*(private[^ ]*|protected)?[ \t]*class[ \t]+([a-zA-Z0-9_]+)/\4/c,classes/
+--regex-scala=/^[ \t]*((abstract|final|sealed|implicit|lazy)[ \t]*)*(private[^ ]*|protected)?[ \t]*object[ \t]+([a-zA-Z0-9_]+)/\4/o,objects/
+--regex-scala=/^[ \t]*((abstract|final|sealed|implicit|lazy)[ \t]*)*(private[^ ]*|protected)?[ \t]*((abstract|final|sealed|implicit|lazy)[ \t ]*)*case class[ \t ]+([a-zA-Z0-9_]+)/\6/C,case classes/
+--regex-scala=/^[ \t]*((abstract|final|sealed|implicit|lazy)[ \t]*)*(private[^ ]*|protected)?[ \t]*case object[ \t]+([a-zA-Z0-9_]+)/\4/O,case objects/
+--regex-scala=/^[ \t]*((abstract|final|sealed|implicit|lazy)[ \t]*)*(private[^ ]*|protected)?[ \t]*trait[ \t]+([a-zA-Z0-9_]+)/\4/t,traits/
+--regex-scala=/^[ \t]*type[ \t]+([a-zA-Z0-9_]+)/\1/T,types/
+--regex-scala=/^[ \t]*((abstract|final|sealed|implicit|lazy|override|private[^ ]*(\[[a-z]*\])*|protected)[ \t]*)*def[ \t]+([a-zA-Z0-9_]+)/\4/m,methods/
+--regex-scala=/^[ \t]*((abstract|final|sealed|implicit|lazy|override|private[^ ]*|protected)[ \t]*)*val[ \t]+([a-zA-Z0-9_]+)/\3/V,values/
+--regex-scala=/^[ \t]*((abstract|final|sealed|implicit|lazy|override|private[^ ]*|protected)[ \t]*)*var[ \t]+([a-zA-Z0-9_]+)/\3/v,variables/
+--regex-scala=/^[ \t]*package[ \t]+([a-zA-Z0-9_.]+)/\1/p,packages/
+--langdef=typescript
+--langmap=typescript:.ts.tsx
+--regex-typescript=/^[ \t]*(export[ \t]+([a-z]+[ \t]+)?)?class[ \t]+([a-zA-Z0-9_$]+)/\3/c,classes/
+--regex-typescript=/^[ \t]*(declare[ \t]+)?namespace[ \t]+([a-zA-Z0-9_$]+)/\2/c,modules/
+--regex-typescript=/^[ \t]*(export[ \t]+)?module[ \t]+([a-zA-Z0-9_$]+)/\2/n,modules/
+--regex-typescript=/^[ \t]*(export[ \t]+)?(default[ \t]+)?(async[ \t]+)?function(\*)?[ \t]+([a-zA-Z0-9_$]+)/\5/f,functions/
+--regex-typescript=/^[ \t]*export[ \t]+(var|let|const)[ \t]+([a-zA-Z0-9_$]+)/\2/v,variables/
+--regex-typescript=/^[ \t]*(var|let|const)[ \t]+([a-zA-Z0-9_$]+)[ \t]*=[ \t]*function[ \t]*[*]?[ \t]*\(\)/\2/v,varlambdas/
+--regex-typescript=/^[ \t]*(export[ \t]+)?(public|protected|private)[ \t]+(static[ \t]+)?(abstract[ \t]+)?(((get|set|readonly)[ \t]+)|(async[ \t]+[*]*[ \t]*))?([a-zA-Z1-9_$]+)/\9/m,members/
+--regex-typescript=/^[ \t]*(export[ \t]+)?interface[ \t]+([a-zA-Z0-9_$]+)/\2/i,interfaces/
+--regex-typescript=/^[ \t]*(export[ \t]+)?type[ \t]+([a-zA-Z0-9_$]+)/\2/t,types/
+--regex-typescript=/^[ \t]*(export[ \t]+)?enum[ \t]+([a-zA-Z0-9_$]+)/\2/e,enums/
+--regex-typescript=/^[ \t]*import[ \t]+([a-zA-Z0-9_$]+)/\1/I,imports/
+--langdef=WSDL
+--langmap=WSDL:.wsdl
+--regex-WSDL=/^.*xmlns:([a-z]+)=/\1/n,namespace/
+--regex-WSDL=/^\s*<.*:message.*name="([A-Za-z0-9_-]+)"/\1/m,message/
+--regex-WSDL=/^\s*<.*:portType.*name="([A-Za-z0-9_-]+)"/\1/p,portType/
+--regex-WSDL=/^\s*<.*:operation.*name="([A-Za-z0-9_-]+)"/\1/o,operation/
+--regex-WSDL=/^\s*<.*:binding.*name="([A-Za-z0-9_-]+)"/\1/b,binding/
+--regex-WSDL=/^\s*<.*:service.*name="([A-Za-z0-9_-]+)"/\1/s,service/
+--langdef=xquery
+--langmap=xquery:.xq
+--regex-xquery=/^(declare|define)[ \t]*(private)?[ \t]*(updating)?[ \t]*(%an:sequential)?[ \t]*(%an:nondeterministic)?[ \t]*function[ \t]*([_a-zA-Z0-9:-]*:)?([_a-zA-Z0-9-]+)/\7/f,function/
+--regex-xquery=/^(declare|define)[ \t]*(private)?[ \t]*(%an:automatic)?[ \t]*variable[ \t]*\$([_a-zA-Z0-9:-]*:)?([_a-zA-Z0-9-]+)/\5/v,variable/
+--regex-xquery=/^module namespace[ \t]*(\w+)[ \t]*=.*/\1/m,module/
+--langdef=XSD
+--langmap=XSD:.xsd
+--regex-XSD=/^\s*<.*element.+name=["']([a-zA-Z0-9_-]+)["']/\1/e,element/
+--regex-XSD=/^\s*<.*complexType.+name=["']([a-zA-Z0-9_-]+)["']/\1/c,complexType/
+--regex-XSD=/^\s*<.*simpleType.+name=["']([a-zA-Z0-9_-]+)["']/\1/s,simpleType/
+--langdef=xslt
+--langmap=xslt:.xsl
+--regex-xslt=/<xsl:variable.*name="(\S+)".*>/\1/v,variable/
+--regex-xslt=/<xsl:template.*name="(\S+)".*>/\1/t,template/
