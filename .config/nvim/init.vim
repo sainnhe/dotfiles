@@ -254,7 +254,6 @@ set hlsearch                            " 高亮搜索
 set undofile                            " 始终保留undo文件
 set undodir=$HOME/.cache/vim/undo       " 设置undo文件的目录
 set timeoutlen=5000                     " 超时时间为5秒
-set clipboard=unnamedplus               " 开启系统剪切板，需要安装xclip
 set foldmethod=marker                   " 折叠方式为按照marker折叠
 set hidden                              " buffer自动隐藏
 set showtabline=2                       " 总是显示标签
@@ -388,6 +387,10 @@ nnoremap L <Esc>$
 nnoremap x "_x
 " Ctrl+X剪切当前行
 nnoremap <C-X> <ESC>"_dd
+" <leader>+Y复制到系统剪切板
+nnoremap <leader>y "+y
+" <leader>+P从系统剪切板粘贴
+nnoremap <leader>p "+p
 " Alt+T新建tab
 nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call NerdtreeStartify()<CR>
 " Alt+W关闭当前标签
@@ -448,6 +451,8 @@ if !has('nvim')
 endif
 " Ctrl+V粘贴
 inoremap <C-V> <Space><Backspace><ESC>pa
+" <A-z><C-v>从系统剪切板粘贴
+inoremap <A-z><C-V> <Space><Backspace><ESC>"+pa
 " Ctrl+S保存文件
 inoremap <C-S> <Esc>:w<CR>a
 " Ctrl+Z撤销上一个动作
@@ -500,6 +505,10 @@ vnoremap K 5<up>
 vnoremap J 5<down>
 vnoremap H 0
 vnoremap L $
+" <leader>+Y复制到系统剪切板
+vnoremap <leader>y "+y
+" <leader>+P从系统剪切板粘贴
+vnoremap <leader>p "+p
 "}}}
 "{{{CommandMode
 " Alt+X进入普通模式
