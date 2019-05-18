@@ -4107,6 +4107,7 @@ endfunction
 "}}}
 "{{{tagbar
 if g:VIM_TAGBAR ==# 'tagbar'
+    "{{{Languages
     "{{{Ansible
     let g:tagbar_type_ansible = {
                 \ 'ctagstype' : 'ansible',
@@ -4325,22 +4326,22 @@ if g:VIM_TAGBAR ==# 'tagbar'
                 \ ]
                 \}
     "}}}
-"{{{Markdown
-let g:tagbar_type_markdown = {
-    \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : 'markdown2ctags',
-    \ 'ctagsargs' : '-f - --sort=yes',
-    \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-    \ ],
-    \ 'sro' : '|',
-    \ 'kind2scope' : {
-        \ 's' : 'section',
-    \ },
-    \ 'sort': 0,
-\ }
-"}}}
+    "{{{Markdown
+    let g:tagbar_type_markdown = {
+                \ 'ctagstype': 'markdown',
+                \ 'ctagsbin' : 'markdown2ctags',
+                \ 'ctagsargs' : '-f - --sort=yes',
+                \ 'kinds' : [
+                \ 's:sections',
+                \ 'i:images'
+                \ ],
+                \ 'sro' : '|',
+                \ 'kind2scope' : {
+                \ 's' : 'section',
+                \ },
+                \ 'sort': 0,
+                \ }
+    "}}}
     "{{{MediaWiki
     let g:tagbar_type_mediawiki = {
                 \ 'ctagstype' : 'mediawiki',
@@ -4652,6 +4653,7 @@ let g:tagbar_type_markdown = {
                 \ ]
                 \}
     "}}}
+    "}}}
     nnoremap <silent><A-b> :<C-u>call ToggleTagbar()<CR>
     let g:TagBarLoad = 0
     function! ToggleTagbar()
@@ -4679,6 +4681,19 @@ let g:tagbar_type_markdown = {
                     \ }
         call plug#load('tagbar', 'tagbar-phpctags.vim')
     endfunction
+    function! s:tagbar_mappings() abort
+        if g:VIM_Fuzzy_Finder ==# 'denite'
+            nnoremap <silent><buffer> f :<C-u>Denite outline<CR>
+        elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+            nnoremap <silent><buffer> f :<C-u>BTags<CR>
+        elseif g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
+            nnoremap <silent><buffer> f :<C-u>LeaderfBufTagAll<CR>
+        endif
+    endfunction
+    augroup TagbarAu
+        autocmd!
+        autocmd FileType tagbar call s:tagbar_mappings()
+    augroup END
     "}}}
     "{{{vista.vim
 elseif g:VIM_TAGBAR ==# 'vista'
