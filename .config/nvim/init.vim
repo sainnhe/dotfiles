@@ -26,6 +26,7 @@ let g:VIM_Snippets = 'coc-snippets'  " ultisnips neosnippet coc-snippets
 let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc
 let g:VIM_Fuzzy_Finder = 'remix'  " remix denite fzf leaderf
 let g:VIM_Linter = 'ale'  " ale neomake
+let g:VIM_TAGBAR = 'tagbar'  " tagbar vista
 " :UpdateRemotePlugins
 if exists('*VIM_Global_Settings')
     call VIM_Global_Settings()
@@ -668,12 +669,13 @@ if !has('nvim') && has('python3')
     endif
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
 "}}}
 " User Interface
 "{{{themes
-Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-color-c-highlight' }
+Plug 'sheerun/vim-polyglot', { 'as': 'vim-highlight-polyglot' }
+Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-highlight-c' }
+Plug 'alisdair/vim-armasm', { 'as': 'vim-highlight-armasm' }
 Plug 'chriskempson/base16-vim', { 'as': 'vim-color-base16' }
 Plug 'mike-hearn/base16-vim-lightline', { 'as': 'vim-lightline-base16' }
 Plug 'sainnhe/lightline_foobar.vim'
@@ -907,7 +909,16 @@ Plug 'junegunn/gv.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'rhysd/committia.vim'
 Plug 'jsfaint/gen_tags.vim', { 'on': [] }
-Plug 'liuchengxu/vista.vim'
+if g:VIM_TAGBAR ==# 'tagbar'
+    Plug 'majutsushi/tagbar', { 'on': [] }
+    if executable('proxychains')
+        Plug 'vim-php/tagbar-phpctags.vim', { 'on': [], 'do': 'proxychains -q make' }
+    else
+        Plug 'vim-php/tagbar-phpctags.vim', { 'on': [], 'do': 'make' }
+    endif
+elseif g:VIM_TAGBAR ==# 'vista'
+    Plug 'liuchengxu/vista.vim'
+endif
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'skywind3000/asyncrun.vim'
@@ -946,6 +957,11 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
             \| au BufNewFile,BufRead *.html,*.css call Func_emmet_vim()
 Plug 'alvan/vim-closetag', { 'for': 'html' }
             \| au BufNewFile,BufRead *.html,*.css call Func_vim_closetag()
+if executable('proxychains')
+    Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'proxychains -q npm install' }
+else
+    Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
+endif
 Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
 Plug 'elzr/vim-json', { 'for': 'json' }
             \| au BufNewFile,BufRead *.json call Func_vim_json()
@@ -4089,43 +4105,620 @@ function! Init_gen_tags()
     endif
 endfunction
 "}}}
-"{{{vista.vim
-"{{{g:vim_vista_lsp_client
-if g:VIM_LSP_Client ==# 'lcn'
-    let g:vim_vista_lsp_client = 'lcn'
-elseif g:VIM_LSP_Client ==# 'vim-lsp'
-    let g:vim_vista_lsp_client = 'vim_lsp'
-endif
-if g:VIM_Completion_Framework ==# 'coc'
-    let g:vim_vista_lsp_client = 'coc'
-endif
+"{{{tagbar
+if g:VIM_TAGBAR ==# 'tagbar'
+    "{{{Ansible
+    let g:tagbar_type_ansible = {
+                \ 'ctagstype' : 'ansible',
+                \ 'kinds' : [
+                \ 't:tasks'
+                \ ],
+                \ 'sort' : 0
+                \ }
+    "}}}
+    "{{{ArmAsm
+    let g:tagbar_type_armasm = {
+                \ 'ctagsbin'  : 'ctags',
+                \ 'ctagsargs' : '-f- --format=2 --excmd=pattern --fields=nksSa --extra= --sort=no --language-force=asm',
+                \ 'kinds' : [
+                \ 'm:macros:0:1',
+                \ 't:types:0:1',
+                \ 'd:defines:0:1',
+                \ 'l:labels:0:1'
+                \ ]
+                \}
+    "}}}
+    "{{{AsciiDoc
+    let g:tagbar_type_asciidoc = {
+                \ 'ctagstype' : 'asciidoc',
+                \ 'kinds' : [
+                \ 'h:table of contents',
+                \ 'a:anchors:1',
+                \ 't:titles:1',
+                \ 'n:includes:1',
+                \ 'i:images:1',
+                \ 'I:inline images:1'
+                \ ],
+                \ 'sort' : 0
+                \ }
+    "}}}
+    "{{{Bib
+    let g:tagbar_type_bib = {
+                \ 'ctagstype' : 'bib',
+                \ 'kinds'     : [
+                \ 'a:Articles',
+                \ 'b:Books',
+                \ 'L:Booklets',
+                \ 'c:Conferences',
+                \ 'B:Inbook',
+                \ 'C:Incollection',
+                \ 'P:Inproceedings',
+                \ 'm:Manuals',
+                \ 'T:Masterstheses',
+                \ 'M:Misc',
+                \ 't:Phdtheses',
+                \ 'p:Proceedings',
+                \ 'r:Techreports',
+                \ 'u:Unpublished',
+                \ ]
+                \ }
+    "}}}
+    "{{{CoffeeScript
+    let g:tagbar_type_coffee = {
+                \ 'ctagstype' : 'coffee',
+                \ 'kinds'     : [
+                \ 'c:classes',
+                \ 'm:methods',
+                \ 'f:functions',
+                \ 'v:variables',
+                \ 'f:fields',
+                \ ]
+                \ }
+    "}}}
+    "{{{CSS
+    let g:tagbar_type_css = {
+                \ 'ctagstype' : 'Css',
+                \ 'kinds'     : [
+                \ 'c:classes',
+                \ 's:selectors',
+                \ 'i:identities'
+                \ ]
+                \ }
+    "}}}
+    "{{{Elixir
+    let g:tagbar_type_elixir = {
+                \ 'ctagstype' : 'elixir',
+                \ 'kinds' : [
+                \ 'p:protocols',
+                \ 'm:modules',
+                \ 'e:exceptions',
+                \ 'y:types',
+                \ 'd:delegates',
+                \ 'f:functions',
+                \ 'c:callbacks',
+                \ 'a:macros',
+                \ 't:tests',
+                \ 'i:implementations',
+                \ 'o:operators',
+                \ 'r:records'
+                \ ],
+                \ 'sro' : '.',
+                \ 'kind2scope' : {
+                \ 'p' : 'protocol',
+                \ 'm' : 'module'
+                \ },
+                \ 'scope2kind' : {
+                \ 'protocol' : 'p',
+                \ 'module' : 'm'
+                \ },
+                \ 'sort' : 0
+                \ }
+    "}}}
+    "{{{Fountain
+    let g:tagbar_type_fountain = {
+                \ 'ctagstype': 'fountain',
+                \ 'kinds': [
+                \ 'h:headings',
+                \ 's:sections',
+                \ ],
+                \ 'sort': 0,
+                \}
+    "}}}
+    "{{{Go
+    let g:tagbar_type_go = {
+                \ 'ctagstype' : 'go',
+                \ 'kinds'     : [
+                \ 'p:package',
+                \ 'i:imports:1',
+                \ 'c:constants',
+                \ 'v:variables',
+                \ 't:types',
+                \ 'n:interfaces',
+                \ 'w:fields',
+                \ 'e:embedded',
+                \ 'm:methods',
+                \ 'r:constructor',
+                \ 'f:functions'
+                \ ],
+                \ 'sro' : '.',
+                \ 'kind2scope' : {
+                \ 't' : 'ctype',
+                \ 'n' : 'ntype'
+                \ },
+                \ 'scope2kind' : {
+                \ 'ctype' : 't',
+                \ 'ntype' : 'n'
+                \ },
+                \ 'ctagsbin'  : 'gotags',
+                \ 'ctagsargs' : '-sort -silent'
+                \ }
+    "}}}
+    "{{{Groovy
+    let g:tagbar_type_groovy = {
+                \ 'ctagstype' : 'groovy',
+                \ 'kinds'     : [
+                \ 'p:package:1',
+                \ 'c:classes',
+                \ 'i:interfaces',
+                \ 't:traits',
+                \ 'e:enums',
+                \ 'm:methods',
+                \ 'f:fields:1'
+                \ ]
+                \ }
+    "}}}
+    "{{{Haskell
+    let g:tagbar_type_haskell = {
+                \ 'ctagsbin'  : 'hasktags',
+                \ 'ctagsargs' : '-x -c -o-',
+                \ 'kinds'     : [
+                \  'm:modules:0:1',
+                \  'd:data: 0:1',
+                \  'd_gadt: data gadt:0:1',
+                \  't:type names:0:1',
+                \  'nt:new types:0:1',
+                \  'c:classes:0:1',
+                \  'cons:constructors:1:1',
+                \  'c_gadt:constructor gadt:1:1',
+                \  'c_a:constructor accessors:1:1',
+                \  'ft:function types:1:1',
+                \  'fi:function implementations:0:1',
+                \  'o:others:0:1'
+                \ ],
+                \ 'sro'        : '.',
+                \ 'kind2scope' : {
+                \ 'm' : 'module',
+                \ 'c' : 'class',
+                \ 'd' : 'data',
+                \ 't' : 'type'
+                \ },
+                \ 'scope2kind' : {
+                \ 'module' : 'm',
+                \ 'class'  : 'c',
+                \ 'data'   : 'd',
+                \ 'type'   : 't'
+                \ }
+                \ }
+    "}}}
+    "{{{IDL
+    let g:tagbar_type_idlang = {
+                \ 'ctagstype' : 'IDL',
+                \ 'kinds' : [
+                \ 'p:Procedures',
+                \ 'f:Functions',
+                \ 'c:Common Blocks'
+                \ ]
+                \ }
+    "}}}
+    "{{{Julia
+    let g:tagbar_type_julia = {
+                \ 'ctagstype' : 'julia',
+                \ 'kinds'     : [
+                \ 't:struct', 'f:function', 'm:macro', 'c:const']
+                \ }
+    "}}}
+    "{{{Makefile
+    let g:tagbar_type_make = {
+                \ 'kinds':[
+                \ 'm:macros',
+                \ 't:targets'
+                \ ]
+                \}
+    "}}}
+"{{{Markdown
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : 'markdown2ctags',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
 "}}}
-nnoremap <silent><A-b> :<C-u>Vista!!<CR>
-let g:vista_echo_cursor_strategy = 'both'
-let g:vista_icon_indent = ['╰─▸ ', '├─▸ ']
-let g:vista_sidebar_width = 35
-let g:vista_default_executive = 'ctags'
-let g:vista_executive_for = {
-            \ 'c': g:vim_vista_lsp_client,
-            \ 'cpp': g:vim_vista_lsp_client
-            \ }
-let g:vista_fzf_preview = ['right:50%']
-let g:vista#renderer#enable_icon = 1
-let g:vista#renderer#icons = {
-            \ 'function': "\uf794",
-            \ 'variable': "\uf71b",
-            \ }
-function! s:vista_mappings() abort
-    nnoremap <silent><buffer> <A-b> :Vista!!<CR>
-    nnoremap <silent><buffer> q :Vista!!<CR>
-    nnoremap <silent><buffer> f :Vista finder<CR>
-    nnoremap <silent><buffer> F :execute "Vista finder ".g:vim_vista_lsp_client<CR>
-endfunction
-augroup VistaAu
-    autocmd!
-    autocmd FileType vista_kind call s:vista_mappings()
-    autocmd FileType markdown nnoremap <silent><A-b> :<C-u>Vista toc<CR>
-augroup END
+    "{{{MediaWiki
+    let g:tagbar_type_mediawiki = {
+                \ 'ctagstype' : 'mediawiki',
+                \ 'kinds' : [
+                \'h:chapters',
+                \'s:sections',
+                \'u:subsections',
+                \'b:subsubsections',
+                \]
+                \}
+    "}}}
+    "{{{NASL
+    let g:tagbar_type_nasl = {
+                \ 'ctagstype' : 'nasl',
+                \ 'kinds'     : [
+                \ 'f:function',
+                \ 'u:public function',
+                \ 'r:private function',
+                \ 'v:variables',
+                \ 'n:namespace',
+                \ 'g:globals',
+                \ ]
+                \ }
+    "}}}
+    "{{{ObjectiveC
+    let g:tagbar_type_objc = {
+                \ 'ctagstype' : 'ObjectiveC',
+                \ 'kinds'     : [
+                \ 'i:interface',
+                \ 'I:implementation',
+                \ 'p:Protocol',
+                \ 'm:Object_method',
+                \ 'c:Class_method',
+                \ 'v:Global_variable',
+                \ 'F:Object field',
+                \ 'f:function',
+                \ 'p:property',
+                \ 't:type_alias',
+                \ 's:type_structure',
+                \ 'e:enumeration',
+                \ 'M:preprocessor_macro',
+                \ ],
+                \ 'sro'        : ' ',
+                \ 'kind2scope' : {
+                \ 'i' : 'interface',
+                \ 'I' : 'implementation',
+                \ 'p' : 'Protocol',
+                \ 's' : 'type_structure',
+                \ 'e' : 'enumeration'
+                \ },
+                \ 'scope2kind' : {
+                \ 'interface'      : 'i',
+                \ 'implementation' : 'I',
+                \ 'Protocol'       : 'p',
+                \ 'type_structure' : 's',
+                \ 'enumeration'    : 'e'
+                \ }
+                \ }
+    "}}}
+    "{{{Perl
+    let g:tagbar_type_perl = {
+                \ 'ctagstype' : 'perl',
+                \ 'kinds'     : [
+                \ 'p:package:0:0',
+                \ 'w:roles:0:0',
+                \ 'e:extends:0:0',
+                \ 'u:uses:0:0',
+                \ 'r:requires:0:0',
+                \ 'o:ours:0:0',
+                \ 'a:properties:0:0',
+                \ 'b:aliases:0:0',
+                \ 'h:helpers:0:0',
+                \ 's:subroutines:0:0',
+                \ 'd:POD:1:0'
+                \ ]
+                \ }
+    "}}}
+    "{{{PHP
+    let g:tagbar_phpctags_bin='~/.cache/vim/plugins/tagbar-phpctags.vim/bin/phpctags'
+    let g:tagbar_phpctags_memory_limit = '512M'
+    "}}}
+    "{{{Puppet
+    let g:tagbar_type_puppet = {
+                \ 'ctagstype': 'puppet',
+                \ 'kinds': [
+                \'c:class',
+                \'s:site',
+                \'n:node',
+                \'d:definition'
+                \]
+                \}
+    "}}}
+    "{{{R
+    let g:tagbar_type_r = {
+                \ 'ctagstype' : 'r',
+                \ 'kinds'     : [
+                \ 'f:Functions',
+                \ 'g:GlobalVariables',
+                \ 'v:FunctionVariables',
+                \ ]
+                \ }
+    "}}}
+    "{{{reStructuredText
+    let g:tagbar_type_rst = {
+                \ 'ctagstype': 'rst',
+                \ 'ctagsbin' : 'rst2ctags',
+                \ 'ctagsargs' : '-f - --sort=yes',
+                \ 'kinds' : [
+                \ 's:sections',
+                \ 'i:images'
+                \ ],
+                \ 'sro' : '|',
+                \ 'kind2scope' : {
+                \ 's' : 'section',
+                \ },
+                \ 'sort': 0,
+                \ }
+    "}}}
+    "{{{Ruby
+    let g:tagbar_type_ruby = {
+                \ 'kinds' : [
+                \ 'm:modules',
+                \ 'c:classes',
+                \ 'd:describes',
+                \ 'C:contexts',
+                \ 'f:methods',
+                \ 'F:singleton methods'
+                \ ]
+                \ }
+    "}}}
+    "{{{Rust
+    let g:rust_use_custom_ctags_defs = 1  " if using rust.vim
+    let g:tagbar_type_rust = {
+                \ 'ctagsbin' : '/path/to/your/universal/ctags',
+                \ 'ctagstype' : 'rust',
+                \ 'kinds' : [
+                \ 'n:modules',
+                \ 's:structures:1',
+                \ 'i:interfaces',
+                \ 'c:implementations',
+                \ 'f:functions:1',
+                \ 'g:enumerations:1',
+                \ 't:type aliases:1:0',
+                \ 'v:constants:1:0',
+                \ 'M:macros:1',
+                \ 'm:fields:1:0',
+                \ 'e:enum variants:1:0',
+                \ 'P:methods:1',
+                \ ],
+                \ 'sro': '::',
+                \ 'kind2scope' : {
+                \ 'n': 'module',
+                \ 's': 'struct',
+                \ 'i': 'interface',
+                \ 'c': 'implementation',
+                \ 'f': 'function',
+                \ 'g': 'enum',
+                \ 't': 'typedef',
+                \ 'v': 'variable',
+                \ 'M': 'macro',
+                \ 'm': 'field',
+                \ 'e': 'enumerator',
+                \ 'P': 'method',
+                \ },
+                \ }
+    "}}}
+    "{{{Scala
+    let g:tagbar_type_scala = {
+                \ 'ctagstype' : 'scala',
+                \ 'sro'       : '.',
+                \ 'kinds'     : [
+                \ 'p:packages',
+                \ 'T:types:1',
+                \ 't:traits',
+                \ 'o:objects',
+                \ 'O:case objects',
+                \ 'c:classes',
+                \ 'C:case classes',
+                \ 'm:methods',
+                \ 'V:values:1',
+                \ 'v:variables:1'
+                \ ]
+                \ }
+    "}}}
+    "{{{systemverilog
+    let g:tagbar_type_systemverilog = {
+                \ 'ctagstype': 'systemverilog',
+                \ 'kinds' : [
+                \'A:assertions',
+                \'C:classes',
+                \'E:enumerators',
+                \'I:interfaces',
+                \'K:packages',
+                \'M:modports',
+                \'P:programs',
+                \'Q:prototypes',
+                \'R:properties',
+                \'S:structs and unions',
+                \'T:type declarations',
+                \'V:covergroups',
+                \'b:blocks',
+                \'c:constants',
+                \'e:events',
+                \'f:functions',
+                \'m:modules',
+                \'n:net data types',
+                \'p:ports',
+                \'r:register data types',
+                \'t:tasks',
+                \],
+                \ 'sro': '.',
+                \ 'kind2scope' : {
+                \ 'K' : 'package',
+                \ 'C' : 'class',
+                \ 'm' : 'module',
+                \ 'P' : 'program',
+                \ 'I' : 'interface',
+                \ 'M' : 'modport',
+                \ 'f' : 'function',
+                \ 't' : 'task',
+                \},
+                \ 'scope2kind' : {
+                \ 'package'   : 'K',
+                \ 'class'     : 'C',
+                \ 'module'    : 'm',
+                \ 'program'   : 'P',
+                \ 'interface' : 'I',
+                \ 'modport'   : 'M',
+                \ 'function'  : 'f',
+                \ 'task'      : 't',
+                \ },
+                \}
+    "}}}
+    "{{{TypeScript
+    let g:tagbar_type_typescript = {
+                \ 'ctagstype': 'typescript',
+                \ 'kinds': [
+                \ 'c:classes',
+                \ 'n:modules',
+                \ 'f:functions',
+                \ 'v:variables',
+                \ 'v:varlambdas',
+                \ 'm:members',
+                \ 'i:interfaces',
+                \ 'e:enums',
+                \ ]
+                \ }
+    "}}}
+    "{{{VHDL
+    let g:tagbar_type_vhdl = {
+                \ 'ctagstype': 'vhdl',
+                \ 'kinds' : [
+                \'d:prototypes',
+                \'b:package bodies',
+                \'e:entities',
+                \'a:architectures',
+                \'t:types',
+                \'p:processes',
+                \'f:functions',
+                \'r:procedures',
+                \'c:constants',
+                \'T:subtypes',
+                \'r:records',
+                \'C:components',
+                \'P:packages',
+                \'l:locals'
+                \]
+                \}
+    "}}}
+    "{{{WSDL
+    let g:tagbar_type_xml = {
+                \ 'ctagstype' : 'WSDL',
+                \ 'kinds'     : [
+                \ 'n:namespaces',
+                \ 'm:messages',
+                \ 'p:portType',
+                \ 'o:operations',
+                \ 'b:bindings',
+                \ 's:service'
+                \ ]
+                \ }
+    "}}}
+    "{{{Xquery
+    let g:tagbar_type_xquery = {
+                \ 'ctagstype' : 'xquery',
+                \ 'kinds'     : [
+                \ 'f:function',
+                \ 'v:variable',
+                \ 'm:module',
+                \ ]
+                \ }
+    "}}}
+    "{{{XSD
+    let g:tagbar_type_xsd = {
+                \ 'ctagstype' : 'XSD',
+                \ 'kinds'     : [
+                \ 'e:elements',
+                \ 'c:complexTypes',
+                \ 's:simpleTypes'
+                \ ]
+                \ }
+    "}}}
+    "{{{XSLT
+    let g:tagbar_type_xslt = {
+                \ 'ctagstype' : 'xslt',
+                \ 'kinds' : [
+                \ 'v:variables',
+                \ 't:templates'
+                \ ]
+                \}
+    "}}}
+    nnoremap <silent><A-b> :<C-u>call ToggleTagbar()<CR>
+    let g:TagBarLoad = 0
+    function! ToggleTagbar()
+        if g:TagBarLoad == 0
+            let g:TagBarLoad = 1
+            call TagbarInit()
+            execute 'TagbarToggle'
+        elseif g:TagBarLoad == 1
+            execute 'TagbarToggle'
+        endif
+    endfunction
+    function! TagbarInit()
+        let g:tagbar_sort = 0
+        let g:tagbar_width = 35
+        let g:tagbar_autoclose = 1
+        let g:tagbar_foldlevel = 2
+        let g:tagbar_iconchars = ['▶', '◿']
+        let g:tagbar_type_css = {
+                    \ 'ctagstype' : 'Css',
+                    \ 'kinds'     : [
+                    \ 'c:classes',
+                    \ 's:selectors',
+                    \ 'i:identities'
+                    \ ]
+                    \ }
+        call plug#load('tagbar', 'tagbar-phpctags.vim')
+    endfunction
+    "}}}
+    "{{{vista.vim
+elseif g:VIM_TAGBAR ==# 'vista'
+    "{{{g:vim_vista_lsp_client
+    if g:VIM_LSP_Client ==# 'lcn'
+        let g:vim_vista_lsp_client = 'lcn'
+    elseif g:VIM_LSP_Client ==# 'vim-lsp'
+        let g:vim_vista_lsp_client = 'vim_lsp'
+    endif
+    if g:VIM_Completion_Framework ==# 'coc'
+        let g:vim_vista_lsp_client = 'coc'
+    endif
+    "}}}
+    nnoremap <silent><A-b> :<C-u>Vista!!<CR>
+    let g:vista_echo_cursor_strategy = 'both'
+    let g:vista_icon_indent = ['╰─▸ ', '├─▸ ']
+    let g:vista_sidebar_width = 35
+    let g:vista_default_executive = 'ctags'
+    let g:vista_executive_for = {
+                \ 'c': g:vim_vista_lsp_client,
+                \ 'cpp': g:vim_vista_lsp_client
+                \ }
+    let g:vista_fzf_preview = ['right:50%']
+    let g:vista#renderer#enable_icon = 1
+    let g:vista#renderer#icons = {
+                \ 'function': "\uf794",
+                \ 'variable': "\uf71b",
+                \ }
+    function! s:vista_mappings() abort
+        nnoremap <silent><buffer> <A-b> :Vista!!<CR>
+        nnoremap <silent><buffer> q :Vista!!<CR>
+        nnoremap <silent><buffer> f :Vista finder<CR>
+        nnoremap <silent><buffer> F :execute "Vista finder ".g:vim_vista_lsp_client<CR>
+    endfunction
+    augroup VistaAu
+        autocmd!
+        autocmd FileType vista_kind call s:vista_mappings()
+        autocmd FileType markdown nnoremap <silent><A-b> :<C-u>Vista toc<CR>
+    augroup END
+endif
 "}}}
 "{{{neoformat
 "{{{neoformat-usage
