@@ -4837,11 +4837,11 @@ if g:VIM_TAGBAR ==# 'tagbar'
     endfunction
     function! s:tagbar_mappings() abort
         if g:VIM_Fuzzy_Finder ==# 'denite'
-            nnoremap <silent><buffer> f :<C-u>Denite outline<CR>
+            nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:Denite outline<CR>
         elseif g:VIM_Fuzzy_Finder ==# 'fzf'
-            nnoremap <silent><buffer> f :<C-u>BTags<CR>
+            nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:BTags<CR>
         elseif g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
-            nnoremap <silent><buffer> f :<C-u>LeaderfBufTagAll<CR>
+            nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:LeaderfBufTagAll<CR>
         endif
     endfunction
     augroup TagbarAu
