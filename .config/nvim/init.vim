@@ -711,7 +711,6 @@ Plug 'reedes/vim-colors-pencil', { 'as': 'vim-color-pencil' }
 Plug 'bcicen/vim-vice', { 'as': 'vim-color-vice' }
 Plug 'sainnhe/soft-era-vim', { 'as': 'vim-color-soft-era' }
 Plug 'sts10/vim-pink-moon', { 'as': 'vim-color-pink-moon' }
-Plug 'KKPMW/sacredforest-vim', { 'as': 'vim-color-sacredforest' }
 Plug 'trevordmiller/nova-vim', { 'as': 'vim-color-nova' }
 Plug 'skreek/skeletor.vim', { 'as': 'vim-color-skeletor' }
 Plug 'crusoexia/vim-monokai', { 'as': 'vim-color-monokai' }
@@ -723,13 +722,26 @@ Plug 'beikome/cosme.vim', { 'as': 'vim-color-cosme' }
 Plug 'Marfisc/vorange', { 'as': 'vim-color-vorange' }
 Plug 'logico-dev/typewriter', { 'as': 'vim-color-typewriter' }
 Plug 'lifepillar/vim-solarized8', { 'as': 'vim-color-solarized8' }
-Plug 'KKPMW/oldbook-vim', { 'as': 'vim-color-oldbook' }
 Plug 'dracula/vim', { 'as': 'vim-color-dracula' }
 Plug 'blueshirts/darcula', { 'as': 'vim-color-darcula' }
 Plug 'fcpg/vim-orbital', { 'as': 'vim-color-orbital' }
 Plug 'dunstontc/vim-vscode-theme', { 'as': 'vim-color-dark-plus' }
 Plug 'mhartington/oceanic-next', { 'as': 'vim-color-oceanic-next' }
 Plug 'liuchengxu/space-vim-theme', { 'as': 'vim-color-spacevim' }
+Plug 'KKPMW/oldbook-vim', { 'as': 'vim-color-oldbook' }
+Plug 'KKPMW/sacredforest-vim', { 'as': 'vim-color-sacredforest' }
+Plug 'cseelus/vim-colors-lucid', { 'as': 'vim-color-lucid' }
+Plug 'ayu-theme/ayu-vim', { 'as': 'vim-color-ayu' }
+Plug 'nightsense/cosmic_latte', { 'as': 'vim-color-cosmic-latte' }
+Plug 'nightsense/snow', { 'as': 'vim-color-snow' }
+Plug 'nightsense/stellarized', { 'as': 'vim-color-stellarized' }
+Plug 'nightsense/strawberry', { 'as': 'vim-color-strawberry' }
+Plug 'nightsense/nemo', { 'as': 'vim-color-nemo' }
+Plug 'nightsense/forgotten', { 'as': 'vim-color-forgotten' }
+Plug 'nightsense/simplifysimplify', { 'as': 'vim-color-simplifysimplify' }
+Plug 'GGalizzi/cake-vim', { 'as': 'vim-color-cake' }
+Plug 'BrainDeath0/Hypsteria', { 'as': 'vim-color-hypsteria' }
+Plug 'zefei/cake16', { 'as': 'vim-color-cake16' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1271,7 +1283,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'forest-night'
+let g:VIM_Color_Scheme = 'simplifysimplify-light'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1399,6 +1411,18 @@ function! ColorScheme()
     call g:quickmenu#append('brushtrees', 'call SwitchColorScheme("brushtrees-dark")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Warm', '')
+    "{{{gruvbox
+    if g:VIM_Color_Scheme ==# 'gruvbox-dark'
+        set background=dark
+        colorscheme gruvbox
+        let g:lightline.colorscheme = 'gruvbox'
+        let g:lightline#colorscheme#gruvbox#palette.tabline.right = [ g:lightline#colorscheme#gruvbox#palette.tabline.right[0], g:lightline#colorscheme#gruvbox#palette.normal.middle[0] ]
+        let g:lightline#colorscheme#gruvbox#palette.tabline.right[1][1] = g:lightline#colorscheme#gruvbox#palette.tabline.middle[0][1]
+        let g:lightline#colorscheme#gruvbox#palette.insert.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
+        let g:lightline#colorscheme#gruvbox#palette.visual.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
+    endif
+    call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-dark")', '', '', 0, '')
+    "}}}
     "{{{srcery
     if g:VIM_Color_Scheme ==# 'srcery'
         set background=dark
@@ -1415,17 +1439,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('vorange', 'call SwitchColorScheme("vorange")', '', '', 0, '')
     "}}}
-    "{{{gruvbox
-    if g:VIM_Color_Scheme ==# 'gruvbox-dark'
+    "{{{hypsteria
+    if g:VIM_Color_Scheme ==# 'hypsteria'
         set background=dark
-        colorscheme gruvbox
-        let g:lightline.colorscheme = 'gruvbox'
-        let g:lightline#colorscheme#gruvbox#palette.tabline.right = [ g:lightline#colorscheme#gruvbox#palette.tabline.right[0], g:lightline#colorscheme#gruvbox#palette.normal.middle[0] ]
-        let g:lightline#colorscheme#gruvbox#palette.tabline.right[1][1] = g:lightline#colorscheme#gruvbox#palette.tabline.middle[0][1]
-        let g:lightline#colorscheme#gruvbox#palette.insert.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
-        let g:lightline#colorscheme#gruvbox#palette.visual.middle = g:lightline#colorscheme#gruvbox#palette.normal.middle
+        colorscheme hypsteria
+        let g:lightline.colorscheme = 'hypsteria_alter'
     endif
-    call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-dark")', '', '', 0, '')
+    call g:quickmenu#append('hypsteria', 'call SwitchColorScheme("hypsteria")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Cold', '')
     "{{{ashes
@@ -1507,6 +1527,14 @@ function! ColorScheme()
         hi Conceal guifg=#666666 ctermfg=255 guibg=#282c34 ctermbg=235 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('two-firewatch', 'call SwitchColorScheme("two-firewatch-dark")', '', '', 0, '')
+    "}}}
+    "{{{stellarized-dark
+    if g:VIM_Color_Scheme ==# 'stellarized-dark'
+        set background=dark
+        colorscheme stellarized
+        let g:lightline.colorscheme = 'stellarized_dark'
+    endif
+    call g:quickmenu#append('stellarized', 'call SwitchColorScheme("stellarized-dark")', '', '', 0, '')
     "}}}
     "{{{cosme
     if g:VIM_Color_Scheme ==# 'cosme'
@@ -1792,14 +1820,50 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('material', 'call SwitchColorScheme("material-light")', '', '', 0, '')
     "}}}
+    "{{{ayu-light
+    if g:VIM_Color_Scheme ==# 'ayu-light'
+        set background=light
+        let g:ayucolor = 'light'
+        colorscheme ayu
+        let g:lightline.colorscheme = 'ayu_light'
+    endif
+    call g:quickmenu#append('ayu', 'call SwitchColorScheme("ayu-light")', '', '', 0, '')
+    "}}}
+    "{{{simplifysimplify-light
+    if g:VIM_Color_Scheme ==# 'simplifysimplify-light'
+        set background=light
+        colorscheme simplifysimplify-light
+        let g:lightline.colorscheme = 'simplifysimplify_light_alter'
+        hi Conceal      guifg=#888888   ctermfg=9       guibg=NONE      ctermbg=10      gui=NONE        cterm=NONE
+        hi PmenuSbar    guifg=NONE      ctermfg=NONE    guibg=#f6f8fa   ctermbg=255
+        hi PmenuThumb   guifg=NONE      ctermfg=NONE    guibg=#dde2e7   ctermbg=254
+        hi Pmenu        guifg=#76787b   ctermfg=243     guibg=#f6f8fa   ctermbg=255
+        hi PmenuSel     guifg=#f6f8fa   ctermfg=255     guibg=#219e21   ctermbg=2
+        hi Visual       guifg=#ffffff   ctermfg=00      guibg=#a26fbf   ctermbg=05
+    endif
+    call g:quickmenu#append('simplifysimplify', 'call SwitchColorScheme("simplifysimplify-light")', '', '', 0, '')
+    "}}}
+    "{{{cake
+    if g:VIM_Color_Scheme ==# 'cake'
+        set background=light
+        colorscheme cake
+        let g:lightline.colorscheme = 'cake_alter'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi PmenuSbar    guifg=NONE      ctermfg=NONE    guibg=#f6f8fa   ctermbg=255
+        hi PmenuThumb   guifg=NONE      ctermfg=NONE    guibg=#dde2e7   ctermbg=254
+        hi Pmenu        guifg=#76787b   ctermfg=243     guibg=#f6f8fa   ctermbg=255
+        hi PmenuSel     guifg=#f6f8fa   ctermfg=255     guibg=#7eb833   ctermbg=107
+    endif
+    call g:quickmenu#append('cake', 'call SwitchColorScheme("cake")', '', '', 0, '')
+    "}}}
     call g:quickmenu#append('# Relax', '')
     "{{{solarized8
     if g:VIM_Color_Scheme ==# 'solarized8-light'
         let g:solarized_extra_hi_groups = 1
         let g:solarized_term_italics = 1
-        let g:solarized_visibility = 'normal'  " normal low flat
-        let g:solarized_diffmode = 'normal'  " normal low flat
-        let g:solarized_statusline = 'normal'  " normal low flat
+        let g:solarized_visibility = 'flat'  " normal low flat
+        let g:solarized_diffmode = 'flat'  " normal low flat
+        let g:solarized_statusline = 'flat'  " normal low flat
         let g:solarized_termtrans = 0
         set background=light
         colorscheme solarized8
@@ -1807,6 +1871,31 @@ function! ColorScheme()
         let g:lightline#colorscheme#solarized#palette.tabline.right[1] = g:lightline#colorscheme#solarized#palette.normal.middle[0]
     endif
     call g:quickmenu#append('solarized', 'call SwitchColorScheme("solarized8-light")', '', '', 0, '')
+    "}}}
+    "{{{cake16
+    if g:VIM_Color_Scheme ==# 'cake16'
+        set background=light
+        colorscheme cake16
+        let g:lightline.colorscheme = 'solarized'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+    endif
+    call g:quickmenu#append('cake16', 'call SwitchColorScheme("cake16")', '', '', 0, '')
+    "}}}
+    "{{{cosmic-latte-light
+    if g:VIM_Color_Scheme ==# 'cosmic-latte-light'
+        set background=light
+        colorscheme cosmic_latte
+        let g:lightline.colorscheme = 'cosmic_latte_light'
+    endif
+    call g:quickmenu#append('cosmic-latte', 'call SwitchColorScheme("cosmic-latte-light")', '', '', 0, '')
+    "}}}
+    "{{{stellarized-light
+    if g:VIM_Color_Scheme ==# 'stellarized-light'
+        set background=light
+        colorscheme stellarized
+        let g:lightline.colorscheme = 'stellarized_light'
+    endif
+    call g:quickmenu#append('stellarized', 'call SwitchColorScheme("stellarized-light")', '', '', 0, '')
     "}}}
     "{{{gruvbox
     if g:VIM_Color_Scheme ==# 'gruvbox-light'
@@ -1820,6 +1909,7 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('gruvbox', 'call SwitchColorScheme("gruvbox-light")', '', '', 0, '')
     "}}}
+    call g:quickmenu#append('# Colorful', '')
     "{{{brushtrees
     if g:VIM_Color_Scheme ==# 'brushtrees-light'
         set background=light
@@ -1846,6 +1936,43 @@ function! ColorScheme()
         let g:lightline#colorscheme#base16_cupcake#palette.tabline.tabsel[0] = g:lightline#colorscheme#base16_cupcake#palette.normal.right[0]
     endif
     call g:quickmenu#append('cupcake', 'call SwitchColorScheme("cupcake")', '', '', 0, '')
+    "}}}
+    "{{{strawberry-light
+    if g:VIM_Color_Scheme ==# 'strawberry-light'
+        set background=light
+        colorscheme strawberry-light
+        let g:lightline.colorscheme = 'Atelier_Heath'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        augroup StrawberryAu
+            autocmd!
+            autocmd InsertEnter * let g:lightline#colorscheme#Atelier_Heath#palette.insert.left[0][1] = '#d46a84'
+            autocmd InsertEnter * let g:lightline#colorscheme#Atelier_Heath#palette.insert.left[0][3] = '14'
+        augroup END
+    endif
+    call g:quickmenu#append('strawberry', 'call SwitchColorScheme("strawberry-light")', '', '', 0, '')
+    "}}}
+    "{{{nemo-light
+    if g:VIM_Color_Scheme ==# 'nemo-light'
+        set background=light
+        colorscheme nemo-light
+        let g:lightline.colorscheme = 'Atelier_Sulphurpool'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        augroup NemoAu
+            autocmd!
+            autocmd InsertEnter * let g:lightline#colorscheme#Atelier_Sulphurpool#palette.insert.left[0][1] = '#d46a84'
+            autocmd InsertEnter * let g:lightline#colorscheme#Atelier_Sulphurpool#palette.insert.left[0][3] = '14'
+        augroup END
+    endif
+    call g:quickmenu#append('nemo', 'call SwitchColorScheme("nemo-light")', '', '', 0, '')
+    "}}}
+    "{{{forgotten-light
+    if g:VIM_Color_Scheme ==# 'forgotten-light'
+        set background=light
+        colorscheme forgotten-light
+        let g:lightline.colorscheme = 'Atelier_Lakeside'
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+    endif
+    call g:quickmenu#append('forgotten', 'call SwitchColorScheme("forgotten-light")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Meta', '')
     "{{{google
@@ -1888,6 +2015,14 @@ function! ColorScheme()
         let g:lightline#colorscheme#github#palette.tabline.tabsel[0][1] = g:lightline#colorscheme#github#palette.normal.middle[0][1]
     endif
     call g:quickmenu#append('github', 'call SwitchColorScheme("github")', '', '', 0, '')
+    "}}}
+    "{{{snow-light
+    if g:VIM_Color_Scheme ==# 'snow-light'
+        set background=light
+        colorscheme snow
+        let g:lightline.colorscheme = 'snow_light'
+    endif
+    call g:quickmenu#append('snow', 'call SwitchColorScheme("snow-light")', '', '', 0, '')
     "}}}
     "{{{oceanic-next
     if g:VIM_Color_Scheme ==# 'oceanic-next-light'
@@ -2181,6 +2316,16 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('tone', 'call SwitchColorScheme("tone")', '', '', 0, '')
     "}}}
+    "{{{lucid
+    if g:VIM_Color_Scheme ==# 'lucid'
+        set background=dark
+        colorscheme lucid
+        let g:lightline.colorscheme = 'snazzy'
+        let g:lightline#colorscheme#snazzy#palette.tabline.middle = g:lightline#colorscheme#snazzy#palette.normal.middle
+        let g:lightline#colorscheme#snazzy#palette.tabline.tabsel[0] = g:lightline#colorscheme#snazzy#palette.normal.right[0]
+    endif
+    call g:quickmenu#append('lucid', 'call SwitchColorScheme("lucid")', '', '', 0, '')
+    "}}}
     "{{{vice
     if g:VIM_Color_Scheme ==# 'vice'
         colorscheme vice
@@ -2201,9 +2346,9 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'solarized8-dark'
         let g:solarized_extra_hi_groups = 1
         let g:solarized_term_italics = 1
-        let g:solarized_visibility = 'normal'  " normal low flat
-        let g:solarized_diffmode = 'normal'  " normal low flat
-        let g:solarized_statusline = 'normal'  " normal low flat
+        let g:solarized_visibility = 'flat'  " normal low flat
+        let g:solarized_diffmode = 'flat'  " normal low flat
+        let g:solarized_statusline = 'flat'  " normal low flat
         let g:solarized_termtrans = 0
         set background=dark
         colorscheme solarized8
