@@ -1,122 +1,155 @@
 {
-    "$schema": "/home/sainnhe/.cache/vim/plugins/coc.nvim/data/schema.json",
-    "suggest.timeout": 500,
-    "suggest.enablePreview": true,
-    "suggest.maxPreviewWidth": 35,
-    "suggest.detailMaxLength": 100,
-    "suggest.detailField": "preview",
-    "suggest.snippetIndicator": "\ue796",
-    "diagnostic.level": "hint",
-    "diagnostic.refreshOnInsertMode": false,
-    "diagnostic.refreshAfterSave": true,
-    "diagnostic.displayByAle": true,
-    "diagnostic.virtualText": true,
-    "diagnostic.errorSign": "\uf65b",
-    "diagnostic.warningSign": "\uf421",
-    "diagnostic.infoSign": "ℹ",
-    "diagnostic.hintSign": "➤",
-    "codeLens.enable": true,
-    "codeLens.separator": "‣",
-    "list.indicator": "➣",
-    "list.maxHeight": 15,
-    "list.insertMappings": {
-        "<C-p>": "action:preview"
+  "$schema": "/home/sainnhe/.cache/vim/plugins/coc.nvim/data/schema.json",
+  "suggest.timeout": 500,
+  "suggest.enablePreview": true,
+  "suggest.maxPreviewWidth": 35,
+  "suggest.detailMaxLength": 100,
+  "suggest.detailField": "preview",
+  "suggest.snippetIndicator": "\ue796",
+  "diagnostic.level": "hint",
+  "diagnostic.refreshOnInsertMode": false,
+  "diagnostic.refreshAfterSave": true,
+  "diagnostic.displayByAle": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.errorSign": "\uf65b",
+  "diagnostic.warningSign": "\uf421",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "➤",
+  "codeLens.enable": true,
+  "codeLens.separator": "‣",
+  "list.indicator": "➣",
+  "list.maxHeight": 15,
+  "list.insertMappings": {
+    "<C-p>": "action:preview"
+  },
+  "suggest.languageSourcePriority": 99,
+  "help_snippets": "https://github.com/neoclide/coc-snippets",
+  "snippets.shortcut": "S",
+  "snippets.priority": 98,
+  "snippets.extends": {
+    "cpp": ["c"],
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"]
+  },
+  "coc.source.ultisnips.shortcut": "US",
+  "coc.source.ultisnips.priority": 98,
+  "coc.source.neosnippet.shortcut": "NS",
+  "coc.source.neosnippet.priority": 98,
+  "coc.source.file.shortcut": "F",
+  "coc.source.file.priority": 89,
+  "coc.source.file.ignoreHidden": false,
+  "coc.source.around.shortcut": "A",
+  "coc.source.around.priority": 88,
+  "coc.source.buffer.shortcut": "B",
+  "coc.source.buffer.priority": 87,
+  "coc.source.buffer.ignoreGitignore": false,
+  "coc.source.syntax.shortcut": "X",
+  "coc.source.syntax.priority": 79,
+  "coc.source.tag.shortcut": "T",
+  "coc.source.tag.priority": 78,
+  "coc.source.dictionary.shortcut": "D",
+  "coc.source.dictionary.priority": 9,
+  "coc.source.dictionary.filetypes": ["markdown", "text"],
+  "coc.source.emoji.shortcut": "E",
+  "coc.source.emoji.priority": 8,
+  "coc.source.emoji.filetypes": ["markdown", "text"],
+  "help_highlight": "https://github.com/neoclide/coc-highlight",
+  "coc.preferences.colorSupport": true,
+  "highlight.document.enable": true,
+  "highlight.colors.enable": true,
+  "highlight.disableLanguages": [],
+  "help_emmet": "https://github.com/neoclide/coc-emmet",
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact"
+  },
+  "help_pairs": "https://github.com/neoclide/coc-pairs",
+  "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
+  "help_html": "https://github.com/neoclide/coc-html",
+  "help_css": "https://github.com/neoclide/coc-css",
+  "help_json": "https://github.com/neoclide/coc-json",
+  "help_yaml": "https://github.com/neoclide/coc-yaml",
+  "languageserver": {
+    "CLANGD": {
+      "command": "clangd",
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "filetypes_bak": ["none"]
     },
-    "suggest.languageSourcePriority": 99,
-    "help_snippets": "https://github.com/neoclide/coc-snippets",
-    "snippets.shortcut": "S",
-    "snippets.priority": 98,
-    "snippets.extends": {
-        "cpp": ["c"],
-        "javascriptreact": ["javascript"],
-        "typescript": ["javascript"]
-    },
-    "coc.source.ultisnips.shortcut": "US",
-    "coc.source.ultisnips.priority": 98,
-    "coc.source.neosnippet.shortcut": "NS",
-    "coc.source.neosnippet.priority": 98,
-    "coc.source.file.shortcut": "F",
-    "coc.source.file.priority": 89,
-    "coc.source.file.ignoreHidden": false,
-    "coc.source.around.shortcut": "A",
-    "coc.source.around.priority": 88,
-    "coc.source.buffer.shortcut": "B",
-    "coc.source.buffer.priority": 87,
-    "coc.source.buffer.ignoreGitignore": false,
-    "coc.source.syntax.shortcut": "X",
-    "coc.source.syntax.priority": 79,
-    "coc.source.tag.shortcut": "T",
-    "coc.source.tag.priority": 78,
-    "coc.source.dictionary.shortcut": "D",
-    "coc.source.dictionary.priority": 9,
-    "coc.source.dictionary.filetypes": ["markdown", "text"],
-    "coc.source.emoji.shortcut": "E",
-    "coc.source.emoji.priority": 8,
-    "coc.source.emoji.filetypes": ["markdown", "text"],
-    "help_highlight": "https://github.com/neoclide/coc-highlight",
-    "coc.preferences.colorSupport": true,
-    "highlight.document.enable": true,
-    "highlight.colors.enable": true,
-    "highlight.disableLanguages": [],
-    "help_emmet": "https://github.com/neoclide/coc-emmet",
-    "emmet.includeLanguages": {
-        "vue-html": "html",
-        "javascript": "javascriptreact"
-    },
-    "help_pairs": "https://github.com/neoclide/coc-pairs",
-    "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
-    "help_html": "https://github.com/neoclide/coc-html",
-    "help_css": "https://github.com/neoclide/coc-css",
-    "help_json": "https://github.com/neoclide/coc-json",
-    "help_yaml": "https://github.com/neoclide/coc-yaml",
-    "languageserver": {
-        "CCLS": {
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "objc", "objcpp"],
-            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls",
-                    "format": "json"
-                },
-                "diagnostics": {
-                    "onOpen": 0,
-                    "onChange": 1,
-                    "onSave": 0
-                }
-            }
+    "CCLS": {
+      "command": "ccls",
+      "filetypes_bak": ["c", "cpp", "objc", "objcpp"],
+      "filetypes": ["none"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls",
+          "format": "json"
         },
-        "MPLS": {
-            "command": "mspyls",
-            "trace.server": "verbose",
-            "filetypes": ["python"],
-            "initializationOptions": {
-                "interpreter": {
-                    "properties": {
-                        "InterpreterPath": "/usr/bin/python3",
-                        "UseDefaultDatabase": true
-                    }
-                },
-                "displayOptions": {
-                    "preferredFormat": "markdown",
-                    "trimDocumentationLines": false,
-                    "maxDocumentationLineLength": 0,
-                    "trimDocumentationText": false,
-                    "maxDocumentationTextLength": 0
-                },
-                "searchPaths": [
-                    "/usr/bin"
-                ],
-                "testEnvironment": false,
-                "analysisUpdates": true,
-                "traceLogging": true,
-                "asyncStartup": true
-            }
-        },
-        "SHLS": {
-            "command": "bash-language-server",
-            "filetypes": ["sh", "zsh"],
-            "args": ["start"]
+        "diagnostics": {
+          "onOpen": 0,
+          "onChange": 1,
+          "onSave": 0
         }
+      }
+    },
+    "CQUERY": {
+      "command": "cquery",
+      "args": ["--log-file=/tmp/cq.log"],
+      "filetypes_bak": ["c", "cpp"],
+      "filetypes": ["none"],
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cacheDirectory": "/tmp/cquery"
+      }
+    },
+    "MPLS": {
+      "command": "mspyls",
+      "trace.server": "verbose",
+      "filetypes": ["python"],
+      "initializationOptions": {
+        "interpreter": {
+          "properties": {
+            "InterpreterPath": "/usr/bin/python3",
+            "UseDefaultDatabase": true
+          }
+        },
+        "displayOptions": {
+          "preferredFormat": "markdown",
+          "trimDocumentationLines": false,
+          "maxDocumentationLineLength": 0,
+          "trimDocumentationText": false,
+          "maxDocumentationTextLength": 0
+        },
+        "searchPaths": ["/usr/bin"],
+        "testEnvironment": false,
+        "analysisUpdates": true,
+        "traceLogging": true,
+        "asyncStartup": true
+      }
+    },
+    "SHLS": {
+      "command": "bash-language-server",
+      "filetypes": ["sh", "zsh"],
+      "args": ["start"]
     }
+  }
 }
