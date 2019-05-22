@@ -1879,8 +1879,8 @@ function! ColorScheme()
         colorscheme cake16
         let g:lightline.colorscheme = 'solarized'
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
-        hi PmenuSbar    guifg=NONE      ctermfg=NONE    guibg=#eee8d5   ctermbg=255
-        hi PmenuThumb   guifg=NONE      ctermfg=NONE    guibg=#839496   ctermbg=254
+        hi PmenuSbar    guifg=NONE      ctermfg=NONE    guibg=#839496   ctermbg=255
+        hi PmenuThumb   guifg=NONE      ctermfg=NONE    guibg=#657b83   ctermbg=254
         hi Pmenu        guifg=#fdf6e3   ctermfg=243     guibg=#839496   ctermbg=255
         hi PmenuSel     guifg=#eee8d5   ctermfg=255     guibg=#657b83   ctermbg=2
     endif
