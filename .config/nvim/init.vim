@@ -790,24 +790,15 @@ elseif g:VIM_Snippets ==# 'neosnippet'
 elseif g:VIM_Snippets ==# 'coc-snippets'
     Plug 'honza/vim-snippets'
 endif
-if g:VIM_Completion_Framework ==# 'deoplete'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    if executable('proxychains')
-        Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains -q bash ./install.sh' }
-    else
-        Plug 'tbodt/deoplete-tabnine', { 'do': 'bash ./install.sh' }
-    endif
-    Plug 'ozelentok/deoplete-gtags', { 'on': [] }
-    Plug 'Shougo/neco-syntax'
-    Plug 'Shougo/neoinclude.vim'
-    Plug 'Shougo/context_filetype.vim'
-    Plug 'Shougo/neco-vim', { 'for': 'vim' }
+if g:VIM_Completion_Framework ==# 'coc'
+    Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
+    Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
     Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
-    Plug 'Shougo/deoplete-clangx', { 'for': [ 'c', 'cpp' ] }
-    Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp' ] }
-    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    if g:VIM_LSP_Client ==# 'vim-lsp'
-        Plug 'lighttiger2505/deoplete-vim-lsp'
+    Plug 'tjdevries/coc-zsh'
+    if executable('proxychains')
+        Plug 'neoclide/coc.nvim', {'do': 'proxychains -q yarn install --frozen-lockfile'}
+    else
+        Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     endif
 elseif g:VIM_Completion_Framework ==# 'ncm2'
     Plug 'roxma/nvim-yarp' | Plug 'ncm2/ncm2'
@@ -837,6 +828,25 @@ elseif g:VIM_Completion_Framework ==# 'ncm2'
     endif
     " Plug 'ncm2/ncm2-match-highlight'
     " Plug 'ncm2/ncm2-highprio-pop'
+elseif g:VIM_Completion_Framework ==# 'deoplete'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    if executable('proxychains')
+        Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains -q bash ./install.sh' }
+    else
+        Plug 'tbodt/deoplete-tabnine', { 'do': 'bash ./install.sh' }
+    endif
+    Plug 'ozelentok/deoplete-gtags', { 'on': [] }
+    Plug 'Shougo/neco-syntax'
+    Plug 'Shougo/neoinclude.vim'
+    Plug 'Shougo/context_filetype.vim'
+    Plug 'Shougo/neco-vim', { 'for': 'vim' }
+    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
+    Plug 'Shougo/deoplete-clangx', { 'for': [ 'c', 'cpp' ] }
+    Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp' ] }
+    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    if g:VIM_LSP_Client ==# 'vim-lsp'
+        Plug 'lighttiger2505/deoplete-vim-lsp'
+    endif
 elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-tags.vim'
@@ -853,16 +863,6 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
         Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
     elseif g:VIM_Snippets ==# 'neosnippet'
         Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
-    endif
-elseif g:VIM_Completion_Framework ==# 'coc'
-    Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
-    Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
-    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
-    Plug 'tjdevries/coc-zsh'
-    if executable('proxychains')
-        Plug 'neoclide/coc.nvim', {'do': 'proxychains -q yarn install --frozen-lockfile'}
-    else
-        Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     endif
 elseif g:VIM_Completion_Framework ==# 'neocomplete'
     Plug 'Shougo/neocomplete.vim'
@@ -1283,7 +1283,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'one-dark'
+let g:VIM_Color_Scheme = 'cake16'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1325,7 +1325,8 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'tender'
         set background=dark
         let g:material_theme_style = 'dark'
-        let g:lightline.colorscheme = 'tender_alter'
+        " let g:lightline.colorscheme = 'tender_alter'
+        let g:lightline.colorscheme = 'material_dark_alter'
         colorscheme tender
         hi Conceal guifg=#666666 ctermfg=255 guibg=#282828 ctermbg=235 gui=NONE cterm=NONE
     endif
@@ -1878,6 +1879,10 @@ function! ColorScheme()
         colorscheme cake16
         let g:lightline.colorscheme = 'solarized'
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi PmenuSbar    guifg=NONE      ctermfg=NONE    guibg=#eee8d5   ctermbg=255
+        hi PmenuThumb   guifg=NONE      ctermfg=NONE    guibg=#839496   ctermbg=254
+        hi Pmenu        guifg=#fdf6e3   ctermfg=243     guibg=#839496   ctermbg=255
+        hi PmenuSel     guifg=#eee8d5   ctermfg=255     guibg=#657b83   ctermbg=2
     endif
     call g:quickmenu#append('cake16', 'call SwitchColorScheme("cake16")', '', '', 0, '')
     "}}}
