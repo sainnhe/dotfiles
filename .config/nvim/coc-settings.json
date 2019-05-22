@@ -82,45 +82,6 @@
       "filetypes": ["c", "cpp", "objc", "objcpp"],
       "filetypes_bak": ["none"]
     },
-    "CCLS": {
-      "command": "ccls",
-      "filetypes_bak": ["c", "cpp", "objc", "objcpp"],
-      "filetypes": ["none"],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls",
-          "format": "json"
-        },
-        "diagnostics": {
-          "onOpen": 0,
-          "onChange": 1,
-          "onSave": 0
-        }
-      }
-    },
-    "CQUERY": {
-      "command": "cquery",
-      "args": ["--log-file=/tmp/cq.log"],
-      "filetypes_bak": ["c", "cpp"],
-      "filetypes": ["none"],
-      "rootPatterns": [
-        "compile_flags.txt",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cacheDirectory": "/tmp/cquery"
-      }
-    },
     "MPLS": {
       "command": "mspyls",
       "trace.server": "verbose",

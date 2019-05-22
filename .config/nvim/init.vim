@@ -1283,7 +1283,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'simplifysimplify-light'
+let g:VIM_Color_Scheme = 'one-dark'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -2735,10 +2735,10 @@ if g:VIM_LSP_Client ==# 'lcn'
     "}}}
     " Server Register
     let g:LanguageClient_serverCommands = {
-                \ 'c': ['ccls', '--init={"cache": {"directory": "/tmp/ccls_lcn"}}'],
-                \ 'cpp': ['ccls', '--init={"cache": {"directory": "/tmp/ccls_lcn"}}'],
-                \ 'objc': ['ccls', '--init={"cache": {"directory": "/tmp/ccls_lcn"}}'],
-                \ 'objcpp': ['ccls', '--init={"cache": {"directory": "/tmp/ccls_lcn"}}'],
+                \ 'c': ['clangd'],
+                \ 'cpp': ['clangd'],
+                \ 'objc': ['clangd'],
+                \ 'objcpp': ['clangd'],
                 \ 'css': ['css-languageserver', '--stdio'],
                 \ 'html': ['html-languageserver', '--stdio'],
                 \ 'json': ['json-languageserver', '--stdio'],
@@ -2868,10 +2868,9 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
     augroup VIM_LSP_Register
         autocmd!
         au User lsp_setup call lsp#register_server({
-                    \ 'name': 'ccls',
-                    \ 'cmd': {server_info->['ccls']},
-                    \ 'initialization_options': { 'cacheDirectory': '/tmp/ccls_vim_lsp/' },
-                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+                    \ 'name': 'clangd',
+                    \ 'cmd': {server_info->['clangd']},
+                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
                     \ })
         au User lsp_setup call lsp#register_server({
                     \ 'name': 'html-languageserver',
