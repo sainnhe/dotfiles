@@ -1,4 +1,4 @@
-export TMUXLINE_COLOR_SCHEME="one_dark_insert"
+export TMUXLINE_COLOR_SCHEME="github_insert"
 fast-theme q-jmnemonic >/dev/null
 
 # Original location: https://github.com/romkatv/dotfiles-public/blob/master/.purepower.
