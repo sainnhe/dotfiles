@@ -135,7 +135,7 @@ function! ForceCloseRecursively()
 endfunction
 "}}}
 "{{{s:go_indent
-" gi, gpi跳转indent
+" gi, gI跳转indent
 function! s:indent_len(str)
     return type(a:str) == 1 ? len(matchstr(a:str, '^\s*')) : 0
 endfunction
@@ -158,7 +158,7 @@ function! s:go_indent(times, dir)
     endfor
 endfunction
 nnoremap <silent> gi :<c-u>call <SID>go_indent(v:count1, 1)<cr>
-nnoremap <silent> gpi :<c-u>call <SID>go_indent(v:count1, -1)<cr>
+nnoremap <silent> gI :<c-u>call <SID>go_indent(v:count1, -1)<cr>
 "}}}
 "{{{TerminalToggle
 nnoremap <silent> <A-Z> :call nvim_open_win(bufnr('%'), v:true, {'relative': 'editor', 'anchor': 'NW', 'width': winwidth(0), 'height': 2*winheight(0)/5, 'row': 1, 'col': 0})<CR>:call TerminalToggle()<CR>
@@ -1283,7 +1283,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'cake16'
+let g:VIM_Color_Scheme = 'one-dark'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
