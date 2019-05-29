@@ -742,6 +742,11 @@ Plug 'nightsense/simplifysimplify', { 'as': 'vim-color-simplifysimplify' }
 Plug 'GGalizzi/cake-vim', { 'as': 'vim-color-cake' }
 Plug 'BrainDeath0/Hypsteria', { 'as': 'vim-color-hypsteria' }
 Plug 'zefei/cake16', { 'as': 'vim-color-cake16' }
+" Plug 'flrnprz/candid.vim', { 'as': 'vim-color-candid' }
+" Plug 'benburrill/potato-colors', { 'as': 'vim-color-potato' }
+" Plug 'dfxyz/CandyPaper.vim', { 'as': 'vim-color-candypaper' }
+" Plug 'lifepillar/vim-wwdc16-theme', { 'as': 'vim-color-wwdc16' }
+" Plug 'lifepillar/vim-wwdc17-theme', { 'as': 'vim-color-wwdc17' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
