@@ -693,7 +693,7 @@ Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
 Plug 'atelierbram/Base2Tone-vim', { 'as': 'vim-color-base2tone' }
 Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
 Plug 'ajmwagar/vim-deus', { 'as': 'vim-color-deus' }
-Plug 'morhetz/gruvbox', { 'as': 'vim-color-gruvbox' }
+Plug 'gruvbox-community/gruvbox', { 'as': 'vim-color-gruvbox' }
 Plug 'jacoborus/tender.vim', { 'as': 'vim-color-tender' }
 Plug 'arcticicestudio/nord-vim', { 'as': 'vim-color-nord' }
 Plug 'cocopon/iceberg.vim', { 'as': 'vim-color-iceberg' }
