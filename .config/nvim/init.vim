@@ -1041,7 +1041,7 @@ endfunction"}}}
 function! Devicons_Fileformat()"{{{
     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction"}}}
-function! Articy_active_tab_num(n) abort"{{{
+function! Artify_active_tab_num(n) abort"{{{
     return Artify(a:n, 'bold')." \ue0bb"
 endfunction"}}}
 function! Artify_inactive_tab_num(n) abort"{{{
@@ -1131,7 +1131,7 @@ let g:lightline.tab = {
 let g:lightline.tab_component = {
             \ }
 let g:lightline.tab_component_function = {
-            \ 'artify_activetabnum': 'Articy_active_tab_num',
+            \ 'artify_activetabnum': 'Artify_active_tab_num',
             \ 'artify_inactivetabnum': 'Artify_inactive_tab_num',
             \ 'artify_filename': 'Artify_lightline_tab_filename',
             \ 'filename': 'lightline#tab#filename',
