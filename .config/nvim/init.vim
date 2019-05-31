@@ -5253,6 +5253,7 @@ function! Help_vim_matchup()
     echo ']%    jump to the end of current surrounding'
     echo '[%    if at the beginning of current surrounding, jump to previous outer surrounding'
     echo ']%    if at the end of current surrounding, jump to next outer surrounding'
+    echo '<leader>% or double-click     select current surrounding'
     echo ''
     echo 'Exception:'
     echo '%     if not recognize, seek forwards to one and then jump to its match (surrounding or word)'
@@ -5260,12 +5261,13 @@ function! Help_vim_matchup()
     echo 'g%    if the cursor is not on a word, seek forwards to one and then jump to its match'
     echo ''
     echo 'support [count][motion] and [action][motion] syntax'
-    echo
 endfunction
 "}}}
 let g:matchup_matchparen_deferred = 1  " highlight surrounding
 let g:matchup_matchparen_hi_surround_always = 1  " highlight surrounding
 let g:matchup_delim_noskips = 2  " don't recognize anything in comments
+nmap <leader>% ]%v[%
+nmap <2-LeftMouse> ]%v[%
 hi MatchParen cterm=bold gui=bold
 hi MatchParenCur cterm=bold gui=bold
 hi MatchWord cterm=underline gui=underline
