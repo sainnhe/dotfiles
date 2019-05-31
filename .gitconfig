@@ -1,45 +1,45 @@
 [user]
-        name = Sainnhepark
-        email = sainnhe@gmail.com
+    name = Sainnhepark
+    email = sainnhe@gmail.com
 [core]
-        editor = nvim
-        pager = nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -
+    editor = nvim
+    pager = nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -
 [merge]
-        tool = vimdiff
+    tool = vimdiff
 [alias]
-        ps = push
-        ft = fetch
-        pl = pull
-        mg = merge
-        mt = mergetool
-        st = status
-        br = branch
-        dt = difftool
-        dt-staged = difftool --staged
-        df = diff --color
-        df-staged = diff --staged --color
-        df-fzf = !zsh $HOME/repo/scripts/func/forgit.zsh diff
-        co = checkout
-        co-rs = checkout --
-        co-rs-fzf = !zsh $HOME/repo/scripts/func/forgit.zsh restore
-        cm = commit
-        acm = commit -a
-        cm-a = commit --amend
-        ad = add
-        ad-u = reset HEAD --
-        ad-fzf = !zsh $HOME/repo/scripts/func/forgit.zsh add
-        logs = log --oneline --decorate --graph --pretty=format:\"(%h)  %an, %ar: %s\"
-        logs-all = log --oneline --decorate --graph --all --pretty=format:\"(%h)  %an, %ar: %s\"
-        log-fzf = !zsh $HOME/repo/scripts/func/forgit.zsh log
-        ig-fzf = !zsh $HOME/repo/scripts/func/forgit.zsh ignore
-        edit = !nvim `git ls-files -m --other --exclude-standard` -p
-        rg = !rg $(git rev-parse --show-toplevel) --column --smart-case -e
-        rg-ls = !rg $(git rev-parse --show-toplevel) --files
-        rg-all = !rg $(git rev-parse --show-toplevel) --column --smart-case --no-ignore --hidden -g '!.git' -e
-        rg-all-ls = !rg $(git rev-parse --show-toplevel) --no-ignore --hidden -g '!.git' --files
+    ps = push
+    ft = fetch
+    pl = pull
+    mg = merge
+    mt = mergetool
+    st = status
+    br = branch
+    dt = difftool
+    dt-staged = difftool --staged
+    df = diff --color
+    df-staged = diff --staged --color
+    df-fzf = !zsh $HOME/repo/scripts/func/forgit.zsh diff
+    co = checkout
+    co-rs = checkout --
+    co-rs-fzf = !zsh $HOME/repo/scripts/func/forgit.zsh restore
+    cm = commit
+    acm = commit -a
+    cm-a = commit --amend
+    ad = add
+    ad-u = reset HEAD --
+    ad-fzf = !zsh $HOME/repo/scripts/func/forgit.zsh add
+    logs = log --oneline --decorate --graph --pretty=format:\"(%h)  %an, %ar: %s\"
+    logs-all = log --oneline --decorate --graph --all --pretty=format:\"(%h)  %an, %ar: %s\"
+    log-fzf = !zsh $HOME/repo/scripts/func/forgit.zsh log
+    ig-fzf = !zsh $HOME/repo/scripts/func/forgit.zsh ignore
+    edit = !nvim `git ls-files -m --other --exclude-standard` -p
+    rg = !rg $(git rev-parse --show-toplevel) --column --smart-case -e
+    rg-ls = !rg $(git rev-parse --show-toplevel) --files
+    rg-all = !rg $(git rev-parse --show-toplevel) --column --smart-case --no-ignore --hidden -g '!.git' -e
+    rg-all-ls = !rg $(git rev-parse --show-toplevel) --no-ignore --hidden -g '!.git' --files
 [diff]
-        tool = vimdiff
+    tool = vimdiff
 [difftool]
-        prompt = false
+    prompt = false
 [http]
-        proxy = socks5://127.0.0.1:1080
+    proxy = socks5://127.0.0.1:1080
