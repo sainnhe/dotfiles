@@ -1,7 +1,7 @@
 # {{{Settings
 # zmodload zsh/zprof
 # {{{env
-export PATH="$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
 export TERM=xterm-256color
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
