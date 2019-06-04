@@ -408,7 +408,7 @@ zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/web-search/web-search.pl
 zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/frontend-search/frontend-search.plugin.zsh
 zplugin ice lucid wait"0" blockf; zplugin light zsh-users/zsh-completions
 zplugin ice lucid wait"0" blockf svn; zplugin snippet https://github.com/zchee/zsh-completions/trunk/src/zsh
-zplugin ice lucid wait"0" blockf; zplugin light ryutok/rust-zsh-completions
+zplugin ice lucid wait"0" blockf; zplugin light sainnhe/rust-zsh-completions
 zplugin ice lucid wait"0"; zplugin light RobSis/zsh-completion-generator
 zplugin ice lucid wait"0" atload"export FPATH=$HOME/.zplugin/plugins/RobSis---zsh-completion-generator/completions:$HOME/.zplugin/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH; zcomp_init" as"program" atclone"mv run.sh gencomp-manpage; sed -i -e '1i pushd ~/.zplugin/plugins/nevesnunes---sh-manpage-completions/' -e '\$a popd' gencomp-manpage" pick"run.sh"; zplugin light nevesnunes/sh-manpage-completions
 zplugin ice lucid wait"0" pick".zsh-snippets"; zplugin light "$HOME"
