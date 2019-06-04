@@ -744,7 +744,7 @@ Plug 'BrainDeath0/Hypsteria', { 'as': 'vim-color-hypsteria' }
 Plug 'zefei/cake16', { 'as': 'vim-color-cake16' }
 Plug 'flrnprz/plastic.vim', { 'as': 'vim-color-plastic' }
 Plug 'lifepillar/vim-wwdc16-theme', { 'as': 'vim-color-wwdc16' }
-" Plug 'lifepillar/vim-wwdc17-theme', { 'as': 'vim-color-wwdc17' }
+Plug 'lifepillar/vim-wwdc17-theme', { 'as': 'vim-color-wwdc17' }
 " Plug 'dfxyz/CandyPaper.vim', { 'as': 'vim-color-candypaper' }
 "}}}
 Plug 'itchyny/lightline.vim'
@@ -2034,6 +2034,14 @@ function! ColorScheme()
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('two-firewatch', 'call SwitchColorScheme("two-firewatch-light")', '', '', 0, '')
+    "}}}
+    "{{{wwdc17
+    if g:VIM_Color_Scheme ==# 'wwdc17'
+        set background=dark
+        colorscheme wwdc17
+        let g:lightline.colorscheme = 'wwdc17_alter'
+    endif
+    call g:quickmenu#append('wwdc17', 'call SwitchColorScheme("wwdc17")', '', '', 0, '')
     "}}}
     "{{{github
     if g:VIM_Color_Scheme ==# 'github'
