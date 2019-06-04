@@ -747,6 +747,7 @@ Plug 'zefei/cake16', { 'as': 'vim-color-cake16' }
 " Plug 'dfxyz/CandyPaper.vim', { 'as': 'vim-color-candypaper' }
 " Plug 'lifepillar/vim-wwdc16-theme', { 'as': 'vim-color-wwdc16' }
 " Plug 'lifepillar/vim-wwdc17-theme', { 'as': 'vim-color-wwdc17' }
+" Plug 'jaredgorski/SpaceCamp', { 'as': 'vim-color-spacecamp' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
