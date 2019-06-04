@@ -742,10 +742,10 @@ Plug 'nightsense/simplifysimplify', { 'as': 'vim-color-simplifysimplify' }
 Plug 'GGalizzi/cake-vim', { 'as': 'vim-color-cake' }
 Plug 'BrainDeath0/Hypsteria', { 'as': 'vim-color-hypsteria' }
 Plug 'zefei/cake16', { 'as': 'vim-color-cake16' }
-" Plug 'dfxyz/CandyPaper.vim', { 'as': 'vim-color-candypaper' }
-" Plug 'lifepillar/vim-wwdc16-theme', { 'as': 'vim-color-wwdc16' }
-" Plug 'lifepillar/vim-wwdc17-theme', { 'as': 'vim-color-wwdc17' }
 Plug 'flrnprz/plastic.vim', { 'as': 'vim-color-plastic' }
+Plug 'lifepillar/vim-wwdc16-theme', { 'as': 'vim-color-wwdc16' }
+" Plug 'lifepillar/vim-wwdc17-theme', { 'as': 'vim-color-wwdc17' }
+" Plug 'dfxyz/CandyPaper.vim', { 'as': 'vim-color-candypaper' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1552,6 +1552,14 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'stellarized_dark'
     endif
     call g:quickmenu#append('stellarized', 'call SwitchColorScheme("stellarized-dark")', '', '', 0, '')
+    "}}}
+    "{{{wwdc16
+    if g:VIM_Color_Scheme ==# 'wwdc16'
+        set background=dark
+        colorscheme wwdc16
+        let g:lightline.colorscheme = 'wwdc16_alter'
+    endif
+    call g:quickmenu#append('wwdc16', 'call SwitchColorScheme("wwdc16")', '', '', 0, '')
     "}}}
     "{{{cosme
     if g:VIM_Color_Scheme ==# 'cosme'
