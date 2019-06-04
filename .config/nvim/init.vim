@@ -742,12 +742,10 @@ Plug 'nightsense/simplifysimplify', { 'as': 'vim-color-simplifysimplify' }
 Plug 'GGalizzi/cake-vim', { 'as': 'vim-color-cake' }
 Plug 'BrainDeath0/Hypsteria', { 'as': 'vim-color-hypsteria' }
 Plug 'zefei/cake16', { 'as': 'vim-color-cake16' }
-" Plug 'flrnprz/candid.vim', { 'as': 'vim-color-candid' }
-" Plug 'benburrill/potato-colors', { 'as': 'vim-color-potato' }
 " Plug 'dfxyz/CandyPaper.vim', { 'as': 'vim-color-candypaper' }
 " Plug 'lifepillar/vim-wwdc16-theme', { 'as': 'vim-color-wwdc16' }
 " Plug 'lifepillar/vim-wwdc17-theme', { 'as': 'vim-color-wwdc17' }
-" Plug 'jaredgorski/SpaceCamp', { 'as': 'vim-color-spacecamp' }
+Plug 'flrnprz/plastic.vim', { 'as': 'vim-color-plastic' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1492,6 +1490,18 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'oceanicnext_alter'
     endif
     call g:quickmenu#append('oceanic-next', 'call SwitchColorScheme("oceanic-next-dark")', '', '', 0, '')
+    "}}}
+    "{{{plastic
+    if g:VIM_Color_Scheme ==# 'plastic-dark'
+        set background=dark
+        colorscheme plastic
+        let g:lightline.colorscheme = 'oceanicnext_alter'
+        hi      Pmenu           ctermfg=145     ctermbg=237     guifg=#a7adba   guibg=#343d46
+        hi      PmenuSbar                       ctermbg=240                     guibg=#4f5b66
+        hi      PmenuSel        ctermfg=255     ctermbg=114     guifg=#f6f8fa   guibg=#99c794
+        hi      PmenuThumb                      ctermbg=253                     guibg=#d8dee9
+    endif
+    call g:quickmenu#append('plastic', 'call SwitchColorScheme("plastic-dark")', '', '', 0, '')
     "}}}
     "{{{deepspace
     if g:VIM_Color_Scheme ==# 'deepspace'
