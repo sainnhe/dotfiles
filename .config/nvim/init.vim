@@ -682,6 +682,7 @@ Plug 'tpope/vim-repeat'
 "}}}
 " User Interface
 "{{{themes
+Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
 Plug 'sheerun/vim-polyglot', { 'as': 'vim-highlight-polyglot' }
 Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-highlight-c' }
 Plug 'alisdair/vim-armasm', { 'as': 'vim-highlight-armasm' }
