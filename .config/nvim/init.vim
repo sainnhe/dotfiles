@@ -689,7 +689,7 @@ Plug 'alisdair/vim-armasm', { 'as': 'vim-highlight-armasm' }
 Plug 'chriskempson/base16-vim', { 'as': 'vim-color-base16' }
 Plug 'mike-hearn/base16-vim-lightline', { 'as': 'vim-lightline-base16' }
 Plug 'sainnhe/lightline_foobar.vim'
-Plug 'sainnhe/vim-color-forest-night'
+Plug 'sainnhe/vim-color-forest'
 Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
 Plug 'atelierbram/Base2Tone-vim', { 'as': 'vim-color-base2tone' }
 Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
@@ -1288,7 +1288,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'simplifysimplify-light'
+let g:VIM_Color_Scheme = 'forest-dusk'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1367,13 +1367,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('sacredforest', 'call SwitchColorScheme("sacredforest")', '', '', 0, '')
     "}}}
-    "{{{forest-night
-    if g:VIM_Color_Scheme ==# 'forest-night'
+    "{{{forest-dusk
+    if g:VIM_Color_Scheme ==# 'forest-dusk'
         set background=dark
-        colorscheme forest-night
-        let g:lightline.colorscheme = 'forest_night'
+        colorscheme forest_dusk
+        let g:lightline.colorscheme = 'forest_dusk'
     endif
-    call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
+    call g:quickmenu#append('forest-dusk', 'call SwitchColorScheme("forest-dusk")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Grace', '')
     "{{{oldbook
