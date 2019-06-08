@@ -689,7 +689,7 @@ Plug 'alisdair/vim-armasm', { 'as': 'vim-highlight-armasm' }
 Plug 'chriskempson/base16-vim', { 'as': 'vim-color-base16' }
 Plug 'mike-hearn/base16-vim-lightline', { 'as': 'vim-lightline-base16' }
 Plug 'sainnhe/lightline_foobar.vim'
-Plug 'sainnhe/vim-color-forest'
+Plug 'sainnhe/vim-color-forest-night'
 Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
 Plug 'atelierbram/Base2Tone-vim', { 'as': 'vim-color-base2tone' }
 Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
@@ -746,6 +746,7 @@ Plug 'zefei/cake16', { 'as': 'vim-color-cake16' }
 Plug 'flrnprz/plastic.vim', { 'as': 'vim-color-plastic' }
 Plug 'lifepillar/vim-wwdc16-theme', { 'as': 'vim-color-wwdc16' }
 Plug 'lifepillar/vim-wwdc17-theme', { 'as': 'vim-color-wwdc17' }
+Plug 'challenger-deep-theme/vim', { 'as': 'vim-color-challenger-deep' }
 " Plug 'dfxyz/CandyPaper.vim', { 'as': 'vim-color-candypaper' }
 "}}}
 Plug 'itchyny/lightline.vim'
@@ -1288,7 +1289,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'forest-dusk'
+let g:VIM_Color_Scheme = 'forest-night'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1367,13 +1368,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('sacredforest', 'call SwitchColorScheme("sacredforest")', '', '', 0, '')
     "}}}
-    "{{{forest-dusk
-    if g:VIM_Color_Scheme ==# 'forest-dusk'
+    "{{{forest-night
+    if g:VIM_Color_Scheme ==# 'forest-night'
         set background=dark
-        colorscheme forest_dusk
-        let g:lightline.colorscheme = 'forest_dusk'
+        colorscheme forest-night
+        let g:lightline.colorscheme = 'forest_night'
     endif
-    call g:quickmenu#append('forest-dusk', 'call SwitchColorScheme("forest-dusk")', '', '', 0, '')
+    call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Grace', '')
     "{{{oldbook
@@ -2371,6 +2372,14 @@ function! ColorScheme()
         hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('vice', 'call SwitchColorScheme("vice")', '', '', 0, '')
+    "}}}
+    "{{{challenger-deep
+    if g:VIM_Color_Scheme ==# 'challenger-deep'
+        set background=dark
+        colorscheme challenger_deep
+        let g:lightline.colorscheme = 'challenger_deep'
+    endif
+    call g:quickmenu#append('challenger-deep', 'call SwitchColorScheme("challenger-deep")', '', '', 0, '')
     "}}}
     "{{{deus
     if g:VIM_Color_Scheme ==# 'deus'
