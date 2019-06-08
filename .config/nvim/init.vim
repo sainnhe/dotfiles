@@ -1290,7 +1290,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'forest-night'
+let g:VIM_Color_Scheme = 'material-light'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1848,15 +1848,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('material', 'call SwitchColorScheme("material-light")', '', '', 0, '')
     "}}}
-    "{{{polar
-    if g:VIM_Color_Scheme ==# 'polar'
-        set background=light
-        colorscheme polar
-        let g:lightline.colorscheme = 'polar_alter'
-        hi Conceal guifg=#7b88a1 ctermfg=7 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-    endif
-    call g:quickmenu#append('polar', 'call SwitchColorScheme("polar")', '', '', 0, '')
-    "}}}
     "{{{ayu-light
     if g:VIM_Color_Scheme ==# 'ayu-light'
         set background=light
@@ -1889,7 +1880,7 @@ function! ColorScheme()
         hi PmenuSbar    guifg=NONE      ctermfg=NONE    guibg=#f6f8fa   ctermbg=255
         hi PmenuThumb   guifg=NONE      ctermfg=NONE    guibg=#dde2e7   ctermbg=254
         hi Pmenu        guifg=#76787b   ctermfg=243     guibg=#f6f8fa   ctermbg=255
-        hi PmenuSel     guifg=#f6f8fa   ctermfg=255     guibg=#7eb833   ctermbg=NONE7
+        hi PmenuSel     guifg=#f6f8fa   ctermfg=255     guibg=#7eb833   ctermbg=107
     endif
     call g:quickmenu#append('cake', 'call SwitchColorScheme("cake")', '', '', 0, '')
     "}}}
@@ -2072,6 +2063,15 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'snow_light'
     endif
     call g:quickmenu#append('snow', 'call SwitchColorScheme("snow-light")', '', '', 0, '')
+    "}}}
+    "{{{polar
+    if g:VIM_Color_Scheme ==# 'polar'
+        set background=light
+        colorscheme polar
+        let g:lightline.colorscheme = 'polar_alter'
+        hi Conceal guifg=#7b88a1 ctermfg=7 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+    endif
+    call g:quickmenu#append('polar', 'call SwitchColorScheme("polar")', '', '', 0, '')
     "}}}
     "{{{oceanic-next
     if g:VIM_Color_Scheme ==# 'oceanic-next-light'
