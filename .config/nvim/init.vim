@@ -1324,7 +1324,7 @@ function! ColorScheme()
         let g:material_terminal_italics = 1
         colorscheme material
         let g:lightline.colorscheme = 'material_dark_alter'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('material', 'call SwitchColorScheme("material-dark")', '', '', 0, '')
     "}}}
@@ -1356,7 +1356,7 @@ function! ColorScheme()
         let g:material_terminal_italics = 1
         colorscheme material
         let g:lightline.colorscheme = 'palenight_alter'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('palenight', 'call SwitchColorScheme("material-palenight")', '', '', 0, '')
     "}}}
@@ -1482,7 +1482,7 @@ function! ColorScheme()
         let g:nord_uniform_diff_background = 1
         colorscheme nord
         let g:lightline.colorscheme = 'nord'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('nord', 'call SwitchColorScheme("nord")', '', '', 0, '')
     "}}}
@@ -1512,7 +1512,7 @@ function! ColorScheme()
         let g:deepspace_italics=1
         colorscheme deep-space
         let g:lightline.colorscheme = 'deepspace'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('deepspace', 'call SwitchColorScheme("deepspace")', '', '', 0, '')
     "}}}
@@ -1568,7 +1568,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'cosme'
         colorscheme cosme
         let g:lightline.colorscheme = 'colored_dark'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('cosme', 'call SwitchColorScheme("cosme")', '', '', 0, '')
     "}}}
@@ -1586,7 +1586,7 @@ function! ColorScheme()
         set background=dark
         colorscheme monokai
         let g:lightline.colorscheme = 'molokai'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('monokai', 'call SwitchColorScheme("monokai")', '', '', 0, '')
     "}}}
@@ -1601,7 +1601,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'orbital'
         colorscheme orbital
         let g:lightline.colorscheme = 'orbital'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('orbital', 'call SwitchColorScheme("orbital")', '', '', 0, '')
     "}}}
@@ -1618,7 +1618,7 @@ function! ColorScheme()
         execute 'hi DiffText        ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#AFD7FF'
         execute 'hi DiffDelete      ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#CD5555'
         execute 'hi DiffChange      ctermfg=254 ctermbg=235  guifg=#E4E4E4 guibg=#C38A43'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('typewriter', 'call SwitchColorScheme("typewriter-dark")', '', '', 0, '')
     "}}}
@@ -1871,7 +1871,7 @@ function! ColorScheme()
         set background=light
         colorscheme simplifysimplify-light
         let g:lightline.colorscheme = 'simplifysimplify_light_alter'
-        hi Conceal      guifg=#888888   ctermfg=9       guibg=NONE      ctermbg=10      gui=NONE        cterm=NONE
+        hi Conceal      guifg=#888888   ctermfg=9       guibg=NONE      ctermbg=NONE      gui=NONE        cterm=NONE
         hi PmenuSbar    guifg=NONE      ctermfg=NONE    guibg=#f6f8fa   ctermbg=255
         hi PmenuThumb   guifg=NONE      ctermfg=NONE    guibg=#dde2e7   ctermbg=254
         hi Pmenu        guifg=#76787b   ctermfg=243     guibg=#f6f8fa   ctermbg=255
@@ -1885,11 +1885,11 @@ function! ColorScheme()
         set background=light
         colorscheme cake
         let g:lightline.colorscheme = 'cake_alter'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
         hi PmenuSbar    guifg=NONE      ctermfg=NONE    guibg=#f6f8fa   ctermbg=255
         hi PmenuThumb   guifg=NONE      ctermfg=NONE    guibg=#dde2e7   ctermbg=254
         hi Pmenu        guifg=#76787b   ctermfg=243     guibg=#f6f8fa   ctermbg=255
-        hi PmenuSel     guifg=#f6f8fa   ctermfg=255     guibg=#7eb833   ctermbg=107
+        hi PmenuSel     guifg=#f6f8fa   ctermfg=255     guibg=#7eb833   ctermbg=NONE7
     endif
     call g:quickmenu#append('cake', 'call SwitchColorScheme("cake")', '', '', 0, '')
     "}}}
@@ -1914,7 +1914,7 @@ function! ColorScheme()
         set background=light
         colorscheme cake16
         let g:lightline.colorscheme = 'solarized'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
         hi PmenuSbar    guifg=NONE      ctermfg=NONE    guibg=#839496   ctermbg=255
         hi PmenuThumb   guifg=NONE      ctermfg=NONE    guibg=#657b83   ctermbg=254
         hi Pmenu        guifg=#fdf6e3   ctermfg=243     guibg=#839496   ctermbg=255
@@ -1983,7 +1983,7 @@ function! ColorScheme()
         set background=light
         colorscheme strawberry-light
         let g:lightline.colorscheme = 'Atelier_Heath'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
         augroup StrawberryAu
             autocmd!
             autocmd InsertEnter * let g:lightline#colorscheme#Atelier_Heath#palette.insert.left[0][1] = '#d46a84'
@@ -1997,7 +1997,7 @@ function! ColorScheme()
         set background=light
         colorscheme nemo-light
         let g:lightline.colorscheme = 'Atelier_Sulphurpool'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
         augroup NemoAu
             autocmd!
             autocmd InsertEnter * let g:lightline#colorscheme#Atelier_Sulphurpool#palette.insert.left[0][1] = '#d46a84'
@@ -2011,7 +2011,7 @@ function! ColorScheme()
         set background=light
         colorscheme forgotten-light
         let g:lightline.colorscheme = 'Atelier_Lakeside'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('forgotten', 'call SwitchColorScheme("forgotten-light")', '', '', 0, '')
     "}}}
@@ -2043,7 +2043,7 @@ function! ColorScheme()
         let g:two_firewatch_italics=1
         colorscheme two-firewatch
         let g:lightline.colorscheme = 'tfw_light'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('two-firewatch', 'call SwitchColorScheme("two-firewatch-light")', '', '', 0, '')
     "}}}
@@ -2094,7 +2094,7 @@ function! ColorScheme()
         execute 'hi DiffText        ctermfg=235 ctermbg=153  guifg=#424242 guibg=#C1E7F4'
         execute 'hi DiffDelete      ctermfg=235 ctermbg=153  guifg=#424242 guibg=#F2CBCB'
         execute 'hi DiffChange      ctermfg=235 ctermbg=153  guifg=#424242 guibg=#F5F5DC'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('typewriter', 'call SwitchColorScheme("typewriter-light")', '', '', 0, '')
     "}}}
@@ -2302,7 +2302,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'darcula'
         colorscheme darcula
         let g:lightline.colorscheme = 'darcula'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('darcula', 'call SwitchColorScheme("darcula")', '', '', 0, '')
     "}}}
@@ -2325,7 +2325,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'iceberg'
         colorscheme iceberg
         let g:lightline.colorscheme = 'iceberg'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('iceberg', 'call SwitchColorScheme("iceberg")', '', '', 0, '')
     "}}}
@@ -2379,7 +2379,7 @@ function! ColorScheme()
     if g:VIM_Color_Scheme ==# 'vice'
         colorscheme vice
         let g:lightline.colorscheme = 'vice'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('vice', 'call SwitchColorScheme("vice")', '', '', 0, '')
     "}}}
@@ -2436,7 +2436,7 @@ function! ColorScheme()
         set background=dark
         colorscheme Tomorrow-Night
         let g:lightline.colorscheme = 'Tomorrow_Night'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('Tomorrow', 'call SwitchColorScheme("Tomorrow-dark")', '', '', 0, '')
     "}}}
@@ -2445,7 +2445,7 @@ function! ColorScheme()
         set background=dark
         colorscheme Tomorrow-Night-Eighties
         let g:lightline.colorscheme = 'Tomorrow_Night_Eighties'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('Tomorrow-Eighties', 'call SwitchColorScheme("Tomorrow-eighties")', '', '', 0, '')
     "}}}
@@ -2485,7 +2485,7 @@ function! ColorScheme()
         set background=light
         colorscheme Tomorrow
         let g:lightline.colorscheme = 'Tomorrow'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=10 gui=NONE cterm=NONE
+        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     endif
     call g:quickmenu#append('Tomorrow', 'call SwitchColorScheme("Tomorrow-light")', '', '', 0, '')
     "}}}
