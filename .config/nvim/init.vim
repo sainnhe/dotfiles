@@ -747,6 +747,7 @@ Plug 'flrnprz/plastic.vim', { 'as': 'vim-color-plastic' }
 Plug 'lifepillar/vim-wwdc16-theme', { 'as': 'vim-color-wwdc16' }
 Plug 'lifepillar/vim-wwdc17-theme', { 'as': 'vim-color-wwdc17' }
 Plug 'challenger-deep-theme/vim', { 'as': 'vim-color-challenger-deep' }
+Plug 'mtyn/polar', { 'rtp': 'vim', 'as': 'vim-color-polar' }
 " Plug 'dfxyz/CandyPaper.vim', { 'as': 'vim-color-candypaper' }
 "}}}
 Plug 'itchyny/lightline.vim'
@@ -1846,6 +1847,15 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'material_light_alter'
     endif
     call g:quickmenu#append('material', 'call SwitchColorScheme("material-light")', '', '', 0, '')
+    "}}}
+    "{{{polar
+    if g:VIM_Color_Scheme ==# 'polar'
+        set background=light
+        colorscheme polar
+        let g:lightline.colorscheme = 'polar_alter'
+        hi Conceal guifg=#7b88a1 ctermfg=7 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+    endif
+    call g:quickmenu#append('polar', 'call SwitchColorScheme("polar")', '', '', 0, '')
     "}}}
     "{{{ayu-light
     if g:VIM_Color_Scheme ==# 'ayu-light'
