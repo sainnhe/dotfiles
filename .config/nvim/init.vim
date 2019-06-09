@@ -1290,7 +1290,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'material-light'
+let g:VIM_Color_Scheme = 'forest-night'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -3358,7 +3358,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd InsertEnter * call coc#util#float_hide()
         autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
-    let g:CocHoverEnable = 1
+    let g:CocHoverEnable = 0
     let g:tmuxcomplete#trigger = ''
     set hidden
     set completeopt=noinsert,noselect,menuone
