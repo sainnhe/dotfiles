@@ -683,7 +683,7 @@ Plug 'tpope/vim-repeat'
 " User Interface
 "{{{themes
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
-Plug 'sheerun/vim-polyglot', { 'as': 'vim-highlight-polyglot' }
+Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax-polyglot' }
 Plug 'chriskempson/base16-vim', { 'as': 'vim-color-base16' }
 Plug 'mike-hearn/base16-vim-lightline', { 'as': 'vim-lightline-base16' }
 Plug 'sainnhe/lightline_foobar.vim'
