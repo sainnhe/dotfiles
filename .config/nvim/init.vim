@@ -684,8 +684,6 @@ Plug 'tpope/vim-repeat'
 "{{{themes
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
 Plug 'sheerun/vim-polyglot', { 'as': 'vim-highlight-polyglot' }
-Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-highlight-c' }
-Plug 'alisdair/vim-armasm', { 'as': 'vim-highlight-armasm' }
 Plug 'chriskempson/base16-vim', { 'as': 'vim-color-base16' }
 Plug 'mike-hearn/base16-vim-lightline', { 'as': 'vim-lightline-base16' }
 Plug 'sainnhe/lightline_foobar.vim'
