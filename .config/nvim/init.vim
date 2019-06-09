@@ -4001,7 +4001,7 @@ if g:VIM_Linter ==# 'ale'
                 \       'css': ['stylelint'],
                 \       'html': ['tidy'],
                 \       'json': [],
-                \       'markdown': ['languagetool'],
+                \       'markdown': [''],
                 \       'python': ['pylint', 'flake8', 'mypy', 'pydocstyle'],
                 \       'rust': ['cargo'],
                 \       'sh': ['shellcheck'],
