@@ -157,8 +157,8 @@ for_window [class=".*"] border pixel 0
 # smart_borders no_gaps
 # gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
 gaps inner 10
+gaps outer 3
 # workspace <ws> gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
-# workspace <ws> gaps [inner|outer|horizontal|vertical|top|left|bottom|right] 25
 
 # hide titlebar
 new_window pixel
