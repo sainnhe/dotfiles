@@ -957,6 +957,7 @@ Plug 'thinca/vim-qfreplace', { 'on': [] }
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/suda.vim'
 Plug 'tpope/vim-surround'
+Plug 'AndrewRadev/inline_edit.vim'
 Plug 'airblade/vim-rooter'
 Plug 'ianva/vim-youdao-translater'
 Plug 'yuttie/comfortable-motion.vim'
@@ -5196,6 +5197,10 @@ function! Help_vim_surround()
     echo 'yss[          add surround [] from the begin of this line to the end'
 endfunction
 "}}}
+"}}}
+"{{{inline_edit.vim
+nnoremap E :<C-u>InlineEdit<CR>
+vnoremap E :InlineEdit<CR>
 "}}}
 "{{{vim-youdao-translater
 "{{{vim-youdao-translater-usage
