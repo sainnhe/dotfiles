@@ -170,24 +170,8 @@ default_floating_border pixel 3
 # hide_edge_borders none|vertical|horizontal|both|smart
 hide_edge_borders vertical
 
-
-# Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
-# bar
-# {
-#     position top
-#     status_command i3blocks
-#     i3bar_command i3bar -t
-#     font pango: SauceCodePro Nerd Font Black 10
-#     colors
-#     {
-#                                 # Border  # BG      # FG
-#             focused_workspace   $silver0  $silver0  $elegant
-#             active_workspace    $elegant  $elegant  $orange
-#             inactive_workspace  $elegant  $elegant  $cyan0
-#             urgent_workspace    $acqua    $acqua    $silver0
-#             background          $elegant
-#     }
-# }
+# launch polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # }}}
 # {{{Auto Start
 exec fcitx
