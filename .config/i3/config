@@ -72,7 +72,7 @@ set $workspace9 " 9:  "
 set $workspace0 " 10:  "
 
 # switch between workspaces
-bindsym $mod+Tab workspace next
+bindsym $mod+Tab workspace prev
 bindsym $mod+Shift+Tab workspace next
 
 # switch to workspace
