@@ -144,6 +144,13 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 # }}}
+# {{{Color Scheme
+# Set some nice colors      border      bgText          indicator
+client.focused              #3c4c55     #ffebc3         #87af87
+client.unfocused            #3c4c55	#d6e9ff         #788898
+# client.focused			#ffffff  #ffffff  #111111
+# client.unfocused		#000000  #000000  #000000
+# }}}
 # {{{UI
 # dpi
 exec xrandr --dpi 200
@@ -152,12 +159,14 @@ exec xrandr --dpi 200
 font pango:WenQuanYi Micro Hei 8, monospace 11
 
 # gap
-for_window [class=".*"] border pixel 0
-# smart_gaps on
-# smart_borders no_gaps
+for_window [class=".*"] border pixel 3
+smart_gaps on
+smart_borders no_gaps
 # gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
 gaps inner 10
-gaps outer 3
+gaps outer 6
+gaps top 35
+gaps horizontal 10
 # workspace <ws> gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
 
 # hide titlebar
