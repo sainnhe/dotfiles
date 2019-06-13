@@ -145,9 +145,11 @@ mode "resize" {
 }
 # }}}
 # {{{Color Scheme
-# Set some nice colors      border      bgText          indicator
-client.focused              #3c4c55     #ffebc3         #87af87
-client.unfocused            #3c4c55	#d6e9ff         #788898
+# Set some nice colors      border      bg              fg
+client.focused              #3c4c55     #ffebc3         #3c4c55
+client.unfocused            #3c4c55	#3c4c55         #ffebc3
+# client.focused              #3c4c55     #ffebc3         #87af87
+# client.unfocused            #3c4c55	#d6e9ff         #788898
 # client.focused			#ffffff  #ffffff  #111111
 # client.unfocused		#000000  #000000  #000000
 # }}}
