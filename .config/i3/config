@@ -102,7 +102,6 @@ bindsym --release button2 kill
 # The middle button and a modifer over any part of the window kills the window
 bindsym --whole-window $mod+button2 kill
 # The right button toggles floating
-bindsym button3 floating toggle
 bindsym $mod+button3 floating toggle
 # The side buttons move the window around
 bindsym button9 move left
