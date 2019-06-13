@@ -163,7 +163,7 @@ smart_borders no_gaps
 # gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
 gaps inner 10
 gaps outer 6
-gaps top 35
+gaps bottom 35
 gaps horizontal 10
 # workspace <ws> gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
 
