@@ -158,7 +158,7 @@ client.unfocused            #3c4c55	#3c4c55         #ffebc3
 exec xrandr --dpi 200
 
 # Font
-font pango:WenQuanYi Micro Hei 8, monospace 11
+font pango:WenQuanYi Micro Hei Mono 11
 
 # gap
 for_window [class=".*"] border pixel 3
