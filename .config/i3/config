@@ -15,8 +15,8 @@ bindsym $mod+e exec nautilus
 bindsym $mod+w kill
 
 # rofi
-bindsym $mod+a exec rofi -show window
-bindsym $mod+Shift+a exec rofi -show run
+bindsym $mod+z exec rofi -show window
+bindsym $mod+Shift+Z exec rofi -show run
 
 # change focus
 bindsym $mod+Left focus left
