@@ -10,7 +10,6 @@ floating_modifier $mod
 
 bindsym $mod+t exec tilix
 bindsym $mod+e exec nautilus
-bindsym $mod+l exec sh /home/sainnhe/.config/i3/layout_manager.sh
 
 # kill focused window
 bindsym $mod+w kill
