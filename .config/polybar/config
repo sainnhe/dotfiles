@@ -1,0 +1,582 @@
+; {{{color scheme
+[colors]
+; forest-night
+background = #3c4c55
+background-alt = #4c5866
+foreground = #ffebc3
+foreground-alt = #c5d4dd
+primary = #a9dd9d
+secondary = #788898
+alert = #fd8489
+line = #a9dd9d
+border = #ffebc3
+archfg = #3c4c55
+archbg = #ffebc3
+; }}}
+; {{{topbar
+[bar/topbar]
+
+; modules
+modules-left = arch firefox chrome telegram
+modules-center = date
+modules-right = battery
+
+; position
+width = 98%
+height = 48
+offset-x = 1%
+offset-y = 1%
+radius = 0
+fixed-center = true
+
+; UI
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 5
+line-color = ${colors.line}
+; overline-size = 2
+; overline-color = ${colors.foreground}
+border-top-size = 5
+border-color = ${colors.border}
+; number of space to add at beginning/end of the bar
+padding-left = 0
+padding-right = 0
+; number of space to add between each module
+module-margin-left = 1
+module-margin-right = 0
+; separator between each module
+; separator =
+; system tray
+; left center right none
+tray-position = right
+tray-padding = 1
+tray-background = ${colors.background}
+tray-maxsize = 22
+tray-scale = 1.0
+; tray-transparent = false
+; tray-offset-x = 0
+; tray-offset-y = 0
+
+; font-0 = "FuraCode Nerd Font Mono:size=26"
+font-0 = "DroidSansMono Nerd Font:size=26"
+
+; i3
+wm-restack = i3
+override-redirect = true
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+cursor-click = pointer
+cursor-scroll = ns-resize
+; }}}
+; {{{modules
+; {{{arch
+[module/arch]
+type = custom/text
+content = 
+content-background = ${colors.archbg}
+content-foreground = ${colors.archfg}
+content-padding = 1
+
+click-left = rofi -show window
+click-middle = rofi -show ssh
+click-right = rofi -show run
+
+; scroll-up = echo scroll up
+; scroll-down = echo scroll down
+; }}}
+; firefox{{{
+[module/firefox]
+type = custom/text
+content = 
+content-background = ${colors.background}
+content-foreground = ${colors.foreground}
+
+click-left = firefox-developer-edition
+; }}}
+; chrome{{{
+[module/chrome]
+type = custom/text
+content = 
+content-background = ${colors.background}
+content-foreground = ${colors.foreground}
+
+click-left = chromium
+; }}}
+; telegram{{{
+[module/telegram]
+type = custom/text
+content = 切
+content-background = ${colors.background}
+content-foreground = ${colors.foreground}
+
+click-left = telegram-desktop
+; }}}
+; {{{date
+[module/date]
+type = internal/date
+
+; Seconds to sleep between updates
+interval = 1.0
+
+; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+;;date = %Y-%m-%d%
+
+; Optional time format
+time =  %I:%M %p
+
+; if `date-alt` or `time-alt` is defined, clicking
+; the module will toggle between formats
+;;date-alt = %A, %d %B %Y
+time-alt =  %Y-%m-%d %a%
+
+; Available tags:
+;   <label> (default)
+format = <label>
+
+; Available tokens:
+;   %date%
+;   %time%
+; Default: %date%
+label = %time%
+; }}}
+;{{{battery
+[module/battery]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT1
+adapter = ADP1
+
+; If an inotify event haven't been reported in this many
+; seconds, manually poll for new values.
+;
+; Needed as a fallback for systems that don't report events
+; on sysfs/procfs.
+;
+; Disable polling by setting the interval to 0.
+;
+; Default: 5
+poll-interval = 2
+
+; see "man date" for details on how to format the time string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+; Default: %H:%M:%S
+time-format = %H:%M
+
+; Available tags:
+;   <label-charging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-charging>
+format-charging = <animation-charging> <label-charging>
+;;format-charging-prefix = 
+; Available tags:
+;   <label-discharging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+; Available tags:
+;   <label-full> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;format-full = <ramp-capacity> <label-full>
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+
+label-charging = %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+label-discharging = %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+label-full = 
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+
+; Only applies if <bar-capacity> is used
+; bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
+; animation-charging-7 =
+; animation-charging-8 =
+
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+;;animation-discharging-0 = 
+;;animation-discharging-1 = 
+;;animation-discharging-2 = 
+;;animation-discharging-3 = 
+;;animation-discharging-4 = 
+;;animation-discharging-5 = 
+;;animation-discharging-6 = 
+;;animation-discharging-7 = 
+;;animation-discharging-8 = 
+
+; Framerate in milliseconds
+;animation-discharging-framerate = 500
+;}}}
+;{{{powermenu
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.secondary}
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+;}}}
+; {{{menu-apps
+[module/menu-apps]
+type = custom/menu
+
+; If true, <label-toggle> will be to the left of the menu items (default).
+; If false, it will be on the right of all the items.
+expand-right = true
+
+; "menu-LEVEL-N" has the same properties as "label-NAME" with
+; the additional "exec" property
+;
+; Available exec commands:
+;   menu-open-LEVEL
+;   menu-close
+; Other commands will be executed using "/usr/bin/env sh -c $COMMAND"
+
+menu-0-0 = Browsers
+menu-0-0-exec = menu-open-1
+menu-0-1 = Multimedia
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = Firefox
+menu-1-0-exec = firefox &
+menu-1-1 = Chromium
+menu-1-1-exec = chromium &
+
+menu-2-0 = Gimp
+menu-2-0-exec = gimp &
+menu-2-1 = Scrot
+menu-2-1-exec = scrot &
+; }}}
+; ;{{{wlan
+; [module/wlan]
+; type = internal/network
+; interface = wlp1s0
+; interval = 3.0
+;
+; format-connected = <ramp-signal> <label-connected>
+; format-connected-underline = #9f78e1
+; label-connected = %essid%
+;
+; format-disconnected =
+; ;format-disconnected = <label-disconnected>
+; ;format-disconnected-underline = ${self.format-connected-underline}
+; ;label-disconnected = %ifname% disconnected
+; ;label-disconnected-foreground = ${colors.foreground-alt}
+;
+; ramp-signal-0 = 
+; ramp-signal-1 = 
+; ramp-signal-2 = 
+; ramp-signal-3 = 
+; ramp-signal-4 = 
+; ramp-signal-foreground = ${colors.foreground-alt}
+; ;}}}
+; ;{{{eth
+; [module/eth]
+; type = internal/network
+; interface = lo
+; interval = 3.0
+;
+; format-connected-underline = #55aa55
+; format-connected-prefix = " "
+; format-connected-prefix-foreground = ${colors.foreground-alt}
+; label-connected = %local_ip%
+;
+; format-disconnected =
+; ;format-disconnected = <label-disconnected>
+; ;format-disconnected-underline = ${self.format-connected-underline}
+; ;label-disconnected = %ifname% disconnected
+; ;label-disconnected-foreground = ${colors.foreground-alt}
+; ;}}}
+; [module/xwindow]
+; type = internal/xwindow
+; label = %title:0:30:...%
+;
+; [module/xkeyboard]
+; type = internal/xkeyboard
+; blacklist-0 = num lock
+;
+; format-prefix = " "
+; format-prefix-foreground = ${colors.foreground-alt}
+; format-prefix-underline = ${colors.secondary}
+;
+; label-layout = %layout%
+; label-layout-underline = ${colors.secondary}
+;
+; label-indicator-padding = 2
+; label-indicator-margin = 1
+; label-indicator-background = ${colors.secondary}
+; label-indicator-underline = ${colors.secondary}
+;
+; [module/filesystem]
+; type = internal/fs
+; interval = 25
+;
+; mount-0 = /
+;
+; label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+; label-unmounted = %mountpoint% not mounted
+; label-unmounted-foreground = ${colors.foreground-alt}
+;
+; [module/bspwm]
+; type = internal/bspwm
+;
+; label-focused = %index%
+; label-focused-background = ${colors.background-alt}
+; label-focused-underline= ${colors.primary}
+; label-focused-padding = 2
+;
+; label-occupied = %index%
+; label-occupied-padding = 2
+;
+; label-urgent = %index%!
+; label-urgent-background = ${colors.alert}
+; label-urgent-padding = 2
+;
+; label-empty = %index%
+; label-empty-foreground = ${colors.foreground-alt}
+; label-empty-padding = 2
+;
+; ; Separator in between workspaces
+; ; label-separator = |
+;
+; [module/i3]
+; type = internal/i3
+; format = <label-state> <label-mode>
+; index-sort = true
+; wrapping-scroll = false
+;
+; ; Only show workspaces on the same output as the bar
+; ;pin-workspaces = true
+;
+; label-mode-padding = 2
+; label-mode-foreground = #000
+; label-mode-background = ${colors.primary}
+;
+; ; focused = Active workspace on focused monitor
+; label-focused = %index%
+; label-focused-background = ${module/bspwm.label-focused-background}
+; label-focused-underline = ${module/bspwm.label-focused-underline}
+; label-focused-padding = ${module/bspwm.label-focused-padding}
+;
+; ; unfocused = Inactive workspace on any monitor
+; label-unfocused = %index%
+; label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+;
+; ; visible = Active workspace on unfocused monitor
+; label-visible = %index%
+; label-visible-background = ${self.label-focused-background}
+; label-visible-underline = ${self.label-focused-underline}
+; label-visible-padding = ${self.label-focused-padding}
+;
+; ; urgent = Workspace with urgency hint set
+; label-urgent = %index%
+; label-urgent-background = ${module/bspwm.label-urgent-background}
+; label-urgent-padding = ${module/bspwm.label-urgent-padding}
+;
+; ; Separator in between workspaces
+; ; label-separator = |
+;
+;
+; [module/mpd]
+; type = internal/mpd
+; format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+;
+; icon-prev = 
+; icon-stop = 
+; icon-play = 
+; icon-pause = 
+; icon-next = 
+;
+; label-song-maxlen = 25
+; label-song-ellipsis = true
+;
+; [module/xbacklight]
+; type = internal/xbacklight
+;
+; format = <label> <bar>
+; label = BL
+;
+; bar-width = 10
+; bar-indicator = |
+; bar-indicator-foreground = #fff
+; bar-indicator-font = 2
+; bar-fill = ─
+; bar-fill-font = 2
+; bar-fill-foreground = #9f78e1
+; bar-empty = ─
+; bar-empty-font = 2
+; bar-empty-foreground = ${colors.foreground-alt}
+;
+; [module/backlight-acpi]
+; inherit = module/xbacklight
+; type = internal/backlight
+; card = intel_backlight
+;
+; [module/cpu]
+; type = internal/cpu
+; interval = 2
+; format-prefix = " "
+; format-prefix-foreground = ${colors.foreground-alt}
+; format-underline = #f90000
+; label = %percentage:2%%
+;
+; [module/memory]
+; type = internal/memory
+; interval = 2
+; format-prefix = " "
+; format-prefix-foreground = ${colors.foreground-alt}
+; format-underline = #4bffdc
+; label = %percentage_used%%
+;
+; [module/pulseaudio]
+; type = internal/pulseaudio
+;
+; format-volume = <label-volume> <bar-volume>
+; label-volume = VOL %percentage%%
+; label-volume-foreground = ${root.foreground}
+;
+; label-muted = 🔇 muted
+; label-muted-foreground = #666
+;
+; bar-volume-width = 10
+; bar-volume-foreground-0 = #55aa55
+; bar-volume-foreground-1 = #55aa55
+; bar-volume-foreground-2 = #55aa55
+; bar-volume-foreground-3 = #55aa55
+; bar-volume-foreground-4 = #55aa55
+; bar-volume-foreground-5 = #f5a70a
+; bar-volume-foreground-6 = #ff5555
+; bar-volume-gradient = false
+; bar-volume-indicator = |
+; bar-volume-indicator-font = 2
+; bar-volume-fill = ─
+; bar-volume-fill-font = 2
+; bar-volume-empty = ─
+; bar-volume-empty-font = 2
+; bar-volume-empty-foreground = ${colors.foreground-alt}
+;
+; [module/alsa]
+; type = internal/alsa
+;
+; format-volume = <label-volume> <bar-volume>
+; label-volume = VOL
+; label-volume-foreground = ${root.foreground}
+;
+; format-muted-prefix = " "
+; format-muted-foreground = ${colors.foreground-alt}
+; label-muted = sound muted
+;
+; bar-volume-width = 10
+; bar-volume-foreground-0 = #55aa55
+; bar-volume-foreground-1 = #55aa55
+; bar-volume-foreground-2 = #55aa55
+; bar-volume-foreground-3 = #55aa55
+; bar-volume-foreground-4 = #55aa55
+; bar-volume-foreground-5 = #f5a70a
+; bar-volume-foreground-6 = #ff5555
+; bar-volume-gradient = false
+; bar-volume-indicator = |
+; bar-volume-indicator-font = 2
+; bar-volume-fill = ─
+; bar-volume-fill-font = 2
+; bar-volume-empty = ─
+; bar-volume-empty-font = 2
+; bar-volume-empty-foreground = ${colors.foreground-alt}
+;
+; [module/temperature]
+; type = internal/temperature
+; thermal-zone = 0
+; warn-temperature = 60
+;
+; format = <ramp> <label>
+; format-underline = #f50a4d
+; format-warn = <ramp> <label-warn>
+; format-warn-underline = ${self.format-underline}
+;
+; label = %temperature-c%
+; label-warn = %temperature-c%
+; label-warn-foreground = ${colors.secondary}
+;
+; ramp-0 = 
+; ramp-1 = 
+; ramp-2 = 
+; ramp-foreground = ${colors.foreground-alt}
+;
+; }}}
+; {{{settings
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+; }}}
+
+; vim:ft=dosini
