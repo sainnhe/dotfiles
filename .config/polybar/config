@@ -22,7 +22,7 @@ dpi = 200
 bottom = true
 
 ; modules
-modules-left = arch firefox chrome telegram
+modules-left = arch telegram firefox chrome nautilus evince
 modules-center = date
 modules-right = alsa battery network powermenu
 
@@ -51,11 +51,11 @@ module-margin-left = 1
 module-margin-right = 0
 ; separator between each module
 ; separator =
-; system tray
+; system ; tray
 ; left center right none
-tray-position = right
-tray-padding = 1
-tray-background = ${colors.background}
+; tray-position = right
+; tray-padding = 1
+; tray-background = ${colors.background}
 ; tray-maxsize = 22
 ; tray-scale = 1.0
 ; tray-transparent = false
@@ -115,6 +115,24 @@ content-background = ${colors.background}
 content-foreground = ${colors.foreground}
 
 click-left = telegram-desktop
+; }}}
+; evince{{{
+[module/evince]
+type = custom/text
+content = 
+content-background = ${colors.background}
+content-foreground = ${colors.foreground}
+
+click-left = evince
+; }}}
+; nautilus{{{
+[module/nautilus]
+type = custom/text
+content = 
+content-background = ${colors.background}
+content-foreground = ${colors.foreground}
+
+click-left = nautilus
 ; }}}
 ; {{{date
 [module/date]
