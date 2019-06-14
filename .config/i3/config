@@ -11,6 +11,7 @@ floating_modifier $mod
 bindsym $mod+t exec tilix
 bindsym $mod+e exec nautilus
 bindsym $mod+l exec sh ~/.config/polybar/scripts/toggle_tray.sh
+bindsym $mod+b exec sh ~/.config/polybar/scripts/toggle-bar.sh
 
 # kill focused window
 bindsym $mod+w kill
