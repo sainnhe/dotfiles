@@ -53,9 +53,9 @@ module-margin-right = 0
 ; separator =
 ; system tray
 ; left center right none
-; tray-position = right
-; tray-padding = 1
-; tray-background = ${colors.background}
+tray-position = right
+tray-padding = 1
+tray-background = ${colors.background}
 ; tray-maxsize = 22
 ; tray-scale = 1.0
 ; tray-transparent = false
