@@ -186,4 +186,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec fcitx
 assign [class="tilix"]        $workspace1
 # }}}
-exec feh --bg-scale ~/图片/壁纸/wallhaven-694976.jpg
+exec feh --bg-fill ~/图片/壁纸/Game\&Anime/wallhaven-694988.jpg
