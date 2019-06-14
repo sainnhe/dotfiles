@@ -184,6 +184,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # }}}
 # {{{Auto Start
 exec fcitx
-assign [class="tilix"]        $workspace1
+# exec --no-startup-id i3-msg 'workspace 1:Alpha; layout tabbed; exec tilix; exec /usr/bin/firefox-developer-edition'
+# exec tilix -e "zsh -c 'source ~/.zshrc; tmux-start'"
 # }}}
 exec feh --bg-fill ~/图片/壁纸/Game\&Anime/wallhaven-694988.jpg
