@@ -2754,7 +2754,6 @@ endfunction
 " <leader>mf  toggle focus mode
 "}}}
 let g:limelight_default_coefficient = 0.7
-nnoremap <leader>mf :<C-u>Limelight!!<CR>
 "}}}
 "{{{goyo.vim
 "{{{goyo.vim-usage
@@ -2768,7 +2767,7 @@ augroup Goyo_Config
     autocmd! User GoyoEnter Limelight
     autocmd! User GoyoLeave Limelight!
 augroup END
-nnoremap <leader>mr :<C-u>Goyo<CR>
+nnoremap <leader><CR> :<C-u>Goyo<CR>
 "}}}
 "{{{golden-ratio
 "{{{golden-ratio-usage
