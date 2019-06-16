@@ -367,10 +367,10 @@ menu-1-1-exec = menu-open-0
 menu-1-0-margin-right = 1
 menu-1-1-margin-right = 1
 
-menu-2-0 = ⏼
-menu-2-0-exec = poweroff
-menu-2-1 = 
-menu-2-1-exec = menu-open-0
+menu-2-0 = 
+menu-2-0-exec = menu-open-0
+menu-2-1 = ⏼
+menu-2-1-exec = poweroff
 menu-2-0-margin-right = 1
 menu-2-1-margin-right = 1
 ;}}}
