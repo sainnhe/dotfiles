@@ -688,6 +688,7 @@ Plug 'chriskempson/base16-vim', { 'as': 'vim-color-base16' }
 Plug 'mike-hearn/base16-vim-lightline', { 'as': 'vim-lightline-base16' }
 Plug 'sainnhe/lightline_foobar.vim'
 Plug 'sainnhe/vim-color-forest-night'
+Plug 'sainnhe/vim-color-grimoire'
 Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
 Plug 'atelierbram/Base2Tone-vim', { 'as': 'vim-color-base2tone' }
 Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
@@ -801,11 +802,7 @@ if g:VIM_Completion_Framework ==# 'coc'
     Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
     Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
     Plug 'tjdevries/coc-zsh'
-    if executable('proxychains')
-        Plug 'neoclide/coc.nvim', {'do': 'proxychains -q yarn install --frozen-lockfile'}
-    else
-        Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-    endif
+    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 elseif g:VIM_Completion_Framework ==# 'ncm2'
     Plug 'roxma/nvim-yarp' | Plug 'ncm2/ncm2'
     Plug 'ncm2/ncm2-tagprefix', { 'on': [] }
@@ -1290,7 +1287,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'forest-night'
+let g:VIM_Color_Scheme = 'grimoire'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1885,6 +1882,14 @@ function! ColorScheme()
     call g:quickmenu#append('cake', 'call SwitchColorScheme("cake")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Relax', '')
+    "{{{grimoire
+    if g:VIM_Color_Scheme ==# 'grimoire'
+        set background=light
+        colorscheme grimoire
+        let g:lightline.colorscheme = 'grimoire'
+    endif
+    call g:quickmenu#append('grimoire', 'call SwitchColorScheme("grimoire")', '', '', 0, '')
+    "}}}
     "{{{solarized8
     if g:VIM_Color_Scheme ==# 'solarized8-light'
         let g:solarized_extra_hi_groups = 1
@@ -3328,6 +3333,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
     call g:quickmenu#append('Info', 'CocInfo', ':h CocOpenLog for log', '', 0, '@')
     call g:quickmenu#append('Toggle Hover', 'let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1', '', '', 0, 't')
+    call g:quickmenu#append('Extension Market', 'CocList marketplace', '', '', 0, '#')
     call g:quickmenu#append('Help Mappings', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
     "}}}
     "{{{coc-init
@@ -3338,6 +3344,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     endif
     call coc#add_extension(
                 \       'coc-lists',
+                \       'coc-marketplace',
                 \       g:Coc_Snippet,
                 \       'coc-syntax',
                 \       'coc-highlight',
