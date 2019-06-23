@@ -739,7 +739,6 @@ Plug 'nightsense/strawberry', { 'as': 'vim-color-strawberry' }
 Plug 'nightsense/nemo', { 'as': 'vim-color-nemo' }
 Plug 'nightsense/forgotten', { 'as': 'vim-color-forgotten' }
 Plug 'nightsense/simplifysimplify', { 'as': 'vim-color-simplifysimplify' }
-Plug 'GGalizzi/cake-vim', { 'as': 'vim-color-cake' }
 Plug 'BrainDeath0/Hypsteria', { 'as': 'vim-color-hypsteria' }
 Plug 'zefei/cake16', { 'as': 'vim-color-cake16' }
 Plug 'flrnprz/plastic.vim', { 'as': 'vim-color-plastic' }
@@ -1867,19 +1866,6 @@ function! ColorScheme()
         hi Visual       guifg=#ffffff   ctermfg=00      guibg=#a26fbf   ctermbg=05
     endif
     call g:quickmenu#append('simplifysimplify', 'call SwitchColorScheme("simplifysimplify-light")', '', '', 0, '')
-    "}}}
-    "{{{cake
-    if g:VIM_Color_Scheme ==# 'cake'
-        set background=light
-        colorscheme cake
-        let g:lightline.colorscheme = 'cake_alter'
-        hi Conceal guifg=#888888 ctermfg=9 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-        hi PmenuSbar    guifg=NONE      ctermfg=NONE    guibg=#f6f8fa   ctermbg=255
-        hi PmenuThumb   guifg=NONE      ctermfg=NONE    guibg=#dde2e7   ctermbg=254
-        hi Pmenu        guifg=#76787b   ctermfg=243     guibg=#f6f8fa   ctermbg=255
-        hi PmenuSel     guifg=#f6f8fa   ctermfg=255     guibg=#7eb833   ctermbg=107
-    endif
-    call g:quickmenu#append('cake', 'call SwitchColorScheme("cake")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Relax', '')
     "{{{grimoire
