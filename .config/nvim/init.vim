@@ -688,6 +688,7 @@ Plug 'chriskempson/base16-vim', { 'as': 'vim-color-base16' }
 Plug 'mike-hearn/base16-vim-lightline', { 'as': 'vim-lightline-base16' }
 Plug 'sainnhe/lightline_foobar.vim'
 Plug 'sainnhe/vim-color-forest-night'
+Plug 'sainnhe/vim-color-desert-night'
 Plug 'sainnhe/vim-color-grimoire'
 Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
 Plug 'atelierbram/Base2Tone-vim', { 'as': 'vim-color-base2tone' }
@@ -1286,7 +1287,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'grimoire'
+let g:VIM_Color_Scheme = 'desert-night'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1415,6 +1416,14 @@ function! ColorScheme()
     call g:quickmenu#append('brushtrees', 'call SwitchColorScheme("brushtrees-dark")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Warm', '')
+    "{{{desert-night
+    if g:VIM_Color_Scheme ==# 'desert-night'
+        set background=dark
+        colorscheme desert-night
+        let g:lightline.colorscheme = 'desert_night'
+    endif
+    call g:quickmenu#append('desert-night', 'call SwitchColorScheme("desert-night")', '', '', 0, '')
+    "}}}
     "{{{gruvbox
     if g:VIM_Color_Scheme ==# 'gruvbox-dark'
         set background=dark
