@@ -690,6 +690,7 @@ Plug 'sainnhe/lightline_foobar.vim'
 Plug 'sainnhe/vim-color-forest-night'
 Plug 'sainnhe/vim-color-desert-night'
 Plug 'sainnhe/vim-color-grimoire'
+Plug 'sainnhe/vim-color-fairy-garden'
 Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
 Plug 'atelierbram/Base2Tone-vim', { 'as': 'vim-color-base2tone' }
 Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
@@ -1287,7 +1288,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'desert-night'
+let g:VIM_Color_Scheme = 'fairy-garden'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1884,6 +1885,14 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'grimoire'
     endif
     call g:quickmenu#append('grimoire', 'call SwitchColorScheme("grimoire")', '', '', 0, '')
+    "}}}
+    "{{{fairy-garden
+    if g:VIM_Color_Scheme ==# 'fairy-garden'
+        set background=light
+        colorscheme fairy-garden
+        let g:lightline.colorscheme = 'fairy_garden'
+    endif
+    call g:quickmenu#append('fairy-garden', 'call SwitchColorScheme("fairy-garden")', '', '', 0, '')
     "}}}
     "{{{solarized8
     if g:VIM_Color_Scheme ==# 'solarized8-light'
