@@ -692,6 +692,7 @@ Plug 'sainnhe/vim-color-desert-night'
 Plug 'sainnhe/vim-color-grimoire'
 Plug 'sainnhe/vim-color-fairy-garden'
 Plug 'sainnhe/vim-color-atlantis'
+Plug 'sainnhe/vim-color-ice-age'
 Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
 Plug 'atelierbram/Base2Tone-vim', { 'as': 'vim-color-base2tone' }
 Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
@@ -949,7 +950,7 @@ Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'albertomontesg/lightline-asyncrun'
-Plug 'mg979/vim-visual-multi'
+" Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'Shougo/unite.vim', { 'on': [] }
@@ -1289,7 +1290,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'atlantis'
+let g:VIM_Color_Scheme = 'ice-age'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1902,6 +1903,14 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'fairy_garden'
     endif
     call g:quickmenu#append('fairy-garden', 'call SwitchColorScheme("fairy-garden")', '', '', 0, '')
+    "}}}
+    "{{{ice-age
+    if g:VIM_Color_Scheme ==# 'ice-age'
+        set background=light
+        colorscheme ice-age
+        let g:lightline.colorscheme = 'ice_age'
+    endif
+    call g:quickmenu#append('ice-age', 'call SwitchColorScheme("ice_age")', '', '', 0, '')
     "}}}
     "{{{solarized8
     if g:VIM_Color_Scheme ==# 'solarized8-light'
