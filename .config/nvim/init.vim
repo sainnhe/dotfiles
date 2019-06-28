@@ -691,6 +691,7 @@ Plug 'sainnhe/vim-color-forest-night'
 Plug 'sainnhe/vim-color-desert-night'
 Plug 'sainnhe/vim-color-grimoire'
 Plug 'sainnhe/vim-color-fairy-garden'
+Plug 'sainnhe/vim-color-atlantis'
 Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
 Plug 'atelierbram/Base2Tone-vim', { 'as': 'vim-color-base2tone' }
 Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
@@ -1288,7 +1289,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'fairy-garden'
+let g:VIM_Color_Scheme = 'atlantis'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1359,14 +1360,6 @@ function! ColorScheme()
     call g:quickmenu#append('palenight', 'call SwitchColorScheme("material-palenight")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Relax', '')
-    "{{{sacredforest
-    if g:VIM_Color_Scheme ==# 'sacredforest'
-        set background=dark
-        colorscheme sacredforest
-        let g:lightline.colorscheme = 'sacredforest_alter'
-    endif
-    call g:quickmenu#append('sacredforest', 'call SwitchColorScheme("sacredforest")', '', '', 0, '')
-    "}}}
     "{{{forest-night
     if g:VIM_Color_Scheme ==# 'forest-night'
         set background=dark
@@ -1374,6 +1367,14 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'forest_night'
     endif
     call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
+    "}}}
+    "{{{sacredforest
+    if g:VIM_Color_Scheme ==# 'sacredforest'
+        set background=dark
+        colorscheme sacredforest
+        let g:lightline.colorscheme = 'sacredforest_alter'
+    endif
+    call g:quickmenu#append('sacredforest', 'call SwitchColorScheme("sacredforest")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Grace', '')
     "{{{oldbook
@@ -1462,6 +1463,14 @@ function! ColorScheme()
     call g:quickmenu#append('hypsteria', 'call SwitchColorScheme("hypsteria")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Cold', '')
+    "{{{atlantis
+    if g:VIM_Color_Scheme ==# 'atlantis'
+        set background=light
+        colorscheme atlantis
+        let g:lightline.colorscheme = 'atlantis'
+    endif
+    call g:quickmenu#append('atlantis', 'call SwitchColorScheme("atlantis")', '', '', 0, '')
+    "}}}
     "{{{ashes
     if g:VIM_Color_Scheme ==# 'ashes'
         set background=dark
