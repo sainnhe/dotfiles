@@ -693,6 +693,7 @@ Plug 'sainnhe/vim-color-grimoire'
 Plug 'sainnhe/vim-color-fairy-garden'
 Plug 'sainnhe/vim-color-atlantis'
 Plug 'sainnhe/vim-color-ice-age'
+Plug 'sainnhe/vim-color-vanilla-cake'
 Plug 'atelierbram/vim-colors_atelier-schemes', { 'as': 'vim-color-atelier' }
 Plug 'atelierbram/Base2Tone-vim', { 'as': 'vim-color-base2tone' }
 Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
@@ -1290,7 +1291,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'ice-age'
+let g:VIM_Color_Scheme = 'vanilla-cake'
 let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
@@ -1895,6 +1896,14 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'grimoire'
     endif
     call g:quickmenu#append('grimoire', 'call SwitchColorScheme("grimoire")', '', '', 0, '')
+    "}}}
+    "{{{vanilla-cake
+    if g:VIM_Color_Scheme ==# 'vanilla-cake'
+        set background=light
+        colorscheme vanilla-cake
+        let g:lightline.colorscheme = 'vanilla_cake'
+    endif
+    call g:quickmenu#append('vanilla-cake', 'call SwitchColorScheme("vanilla-cake")', '', '', 0, '')
     "}}}
     "{{{fairy-garden
     if g:VIM_Color_Scheme ==# 'fairy-garden'
