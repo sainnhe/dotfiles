@@ -691,8 +691,7 @@ Plug 'sainnhe/vim-color-fairy-garden'
 Plug 'sainnhe/vim-color-atlantis'
 Plug 'sainnhe/vim-color-ice-age'
 Plug 'sainnhe/vim-color-vanilla-cake'
-Plug 'rakr/vim-one', { 'as': 'vim-color-one' }
-Plug 'cormacrelf/vim-colors-github', { 'as': 'vim-color-github' }
+Plug 'joshdick/onedark.vim', { 'as': 'vim-color-one' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1233,24 +1232,17 @@ endfunction
 "}}}
 "}}}
 let g:VIM_Color_Scheme = 'vanilla-cake'
-let g:lightline_foobar_bold = 1
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
     call g:quickmenu#append('# Dark', '')
     "{{{one
-    if g:VIM_Color_Scheme ==# 'one-dark'
-        set background=dark
-        let g:one_allow_italics = 1
-        colorscheme one
+    if g:VIM_Color_Scheme ==# 'one'
+        colorscheme onedark
         let g:lightline.colorscheme = 'one'
-        let g:lightline#colorscheme#one#palette.tabline.right[1] = g:lightline#colorscheme#one#palette.normal.middle[0]
-        let g:lightline#colorscheme#one#palette.normal.right[1] = g:lightline#colorscheme#one#palette.normal.left[1]
-        let g:lightline#colorscheme#one#palette.insert.right[1] = g:lightline#colorscheme#one#palette.insert.left[1]
-        let g:lightline#colorscheme#one#palette.visual.right[1] = g:lightline#colorscheme#one#palette.visual.left[1]
-        let g:lightline#colorscheme#one#palette.replace.right[1] = g:lightline#colorscheme#one#palette.replace.left[1]
+        let g:lightline#colorscheme#one#palette.tabline.right[0] = g:lightline#colorscheme#one#palette.insert.left[0]
     endif
-    call g:quickmenu#append('one', 'call SwitchColorScheme("one-dark")', '', '', 0, '')
+    call g:quickmenu#append('one', 'call SwitchColorScheme("one")', '', '', 0, '')
     "}}}
     "{{{desert-night
     if g:VIM_Color_Scheme ==# 'desert-night'
@@ -1277,20 +1269,6 @@ function! ColorScheme()
     call g:quickmenu#append('atlantis', 'call SwitchColorScheme("atlantis")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Light', '')
-    "{{{one
-    if g:VIM_Color_Scheme ==# 'one-light'
-        set background=light
-        let g:one_allow_italics = 1
-        colorscheme one
-        let g:lightline.colorscheme = 'one'
-        let g:lightline#colorscheme#one#palette.tabline.right[1] = g:lightline#colorscheme#one#palette.normal.middle[0]
-        let g:lightline#colorscheme#one#palette.normal.right[1] = g:lightline#colorscheme#one#palette.normal.left[1]
-        let g:lightline#colorscheme#one#palette.insert.right[1] = g:lightline#colorscheme#one#palette.insert.left[1]
-        let g:lightline#colorscheme#one#palette.visual.right[1] = g:lightline#colorscheme#one#palette.visual.left[1]
-        let g:lightline#colorscheme#one#palette.replace.right[1] = g:lightline#colorscheme#one#palette.replace.left[1]
-    endif
-    call g:quickmenu#append('one', 'call SwitchColorScheme("one-light")', '', '', 0, '')
-    "}}}
     "{{{vanilla-cake
     if g:VIM_Color_Scheme ==# 'vanilla-cake'
         set background=light
@@ -1322,16 +1300,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'ice_age'
     endif
     call g:quickmenu#append('ice-age', 'call SwitchColorScheme("ice-age")', '', '', 0, '')
-    "}}}
-    "{{{github
-    if g:VIM_Color_Scheme ==# 'github'
-        colorscheme github
-        let g:lightline.colorscheme = 'github'
-        let g:lightline#colorscheme#github#palette.tabline.right = [ g:lightline#colorscheme#github#palette.tabline.right[0], g:lightline#colorscheme#github#palette.normal.left[1] ]
-        let g:lightline#colorscheme#github#palette.insert.middle = g:lightline#colorscheme#github#palette.normal.middle
-        let g:lightline#colorscheme#github#palette.tabline.tabsel[0][1] = g:lightline#colorscheme#github#palette.normal.middle[0][1]
-    endif
-    call g:quickmenu#append('github', 'call SwitchColorScheme("github")', '', '', 0, '')
     "}}}
 endfunction
 call ColorScheme()
