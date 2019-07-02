@@ -5,6 +5,7 @@
   "suggest.maxPreviewWidth": 35,
   "suggest.detailMaxLength": 100,
   "suggest.detailField": "preview",
+  "suggest.snippetIndicator": " \ue796",
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
     "variable": "\ue79b",
@@ -28,7 +29,7 @@
     "event": "\ufacd",
     "file": "\uf723",
     "folder": "\uf114",
-    "snippet": "\ue796",
+    "snippet": "\ue60b",
     "typeParameter": "\uf728",
     "default": "\uf29c"
   },
