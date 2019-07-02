@@ -679,6 +679,7 @@ if !has('nvim') && has('python3')
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'tpope/vim-repeat'
+Plug 'ryanoasis/vim-devicons'
 "}}}
 " User Interface
 "{{{themes
@@ -861,10 +862,7 @@ elseif g:VIM_Linter ==# 'neomake'
 endif
 Plug 'justinmk/vim-sneak'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
-Plug 'low-ghost/nerdtree-fugitive', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
-Plug 'ivalkeen/nerdtree-execute', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'mcchrish/nnn.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'mbbill/undotree'
@@ -938,7 +936,6 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 " Entertainment
 Plug 'mattn/vim-starwars', { 'on': 'StarWars' }
 "{{{
-Plug 'ryanoasis/vim-devicons'
 call plug#end()
 "}}}
 "}}}
@@ -2910,21 +2907,6 @@ function! Help_nerdtree()
 endfunction
 "}}}
 "{{{extensions
-"{{{nerdtree-git-plugin
-" let g:NERDTreeShowIgnoredStatus = 1
-let g:NERDTreeIndicatorMapCustom = {
-            \ 'Modified'  : '✸',
-            \ 'Staged'    : '',
-            \ 'Untracked' : '✩',
-            \ 'Renamed'   : '➠',
-            \ 'Unmerged'  : '⮴',
-            \ 'Deleted'   : "\uf6bf",
-            \ 'Dirty'     : '✘',
-            \ 'Clean'     : '✔',
-            \ 'Ignored'   : "\ufb12",
-            \ 'Unknown'   : "\uf128"
-            \ }
-"}}}
 "{{{vim-nerdtree-syntax-highlight
 " disable highlight
 " let g:NERDTreeDisableFileExtensionHighlight = 1
