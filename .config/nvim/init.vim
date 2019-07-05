@@ -692,6 +692,7 @@ Plug 'sainnhe/vim-color-fairy-garden'
 Plug 'sainnhe/vim-color-atlantis'
 Plug 'sainnhe/vim-color-ice-age'
 Plug 'sainnhe/vim-color-vanilla-cake'
+Plug 'sainnhe/vim-color-lost-shrine'
 Plug 'joshdick/onedark.vim', { 'as': 'vim-color-one' }
 "}}}
 Plug 'itchyny/lightline.vim'
@@ -1228,7 +1229,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'vanilla-cake'
+let g:VIM_Color_Scheme = 'forest-night'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1264,6 +1265,14 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'atlantis'
     endif
     call g:quickmenu#append('atlantis', 'call SwitchColorScheme("atlantis")', '', '', 0, '')
+    "}}}
+    "{{{lost-shrine
+    if g:VIM_Color_Scheme ==# 'lost-shrine'
+        set background=light
+        colorscheme lost-shrine
+        let g:lightline.colorscheme = 'lost_shrine'
+    endif
+    call g:quickmenu#append('lost-shrine', 'call SwitchColorScheme("lost-shrine")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Light', '')
     "{{{vanilla-cake
