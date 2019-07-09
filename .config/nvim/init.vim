@@ -687,13 +687,8 @@ Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
 Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax-polyglot' }
 Plug 'sainnhe/vim-color-forest-night'
 Plug 'sainnhe/vim-color-desert-night'
-Plug 'sainnhe/vim-color-grimoire'
-Plug 'sainnhe/vim-color-fairy-garden'
-Plug 'sainnhe/vim-color-atlantis'
-Plug 'sainnhe/vim-color-ice-age'
 Plug 'sainnhe/vim-color-vanilla-cake'
-Plug 'sainnhe/vim-color-lost-shrine'
-Plug 'joshdick/onedark.vim', { 'as': 'vim-color-one' }
+Plug 'sainnhe/vim-color-fairy-garden'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1234,22 +1229,6 @@ function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
     call g:quickmenu#append('# Dark', '')
-    "{{{one
-    if g:VIM_Color_Scheme ==# 'one'
-        colorscheme onedark
-        let g:lightline.colorscheme = 'one'
-        let g:lightline#colorscheme#one#palette.tabline.right[0] = g:lightline#colorscheme#one#palette.insert.left[0]
-    endif
-    call g:quickmenu#append('one', 'call SwitchColorScheme("one")', '', '', 0, '')
-    "}}}
-    "{{{desert-night
-    if g:VIM_Color_Scheme ==# 'desert-night'
-        set background=dark
-        colorscheme desert-night
-        let g:lightline.colorscheme = 'desert_night'
-    endif
-    call g:quickmenu#append('desert-night', 'call SwitchColorScheme("desert-night")', '', '', 0, '')
-    "}}}
     "{{{forest-night
     if g:VIM_Color_Scheme ==# 'forest-night'
         set background=dark
@@ -1258,21 +1237,13 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
     "}}}
-    "{{{atlantis
-    if g:VIM_Color_Scheme ==# 'atlantis'
-        set background=light
-        colorscheme atlantis
-        let g:lightline.colorscheme = 'atlantis'
+    "{{{desert-night
+    if g:VIM_Color_Scheme ==# 'desert-night'
+        set background=dark
+        colorscheme desert-night
+        let g:lightline.colorscheme = 'desert_night'
     endif
-    call g:quickmenu#append('atlantis', 'call SwitchColorScheme("atlantis")', '', '', 0, '')
-    "}}}
-    "{{{lost-shrine
-    if g:VIM_Color_Scheme ==# 'lost-shrine'
-        set background=light
-        colorscheme lost-shrine
-        let g:lightline.colorscheme = 'lost_shrine'
-    endif
-    call g:quickmenu#append('lost-shrine', 'call SwitchColorScheme("lost-shrine")', '', '', 0, '')
+    call g:quickmenu#append('desert-night', 'call SwitchColorScheme("desert-night")', '', '', 0, '')
     "}}}
     call g:quickmenu#append('# Light', '')
     "{{{vanilla-cake
@@ -1283,14 +1254,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('vanilla-cake', 'call SwitchColorScheme("vanilla-cake")', '', '', 0, '')
     "}}}
-    "{{{grimoire
-    if g:VIM_Color_Scheme ==# 'grimoire'
-        set background=light
-        colorscheme grimoire
-        let g:lightline.colorscheme = 'grimoire'
-    endif
-    call g:quickmenu#append('grimoire', 'call SwitchColorScheme("grimoire")', '', '', 0, '')
-    "}}}
     "{{{fairy-garden
     if g:VIM_Color_Scheme ==# 'fairy-garden'
         set background=light
@@ -1298,14 +1261,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'fairy_garden'
     endif
     call g:quickmenu#append('fairy-garden', 'call SwitchColorScheme("fairy-garden")', '', '', 0, '')
-    "}}}
-    "{{{ice-age
-    if g:VIM_Color_Scheme ==# 'ice-age'
-        set background=light
-        colorscheme ice-age
-        let g:lightline.colorscheme = 'ice_age'
-    endif
-    call g:quickmenu#append('ice-age', 'call SwitchColorScheme("ice-age")', '', '', 0, '')
     "}}}
 endfunction
 call ColorScheme()
