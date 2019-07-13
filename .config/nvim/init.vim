@@ -687,6 +687,7 @@ Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
 Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax-polyglot' }
 Plug 'sainnhe/vim-color-forest-night'
 Plug 'sainnhe/vim-color-desert-night'
+Plug 'sainnhe/vim-color-grimoire'
 Plug 'sainnhe/vim-color-vanilla-cake'
 Plug 'sainnhe/vim-color-fairy-garden'
 "}}}
@@ -1224,14 +1225,12 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'forest-night'
+let g:VIM_Color_Scheme = 'vanilla-cake'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
-    call g:quickmenu#append('# Dark', '')
     "{{{forest-night
     if g:VIM_Color_Scheme ==# 'forest-night'
-        set background=dark
         colorscheme forest-night
         let g:lightline.colorscheme = 'forest_night'
     endif
@@ -1239,16 +1238,20 @@ function! ColorScheme()
     "}}}
     "{{{desert-night
     if g:VIM_Color_Scheme ==# 'desert-night'
-        set background=dark
         colorscheme desert-night
         let g:lightline.colorscheme = 'desert_night'
     endif
     call g:quickmenu#append('desert-night', 'call SwitchColorScheme("desert-night")', '', '', 0, '')
     "}}}
-    call g:quickmenu#append('# Light', '')
+    "{{{grimoire
+    if g:VIM_Color_Scheme ==# 'grimoire'
+        colorscheme grimoire
+        let g:lightline.colorscheme = 'grimoire'
+    endif
+    call g:quickmenu#append('grimoire', 'call SwitchColorScheme("grimoire")', '', '', 0, '')
+    "}}}
     "{{{vanilla-cake
     if g:VIM_Color_Scheme ==# 'vanilla-cake'
-        set background=light
         colorscheme vanilla-cake
         let g:lightline.colorscheme = 'vanilla_cake'
     endif
@@ -1256,7 +1259,6 @@ function! ColorScheme()
     "}}}
     "{{{fairy-garden
     if g:VIM_Color_Scheme ==# 'fairy-garden'
-        set background=light
         colorscheme fairy-garden
         let g:lightline.colorscheme = 'fairy_garden'
     endif
