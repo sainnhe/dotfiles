@@ -414,6 +414,7 @@ zplugin ice lucid wait"0"; zplugin light RobSis/zsh-completion-generator
 zplugin ice lucid wait"0" atload"export FPATH=$HOME/.zplugin/plugins/RobSis---zsh-completion-generator/completions:$HOME/.zplugin/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH; zcomp_init" as"program" atclone"mv run.sh gencomp-manpage; sed -i -e '1i pushd ~/.zplugin/plugins/nevesnunes---sh-manpage-completions/' -e '\$a popd' gencomp-manpage" pick"run.sh"; zplugin light nevesnunes/sh-manpage-completions
 zplugin ice lucid wait"0" pick".zsh-snippets"; zplugin light "$HOME"
 source "$HOME/.zsh-theme"
+export TMUXLINE_COLOR_SCHEME="normal"
 # {{{fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
