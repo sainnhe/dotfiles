@@ -1225,7 +1225,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'vanilla-cake'
+let g:VIM_Color_Scheme = 'forest-dusk'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1235,6 +1235,13 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'forest_night'
     endif
     call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
+    "}}}
+    "{{{forest-dusk
+    if g:VIM_Color_Scheme ==# 'forest-dusk'
+        colorscheme forest-dusk
+        let g:lightline.colorscheme = 'forest_dusk'
+    endif
+    call g:quickmenu#append('forest-dusk', 'call SwitchColorScheme("forest-dusk")', '', '', 0, '')
     "}}}
     "{{{desert-night
     if g:VIM_Color_Scheme ==# 'desert-night'
