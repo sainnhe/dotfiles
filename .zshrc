@@ -357,6 +357,7 @@ alias nnn='PAGER= nnn'
 alias vimpager="nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -"
 alias help='bash ~/repo/scripts/func/help.sh'
 alias GCT='bash ~/repo/scripts/func/GCT.sh'
+alias TCT='bash ~/repo/scripts/func/TCT.sh'
 alias KCT='kcmcolorfulhelper -s -p'
 alias tmux='tmux -2'
 alias px='proxychains -q'
