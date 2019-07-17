@@ -50,13 +50,20 @@ bindsym $mod+Shift+s layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
+bindsym $mod+j focus tiling
+bindsym $mod+k focus floating
+
+# Minimize
+bindsym $mod+m move scratchpad
+# Maximize
+bindsym $mod+Shift+m scratchpad show
 
 # focus the parent container
-bindsym $mod+k focus parent
+bindsym $mod+Shift+k focus parent
 
 # focus the child container
-bindsym $mod+j focus child
+bindsym $mod+Shift+j focus child
 
 # Name the workspaces
 set $workspace1 " 1:  "
@@ -110,40 +117,37 @@ bindsym button9 move left
 bindsym button8 move right
 
 # reload the configuration file
-bindsym $mod+p reload
+bindsym $mod+r reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Escape exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+bindsym $mod+space mode "manage"
+mode "manage" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        bindsym Shift+h resize shrink width 20 px or 20 ppt
+        bindsym Shift+j resize grow height 20 px or 20 ppt
+        bindsym Shift+k resize shrink height 20 px or 20 ppt
+        bindsym Shift+l resize grow width 20 px or 20 ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left move left 20px
+        bindsym Down move down 20px
+        bindsym Up move up 20px
+        bindsym Right move right 20px
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+        bindsym $mod+space mode "default"
 }
 # }}}
 # {{{Color Scheme
-# Set some nice colors      border      bg              fg
+# Color Scheme              border      bg              fg
 client.focused              #7e837c     #7e837c         #fdd89a
 client.unfocused            #3c4542     #3c4542         #fdd89a
 # }}}
