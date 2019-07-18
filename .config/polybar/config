@@ -17,7 +17,7 @@ bottom = true
 ; modules
 modules-left = appmenu telegram firefox chrome nautilus evince
 modules-center = date
-modules-right = alsa battery network powermenu
+modules-right = alsa battery bluetooth network powermenu
 
 ; position
 width = 98%
@@ -318,6 +318,15 @@ click-left = nm-connection-editor &
 ; "scroll-(up|down)" will be executed using "/usr/bin/env sh -c [command]"
 ;;scroll-up = echo scroll up %counter%
 ;;scroll-down = echo scroll down %counter%
+; }}}
+; bluetooth{{{
+[module/bluetooth]
+type = custom/text
+content = 
+content-background = ${colors.bg}
+content-foreground = ${colors.fg}
+
+click-left = blueman-manager
 ; }}}
 ;{{{alsa
 [module/alsa]
