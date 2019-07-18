@@ -9,6 +9,7 @@ set $mod Mod4
 floating_modifier $mod
 
 bindsym $mod+t exec tilix
+bindsym $mod+Shift+z exec tilix -q
 bindsym $mod+e exec nautilus
 bindsym $mod+l exec sh ~/.config/polybar/scripts/toggle_tray.sh
 bindsym $mod+b exec sh ~/.config/polybar/scripts/toggle-bar.sh
@@ -17,8 +18,7 @@ bindsym $mod+b exec sh ~/.config/polybar/scripts/toggle-bar.sh
 bindsym $mod+w kill
 
 # rofi
-bindsym $mod+z exec rofi -show window
-bindsym $mod+Shift+Z exec rofi -show drun
+bindsym $mod+z exec rofi -show drun
 
 # change focus
 bindsym $mod+Left focus left
