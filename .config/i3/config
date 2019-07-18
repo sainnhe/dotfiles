@@ -34,9 +34,14 @@ bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+H split h
-
 # split in vertical orientation
 bindsym $mod+V split v
+# Note: $mod+v & $mod+h to split current container
+
+# focus the parent container
+bindsym $mod+Shift+k focus parent
+# focus the child container
+bindsym $mod+Shift+j focus child
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -58,12 +63,6 @@ bindsym $mod+k focus floating
 bindsym $mod+m move scratchpad
 # Maximize
 bindsym $mod+Shift+m scratchpad show
-
-# focus the parent container
-bindsym $mod+Shift+k focus parent
-
-# focus the child container
-bindsym $mod+Shift+j focus child
 
 # Name the workspaces
 set $workspace1 " 1:  "
@@ -148,8 +147,8 @@ mode "manage" {
 # }}}
 # {{{Color Scheme
 # Color Scheme              border      bg              fg
-client.focused              #7e837c     #7e837c         #fdd89a
-client.unfocused            #3c4542     #3c4542         #fdd89a
+client.focused              #a9dd9d     #a9dd9d         #3c4c55
+client.unfocused            #3c4c55     #3c4c55         #ffebc3
 # }}}
 # {{{UI
 # dpi
