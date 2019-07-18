@@ -5,8 +5,8 @@ fg = #ffebc3
 border_bg = #ffebc3
 border_fg = #3c4c5500
 comment = #788898
-cpu = #bdd0e5
-net = #daccf0
+sys = #bdd0e5
+net = #a9dd9d
 ; }}}
 ; {{{mainbar
 [bar/mainbar]
@@ -15,9 +15,9 @@ dpi = 200
 bottom = true
 
 ; modules
-modules-left = appmenu telegram firefox chrome nautilus evince netspeedup
+modules-left = appmenu telegram firefox chrome nautilus evince netspeedup mem
 modules-center = date
-modules-right = netspeeddown alsa backlight bluetooth battery network powermenu
+modules-right = cpu netspeeddown alsa backlight bluetooth battery network powermenu
 
 ; position
 width = 98%
@@ -362,6 +362,21 @@ exec = sh ~/.config/polybar/scripts/net-speed.sh wlp1s0 lo in
 tail = true
 format-foreground = ${colors.net}
 ; }}}
+; {{{cpu
+[module/cpu]
+type = internal/cpu
+interval = 1
+label = CPU %percentage%%
+label-foreground = ${colors.sys}
+; }}}
+; {{{mem
+[module/mem]
+type = internal/memory
+interval = 1
+label = RAM %percentage_used%%
+label-foreground = ${colors.sys}
+; }}}
+
 ;{{{powermenu
 [module/powermenu]
 type = custom/menu
