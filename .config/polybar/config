@@ -1,19 +1,12 @@
 ; {{{color scheme
 [colors]
-; forest-night
-background = #3c4c55
-background-alt = #4c5866
-foreground = #ffebc3
-foreground-alt = #c5d4dd
-primary = #a9dd9d
+bg = #3c4c5500
+fg = #ffebc3
+border_bg = #ffebc3
+border_fg = #3c4c5500
 comment = #788898
-alert = #fd8489
-line = #a9dd9d
-border = #ffebc3
-archfg = #3c4c55
-archbg = #ffebc3
-powerfg = #3c4c55
-powerbg = #ffebc3
+cpu = #bdd0e5
+net = #daccf0
 ; }}}
 ; {{{mainbar
 [bar/mainbar]
@@ -22,7 +15,7 @@ dpi = 200
 bottom = true
 
 ; modules
-modules-left = arch telegram firefox chrome nautilus evince
+modules-left = appmenu telegram firefox chrome nautilus evince
 modules-center = date
 modules-right = alsa battery network powermenu
 
@@ -35,14 +28,14 @@ radius = 0
 fixed-center = true
 
 ; UI
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${colors.bg}
+foreground = ${colors.fg}
 line-size = 5
-line-color = ${colors.line}
+line-color = ${colors.border_bg}
 ; overline-size = 2
-; overline-color = ${colors.foreground}
+; overline-color = ${colors.fg}
 border-bottom-size = 5
-border-color = ${colors.border}
+border-color = ${colors.border_bg}
 ; number of space to add at beginning/end of the bar
 padding-left = 0
 padding-right = 0
@@ -55,7 +48,7 @@ module-margin-right = 0
 ; left center right none
 ; tray-position = right
 ; tray-padding = 1
-; tray-background = ${colors.background}
+; tray-background = ${colors.bg}
 ; tray-maxsize = 22
 ; tray-scale = 1.0
 ; tray-transparent = false
@@ -74,12 +67,12 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 ; }}}
 ; {{{modules
-; {{{arch
-[module/arch]
+; {{{appmenu
+[module/appmenu]
 type = custom/text
 content = 
-content-background = ${colors.archbg}
-content-foreground = ${colors.archfg}
+content-background = ${colors.border_bg}
+content-foreground = ${colors.border_fg}
 content-padding = 1
 
 click-left = rofi -show window
@@ -93,8 +86,8 @@ click-right = rofi -show run
 [module/firefox]
 type = custom/text
 content = 
-content-background = ${colors.background}
-content-foreground = ${colors.foreground}
+content-background = ${colors.bg}
+content-foreground = ${colors.fg}
 
 click-left = firefox-developer-edition
 ; }}}
@@ -102,8 +95,8 @@ click-left = firefox-developer-edition
 [module/chrome]
 type = custom/text
 content = 
-content-background = ${colors.background}
-content-foreground = ${colors.foreground}
+content-background = ${colors.bg}
+content-foreground = ${colors.fg}
 
 click-left = chromium
 ; }}}
@@ -111,17 +104,17 @@ click-left = chromium
 [module/telegram]
 type = custom/text
 content = 切
-content-background = ${colors.background}
-content-foreground = ${colors.foreground}
+content-background = ${colors.bg}
+content-foreground = ${colors.fg}
 
-click-left = telegram-desktop
+click-left = telegram-desktop; i3-msg floating enable
 ; }}}
 ; evince{{{
 [module/evince]
 type = custom/text
 content = 
-content-background = ${colors.background}
-content-foreground = ${colors.foreground}
+content-background = ${colors.bg}
+content-foreground = ${colors.fg}
 
 click-left = evince
 ; }}}
@@ -129,8 +122,8 @@ click-left = evince
 [module/nautilus]
 type = custom/text
 content = 
-content-background = ${colors.background}
-content-foreground = ${colors.foreground}
+content-background = ${colors.bg}
+content-foreground = ${colors.fg}
 
 click-left = nautilus
 ; }}}
@@ -332,9 +325,9 @@ type = internal/alsa
 
 format-volume = <label-volume>
 label-volume = 
-label-volume-foreground = ${root.foreground}
+label-volume-foreground = ${colors.fg}
 
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.comment}
 label-muted = 婢
 ;}}}
 ;{{{powermenu
@@ -346,12 +339,12 @@ expand-right = true
 format-spacing = 1
 
 label-open = 
-label-open-foreground = ${colors.powerfg}
-label-open-background = ${colors.powerbg}
+label-open-foreground = ${colors.border_fg}
+label-open-background = ${colors.border_bg}
 label-open-padding = 1
 label-close = ﰸ
 label-close-foreground = ${colors.comment}
-label-close-background = ${colors.background}
+label-close-background = ${colors.bg}
 
 menu-0-0 = 
 menu-0-0-exec = menu-open-1
@@ -374,26 +367,6 @@ menu-2-1-exec = poweroff
 menu-2-0-margin-right = 1
 menu-2-1-margin-right = 1
 ;}}}
-; ; {{{temperature
-; [module/temperature]
-; type = internal/temperature
-; thermal-zone = 0
-; warn-temperature = 60
-;
-; format = <ramp> <label>
-; ; format-underline = #f50a4d
-; format-warn = <ramp> <label-warn>
-; ; format-warn-underline = ${self.format-underline}
-;
-; label = %temperature-c%
-; label-warn = %temperature-c%
-; label-warn-foreground = ${colors.secondary}
-;
-; ramp-0 = 
-; ramp-1 = 
-; ramp-2 = 
-; ramp-foreground = ${colors.foreground-alt}
-; ; }}}
 ; }}}
 ; {{{settings
 [settings]
