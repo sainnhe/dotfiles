@@ -15,9 +15,9 @@ dpi = 200
 bottom = true
 
 ; modules
-modules-left = appmenu telegram firefox chrome nautilus evince
+modules-left = appmenu telegram firefox chrome nautilus evince netspeedup
 modules-center = date
-modules-right = alsa backlight bluetooth battery network powermenu
+modules-right = netspeeddown alsa backlight bluetooth battery network powermenu
 
 ; position
 width = 98%
@@ -348,6 +348,20 @@ label-volume-foreground = ${colors.fg}
 format-muted-foreground = ${colors.comment}
 label-muted = 婢
 ;}}}
+; {{{netspeedup
+[module/netspeedup]
+type = custom/script
+exec = sh ~/.config/polybar/scripts/net-speed.sh wlp1s0 lo out
+tail = true
+format-foreground = ${colors.net}
+; }}}
+; {{{netspeeddown
+[module/netspeeddown]
+type = custom/script
+exec = sh ~/.config/polybar/scripts/net-speed.sh wlp1s0 lo in
+tail = true
+format-foreground = ${colors.net}
+; }}}
 ;{{{powermenu
 [module/powermenu]
 type = custom/menu
