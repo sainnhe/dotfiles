@@ -17,7 +17,7 @@ bottom = true
 ; modules
 modules-left = appmenu telegram firefox chrome nautilus evince
 modules-center = date
-modules-right = alsa battery bluetooth network powermenu
+modules-right = alsa backlight bluetooth battery network powermenu
 
 ; position
 width = 98%
@@ -327,6 +327,15 @@ content-background = ${colors.bg}
 content-foreground = ${colors.fg}
 
 click-left = blueman-manager
+; }}}
+; backlight{{{
+[module/backlight]
+type = custom/text
+content = 
+content-background = ${colors.bg}
+content-foreground = ${colors.fg}
+
+click-left = gbacklight
 ; }}}
 ;{{{alsa
 [module/alsa]
