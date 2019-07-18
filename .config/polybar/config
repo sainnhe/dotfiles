@@ -77,7 +77,7 @@ content-padding = 1
 
 click-left = rofi -show window
 click-middle = rofi -show ssh
-click-right = rofi -show run
+click-right = rofi -show drun
 
 ; scroll-up = echo scroll up
 ; scroll-down = echo scroll down
