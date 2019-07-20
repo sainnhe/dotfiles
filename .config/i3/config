@@ -9,7 +9,7 @@ set $mod Mod4
 floating_modifier $mod
 
 bindsym $mod+t exec tilix
-bindsym $mod+Shift+z exec tilix -q
+bindsym $mod+Shift+z exec tilix -qe "zsh -c 'QUAKE=true zsh'"
 bindsym $mod+e exec nautilus
 bindsym $mod+l exec sh ~/.config/polybar/scripts/toggle_tray.sh
 bindsym $mod+b exec sh ~/.config/polybar/scripts/toggle-bar.sh
@@ -147,8 +147,8 @@ mode "manage" {
 # }}}
 # {{{Color Scheme
 # Color Scheme              border      bg              fg
-client.focused              #a9dd9d     #a9dd9d         #3c4c55
-client.unfocused            #3c4c55     #3c4c55         #ffebc3
+client.focused              #87765d     #87765d         #24221c
+client.unfocused            #24221c     #24221c         #d4b07b
 # }}}
 # {{{UI
 # dpi
