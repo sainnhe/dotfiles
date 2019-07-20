@@ -184,24 +184,6 @@ test_cmd_pre() { # {{{
 test_cmd() { # {{{
     test_cmd_pre "$1" && echo 'yes' || echo 'no'
 } # }}}
-switch-tmuxline() { # {{{
-    echo ""
-    ls ~/.tmux/tmuxline/ | sed 's/\..*//g' | sed -e '$a sync\nnormal\ninsert\nvisual'
-    echo ""
-    read -r TMUXLINE_COLOR_SCHEME
-    while [ "$TMUXLINE_COLOR_SCHEME"x != "q"x ]; do
-        if [[ "$TMUXLINE_COLOR_SCHEME" == "sync" || "$TMUXLINE_COLOR_SCHEME" == "normal" || "$TMUXLINE_COLOR_SCHEME" == "insert" || "$TMUXLINE_COLOR_SCHEME" == "visual" ]]; then
-            echo "export TMUXLINE_COLOR_SCHEME=$TMUXLINE_COLOR_SCHEME" | xclip -selection c
-        else
-            tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
-            tmux source-file "$HOME/.tmux.conf"
-        fi
-        echo ""
-        ls ~/.tmux/tmuxline/ | sed 's/\..*//g'
-        echo ""
-        read -r TMUXLINE_COLOR_SCHEME
-    done
-} # }}}
 # {{{FuzzyFinder
 # fuzzy match dirs and cd
 cdf() {
@@ -415,7 +397,6 @@ zplugin ice lucid wait"0"; zplugin light RobSis/zsh-completion-generator
 zplugin ice lucid wait"0" atload"export FPATH=$HOME/.zplugin/plugins/RobSis---zsh-completion-generator/completions:$HOME/.zplugin/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH; zcomp_init" as"program" atclone"mv run.sh gencomp-manpage; sed -i -e '1i pushd ~/.zplugin/plugins/nevesnunes---sh-manpage-completions/' -e '\$a popd' gencomp-manpage" pick"run.sh"; zplugin light nevesnunes/sh-manpage-completions
 zplugin ice lucid wait"0" pick".zsh-snippets"; zplugin light "$HOME"
 source "$HOME/.zsh-theme"
-export TMUXLINE_COLOR_SCHEME="normal"
 # {{{fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
@@ -465,72 +446,6 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # }}}
 # {{{TMUX
-# {{{TMUX Start
-tmux-start() {
-    alias tmux='tmux -2'
-    if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    fi
-    nvim_exist=$(test_cmd nvim)
-    if [[ "$TERM_Emulator" != "tilda" ]]; then
-        if [[ -z "$TMUX" ]]; then
-            ID="$(tmux ls | grep -vm1 attached | grep Alpha | cut -d: -f1)" # check if Alpha session exist
-            if [[ -z "$ID" ]]; then # if not, creat a new one
-                tmux new-session -d -s Alpha
-                tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
-                tmux new-window -t Alpha
-                # tmux send-keys -t Alpha:0 "cd ~" Enter
-                if [[ "$nvim_exist" == "yes" ]]; then
-                    tmux send-keys -t Alpha:0 "export TERM_Emulator=$TERM_Emulator" Enter
-                    tmux send-keys -t Alpha:0 "nvim" Enter
-                elif [[ "$nvim_exist" == "no" ]]; then
-                    tmux send-keys -t Alpha:0 "export TERM_Emulator=$TERM_Emulator" Enter
-                    tmux send-keys -t Alpha:0 "vim" Enter
-                fi
-                tmux attach -t Alpha:1
-            else
-                tmux attach-session -t Alpha # if available attach to it # else, attach it
-            fi
-        fi
-    elif [[ "$TERM_Emulator" == "tilda" ]]; then
-        if [[ -z "$TMUX" ]]; then
-            ID="$(tmux ls | grep -vm1 attached | grep Beta | cut -d: -f1)" # check if Beta session exist
-            if [[ -z "$ID" ]]; then # if not, creat a new one
-                tmux new-session -d -s Beta
-                tmux source-file "$HOME/.tmux/tmuxline/$TMUXLINE_COLOR_SCHEME.tmux.conf"
-                tmux new-window -t Beta
-                # tmux send-keys -t Beta:0 "cd ~" Enter
-                if [[ "$nvim_exist" == "yes" ]]; then
-                    tmux send-keys -t Beta:0 "nvim" Enter
-                elif [[ "$nvim_exist" == "no" ]]; then
-                    tmux send-keys -t Beta:0 "vim" Enter
-                fi
-                tmux attach -t Beta:1
-            else
-                tmux attach-session -t Beta # if available attach to it # else, attach it
-            fi
-        fi
-    fi
-    ~/.tmux-bind.sh no
-    tmux source "$HOME/.tmux.conf"
-}
-# if [[ "$TERM_Emulator" == "tilda" ]]; then
-# fi
-# }}}
-# {{{relax
-relax () {
-    tmux new-session -d -s Alt -c "$HOME" -n "github"
-    tmux send-keys -t Alt:0 "gitsome" Enter
-    tmux new-window -t Alt:1 -n "hackernews"
-    tmux send-keys -t Alt:1 "haxor-news" Enter
-    tmux new-window -t Alt:2 -n "reddit"
-    tmux send-keys -t Alt:2 "rtv" Enter
-}
-# }}}
-nvim_exist=$(test_cmd nvim)
-if [[ "$TERM_Emulator" == "tilda" ]]; then
-    tmux-start
-fi
 ~/.tmux-bind.sh no
 # zprof  # 取消注释首行和本行，然后执行 time zsh -i -c exit
 # 若直接执行 zprof，将会测试包括 lazyload 在内的所有启动时间
