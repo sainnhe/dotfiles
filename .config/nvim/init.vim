@@ -690,6 +690,7 @@ Plug 'sainnhe/vim-color-desert-night'
 Plug 'sainnhe/vim-color-grimoire'
 Plug 'sainnhe/vim-color-vanilla-cake'
 Plug 'sainnhe/vim-color-fairy-garden'
+Plug 'sainnhe/gruvbox-material'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1182,7 +1183,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'forest-night'
+let g:VIM_Color_Scheme = 'gruvbox-material'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1206,6 +1207,13 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'desert_night'
     endif
     call g:quickmenu#append('desert-night', 'call SwitchColorScheme("desert-night")', '', '', 0, '')
+    "}}}
+    "{{{gruvbox-material
+    if g:VIM_Color_Scheme ==# 'gruvbox-material'
+        colorscheme gruvbox-material
+        let g:lightline.colorscheme = 'gruvbox_material'
+    endif
+    call g:quickmenu#append('gruvbox-material', 'call SwitchColorScheme("gruvbox-material")', '', '', 0, '')
     "}}}
     "{{{grimoire
     if g:VIM_Color_Scheme ==# 'grimoire'
