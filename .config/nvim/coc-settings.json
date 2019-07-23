@@ -146,8 +146,8 @@
     },
     "JTLS": {
       "command": "javascript-typescript-stdio",
-      "filetypes_bak": ["none"],
-      "filetypes": ["javascript"],
+      "filetypes": ["none"],
+      "filetypes_bak": ["javascript"],
       "rootPatterns": [".git"]
     },
     "SHLS": {

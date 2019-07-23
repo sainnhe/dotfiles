@@ -2100,10 +2100,15 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \       'coc-html',
                 \       'coc-css',
                 \       'coc-emmet',
+                \       'coc-tsserver',
+                \       'coc-eslint',
+                \       'coc-tslint-plugin',
+                \       'coc-stylelint',
                 \       'coc-rls',
                 \       'coc-json',
                 \       'coc-yaml',
-                \       'coc-vimlsp'
+                \       'coc-vimlsp',
+                \       'coc-tabnine'
                 \   )
     if g:VIM_Enable_Autopairs == 0
         call coc#add_extension( 'coc-pairs' )
