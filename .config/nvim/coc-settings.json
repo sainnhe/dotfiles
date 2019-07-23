@@ -134,6 +134,22 @@
         "asyncStartup": true
       }
     },
+    "FLOW": {
+      "command": "flow",
+      "args": ["lsp"],
+      "filetypes": ["none"],
+      "filetypes_bak": ["javascript", "javascriptreact"],
+      "initializationOptions": {},
+      "requireRootPattern": true,
+      "settings": {},
+      "rootPatterns": [".git", ".flowconfig"]
+    },
+    "JTLS": {
+      "command": "javascript-typescript-stdio",
+      "filetypes_bak": ["none"],
+      "filetypes": ["javascript"],
+      "rootPatterns": [".git"]
+    },
     "SHLS": {
       "command": "bash-language-server",
       "filetypes": ["sh", "zsh"],

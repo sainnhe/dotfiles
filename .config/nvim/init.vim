@@ -1551,6 +1551,7 @@ if g:VIM_LSP_Client ==# 'lcn'
                 \ 'css': ['css-languageserver', '--stdio'],
                 \ 'html': ['html-languageserver', '--stdio'],
                 \ 'json': ['json-languageserver', '--stdio'],
+                \ 'javascript': ['javascript-typescript-stdio'],
                 \ 'python': ['pyls'],
                 \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
                 \ 'sh': ['bash-language-server', 'start'],
@@ -1695,6 +1696,11 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
                     \ 'name': 'json-languageserver',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'json-languageserver --stdio']},
                     \ 'whitelist': ['json'],
+                    \ })
+        au User lsp_setup call lsp#register_server({
+                    \ 'name': 'javascript-languageserver',
+                    \ 'cmd': {server_info->['javascript-typescript-stdio']},
+                    \ 'whitelist': ['javascript'],
                     \ })
         au User lsp_setup call lsp#register_server({
                     \ 'name': 'python-languageserver',
