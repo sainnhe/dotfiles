@@ -20,9 +20,7 @@ zle -N snippet-expand
 bindkey '^\' snippet-expand
 # }}}
 
-snippet-add f           "fzf "
-snippet-add fp          "| fzf "
-snippet-add vp          "vimpager "
-snippet-add vpp         "| vimpager "
+snippet-add f           "| fzf "
+snippet-add v           "| vimpager "
 snippet-add i3info      "& sh ~/.config/i3/scripts/i3-get-window-criteria.sh"
 snippet-add i3theme     "lxappearance"
