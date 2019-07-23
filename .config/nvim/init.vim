@@ -2129,9 +2129,6 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     set completeopt=noinsert,noselect,menuone
     set dictionary+=/usr/share/dict/words
     set dictionary+=/usr/share/dict/american-english
-    highlight CocHighlightText cterm=bold gui=bold
-    highlight CocErrorHighlight ctermfg=Gray guifg=#888888
-    highlight CocCodeLens ctermfg=Gray guifg=#888888
     "}}}
     "{{{coc-mappings
     inoremap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-j>"
@@ -2792,13 +2789,6 @@ if g:VIM_Linter ==# 'ale'
     let g:ale_virtualtext_cursor = 1
     let g:ale_virtualtext_delay = 10
     let g:ale_virtualtext_prefix = '▸'
-    " highlight ALEVirtualTextError ctermfg=Gray guifg=#8d6e6e
-    " highlight ALEVirtualTextWarning ctermfg=Gray guifg=#8d816e
-    highlight ALEVirtualTextError ctermfg=Gray guifg=#888888
-    highlight ALEVirtualTextWarning ctermfg=Gray guifg=#888888
-    highlight ALEVirtualTextInfo ctermfg=Gray guifg=#888888
-    highlight link ALEVirtualTextStyleError ALEVirtualTextError
-    highlight link ALEVirtualTextStyleWarning ALEVirtualTextWarning
     " ale-mode
     if g:ALE_MODE == 0
         let g:ale_lint_on_text_changed = 'never'
