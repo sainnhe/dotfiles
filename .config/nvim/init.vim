@@ -266,6 +266,7 @@ set updatetime=100
 if has('nvim')
     set inccommand=split
     set wildoptions=pum
+    filetype plugin indent on
     " set pumblend=15
 endif
 " "{{{
@@ -920,14 +921,10 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
             \| au BufNewFile,BufRead *.html,*.css call Func_emmet_vim()
 Plug 'alvan/vim-closetag', { 'for': 'html' }
             \| au BufNewFile,BufRead *.html,*.css call Func_vim_closetag()
-if executable('proxychains')
-    Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'proxychains -q npm install' }
-else
-    Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
-endif
 Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
 Plug 'elzr/vim-json', { 'for': 'json' }
             \| au BufNewFile,BufRead *.json call Func_vim_json()
+Plug 'masukomi/vim-markdown-folding'
 
 " Entertainment
 Plug 'mattn/vim-starwars', { 'on': 'StarWars' }
