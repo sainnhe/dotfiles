@@ -975,6 +975,9 @@ function! PomodoroStatus() abort"{{{
         return ''
     endif
 endfunction"}}}
+function! CocCurrentFunction()"{{{
+    return get(b:, 'coc_current_function', '')
+endfunction"}}}
 function! Devicons_Filetype()"{{{
     " return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'no ft') : ''
     return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
@@ -1055,7 +1058,7 @@ let g:lightline.active = {
             \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
             \ 'right': [ [ 'artify_lineinfo' ],
             \            g:Lightline_StatusIndicators + g:Lightline_Linter,
-            \           [ 'asyncrun_status' ] ]
+            \           [ 'asyncrun_status', 'coc_status' ] ]
             \ }
 let g:lightline.inactive = {
             \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
@@ -1117,7 +1120,9 @@ let g:lightline.component = {
 let g:lightline.component_function = {
             \ 'gitbranch': 'gitbranch#name',
             \ 'devicons_filetype': 'Devicons_Filetype',
-            \ 'devicons_fileformat': 'Devicons_Fileformat'
+            \ 'devicons_fileformat': 'Devicons_Fileformat',
+            \ 'coc_status': 'coc#status',
+            \ 'coc_currentfunction': 'CocCurrentFunction'
             \ }
 let g:lightline.component_expand = {
             \ 'neomake_infos': 'lightline#neomake#infos',
@@ -1148,8 +1153,12 @@ let g:lightline.component_type = {
             \ 'linter_ok': 'middle'
             \ }
 let g:lightline.component_visible_condition = {
-            \     'gitstatus': 'lightline_gitdiff#get_status() !=# ""'
-            \   }
+            \ 'gitstatus': 'lightline_gitdiff#get_status() !=# ""'
+            \ }
+let g:lightline.component_function_visible_condition = {
+            \ 'coc_status': 'g:VIM_Completion_Framework ==# "coc"',
+            \ 'coc_current_function': 'g:VIM_Completion_Framework ==# "coc"'
+            \ }
 "}}}
 "{{{tmuxline.vim
 if g:VIM_Is_In_Tmux == 1
