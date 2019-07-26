@@ -96,6 +96,7 @@
   "help_css": "https://github.com/neoclide/coc-css",
   "help_json": "https://github.com/neoclide/coc-json",
   "help_yaml": "https://github.com/neoclide/coc-yaml",
+  "python.jediEnabled": false,
   "languageserver": {
     "CLANGD": {
       "command": "clangd",
@@ -112,7 +113,8 @@
     "MPLS": {
       "command": "mspyls",
       "trace.server": "verbose",
-      "filetypes": ["python"],
+      "filetypes": ["none"],
+      "filetypes_bak": ["python"],
       "initializationOptions": {
         "interpreter": {
           "properties": {

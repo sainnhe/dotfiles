@@ -2104,6 +2104,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \       'coc-eslint',
                 \       'coc-tslint-plugin',
                 \       'coc-stylelint',
+                \       'coc-python',
                 \       'coc-rls',
                 \       'coc-json',
                 \       'coc-yaml',
@@ -2123,7 +2124,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
         autocmd InsertEnter * call coc#util#float_hide()
         autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
-    let g:CocHoverEnable = 0
+    let g:CocHoverEnable = 1
     let g:tmuxcomplete#trigger = ''
     set hidden
     set completeopt=noinsert,noselect,menuone
