@@ -8,31 +8,29 @@ if !filereadable(expand('~/.vim/autoload/plug.vim'))
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
-    let g:VIM_Is_In_Tmux = 1
+    let g:vimIsInTmux = 1
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 else
-    let g:VIM_Is_In_Tmux = 0
+    let g:vimIsInTmux = 0
 endif
-if exists('g:VIM_MANPAGER')
-    let g:VIM_Enable_Startify = 0
+if exists('g:vimManPager')
+    let g:vimEnableStartify = 0
 else
-    let g:VIM_Enable_Startify = 1
+    let g:vimEnableStartify = 1
 endif
 "}}}
-let g:VIM_LSP_Client = 'none'  " lcn vim-lsp none
-let g:VIM_Snippets = 'coc-snippets'  " ultisnips neosnippet coc-snippets
-let g:VIM_Completion_Framework = 'coc'  " deoplete ncm2 asyncomplete coc
-let g:VIM_Fuzzy_Finder = 'remix'  " remix denite fzf leaderf
-let g:VIM_Linter = 'ale'  " ale neomake
-let g:VIM_TAGBAR = 'tagbar'  " tagbar vista
-" :UpdateRemotePlugins
-if exists('*VIM_Global_Settings')
-    call VIM_Global_Settings()
-endif
-let g:VIM_AutoInstall = 1
-let g:VIM_Enable_Autopairs = 1
+let g:vimMode = 'light'  " light complete
+let g:startify_bookmarks = [
+            \ {'R': '~/repo/'},
+            \ {'N': '~/repo/notes'},
+            \ {'P': '~/Documents/PlayGround/'},
+            \ {'c': '~/.config/nvim/init.vim'},
+            \ {'c': '~/.zshrc'},
+            \ {'c': '~/.tmux.conf'}
+            \ ]
+let g:vimAutoInstall = 1
 "}}}
 "{{{Global
 "{{{Function
@@ -56,64 +54,6 @@ fun! HumanSize(bytes) abort
         let l:i += 1
     endwhile
     return printf('%.1f%s', l:bytes, l:sizes[l:i])
-endfun
-"}}}
-"{{{RomaNumber
-fun! RomaNumber(number) abort
-    let l:number = a:number
-    if l:number ==# '1'
-        let l:romanumber = 'Ⅰ'
-    elseif l:number ==# '2'
-        let l:romanumber = 'Ⅱ'
-    elseif l:number ==# '3'
-        let l:romanumber = 'Ⅲ'
-    elseif l:number ==# '4'
-        let l:romanumber = 'Ⅳ'
-    elseif l:number ==# '5'
-        let l:romanumber = 'Ⅴ'
-    elseif l:number ==# '6'
-        let l:romanumber = 'Ⅵ'
-    elseif l:number ==# '7'
-        let l:romanumber = 'Ⅶ'
-    elseif l:number ==# '8'
-        let l:romanumber = 'Ⅷ'
-    elseif l:number ==# '9'
-        let l:romanumber = 'Ⅸ'
-    elseif l:number ==# '10'
-        let l:romanumber = 'Ⅹ'
-    else
-        let l:romanumber = a:number
-    endif
-    return l:romanumber
-endfun
-"}}}
-"{{{NegativeCircledNumber
-fun! NegativeCircledNumber(number) abort
-    let l:number = a:number
-    if l:number ==# '1'
-        let l:nicenumber = '❶'
-    elseif l:number ==# '2'
-        let l:nicenumber = '❷'
-    elseif l:number ==# '3'
-        let l:nicenumber = '❸'
-    elseif l:number ==# '4'
-        let l:nicenumber = '❹'
-    elseif l:number ==# '5'
-        let l:nicenumber = '❺'
-    elseif l:number ==# '6'
-        let l:nicenumber = '❻'
-    elseif l:number ==# '7'
-        let l:nicenumber = '❼'
-    elseif l:number ==# '8'
-        let l:nicenumber = '❽'
-    elseif l:number ==# '9'
-        let l:nicenumber = '❾'
-    elseif l:number ==# '10'
-        let l:nicenumber = '❿'
-    else
-        let l:nicenumber = a:number
-    endif
-    return l:nicenumber
 endfun
 "}}}
 "{{{ToggleObsession
@@ -372,6 +312,8 @@ endif
 nnoremap ; :
 " q 绑定到:q
 nnoremap <silent> q :q<CR>
+" Q 绑定到:q!
+nnoremap <silent> Q :q!<CR>
 " Ctrl+S保存文件
 nnoremap <C-S> :<C-u>w<CR>
 " Shift加方向键加速移动
@@ -534,8 +476,6 @@ endif
 " Q强制退出
 command Q q!
 "}}}
-"{{{Temp
-"}}}
 "}}}
 "{{{Plugin
 "{{{vim-plug-usage
@@ -603,7 +543,7 @@ augroup vim_plug_mapping
 augroup END
 
 " automatically install missing plugins on startup
-if g:VIM_AutoInstall == 1
+if g:vimAutoInstall == 1
     augroup vim_plug_auto_install
         autocmd!
         autocmd VimEnter *
@@ -674,9 +614,6 @@ command PU PlugUpdate | PlugUpgrade
 
 call plug#begin('~/.cache/vim/plugins')
 if !has('nvim') && has('python3')
-    if g:VIM_Completion_Framework !=# 'ncm2'  " avoid duplication
-        Plug 'roxma/nvim-yarp'
-    endif
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'tpope/vim-repeat'
@@ -696,10 +633,13 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'macthecadillac/lightline-gitdiff'
-if g:VIM_Is_In_Tmux == 1
+Plug 'maximbaz/lightline-ale'
+if g:vimIsInTmux == 1
     Plug 'sainnhe/tmuxline.vim', { 'branch': 'dev', 'on': [ 'Tmuxline', 'TmuxlineSnapshot' ] }
+else
+    Plug 'rmolin88/pomodoro.vim'
 endif
-if g:VIM_Enable_Startify == 1
+if g:vimEnableStartify == 1
     Plug 'mhinz/vim-startify'
 endif
 Plug 'CharlesGueunet/quickmenu.vim'
@@ -714,85 +654,12 @@ Plug 'sainnhe/artify.vim'
 Plug 'RRethy/vim-hexokinase'
 
 " Productivity
-if g:VIM_LSP_Client ==# 'lcn'
-    if executable('proxychains')
-        Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'proxychains -q bash install.sh' }
-    else
-        Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-    endif
-elseif g:VIM_LSP_Client ==# 'vim-lsp'
+if g:vimMode ==# 'light'
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
-endif
-if has('python3')
-    Plug 'vim-vdebug/vdebug', { 'on': [] }
-endif
-Plug 'Shougo/vimproc.vim', { 'on': [], 'do' : 'make' }
-Plug 'idanarye/vim-vebugger', { 'on': [] }
-if g:VIM_Snippets ==# 'ultisnips'
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-elseif g:VIM_Snippets ==# 'neosnippet'
     Plug 'Shougo/neosnippet.vim'
     Plug 'Shougo/neosnippet-snippets'
     Plug 'honza/vim-snippets'
-elseif g:VIM_Snippets ==# 'coc-snippets'
-    Plug 'honza/vim-snippets'
-endif
-if g:VIM_Completion_Framework ==# 'coc'
-    Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco'
-    Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
-    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
-    Plug 'tjdevries/coc-zsh'
-    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-elseif g:VIM_Completion_Framework ==# 'ncm2'
-    Plug 'roxma/nvim-yarp' | Plug 'ncm2/ncm2'
-    Plug 'ncm2/ncm2-tagprefix', { 'on': [] }
-    Plug 'ncm2/ncm2-gtags', { 'on': [] }
-    Plug 'ncm2/ncm2-bufword'
-    Plug 'fgrsnau/ncm2-otherbuf', { 'branch': 'ncm2'}
-    Plug 'ncm2/ncm2-path'
-    Plug 'ncm2/ncm2-tagprefix'
-    Plug 'filipekiss/ncm2-look.vim'
-    Plug 'ncm2/ncm2-github'
-    Plug 'Shougo/neco-syntax' | Plug 'ncm2/ncm2-syntax'
-    Plug 'Shougo/neoinclude.vim' | Plug 'ncm2/ncm2-neoinclude'
-    Plug 'ncm2/ncm2-pyclang', { 'for': ['c', 'cpp'] }
-    Plug 'ncm2/ncm2-html-subscope', { 'for': 'html' }
-    Plug 'ncm2/ncm2-jedi'
-    Plug 'ncm2/ncm2-markdown-subscope', { 'for': 'markdown' }
-    Plug 'Shougo/neco-vim', { 'for': 'vim' } | Plug 'ncm2/ncm2-vim', { 'for': 'vim' }
-    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
-    if g:VIM_LSP_Client ==# 'vim-lsp'
-        Plug 'ncm2/ncm2-vim-lsp'
-    endif
-    if g:VIM_Snippets ==# 'ultisnips'
-        Plug 'ncm2/ncm2-ultisnips'
-    elseif g:VIM_Snippets ==# 'neosnippet'
-        Plug 'ncm2/ncm2-neosnippet'
-    endif
-    " Plug 'ncm2/ncm2-match-highlight'
-    " Plug 'ncm2/ncm2-highprio-pop'
-elseif g:VIM_Completion_Framework ==# 'deoplete'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    if executable('proxychains')
-        Plug 'tbodt/deoplete-tabnine', { 'do': 'proxychains -q bash ./install.sh' }
-    else
-        Plug 'tbodt/deoplete-tabnine', { 'do': 'bash ./install.sh' }
-    endif
-    Plug 'ozelentok/deoplete-gtags', { 'on': [] }
-    Plug 'Shougo/neco-syntax'
-    Plug 'Shougo/neoinclude.vim'
-    Plug 'Shougo/context_filetype.vim'
-    Plug 'Shougo/neco-vim', { 'for': 'vim' }
-    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
-    Plug 'Shougo/deoplete-clangx', { 'for': [ 'c', 'cpp' ] }
-    Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp' ] }
-    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    if g:VIM_LSP_Client ==# 'vim-lsp'
-        Plug 'lighttiger2505/deoplete-vim-lsp'
-    endif
-elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-tags.vim'
     Plug 'prabirshrestha/asyncomplete-buffer.vim'
@@ -801,62 +668,24 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     Plug 'Shougo/neoinclude.vim' | Plug 'kyouryuukunn/asyncomplete-neoinclude.vim'
     Plug 'Shougo/neco-vim', { 'for': 'vim' } | Plug 'prabirshrestha/asyncomplete-necovim.vim', { 'for': 'vim' }
     Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
-    if g:VIM_LSP_Client ==# 'vim-lsp'
-        Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    endif
-    if g:VIM_Snippets ==# 'ultisnips'
-        Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-    elseif g:VIM_Snippets ==# 'neosnippet'
-        Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
-    endif
-elseif g:VIM_Completion_Framework ==# 'neocomplete'
-    Plug 'Shougo/neocomplete.vim'
-    Plug 'Shougo/neoinclude.vim'
-    Plug 'Shougo/neco-vim'
-    Plug 'Shougo/neco-syntax'
-    Plug 'ujihisa/neco-look'
-    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
-endif
-if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
-    Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins'}
-    Plug 'raghur/fruzzy', {'do': { -> fruzzy#install()}}
-    Plug 'nixprime/cpsm', { 'do': 'bash ./install.sh' }
-    Plug 'iamcco/denite-source.vim'
-    Plug 'neoclide/denite-extra'
-    Plug 'Shougo/neomru.vim'
-    Plug 'chemzqm/denite-git'
-    Plug 'ozelentok/denite-gtags'
-    Plug 'notomo/denite-keymap'
-    Plug 'tjmmm/denite-man'
-    Plug 'bennyyip/denite-github-stars'
-    if g:VIM_Linter ==# 'ale'
-        Plug 'iyuuya/denite-ale'
-    elseif g:VIM_Linter ==# 'neomake'
-        Plug 'mhartington/denite-neomake'
-    endif
-endif
-if g:VIM_Fuzzy_Finder ==# 'fzf' || g:VIM_Fuzzy_Finder ==# 'remix'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'fszymanski/fzf-quickfix'
-endif
-if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
+elseif g:vimMode ==# 'complete'
+    Plug 'honza/vim-snippets'
+    Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
+    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
+    Plug 'tjdevries/coc-zsh'
+    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
     Plug 'Yggdroot/LeaderF-marks'
     Plug 'youran0715/LeaderF-Cmdpalette'
     Plug 'markwu/LeaderF-prosessions'
     Plug 'bennyyip/LeaderF-github-stars'
 endif
-if g:VIM_Linter ==# 'ale'
-    Plug 'w0rp/ale'
-    Plug 'maximbaz/lightline-ale'
-elseif g:VIM_Linter ==# 'neomake'
-    Plug 'neomake/neomake'
-    Plug 'sinetoami/lightline-neomake'
-    if g:VIM_LSP_Client ==# 'lcn'
-        Plug 'Palpatineli/lightline-lsc-nvim'
-    endif
-endif
+Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
@@ -872,15 +701,11 @@ Plug 'junegunn/gv.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'rhysd/committia.vim'
 Plug 'jsfaint/gen_tags.vim', { 'on': [] }
-if g:VIM_TAGBAR ==# 'tagbar'
-    Plug 'majutsushi/tagbar', { 'on': [] }
-    if executable('proxychains')
-        Plug 'vim-php/tagbar-phpctags.vim', { 'on': [], 'do': 'proxychains -q make' }
-    else
-        Plug 'vim-php/tagbar-phpctags.vim', { 'on': [], 'do': 'make' }
-    endif
-elseif g:VIM_TAGBAR ==# 'vista'
-    Plug 'liuchengxu/vista.vim'
+Plug 'majutsushi/tagbar', { 'on': [] }
+if executable('proxychains')
+    Plug 'vim-php/tagbar-phpctags.vim', { 'on': [], 'do': 'proxychains -q make' }
+else
+    Plug 'vim-php/tagbar-phpctags.vim', { 'on': [], 'do': 'make' }
 endif
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
@@ -902,17 +727,10 @@ Plug 'metakirby5/codi.vim'
 Plug 'mbbill/fencview', { 'on': [ 'FencAutoDetect', 'FencView' ] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'andymass/vim-matchup'
-if exists('g:VIM_MANPAGER')
+if exists('g:vimManPager')
     Plug 'lambdalisue/vim-manpager'
 endif
-if g:VIM_Enable_Autopairs == 1
-    Plug 'jiangmiao/auto-pairs'
-elseif g:VIM_Completion_Framework !=# 'coc'
-    Plug 'Shougo/neopairs.vim'
-endif
-if g:VIM_Is_In_Tmux == 0
-    Plug 'rmolin88/pomodoro.vim'
-endif
+Plug 'jiangmiao/auto-pairs'
 if executable('fcitx')
     Plug 'lilydjwg/fcitx.vim', { 'on': [] }
                 \| au InsertEnter * call plug#load('fcitx.vim')
@@ -962,13 +780,13 @@ function! TmuxBindLock() abort"{{{
     endif
 endfunction"}}}
 function! PomodoroStatus() abort"{{{
-    if g:VIM_Is_In_Tmux == 0
+    if g:vimIsInTmux == 0
         if pomo#remaining_time() ==# '0'
             return "\ue001"
         else
             return "\ue003 ".pomo#remaining_time()
         endif
-    elseif g:VIM_Is_In_Tmux == 1
+    elseif g:vimIsInTmux == 1
         return ''
     endif
 endfunction"}}}
@@ -1013,7 +831,7 @@ endfunction"}}}
 "}}}
 set laststatus=2  " Basic
 set noshowmode  " Disable show mode info
-augroup Lightline_Au
+augroup lightlineCustom
     autocmd!
     autocmd BufWritePost * call lightline_gitdiff#query_git() | call lightline#update()
 augroup END
@@ -1022,16 +840,6 @@ let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
 let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
 let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
 let g:lightline.tabline_subseparator = { 'left': "\ue0bb", 'right': "\ue0bb" }
-let g:lightline#neomake#prefix_infos = 'ℹ'
-let g:lightline#neomake#prefix_warnings = "\uf529"
-let g:lightline#neomake#prefix_errors = "\uf00d"
-let g:lightline#neomake#prefix_ok = "\uf00c"
-let g:lightline_neomake#format = '%s: %d'
-let g:lightline_neomake#sep = "\ue0b9"
-let g:lightline#lsc#indicator_checking = "\uf110"
-let g:lightline#lsc#indicator_notstarted = "\ufbab"
-let g:lightline#lsc#indicator_errors = "\uf00d"
-let g:lightline#lsc#indicator_ok = "\uf00c"
 let g:lightline#ale#indicator_checking = "\uf110"
 let g:lightline#ale#indicator_warnings = "\uf529"
 let g:lightline#ale#indicator_errors = "\uf00d"
@@ -1040,21 +848,16 @@ let g:lightline_gitdiff#indicator_added = '+'
 let g:lightline_gitdiff#indicator_deleted = '-'
 let g:lightline_gitdiff#indicator_modified = '*'
 let g:lightline_gitdiff#min_winwidth = '70'
-if g:VIM_Is_In_Tmux == 1
+if g:vimIsInTmux == 1
     let g:Lightline_StatusIndicators = [ 'obsession', 'tmuxlock' ]
-elseif g:VIM_Is_In_Tmux == 0
+elseif g:vimIsInTmux == 0
     let g:Lightline_StatusIndicators = [ 'pomodoro', 'obsession' ]
-endif
-if g:VIM_Linter ==# 'ale'
-    let g:Lightline_Linter = [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
-elseif g:VIM_Linter ==# 'neomake'
-    let g:Lightline_Linter = [ 'neomake_warnings', 'neomake_errors', 'neomake_infos', 'neomake_ok', 'lsc_ok', 'lsc_errors', 'lsc_checking', 'lsc_warnings' ]
 endif
 let g:lightline.active = {
             \ 'left': [ [ 'artify_mode', 'paste' ],
             \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
             \ 'right': [ [ 'artify_lineinfo' ],
-            \            g:Lightline_StatusIndicators + g:Lightline_Linter,
+            \            g:Lightline_StatusIndicators + [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
             \           [ 'asyncrun_status', 'coc_status' ] ]
             \ }
 let g:lightline.inactive = {
@@ -1082,15 +885,15 @@ let g:lightline.tab_component_function = {
             \ }
 let g:lightline.component = {
             \ 'artify_gitbranch' : '%{Artify_gitbranch()}',
+            \ 'artify_mode': '%{Artify_lightline_mode()}',
+            \ 'artify_lineinfo': "%2{Artify_line_percent()}\uf295 %3{Artify_line_num()}:%-2{Artify_col_num()}",
             \ 'gitstatus' : '%{lightline_gitdiff#get_status()}',
             \ 'bufinfo': '%{bufname("%")}:%{bufnr("%")}',
             \ 'obsession': '%{ObsessionStatusEnhance()}',
             \ 'tmuxlock': '%{TmuxBindLock()}',
             \ 'vim_logo': "\ue7c5",
             \ 'pomodoro': '%{PomodoroStatus()}',
-            \ 'nicewinnumber': '%{NegativeCircledNumber(tabpagewinnr(tabpagenr()))}',
             \ 'mode': '%{lightline#mode()}',
-            \ 'artify_mode': '%{Artify_lightline_mode()}',
             \ 'absolutepath': '%F',
             \ 'relativepath': '%f',
             \ 'filename': '%t',
@@ -1108,7 +911,6 @@ let g:lightline.component = {
             \ 'percentwin': '%P',
             \ 'spell': '%{&spell?&spelllang:""}',
             \ 'lineinfo': '%2p%% %3l:%-2v',
-            \ 'artify_lineinfo': "%2{Artify_line_percent()}\uf295 %3{Artify_line_num()}:%-2{Artify_col_num()}",
             \ 'line': '%l',
             \ 'column': '%c',
             \ 'close': '%999X X ',
@@ -1122,14 +924,6 @@ let g:lightline.component_function = {
             \ 'coc_currentfunction': 'CocCurrentFunction'
             \ }
 let g:lightline.component_expand = {
-            \ 'neomake_infos': 'lightline#neomake#infos',
-            \ 'neomake_warnings': 'lightline#neomake#warnings',
-            \ 'neomake_errors': 'lightline#neomke#errors',
-            \ 'neomake_ok': 'lightline#neomake#ok',
-            \ 'lsc_checking': 'lightline#lsc#checking',
-            \ 'lsc_warnings': 'lightline#lsc#warnings',
-            \ 'lsc_errors': 'lightline#lsc#errors',
-            \ 'lsc_ok': 'lightline#lsc#ok',
             \ 'linter_checking': 'lightline#ale#checking',
             \ 'linter_warnings': 'lightline#ale#warnings',
             \ 'linter_errors': 'lightline#ale#errors',
@@ -1137,13 +931,6 @@ let g:lightline.component_expand = {
             \ 'asyncrun_status': 'lightline#asyncrun#status'
             \ }
 let g:lightline.component_type = {
-            \ 'neomake_warnings': 'warning',
-            \ 'neomake_errors': 'error',
-            \ 'neomake_ok': 'middle',
-            \ 'lsc_checking': 'middle',
-            \ 'lsc_warnings': 'warning',
-            \ 'lsc_errors': 'error',
-            \ 'lsc_ok': 'middle',
             \ 'linter_checking': 'middle',
             \ 'linter_warnings': 'warning',
             \ 'linter_errors': 'error',
@@ -1153,12 +940,12 @@ let g:lightline.component_visible_condition = {
             \ 'gitstatus': 'lightline_gitdiff#get_status() !=# ""'
             \ }
 let g:lightline.component_function_visible_condition = {
-            \ 'coc_status': 'g:VIM_Completion_Framework ==# "coc"',
-            \ 'coc_current_function': 'g:VIM_Completion_Framework ==# "coc"'
+            \ 'coc_status': 'g:vimMode ==# "complete"',
+            \ 'coc_current_function': 'g:vimMode ==# "complete"'
             \ }
 "}}}
 "{{{tmuxline.vim
-if g:VIM_Is_In_Tmux == 1
+if g:vimIsInTmux == 1
     let g:tmuxline_preset = {
                 \'a'    : '#S',
                 \'b'    : '%R %a',
@@ -1181,7 +968,7 @@ endif
 "{{{Functions
 "{{{SwitchColorScheme()
 function! SwitchColorScheme(name)
-    let g:VIM_Color_Scheme = a:name
+    let g:vimColorScheme = a:name
     call ColorScheme()
     call lightline#init()
     call lightline#colorscheme()
@@ -1189,54 +976,54 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:VIM_Color_Scheme = 'gruvbox-material'
+let g:vimColorScheme = 'gruvbox-material'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
     "{{{forest-night
-    if g:VIM_Color_Scheme ==# 'forest-night'
+    if g:vimColorScheme ==# 'forest-night'
         colorscheme forest-night
         let g:lightline.colorscheme = 'forest_night'
     endif
     call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
     "}}}
     "{{{forest-dusk
-    if g:VIM_Color_Scheme ==# 'forest-dusk'
+    if g:vimColorScheme ==# 'forest-dusk'
         colorscheme forest-dusk
         let g:lightline.colorscheme = 'forest_dusk'
     endif
     call g:quickmenu#append('forest-dusk', 'call SwitchColorScheme("forest-dusk")', '', '', 0, '')
     "}}}
     "{{{desert-night
-    if g:VIM_Color_Scheme ==# 'desert-night'
+    if g:vimColorScheme ==# 'desert-night'
         colorscheme desert-night
         let g:lightline.colorscheme = 'desert_night'
     endif
     call g:quickmenu#append('desert-night', 'call SwitchColorScheme("desert-night")', '', '', 0, '')
     "}}}
     "{{{gruvbox-material
-    if g:VIM_Color_Scheme ==# 'gruvbox-material'
+    if g:vimColorScheme ==# 'gruvbox-material'
         colorscheme gruvbox-material
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
     call g:quickmenu#append('gruvbox-material', 'call SwitchColorScheme("gruvbox-material")', '', '', 0, '')
     "}}}
     "{{{grimoire
-    if g:VIM_Color_Scheme ==# 'grimoire'
+    if g:vimColorScheme ==# 'grimoire'
         colorscheme grimoire
         let g:lightline.colorscheme = 'grimoire'
     endif
     call g:quickmenu#append('grimoire', 'call SwitchColorScheme("grimoire")', '', '', 0, '')
     "}}}
     "{{{vanilla-cake
-    if g:VIM_Color_Scheme ==# 'vanilla-cake'
+    if g:vimColorScheme ==# 'vanilla-cake'
         colorscheme vanilla-cake
         let g:lightline.colorscheme = 'vanilla_cake'
     endif
     call g:quickmenu#append('vanilla-cake', 'call SwitchColorScheme("vanilla-cake")', '', '', 0, '')
     "}}}
     "{{{fairy-garden
-    if g:VIM_Color_Scheme ==# 'fairy-garden'
+    if g:vimColorScheme ==# 'fairy-garden'
         colorscheme fairy-garden
         let g:lightline.colorscheme = 'fairy_garden'
     endif
@@ -1244,42 +1031,9 @@ function! ColorScheme()
     "}}}
 endfunction
 call ColorScheme()
-"{{{InitBG()
-function! InitBG()
-    if empty($TERM_Emulator)
-        let g:TransparentBG = 0
-    else
-        if $TERM_Emulator ==# 'konsole'
-            let g:TransparentBG = 1
-        else
-            let g:TransparentBG = 0
-        endif
-    endif
-endfunction
-call InitBG()
-"}}}
-"{{{TransparentBG()
-function! TransparentBG()
-    if g:TransparentBG == 1
-        hi Normal guibg=NONE ctermbg=NONE
-    endif
-endfunction
-call TransparentBG()
-"}}}
-"{{{ToggleBG()
-function! ToggleBG()
-    if g:TransparentBG == 1
-        let g:TransparentBG = 0
-        set background=light
-    elseif g:TransparentBG == 0
-        let g:TransparentBG = 1
-        call TransparentBG()
-    endif
-endfunction
-"}}}
 "}}}
 "{{{vim-startify
-if g:VIM_Enable_Startify == 1
+if g:vimEnableStartify == 1
     let g:startify_session_dir = expand('~/.cache/vim/sessions/')
     let g:startify_files_number = 5
     let g:startify_update_oldfiles = 1
@@ -1293,14 +1047,6 @@ if g:VIM_Enable_Startify == 1
     let g:startify_session_sort = 1 " sort sessions by alphabet or modification time
     let g:startify_custom_indices = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5'] " MRU indices
     " line 579 for more details
-    let g:startify_bookmarks = [
-                \ {'R': '~/repo/'},
-                \ {'N': '~/repo/notes'},
-                \ {'P': '~/Documents/PlayGround/'},
-                \ {'c': '~/.config/nvim/init.vim'},
-                \ {'c': '~/.zshrc'},
-                \ {'c': '~/.tmux.conf'}
-                \ ]
     if has('nvim')
         let g:startify_commands = [
                     \ {'1': 'terminal'},
@@ -1326,7 +1072,7 @@ if g:VIM_Enable_Startify == 1
         execute 'NERDTreeVCS'
         execute 'wincmd l'
     endfunction
-    augroup Startify_Config
+    augroup startifyCustom
         autocmd VimEnter *
                     \   if !argc()
                     \ |   call NerdtreeStartify()
@@ -1353,7 +1099,7 @@ call quickmenu#reset()
 nnoremap <silent> <leader><leader> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
 call g:quickmenu#append('Servers', 'call quickmenu#toggle(4)', '', '', 0, 'l')
-if g:VIM_Is_In_Tmux == 0
+if g:vimIsInTmux == 0
     call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 endif
 call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
@@ -1382,10 +1128,10 @@ call g:quickmenu#append('Auto Pairs', 'call Help_auto_pairs()', '', '', 0, 'p')
 call g:quickmenu#append('Nerd Commenter', 'call Help_nerdcommenter()', '', '', 0, 'c')
 call g:quickmenu#append('Bookmarks', 'call Help_vim_bookmarks()', '', '', 0, 'b')
 call g:quickmenu#append('Close Tag', 'call Help_vim_closetag()', '', '', 0, 't')
-call g:quickmenu#append('Multiple Cursors', 'call Help_vim_multiple_cursors()', '', '', 0, 'm')
 call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 'S')
 call g:quickmenu#append('VIM Surround', 'call Help_vim_surround()', '', '', 0, 'r')
 call g:quickmenu#append('VIM Matchup', 'call Help_vim_matchup()', '', '', 0, 'M')
+call g:quickmenu#append('Inline Edit', 'call Help_inline_edit()', '', '', 0, 'i')
 call quickmenu#current(11)
 call quickmenu#reset()
 call g:quickmenu#append('# Folding Method', '')
@@ -1515,7 +1261,7 @@ let g:goyo_width = 95
 let g:goyo_height = 85
 let g:goyo_linenr = 0
 "进入goyo模式后自动触发limelight,退出后则关闭
-augroup Goyo_Config
+augroup goyoCustom
     autocmd! User GoyoEnter Limelight
     autocmd! User GoyoLeave Limelight!
 augroup END
@@ -1535,132 +1281,8 @@ let g:Hexokinase_refreshEvents = ['BufWritePost']
 let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba']  " ['full_hex', 'triple_hex', 'rgb', 'rgba', 'colour_names']
 "}}}
 " Productivity
-"{{{LanguageClient-neovim
-if g:VIM_LSP_Client ==# 'lcn'
-    "{{{LanguageClient-neovim-usage
-    function! Help_Language_Client_neovim()
-        echo '<leader>ld        definition'
-        echo '<leader>lt        typeDefinition'
-        echo '<leader>lI        implementation'
-        echo '<leader>lr        references'
-        echo '<leader>lR        rename'
-        echo '<leader>la        codeAction'
-        echo '<leader>lf        formatting'
-    endfunction
-    "}}}
-    " Server Register
-    let g:LanguageClient_serverCommands = {
-                \ 'c': ['clangd'],
-                \ 'cpp': ['clangd'],
-                \ 'objc': ['clangd'],
-                \ 'objcpp': ['clangd'],
-                \ 'css': ['css-languageserver', '--stdio'],
-                \ 'html': ['html-languageserver', '--stdio'],
-                \ 'json': ['json-languageserver', '--stdio'],
-                \ 'javascript': ['javascript-typescript-stdio'],
-                \ 'python': ['pyls'],
-                \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-                \ 'sh': ['bash-language-server', 'start'],
-                \ 'yaml': ['yaml-language-server']
-                \ }
-    " Events
-    augroup LanguageClientAu
-        autocmd!
-        autocmd User LanguageClientStarted setlocal signcolumn=auto
-        autocmd User LanguageClientStopped setlocal signcolumn=auto
-        autocmd CursorHold call LanguageClient#textDocument_hover()
-        autocmd CursorHold call LanguageClient#textDocument_documentHighlight()
-        autocmd CursorMoved call LanguageClient#textDocument_clearDocumentHighlight()
-    augroup END
-    " snippets
-    let g:LanguageClient_hasSnippetSupport = 1
-    if g:VIM_Snippets ==# 'ultisnips'
-    elseif g:VIM_Snippets ==# 'neosnippet'
-        let g:neosnippet#enable_complete_done = 1
-    endif
-    " AutoStart
-    let g:LanguageClient_autoStart = 1
-    " hoverPreview: Never Auto Always
-    let g:LanguageClient_hoverPreview = 'Always'
-    " Override Snippets
-    let g:LanguageClient_hasSnippetSupport = 0
-    " Completion
-    set omnifunc=LanguageClient#complete
-    " Formatting
-    set formatexpr=LanguageClient_textDocument_rangeFormatting()
-    " Interface
-    " let g:LanguageClient_selectionUI = 'fzf'  " fzf quickfix location-list
-    " Mappings
-    nnoremap <silent> <leader>ld :<C-u>call LanguageClient#textDocument_definition()<CR>
-    nnoremap <silent> <leader>lt :<C-u>call LanguageClient#textDocument_typeDefinition()<CR>
-    nnoremap <silent> <leader>lI :<C-u>call LanguageClient#textDocument_implementation()<CR>
-    nnoremap <silent> <leader>lr :<C-u>call LanguageClient#textDocument_references()<CR>
-    nnoremap <silent> <leader>lR :<C-u>call LanguageClient#textDocument_rename()<CR>
-    nnoremap <silent> <leader>la :<C-u>call LanguageClient#textDocument_codeAction()<CR>
-    nnoremap <silent> <leader>lf :<C-u>call LanguageClient#textDocument_formatting()<CR>
-    vnoremap <silent> <leader>lf :<C-u>call LanguageClient#textDocument_rangeFormatting()<CR>
-    if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
-        call quickmenu#current(4)
-        call quickmenu#reset()
-        call g:quickmenu#append('# Language Server', '')
-        call g:quickmenu#append('Context Menu', 'call LanguageClient_contextMenu()', 'Show context menu.', '', 0, '#')
-        call g:quickmenu#append('Code Action', 'Denite codeAction', 'Show code actions at current location.', '', 0, 'a')
-        call g:quickmenu#append('Symbol', 'Denite documentSymbol', "List of current buffer's symbols.", '', 0, 's')
-        call g:quickmenu#append('Workspace Symbol', 'Denite workspaceSymbol', "List of project's symbols.", '', 0, 'S')
-        call g:quickmenu#append('Apply Edit', 'call LanguageClient#workspace_applyEdit()', 'Apply a workspace edit.', '', 0, 'A')
-        call g:quickmenu#append('Command', 'call LanguageClient#workspace_executeCommand()', 'Execute a workspace command.', '', 0, 'C')
-        call g:quickmenu#append('Notify', 'call LanguageClient#Notify()', 'Send a notification to the current language server.', '', 0, 'n')
-        call g:quickmenu#append('Start LSC', 'LanguageClientStart', '', '', 0, '$')
-        call g:quickmenu#append('Stop LSC', 'LanguageClientStop', '', '', 0, '!')
-        call g:quickmenu#append('Help', 'call Help_Language_Client_neovim()', '', '', 0, 'h')
-        call g:quickmenu#append('# Completion Framework', '')
-        call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(5)', '', '', 0, 'c')
-    else
-        call quickmenu#current(4)
-        call quickmenu#reset()
-        call g:quickmenu#append('# Language Server', '')
-        call g:quickmenu#append('Context Menu', 'call LanguageClient_contextMenu()', 'Show context menu.', '', 0, '#')
-        call g:quickmenu#append('Code Action', 'call LanguageClient#textDocument_codeAction()', 'Show code actions at current location.', '', 0, 'a')
-        call g:quickmenu#append('Symbol', 'call LanguageClient#textDocument_documentSymbol()', "List of current buffer's symbols.", '', 0, 's')
-        call g:quickmenu#append('Workspace Symbol', 'call LanguageClient#workspace_symbol()', "List of project's symbols.", '', 0, 'S')
-        call g:quickmenu#append('Apply Edit', 'call LanguageClient#workspace_applyEdit()', 'Apply a workspace edit.', '', 0, 'A')
-        call g:quickmenu#append('Command', 'call LanguageClient#workspace_executeCommand()', 'Execute a workspace command.', '', 0, 'C')
-        call g:quickmenu#append('Notify', 'call LanguageClient#Notify()', 'Send a notification to the current language server.', '', 0, 'n')
-        call g:quickmenu#append('Start LSC', 'LanguageClientStart', '', '', 0, '$')
-        call g:quickmenu#append('Stop LSC', 'LanguageClientStop', '', '', 0, '!')
-        call g:quickmenu#append('Help', 'call Help_Language_Client_neovim()', '', '', 0, 'h')
-        call g:quickmenu#append('# Completion Framework', '')
-        call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(5)', '', '', 0, 'c')
-    endif
-    let g:LanguageClient_diagnosticsDisplay = {
-                \ 1: {
-                \ 'name': 'Error',
-                \ 'texthl': 'ALEError',
-                \ 'signText': "\uf65b",
-                \ 'signTexthl': 'ALEErrorSign',
-                \ },
-                \ 2: {
-                \ 'name': 'Warning',
-                \ 'texthl': 'ALEWarning',
-                \ 'signText': "\uf421",
-                \ 'signTexthl': 'ALEWarningSign',
-                \ },
-                \ 3: {
-                \ 'name': 'Information',
-                \ 'texthl': 'ALEInfo',
-                \ 'signText': "\uf7fb",
-                \ 'signTexthl': 'ALEInfoSign',
-                \ },
-                \ 4: {
-                \ 'name': 'Hint',
-                \ 'texthl': 'ALEInfo',
-                \ 'signText': "\uf68a",
-                \ 'signTexthl': 'ALEInfoSign',
-                \ },
-                \ }
-    "}}}
-    "{{{vim-lsp
-elseif g:VIM_LSP_Client ==# 'vim-lsp'
+"{{{vim-lsp
+if g:vimMode ==# 'light'
     "{{{vim-lsp-usage
     function! Help_vim_lsp()
         echo '<leader>la        CodeAction'
@@ -1681,7 +1303,7 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
     let g:lsp_signs_error = {'text': "\uf65b"}
     let g:lsp_signs_warning = {'text': "\uf421"}
     let g:lsp_signs_hint = {'text': "\uf68a"}
-    augroup VIM_LSP_Register
+    augroup vimLspRegister
         autocmd!
         au User lsp_setup call lsp#register_server({
                     \ 'name': 'clangd',
@@ -1755,26 +1377,11 @@ elseif g:VIM_LSP_Client ==# 'vim-lsp'
     call g:quickmenu#append('# Completion Framework', '')
     call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(5)', '', '', 0, 'c')
     vnoremap lf :<C-u>LspDocumentRangeFormat<CR>
-endif
-"}}}
-"{{{ultisnips
-if g:VIM_Snippets ==# 'ultisnips'
-    "{{{ultisnips-usage
-    " Ctrl+J展开或跳转到下一个
-    " Ctrl+K跳转到上一个
-    "}}}
-    let g:UltiSnipsRemoveSelectModeMappings = 0
-    let g:UltiSnipsJumpForwardTrigger       = '<C-j>'
-    let g:UltiSnipsJumpBackwardTrigger      = '<C-k>'
-    let g:UltiSnipsExpandTrigger            = '<A-z>``l'
-    " let g:UltiSnipsListSnippets = "<A-y>l"
-    " let g:UltiSnipsEditSplit="vertical"
     "}}}
     "{{{neosnippet.vim
     "{{{neosnippet-usage
     " <C-J>展开或跳转到下一个
     "}}}
-elseif g:VIM_Snippets ==# 'neosnippet' && g:VIM_Completion_Framework !=# 'coc'
     imap <C-j>     <Plug>(neosnippet_expand_or_jump)
     smap <C-j>     <Plug>(neosnippet_expand_or_jump)
     xmap <C-j>     <Plug>(neosnippet_expand_target)
@@ -1782,160 +1389,8 @@ elseif g:VIM_Snippets ==# 'neosnippet' && g:VIM_Completion_Framework !=# 'coc'
         set conceallevel=2 concealcursor=niv
     endif
     let g:neosnippet#snippets_directory = expand('~/.cache/vim/plugins/vim-snippets/snippets')
-endif
-"}}}
-"{{{deoplete.nvim
-if g:VIM_Completion_Framework ==# 'deoplete'
-    "{{{deoplete-usage
-    " <Tab> <S-Tab> 分别向下和向上选中，
-    " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
-    "}}}
-    "{{{quickmenu
-    call quickmenu#current(5)
-    call quickmenu#reset()
-    call g:quickmenu#append('# Deoplete', '')
-    call g:quickmenu#append('Toggle Word Completion', 'call Func_ToggleDeopleteWords()', '', '', 0, 'w')
-    "}}}
-    "{{{extensions
-    let g:necosyntax#min_keyword_length = 3
-    " deoplete-jedi
-    " https://github.com/zchee/deoplete-jedi
-    let g:tmuxcomplete#trigger = ''
-    "}}}
-    let g:deoplete#enable_at_startup = 0
-    augroup Deoplete_Au
-        autocmd!
-        autocmd InsertEnter * call deoplete#enable()
-        autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
-    augroup END
-    call deoplete#custom#option({
-                \ 'auto_complete_delay': 0,
-                \ 'smart_case': v:true,
-                \ })
-    if !has('nvim')
-        call deoplete#custom#option({'yarp': v:true})
-    endif
-    call deoplete#custom#var('around', {
-                \   'range_above': 100,
-                \   'range_below': 100,
-                \   'mark_above': '[↑]',
-                \   'mark_below': '[↓]',
-                \   'mark_changes': '[*]',
-                \})
-    if g:VIM_Snippets ==# 'ultisnips'
-        let g:UltiSnipsExpandTrigger            = '<C-j>'
-    endif
-    inoremap <silent><expr> <S-TAB>
-                \ pumvisible() ? "\<C-p>" :
-                \ <SID>check_back_space() ? "\<S-TAB>" :
-                \ deoplete#mappings#manual_complete()
-    function! s:check_back_space() abort "{{{
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction"}}}
-    inoremap <expr> <up> pumvisible() ? deoplete#close_popup()."\<up>" : "\<up>"
-    inoremap <expr> <down> pumvisible() ? deoplete#close_popup()."\<down>" : "\<down>"
-    inoremap <expr> <left> pumvisible() ? deoplete#close_popup()."\<left>" : "\<left>"
-    inoremap <expr> <right> pumvisible() ? deoplete#close_popup()."\<right>" : "\<right>"
-    imap <expr> <CR> pumvisible() ? deoplete#close_popup()."\<CR>" : "\<CR>"
-    imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
-    let g:Deoplete_Word_Completion_Enable = 0
-    function! Func_ToggleDeopleteWords()
-        if g:Deoplete_Word_Completion_Enable == 1
-            let g:Deoplete_Word_Completion_Enable = 0
-            setlocal dictionary+=/usr/share/dict/words
-            setlocal dictionary+=/usr/share/dict/american-english
-            call deoplete#custom#source(
-                        \ 'dictionary', 'min_pattern_length', 4)
-            call deoplete#custom#source(
-                        \ 'dictionary', 'matchers', ['matcher_head'])
-        elseif g:Deoplete_Word_Completion_Enable == 0
-            let g:Deoplete_Word_Completion_Enable = 1
-            setlocal dictionary-=/usr/share/dict/words
-            setlocal dictionary-=/usr/share/dict/american-english
-            call deoplete#custom#source(
-                        \ 'dictionary', 'min_pattern_length', 4)
-            call deoplete#custom#source(
-                        \ 'dictionary', 'matchers', ['matcher_head'])
-        endif
-    endfunction
-    " autocmd BufNewFile,BufRead *.md call Func_ToggleDeopleteWords()
-    set completeopt-=preview
-    function Multiple_cursors_before()
-        let g:deoplete#disable_auto_complete = 1
-    endfunction
-    function Multiple_cursors_after()
-        let g:deoplete#disable_auto_complete = 0
-    endfunction
-    "}}}
-    "{{{ncm2
-elseif g:VIM_Completion_Framework ==# 'ncm2'
-    "{{{ncm2-usage
-    " <Tab> <S-Tab> 分别向下和向上选中，
-    " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
-    "}}}
-    "{{{quickmenu
-    call quickmenu#current(5)
-    call quickmenu#reset()
-    call g:quickmenu#append('# NCM2', '')
-    call g:quickmenu#append('Toggle Word Completion', 'call Func_ToggleNcm2Look()', '', '', 0, 'w')
-    "}}}
-    "{{{ncm2-extensions
-    "{{{ncm2-ultisnips
-    if g:VIM_Snippets ==# 'ultisnips'
-        imap <expr> <C-j> pumvisible() ? "\<Plug>(ncm2_ultisnips_expand_completed)" : "\<C-j>"
-        "}}}
-        "{{{ncm2-neosnippet
-    elseif g:VIM_Snippets ==# 'neosnippet'
-        imap <expr> <C-j> pumvisible() ? "\<Plug>(ncm2_neosnippet_expand_completed)" : "\<C-j>"
-    endif
-    "}}}
-    "{{{ncm2-pyclang
-    let g:ncm2_pyclang#library_path = '/usr/lib'
-    "}}}
-    "{{{ncm2-look.vim
-    " enable ncm2 for all buffer
-    augroup ncm2_enable_for_buffer
-        autocmd!
-        autocmd BufEnter * call ncm2#enable_for_buffer()
-    augroup END
-    " note that must keep noinsert in completeopt, the others is optional
-    set completeopt=noinsert,menuone,noselect
-    " Enable && Disable Globally
-    let g:ncm2_look_enabled = 0
-    " Enable Command
-    function! Func_ToggleNcm2Look()
-        if g:ncm2_look_enabled == 1
-            let g:ncm2_look_enabled = 0
-        elseif g:ncm2_look_enabled == 0
-            let g:ncm2_look_enabled = 1
-        endif
-    endfunction
-    " autocmd BufNewFile,BufRead *.md call Func_ToggleNcm2Look()
-    " Symbol
-    let g:ncm2_look_mark = "\uf02d"
-    "}}}
-    "{{{tmux-complete.vim
-    let g:tmuxcomplete#trigger = ''
-    "}}}
-    "}}}
-    augroup NCM2_Config
-        autocmd!
-        autocmd BufEnter * call ncm2#enable_for_buffer()
-        autocmd TextChangedI * call ncm2#auto_trigger()  " enable auto complete for `<backspace>`, `<c-w>` keys
-        autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
-    augroup END
-    set completeopt=noinsert,menuone,noselect
-    imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Plug>(ncm2_manual_trigger)\<C-n>"
-    inoremap <expr> <up> pumvisible() ? "\<C-y>\<up>" : "\<up>"
-    inoremap <expr> <down> pumvisible() ? "\<C-y>\<down>" : "\<down>"
-    inoremap <expr> <left> pumvisible() ? "\<C-y>\<left>" : "\<left>"
-    inoremap <expr> <right> pumvisible() ? "\<C-y>\<right>" : "\<right>"
-    imap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-    imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
     "}}}
     "{{{asyncomplete
-elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     "{{{asyncomplete-usage
     " <Tab> <S-Tab> 分别向下和向上选中，
     " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
@@ -1952,14 +1407,11 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
     inoremap <expr> <right> pumvisible() ? "\<C-y>\<right>" : "\<right>"
     imap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
     imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
-    if g:VIM_Snippets ==# 'ultisnips'
-        imap <expr> <C-j> pumvisible() ? "\<A-z>\`\`\l" : "\<C-j>"
-    endif
     let g:asyncomplete_remove_duplicates = 1
     let g:asyncomplete_smart_completion = 1
     let g:asyncomplete_auto_popup = 1
     set completeopt-=preview
-    augroup Asyncomplete_Au
+    augroup asyncompleteCustom
         autocmd!
         autocmd InsertEnter * call Asyncomplete_Register()
         autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
@@ -1992,19 +1444,11 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
                     \ 'whitelist': ['vim'],
                     \ 'completor': function('asyncomplete#sources#necovim#completor'),
                     \ }))
-        if g:VIM_Snippets ==# 'ultisnips'
-            call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-                        \ 'name': 'ultisnips',
-                        \ 'whitelist': ['*'],
-                        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-                        \ }))
-        elseif g:VIM_Snippets ==# 'neosnippet'
-            call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
-                        \ 'name': 'neosnippet',
-                        \ 'whitelist': ['*'],
-                        \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
-                        \ }))
-        endif
+        call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+                    \ 'name': 'neosnippet',
+                    \ 'whitelist': ['*'],
+                    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+                    \ }))
         call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
                     \ 'name': 'tags',
                     \ 'completor': function('asyncomplete#sources#tags#completor'),
@@ -2027,8 +1471,101 @@ elseif g:VIM_Completion_Framework ==# 'asyncomplete'
         let g:tmuxcomplete#trigger = ''
     endfunction
     "}}}
+    "{{{fzf.vim
+    "{{{fzf.vim-usage
+    " grep中用<C-p>预览
+    "}}}
+    "{{{quickmenu
+    call quickmenu#current(1)
+    call quickmenu#reset()
+    noremap <silent> f :call quickmenu#toggle(1)<cr>
+    call g:quickmenu#append('# FZF', '')
+    call g:quickmenu#append(' Line Buffer', 'BLines', '', '', 0, 'l')
+    call g:quickmenu#append(' Line All', 'Lines', '', '', 0, 'L')
+    call g:quickmenu#append(' MRU', 'History', '', '', 0, 'f')
+    call g:quickmenu#append(' File', 'Files', '', '', 0, 'F')
+    call g:quickmenu#append(' Buffer', 'Buffers', '', '', 0, 'b')
+    call g:quickmenu#append(' Buffer!', 'call FZF_Buffer_Open()', '', '', 0, 'B')
+    call g:quickmenu#append(' Tags Buffer', 'BTags', '', '', 0, 't')
+    call g:quickmenu#append(' Tags All', 'Tags', '', '', 0, 'T')
+    call g:quickmenu#append(' Marks', 'Marks', '', '', 0, 'm')
+    call g:quickmenu#append(' Maps', 'Maps', '', '', 0, 'M')
+    call g:quickmenu#append(' Windows', 'Windows', '', '', 0, 'w')
+    call g:quickmenu#append('History Command', 'History:', '', '', 0, 'hc')
+    call g:quickmenu#append('History Search', 'History/', '', '', 0, 'hs')
+    call g:quickmenu#append(' Snippets', 'Snippets', '', '', 0, 's')
+    call g:quickmenu#append('Git Files', 'GFiles', '', '', 0, 'gf')
+    call g:quickmenu#append('Git Status', 'GFiles?', '', '', 0, 'gs')
+    call g:quickmenu#append('Git Commits Buffer', 'BCommits', '', '', 0, 'gc')
+    call g:quickmenu#append('Git Commits All', 'Commits', '', '', 0, 'gC')
+    call g:quickmenu#append(' Commands', 'Commands', '', '', 0, 'c')
+    call g:quickmenu#append(' Grep', 'Ag', '', '', 0, 'G')
+    call g:quickmenu#append(' Help', 'Helptags', '', '', 0, 'H')
+    "}}}
+    "{{{functions
+    function! FZF_Buffer_Open()
+        let g:fzf_buffers_jump = 0
+        execute 'Buffers'
+        let g:fzf_buffers_jump = 1
+    endfunction
+    "}}}
+    augroup fzfCustom
+        autocmd!
+        autocmd User CocQuickfixChange :call fzf_quickfix#run()
+    augroup END
+    let g:fzf_action = {
+                \ 'ctrl-t': 'tab split',
+                \ 'ctrl-h': 'split',
+                \ 'ctrl-v': 'vsplit' }
+    let g:fzf_layout = { 'down': '~40%' }
+    let g:fzf_history_dir = expand('~/.cache/vim/fzf-history')
+    let g:fzf_buffers_jump = 1
+    " [[B]Commits] Customize the options used by 'git log':
+    let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+    " [Tags] Command to generate tags file
+    let g:fzf_tags_command = 'ctags -R'
+    " [Commands] --expect expression for directly executing the command
+    let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+    " Command for git grep
+    " - fzf#vim#grep(command, with_column, [options], [fullscreen])
+    command! -bang -nargs=* GGrep
+                \ call fzf#vim#grep(
+                \   'git grep --line-number '.shellescape(<q-args>), 0,
+                \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+
+    " Override Colors command. You can safely do this in your .vimrc as fzf.vim
+    " will not override existing commands.
+    command! -bang Colors
+                \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
+    command! -bang -nargs=* Ag
+                \ call fzf#vim#ag(<q-args>,
+                \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+                \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', 'ctrl-p'),
+                \                 <bang>0)
+    command! -bang -nargs=* Rg
+                \ call fzf#vim#grep(
+                \                 'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+                \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+                \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', 'ctrl-p'),
+                \                 <bang>0)
+    command! -bang -nargs=? -complete=dir Files
+                \ call fzf#vim#files(<q-args>,
+                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+                \                 <bang>0)
+    command! -bang -nargs=? GitFiles
+                \ call fzf#vim#gitfiles(<q-args>,
+                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+                \                 <bang>0)
+    command! -bang -nargs=? GFiles
+                \ call fzf#vim#gitfiles(<q-args>,
+                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
+                \                 <bang>0)
+    "}}}
     "{{{coc.nvim
-elseif g:VIM_Completion_Framework ==# 'coc'
+elseif g:vimMode ==# 'complete'
     "{{{coc.nvim-usage
     function Help_COC_LSP()
         echo '<leader>lJ        diagnostic-next'
@@ -2090,15 +1627,10 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     call g:quickmenu#append('Help Mappings', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
     "}}}
     "{{{coc-init
-    if g:VIM_Snippets ==# 'ultisnips'
-        let g:Coc_Snippet = 'coc-ultisnips'
-    elseif g:VIM_Snippets ==# 'coc-snippets'
-        let g:Coc_Snippet = 'coc-snippets'
-    endif
     call coc#add_extension(
                 \       'coc-lists',
                 \       'coc-marketplace',
-                \       g:Coc_Snippet,
+                \       'coc-snippets',
                 \       'coc-syntax',
                 \       'coc-highlight',
                 \       'coc-emoji',
@@ -2117,12 +1649,9 @@ elseif g:VIM_Completion_Framework ==# 'coc'
                 \       'coc-vimlsp',
                 \       'coc-tabnine'
                 \   )
-    if g:VIM_Enable_Autopairs == 0
-        call coc#add_extension( 'coc-pairs' )
-    endif
     "}}}
     "{{{coc-settings
-    augroup CocAu
+    augroup cocCustom
         autocmd!
         autocmd CursorHold * silent call CocHover()
         autocmd CursorHold * silent call CocHighlight()
@@ -2164,458 +1693,7 @@ elseif g:VIM_Completion_Framework ==# 'coc'
     nnoremap <silent> <leader>lA <Plug>(coc-codelens-action)
     "}}}
     "}}}
-    "{{{neocomplete.vim
-elseif g:VIM_Completion_Framework ==# 'neocomplete'
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#auto_completion_start_length = 2
-    let g:neocomplete#auto_complete_delay = 50
-    let g:neocomplete#enable_auto_select = 1
-    let g:neocomplete#skip_auto_completion_time = ''
-    set completeopt-=preview
-    augroup NeocompleteAu
-        autocmd!
-        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
-    augroup END
-    let g:tmuxcomplete#trigger = ''
-    if g:VIM_Snippets ==# 'ultisnips'
-        imap <expr> <C-j> pumvisible() ? "\<A-z>\`\`\l" : "\<C-j>"
-    endif
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : neocomplete#start_manual_complete()."\<C-n>"
-    inoremap <expr> <up> pumvisible() ? neocomplete#smart_close_popup()."\<up>" : "\<up>"
-    inoremap <expr> <down> pumvisible() ? neocomplete#smart_close_popup()."\<down>" : "\<down>"
-    inoremap <expr> <left> pumvisible() ? neocomplete#smart_close_popup()."\<left>" : "\<left>"
-    inoremap <expr> <right> pumvisible() ? neocomplete#smart_close_popup()."\<right>" : "\<right>"
-    imap <expr> <CR> pumvisible() ? neocomplete#smart_close_popup()."\<CR>" : "\<CR>"
-    imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
-endif
-"}}}
-"{{{denite.nvim
-if g:VIM_Fuzzy_Finder ==# 'denite' || g:VIM_Fuzzy_Finder ==# 'remix'
-    "{{{denite.nvim-usage
-    " f  cwd search
-    " F  pwd search
-    function! Help_denite_mappings()
-        echo 'customized mappings'
-        echo "\n"
-        echo '"insert" mode mappings.'
-        echo '{key}           {mapping}'
-        echo '--------        -----------------------------'
-        echo '<C-j>           <denite:move_to_next_line>'
-        echo '<C-k>           <denite:move_to_previous_line>'
-        echo '<S-left>        <denite:move_caret_to_head>'
-        echo '<S-right>       <denite:move_caret_to_tail>'
-        echo '<A-x>       <denite:enter_mode:normal>'
-        echo '<C-v>           <denite:paste_from_register>'
-        echo '<C-p>           <denite:do_action:preview>'
-        echo '<C-d>           <denite:do_action:delete>'
-        echo '<C-e>           <denite:do_action:edit>'
-        echo '<S-Tab>         <denite:do_action:cd>'
-        echo '"normal" mode mappings.'
-        echo '{key}           {mapping}'
-        echo '--------        -----------------------------'
-        echo "\n"
-        echo ':h denite-key-mappings'
-        echo "\n"
-        echo "\n"
-        echo 'default mappings'
-        echo "\n"
-        echo '{key}           {mapping}'
-        echo '--------        -----------------------------'
-        echo '<C-M>           <denite:do_action:default>'
-        echo '<C-Z>           <denite:suspend>'
-        echo '<CR>            <denite:do_action:default>'
-        echo '<Esc>           <denite:leave_mode>'
-        echo '<Tab>           <denite:choose_action>'
-        echo '"insert" mode mappings.'
-        echo '{key}           {mapping}'
-        echo '--------        -----------------------------'
-        echo '<BS>            <denite:delete_char_before_caret>'
-        echo '<C-B>           <denite:move_caret_to_head>'
-        echo '<C-E>           <denite:move_caret_to_tail>'
-        echo '<C-G>           <denite:move_to_next_line>'
-        echo '<C-H>           <denite:delete_char_before_caret>'
-        echo '<C-J>           <denite:input_command_line>'
-        echo '<C-K>           <denite:insert_digraph>'
-        echo '<C-L>           <denite:redraw>'
-        echo '<C-Left>        <denite:move_caret_to_one_word_left>'
-        echo '<C-N>           <denite:assign_next_text>'
-        echo '<C-O>           <denite:enter_mode:normal>'
-        echo '<C-P>           <denite:assign_previous_text>'
-        echo '<C-Q>           <denite:insert_special>'
-        echo '<C-R>           <denite:paste_from_register>'
-        echo '<C-Right>       <denite:move_caret_to_one_word_right>'
-        echo '<C-T>           <denite:move_to_previous_line>'
-        echo '<C-U>           <denite:delete_entire_text>'
-        echo '<C-V>           <denite:do_action:preview>'
-        echo '<C-W>           <denite:delete_word_before_caret>'
-        echo '<DEL>           <denite:delete_word_under_caret>'
-        echo '<Down>          <denite:assign_next_matched_text>'
-        echo '<End>           <denite:move_caret_to_tail>'
-        echo '<Home>          <denite:move_caret_to_head>'
-        echo '<Insert>        <denite:toggle_insert_mode>'
-        echo '<Left>          <denite:move_caret_to_left>'
-        echo '<PageDown>      <denite:assign_next_text>'
-        echo '<PageUp>        <denite:assign_previous_text>'
-        echo '<Right>         <denite:move_caret_to_right>'
-        echo '<S-Down>        <denite:assign_next_text>'
-        echo '<S-Left>        <denite:move_caret_to_one_word_left>'
-        echo '<S-Right>       <denite:move_caret_to_one_word_right>'
-        echo '<S-Up>          <denite:assign_previous_text>'
-        echo '<Up>            <denite:assign_previous_matched_text>'
-        echo '"normal" mode mappings.'
-        echo '{key}           {mapping}'
-        echo '--------        -----------------------------'
-        echo '$               <denite:move_caret_to_tail>'
-        echo '*               <denite:toggle_select_all>'
-        echo '0               <denite:move_caret_to_head>'
-        echo '<C-B>           <denite:scroll_page_backwards>'
-        echo '<C-D>           <denite:scroll_window_downwards>'
-        echo '<C-E>           <denite:scroll_window_up_one_line>'
-        echo '<C-F>           <denite:scroll_page_forwards>'
-        echo '<C-L>           <denite:redraw>'
-        echo '<C-R>           <denite:restart>'
-        echo '<C-U>           <denite:scroll_window_upwards>'
-        echo '<C-Y>           <denite:scroll_window_down_one_line>'
-        echo '<C-w>P          <denite:wincmd:P>'
-        echo '<C-w>W          <denite:wincmd:W>'
-        echo '<C-w>b          <denite:wincmd:b>'
-        echo '<C-w>h          <denite:wincmd:h>'
-        echo '<C-w>j          <denite:wincmd:j>'
-        echo '<C-w>k          <denite:wincmd:k>'
-        echo '<C-w>l          <denite:wincmd:l>'
-        echo '<C-w>p          <denite:wincmd:p>'
-        echo '<C-w>t          <denite:wincmd:t>'
-        echo '<C-w>w          <denite:wincmd:w>'
-        echo '<Space>         <denite:toggle_select_down>'
-        echo 'A               <denite:append_to_line>'
-        echo 'G               <denite:move_to_last_line>'
-        echo 'H               <denite:move_to_top>'
-        echo 'I               <denite:insert_to_head>'
-        echo 'L               <denite:move_to_bottom>'
-        echo 'M               <denite:print_messages>'
-        echo 'P               <denite:change_path>'
-        echo 'S               <denite:change_line>'
-        echo 'U               <denite:move_up_path>'
-        echo 'X               <denite:quick_move>'
-        echo 'a               <denite:append>'
-        echo 'b               <denite:move_caret_to_one_word_left>'
-        echo 'cc              <denite:change_line>'
-        echo 'cw              <denite:change_word>'
-        echo 'd               <denite:do_action:delete>'
-        echo 'e               <denite:do_action:edit>'
-        echo 'gg              <denite:move_to_first_line>'
-        echo 'h               <denite:move_caret_to_left>'
-        echo 'i               <denite:enter_mode:insert>'
-        echo 'j               <denite:move_to_next_line>'
-        echo 'k               <denite:move_to_previous_line>'
-        echo 'l               <denite:move_caret_to_right>'
-        echo 'n               <denite:do_action:new>'
-        echo 'p               <denite:do_action:preview>'
-        echo 'q               <denite:quit>'
-        echo 's               <denite:change_char>'
-        echo 't               <denite:do_action:tabopen>'
-        echo 'w               <denite:move_caret_to_next_word>'
-        echo 'x               <denite:delete_char_under_caret>'
-        echo 'y               <denite:do_action:yank>'
-        echo 'zb              <denite:scroll_cursor_to_bottom>'
-        echo 'zt              <denite:scroll_cursor_to_top>'
-        echo 'zz              <denite:scroll_cursor_to_middle>'
-        echo '<ScrollWheelUp>         <denite:scroll_window_down_one_line>'
-        echo '<ScrollWheelDown>       <denite:scroll_window_downwards>'
-    endfunction
-    "}}}
-    "{{{quickmenu
-    " :h denite-commands
-    " :h denite-options
-    call quickmenu#current(1)
-    call quickmenu#reset()
-    if g:VIM_Fuzzy_Finder ==# 'denite'
-        noremap <silent> f :call quickmenu#toggle(1)<cr>
-    elseif g:VIM_Fuzzy_Finder ==# 'remix'
-        noremap <silent> <leader>F :call quickmenu#toggle(1)<cr>
-    endif
-    call g:quickmenu#append('# Denite', '')
-    call g:quickmenu#append('      Source', 'Denite source', '', '', 0, '#')
-    if g:VIM_Linter ==# 'ale'
-        call g:quickmenu#append('      Lint', 'Denite ale', '', '', 0, '>')
-    elseif g:VIM_Linter ==# 'neomake'
-        call g:quickmenu#append('      Lint', 'Denite neomake', '', '', 0, '>')
-    endif
-    call g:quickmenu#append('      Line Buffer', 'Denite line:buffers', '', '', 0, 'l')
-    call g:quickmenu#append('      Line All', 'Denite line:all', '', '', 0, 'L')
-    call g:quickmenu#append('  Line Backward', 'Denite line:backward', '', '', 0, 'L<up>')
-    call g:quickmenu#append('Line Forward', 'Denite line:forward', '', '', 0, 'L<down>')
-    call g:quickmenu#append('      Buffer', 'Denite buffer -default-action="switch"', '', '', 0, 'b')
-    call g:quickmenu#append('      Buffer!', 'Denite buffer', '', '', 0, 'B')
-    call g:quickmenu#append('      File MRU', 'Denite file_mru', '', '', 0, 'f')
-    call g:quickmenu#append('      File', 'Denite file_rec', '', '', 0, 'F')
-    call g:quickmenu#append('      Marks', 'Denite mark', '', '', 0, 'm')
-    call g:quickmenu#append('      Directory MRU', 'Denite directory_mru', '', '', 0, 'd')
-    call g:quickmenu#append('      Directory', 'Denite directory_rec', '', '', 0, 'D')
-    call g:quickmenu#append('      Outline', 'Denite outline', '', '', 0, 't')
-    call g:quickmenu#append('      Gtags', 'Denite source -input="gtags"', '', '', 0, 'T')
-    call g:quickmenu#append('     Git Status', 'Denite gitstatus', '', '', 0, 'gs')
-    call g:quickmenu#append('     Git Changed', 'Denite gitchanged', '', '', 0, 'gc')
-    call g:quickmenu#append('     Git Branch', 'Denite gitbranch', '', '', 0, 'gb')
-    call g:quickmenu#append('     Git Log', 'Denite gitlog', '', '', 0, 'gl')
-    call g:quickmenu#append('     Git Log All', 'Denite gitlog', '', '', 0, 'gL')
-    call g:quickmenu#append('      Register', 'Denite register', '', '', 0, 'r')
-    call g:quickmenu#append('      Prosessions', 'Denite prosession', '', '', 0, 's')
-    call g:quickmenu#append('     History Fils', 'Denite file/old', '', '', 0, 'hf')
-    call g:quickmenu#append('     History Command', 'Denite command_history', '', '', 0, 'hc')
-    call g:quickmenu#append('      Commands', 'Denite commands', '', '', 0, 'c')
-    call g:quickmenu#append('     Key Mappings', 'Denite keymap:n', '', '', 0, 'MN')
-    call g:quickmenu#append('     Key Mappings', 'Denite keymap:i', '', '', 0, 'MI')
-    call g:quickmenu#append('     Key Mappings', 'Denite keymap:v', '', '', 0, 'MV')
-    call g:quickmenu#append('      Help Tags', 'Denite help', '', '', 0, 'H')
-    call g:quickmenu#append('      Change', 'Denite change', '', '', 0, 'C')
-    call g:quickmenu#append('      Project', 'Denite project', '', '', 0, 'p')
-    call g:quickmenu#append('      Location List', 'Denite location_list', '', '', 0, 'i')
-    call g:quickmenu#append('      Quickfix', 'Denite quickfix', '', '', 0, 'q')
-    call g:quickmenu#append('      Man', 'Denite man', '', '', 0, '$')
-    call g:quickmenu#append('      Grep', 'Denite grep', '', '', 0, 'G')
-    call g:quickmenu#append('      Github Stars', 'Denite github_stars', '', '', 0, '*')
-    call g:quickmenu#append('      Help Mappings', 'call Help_denite_mappings()', '', '', 0, '?')
-    "}}}
-    "{{{mappings
-    " :h denite-kinds
-    call denite#custom#map(
-                \ 'insert',
-                \ '<S-left>',
-                \ '<denite:move_caret_to_head>',
-                \ 'noremap'
-                \)
-    call denite#custom#map(
-                \ 'insert',
-                \ '<S-right>',
-                \ '<denite:move_caret_to_tail>',
-                \ 'noremap'
-                \)
-    call denite#custom#map(
-                \ 'insert',
-                \ '<A-x>',
-                \ '<denite:enter_mode:normal>',
-                \ 'noremap'
-                \)
-    call denite#custom#map(
-                \ 'insert',
-                \ '<C-v>',
-                \ '<denite:paste_from_register>',
-                \ 'noremap'
-                \)
-    call denite#custom#map(
-                \ 'insert',
-                \ '<C-p>',
-                \ '<denite:do_action:preview>',
-                \ 'noremap'
-                \)
-    call denite#custom#map(
-                \ 'insert',
-                \ '<C-j>',
-                \ '<denite:move_to_next_line>',
-                \ 'noremap'
-                \)
-    call denite#custom#map(
-                \ 'insert',
-                \ '<C-k>',
-                \ '<denite:move_to_previous_line>',
-                \ 'noremap'
-                \)
-    call denite#custom#map(
-                \ 'insert',
-                \ '<C-d>',
-                \ '<denite:do_action:delete>',
-                \ 'noremap'
-                \)
-    call denite#custom#map(
-                \ 'insert',
-                \ '<C-e>',
-                \ '<denite:do_action:edit>',
-                \ 'noremap'
-                \)
-    call denite#custom#map(
-                \ 'insert',
-                \ '<S-Tab>',
-                \ '<denite:do_action:cd>',
-                \ 'noremap'
-                \)
-    "}}}
-    augroup DeniteAu
-        autocmd!
-        autocmd User CocQuickfixChange :Denite -mode=normal quickfix
-    augroup END
-    let dgs#username='sainnhe'
-    let g:fruzzy#usenative = 1
-    " Customize Var
-    " call denite#custom#var('grep', 'command', ['ag'])
-    " call denite#custom#var('grep', 'default_opts',
-    "             \ ['-i', '--vimgrep'])
-    " call denite#custom#var('grep', 'recursive_opts', [])
-    " call denite#custom#var('grep', 'pattern_opt', [])
-    " call denite#custom#var('grep', 'separator', ['--'])
-    " call denite#custom#var('grep', 'final_opts', [])
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts',
-                \ ['-i', '--vimgrep', '--no-heading', '--no-ignore'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-    call denite#custom#var('outline', 'command', ['ctags'])
-    call denite#custom#var('outline', 'options', [])
-    call denite#custom#var('outline', 'file_opt', '-o')
-    call denite#custom#var('outline', 'ignore_types', [])
-    call denite#custom#var('outline', 'encoding', 'utf-8')
-    " customize options
-    call denite#custom#option('default', {
-                \ 'prompt': '➤ ',
-                \ 'short_source_names': v:false
-                \ })
-    " customize sources
-    " :h denite-sources
-    " :h denite-source-attributes
-    " :h denite-filters
-    call denite#custom#source('_', 'matchers', ['matcher/cpsm'])  " matcher/fuzzy matcher/fruzzy matcher/cpsm
-    call denite#custom#source('_', 'sorters', [])  " sorter/sublime (sorter/rank)
-    " if in git dir, git ls-files for file/rec
-    call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-    call denite#custom#var('file/rec/git', 'command',
-                \ ['git', 'ls-files', '-co', '--exclude-standard'])
-endif
-"}}}
-"{{{fzf.vim
-if g:VIM_Fuzzy_Finder ==# 'fzf' || g:VIM_Fuzzy_Finder ==# 'remix'
-    "{{{fzf.vim-usage
-    " grep中用<C-p>预览
-    "}}}
-    "{{{quickmenu
-    if g:VIM_Fuzzy_Finder ==# 'fzf'
-        call quickmenu#current(1)
-        call quickmenu#reset()
-        noremap <silent> f :call quickmenu#toggle(1)<cr>
-    elseif g:VIM_Fuzzy_Finder ==# 'remix'
-        call quickmenu#current(2)
-        call quickmenu#reset()
-        noremap <silent> <leader>f :call quickmenu#toggle(2)<cr>
-    endif
-    call g:quickmenu#append('# FZF', '')
-    call g:quickmenu#append(' Line Buffer', 'BLines', '', '', 0, 'l')
-    call g:quickmenu#append(' Line All', 'Lines', '', '', 0, 'L')
-    call g:quickmenu#append(' MRU', 'History', '', '', 0, 'f')
-    call g:quickmenu#append(' File', 'Files', '', '', 0, 'F')
-    call g:quickmenu#append(' Buffer', 'Buffers', '', '', 0, 'b')
-    call g:quickmenu#append(' Buffer!', 'call FZF_Buffer_Open()', '', '', 0, 'B')
-    call g:quickmenu#append(' Tags Buffer', 'BTags', '', '', 0, 't')
-    call g:quickmenu#append(' Tags All', 'Tags', '', '', 0, 'T')
-    call g:quickmenu#append(' Marks', 'Marks', '', '', 0, 'm')
-    call g:quickmenu#append(' Maps', 'Maps', '', '', 0, 'M')
-    call g:quickmenu#append(' Windows', 'Windows', '', '', 0, 'w')
-    call g:quickmenu#append('History Command', 'History:', '', '', 0, 'hc')
-    call g:quickmenu#append('History Search', 'History/', '', '', 0, 'hs')
-    call g:quickmenu#append(' Snippets', 'Snippets', '', '', 0, 's')
-    call g:quickmenu#append('Git Files', 'GFiles', '', '', 0, 'gf')
-    call g:quickmenu#append('Git Status', 'GFiles?', '', '', 0, 'gs')
-    call g:quickmenu#append('Git Commits Buffer', 'BCommits', '', '', 0, 'gc')
-    call g:quickmenu#append('Git Commits All', 'Commits', '', '', 0, 'gC')
-    call g:quickmenu#append(' Commands', 'Commands', '', '', 0, 'c')
-    call g:quickmenu#append(' Grep', 'Ag', '', '', 0, 'G')
-    call g:quickmenu#append(' Help', 'Helptags', '', '', 0, 'H')
-    "}}}
-    "{{{functions
-    function! FZF_Buffer_Open()
-        let g:fzf_buffers_jump = 0
-        execute 'Buffers'
-        let g:fzf_buffers_jump = 1
-    endfunction
-    "}}}
-    augroup FZF_Au
-        autocmd!
-        autocmd User CocQuickfixChange :call fzf_quickfix#run()
-    augroup END
-    let g:fzf_action = {
-                \ 'ctrl-t': 'tab split',
-                \ 'ctrl-h': 'split',
-                \ 'ctrl-v': 'vsplit' }
-    let g:fzf_layout = { 'down': '~40%' }
-    let g:fzf_history_dir = expand('~/.cache/vim/fzf-history')
-    let g:fzf_buffers_jump = 1
-    " [[B]Commits] Customize the options used by 'git log':
-    let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-    " [Tags] Command to generate tags file
-    let g:fzf_tags_command = 'ctags -R'
-    " [Commands] --expect expression for directly executing the command
-    let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-    " Command for git grep
-    " - fzf#vim#grep(command, with_column, [options], [fullscreen])
-    command! -bang -nargs=* GGrep
-                \ call fzf#vim#grep(
-                \   'git grep --line-number '.shellescape(<q-args>), 0,
-                \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
-
-    " Override Colors command. You can safely do this in your .vimrc as fzf.vim
-    " will not override existing commands.
-    command! -bang Colors
-                \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
-    command! -bang -nargs=* Ag
-                \ call fzf#vim#ag(<q-args>,
-                \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-                \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', 'ctrl-p'),
-                \                 <bang>0)
-    command! -bang -nargs=* Rg
-                \ call fzf#vim#grep(
-                \                 'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-                \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-                \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', 'ctrl-p'),
-                \                 <bang>0)
-    command! -bang -nargs=? -complete=dir Files
-                \ call fzf#vim#files(<q-args>,
-                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-                \                 <bang>0)
-    command! -bang -nargs=? GitFiles
-                \ call fzf#vim#gitfiles(<q-args>,
-                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-                \                 <bang>0)
-    command! -bang -nargs=? GFiles
-                \ call fzf#vim#gitfiles(<q-args>,
-                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-                \                 <bang>0)
-    "     command! -bar -bang -nargs=? -complete=buffer Buffers
-    "             \ call fzf#vim#buffers(<q-args>,
-    "             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-    "             \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-    "             \                 <bang>0)
-    " command! -bang -nargs=* Lines
-    "             \ call fzf#vim#lines(<q-args>,
-    "             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-    "             \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-    "             \                 <bang>0)
-    " command! -bang -nargs=* BLines
-    "             \ call fzf#vim#buffer_lines(<q-args>,
-    "             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-    "             \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-    "             \                 <bang>0)
-    " command! -bang -nargs=* Tags
-    "             \ call fzf#vim#tags(<q-args>,
-    "             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-    "             \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-    "             \                 <bang>0)
-    " command! -bang -nargs=* BTags
-    "             \ call fzf#vim#buffer_tags(<q-args>,
-    "             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-    "             \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-    "                 \                 <bang>0)
-endif
-"}}}
-"{{{LeaderF
-if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
+    "{{{LeaderF
     "{{{LeaderF-usage
     " f  search
     function Help_LeaderF()
@@ -2646,15 +1724,9 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     endfunction
     "}}}
     "{{{quickmenu
-    if g:VIM_Fuzzy_Finder ==# 'leaderf'
-        call quickmenu#current(1)
-        call quickmenu#reset()
-        noremap <silent> f :call quickmenu#toggle(1)<cr>
-    elseif g:VIM_Fuzzy_Finder ==# 'remix'
-        call quickmenu#current(3)
-        call quickmenu#reset()
-        noremap <silent> f :call quickmenu#toggle(3)<cr>
-    endif
+    call quickmenu#current(1)
+    call quickmenu#reset()
+    noremap <silent> f :call quickmenu#toggle(1)<cr>
     call g:quickmenu#append('# LeaderF', '')
     call g:quickmenu#append('Line', 'Leaderf line', 'Search Line in Current Buffer', '', 0, 'l')
     call g:quickmenu#append('Line All', 'Leaderf line --all', 'Search Line in All Buffers', '', 0, 'L')
@@ -2698,19 +1770,6 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
     let g:Lf_CursorBlink = 1
     let g:Lf_CacheDirectory = expand('~/.cache/vim/')
     let g:Lf_NeedCacheTime = 0.5
-    " let g:Lf_WildIgnore = {
-    "         \ 'dir': ['.svn','.git','.hg'],
-    "         \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-    "         \}
-    " let g:Lf_MruFileExclude = ['*.so']
-    " let g:Lf_MruWildIgnore = {
-    "         \ 'dir': [],
-    "         \ 'file': []
-    "         \}
-    " let g:Lf_CtagsFuncOpts = {
-    "         \ 'c': '--c-kinds=fp',
-    "         \ 'rust': '--rust-kinds=f',
-    "         \ }
     let g:Lf_PreviewCode = 1  " preview code when navigating the tags
     let g:Lf_PreviewResult = {
                 \ 'File': 1,
@@ -2719,7 +1778,7 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
                 \ 'Tag': 0,
                 \ 'BufTag': 1,
                 \ 'Function': 1,
-                \ 'Line': 1,
+                \ 'Line': 0,
                 \ 'Colorscheme': 0
                 \}
     let g:Lf_CommandMap = {'<Home>': ['<S-left>'], '<End>': ['<S-right>'], '<C-t>': ['<A-t>']}
@@ -2741,71 +1800,54 @@ if g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
 endif
 "}}}
 "{{{ale
-if g:VIM_Linter ==# 'ale'
-    "{{{ale-usage
-    let g:ALE_MODE = 1  " 0则只在保存文件时检查，1则只在normal模式下检查，2则异步检查
-    " 普通模式下<leader>lk和<leader>lj分别跳转到上一个、下一个错误
-    " :ALEDetail  查看详细错误信息
-    "}}}
-    " ls ~/.cache/vim/plugins/ale/ale_linters/
-    let g:ale_linters = {
-                \       'asm': ['gcc'],
-                \       'c': ['cppcheck', 'flawfinder'],
-                \       'cpp': ['cppcheck', 'flawfinder'],
-                \       'css': ['stylelint'],
-                \       'html': ['tidy'],
-                \       'json': [],
-                \       'markdown': [''],
-                \       'python': ['pylint', 'flake8', 'mypy', 'pydocstyle'],
-                \       'rust': ['cargo'],
-                \       'sh': ['shellcheck'],
-                \       'text': ['languagetool'],
-                \       'vim': ['vint'],
-                \}
-    "查看上一个错误
-    nnoremap <silent> <leader>lk :ALEPrevious<CR>
-    "查看下一个错误
-    nnoremap <silent> <leader>lj :ALENext<CR>
-    "自定义error和warning图标
-    let g:ale_sign_error = "\uf65b"
-    let g:ale_sign_warning = "\uf421"
-    "防止java在中文系统上警告和提示乱码
-    let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
-    "显示Linter名称,出错或警告等相关信息
-    let g:ale_echo_msg_error_str = 'E'
-    let g:ale_echo_msg_warning_str = 'W'
-    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-    " 光标移动到错误的地方时立即显示错误
-    let g:ale_echo_delay = 0
-    " virtual text
-    let g:ale_virtualtext_cursor = 1
-    let g:ale_virtualtext_delay = 10
-    let g:ale_virtualtext_prefix = '▸'
-    " ale-mode
-    if g:ALE_MODE == 0
-        let g:ale_lint_on_text_changed = 'never'
-    elseif g:ALE_MODE == 1
-        let g:ale_lint_on_text_changed = 'normal'
-        let g:ale_lint_on_insert_leave = 1
-    elseif g:ALE_MODE == 2
-        let g:ale_lint_on_text_changed = 'always'
-        let g:ale_lint_delay=100
-    endif
-    "}}}
-    "{{{neomake
-    "{{{neomake-usage
-    " gj, gk分别跳转到下一个、上一个提示位置
-    "}}}
-elseif g:VIM_Linter ==# 'neomake'
-    call neomake#configure#automake('nwr')  " 'nwri'  when writing or reading a buffer, and on changes in insert and normal mode
-    let g:neomake_error_sign = {'text': "\uf65b", 'texthl': 'NeomakeErrorSign'}
-    let g:neomake_warning_sign = {'text': "\uf421",'texthl': 'NeomakeWarningSign'}
-    let g:neomake_message_sign = {'text': '➤','texthl': 'NeomakeMessageSign'}
-    let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
-    let g:neomake_virtualtext_prefix = '▸'
-    let g:neomake_cursormoved_delay = 50
-    nnoremap <silent> gj :lnext<CR>
-    nnoremap <silent> gk :lprev<CR>
+"{{{ale-usage
+let g:ALE_MODE = 1  " 0则只在保存文件时检查，1则只在normal模式下检查，2则异步检查
+" 普通模式下<leader>lk和<leader>lj分别跳转到上一个、下一个错误
+" :ALEDetail  查看详细错误信息
+"}}}
+" ls ~/.cache/vim/plugins/ale/ale_linters/
+let g:ale_linters = {
+            \       'asm': ['gcc'],
+            \       'c': ['cppcheck', 'flawfinder'],
+            \       'cpp': ['cppcheck', 'flawfinder'],
+            \       'css': ['stylelint'],
+            \       'html': ['tidy'],
+            \       'json': [],
+            \       'markdown': [''],
+            \       'python': ['pylint', 'flake8', 'mypy', 'pydocstyle'],
+            \       'rust': ['cargo'],
+            \       'sh': ['shellcheck'],
+            \       'text': ['languagetool'],
+            \       'vim': ['vint'],
+            \}
+"查看上一个错误
+nnoremap <silent> <leader>lk :ALEPrevious<CR>
+"查看下一个错误
+nnoremap <silent> <leader>lj :ALENext<CR>
+"自定义error和warning图标
+let g:ale_sign_error = "\uf65b"
+let g:ale_sign_warning = "\uf421"
+"防止java在中文系统上警告和提示乱码
+let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
+"显示Linter名称,出错或警告等相关信息
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" 光标移动到错误的地方时立即显示错误
+let g:ale_echo_delay = 0
+" virtual text
+let g:ale_virtualtext_cursor = 1
+let g:ale_virtualtext_delay = 10
+let g:ale_virtualtext_prefix = '▸'
+" ale-mode
+if g:ALE_MODE == 0
+    let g:ale_lint_on_text_changed = 'never'
+elseif g:ALE_MODE == 1
+    let g:ale_lint_on_text_changed = 'normal'
+    let g:ale_lint_on_insert_leave = 1
+elseif g:ALE_MODE == 2
+    let g:ale_lint_on_text_changed = 'always'
+    let g:ale_lint_delay=100
 endif
 "}}}
 "{{{vim-sneak
@@ -2861,7 +1903,7 @@ function! s:nerdtree_mappings() abort
     nmap <silent><buffer> <A-e> <C-b>:<C-u>NnnPicker '%:p:h'<CR>
     nmap <silent><buffer> <A-b> <C-b>:<C-u>BufExplorer<CR>
 endfunction
-augroup NERDTreeAu
+augroup nerdtreeCustom
     autocmd!
     autocmd FileType nerdtree setlocal signcolumn=no
     autocmd StdinReadPre * let s:std_in=1
@@ -2877,35 +1919,27 @@ let g:NERDTreeDirArrowCollapsible = "\u00a0"
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 " let NERDTreeShowHidden = 1
 function! Nerdtree_Fuzzy_Finder()
-    if g:VIM_Fuzzy_Finder ==# 'leaderf'
-        execute 'LeaderfFile'
-    elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+    if g:vimMode ==# 'light'
         execute 'Files'
-    elseif g:VIM_Fuzzy_Finder ==# 'denite'
-        execute 'Denite file_rec'
-    elseif g:VIM_Fuzzy_Finder ==# 'remix'
+    elseif g:vimMode ==# 'complete'
         execute 'LeaderfFile'
     endif
 endfunction
 function! Nerdtree_Grep()
-    if g:VIM_Fuzzy_Finder ==# 'leaderf'
+    if g:vimMode ==# 'light'
+        execute 'Ag'
+    elseif g:vimMode ==# 'complete'
         execute 'Leaderf rg'
-    elseif g:VIM_Fuzzy_Finder ==# 'fzf'
-        execute 'Ag'
-    elseif g:VIM_Fuzzy_Finder ==# 'denite'
-        execute 'Denite grep'
-    elseif g:VIM_Fuzzy_Finder ==# 'remix'
-        execute 'Ag'
     endif
 endfunction
 "}}}
 "{{{nnn.vim
 "{{{nnn.vim-usage
-" <leader><A-e>  打开nnn
+" <leader>e  打开nnn
 " nerdtree里 <A-e>  打开nnn
 "}}}
 let g:nnn#set_default_mappings = 0
-nnoremap <silent> <leader><A-e> :<C-u>NnnPicker '%:p:h'<CR>
+nnoremap <silent> <leader>e :<C-u>NnnPicker '%:p:h'<CR>
 let g:nnn#action = {
             \ '<c-t>': 'tab split',
             \ '<c-x>': 'split',
@@ -2926,7 +1960,7 @@ nnoremap <silent> <leader><A-b> :<C-u>BufExplorer<CR>
 function! s:bufexplore_mappings() abort
     nmap <buffer> ? <F1>
 endfunction
-augroup BufexploreAu
+augroup bufexplorerCustom
     autocmd!
     autocmd FileType bufexplorer call s:bufexplore_mappings()
 augroup END
@@ -2975,7 +2009,7 @@ endfunction
 function! s:GV_Mappings() abort
     nnoremap <silent><buffer> ? :call Help_GV()<CR>
 endfunction
-augroup GV_Au
+augroup gvCustom
     autocmd!
     autocmd FileType GV call s:GV_Mappings()
 augroup END
@@ -3015,20 +2049,11 @@ call g:quickmenu#append(' Edit config', 'EditExt', 'Edit an extend configuration
 function! InitCtags()
     call Init_gen_tags()
     execute 'GenCtags'
-    if g:VIM_Completion_Framework ==# 'ncm2'
-        call plug#load('ncm2-tagprefix')
-    elseif g:VIM_Completion_Framework ==# 'asyncomplete'
-        call plug#load('asyncomplete-tags.vim')
-    endif
+    call plug#load('asyncomplete-tags.vim')
 endfunction
 function! InitGtags()
     call Init_gen_tags()
     execute 'GenGTAGS'
-    if g:VIM_Completion_Framework ==# 'deoplete'
-        call plug#load('deoplete-gtags')
-    elseif g:VIM_Completion_Framework ==# 'ncm2'
-        call plug#load('ncm2-gtags')
-    endif
 endfunction
 "}}}
 function! Init_gen_tags()
@@ -3042,83 +2067,576 @@ function! Init_gen_tags()
     let g:gen_tags#blacklist = ['$HOME']
     let g:gen_tags#gtags_default_map = 0
     call plug#load('gen_tags.vim')
-    if g:VIM_Completion_Framework ==# 'coc'
+    if g:vimMode ==# 'complete'
         call coc#add_extension('coc-tag')
     endif
 endfunction
 "}}}
 "{{{tagbar
-if g:VIM_TAGBAR ==# 'tagbar'
-    "{{{Languages
-    "{{{Ansible
-    let g:tagbar_type_ansible = {
-                \ 'ctagstype' : 'ansible',
-                \ 'kinds' : [
-                \ 't:tasks'
-                \ ],
-                \ 'sort' : 0
-                \ }
-    "}}}
-    "{{{ArmAsm
-    let g:tagbar_type_armasm = {
-                \ 'ctagsbin'  : 'ctags',
-                \ 'ctagsargs' : '-f- --format=2 --excmd=pattern --fields=nksSa --extra= --sort=no --language-force=asm',
-                \ 'kinds' : [
-                \ 'm:macros:0:1',
-                \ 't:types:0:1',
-                \ 'd:defines:0:1',
-                \ 'l:labels:0:1'
-                \ ]
-                \}
-    "}}}
-    "{{{AsciiDoc
-    let g:tagbar_type_asciidoc = {
-                \ 'ctagstype' : 'asciidoc',
-                \ 'kinds' : [
-                \ 'h:table of contents',
-                \ 'a:anchors:1',
-                \ 't:titles:1',
-                \ 'n:includes:1',
-                \ 'i:images:1',
-                \ 'I:inline images:1'
-                \ ],
-                \ 'sort' : 0
-                \ }
-    "}}}
-    "{{{Bib
-    let g:tagbar_type_bib = {
-                \ 'ctagstype' : 'bib',
-                \ 'kinds'     : [
-                \ 'a:Articles',
-                \ 'b:Books',
-                \ 'L:Booklets',
-                \ 'c:Conferences',
-                \ 'B:Inbook',
-                \ 'C:Incollection',
-                \ 'P:Inproceedings',
-                \ 'm:Manuals',
-                \ 'T:Masterstheses',
-                \ 'M:Misc',
-                \ 't:Phdtheses',
-                \ 'p:Proceedings',
-                \ 'r:Techreports',
-                \ 'u:Unpublished',
-                \ ]
-                \ }
-    "}}}
-    "{{{CoffeeScript
-    let g:tagbar_type_coffee = {
-                \ 'ctagstype' : 'coffee',
-                \ 'kinds'     : [
-                \ 'c:classes',
-                \ 'm:methods',
-                \ 'f:functions',
-                \ 'v:variables',
-                \ 'f:fields',
-                \ ]
-                \ }
-    "}}}
-    "{{{CSS
+"{{{Languages
+"{{{Ansible
+let g:tagbar_type_ansible = {
+            \ 'ctagstype' : 'ansible',
+            \ 'kinds' : [
+            \ 't:tasks'
+            \ ],
+            \ 'sort' : 0
+            \ }
+"}}}
+"{{{ArmAsm
+let g:tagbar_type_armasm = {
+            \ 'ctagsbin'  : 'ctags',
+            \ 'ctagsargs' : '-f- --format=2 --excmd=pattern --fields=nksSa --extra= --sort=no --language-force=asm',
+            \ 'kinds' : [
+            \ 'm:macros:0:1',
+            \ 't:types:0:1',
+            \ 'd:defines:0:1',
+            \ 'l:labels:0:1'
+            \ ]
+            \}
+"}}}
+"{{{AsciiDoc
+let g:tagbar_type_asciidoc = {
+            \ 'ctagstype' : 'asciidoc',
+            \ 'kinds' : [
+            \ 'h:table of contents',
+            \ 'a:anchors:1',
+            \ 't:titles:1',
+            \ 'n:includes:1',
+            \ 'i:images:1',
+            \ 'I:inline images:1'
+            \ ],
+            \ 'sort' : 0
+            \ }
+"}}}
+"{{{Bib
+let g:tagbar_type_bib = {
+            \ 'ctagstype' : 'bib',
+            \ 'kinds'     : [
+            \ 'a:Articles',
+            \ 'b:Books',
+            \ 'L:Booklets',
+            \ 'c:Conferences',
+            \ 'B:Inbook',
+            \ 'C:Incollection',
+            \ 'P:Inproceedings',
+            \ 'm:Manuals',
+            \ 'T:Masterstheses',
+            \ 'M:Misc',
+            \ 't:Phdtheses',
+            \ 'p:Proceedings',
+            \ 'r:Techreports',
+            \ 'u:Unpublished',
+            \ ]
+            \ }
+"}}}
+"{{{CoffeeScript
+let g:tagbar_type_coffee = {
+            \ 'ctagstype' : 'coffee',
+            \ 'kinds'     : [
+            \ 'c:classes',
+            \ 'm:methods',
+            \ 'f:functions',
+            \ 'v:variables',
+            \ 'f:fields',
+            \ ]
+            \ }
+"}}}
+"{{{CSS
+let g:tagbar_type_css = {
+            \ 'ctagstype' : 'Css',
+            \ 'kinds'     : [
+            \ 'c:classes',
+            \ 's:selectors',
+            \ 'i:identities'
+            \ ]
+            \ }
+"}}}
+"{{{Elixir
+let g:tagbar_type_elixir = {
+            \ 'ctagstype' : 'elixir',
+            \ 'kinds' : [
+            \ 'p:protocols',
+            \ 'm:modules',
+            \ 'e:exceptions',
+            \ 'y:types',
+            \ 'd:delegates',
+            \ 'f:functions',
+            \ 'c:callbacks',
+            \ 'a:macros',
+            \ 't:tests',
+            \ 'i:implementations',
+            \ 'o:operators',
+            \ 'r:records'
+            \ ],
+            \ 'sro' : '.',
+            \ 'kind2scope' : {
+            \ 'p' : 'protocol',
+            \ 'm' : 'module'
+            \ },
+            \ 'scope2kind' : {
+            \ 'protocol' : 'p',
+            \ 'module' : 'm'
+            \ },
+            \ 'sort' : 0
+            \ }
+"}}}
+"{{{Fountain
+let g:tagbar_type_fountain = {
+            \ 'ctagstype': 'fountain',
+            \ 'kinds': [
+            \ 'h:headings',
+            \ 's:sections',
+            \ ],
+            \ 'sort': 0,
+            \}
+"}}}
+"{{{Go
+let g:tagbar_type_go = {
+            \ 'ctagstype' : 'go',
+            \ 'kinds'     : [
+            \ 'p:package',
+            \ 'i:imports:1',
+            \ 'c:constants',
+            \ 'v:variables',
+            \ 't:types',
+            \ 'n:interfaces',
+            \ 'w:fields',
+            \ 'e:embedded',
+            \ 'm:methods',
+            \ 'r:constructor',
+            \ 'f:functions'
+            \ ],
+            \ 'sro' : '.',
+            \ 'kind2scope' : {
+            \ 't' : 'ctype',
+            \ 'n' : 'ntype'
+            \ },
+            \ 'scope2kind' : {
+            \ 'ctype' : 't',
+            \ 'ntype' : 'n'
+            \ },
+            \ 'ctagsbin'  : 'gotags',
+            \ 'ctagsargs' : '-sort -silent'
+            \ }
+"}}}
+"{{{Groovy
+let g:tagbar_type_groovy = {
+            \ 'ctagstype' : 'groovy',
+            \ 'kinds'     : [
+            \ 'p:package:1',
+            \ 'c:classes',
+            \ 'i:interfaces',
+            \ 't:traits',
+            \ 'e:enums',
+            \ 'm:methods',
+            \ 'f:fields:1'
+            \ ]
+            \ }
+"}}}
+"{{{Haskell
+let g:tagbar_type_haskell = {
+            \ 'ctagsbin'  : 'hasktags',
+            \ 'ctagsargs' : '-x -c -o-',
+            \ 'kinds'     : [
+            \  'm:modules:0:1',
+            \  'd:data: 0:1',
+            \  'd_gadt: data gadt:0:1',
+            \  't:type names:0:1',
+            \  'nt:new types:0:1',
+            \  'c:classes:0:1',
+            \  'cons:constructors:1:1',
+            \  'c_gadt:constructor gadt:1:1',
+            \  'c_a:constructor accessors:1:1',
+            \  'ft:function types:1:1',
+            \  'fi:function implementations:0:1',
+            \  'o:others:0:1'
+            \ ],
+            \ 'sro'        : '.',
+            \ 'kind2scope' : {
+            \ 'm' : 'module',
+            \ 'c' : 'class',
+            \ 'd' : 'data',
+            \ 't' : 'type'
+            \ },
+            \ 'scope2kind' : {
+            \ 'module' : 'm',
+            \ 'class'  : 'c',
+            \ 'data'   : 'd',
+            \ 'type'   : 't'
+            \ }
+            \ }
+"}}}
+"{{{IDL
+let g:tagbar_type_idlang = {
+            \ 'ctagstype' : 'IDL',
+            \ 'kinds' : [
+            \ 'p:Procedures',
+            \ 'f:Functions',
+            \ 'c:Common Blocks'
+            \ ]
+            \ }
+"}}}
+"{{{Julia
+let g:tagbar_type_julia = {
+            \ 'ctagstype' : 'julia',
+            \ 'kinds'     : [
+            \ 't:struct', 'f:function', 'm:macro', 'c:const']
+            \ }
+"}}}
+"{{{Makefile
+let g:tagbar_type_make = {
+            \ 'kinds':[
+            \ 'm:macros',
+            \ 't:targets'
+            \ ]
+            \}
+"}}}
+"{{{Markdown
+let g:tagbar_type_markdown = {
+            \ 'ctagstype': 'markdown',
+            \ 'ctagsbin' : 'markdown2ctags',
+            \ 'ctagsargs' : '-f - --sort=yes',
+            \ 'kinds' : [
+            \ 's:sections',
+            \ 'i:images'
+            \ ],
+            \ 'sro' : '|',
+            \ 'kind2scope' : {
+            \ 's' : 'section',
+            \ },
+            \ 'sort': 0,
+            \ }
+"}}}
+"{{{MediaWiki
+let g:tagbar_type_mediawiki = {
+            \ 'ctagstype' : 'mediawiki',
+            \ 'kinds' : [
+            \'h:chapters',
+            \'s:sections',
+            \'u:subsections',
+            \'b:subsubsections',
+            \]
+            \}
+"}}}
+"{{{NASL
+let g:tagbar_type_nasl = {
+            \ 'ctagstype' : 'nasl',
+            \ 'kinds'     : [
+            \ 'f:function',
+            \ 'u:public function',
+            \ 'r:private function',
+            \ 'v:variables',
+            \ 'n:namespace',
+            \ 'g:globals',
+            \ ]
+            \ }
+"}}}
+"{{{ObjectiveC
+let g:tagbar_type_objc = {
+            \ 'ctagstype' : 'ObjectiveC',
+            \ 'kinds'     : [
+            \ 'i:interface',
+            \ 'I:implementation',
+            \ 'p:Protocol',
+            \ 'm:Object_method',
+            \ 'c:Class_method',
+            \ 'v:Global_variable',
+            \ 'F:Object field',
+            \ 'f:function',
+            \ 'p:property',
+            \ 't:type_alias',
+            \ 's:type_structure',
+            \ 'e:enumeration',
+            \ 'M:preprocessor_macro',
+            \ ],
+            \ 'sro'        : ' ',
+            \ 'kind2scope' : {
+            \ 'i' : 'interface',
+            \ 'I' : 'implementation',
+            \ 'p' : 'Protocol',
+            \ 's' : 'type_structure',
+            \ 'e' : 'enumeration'
+            \ },
+            \ 'scope2kind' : {
+            \ 'interface'      : 'i',
+            \ 'implementation' : 'I',
+            \ 'Protocol'       : 'p',
+            \ 'type_structure' : 's',
+            \ 'enumeration'    : 'e'
+            \ }
+            \ }
+"}}}
+"{{{Perl
+let g:tagbar_type_perl = {
+            \ 'ctagstype' : 'perl',
+            \ 'kinds'     : [
+            \ 'p:package:0:0',
+            \ 'w:roles:0:0',
+            \ 'e:extends:0:0',
+            \ 'u:uses:0:0',
+            \ 'r:requires:0:0',
+            \ 'o:ours:0:0',
+            \ 'a:properties:0:0',
+            \ 'b:aliases:0:0',
+            \ 'h:helpers:0:0',
+            \ 's:subroutines:0:0',
+            \ 'd:POD:1:0'
+            \ ]
+            \ }
+"}}}
+"{{{PHP
+let g:tagbar_phpctags_bin='~/.cache/vim/plugins/tagbar-phpctags.vim/bin/phpctags'
+let g:tagbar_phpctags_memory_limit = '512M'
+"}}}
+"{{{Puppet
+let g:tagbar_type_puppet = {
+            \ 'ctagstype': 'puppet',
+            \ 'kinds': [
+            \'c:class',
+            \'s:site',
+            \'n:node',
+            \'d:definition'
+            \]
+            \}
+"}}}
+"{{{R
+let g:tagbar_type_r = {
+            \ 'ctagstype' : 'r',
+            \ 'kinds'     : [
+            \ 'f:Functions',
+            \ 'g:GlobalVariables',
+            \ 'v:FunctionVariables',
+            \ ]
+            \ }
+"}}}
+"{{{reStructuredText
+let g:tagbar_type_rst = {
+            \ 'ctagstype': 'rst',
+            \ 'ctagsbin' : 'rst2ctags',
+            \ 'ctagsargs' : '-f - --sort=yes',
+            \ 'kinds' : [
+            \ 's:sections',
+            \ 'i:images'
+            \ ],
+            \ 'sro' : '|',
+            \ 'kind2scope' : {
+            \ 's' : 'section',
+            \ },
+            \ 'sort': 0,
+            \ }
+"}}}
+"{{{Ruby
+let g:tagbar_type_ruby = {
+            \ 'kinds' : [
+            \ 'm:modules',
+            \ 'c:classes',
+            \ 'd:describes',
+            \ 'C:contexts',
+            \ 'f:methods',
+            \ 'F:singleton methods'
+            \ ]
+            \ }
+"}}}
+"{{{Rust
+let g:rust_use_custom_ctags_defs = 1  " if using rust.vim
+let g:tagbar_type_rust = {
+            \ 'ctagsbin' : '/path/to/your/universal/ctags',
+            \ 'ctagstype' : 'rust',
+            \ 'kinds' : [
+            \ 'n:modules',
+            \ 's:structures:1',
+            \ 'i:interfaces',
+            \ 'c:implementations',
+            \ 'f:functions:1',
+            \ 'g:enumerations:1',
+            \ 't:type aliases:1:0',
+            \ 'v:constants:1:0',
+            \ 'M:macros:1',
+            \ 'm:fields:1:0',
+            \ 'e:enum variants:1:0',
+            \ 'P:methods:1',
+            \ ],
+            \ 'sro': '::',
+            \ 'kind2scope' : {
+            \ 'n': 'module',
+            \ 's': 'struct',
+            \ 'i': 'interface',
+            \ 'c': 'implementation',
+            \ 'f': 'function',
+            \ 'g': 'enum',
+            \ 't': 'typedef',
+            \ 'v': 'variable',
+            \ 'M': 'macro',
+            \ 'm': 'field',
+            \ 'e': 'enumerator',
+            \ 'P': 'method',
+            \ },
+            \ }
+"}}}
+"{{{Scala
+let g:tagbar_type_scala = {
+            \ 'ctagstype' : 'scala',
+            \ 'sro'       : '.',
+            \ 'kinds'     : [
+            \ 'p:packages',
+            \ 'T:types:1',
+            \ 't:traits',
+            \ 'o:objects',
+            \ 'O:case objects',
+            \ 'c:classes',
+            \ 'C:case classes',
+            \ 'm:methods',
+            \ 'V:values:1',
+            \ 'v:variables:1'
+            \ ]
+            \ }
+"}}}
+"{{{systemverilog
+let g:tagbar_type_systemverilog = {
+            \ 'ctagstype': 'systemverilog',
+            \ 'kinds' : [
+            \'A:assertions',
+            \'C:classes',
+            \'E:enumerators',
+            \'I:interfaces',
+            \'K:packages',
+            \'M:modports',
+            \'P:programs',
+            \'Q:prototypes',
+            \'R:properties',
+            \'S:structs and unions',
+            \'T:type declarations',
+            \'V:covergroups',
+            \'b:blocks',
+            \'c:constants',
+            \'e:events',
+            \'f:functions',
+            \'m:modules',
+            \'n:net data types',
+            \'p:ports',
+            \'r:register data types',
+            \'t:tasks',
+            \],
+            \ 'sro': '.',
+            \ 'kind2scope' : {
+            \ 'K' : 'package',
+            \ 'C' : 'class',
+            \ 'm' : 'module',
+            \ 'P' : 'program',
+            \ 'I' : 'interface',
+            \ 'M' : 'modport',
+            \ 'f' : 'function',
+            \ 't' : 'task',
+            \},
+            \ 'scope2kind' : {
+            \ 'package'   : 'K',
+            \ 'class'     : 'C',
+            \ 'module'    : 'm',
+            \ 'program'   : 'P',
+            \ 'interface' : 'I',
+            \ 'modport'   : 'M',
+            \ 'function'  : 'f',
+            \ 'task'      : 't',
+            \ },
+            \}
+"}}}
+"{{{TypeScript
+let g:tagbar_type_typescript = {
+            \ 'ctagstype': 'typescript',
+            \ 'kinds': [
+            \ 'c:classes',
+            \ 'n:modules',
+            \ 'f:functions',
+            \ 'v:variables',
+            \ 'v:varlambdas',
+            \ 'm:members',
+            \ 'i:interfaces',
+            \ 'e:enums',
+            \ ]
+            \ }
+"}}}
+"{{{VHDL
+let g:tagbar_type_vhdl = {
+            \ 'ctagstype': 'vhdl',
+            \ 'kinds' : [
+            \'d:prototypes',
+            \'b:package bodies',
+            \'e:entities',
+            \'a:architectures',
+            \'t:types',
+            \'p:processes',
+            \'f:functions',
+            \'r:procedures',
+            \'c:constants',
+            \'T:subtypes',
+            \'r:records',
+            \'C:components',
+            \'P:packages',
+            \'l:locals'
+            \]
+            \}
+"}}}
+"{{{WSDL
+let g:tagbar_type_xml = {
+            \ 'ctagstype' : 'WSDL',
+            \ 'kinds'     : [
+            \ 'n:namespaces',
+            \ 'm:messages',
+            \ 'p:portType',
+            \ 'o:operations',
+            \ 'b:bindings',
+            \ 's:service'
+            \ ]
+            \ }
+"}}}
+"{{{Xquery
+let g:tagbar_type_xquery = {
+            \ 'ctagstype' : 'xquery',
+            \ 'kinds'     : [
+            \ 'f:function',
+            \ 'v:variable',
+            \ 'm:module',
+            \ ]
+            \ }
+"}}}
+"{{{XSD
+let g:tagbar_type_xsd = {
+            \ 'ctagstype' : 'XSD',
+            \ 'kinds'     : [
+            \ 'e:elements',
+            \ 'c:complexTypes',
+            \ 's:simpleTypes'
+            \ ]
+            \ }
+"}}}
+"{{{XSLT
+let g:tagbar_type_xslt = {
+            \ 'ctagstype' : 'xslt',
+            \ 'kinds' : [
+            \ 'v:variables',
+            \ 't:templates'
+            \ ]
+            \}
+"}}}
+"}}}
+nnoremap <silent><A-b> :<C-u>call ToggleTagbar()<CR>
+let g:TagBarLoad = 0
+function! ToggleTagbar()
+    if g:TagBarLoad == 0
+        let g:TagBarLoad = 1
+        call TagbarInit()
+        execute 'TagbarToggle'
+    elseif g:TagBarLoad == 1
+        execute 'TagbarToggle'
+    endif
+endfunction
+function! TagbarInit()
+    let g:tagbar_sort = 0
+    let g:tagbar_width = 35
+    let g:tagbar_autoclose = 1
+    let g:tagbar_foldlevel = 2
+    let g:tagbar_iconchars = ['▶', '◿']
     let g:tagbar_type_css = {
                 \ 'ctagstype' : 'Css',
                 \ 'kinds'     : [
@@ -3127,555 +2645,19 @@ if g:VIM_TAGBAR ==# 'tagbar'
                 \ 'i:identities'
                 \ ]
                 \ }
-    "}}}
-    "{{{Elixir
-    let g:tagbar_type_elixir = {
-                \ 'ctagstype' : 'elixir',
-                \ 'kinds' : [
-                \ 'p:protocols',
-                \ 'm:modules',
-                \ 'e:exceptions',
-                \ 'y:types',
-                \ 'd:delegates',
-                \ 'f:functions',
-                \ 'c:callbacks',
-                \ 'a:macros',
-                \ 't:tests',
-                \ 'i:implementations',
-                \ 'o:operators',
-                \ 'r:records'
-                \ ],
-                \ 'sro' : '.',
-                \ 'kind2scope' : {
-                \ 'p' : 'protocol',
-                \ 'm' : 'module'
-                \ },
-                \ 'scope2kind' : {
-                \ 'protocol' : 'p',
-                \ 'module' : 'm'
-                \ },
-                \ 'sort' : 0
-                \ }
-    "}}}
-    "{{{Fountain
-    let g:tagbar_type_fountain = {
-                \ 'ctagstype': 'fountain',
-                \ 'kinds': [
-                \ 'h:headings',
-                \ 's:sections',
-                \ ],
-                \ 'sort': 0,
-                \}
-    "}}}
-    "{{{Go
-    let g:tagbar_type_go = {
-                \ 'ctagstype' : 'go',
-                \ 'kinds'     : [
-                \ 'p:package',
-                \ 'i:imports:1',
-                \ 'c:constants',
-                \ 'v:variables',
-                \ 't:types',
-                \ 'n:interfaces',
-                \ 'w:fields',
-                \ 'e:embedded',
-                \ 'm:methods',
-                \ 'r:constructor',
-                \ 'f:functions'
-                \ ],
-                \ 'sro' : '.',
-                \ 'kind2scope' : {
-                \ 't' : 'ctype',
-                \ 'n' : 'ntype'
-                \ },
-                \ 'scope2kind' : {
-                \ 'ctype' : 't',
-                \ 'ntype' : 'n'
-                \ },
-                \ 'ctagsbin'  : 'gotags',
-                \ 'ctagsargs' : '-sort -silent'
-                \ }
-    "}}}
-    "{{{Groovy
-    let g:tagbar_type_groovy = {
-                \ 'ctagstype' : 'groovy',
-                \ 'kinds'     : [
-                \ 'p:package:1',
-                \ 'c:classes',
-                \ 'i:interfaces',
-                \ 't:traits',
-                \ 'e:enums',
-                \ 'm:methods',
-                \ 'f:fields:1'
-                \ ]
-                \ }
-    "}}}
-    "{{{Haskell
-    let g:tagbar_type_haskell = {
-                \ 'ctagsbin'  : 'hasktags',
-                \ 'ctagsargs' : '-x -c -o-',
-                \ 'kinds'     : [
-                \  'm:modules:0:1',
-                \  'd:data: 0:1',
-                \  'd_gadt: data gadt:0:1',
-                \  't:type names:0:1',
-                \  'nt:new types:0:1',
-                \  'c:classes:0:1',
-                \  'cons:constructors:1:1',
-                \  'c_gadt:constructor gadt:1:1',
-                \  'c_a:constructor accessors:1:1',
-                \  'ft:function types:1:1',
-                \  'fi:function implementations:0:1',
-                \  'o:others:0:1'
-                \ ],
-                \ 'sro'        : '.',
-                \ 'kind2scope' : {
-                \ 'm' : 'module',
-                \ 'c' : 'class',
-                \ 'd' : 'data',
-                \ 't' : 'type'
-                \ },
-                \ 'scope2kind' : {
-                \ 'module' : 'm',
-                \ 'class'  : 'c',
-                \ 'data'   : 'd',
-                \ 'type'   : 't'
-                \ }
-                \ }
-    "}}}
-    "{{{IDL
-    let g:tagbar_type_idlang = {
-                \ 'ctagstype' : 'IDL',
-                \ 'kinds' : [
-                \ 'p:Procedures',
-                \ 'f:Functions',
-                \ 'c:Common Blocks'
-                \ ]
-                \ }
-    "}}}
-    "{{{Julia
-    let g:tagbar_type_julia = {
-                \ 'ctagstype' : 'julia',
-                \ 'kinds'     : [
-                \ 't:struct', 'f:function', 'm:macro', 'c:const']
-                \ }
-    "}}}
-    "{{{Makefile
-    let g:tagbar_type_make = {
-                \ 'kinds':[
-                \ 'm:macros',
-                \ 't:targets'
-                \ ]
-                \}
-    "}}}
-    "{{{Markdown
-    let g:tagbar_type_markdown = {
-                \ 'ctagstype': 'markdown',
-                \ 'ctagsbin' : 'markdown2ctags',
-                \ 'ctagsargs' : '-f - --sort=yes',
-                \ 'kinds' : [
-                \ 's:sections',
-                \ 'i:images'
-                \ ],
-                \ 'sro' : '|',
-                \ 'kind2scope' : {
-                \ 's' : 'section',
-                \ },
-                \ 'sort': 0,
-                \ }
-    "}}}
-    "{{{MediaWiki
-    let g:tagbar_type_mediawiki = {
-                \ 'ctagstype' : 'mediawiki',
-                \ 'kinds' : [
-                \'h:chapters',
-                \'s:sections',
-                \'u:subsections',
-                \'b:subsubsections',
-                \]
-                \}
-    "}}}
-    "{{{NASL
-    let g:tagbar_type_nasl = {
-                \ 'ctagstype' : 'nasl',
-                \ 'kinds'     : [
-                \ 'f:function',
-                \ 'u:public function',
-                \ 'r:private function',
-                \ 'v:variables',
-                \ 'n:namespace',
-                \ 'g:globals',
-                \ ]
-                \ }
-    "}}}
-    "{{{ObjectiveC
-    let g:tagbar_type_objc = {
-                \ 'ctagstype' : 'ObjectiveC',
-                \ 'kinds'     : [
-                \ 'i:interface',
-                \ 'I:implementation',
-                \ 'p:Protocol',
-                \ 'm:Object_method',
-                \ 'c:Class_method',
-                \ 'v:Global_variable',
-                \ 'F:Object field',
-                \ 'f:function',
-                \ 'p:property',
-                \ 't:type_alias',
-                \ 's:type_structure',
-                \ 'e:enumeration',
-                \ 'M:preprocessor_macro',
-                \ ],
-                \ 'sro'        : ' ',
-                \ 'kind2scope' : {
-                \ 'i' : 'interface',
-                \ 'I' : 'implementation',
-                \ 'p' : 'Protocol',
-                \ 's' : 'type_structure',
-                \ 'e' : 'enumeration'
-                \ },
-                \ 'scope2kind' : {
-                \ 'interface'      : 'i',
-                \ 'implementation' : 'I',
-                \ 'Protocol'       : 'p',
-                \ 'type_structure' : 's',
-                \ 'enumeration'    : 'e'
-                \ }
-                \ }
-    "}}}
-    "{{{Perl
-    let g:tagbar_type_perl = {
-                \ 'ctagstype' : 'perl',
-                \ 'kinds'     : [
-                \ 'p:package:0:0',
-                \ 'w:roles:0:0',
-                \ 'e:extends:0:0',
-                \ 'u:uses:0:0',
-                \ 'r:requires:0:0',
-                \ 'o:ours:0:0',
-                \ 'a:properties:0:0',
-                \ 'b:aliases:0:0',
-                \ 'h:helpers:0:0',
-                \ 's:subroutines:0:0',
-                \ 'd:POD:1:0'
-                \ ]
-                \ }
-    "}}}
-    "{{{PHP
-    let g:tagbar_phpctags_bin='~/.cache/vim/plugins/tagbar-phpctags.vim/bin/phpctags'
-    let g:tagbar_phpctags_memory_limit = '512M'
-    "}}}
-    "{{{Puppet
-    let g:tagbar_type_puppet = {
-                \ 'ctagstype': 'puppet',
-                \ 'kinds': [
-                \'c:class',
-                \'s:site',
-                \'n:node',
-                \'d:definition'
-                \]
-                \}
-    "}}}
-    "{{{R
-    let g:tagbar_type_r = {
-                \ 'ctagstype' : 'r',
-                \ 'kinds'     : [
-                \ 'f:Functions',
-                \ 'g:GlobalVariables',
-                \ 'v:FunctionVariables',
-                \ ]
-                \ }
-    "}}}
-    "{{{reStructuredText
-    let g:tagbar_type_rst = {
-                \ 'ctagstype': 'rst',
-                \ 'ctagsbin' : 'rst2ctags',
-                \ 'ctagsargs' : '-f - --sort=yes',
-                \ 'kinds' : [
-                \ 's:sections',
-                \ 'i:images'
-                \ ],
-                \ 'sro' : '|',
-                \ 'kind2scope' : {
-                \ 's' : 'section',
-                \ },
-                \ 'sort': 0,
-                \ }
-    "}}}
-    "{{{Ruby
-    let g:tagbar_type_ruby = {
-                \ 'kinds' : [
-                \ 'm:modules',
-                \ 'c:classes',
-                \ 'd:describes',
-                \ 'C:contexts',
-                \ 'f:methods',
-                \ 'F:singleton methods'
-                \ ]
-                \ }
-    "}}}
-    "{{{Rust
-    let g:rust_use_custom_ctags_defs = 1  " if using rust.vim
-    let g:tagbar_type_rust = {
-                \ 'ctagsbin' : '/path/to/your/universal/ctags',
-                \ 'ctagstype' : 'rust',
-                \ 'kinds' : [
-                \ 'n:modules',
-                \ 's:structures:1',
-                \ 'i:interfaces',
-                \ 'c:implementations',
-                \ 'f:functions:1',
-                \ 'g:enumerations:1',
-                \ 't:type aliases:1:0',
-                \ 'v:constants:1:0',
-                \ 'M:macros:1',
-                \ 'm:fields:1:0',
-                \ 'e:enum variants:1:0',
-                \ 'P:methods:1',
-                \ ],
-                \ 'sro': '::',
-                \ 'kind2scope' : {
-                \ 'n': 'module',
-                \ 's': 'struct',
-                \ 'i': 'interface',
-                \ 'c': 'implementation',
-                \ 'f': 'function',
-                \ 'g': 'enum',
-                \ 't': 'typedef',
-                \ 'v': 'variable',
-                \ 'M': 'macro',
-                \ 'm': 'field',
-                \ 'e': 'enumerator',
-                \ 'P': 'method',
-                \ },
-                \ }
-    "}}}
-    "{{{Scala
-    let g:tagbar_type_scala = {
-                \ 'ctagstype' : 'scala',
-                \ 'sro'       : '.',
-                \ 'kinds'     : [
-                \ 'p:packages',
-                \ 'T:types:1',
-                \ 't:traits',
-                \ 'o:objects',
-                \ 'O:case objects',
-                \ 'c:classes',
-                \ 'C:case classes',
-                \ 'm:methods',
-                \ 'V:values:1',
-                \ 'v:variables:1'
-                \ ]
-                \ }
-    "}}}
-    "{{{systemverilog
-    let g:tagbar_type_systemverilog = {
-                \ 'ctagstype': 'systemverilog',
-                \ 'kinds' : [
-                \'A:assertions',
-                \'C:classes',
-                \'E:enumerators',
-                \'I:interfaces',
-                \'K:packages',
-                \'M:modports',
-                \'P:programs',
-                \'Q:prototypes',
-                \'R:properties',
-                \'S:structs and unions',
-                \'T:type declarations',
-                \'V:covergroups',
-                \'b:blocks',
-                \'c:constants',
-                \'e:events',
-                \'f:functions',
-                \'m:modules',
-                \'n:net data types',
-                \'p:ports',
-                \'r:register data types',
-                \'t:tasks',
-                \],
-                \ 'sro': '.',
-                \ 'kind2scope' : {
-                \ 'K' : 'package',
-                \ 'C' : 'class',
-                \ 'm' : 'module',
-                \ 'P' : 'program',
-                \ 'I' : 'interface',
-                \ 'M' : 'modport',
-                \ 'f' : 'function',
-                \ 't' : 'task',
-                \},
-                \ 'scope2kind' : {
-                \ 'package'   : 'K',
-                \ 'class'     : 'C',
-                \ 'module'    : 'm',
-                \ 'program'   : 'P',
-                \ 'interface' : 'I',
-                \ 'modport'   : 'M',
-                \ 'function'  : 'f',
-                \ 'task'      : 't',
-                \ },
-                \}
-    "}}}
-    "{{{TypeScript
-    let g:tagbar_type_typescript = {
-                \ 'ctagstype': 'typescript',
-                \ 'kinds': [
-                \ 'c:classes',
-                \ 'n:modules',
-                \ 'f:functions',
-                \ 'v:variables',
-                \ 'v:varlambdas',
-                \ 'm:members',
-                \ 'i:interfaces',
-                \ 'e:enums',
-                \ ]
-                \ }
-    "}}}
-    "{{{VHDL
-    let g:tagbar_type_vhdl = {
-                \ 'ctagstype': 'vhdl',
-                \ 'kinds' : [
-                \'d:prototypes',
-                \'b:package bodies',
-                \'e:entities',
-                \'a:architectures',
-                \'t:types',
-                \'p:processes',
-                \'f:functions',
-                \'r:procedures',
-                \'c:constants',
-                \'T:subtypes',
-                \'r:records',
-                \'C:components',
-                \'P:packages',
-                \'l:locals'
-                \]
-                \}
-    "}}}
-    "{{{WSDL
-    let g:tagbar_type_xml = {
-                \ 'ctagstype' : 'WSDL',
-                \ 'kinds'     : [
-                \ 'n:namespaces',
-                \ 'm:messages',
-                \ 'p:portType',
-                \ 'o:operations',
-                \ 'b:bindings',
-                \ 's:service'
-                \ ]
-                \ }
-    "}}}
-    "{{{Xquery
-    let g:tagbar_type_xquery = {
-                \ 'ctagstype' : 'xquery',
-                \ 'kinds'     : [
-                \ 'f:function',
-                \ 'v:variable',
-                \ 'm:module',
-                \ ]
-                \ }
-    "}}}
-    "{{{XSD
-    let g:tagbar_type_xsd = {
-                \ 'ctagstype' : 'XSD',
-                \ 'kinds'     : [
-                \ 'e:elements',
-                \ 'c:complexTypes',
-                \ 's:simpleTypes'
-                \ ]
-                \ }
-    "}}}
-    "{{{XSLT
-    let g:tagbar_type_xslt = {
-                \ 'ctagstype' : 'xslt',
-                \ 'kinds' : [
-                \ 'v:variables',
-                \ 't:templates'
-                \ ]
-                \}
-    "}}}
-    "}}}
-    nnoremap <silent><A-b> :<C-u>call ToggleTagbar()<CR>
-    let g:TagBarLoad = 0
-    function! ToggleTagbar()
-        if g:TagBarLoad == 0
-            let g:TagBarLoad = 1
-            call TagbarInit()
-            execute 'TagbarToggle'
-        elseif g:TagBarLoad == 1
-            execute 'TagbarToggle'
-        endif
-    endfunction
-    function! TagbarInit()
-        let g:tagbar_sort = 0
-        let g:tagbar_width = 35
-        let g:tagbar_autoclose = 1
-        let g:tagbar_foldlevel = 2
-        let g:tagbar_iconchars = ['▶', '◿']
-        let g:tagbar_type_css = {
-                    \ 'ctagstype' : 'Css',
-                    \ 'kinds'     : [
-                    \ 'c:classes',
-                    \ 's:selectors',
-                    \ 'i:identities'
-                    \ ]
-                    \ }
-        call plug#load('tagbar', 'tagbar-phpctags.vim')
-    endfunction
-    function! s:tagbar_mappings() abort
-        if g:VIM_Fuzzy_Finder ==# 'denite'
-            nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:Denite outline<CR>
-        elseif g:VIM_Fuzzy_Finder ==# 'fzf'
-            nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:BTags<CR>
-        elseif g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
-            nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:LeaderfBufTagAll<CR>
-        endif
-    endfunction
-    augroup TagbarAu
-        autocmd!
-        autocmd FileType tagbar call s:tagbar_mappings()
-    augroup END
-    "}}}
-    "{{{vista.vim
-elseif g:VIM_TAGBAR ==# 'vista'
-    "{{{g:vim_vista_lsp_client
-    if g:VIM_LSP_Client ==# 'lcn'
-        let g:vim_vista_lsp_client = 'lcn'
-    elseif g:VIM_LSP_Client ==# 'vim-lsp'
-        let g:vim_vista_lsp_client = 'vim_lsp'
+    call plug#load('tagbar', 'tagbar-phpctags.vim')
+endfunction
+function! s:tagbar_mappings() abort
+    if g:vimMode ==# 'light'
+        nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:BTags<CR>
+    elseif g:vimMode ==# 'complete'
+        nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:LeaderfBufTagAll<CR>
     endif
-    if g:VIM_Completion_Framework ==# 'coc'
-        let g:vim_vista_lsp_client = 'coc'
-    endif
-    "}}}
-    nnoremap <silent><A-b> :<C-u>Vista!!<CR>
-    let g:vista_echo_cursor_strategy = 'both'
-    let g:vista_icon_indent = ['╰─▸ ', '├─▸ ']
-    let g:vista_sidebar_width = 35
-    let g:vista_default_executive = 'ctags'
-    let g:vista_executive_for = {
-                \ 'c': g:vim_vista_lsp_client,
-                \ 'cpp': g:vim_vista_lsp_client
-                \ }
-    let g:vista_fzf_preview = ['right:50%']
-    let g:vista#renderer#enable_icon = 1
-    let g:vista#renderer#icons = {
-                \ 'function': "\uf794",
-                \ 'variable': "\uf71b",
-                \ }
-    function! s:vista_mappings() abort
-        nnoremap <silent><buffer> <A-b> :Vista!!<CR>
-        nnoremap <silent><buffer> q :Vista!!<CR>
-        nnoremap <silent><buffer> f :Vista finder<CR>
-        nnoremap <silent><buffer> F :execute "Vista finder ".g:vim_vista_lsp_client<CR>
-    endfunction
-    augroup VistaAu
-        autocmd!
-        autocmd FileType vista_kind call s:vista_mappings()
-        autocmd FileType markdown nnoremap <silent><A-b> :<C-u>Vista toc<CR>
-    augroup END
-endif
+endfunction
+augroup tagbarCustom
+    autocmd!
+    autocmd FileType tagbar call s:tagbar_mappings()
+augroup END
 "}}}
 "{{{neoformat
 "{{{neoformat-usage
@@ -3835,7 +2817,7 @@ function! Help_vim_prosession()
     echo ':ProsessionList {filter}      if no {filter} specified, list all session'
 endfunction
 "}}}
-augroup SessionAu
+augroup sessionCustom
     autocmd!
     autocmd VimLeave * mksession! ~/.cache/vim/sessions/LastSession
 augroup END
@@ -3880,7 +2862,7 @@ function! Bookmark_Unite()
         execute 'Unite vim_bookmarks'
     endif
 endfunction
-augroup Unite_Config
+augroup uniteCustom
     autocmd!
     autocmd FileType unite call s:unite_settings()
 augroup END
@@ -3932,6 +2914,14 @@ endfunction
 "}}}
 "}}}
 "{{{inline_edit.vim
+"{{{inline-edit-usage
+" 主quickmenu
+function! Help_inline_edit()
+    echo ""
+    echo "visual 或 normal 模式下按 E"
+    echo ""
+endfunction
+"}}}
 nnoremap E :<C-u>InlineEdit<CR>
 vnoremap E :InlineEdit<CR>
 "}}}
@@ -3966,43 +2956,41 @@ let g:codi#rightsplit = 1
 let g:codi#rightalign = 0
 "}}}
 "{{{auto-pairs
-if g:VIM_Enable_Autopairs == 1
-    "{{{auto-pairs-usage
-    " 主quickmenu
-    function! Help_auto_pairs()
-        echo '插入模式下：'
-        echo '<A-z>p            toggle auto-pairs'
-        echo '<A-n>             jump to next closed pair'
-        echo '<A-Backspace>     delete without pairs'
-        echo '<A-z>[key]        insert without pairs'
-    endfunction
-    "}}}
-    let g:AutoPairsShortcutToggle = '<A-z>p'
-    let g:AutoPairsShortcutFastWrap = '<A-z>`sadsfvf'
-    let g:AutoPairsShortcutJump = '<A-n>'
-    let g:AutoPairsWildClosedPair = ''
-    let g:AutoPairsMultilineClose = 0
-    let g:AutoPairsFlyMode = 0
-    let g:AutoPairsMapCh = 0
-    inoremap <A-z>' '
-    inoremap <A-z>" "
-    inoremap <A-z>` `
-    inoremap <A-z>( (
-    inoremap <A-z>[ [
-    inoremap <A-z>{ {
-    inoremap <A-z>) )
-    inoremap <A-z>] ]
-    inoremap <A-z>} }
-    inoremap <A-Backspace> <Space><Esc><left>"_xa<Backspace>
-    " imap <A-Backspace> <A-z>p<Backspace><A-z>p
-    augroup AutoPairsAu
-        autocmd!
-        " au Filetype html let b:AutoPairs = {"<": ">"}
-    augroup END
-endif
+"{{{auto-pairs-usage
+" 主quickmenu
+function! Help_auto_pairs()
+    echo '插入模式下：'
+    echo '<A-z>p            toggle auto-pairs'
+    echo '<A-n>             jump to next closed pair'
+    echo '<A-Backspace>     delete without pairs'
+    echo '<A-z>[key]        insert without pairs'
+endfunction
+"}}}
+let g:AutoPairsShortcutToggle = '<A-z>p'
+let g:AutoPairsShortcutFastWrap = '<A-z>`sadsfvf'
+let g:AutoPairsShortcutJump = '<A-n>'
+let g:AutoPairsWildClosedPair = ''
+let g:AutoPairsMultilineClose = 0
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsMapCh = 0
+inoremap <A-z>' '
+inoremap <A-z>" "
+inoremap <A-z>` `
+inoremap <A-z>( (
+inoremap <A-z>[ [
+inoremap <A-z>{ {
+inoremap <A-z>) )
+inoremap <A-z>] ]
+inoremap <A-z>} }
+inoremap <A-Backspace> <Space><Esc><left>"_xa<Backspace>
+" imap <A-Backspace> <A-z>p<Backspace><A-z>p
+augroup autoPairsCustom
+    autocmd!
+    " au Filetype html let b:AutoPairs = {"<": ">"}
+augroup END
 "}}}
 "{{{pomodoro.vim
-if g:VIM_Is_In_Tmux == 0
+if g:vimIsInTmux == 0
     let g:Pomodoro_Status = 0
     function! Toggle_Pomodoro()
         if g:Pomodoro_Status == 0
@@ -4057,7 +3045,7 @@ hi MatchWord cterm=underline gui=underline
 hi MatchWordCur cterm=underline gui=underline
 "}}}
 " {{{vim-manpager
-if exists('g:VIM_MANPAGER')
+if exists('g:vimManPager')
     " {{{vim-manpager-usage
     function! Help_vim_manpager()
         echo 'shell里"man foo"启动'
@@ -4074,11 +3062,9 @@ if exists('g:VIM_MANPAGER')
     endfunction
     " }}}
     function! s:vim_manpager_mappings() abort
-        if g:VIM_Fuzzy_Finder ==# 'denite'
-            nnoremap <silent><buffer> f :<C-u>Denite line:buffer<CR>
-        elseif g:VIM_Fuzzy_Finder ==# 'fzf'
+        if g:vimMode ==# 'light'
             nnoremap <silent><buffer> f :<C-u>BLines<CR>
-        elseif g:VIM_Fuzzy_Finder ==# 'leaderf' || g:VIM_Fuzzy_Finder ==# 'remix'
+        elseif g:vimMode ==# 'complete'
             nnoremap <silent><buffer> f :<C-u>LeaderfLine<CR>
         endif
         nnoremap <silent><buffer> ? :<C-u>call Help_vim_manpager()<CR>
@@ -4088,7 +3074,7 @@ if exists('g:VIM_MANPAGER')
         nnoremap <silent><buffer> K zz:<C-u>call smooth_scroll#up(&scroll, 10, 1)<CR>
         nnoremap <silent><buffer> E :<C-u>set modifiable<CR>
     endfunction
-    augroup ManpagerAu
+    augroup manPagerCustom
         autocmd!
         autocmd FileType man call s:vim_manpager_mappings()
     augroup END
