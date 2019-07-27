@@ -21,7 +21,8 @@ else
     let g:vimEnableStartify = 1
 endif
 "}}}
-let g:vimMode = 'light'  " light complete
+let g:vimMode = 'complete'  " light complete
+let g:vimAutoInstall = 1
 let g:startify_bookmarks = [
             \ {'R': '~/repo/'},
             \ {'N': '~/repo/notes'},
@@ -30,7 +31,6 @@ let g:startify_bookmarks = [
             \ {'c': '~/.zshrc'},
             \ {'c': '~/.tmux.conf'}
             \ ]
-let g:vimAutoInstall = 1
 "}}}
 "{{{Global
 "{{{Function
@@ -536,10 +536,28 @@ command Q q!
 " more info     :h plug-options
 "}}}
 "{{{
-" let g:plug_url_format = 'https://git::@github.com/%s.git'
-" press 'o' to open preview window
-augroup vim_plug_mapping
-    autocmd! FileType vim-plug nmap <buffer> o <plug>(plug-preview)<c-w>P
+function Help_vim_plug() abort
+    echo ''
+    echo 'D     show diff'
+    echo 'S     plugin status'
+    echo 'R     retry'
+    echo 'U     update plugins in the selected range'
+    echo 'q     close window'
+    echo ':PlugStatus L load plugin'
+    echo ':PlugDiff X revert the update'
+    echo '<tab> open github url'
+    echo 'p     open preview window'
+    echo 'h     show help docs'
+    echo 'J/K   scroll preview window'
+    echo 'C-J/C-K move between commits'
+endfunction
+
+augroup vimPlugMappings
+    autocmd!
+    autocmd FileType vim-plug nnoremap <buffer> ? :call Help_vim_plug()<CR>
+    autocmd FileType vim-plug nmap <buffer> p <plug>(plug-preview)
+    autocmd FileType vim-plug nnoremap <buffer> <silent> h :call <sid>plug_doc()<cr>
+    autocmd FileType vim-plug nnoremap <buffer> <silent> <Tab> :call <sid>plug_gx()<cr>
 augroup END
 
 " automatically install missing plugins on startup
@@ -553,7 +571,6 @@ if g:vimAutoInstall == 1
     augroup END
 endif
 
-" Press 'H' to open help docs
 function! s:plug_doc()
     let name = matchstr(getline('.'), '^- \zs\S\+\ze:')
     if has_key(g:plugs, name)
@@ -562,12 +579,7 @@ function! s:plug_doc()
         endfor
     endif
 endfunction
-augroup PlugHelp
-    autocmd!
-    autocmd FileType vim-plug nnoremap <buffer> <silent> H :call <sid>plug_doc()<cr>
-augroup END
 
-" press 'gx' to open github url in browser
 function! s:plug_gx()
     let line = getline('.')
     let sha  = matchstr(line, '^  \X*\zs\x\{7,9}\ze ')
@@ -584,12 +596,8 @@ function! s:plug_gx()
 endfunction
 augroup PlugGx
     autocmd!
-    autocmd FileType vim-plug nnoremap <buffer> <silent> <Tab> :call <sid>plug_gx()<cr>
 augroup END
 
-" J / K to scroll the preview window
-" CTRL-N / CTRL-P to move between the commits
-" CTRL-J / CTRL-K to move between the commits and synchronize the preview window
 function! s:scroll_preview(down)
     silent! wincmd P
     if &previewwindow
@@ -1612,9 +1620,6 @@ elseif g:vimMode ==# 'complete'
     call quickmenu#reset()
     call g:quickmenu#append('List', 'CocList', '', '', 0, 'l')
     call g:quickmenu#append('# Language Server', '')
-    call g:quickmenu#append('Symbols', 'Denite coc-symbols', '', '', 0, 's')
-    call g:quickmenu#append('Symbols Workspace', 'Denite coc-workspace', '', '', 0, 'S')
-    call g:quickmenu#append('Diagnostic Lists', 'Denite coc-diagnostic', '', '', 0, 'd')
     call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
     call g:quickmenu#append('Help', 'call Help_COC_LSP()', '', '', 0, 'h')
     call g:quickmenu#append('# Completion Framework', '')
@@ -1624,7 +1629,6 @@ elseif g:vimMode ==# 'complete'
     call g:quickmenu#append('Info', 'CocInfo', ':h CocOpenLog for log', '', 0, '@')
     call g:quickmenu#append('Toggle Hover', 'let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1', '', '', 0, 't')
     call g:quickmenu#append('Extension Market', 'CocList marketplace', '', '', 0, '#')
-    call g:quickmenu#append('Help Mappings', 'Denite output:nnoremap output:vnoremap -input="<Plug>(coc)"', '', '', 0, '?')
     "}}}
     "{{{coc-init
     call coc#add_extension(
@@ -2917,9 +2921,9 @@ endfunction
 "{{{inline-edit-usage
 " 主quickmenu
 function! Help_inline_edit()
-    echo ""
-    echo "visual 或 normal 模式下按 E"
-    echo ""
+    echo ''
+    echo 'visual 或 normal 模式下按 E'
+    echo ''
 endfunction
 "}}}
 nnoremap E :<C-u>InlineEdit<CR>
