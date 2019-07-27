@@ -719,7 +719,7 @@ Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'albertomontesg/lightline-asyncrun'
-" Plug 'mg979/vim-visual-multi'
+Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'Shougo/unite.vim', { 'on': [] }
@@ -735,9 +735,7 @@ Plug 'metakirby5/codi.vim'
 Plug 'mbbill/fencview', { 'on': [ 'FencAutoDetect', 'FencView' ] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'andymass/vim-matchup'
-if exists('g:vimManPager')
-    Plug 'lambdalisue/vim-manpager'
-endif
+Plug 'lambdalisue/vim-manpager'
 Plug 'jiangmiao/auto-pairs'
 if executable('fcitx')
     Plug 'lilydjwg/fcitx.vim', { 'on': [] }
@@ -2764,7 +2762,7 @@ function! Help_vim_visual_multi()
     echo '<Esc>         退出'
     echo "\n"
     echo 'position 选中'
-    echo 'normal mode中，<Tab>选中当前位置'
+    echo 'normal mode中，<Tab>或Ctrl+鼠标左键选中当前位置'
     echo '普通模式下h, j, k, l来整体挪移光标'
     echo '<Tab>         extend mode'
     echo ']             跳转到下一个选中'
@@ -2796,22 +2794,21 @@ function! Help_vim_visual_multi()
 endfunction
 "}}}
 " https://github.com/mg979/vim-visual-multi/wiki
-function! Init_visual_multi()
-    vmap <leader>] <C-n>
-    let g:VM_maps = {}
-    let g:VM_maps['Switch Mode']                 = '<Space>'
-    let g:VM_maps['Add Cursor At Pos']           = '<Tab>'
-    let g:VM_maps['Visual Cursors']              = '<Tab>'
-    let g:VM_maps['Add Cursor Up']               = '<M-z>``````addup'
-    let g:VM_maps['Add Cursor Down']             = '<M-z>``````adddown'
-    let g:VM_maps['I Arrow ge']                  = '<M-z>``````addup'
-    let g:VM_maps['I Arrow e']                   = '<M-z>``````adddown'
-    let g:VM_maps['Select e']                    = '<M-z>``````addright'
-    let g:VM_maps['Select ge']                   = '<M-z>``````addleft'
-    let g:VM_maps['I Arrow w']                   = '<M-z>``````addright'
-    let g:VM_maps['I Arrow b']                   = '<M-z>``````addleft'
-endfunction
-call Init_visual_multi()
+let g:VM_default_mappings = 0
+let g:VM_mouse_mappings = 1
+vmap <leader>] <C-n>
+let g:VM_maps = {}
+let g:VM_maps['Switch Mode']                 = '<Space>'
+let g:VM_maps['Add Cursor At Pos']           = '<Tab>'
+let g:VM_maps['Visual Cursors']              = '<Tab>'
+let g:VM_maps['Add Cursor Up']               = '<M-z>``````addup'
+let g:VM_maps['Add Cursor Down']             = '<M-z>``````adddown'
+let g:VM_maps['I Arrow ge']                  = '<M-z>``````addup'
+let g:VM_maps['I Arrow e']                   = '<M-z>``````adddown'
+let g:VM_maps['Select e']                    = '<M-z>``````addright'
+let g:VM_maps['Select ge']                   = '<M-z>``````addleft'
+let g:VM_maps['I Arrow w']                   = '<M-z>``````addright'
+let g:VM_maps['I Arrow b']                   = '<M-z>``````addleft'
 "}}}
 "{{{vim-prosession
 "{{{vim-prosession-usage
