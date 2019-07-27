@@ -681,6 +681,13 @@ if g:vimMode ==# 'light'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'fszymanski/fzf-quickfix'
+    if executable('cargo')
+        if executable('proxychains')
+            Plug 'tsufeki/asyncomplete-fuzzy-match', { 'do': 'proxychains -q cargo build --release' }
+        else
+            Plug 'tsufeki/asyncomplete-fuzzy-match', { 'do': 'cargo build --release' }
+        endif
+    endif
 elseif g:vimMode ==# 'complete'
     Plug 'honza/vim-snippets'
     Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
@@ -1332,9 +1339,9 @@ if g:vimMode ==# 'light'
                     \ 'whitelist': ['json'],
                     \ })
         au User lsp_setup call lsp#register_server({
-                    \ 'name': 'javascript-languageserver',
+                    \ 'name': 'javascript-typescript-languageserver',
                     \ 'cmd': {server_info->['javascript-typescript-stdio']},
-                    \ 'whitelist': ['javascript'],
+                    \ 'whitelist': ['javascript', 'typescript'],
                     \ })
         au User lsp_setup call lsp#register_server({
                     \ 'name': 'python-languageserver',
