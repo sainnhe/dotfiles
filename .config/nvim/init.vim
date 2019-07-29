@@ -1636,6 +1636,7 @@ elseif g:vimMode ==# 'complete'
     call g:quickmenu#append('Extension Market', 'CocList marketplace', '', '', 0, '#')
     "}}}
     "{{{coc-init
+                " \       'coc-tabnine',
     call coc#add_extension(
                 \       'coc-lists',
                 \       'coc-marketplace',
@@ -1655,8 +1656,7 @@ elseif g:vimMode ==# 'complete'
                 \       'coc-rls',
                 \       'coc-json',
                 \       'coc-yaml',
-                \       'coc-vimlsp',
-                \       'coc-tabnine'
+                \       'coc-vimlsp'
                 \   )
     "}}}
     "{{{coc-settings
