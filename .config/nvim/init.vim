@@ -1771,8 +1771,7 @@ elseif g:vimMode ==# 'complete'
     let g:Lf_ShowHidden = 0  " search hidden files
     let g:Lf_FollowLinks = 1  " expand symbol link
     let g:Lf_RecurseSubmodules = 1  " show git submodules
-    let g:Lf_DefaultExternalTool = 'ag'  " 'rg', 'pt', 'ag', 'find'
-    let g:Lf_StlColorscheme = 'one'  " $HOME/.cache/vim/plugins/LeaderF/autoload/leaderf/colorscheme
+    let g:Lf_DefaultExternalTool = 'rg'  " 'rg', 'pt', 'ag', 'find'
     let g:Lf_StlSeparator = { 'left': '', 'right': '' }
     let g:Lf_WindowPosition = 'bottom'  " top bottom left right
     let g:Lf_WindowHeight = 0.4
