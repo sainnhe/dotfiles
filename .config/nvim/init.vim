@@ -700,7 +700,7 @@ elseif g:vimMode ==# 'complete'
     Plug 'markwu/LeaderF-prosessions'
     Plug 'bennyyip/LeaderF-github-stars'
 endif
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
