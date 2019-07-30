@@ -637,6 +637,7 @@ Plug 'sainnhe/vim-color-grimoire'
 Plug 'sainnhe/vim-color-vanilla-cake'
 Plug 'sainnhe/vim-color-fairy-garden'
 Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/edge'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -989,7 +990,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'gruvbox-material'
+let g:vimColorScheme = 'edge-dark'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1041,6 +1042,22 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'fairy_garden'
     endif
     call g:quickmenu#append('fairy-garden', 'call SwitchColorScheme("fairy-garden")', '', '', 0, '')
+    "}}}
+    "{{{edge-dark
+    if g:vimColorScheme ==# 'edge-dark'
+        set background=dark
+        colorscheme edge
+        let g:lightline.colorscheme = 'edge'
+    endif
+    call g:quickmenu#append('edge-dark', 'call SwitchColorScheme("edge-dark")', '', '', 0, '')
+    "}}}
+    "{{{edge-light
+    if g:vimColorScheme ==# 'edge-light'
+        set background=light
+        colorscheme edge
+        let g:lightline.colorscheme = 'edge'
+    endif
+    call g:quickmenu#append('edge-light', 'call SwitchColorScheme("edge-light")', '', '', 0, '')
     "}}}
 endfunction
 call ColorScheme()
