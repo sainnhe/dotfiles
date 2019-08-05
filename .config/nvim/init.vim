@@ -535,7 +535,7 @@ command Q q!
 "
 " more info     :h plug-options
 "}}}
-"{{{
+"{{{init
 function Help_vim_plug() abort
     echo ''
     echo 'D     show diff'
@@ -627,10 +627,15 @@ endif
 Plug 'tpope/vim-repeat'
 Plug 'ryanoasis/vim-devicons'
 "}}}
+"{{{syntax
+Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax' }
+Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-syntax-c-cpp', 'for': [ 'c', 'cpp' ] }
+Plug 'HerringtonDarkholme/yats.vim', { 'as': 'vim-syntax-typescript', 'for': 'typescript' }
+let g:polyglot_disabled = [ 'c', 'cpp', 'typescript' ]
+"}}}
 " User Interface
 "{{{themes
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
-Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax-polyglot' }
 Plug 'sainnhe/vim-color-forest-night'
 Plug 'sainnhe/vim-color-desert-night'
 Plug 'sainnhe/vim-color-grimoire'
@@ -990,7 +995,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'edge-dark'
+let g:vimColorScheme = 'gruvbox-material'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
