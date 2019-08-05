@@ -636,13 +636,9 @@ let g:polyglot_disabled = [ 'c', 'cpp', 'typescript' ]
 " User Interface
 "{{{themes
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
-Plug 'sainnhe/vim-color-forest-night'
-Plug 'sainnhe/vim-color-desert-night'
-Plug 'sainnhe/vim-color-grimoire'
-Plug 'sainnhe/vim-color-vanilla-cake'
-Plug 'sainnhe/vim-color-fairy-garden'
-Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
+Plug 'sainnhe/vim-color-vanilla-cake'
+Plug 'sainnhe/gruvbox-material', { 'branch': 'personal' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -999,27 +995,6 @@ let g:vimColorScheme = 'gruvbox-material'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
-    "{{{forest-night
-    if g:vimColorScheme ==# 'forest-night'
-        colorscheme forest-night
-        let g:lightline.colorscheme = 'forest_night'
-    endif
-    call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
-    "}}}
-    "{{{forest-dusk
-    if g:vimColorScheme ==# 'forest-dusk'
-        colorscheme forest-dusk
-        let g:lightline.colorscheme = 'forest_dusk'
-    endif
-    call g:quickmenu#append('forest-dusk', 'call SwitchColorScheme("forest-dusk")', '', '', 0, '')
-    "}}}
-    "{{{desert-night
-    if g:vimColorScheme ==# 'desert-night'
-        colorscheme desert-night
-        let g:lightline.colorscheme = 'desert_night'
-    endif
-    call g:quickmenu#append('desert-night', 'call SwitchColorScheme("desert-night")', '', '', 0, '')
-    "}}}
     "{{{gruvbox-material
     if g:vimColorScheme ==# 'gruvbox-material'
         colorscheme gruvbox-material
@@ -1027,26 +1002,12 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('gruvbox-material', 'call SwitchColorScheme("gruvbox-material")', '', '', 0, '')
     "}}}
-    "{{{grimoire
-    if g:vimColorScheme ==# 'grimoire'
-        colorscheme grimoire
-        let g:lightline.colorscheme = 'grimoire'
-    endif
-    call g:quickmenu#append('grimoire', 'call SwitchColorScheme("grimoire")', '', '', 0, '')
-    "}}}
     "{{{vanilla-cake
     if g:vimColorScheme ==# 'vanilla-cake'
         colorscheme vanilla-cake
         let g:lightline.colorscheme = 'vanilla_cake'
     endif
     call g:quickmenu#append('vanilla-cake', 'call SwitchColorScheme("vanilla-cake")', '', '', 0, '')
-    "}}}
-    "{{{fairy-garden
-    if g:vimColorScheme ==# 'fairy-garden'
-        colorscheme fairy-garden
-        let g:lightline.colorscheme = 'fairy_garden'
-    endif
-    call g:quickmenu#append('fairy-garden', 'call SwitchColorScheme("fairy-garden")', '', '', 0, '')
     "}}}
     "{{{edge-dark
     if g:vimColorScheme ==# 'edge-dark'
