@@ -3,7 +3,6 @@
     email = sainnhe@gmail.com
 [core]
     editor = nvim
-    pager = nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -
 [merge]
     tool = vimdiff
 [alias]
