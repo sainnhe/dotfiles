@@ -636,9 +636,9 @@ let g:polyglot_disabled = [ 'c', 'cpp', 'typescript' ]
 " User Interface
 "{{{themes
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
-Plug 'sainnhe/edge'
 Plug 'sainnhe/vim-color-vanilla-cake'
-Plug 'sainnhe/gruvbox-material', { 'branch': 'personal' }
+Plug 'sainnhe/gruvbox-material', { 'as': 'vim-color-gruvbox-material' }
+Plug 'sainnhe/edge', { 'as': 'vim-color-edge' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -991,7 +991,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'gruvbox-material'
+let g:vimColorScheme = 'edge-dark'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
