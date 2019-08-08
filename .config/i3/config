@@ -147,8 +147,8 @@ mode "manage" {
 # }}}
 # {{{Color Scheme
 # Color Scheme              border      bg              fg
-client.focused              #87765d     #87765d         #24221c
-client.unfocused            #24221c     #24221c         #d4b07b
+client.focused              #665c54     #665c54         #dfbd8e
+client.unfocused            #3c3836     #3c3836         #dfbd8e
 # }}}
 # {{{UI
 # dpi
@@ -188,4 +188,4 @@ exec redshiftgui
 # exec --no-startup-id i3-msg 'workspace 1:Alpha; layout tabbed; exec tilix; exec /usr/bin/firefox-developer-edition'
 # exec tilix -e "zsh -c 'source ~/.zshrc; tmux-start'"
 # }}}
-exec feh --bg-fill ~/图片/壁纸/Game\&Anime/wallhaven-694988.jpg
+exec feh --bg-fill ~/Pictures/壁纸/Game\&Anime/wallhaven-694988.jpg
