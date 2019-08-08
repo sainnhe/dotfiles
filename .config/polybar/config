@@ -51,7 +51,6 @@ module-margin-right = 0
 ; tray-background = ${colors.bg}
 ; tray-maxsize = 22
 ; tray-scale = 1.0
-; tray-transparent = false
 ; tray-offset-x = 0
 ; tray-offset-y = 0
 
