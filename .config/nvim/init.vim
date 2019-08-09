@@ -754,7 +754,6 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
             \| au BufNewFile,BufRead *.html,*.css call Func_emmet_vim()
 Plug 'alvan/vim-closetag', { 'for': 'html' }
             \| au BufNewFile,BufRead *.html,*.css call Func_vim_closetag()
-Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
 Plug 'elzr/vim-json', { 'for': 'json' }
             \| au BufNewFile,BufRead *.json call Func_vim_json()
 Plug 'masukomi/vim-markdown-folding'
@@ -991,7 +990,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'edge-dark'
+let g:vimColorScheme = 'gruvbox-material'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
