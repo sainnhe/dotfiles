@@ -630,8 +630,10 @@ Plug 'ryanoasis/vim-devicons'
 "{{{syntax
 Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax' }
 Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-syntax-c-cpp', 'for': [ 'c', 'cpp' ] }
+Plug 'othree/yajs.vim', { 'as': 'vim-syntax-javascript', 'for': 'javascript' }
+Plug 'MaxMEllon/vim-jsx-pretty', { 'as': 'vim-syntax-jsx', 'for': 'javascript' }
 Plug 'HerringtonDarkholme/yats.vim', { 'as': 'vim-syntax-typescript', 'for': 'typescript' }
-let g:polyglot_disabled = [ 'c', 'cpp', 'typescript' ]
+let g:polyglot_disabled = [ 'c', 'cpp', 'javascript', 'typescript' ]
 "}}}
 " User Interface
 "{{{themes
