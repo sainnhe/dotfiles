@@ -183,5 +183,5 @@ elif [ "$1" = "user" ]; then
 elif [ "$1" = "apps" ]; then
     pikaur -S fzf fontweak gotop persepolis code terminal-markdown-viewer python2-pygments
 elif [ "$1" = "appswsl" ]; then
-    pikaur -S gotop terminal-markdown-viewer python2-pygments
+    pikaur -S gotop terminal-markdown-viewer python2-pygments gnome-screenshot tcping
 fi
