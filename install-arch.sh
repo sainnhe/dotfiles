@@ -72,9 +72,14 @@ if [ "$1" = "usb" ]; then
         echo 'Server = http://mirrors.163.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
     fi
     #}}}
+    pacman -Syy
     pacstrap /mnt base base-devel
-    genfstab -L /mnt >> /mnt/etc/fstab
-    less /mnt/etc/fstab
+    echo -n "genfstab? [Y/n] "
+    defaultTrue
+    if [ "$judgement" = "y"]; then
+        genfstab -L /mnt >> /mnt/etc/fstab
+        less /mnt/etc/fstab
+    fi
     echo "execute 'arch-chroot /mnt'"
 elif [ "$1" = "chroot" ]; then
     passwd
