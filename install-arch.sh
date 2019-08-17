@@ -14,26 +14,7 @@ defaultFalse() {
 }
 
 if [ "$1" = "usb" ]; then
-    # Network Connection{{{
-    echo -n "Connect to wireless network? [Y/n] "
-    defaultTrue
-    if [ "$judgement" = "y" ]; then
-        wifi-menu
-    fi
-    ping www.qq.com
-    echo -n "Is this OK? [Y/n] "
-    defaultTrue
-    while [ "$judgement" = "n" ]
-    do
-    echo -n "Connect to wireless network? [Y/n] "
-    defaultTrue
-    if [ "$judgement" = "y" ]; then
-        wifi-menu
-    fi
-    ping www.qq.com
-    echo -n "Is this OK? [Y/n] "
-    defaultTrue
-    done
+    # Preparation{{{
     # update system time
     timedatectl set-ntp true
     #}}}
@@ -106,7 +87,7 @@ elif [ "$1" = "chroot" ]; then
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/2019/03/15/$repo/os/$arch' /etc/pacman.d/mirrorlist
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/last/$repo/os/$arch' /etc/pacman.d/mirrorlist
     pacman -Syyuu
-    pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode v2ray sudo mesa xf86-video-intel xorg
+    pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode v2ray sudo mesa xf86-video-intel xorg git
     vim /etc/locale.gen
     locale-gen
     echo -n "add this to the first line: 'LANG=en_US.UTF-8' (enter to continue) "
@@ -129,7 +110,6 @@ elif [ "$1" = "chroot" ]; then
     echo "finish"
 elif [ "$1" = "user" ]; then
     # Basic{{{
-    wifi-menu
     mkdir ~/repo
     git clone https://github.com/sainnhe/dotfiles.git ~/repo/
     git clone https://github.com/sainnhe/scripts.git ~/repo/
