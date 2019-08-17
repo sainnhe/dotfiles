@@ -127,6 +127,52 @@ elif [ "$1" = "chroot" ]; then
     visudo
     echo ""
     echo "finish"
-elif [ "$1" = "root" ]; then
-    echo "root"
+elif [ "$1" = "user" ]; then
+    # Basic{{{
+    wifi-menu
+    mkdir ~/repo
+    git clone https://github.com/sainnhe/dotfiles.git ~/repo/
+    git clone https://github.com/sainnhe/scripts.git ~/repo/
+    git clone https://aur.archlinux.org/pikaur.git ~/repo/
+    cd ~/repo/pikaur
+    sudo makepkg -si
+    #}}}
+    # Network{{{
+    sudo systemctl disable netctl
+    sudo systemctl enable NetworkManager
+    sudo cp ~/repo/scripts/func/v2ray/v2ray-tcp.json /etc/v2ray/config.json
+    sudo systemctl enable v2ray
+    sudo systemctl start v2ray
+    sudo pacman -S proxychains
+    sudo cp ~/repo/dotfiles/.root/etc/proxychains.conf /etc/proxychains.conf
+    #}}}
+    # LightDM{{{
+    sudo pacman -S lightdm
+    sudo pacman -S lightdm-webkit2-greeter
+    pikaur -S lightdm-webkit2-theme-material2
+    sudo systemctl enable lightdm
+    sudo cp ~/repo/dotfiles/.root/etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
+    sudo cp ~/repo/dotfiles/.root/etc/lightdm/lightdm-webkit2-greeter.conf etc/lightdm/lightdm-webkit2-greeter.conf
+    #}}}
+    # Surface Linux{{{
+    git config --global http.proxy socks5://127.0.0.1:1080
+    git clone https://github.com/dmhacker/arch-linux-surface.git ~/repo/
+    sudo pacman -S wget unzip
+    cd ~/repo
+    proxychains -q wget https://github.com/jakeday/linux-surface/archive/master.zip
+    unzip linux-surface-master.zip
+    sudo mkdir arch-linux-surface/.cache_setup
+    sudo mv linux-surface-master arch-linux-surface/.cache_setup/linux-surface
+    cd arch-linux-surface
+    sudo bash setup.sh
+    proxychains -q wget https://github.com/dmhacker/arch-linux-surface/releases/download/5.1.15-1/linux-surface-5.1.15-1-x86_64.pkg.tar.xz
+    proxychains -q wget https://github.com/dmhacker/arch-linux-surface/releases/download/5.1.15-1/linux-surface-docs-5.1.15-1-x86_64.pkg.tar.xz
+    proxychains -q wget https://github.com/dmhacker/arch-linux-surface/releases/download/5.1.15-1/linux-surface-headers-5.1.15-1-x86_64.pkg.tar.xz
+    sudo pacman -U linux-surface-5.1.15-1-x86_64.pkg.tar.xz
+    sudo pacman -U linux-surface-docs-5.1.15-1-x86_64.pkg.tar.xz linux-surface-headers-5.1.15-1-x86_64.pkg.tar.xz
+    pikaur -S update-grub
+    sudo update-grub
+    #}}}
+    sudo pacman -S gvim firefox-developer-edition telegram-desktop w3m aria2
+    echo "setup i3, zsh, tmux, vim manually"
 fi
