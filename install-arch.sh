@@ -139,7 +139,7 @@ elif [ "$1" = "user" ]; then
     # LightDM{{{
     sudo pacman -S lightdm
     sudo pacman -S lightdm-webkit2-greeter
-    pikaur -S lightdm-webkit-theme-aether
+    pikaur -S lightdm-webkit2-theme-material2
     sudo systemctl enable lightdm
     sudo cp ~/repo/dotfiles/.root/etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
     sudo cp ~/repo/dotfiles/.root/etc/lightdm/lightdm-webkit2-greeter.conf etc/lightdm/lightdm-webkit2-greeter.conf
