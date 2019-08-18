@@ -161,8 +161,9 @@ elif [ "$1" = "user" ]; then
     pikaur -S update-grub aic94xx-firmware wd719x-firmware
     sudo update-grub
     #}}}
-    pikaur -S gvim firefox-developer-edition telegram-desktop tilix lsd svn evince nautilus chromium fontweak
+    pikaur -S gvim firefox-developer-edition telegram-desktop tilix lsd svn evince nautilus chromium fontweak gotop
     pikaur -S nerd-fonts-complete wqy-microhei ttf-monaco ttf-droid noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji ttf-symbola
     proxychains -q wget https://github.com/fphoenix88888/ttf-mswin10-arch/raw/master/ttf-ms-win10-zh_cn-10.0.18362.116-1-any.pkg.tar.xz
+    pikaur -S fcitx-libpinyin fcitx-cloudpinyin fcitx-ui-light fcitx-table-extra fcitx-table-other fcitx-configtool fcitx-gtk3 ssf2fcitx-git fcitx-skin-material
     echo "setup i3, zsh, tmux, vim manually"
 fi
