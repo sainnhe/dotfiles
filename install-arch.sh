@@ -85,6 +85,7 @@ elif [ "$1" = "chroot" ]; then
     passwd
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     hwclock --systohc
+    timedatectl set-local-rtc 1 --adjust-system-clock
     rm /etc/pacman.d/mirrorlist
     echo 'Server = http://mirrors.163.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
     sed -ri -e '$a # Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
