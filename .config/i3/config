@@ -18,7 +18,7 @@ bindsym $mod+b exec sh ~/.config/polybar/scripts/toggle-bar.sh
 bindsym $mod+w kill
 
 # rofi
-bindsym $mod+z exec rofi -show drun
+bindsym $mod+z exec rofi -show
 
 # change focus
 bindsym $mod+Left focus left
