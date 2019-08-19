@@ -165,4 +165,8 @@ elif [ "$1" = "node" ]; then
     npm_yarn_setup
 elif [ "$1" = "rust" ]; then
     rust_setup
+elif [ "$1" = "dotfiles" ]; then
+    mkdir -p ~/.config/nvim
+    ln -s /home/sainnhe/repo/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
+    ln -s /home/sainnhe/repo/dotfiles/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 fi

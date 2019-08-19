@@ -11,4 +11,9 @@ rm tmux-pomodoro*.tar.gz
 cd "$HOME" || exit
 #}}}
 
+mkdir -p ~/.tmux
+ln -s /home/sainnhe/repo/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s /home/sainnhe/repo/dotfiles/.tmux-bind.sh ~/.tmux-bind.sh
+ln -s /home/sainnhe/repo/dotfiles/.tmux/tmuxline ~/.tmux/tmuxline
+
 echo "'prefix I' to install plugins"
