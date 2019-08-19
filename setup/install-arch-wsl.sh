@@ -42,7 +42,12 @@ elif [ "$1" = "user" ]; then
     git clone https://github.com/sainnhe/scripts.git
     git clone https://github.com/sainnhe/notes.git
     cd dotfiles
-    
+    git remote set-url origin git@github.com:sainnhe/dotfiles.git
+    cd ../scripts
+    git remote set-url origin git@github.com:sainnhe/scripts.git
+    cd ../notes
+    git remote set-url origin git@github.com:sainnhe/notes.git
+    cd ../
     git clone https://aur.archlinux.org/pikaur.git
     cd ~/repo/pikaur
     makepkg -si
