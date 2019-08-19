@@ -271,10 +271,47 @@ function! SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 "}}}
+"{{{StatuslineGit
+function! GitBranch()
+    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+function! StatuslineGit()
+    let l:branchname = GitBranch()
+    if strlen(l:branchname) > 0
+        return ' '.l:branchname.' '
+    else
+        return ' clean '
+    endif
+endfunction"}}}
 "}}}
 " UI{{{
 syntax enable
 set t_Co=256
 set termguicolors
 colo gruvbox-material-soft
+" Statusline{{{
+" :h 'statusline'
+set noshowmode
+set laststatus=2
+set statusline=
+set statusline+=%#ModeMsg#
+set statusline+=%{(mode()=='n')?'\ \ NORMAL\ ':''}
+set statusline+=%{(mode()=='i')?'\ \ INSERT\ ':''}
+set statusline+=%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=%{(mode()=='r')?'\ \ REPLACE\ ':''}
+set statusline+=%#StatusLine#
+set statusline+=%r\ 
+set statusline+=%f
+set statusline+=%m\ 
+set statusline+=%#Normal#
+set statusline+=%=
+set statusline+=%#StatusLine#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c\ 
+set statusline+=%#ModeMsg#
+set statusline+=%{StatuslineGit()}
+" }}}
 " }}}
