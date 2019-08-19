@@ -81,53 +81,53 @@ pikaur_setup_func() {
     read -r
     echo -n "install microsoft-python-language-server from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S microsoft-python-language-server
+    pikaur -S microsoft-python-language-server
     echo -n "install javascript-typescript-langserver from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S javascript-typescript-langserver
+    pikaur -S javascript-typescript-langserver
     echo -n "install yaml-language-server-bin from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S yaml-language-server-bin
+    pikaur -S yaml-language-server-bin
     echo -n "install global from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S global
+    pikaur -S global
     echo -n "install toilet from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S toilet
+    pikaur -S toilet
     echo -n "install toilet-fonts from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S toilet-fonts
+    pikaur -S toilet-fonts
     echo -n "install stylelint from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S stylelint
+    pikaur -S stylelint
     echo -n "install nodejs-jsonlint from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S nodejs-jsonlint
+    pikaur -S nodejs-jsonlint
     echo -n "install js-beautify from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S js-beautify
+    pikaur -S js-beautify
     echo -n "install universal-ctags-git from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S universal-ctags-git
+    pikaur -S universal-ctags-git
     echo -n "install gotags-git from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S gotags-git
+    pikaur -S gotags-git
     echo -n "install jsctags-tern-git from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S jsctags-tern-git
+    pikaur -S jsctags-tern-git
     echo -n "install markdown2ctags from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S markdown2ctags
+    pikaur -S markdown2ctags
     echo -n "install rst2ctags from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S rst2ctags
+    pikaur -S rst2ctags
     echo -n "install cling-git from AUR. [enter to continue]  "
     read -r
-    pikaur --noedit -S cling-git
 }
 # }}}
 # {{{npm_yarn_setup()
 npm_yarn_setup() {
+    cd  ~
     echo -n "Use proxychains? [Y/n]  "
     read -r var
     if [[ "$var"x == ""x ]]; then
