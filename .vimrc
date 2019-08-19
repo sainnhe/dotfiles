@@ -8,6 +8,9 @@ let mapleader=' '
 nnoremap <SPACE> <Nop>
 set mouse=a
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
+set completeopt=menuone,menu,longest
+set dictionary+=/usr/share/dict/words
 let g:sessions_dir = expand('~/.cache/vim/sessions/')
 set smartindent                         " 智能缩进
 set hlsearch                            " 高亮搜索
@@ -144,6 +147,13 @@ nnoremap zs :<C-u>mkview<CR>
 nnoremap zl :<C-u>loadview<CR>
 "}}}
 "{{{InsertMode
+" Completion
+imap <C-x>d <C-x><C-k>
+imap <C-x>b <C-x><C-i>
+imap <C-x>p <C-x><C-f>
+imap <C-x>o <C-x><C-o>
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Alt+X进入普通模式
 inoremap <A-x> <ESC><right>
 inoremap ^@ <ESC>
@@ -157,8 +167,6 @@ inoremap <C-S> <Esc>:w<CR>a
 inoremap <C-Z> <ESC>ua
 " Ctrl+R撤销撤销的动作
 inoremap <C-R> <ESC><C-R>a
-" Ctrl+X剪切当前行
-inoremap <C-X> <ESC>"_ddi
 " Alt+hjkl移动
 imap <A-h> <left>
 imap <A-j> <down>
