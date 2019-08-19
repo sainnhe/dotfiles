@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-sudo pacman -S xsel
+sudo pacman -S xsel tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 #{{{pomodoro
 mkdir -p "$HOME/.local/bin"
