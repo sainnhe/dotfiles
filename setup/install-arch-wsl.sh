@@ -51,5 +51,6 @@ elif [ "$1" = "user" ]; then
     git clone https://aur.archlinux.org/pikaur-git.git
     cd ~/repo/pikaur-git
     makepkg -si
+    sudo pacman -S python-pysocks
     echo "setup dotfiles, zsh, tmux, vim manually"
 fi

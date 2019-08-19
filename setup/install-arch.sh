@@ -136,6 +136,7 @@ elif [ "$1" = "user" ]; then
     git clone https://aur.archlinux.org/pikaur.git
     cd ~/repo/pikaur
     makepkg -si
+    sudo pacman -S python-pysocks
     echo "setup dotfiles manually"
     #}}}
     # Network{{{
