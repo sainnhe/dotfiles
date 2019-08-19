@@ -122,6 +122,7 @@ elif [ "$1" = "user" ]; then
     git config --global http.proxy socks5://127.0.0.1:1080
     git clone https://github.com/sainnhe/dotfiles.git
     git clone https://github.com/sainnhe/scripts.git
+    git clone https://github.com/sainnhe/notes.git
     git clone https://aur.archlinux.org/pikaur.git
     cd ~/repo/pikaur
     makepkg -si
