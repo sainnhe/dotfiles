@@ -93,7 +93,7 @@ elif [ "$1" = "chroot" ]; then
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/2019/03/15/$repo/os/$arch' /etc/pacman.d/mirrorlist
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/last/$repo/os/$arch' /etc/pacman.d/mirrorlist
     pacman -Syyuu
-    pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode v2ray sudo mesa xf86-video-intel xorg git w3m aria2 wget
+    pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode v2ray sudo mesa xf86-video-intel xorg git w3m aria2 wget openssh
     vim /etc/locale.gen
     locale-gen
     echo -n "add this to the first line: 'LANG=en_US.UTF-8' (enter to continue) "
@@ -117,6 +117,9 @@ elif [ "$1" = "chroot" ]; then
     echo "finish"
 elif [ "$1" = "user" ]; then
     # Basic{{{
+    ssh-keygen -t rsa -b 4096 -C "sainnhe@gmail.com"
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_rsa
     mkdir ~/repo
     cd ~/repo
     git config --global http.proxy socks5://127.0.0.1:1080
@@ -170,5 +173,7 @@ elif [ "$1" = "user" ]; then
     pikaur -S qogir-gtk-theme-git breeze-icons oxygen-icons papirus-icon-theme numix-cursor-theme arc-solid-gtk-theme arc-gtk-theme la-capitaine-icon-theme mojave-gtk-theme-git nordic-theme-git snow-theme-git numix-icon-theme-git
     echo "setup i3, zsh, tmux, vim manually"
 elif [ "$1" = "apps" ]; then
-    pikaur -S fzf fontweak gotop persepolis code
+    pikaur -S fzf fontweak gotop persepolis code terminal-markdown-viewer python2-pygments
+elif [ "$1" = "appswsl" ]; then
+    pikaur -S gotop terminal-markdown-viewer python2-pygments
 fi
