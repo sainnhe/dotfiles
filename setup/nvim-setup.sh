@@ -123,6 +123,7 @@ pikaur_setup_func() {
     pikaur -S rst2ctags
     echo -n "install cling-git from AUR. [enter to continue]  "
     read -r
+    pikaur -S cling-git
 }
 # }}}
 # {{{npm_yarn_setup()
