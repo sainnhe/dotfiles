@@ -15,7 +15,7 @@ elif [ "$1" = "base" ]; then
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/2019/03/15/$repo/os/$arch' /etc/pacman.d/mirrorlist
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/last/$repo/os/$arch' /etc/pacman.d/mirrorlist
     pacman -Syyuu
-    pacman -S sudo vim aria2 wget git dialog wpa_supplicant ntfs-3g v2ray w3m proxychains lsd svn fzf
+    pacman -S sudo vim aria2 wget git dialog wpa_supplicant ntfs-3g v2ray w3m proxychains lsd svn fzf openssh
     visudo
     cd /tmp
     wget https://github.com/sainnhe/gruvbox-material/files/3513850/fakeroot-tcp-1.23-1-x86_64.pkg.tar.xz.zip
@@ -32,12 +32,17 @@ elif [ "$1" = "base" ]; then
     vim /etc/locale.conf
     vim /etc/proxychains.conf
 elif [ "$1" = "user" ]; then
+    ssh-keygen -t rsa -b 4096 -C "sainnhe@gmail.com"
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_rsa
     mkdir ~/repo
     cd ~/repo
     git config --global http.proxy socks5://127.0.0.1:1080
     git clone https://github.com/sainnhe/dotfiles.git
     git clone https://github.com/sainnhe/scripts.git
     git clone https://github.com/sainnhe/notes.git
+    cd dotfiles
+    
     git clone https://aur.archlinux.org/pikaur.git
     cd ~/repo/pikaur
     makepkg -si
