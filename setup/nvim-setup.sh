@@ -166,6 +166,7 @@ elif [ "$1" = "node" ]; then
 elif [ "$1" = "rust" ]; then
     rust_setup
 elif [ "$1" = "dotfiles" ]; then
+    cp /home/sainnhe/repo/dotfiles/.vimrc ~/
     mkdir -p ~/.config/nvim
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
