@@ -48,8 +48,8 @@ elif [ "$1" = "user" ]; then
     cd ../notes
     git remote set-url origin git@github.com:sainnhe/notes.git
     cd ../
-    git clone https://aur.archlinux.org/pikaur.git
-    cd ~/repo/pikaur
+    git clone https://aur.archlinux.org/pikaur-git.git
+    cd ~/repo/pikaur-git
     makepkg -si
     echo "setup dotfiles, zsh, tmux, vim manually"
 fi
