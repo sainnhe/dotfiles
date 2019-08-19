@@ -169,5 +169,5 @@ elif [ "$1" = "user" ]; then
     pikaur -S qogir-gtk-theme-git breeze-icons oxygen-icons papirus-icon-theme numix-cursor-theme arc-solid-gtk-theme arc-gtk-theme la-capitaine-icon-theme mojave-gtk-theme-git nordic-theme-git snow-theme-git numix-icon-theme-git
     echo "setup i3, zsh, tmux, vim manually"
 elif [ "$1" = "apps" ]; then
-    pikaur -S fontweak gotop persepolis code
+    pikaur -S fzf fontweak gotop persepolis code
 fi
