@@ -1,6 +1,7 @@
 #!/bin/env bash
 
-sudo pacman -S lua
+sudo pacman -S lua zsh
+chsh -s /usr/bin/zsh
 mkdir ~/.zplugin
 git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
 
