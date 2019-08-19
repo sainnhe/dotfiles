@@ -59,17 +59,17 @@ if [ "$1" = "usb" ]; then
     #}}}
     # Mirror{{{
     mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-    echo "[1] 163; [2] aliyun; [3] tuna"
+    echo "[1] tuna; [2] 163; [3] aliyun"
     echo -n "> "
     read -r mirror
     if [ "$mirror" = "1" ]; then
-        echo 'Server = http://mirrors.163.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
-    elif [ "$mirror" = "2" ]; then
-        echo 'Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
-    elif [ "$mirror" = "3" ]; then
         echo 'Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
-    else
+    elif [ "$mirror" = "2" ]; then
         echo 'Server = http://mirrors.163.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+    elif [ "$mirror" = "3" ]; then
+        echo 'Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+    else
+        echo 'Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
     fi
     #}}}
     pacman -Syy
@@ -87,9 +87,9 @@ elif [ "$1" = "chroot" ]; then
     hwclock --systohc
     timedatectl set-local-rtc 1 --adjust-system-clock
     rm /etc/pacman.d/mirrorlist
-    echo 'Server = http://mirrors.163.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+    echo 'Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+    sed -ri -e '$a # Server = http://mirrors.163.com/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
     sed -ri -e '$a # Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
-    sed -ri -e '$a # Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/2019/03/15/$repo/os/$arch' /etc/pacman.d/mirrorlist
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/last/$repo/os/$arch' /etc/pacman.d/mirrorlist
     pacman -Syyuu
