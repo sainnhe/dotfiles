@@ -9,7 +9,7 @@ export SAVEHIST=$HISTSIZE
 if [[ $(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$))))))) != *"tmux"* ]]; then
     export TERM_Emulator=$(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$)))))))
 fi
-export EDITOR=nvim
+export EDITOR=vim
 export BROWSER="chromium"
 export PAGER="nvim --cmd 'let g:vimManPager = 1' -c MANPAGER -"
 export MANPAGER="nvim --cmd 'let g:vimManPager = 1' -c MANPAGER -"
@@ -172,7 +172,7 @@ zstyle -e ':completion:*:hosts' hosts 'reply=(
 }
 # }}}
 # {{{rtv
-export RTV_EDITOR="nvim"
+export RTV_EDITOR="vim"
 export RTV_BROWSER="w3m"
 export RTV_URLVIEWER="urlscan"
 # }}}
