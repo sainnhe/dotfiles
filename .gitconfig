@@ -2,7 +2,7 @@
     name = Sainnhepark
     email = sainnhe@gmail.com
 [core]
-    editor = nvim
+    editor = vim
 [merge]
     tool = vimdiff
 [alias]
