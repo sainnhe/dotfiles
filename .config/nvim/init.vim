@@ -630,17 +630,13 @@ Plug 'ryanoasis/vim-devicons'
 "{{{syntax
 Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax' }
 Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-syntax-c-cpp', 'for': [ 'c', 'cpp' ] }
-Plug 'othree/yajs.vim', { 'as': 'vim-syntax-javascript', 'for': 'javascript' }
-Plug 'MaxMEllon/vim-jsx-pretty', { 'as': 'vim-syntax-jsx', 'for': 'javascript' }
-Plug 'HerringtonDarkholme/yats.vim', { 'as': 'vim-syntax-typescript', 'for': 'typescript' }
-let g:polyglot_disabled = [ 'c', 'cpp', 'javascript', 'typescript' ]
+let g:polyglot_disabled = [ 'c', 'cpp' ]
 "}}}
 " User Interface
 "{{{themes
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
 Plug 'sainnhe/vim-color-vanilla-cake'
 Plug 'sainnhe/gruvbox-material', { 'as': 'vim-color-gruvbox-material', 'branch': 'neosyn' }
-Plug 'sainnhe/forest-theme', { 'as': 'vim-color-forest' }
 Plug 'sainnhe/edge', { 'as': 'vim-color-edge' }
 "}}}
 Plug 'itchyny/lightline.vim'
@@ -993,7 +989,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'forest'
+let g:vimColorScheme = 'gruvbox-material'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1003,13 +999,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
     call g:quickmenu#append('gruvbox-material', 'call SwitchColorScheme("gruvbox-material")', '', '', 0, '')
-    "}}}
-    "{{{forest
-    if g:vimColorScheme ==# 'forest'
-        colorscheme forest
-        let g:lightline.colorscheme = 'forest'
-    endif
-    call g:quickmenu#append('forest', 'call SwitchColorScheme("forest")', '', '', 0, '')
     "}}}
     "{{{vanilla-cake
     if g:vimColorScheme ==# 'vanilla-cake'
