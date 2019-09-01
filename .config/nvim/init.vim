@@ -640,6 +640,7 @@ let g:polyglot_disabled = [ 'c', 'cpp', 'javascript', 'typescript' ]
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
 Plug 'sainnhe/vim-color-vanilla-cake'
 Plug 'sainnhe/gruvbox-material', { 'as': 'vim-color-gruvbox-material', 'branch': 'neosyn' }
+Plug 'sainnhe/forest-theme', { 'as': 'vim-color-forest' }
 Plug 'sainnhe/edge', { 'as': 'vim-color-edge' }
 "}}}
 Plug 'itchyny/lightline.vim'
@@ -992,7 +993,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'gruvbox-material'
+let g:vimColorScheme = 'forest'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -1002,6 +1003,13 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
     call g:quickmenu#append('gruvbox-material', 'call SwitchColorScheme("gruvbox-material")', '', '', 0, '')
+    "}}}
+    "{{{forest
+    if g:vimColorScheme ==# 'forest'
+        colorscheme forest
+        let g:lightline.colorscheme = 'forest'
+    endif
+    call g:quickmenu#append('forest', 'call SwitchColorScheme("forest")', '', '', 0, '')
     "}}}
     "{{{vanilla-cake
     if g:vimColorScheme ==# 'vanilla-cake'
