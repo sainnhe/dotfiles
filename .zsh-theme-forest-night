@@ -4,7 +4,7 @@
 # PURE_POWER_MODE=modern    use nerdfont characters in the prompt
 # PURE_POWER_MODE=fancy     use unicode characters in the prompt
 # PURE_POWER_MODE=portable  use only ascii characters in the prompt
-PURE_POWER_MODE=fancy
+PURE_POWER_MODE=modern
 
 if autoload -U is-at-least && is-at-least 5.7 && [[ $COLORTERM == (24bit|truecolor) || ${terminfo[colors]} -eq 16777216 ]]; then
     FOREST_NIGHT_PURE_POWER_TRUE_COLOR=true
