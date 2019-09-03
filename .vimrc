@@ -296,13 +296,14 @@ endfunction"}}}
 syntax enable
 set t_Co=256
 set termguicolors
-colo gruvbox-material-soft
+let g:gruvbox_material_background = 'soft'
+colo gruvbox-material
 " Statusline{{{
 " :h 'statusline'
 set noshowmode
 set laststatus=2
 set statusline=
-set statusline+=%#ModeMsg#
+set statusline+=%#TabLineSel#
 set statusline+=%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%{(mode()=='i')?'\ \ INSERT\ ':''}
 set statusline+=%{(mode()=='v')?'\ \ VISUAL\ ':''}
@@ -319,7 +320,7 @@ set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c\ 
-set statusline+=%#ModeMsg#
+set statusline+=%#TabLineSel#
 set statusline+=%{StatuslineGit()}
 " }}}
 " }}}
