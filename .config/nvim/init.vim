@@ -990,12 +990,22 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'gruvbox-material'
+let g:vimColorScheme = 'gruvbox-material-light'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
-    "{{{gruvbox-material
-    if g:vimColorScheme ==# 'gruvbox-material'
+    "{{{gruvbox-material-dark
+    if g:vimColorScheme ==# 'gruvbox-material-dark'
+        set background=dark
+        colorscheme gruvbox-material
+        let g:lightline.colorscheme = 'gruvbox_material'
+    endif
+    call g:quickmenu#append('gruvbox-material', 'call SwitchColorScheme("gruvbox-material")', '', '', 0, '')
+    "}}}
+    "{{{gruvbox-material-light
+    if g:vimColorScheme ==# 'gruvbox-material-light'
+        let g:gruvbox_material_background = 'soft'
+        set background=light
         colorscheme gruvbox-material
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
