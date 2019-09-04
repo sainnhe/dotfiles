@@ -635,9 +635,9 @@ let g:polyglot_disabled = [ 'c', 'cpp' ]
 " User Interface
 "{{{themes
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
+Plug 'sainnhe/vim-color-forest-night'
 Plug 'sainnhe/gruvbox-material', { 'as': 'vim-color-gruvbox-material', 'branch': 'neosyn' }
 Plug 'sainnhe/edge', { 'as': 'vim-color-edge' }
-Plug 'sainnhe/vim-color-forest-night'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -993,7 +993,7 @@ let g:vimColorScheme = 'forest-night'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
-    "{{{gruvbox-material-dark
+    "{{{forest-night
     if g:vimColorScheme ==# 'forest-night'
         colorscheme forest-night
         let g:lightline.colorscheme = 'forest_night'
