@@ -989,10 +989,17 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'gruvbox-material-light'
+let g:vimColorScheme = 'forest-night'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
+    "{{{gruvbox-material-dark
+    if g:vimColorScheme ==# 'forest-night'
+        colorscheme forest-night
+        let g:lightline.colorscheme = 'forest_night'
+    endif
+    call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
+    "}}}
     "{{{gruvbox-material-dark
     if g:vimColorScheme ==# 'gruvbox-material-dark'
         set background=dark
