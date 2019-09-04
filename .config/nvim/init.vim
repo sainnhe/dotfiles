@@ -635,7 +635,6 @@ let g:polyglot_disabled = [ 'c', 'cpp' ]
 " User Interface
 "{{{themes
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
-Plug 'sainnhe/vim-color-vanilla-cake'
 Plug 'sainnhe/gruvbox-material', { 'as': 'vim-color-gruvbox-material', 'branch': 'neosyn' }
 Plug 'sainnhe/edge', { 'as': 'vim-color-edge' }
 Plug 'sainnhe/vim-color-forest-night'
@@ -1010,13 +1009,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
     call g:quickmenu#append('gruvbox-material', 'call SwitchColorScheme("gruvbox-material")', '', '', 0, '')
-    "}}}
-    "{{{vanilla-cake
-    if g:vimColorScheme ==# 'vanilla-cake'
-        colorscheme vanilla-cake
-        let g:lightline.colorscheme = 'vanilla_cake'
-    endif
-    call g:quickmenu#append('vanilla-cake', 'call SwitchColorScheme("vanilla-cake")', '', '', 0, '')
     "}}}
     "{{{edge-dark
     if g:vimColorScheme ==# 'edge-dark'
