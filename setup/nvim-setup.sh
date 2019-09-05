@@ -8,7 +8,7 @@ pacman_setup_func() {
     pacman -Syy &>/dev/null
     echo "setting up python provider..."
     pacman -S --noconfirm python python2 &>/dev/null
-    pacman -S --noconfirm python-neovim &>/dev/null
+    pacman -S --noconfirm python-pynvim &>/dev/null
     pacman -S --noconfirm python2-neovim &>/dev/null
     pacman -S --noconfirm python-pip python2-pip &>/dev/null
     echo "installing npm..."
