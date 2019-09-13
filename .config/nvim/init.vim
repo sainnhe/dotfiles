@@ -998,7 +998,7 @@ function! ColorScheme()
         colorscheme forest-night
         let g:lightline.colorscheme = 'forest_night'
     endif
-    call g:quickmenu#append('forest-night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
+    call g:quickmenu#append('Forest Night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
     "}}}
     "{{{gruvbox-material-dark
     if g:vimColorScheme ==# 'gruvbox-material-dark'
@@ -1006,7 +1006,7 @@ function! ColorScheme()
         colorscheme gruvbox-material
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
-    call g:quickmenu#append('gruvbox-material', 'call SwitchColorScheme("gruvbox-material")', '', '', 0, '')
+    call g:quickmenu#append('Gruvbox Material Dark', 'call SwitchColorScheme("gruvbox-material-dark")', '', '', 0, '')
     "}}}
     "{{{gruvbox-material-light
     if g:vimColorScheme ==# 'gruvbox-material-light'
@@ -1015,7 +1015,7 @@ function! ColorScheme()
         colorscheme gruvbox-material
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
-    call g:quickmenu#append('gruvbox-material', 'call SwitchColorScheme("gruvbox-material")', '', '', 0, '')
+    call g:quickmenu#append('Gruvbox Material Light', 'call SwitchColorScheme("gruvbox-material-light")', '', '', 0, '')
     "}}}
     "{{{edge-dark
     if g:vimColorScheme ==# 'edge-dark'
@@ -1023,7 +1023,7 @@ function! ColorScheme()
         colorscheme edge
         let g:lightline.colorscheme = 'edge'
     endif
-    call g:quickmenu#append('edge-dark', 'call SwitchColorScheme("edge-dark")', '', '', 0, '')
+    call g:quickmenu#append('Edge Dark', 'call SwitchColorScheme("edge-dark")', '', '', 0, '')
     "}}}
     "{{{edge-light
     if g:vimColorScheme ==# 'edge-light'
@@ -1031,7 +1031,7 @@ function! ColorScheme()
         colorscheme edge
         let g:lightline.colorscheme = 'edge'
     endif
-    call g:quickmenu#append('edge-light', 'call SwitchColorScheme("edge-light")', '', '', 0, '')
+    call g:quickmenu#append('Edge Light', 'call SwitchColorScheme("edge-light")', '', '', 0, '')
     "}}}
 endfunction
 call ColorScheme()
