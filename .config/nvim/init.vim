@@ -659,6 +659,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'roman/golden-ratio'
+Plug 'TaDaa/vimade'
 Plug 'sainnhe/artify.vim'
 Plug 'RRethy/vim-hexokinase'
 
@@ -1277,6 +1278,11 @@ nnoremap <leader><CR> :<C-u>Goyo<CR>
 "}}}
 " 默认关闭
 let g:golden_ratio_autocommand = 0
+"}}}
+"{{{vimade
+let g:vimade = {}
+let g:vimade.fadelevel = 0.6
+let g:vimade.enablesigns = 1
 "}}}
 "{{{vim-hexokinase
 let g:Hexokinase_highlighters = ['background']  " ['virtual', 'sign_column', 'background', 'foreground', 'foregroundfull']
