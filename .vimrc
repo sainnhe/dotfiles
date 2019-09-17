@@ -296,6 +296,7 @@ endfunction"}}}
 syntax enable
 set t_Co=256
 set termguicolors
+set background=dark
 let g:gruvbox_material_background = 'soft'
 colo gruvbox-material
 " Statusline{{{
