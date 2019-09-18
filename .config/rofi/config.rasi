@@ -146,15 +146,18 @@ configuration {
     spacing:    0;
 }
 #entry {
+    text-color: #a1bf78;
     background-color: #00000000;
     spacing:    0;
 }
 #prompt {
+    text-color: #d390e7;
     background-color: #00000000;
     spacing:    0;
 }
 
 #textbox-prompt-colon {
+    text-color: #d390e7;
     background-color: #00000000;
     expand:     false;
     str:        ":";
