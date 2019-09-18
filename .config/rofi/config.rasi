@@ -79,10 +79,10 @@ configuration {
 }
 
 * {
-    xbs:#4b5cc4;
-    xfs:#f2eeed;
-    xbg:#19191995;
-    xfg:#f2eeed;
+    xbs:#dde2e710;
+    xfs:#73b3e7;
+    xbg:#26272990;
+    xfg:#dde2e7;
 }
 * {
     columns: 1;
@@ -96,7 +96,7 @@ configuration {
         location:        west;
     anchor: west;*/
     border: 0;
-    border-radius: 4px;
+    border-radius: 2px;
     padding: 40;
     width: 30%;
     height: 50%;
