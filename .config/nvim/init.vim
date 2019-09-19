@@ -1595,6 +1595,7 @@ elseif g:vimMode ==# 'complete'
         echo '<leader>la        codeaction-selected'
         echo '<leader>lA        codelens-action'
         echo '<C-l>             jump to floating window'
+        echo '?                 toggle hover'
     endfunction
     "}}}
     "{{{coc-functions
@@ -1629,7 +1630,6 @@ elseif g:vimMode ==# 'complete'
     call g:quickmenu#append('Update Extensions', 'CocUpdate', '', '', 0, 'U')
     call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
     call g:quickmenu#append('Info', 'CocInfo', ':h CocOpenLog for log', '', 0, '@')
-    call g:quickmenu#append('Toggle Hover', 'let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1', '', '', 0, 't')
     call g:quickmenu#append('Extension Market', 'CocList marketplace', '', '', 0, '#')
     "}}}
     "{{{coc-init
@@ -1665,7 +1665,7 @@ elseif g:vimMode ==# 'complete'
         autocmd InsertEnter * call coc#util#float_hide()
         autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
     augroup END
-    let g:CocHoverEnable = 1
+    let g:CocHoverEnable = 0
     let g:tmuxcomplete#trigger = ''
     set hidden
     set completeopt=noinsert,noselect,menuone
@@ -1681,7 +1681,6 @@ elseif g:vimMode ==# 'complete'
     imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
     imap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
-    " nnoremap <expr><C-l> coc#util#has_float() ? win_gotoid(coc#util#get_float()) : "\<C-l>"
     nnoremap <silent> <leader>lJ <Plug>(coc-diagnostic-next)
     nnoremap <silent> <leader>lK <Plug>(coc-diagnostic-prev)
     nnoremap <silent> <leader>li <Plug>(coc-diagnostic-info)
@@ -1697,6 +1696,7 @@ elseif g:vimMode ==# 'complete'
     nnoremap <silent> <leader>la <Plug>(coc-codeaction)
     vnoremap <silent> <leader>la <Plug>(coc-codeaction-selected)
     nnoremap <silent> <leader>lA <Plug>(coc-codelens-action)
+    nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
     "}}}
     "}}}
     "{{{LeaderF
