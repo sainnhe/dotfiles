@@ -5,6 +5,7 @@
   "suggest.maxPreviewWidth": 35,
   "suggest.detailMaxLength": 100,
   "suggest.detailField": "preview",
+  "suggest.removeDuplicateItems": true,
   "suggest.snippetIndicator": " \ue796",
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
