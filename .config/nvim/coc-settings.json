@@ -1,162 +1,173 @@
 {
-  "$schema": "/home/sainnhe/.cache/vim/plugins/coc.nvim/data/schema.json",
-  "suggest.timeout": 500,
-  "suggest.enablePreview": true,
-  "suggest.maxPreviewWidth": 35,
-  "suggest.detailMaxLength": 100,
-  "suggest.detailField": "preview",
-  "suggest.removeDuplicateItems": true,
-  "suggest.snippetIndicator": " \ue796",
-  "suggest.completionItemKindLabels": {
-    "keyword": "\uf1de",
-    "variable": "\ue79b",
-    "value": "\uf89f",
-    "operator": "\u03a8",
-    "function": "\u0192",
-    "reference": "\ufa46",
-    "constant": "\uf8fe",
-    "method": "\uf09a",
-    "struct": "\ufb44",
-    "class": "\uf0e8",
-    "interface": "\uf417",
-    "text": "\ue612",
-    "enum": "\uf435",
-    "enumMember": "\uf02b",
-    "module": "\uf40d",
-    "color": "\ue22b",
-    "property": "\ue624",
-    "field": "\uf9be",
-    "unit": "\uf475",
-    "event": "\ufacd",
-    "file": "\uf723",
-    "folder": "\uf114",
-    "snippet": "\ue60b",
-    "typeParameter": "\uf728",
-    "default": "\uf29c"
-  },
-  "diagnostic.level": "hint",
-  "diagnostic.refreshOnInsertMode": false,
-  "diagnostic.refreshAfterSave": true,
-  "diagnostic.displayByAle": true,
-  "diagnostic.virtualText": true,
-  "diagnostic.errorSign": "\uf65b",
-  "diagnostic.warningSign": "\uf421",
-  "diagnostic.infoSign": "ℹ",
-  "diagnostic.hintSign": "➤",
-  "codeLens.enable": true,
-  "codeLens.separator": "‣",
-  "list.indicator": "➣",
-  "list.maxHeight": 15,
-  "list.insertMappings": {
-    "<C-p>": "action:preview"
-  },
-  "suggest.languageSourcePriority": 99,
-  "help_snippets": "https://github.com/neoclide/coc-snippets",
-  "snippets.shortcut": "S",
-  "snippets.priority": 98,
-  "snippets.extends": {
-    "cpp": ["c"],
-    "javascriptreact": ["javascript"],
-    "typescript": ["javascript"]
-  },
-  "coc.source.ultisnips.shortcut": "US",
-  "coc.source.ultisnips.priority": 98,
-  "coc.source.neosnippet.shortcut": "NS",
-  "coc.source.neosnippet.priority": 98,
-  "coc.source.file.shortcut": "F",
-  "coc.source.file.priority": 89,
-  "coc.source.file.ignoreHidden": false,
-  "coc.source.around.shortcut": "A",
-  "coc.source.around.priority": 88,
-  "coc.source.buffer.shortcut": "B",
-  "coc.source.buffer.priority": 87,
-  "coc.source.buffer.ignoreGitignore": false,
-  "coc.source.syntax.shortcut": "X",
-  "coc.source.syntax.priority": 79,
-  "coc.source.tag.shortcut": "T",
-  "coc.source.tag.priority": 78,
-  "coc.source.dictionary.shortcut": "D",
-  "coc.source.dictionary.priority": 9,
-  "coc.source.dictionary.filetypes": ["markdown", "text"],
-  "coc.source.emoji.shortcut": "E",
-  "coc.source.emoji.priority": 8,
-  "coc.source.emoji.filetypes": ["markdown", "text"],
-  "help_highlight": "https://github.com/neoclide/coc-highlight",
-  "coc.preferences.colorSupport": true,
-  "highlight.document.enable": true,
-  "highlight.colors.enable": false,
-  "highlight.disableLanguages": [],
-  "help_emmet": "https://github.com/neoclide/coc-emmet",
-  "emmet.includeLanguages": {
-    "vue-html": "html",
-    "javascript": "javascriptreact"
-  },
-  "help_pairs": "https://github.com/neoclide/coc-pairs",
-  "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
-  "help_html": "https://github.com/neoclide/coc-html",
-  "help_css": "https://github.com/neoclide/coc-css",
-  "help_json": "https://github.com/neoclide/coc-json",
-  "help_yaml": "https://github.com/neoclide/coc-yaml",
-  "python.jediEnabled": false,
-  "languageserver": {
-    "CLANGD": {
-      "command": "clangd",
-      "rootPatterns": [
-        "compile_flags.txt",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "filetypes_bak": ["none"]
+    "$schema": "/home/sainnhe/.cache/vim/plugins/coc.nvim/data/schema.json",
+    "suggest.timeout": 500,
+    "suggest.enablePreview": true,
+    "suggest.maxPreviewWidth": 35,
+    "suggest.detailMaxLength": 100,
+    "suggest.detailField": "preview",
+    "suggest.removeDuplicateItems": true,
+    "suggest.snippetIndicator": " \ue796",
+    "suggest.completionItemKindLabels": {
+        "keyword": "\uf1de",
+        "variable": "\ue79b",
+        "value": "\uf89f",
+        "operator": "\u03a8",
+        "function": "\u0192",
+        "reference": "\ufa46",
+        "constant": "\uf8fe",
+        "method": "\uf09a",
+        "struct": "\ufb44",
+        "class": "\uf0e8",
+        "interface": "\uf417",
+        "text": "\ue612",
+        "enum": "\uf435",
+        "enumMember": "\uf02b",
+        "module": "\uf40d",
+        "color": "\ue22b",
+        "property": "\ue624",
+        "field": "\uf9be",
+        "unit": "\uf475",
+        "event": "\ufacd",
+        "file": "\uf723",
+        "folder": "\uf114",
+        "snippet": "\ue60b",
+        "typeParameter": "\uf728",
+        "default": "\uf29c"
     },
-    "MPLS": {
-      "command": "mspyls",
-      "trace.server": "verbose",
-      "filetypes": ["none"],
-      "filetypes_bak": ["python"],
-      "initializationOptions": {
-        "interpreter": {
-          "properties": {
-            "InterpreterPath": "/usr/bin/python3",
-            "UseDefaultDatabase": true
-          }
+    "diagnostic.level": "hint",
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.refreshAfterSave": true,
+    "diagnostic.displayByAle": true,
+    "diagnostic.virtualText": true,
+    "diagnostic.errorSign": "\uf65b",
+    "diagnostic.warningSign": "\uf421",
+    "diagnostic.infoSign": "ℹ",
+    "diagnostic.hintSign": "➤",
+    "codeLens.enable": true,
+    "codeLens.separator": "‣",
+    "list.indicator": "➤",
+    "list.maxHeight": 15,
+    "list.insertMappings": {
+        "<C-c>": "do:exit",
+        "<C-p>": "action:preview",
+        "<C-j>": "do:next",
+        "<C-k>": "do:previous",
+        "<C-x>": "do:toggle",
+        "<C-s>": "do:switch",
+        "<Down>": "prompt:next",
+        "<Up>": "prompt:previous",
+        "<C-v>": "prompt:paste"
+    },
+    "list.normalMappings": {
+        "<C-c>": "do:exit"
+    },
+    "suggest.languageSourcePriority": 99,
+    "help_snippets": "https://github.com/neoclide/coc-snippets",
+    "snippets.shortcut": "S",
+    "snippets.priority": 98,
+    "snippets.extends": {
+        "cpp": ["c"],
+        "javascriptreact": ["javascript"],
+        "typescript": ["javascript"]
+    },
+    "coc.source.ultisnips.shortcut": "US",
+    "coc.source.ultisnips.priority": 98,
+    "coc.source.neosnippet.shortcut": "NS",
+    "coc.source.neosnippet.priority": 98,
+    "coc.source.file.shortcut": "F",
+    "coc.source.file.priority": 89,
+    "coc.source.file.ignoreHidden": false,
+    "coc.source.around.shortcut": "A",
+    "coc.source.around.priority": 88,
+    "coc.source.buffer.shortcut": "B",
+    "coc.source.buffer.priority": 87,
+    "coc.source.buffer.ignoreGitignore": false,
+    "coc.source.syntax.shortcut": "X",
+    "coc.source.syntax.priority": 79,
+    "coc.source.tag.shortcut": "T",
+    "coc.source.tag.priority": 78,
+    "coc.source.dictionary.shortcut": "D",
+    "coc.source.dictionary.priority": 9,
+    "coc.source.dictionary.filetypes": ["markdown", "text"],
+    "coc.source.emoji.shortcut": "E",
+    "coc.source.emoji.priority": 8,
+    "coc.source.emoji.filetypes": ["markdown", "text"],
+    "help_highlight": "https://github.com/neoclide/coc-highlight",
+    "coc.preferences.colorSupport": true,
+    "highlight.document.enable": true,
+    "highlight.colors.enable": false,
+    "highlight.disableLanguages": [],
+    "help_emmet": "https://github.com/neoclide/coc-emmet",
+    "emmet.includeLanguages": {
+        "vue-html": "html",
+        "javascript": "javascriptreact"
+    },
+    "help_pairs": "https://github.com/neoclide/coc-pairs",
+    "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
+    "help_html": "https://github.com/neoclide/coc-html",
+    "help_css": "https://github.com/neoclide/coc-css",
+    "help_json": "https://github.com/neoclide/coc-json",
+    "help_yaml": "https://github.com/neoclide/coc-yaml",
+    "python.jediEnabled": false,
+    "languageserver": {
+        "CLANGD": {
+            "command": "clangd",
+            "rootPatterns": [
+                "compile_flags.txt",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "filetypes_bak": ["none"]
         },
-        "displayOptions": {
-          "preferredFormat": "markdown",
-          "trimDocumentationLines": false,
-          "maxDocumentationLineLength": 0,
-          "trimDocumentationText": false,
-          "maxDocumentationTextLength": 0
+        "MPLS": {
+            "command": "mspyls",
+            "trace.server": "verbose",
+            "filetypes": ["none"],
+            "filetypes_bak": ["python"],
+            "initializationOptions": {
+                "interpreter": {
+                    "properties": {
+                        "InterpreterPath": "/usr/bin/python3",
+                        "UseDefaultDatabase": true
+                    }
+                },
+                "displayOptions": {
+                    "preferredFormat": "markdown",
+                    "trimDocumentationLines": false,
+                    "maxDocumentationLineLength": 0,
+                    "trimDocumentationText": false,
+                    "maxDocumentationTextLength": 0
+                },
+                "searchPaths": ["/usr/bin"],
+                "testEnvironment": false,
+                "analysisUpdates": true,
+                "traceLogging": true,
+                "asyncStartup": true
+            }
         },
-        "searchPaths": ["/usr/bin"],
-        "testEnvironment": false,
-        "analysisUpdates": true,
-        "traceLogging": true,
-        "asyncStartup": true
-      }
-    },
-    "FLOW": {
-      "command": "flow",
-      "args": ["lsp"],
-      "filetypes": ["none"],
-      "filetypes_bak": ["javascript", "javascriptreact"],
-      "initializationOptions": {},
-      "requireRootPattern": true,
-      "settings": {},
-      "rootPatterns": [".git", ".flowconfig"]
-    },
-    "JTLS": {
-      "command": "javascript-typescript-stdio",
-      "filetypes": ["none"],
-      "filetypes_bak": ["javascript"],
-      "rootPatterns": [".git"]
-    },
-    "SHLS": {
-      "command": "bash-language-server",
-      "filetypes": ["sh", "zsh"],
-      "args": ["start"]
+        "FLOW": {
+            "command": "flow",
+            "args": ["lsp"],
+            "filetypes": ["none"],
+            "filetypes_bak": ["javascript", "javascriptreact"],
+            "initializationOptions": {},
+            "requireRootPattern": true,
+            "settings": {},
+            "rootPatterns": [".git", ".flowconfig"]
+        },
+        "JTLS": {
+            "command": "javascript-typescript-stdio",
+            "filetypes": ["none"],
+            "filetypes_bak": ["javascript"],
+            "rootPatterns": [".git"]
+        },
+        "SHLS": {
+            "command": "bash-language-server",
+            "filetypes": ["sh", "zsh"],
+            "args": ["start"]
+        }
     }
-  }
 }
