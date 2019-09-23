@@ -731,7 +731,6 @@ Plug 'albertomontesg/lightline-asyncrun'
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
-Plug 'Shougo/unite.vim', { 'on': [] }
 Plug 'thinca/vim-qfreplace', { 'on': [] }
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/suda.vim'
@@ -990,7 +989,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'forest-night'
+let g:vimColorScheme = 'gruvbox-material-light'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
@@ -2832,8 +2831,6 @@ command! -nargs=? ProsessionList echo prosession#ListSessions(<q-args>)
 "{{{vim-bookmarks
 "{{{vim-bookmarks-usage
 function! Help_vim_bookmarks()
-    echo '<Leader>bs Search and Manage Bookmarks using unite'
-    echo 'Unite Actions: preview, delete, replace, open, yank, highlight, etc.'
     echo '<Leader>bb            <Plug>BookmarkToggle'
     echo '<Leader>ba            <Plug>BookmarkAnnotate'
     echo '<Leader>bj            <Plug>BookmarkNext'
@@ -2848,33 +2845,6 @@ function! Help_vim_bookmarks()
     echo '<Leader>b?            Help'
 endfunction
 "}}}
-"{{{Bookmark_Unite
-let g:Load_Unite = 0
-function! Bookmark_Unite()
-    if g:Load_Unite == 0
-        let g:Load_Unite = 1
-        call plug#load('unite.vim', 'vim-qfreplace')
-        call unite#custom#profile('source/vim_bookmarks', 'context', {
-                    \   'winheight': 13,
-                    \   'direction': 'botright',
-                    \   'start_insert': 0,
-                    \   'keep_focus': 1,
-                    \   'no_quit': 1,
-                    \ })
-        execute 'Unite vim_bookmarks'
-    elseif g:Load_Unite == 1
-        execute 'Unite vim_bookmarks'
-    endif
-endfunction
-augroup uniteCustom
-    autocmd!
-    autocmd FileType unite call s:unite_settings()
-augroup END
-function! s:unite_settings() abort
-    nnoremap <silent><buffer><expr> <C-p>
-                \ unite#do_action('preview')
-endfunction
-"}}}
 let g:bookmark_sign = '✭'
 let g:bookmark_annotation_sign = '☰'
 let g:bookmark_auto_save = 1
@@ -2886,7 +2856,6 @@ let g:bookmark_auto_close = 1
 let g:bookmark_no_default_key_mappings = 1
 nmap <Leader>bb <Plug>BookmarkToggle
 nmap <Leader>ba <Plug>BookmarkAnnotate
-nmap <silent> <Leader>bs :<C-u>call Bookmark_Unite()<CR>
 nmap <Leader>bj <Plug>BookmarkNext
 nmap <Leader>bk <Plug>BookmarkPrev
 nmap <Leader>bc <Plug>BookmarkClear
