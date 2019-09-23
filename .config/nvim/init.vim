@@ -56,15 +56,6 @@ fun! HumanSize(bytes) abort
     return printf('%.1f%s', l:bytes, l:sizes[l:i])
 endfun
 "}}}
-"{{{ToggleObsession
-function! ToggleObsession()
-    if ObsessionStatusEnhance() ==# '⏹'
-        execute 'Obsession ~/.cache/vim/sessions/Obsession'
-    else
-        execute 'Obsession'
-    endif
-endfunction
-"}}}
 "{{{ForceCloseRecursively
 function! ForceCloseRecursively()
     let Loop_Var = 0
@@ -186,7 +177,6 @@ nnoremap <SPACE> <Nop>
 set mouse=a
 filetype plugin indent on
 set t_Co=256
-let g:sessions_dir = expand('~/.cache/vim/sessions/')
 syntax enable                           " 开启语法支持
 set termguicolors                       " 开启GUI颜色支持
 set smartindent                         " 智能缩进
@@ -699,7 +689,6 @@ elseif g:vimMode ==# 'complete'
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
     Plug 'Yggdroot/LeaderF-marks'
     Plug 'youran0715/LeaderF-Cmdpalette'
-    Plug 'markwu/LeaderF-prosessions'
     Plug 'bennyyip/LeaderF-github-stars'
 endif
 Plug 'dense-analysis/ale'
@@ -729,8 +718,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'albertomontesg/lightline-asyncrun'
 Plug 'mg979/vim-visual-multi'
-Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
 Plug 'thinca/vim-qfreplace', { 'on': [] }
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/suda.vim'
@@ -775,15 +762,6 @@ function! SwitchLightlineColorScheme(color)"{{{
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
-endfunction"}}}
-function! ObsessionStatusEnhance() abort"{{{
-    if ObsessionStatus() ==# '[$]'
-        " return \uf94a
-        return '⏺'
-    else
-        " return \uf949
-        return '⏹'
-    endif
 endfunction"}}}
 function! TmuxBindLock() abort"{{{
     if filereadable('/tmp/.tmux-bind.lck')
@@ -862,9 +840,9 @@ let g:lightline_gitdiff#indicator_deleted = '-'
 let g:lightline_gitdiff#indicator_modified = '*'
 let g:lightline_gitdiff#min_winwidth = '70'
 if g:vimIsInTmux == 1
-    let g:Lightline_StatusIndicators = [ 'obsession', 'tmuxlock' ]
+    let g:Lightline_StatusIndicators = [ 'tmuxlock' ]
 elseif g:vimIsInTmux == 0
-    let g:Lightline_StatusIndicators = [ 'pomodoro', 'obsession' ]
+    let g:Lightline_StatusIndicators = [ 'pomodoro' ]
 endif
 let g:lightline.active = {
             \ 'left': [ [ 'artify_mode', 'paste' ],
@@ -902,7 +880,6 @@ let g:lightline.component = {
             \ 'artify_lineinfo': "%2{Artify_line_percent()}\uf295 %3{Artify_line_num()}:%-2{Artify_col_num()}",
             \ 'gitstatus' : '%{lightline_gitdiff#get_status()}',
             \ 'bufinfo': '%{bufname("%")}:%{bufnr("%")}',
-            \ 'obsession': '%{ObsessionStatusEnhance()}',
             \ 'tmuxlock': '%{TmuxBindLock()}',
             \ 'vim_logo': "\ue7c5",
             \ 'pomodoro': '%{PomodoroStatus()}',
@@ -1038,11 +1015,9 @@ call ColorScheme()
 "}}}
 "{{{vim-startify
 if g:vimEnableStartify == 1
-    let g:startify_session_dir = expand('~/.cache/vim/sessions/')
+    let g:startify_session_dir = '~/.vim/sessions'
     let g:startify_files_number = 5
     let g:startify_update_oldfiles = 1
-    " let g:startify_session_autoload = 1
-    " let g:startify_session_persistence = 1 " autoupdate sessions
     let g:startify_session_delete_buffers = 1 " delete all buffers when loading or closing a session, ignore unsaved buffers
     let g:startify_change_to_dir = 1 " when opening a file or bookmark, change to its directory
     let g:startify_fortune_use_unicode = 1 " beautiful symbols
@@ -1053,7 +1028,8 @@ if g:vimEnableStartify == 1
     " line 579 for more details
     if has('nvim')
         let g:startify_commands = [
-                    \ {'1': 'terminal'},
+                    \ {'1': 'CocList'},
+                    \ {'2': 'terminal'},
                     \ ]
     endif
     let g:startify_custom_header = [
@@ -1068,7 +1044,7 @@ if g:vimEnableStartify == 1
                 \ { 'type': 'bookmarks', 'header': [" \uf5c2 Bookmarks"]      },
                 \ { 'type': 'files',     'header': [" \ufa1eMRU Files"]            },
                 \ { 'type': 'dir',       'header': [" \ufa1eMRU Files in ". getcwd()] },
-                \ { 'type': 'commands',  'header': [" \uf085 Commands"]       },
+                \ { 'type': 'commands',  'header': [" \ufb32 Commands"]       },
                 \ ]
     " on Start
     function! NerdtreeStartify()
@@ -1106,7 +1082,6 @@ call g:quickmenu#append('Servers', 'call quickmenu#toggle(4)', '', '', 0, 'l')
 if g:vimIsInTmux == 0
     call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 endif
-call g:quickmenu#append('Obsession', 'call ToggleObsession()', '', '', 0, 's')
 call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
 call g:quickmenu#append('Undo Tree', 'UndotreeToggle', '', '', 0, 'u')
@@ -1126,7 +1101,6 @@ call quickmenu#reset()
 call g:quickmenu#append('# Help', '')
 call g:quickmenu#append('Visual Multi', 'call Help_vim_visual_multi()', '', '', 0, 'v')
 call g:quickmenu#append('Sneak', 'call Help_vim_sneak()', '', '', 0, 's')
-call g:quickmenu#append('Prosession', 'call Help_vim_prosession()', '', '', 0, 'S')
 call g:quickmenu#append('Neoformat', 'call Help_neoformat()', '', '', 0, 'f')
 call g:quickmenu#append('Auto Pairs', 'call Help_auto_pairs()', '', '', 0, 'p')
 call g:quickmenu#append('Nerd Commenter', 'call Help_nerdcommenter()', '', '', 0, 'c')
@@ -1742,7 +1716,6 @@ elseif g:vimMode ==# 'complete'
     call g:quickmenu#append('Tags', 'Leaderf bufTag', 'Search Tags in Current Buffer', '', 0, 't')
     call g:quickmenu#append('Tags All', 'Leaderf bufTag --all', 'Search Tags in All Buffers', '', 0, 'T')
     call g:quickmenu#append('Commands', 'LeaderfCmdpalette', 'Search Commands', '', 0, 'c')
-    call g:quickmenu#append('Prosessions', 'LeaderfProsessions', 'Search Prosessions', '', 0, 's')
     call g:quickmenu#append('History Command', 'Leaderf cmdHistory', 'Search History Commands', '', 0, 'hc')
     call g:quickmenu#append('History Search', 'Leaderf searchHistory', 'Search History Searching', '', 0, 'hs')
     call g:quickmenu#append('Marks', 'Leaderf marks', 'Search Marks', '', 0, 'm')
@@ -2811,22 +2784,6 @@ let g:VM_maps['Select e']                    = '<M-z>``````addright'
 let g:VM_maps['Select ge']                   = '<M-z>``````addleft'
 let g:VM_maps['I Arrow w']                   = '<M-z>``````addright'
 let g:VM_maps['I Arrow b']                   = '<M-z>``````addleft'
-"}}}
-"{{{vim-prosession
-"{{{vim-prosession-usage
-function! Help_vim_prosession()
-    echo ':Prosession {dir}             switch to the session of {dir}, if doesnt exist, creat a new session'
-    echo ':ProsessionDelete [{dir}]     if no {dir} specified, delete current active session'
-    echo ':ProsessionList {filter}      if no {filter} specified, list all session'
-endfunction
-"}}}
-augroup sessionCustom
-    autocmd!
-    autocmd VimLeave * mksession! ~/.cache/vim/sessions/LastSession
-augroup END
-let g:prosession_dir = '~/.cache/vim/prosession/'
-let g:prosession_on_startup = 0
-command! -nargs=? ProsessionList echo prosession#ListSessions(<q-args>)
 "}}}
 "{{{vim-bookmarks
 "{{{vim-bookmarks-usage
