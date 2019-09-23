@@ -21,7 +21,6 @@ else
     let g:vimEnableStartify = 1
 endif
 "}}}
-let g:vimMode = 'complete'  " light complete
 let g:vimAutoInstall = 1
 let g:startify_bookmarks = [
             \ {'R': '~/repo/'},
@@ -653,39 +652,11 @@ Plug 'sainnhe/artify.vim'
 Plug 'RRethy/vim-hexokinase'
 
 " Productivity
-if g:vimMode ==# 'light'
-    Plug 'prabirshrestha/async.vim'
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'Shougo/neosnippet.vim'
-    Plug 'Shougo/neosnippet-snippets'
-    Plug 'honza/vim-snippets'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-tags.vim'
-    Plug 'prabirshrestha/asyncomplete-buffer.vim'
-    Plug 'prabirshrestha/asyncomplete-file.vim'
-    Plug 'Shougo/neco-syntax' | Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
-    Plug 'Shougo/neoinclude.vim' | Plug 'kyouryuukunn/asyncomplete-neoinclude.vim'
-    Plug 'Shougo/neco-vim', { 'for': 'vim' } | Plug 'prabirshrestha/asyncomplete-necovim.vim', { 'for': 'vim' }
-    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
-    Plug 'junegunn/fzf'
-    Plug 'junegunn/fzf.vim'
-    Plug 'fszymanski/fzf-quickfix'
-    if executable('cargo')
-        if executable('proxychains')
-            Plug 'tsufeki/asyncomplete-fuzzy-match', { 'do': 'proxychains -q cargo build --release' }
-        else
-            Plug 'tsufeki/asyncomplete-fuzzy-match', { 'do': 'cargo build --release' }
-        endif
-    endif
-elseif g:vimMode ==# 'complete'
-    Plug 'honza/vim-snippets'
-    Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
-    Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
-    Plug 'tjdevries/coc-zsh'
-    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-endif
+Plug 'honza/vim-snippets'
+Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
+Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
+Plug 'tjdevries/coc-zsh'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
@@ -922,10 +893,6 @@ let g:lightline.component_type = {
             \ }
 let g:lightline.component_visible_condition = {
             \ 'gitstatus': 'lightline_gitdiff#get_status() !=# ""'
-            \ }
-let g:lightline.component_function_visible_condition = {
-            \ 'coc_status': 'g:vimMode ==# "complete"',
-            \ 'coc_current_function': 'g:vimMode ==# "complete"'
             \ }
 "}}}
 "{{{tmuxline.vim
@@ -1193,452 +1160,169 @@ let g:Hexokinase_refreshEvents = ['BufWritePost']
 let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba']  " ['full_hex', 'triple_hex', 'rgb', 'rgba', 'colour_names']
 "}}}
 " Productivity
-"{{{vim-lsp
-if g:vimMode ==# 'light'
-    "{{{vim-lsp-usage
-    function! Help_vim_lsp()
-        echo '<leader>la        CodeAction'
-        echo '<leader>ld        Definition'
-        echo '<leader>lD        Declaration'
-        echo '<leader>lt        TypeDefinition'
-        echo '<leader>lr        References'
-        echo '<leader>lR        Rename'
-        echo '<leader>lI        Implementation'
-        echo '<leader>lf        DocumentFormat'
-        echo '<leader>lJ        NextError'
-        echo '<leader>lK        PreviousError'
-    endfunction
-    "}}}
-    let g:lsp_auto_enable = 1
-    let g:lsp_signs_enabled = 1         " enable signs
-    let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
-    let g:lsp_signs_error = {'text': "\uf65b"}
-    let g:lsp_signs_warning = {'text': "\uf421"}
-    let g:lsp_signs_hint = {'text': "\uf68a"}
-    augroup vimLspRegister
-        autocmd!
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'clangd',
-                    \ 'cmd': {server_info->['clangd']},
-                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-                    \ })
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'html-languageserver',
-                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'html-languageserver --stdio']},
-                    \ 'whitelist': ['html', 'htm', 'xml'],
-                    \ })
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'css-languageserver',
-                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
-                    \ 'whitelist': ['css', 'less', 'sass'],
-                    \ })
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'json-languageserver',
-                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'json-languageserver --stdio']},
-                    \ 'whitelist': ['json'],
-                    \ })
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'javascript-typescript-languageserver',
-                    \ 'cmd': {server_info->['javascript-typescript-stdio']},
-                    \ 'whitelist': ['javascript', 'typescript'],
-                    \ })
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'python-languageserver',
-                    \ 'cmd': {server_info->['pyls']},
-                    \ 'whitelist': ['python'],
-                    \ })
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'rls',
-                    \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-                    \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
-                    \ 'whitelist': ['rust'],
-                    \ })
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'bash-languageserver',
-                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-                    \ 'whitelist': ['sh'],
-                    \ })
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'yaml-languageserver',
-                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server']},
-                    \ 'whitelist': ['yaml'],
-                    \ })
-    augroup END
-    nnoremap <silent> <leader>la <plug>(lsp-code-action)
-    nnoremap <silent> <leader>ld <plug>(lsp-definition)
-    nnoremap <silent> <leader>lD <plug>(lsp-declaration)
-    nnoremap <silent> <leader>lt <plug>(lsp-type-definition)
-    nnoremap <silent> <leader>lr <plug>(lsp-references)
-    nnoremap <silent> <leader>lR <plug>(lsp-rename)
-    nnoremap <silent> <leader>lI <plug>(lsp-implementation)
-    nnoremap <silent> <leader>lJ <plug>(lsp-next-error)
-    nnoremap <silent> <leader>lK <plug>(lsp-previous-error)
-    nnoremap <silent> <leader>lf :<C-u>LspDocumentFormat<CR>
-    vnoremap <silent> <leader>lf :<C-u>LspDocumentRangeFormat<CR>
-    call quickmenu#current(4)
-    call quickmenu#reset()
-    call g:quickmenu#append('# Language Server', '')
-    call g:quickmenu#append('DocumentSymbol', 'LspDocumentSymbol', 'Gets the symbols for the current document.', '', 0, 's')
-    call g:quickmenu#append('WorkspaceSymbols', 'LspWorkspaceSymbols', 'Search and show workspace symbols.', '', 0, 'S')
-    call g:quickmenu#append('Diagnostics', 'LspDocumentDiagnostics', 'Gets the current document diagnostics.', '', 0, 'e')
-    call g:quickmenu#append('Hover', 'LspHover', 'Gets the hover information. Close preview window: <c-w><c-z>', '', 0, 'h')
-    call g:quickmenu#append('Status', 'LspStatus', '', '', 0, '*')
-    call g:quickmenu#append('Start LSC', 'call lsp#enable()', '', '', 0, '$')
-    call g:quickmenu#append('Stop LSC', 'call lsp#disable()', '', '', 0, '!')
-    call g:quickmenu#append('Help', 'call Help_vim_lsp()', '', '', 0, 'H')
-    call g:quickmenu#append('# Completion Framework', '')
-    call g:quickmenu#append('Completion Framework', 'call quickmenu#toggle(5)', '', '', 0, 'c')
-    vnoremap lf :<C-u>LspDocumentRangeFormat<CR>
-    "}}}
-    "{{{neosnippet.vim
-    "{{{neosnippet-usage
-    " <C-J>展开或跳转到下一个
-    "}}}
-    imap <C-j>     <Plug>(neosnippet_expand_or_jump)
-    smap <C-j>     <Plug>(neosnippet_expand_or_jump)
-    xmap <C-j>     <Plug>(neosnippet_expand_target)
-    if has('conceal')
-        set conceallevel=2 concealcursor=niv
+"{{{coc.nvim
+"{{{coc.nvim-usage
+function Help_COC_LSP()
+    echo '<leader>lJ        diagnostic-next'
+    echo '<leader>lJ        diagnostic-next'
+    echo '<leader>lK        diagnostic-prev'
+    echo '<leader>li        diagnostic-info'
+    echo '<leader>lI        implementation'
+    echo '<leader>ld        definition'
+    echo '<leader>lD        declaration'
+    echo '<leader>lt        type-definition'
+    echo '<leader>lr        references'
+    echo '<leader>lR        rename'
+    echo '<leader>lf        format'
+    echo '<leader>lf        format-selected'
+    echo '<leader>lF        fix-current'
+    echo '<leader>la        codeaction'
+    echo '<leader>la        codeaction-selected'
+    echo '<leader>lA        codelens-action'
+    echo '<leader>l?        toggle this help'
+    echo '<leader>gj        next chunk'
+    echo '<leader>gk        prev chunk'
+    echo '<leader>gi        chunk info'
+    echo '<leader>gc        commit message'
+    echo '<leader>gd        diff'
+    echo '<leader>g<Tab>    open in browser'
+    echo '<C-l>             jump to floating window'
+    echo '?                 toggle hover'
+endfunction
+nnoremap <silent> <leader>l? :call Help_COC_LSP()<CR>
+"}}}
+"{{{coc-functions
+function! CocHighlight() abort"{{{
+    if &filetype !=# 'markdown'
+        call CocActionAsync('highlight')
     endif
-    let g:neosnippet#snippets_directory = expand('~/.cache/vim/plugins/vim-snippets/snippets')
-    "}}}
-    "{{{asyncomplete
-    "{{{asyncomplete-usage
-    " <Tab> <S-Tab> 分别向下和向上选中，
-    " <S-Tab>当没有显示补全栏的时候手动呼出补全栏
-    "}}}
-    "{{{quickmenu
-    call quickmenu#current(5)
-    call quickmenu#reset()
-    call g:quickmenu#append('# Asyncomplete', '')
-    "}}}
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Plug>(asyncomplete_force_refresh)\<C-n>"
-    inoremap <expr> <up> pumvisible() ? "\<C-y>\<up>" : "\<up>"
-    inoremap <expr> <down> pumvisible() ? "\<C-y>\<down>" : "\<down>"
-    inoremap <expr> <left> pumvisible() ? "\<C-y>\<left>" : "\<left>"
-    inoremap <expr> <right> pumvisible() ? "\<C-y>\<right>" : "\<right>"
-    imap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-    imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
-    let g:asyncomplete_remove_duplicates = 1
-    let g:asyncomplete_smart_completion = 1
-    let g:asyncomplete_auto_popup = 1
-    set completeopt-=preview
-    augroup asyncompleteCustom
-        autocmd!
-        autocmd InsertEnter * call Asyncomplete_Register()
-        autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
-    augroup END
-    function! Asyncomplete_Register()
-        call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-                    \ 'name': 'buffer',
-                    \ 'whitelist': ['*'],
-                    \ 'completor': function('asyncomplete#sources#buffer#completor'),
-                    \ }))
-        call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-                    \ 'name': 'file',
-                    \ 'whitelist': ['*'],
-                    \ 'priority': 10,
-                    \ 'completor': function('asyncomplete#sources#file#completor')
-                    \ }))
-        call asyncomplete#register_source(asyncomplete#sources#neoinclude#get_source_options({
-                    \ 'name': 'neoinclude',
-                    \ 'whitelist': ['c', 'cpp'],
-                    \ 'refresh_pattern': '\(<\|"\|/\)$',
-                    \ 'completor': function('asyncomplete#sources#neoinclude#completor'),
-                    \ }))
-        call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
-                    \ 'name': 'necosyntax',
-                    \ 'whitelist': ['*'],
-                    \ 'completor': function('asyncomplete#sources#necosyntax#completor'),
-                    \ }))
-        call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
-                    \ 'name': 'necovim',
-                    \ 'whitelist': ['vim'],
-                    \ 'completor': function('asyncomplete#sources#necovim#completor'),
-                    \ }))
-        call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
-                    \ 'name': 'neosnippet',
-                    \ 'whitelist': ['*'],
-                    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
-                    \ }))
-        call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
-                    \ 'name': 'tags',
-                    \ 'completor': function('asyncomplete#sources#tags#completor'),
-                    \ 'config': {
-                    \    'max_file_size': 50000000,
-                    \  },
-                    \ }))
-        let g:tmuxcomplete#asyncomplete_source_options = {
-                    \ 'name':      'tmuxcomplete',
-                    \ 'whitelist': ['*'],
-                    \ 'config': {
-                    \     'splitmode':      'words',
-                    \     'filter_prefix':   1,
-                    \     'show_incomplete': 1,
-                    \     'sort_candidates': 0,
-                    \     'scrollback':      0,
-                    \     'truncate':        0
-                    \     }
-                    \ }
-        let g:tmuxcomplete#trigger = ''
-    endfunction
-    "}}}
-    "{{{fzf.vim
-    "{{{fzf.vim-usage
-    " grep中用<C-p>预览
-    "}}}
-    "{{{quickmenu
-    call quickmenu#current(1)
-    call quickmenu#reset()
-    noremap <silent> f :call quickmenu#toggle(1)<cr>
-    call g:quickmenu#append('# FZF', '')
-    call g:quickmenu#append(' Line Buffer', 'BLines', '', '', 0, 'l')
-    call g:quickmenu#append(' Line All', 'Lines', '', '', 0, 'L')
-    call g:quickmenu#append(' MRU', 'History', '', '', 0, 'f')
-    call g:quickmenu#append(' File', 'Files', '', '', 0, 'F')
-    call g:quickmenu#append(' Buffer', 'Buffers', '', '', 0, 'b')
-    call g:quickmenu#append(' Buffer!', 'call FZF_Buffer_Open()', '', '', 0, 'B')
-    call g:quickmenu#append(' Tags Buffer', 'BTags', '', '', 0, 't')
-    call g:quickmenu#append(' Tags All', 'Tags', '', '', 0, 'T')
-    call g:quickmenu#append(' Marks', 'Marks', '', '', 0, 'm')
-    call g:quickmenu#append(' Maps', 'Maps', '', '', 0, 'M')
-    call g:quickmenu#append(' Windows', 'Windows', '', '', 0, 'w')
-    call g:quickmenu#append('History Command', 'History:', '', '', 0, 'hc')
-    call g:quickmenu#append('History Search', 'History/', '', '', 0, 'hs')
-    call g:quickmenu#append(' Snippets', 'Snippets', '', '', 0, 's')
-    call g:quickmenu#append('Git Files', 'GFiles', '', '', 0, 'gf')
-    call g:quickmenu#append('Git Status', 'GFiles?', '', '', 0, 'gs')
-    call g:quickmenu#append('Git Commits Buffer', 'BCommits', '', '', 0, 'gc')
-    call g:quickmenu#append('Git Commits All', 'Commits', '', '', 0, 'gC')
-    call g:quickmenu#append(' Commands', 'Commands', '', '', 0, 'c')
-    call g:quickmenu#append(' Grep', 'Ag', '', '', 0, 'G')
-    call g:quickmenu#append(' Help', 'Helptags', '', '', 0, 'H')
-    "}}}
-    "{{{functions
-    function! FZF_Buffer_Open()
-        let g:fzf_buffers_jump = 0
-        execute 'Buffers'
-        let g:fzf_buffers_jump = 1
-    endfunction
-    "}}}
-    augroup fzfCustom
-        autocmd!
-        autocmd User CocQuickfixChange :call fzf_quickfix#run()
-    augroup END
-    let g:fzf_action = {
-                \ 'ctrl-t': 'tab split',
-                \ 'ctrl-h': 'split',
-                \ 'ctrl-v': 'vsplit' }
-    let g:fzf_layout = { 'down': '~40%' }
-    let g:fzf_history_dir = expand('~/.cache/vim/fzf-history')
-    let g:fzf_buffers_jump = 1
-    " [[B]Commits] Customize the options used by 'git log':
-    let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-    " [Tags] Command to generate tags file
-    let g:fzf_tags_command = 'ctags -R'
-    " [Commands] --expect expression for directly executing the command
-    let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-    " Command for git grep
-    " - fzf#vim#grep(command, with_column, [options], [fullscreen])
-    command! -bang -nargs=* GGrep
-                \ call fzf#vim#grep(
-                \   'git grep --line-number '.shellescape(<q-args>), 0,
-                \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
-
-    " Override Colors command. You can safely do this in your .vimrc as fzf.vim
-    " will not override existing commands.
-    command! -bang Colors
-                \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
-    command! -bang -nargs=* Ag
-                \ call fzf#vim#ag(<q-args>,
-                \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-                \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', 'ctrl-p'),
-                \                 <bang>0)
-    command! -bang -nargs=* Rg
-                \ call fzf#vim#grep(
-                \                 'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-                \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-                \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', 'ctrl-p'),
-                \                 <bang>0)
-    command! -bang -nargs=? -complete=dir Files
-                \ call fzf#vim#files(<q-args>,
-                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-                \                 <bang>0)
-    command! -bang -nargs=? GitFiles
-                \ call fzf#vim#gitfiles(<q-args>,
-                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-                \                 <bang>0)
-    command! -bang -nargs=? GFiles
-                \ call fzf#vim#gitfiles(<q-args>,
-                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-                \                         : fzf#vim#with_preview('right:50%:hidden', 'ctrl-p'),
-                \                 <bang>0)
-    "}}}
-    "{{{coc.nvim
-elseif g:vimMode ==# 'complete'
-    "{{{coc.nvim-usage
-    function Help_COC_LSP()
-        echo '<leader>lJ        diagnostic-next'
-        echo '<leader>lJ        diagnostic-next'
-        echo '<leader>lK        diagnostic-prev'
-        echo '<leader>li        diagnostic-info'
-        echo '<leader>lI        implementation'
-        echo '<leader>ld        definition'
-        echo '<leader>lD        declaration'
-        echo '<leader>lt        type-definition'
-        echo '<leader>lr        references'
-        echo '<leader>lR        rename'
-        echo '<leader>lf        format'
-        echo '<leader>lf        format-selected'
-        echo '<leader>lF        fix-current'
-        echo '<leader>la        codeaction'
-        echo '<leader>la        codeaction-selected'
-        echo '<leader>lA        codelens-action'
-        echo '<leader>l?        toggle this help'
-        echo '<leader>gj        next chunk'
-        echo '<leader>gk        prev chunk'
-        echo '<leader>gi        chunk info'
-        echo '<leader>gc        commit message'
-        echo '<leader>gd        diff'
-        echo '<leader>g<Tab>    open in browser'
-        echo '<C-l>             jump to floating window'
-        echo '?                 toggle hover'
-    endfunction
-    nnoremap <silent> <leader>l? :call Help_COC_LSP()<CR>
-    "}}}
-    "{{{coc-functions
-    function! CocHighlight() abort"{{{
-        if &filetype !=# 'markdown'
-            call CocActionAsync('highlight')
-        endif
-    endfunction"}}}
-    function! CocFloatingLockToggle() abort"{{{
-        if g:CocFloatingLock == 0
-            let g:CocFloatingLock = 1
-        elseif g:CocFloatingLock == 1
-            let g:CocFloatingLock = 0
-        endif
-    endfunction"}}}
-    function! CocHover() abort"{{{
-        if !coc#util#has_float() && g:CocHoverEnable == 1
-            call CocActionAsync('doHover')
-            call CocActionAsync('showSignatureHelp')
-        endif
-    endfunction"}}}
-    "}}}
-    "{{{quickmenu
-    call quickmenu#current(4)
-    call quickmenu#reset()
-    call g:quickmenu#append('# Language Server', '')
-    call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
-    call g:quickmenu#append('Help', 'call Help_COC_LSP()', '', '', 0, 'h')
-    call g:quickmenu#append('# Completion Framework', '')
-    call g:quickmenu#append('Restart', 'CocRestart', '', '', 0, '@')
-    call g:quickmenu#append('Update Extensions', 'CocUpdate', '', '', 0, 'U')
-    call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
-    call g:quickmenu#append('Info', 'CocInfo', ':h CocOpenLog for log', '', 0, '@')
-    call g:quickmenu#append('Extension Market', 'CocList marketplace', '', '', 0, '#')
-    "}}}
-    "{{{coc-init
-    " \       'coc-tabnine',
-    call coc#add_extension(
-                \       'coc-lists',
-                \       'coc-marketplace',
-                \       'coc-git',
-                \       'coc-snippets',
-                \       'coc-syntax',
-                \       'coc-highlight',
-                \       'coc-emoji',
-                \       'coc-dictionary',
-                \       'coc-html',
-                \       'coc-css',
-                \       'coc-emmet',
-                \       'coc-tsserver',
-                \       'coc-eslint',
-                \       'coc-tslint-plugin',
-                \       'coc-stylelint',
-                \       'coc-python',
-                \       'coc-rls',
-                \       'coc-json',
-                \       'coc-yaml',
-                \       'coc-vimlsp'
-                \   )
-    "}}}
-    "{{{coc-settings
-    augroup cocCustom
-        autocmd!
-        autocmd CursorHold * silent call CocHover()
-        autocmd CursorHold * silent call CocHighlight()
-        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-        autocmd InsertEnter * call coc#util#float_hide()
-        autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
-    augroup END
-    let g:CocHoverEnable = 0
-    let g:tmuxcomplete#trigger = ''
-    set hidden
-    set completeopt=noinsert,noselect,menuone
-    set dictionary+=/usr/share/dict/words
-    set dictionary+=/usr/share/dict/american-english
-    "}}}
-    "{{{coc-mappings
-    inoremap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-j>"
-    inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
-    inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
-    inoremap <expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
-    inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
-    imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
-    imap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
-    nmap <leader>lJ <Plug>(coc-diagnostic-next)
-    nmap <leader>lK <Plug>(coc-diagnostic-prev)
-    nmap <leader>li <Plug>(coc-diagnostic-info)
-    nmap <leader>lI <Plug>(coc-implementation)
-    nmap <leader>ld <Plug>(coc-definition)
-    nmap <leader>lD <Plug>(coc-declaration)
-    nmap <leader>lt <Plug>(coc-type-definition)
-    nmap <leader>lr <Plug>(coc-references)
-    nmap <leader>lR <Plug>(coc-rename)
-    nmap <leader>lf <Plug>(coc-format)
-    vmap <leader>lf <Plug>(coc-format-selected)
-    nmap <leader>lF <Plug>(coc-fix-current)
-    nmap <leader>la <Plug>(coc-codeaction)
-    vmap <leader>la <Plug>(coc-codeaction-selected)
-    nmap <leader>lA <Plug>(coc-codelens-action)
-    nmap <leader>gj <Plug>(coc-git-nextchunk)
-    nmap <leader>gk <Plug>(coc-git-prevchunk)
-    nmap <leader>gi <Plug>(coc-git-chunkinfo)
-    nmap <leader>gc <Plug>(coc-git-commit)
-    nmap <silent> <leader>gd :CocCommand git.diffCached<CR>
-    nmap <silent> <leader>g<Tab> :CocCommand git.browserOpen<CR>
-    nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
-    "}}}
-    "{{{coc-list
-    "{{{coc-list-usage
-    function Help_coc_list()
-        echo '<leader>f CocList'
-        echo 'f?        show this help'
-        echo 'fl        lines'
-        echo 'fb        buffers'
-        echo 'fm        mru'
-        echo 'ff        files'
-        echo 'ft        tags'
-        echo 'fh        helps'
-        echo 'fg        grep'
-    endfunction
-    nnoremap <silent> f? :call Help_coc_list()<CR>
-    "}}}
-    nnoremap <silent> <leader>f :CocList<CR>
-    nnoremap <silent> fl :CocList lines<CR>
-    nnoremap <silent> fb :CocList buffers<CR>
-    nnoremap <silent> fm :CocList mru<CR>
-    nnoremap <silent> ff :CocList files<CR>
-    nnoremap <silent> ft :CocList outline<CR>
-    nnoremap <silent> fh :CocList helptags<CR>
-    nnoremap <silent> fg :CocList grep<CR>
-    "}}}
-endif
+endfunction"}}}
+function! CocFloatingLockToggle() abort"{{{
+    if g:CocFloatingLock == 0
+        let g:CocFloatingLock = 1
+    elseif g:CocFloatingLock == 1
+        let g:CocFloatingLock = 0
+    endif
+endfunction"}}}
+function! CocHover() abort"{{{
+    if !coc#util#has_float() && g:CocHoverEnable == 1
+        call CocActionAsync('doHover')
+        call CocActionAsync('showSignatureHelp')
+    endif
+endfunction"}}}
+"}}}
+"{{{quickmenu
+call quickmenu#current(4)
+call quickmenu#reset()
+call g:quickmenu#append('# Language Server', '')
+call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
+call g:quickmenu#append('Help', 'call Help_COC_LSP()', '', '', 0, 'h')
+call g:quickmenu#append('# Completion Framework', '')
+call g:quickmenu#append('Restart', 'CocRestart', '', '', 0, '@')
+call g:quickmenu#append('Update Extensions', 'CocUpdate', '', '', 0, 'U')
+call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
+call g:quickmenu#append('Info', 'CocInfo', ':h CocOpenLog for log', '', 0, '@')
+call g:quickmenu#append('Extension Market', 'CocList marketplace', '', '', 0, '#')
+"}}}
+"{{{coc-init
+call coc#add_extension(
+            \   'coc-lists',
+            \   'coc-marketplace',
+            \   'coc-git',
+            \   'coc-snippets',
+            \   'coc-syntax',
+            \   'coc-tag',
+            \   'coc-highlight',
+            \   'coc-emoji',
+            \   'coc-dictionary'
+            \   )
+call coc#add_extension(
+            \   'coc-html',
+            \   'coc-css',
+            \   'coc-emmet',
+            \   'coc-tsserver',
+            \   'coc-eslint',
+            \   'coc-tslint-plugin',
+            \   'coc-stylelint',
+            \   'coc-python',
+            \   'coc-rls',
+            \   'coc-json',
+            \   'coc-yaml',
+            \   'coc-vimlsp'
+            \   )
+"}}}
+"{{{coc-settings
+augroup cocCustom
+    autocmd!
+    autocmd CursorHold * silent call CocHover()
+    autocmd CursorHold * silent call CocHighlight()
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    autocmd InsertEnter * call coc#util#float_hide()
+    autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
+augroup END
+let g:CocHoverEnable = 0
+let g:tmuxcomplete#trigger = ''
+set hidden
+set completeopt=noinsert,noselect,menuone
+set dictionary+=/usr/share/dict/words
+set dictionary+=/usr/share/dict/american-english
+"}}}
+"{{{coc-mappings
+inoremap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-j>"
+inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
+inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
+inoremap <expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
+inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
+imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
+imap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
+nmap <leader>lJ <Plug>(coc-diagnostic-next)
+nmap <leader>lK <Plug>(coc-diagnostic-prev)
+nmap <leader>li <Plug>(coc-diagnostic-info)
+nmap <leader>lI <Plug>(coc-implementation)
+nmap <leader>ld <Plug>(coc-definition)
+nmap <leader>lD <Plug>(coc-declaration)
+nmap <leader>lt <Plug>(coc-type-definition)
+nmap <leader>lr <Plug>(coc-references)
+nmap <leader>lR <Plug>(coc-rename)
+nmap <leader>lf <Plug>(coc-format)
+vmap <leader>lf <Plug>(coc-format-selected)
+nmap <leader>lF <Plug>(coc-fix-current)
+nmap <leader>la <Plug>(coc-codeaction)
+vmap <leader>la <Plug>(coc-codeaction-selected)
+nmap <leader>lA <Plug>(coc-codelens-action)
+nmap <leader>gj <Plug>(coc-git-nextchunk)
+nmap <leader>gk <Plug>(coc-git-prevchunk)
+nmap <leader>gi <Plug>(coc-git-chunkinfo)
+nmap <leader>gc <Plug>(coc-git-commit)
+nmap <silent> <leader>gd :CocCommand git.diffCached<CR>
+nmap <silent> <leader>g<Tab> :CocCommand git.browserOpen<CR>
+nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
+"}}}
+"{{{coc-list
+"{{{coc-list-usage
+function Help_coc_list()
+    echo '<leader>f CocList'
+    echo 'f?        show this help'
+    echo 'fl        lines'
+    echo 'fb        buffers'
+    echo 'fm        mru'
+    echo 'ff        files'
+    echo 'ft        tags'
+    echo 'fh        helps'
+    echo 'fg        grep'
+endfunction
+nnoremap <silent> f? :call Help_coc_list()<CR>
+"}}}
+nnoremap <silent> <leader>f :CocList<CR>
+nnoremap <silent> fl :CocList lines<CR>
+nnoremap <silent> fb :CocList buffers<CR>
+nnoremap <silent> fm :CocList mru<CR>
+nnoremap <silent> ff :CocList files<CR>
+nnoremap <silent> ft :CocList outline<CR>
+nnoremap <silent> fh :CocList helptags<CR>
+nnoremap <silent> fg :CocList grep<CR>
+"}}}
 "}}}
 "{{{ale
 "{{{ale-usage
@@ -1760,18 +1444,10 @@ let g:NERDTreeDirArrowCollapsible = "\u00a0"
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 " let NERDTreeShowHidden = 1
 function! Nerdtree_Fuzzy_Finder()
-    if g:vimMode ==# 'light'
-        execute 'Files'
-    elseif g:vimMode ==# 'complete'
-        execute 'CocList files'
-    endif
+    execute 'CocList files'
 endfunction
 function! Nerdtree_Grep()
-    if g:vimMode ==# 'light'
-        execute 'Ag'
-    elseif g:vimMode ==# 'complete'
-        execute 'CocList grep'
-    endif
+    execute 'CocList grep'
 endfunction
 "}}}
 "{{{nnn.vim
@@ -1908,9 +1584,6 @@ function! Init_gen_tags()
     let g:gen_tags#blacklist = ['$HOME']
     let g:gen_tags#gtags_default_map = 0
     call plug#load('gen_tags.vim')
-    if g:vimMode ==# 'complete'
-        call coc#add_extension('coc-tag')
-    endif
 endfunction
 "}}}
 "{{{tagbar
@@ -2489,11 +2162,7 @@ function! TagbarInit()
     call plug#load('tagbar', 'tagbar-phpctags.vim')
 endfunction
 function! s:tagbar_mappings() abort
-    if g:vimMode ==# 'light'
-        nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:BTags<CR>
-    elseif g:vimMode ==# 'complete'
-        nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:CocList outline<CR>
-    endif
+    nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:CocList outline<CR>
 endfunction
 augroup tagbarCustom
     autocmd!
@@ -2856,11 +2525,7 @@ if exists('g:vimManPager')
     endfunction
     " }}}
     function! s:vim_manpager_mappings() abort
-        if g:vimMode ==# 'light'
-            nnoremap <silent><buffer> f :<C-u>BLines<CR>
-        elseif g:vimMode ==# 'complete'
-            nnoremap <silent><buffer> f :<C-u>CocList lines<CR>
-        endif
+        nnoremap <silent><buffer> f :<C-u>CocList lines<CR>
         nnoremap <silent><buffer> ? :<C-u>call Help_vim_manpager()<CR>
         nmap <silent><buffer> <C-j> ]t
         nmap <silent><buffer> <C-k> [t
