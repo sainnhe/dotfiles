@@ -61,6 +61,11 @@
     "list.normalMappings": {
         "<C-c>": "do:exit"
     },
+    "git.addedSign.hlGroup": "GitGutterAdd",
+    "git.changedSign.hlGroup": "GitGutterChange",
+    "git.removedSign.hlGroup": "GitGutterDelete",
+    "git.topRemovedSign.hlGroup": "GitGutterDelete",
+    "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
     "suggest.languageSourcePriority": 99,
     "help_snippets": "https://github.com/neoclide/coc-snippets",
     "snippets.shortcut": "S",
