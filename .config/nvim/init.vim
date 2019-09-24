@@ -660,7 +660,6 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'mcchrish/nnn.vim'
-Plug 'jlanzarotta/bufexplorer'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -1407,32 +1406,6 @@ let g:nnn#action = {
 let g:nnn#command = 'PAGER= nnn'
 " let g:nnn#layout = 'new' "or vnew, tabnew, etc.
 " let g:nnn#layout = { 'left': '~20%' }
-"}}}
-"{{{bufexplore
-"{{{bufexplore-usage
-" <leader><A-b> 打开bufexplorer
-" ?  显示帮助文档
-"}}}
-" Use Default Mappings
-let g:bufExplorerDisableDefaultKeyMapping=1
-nnoremap <silent> <leader><A-b> :<C-u>BufExplorer<CR>
-function! s:bufexplore_mappings() abort
-    nmap <buffer> ? <F1>
-endfunction
-augroup bufexplorerCustom
-    autocmd!
-    autocmd FileType bufexplorer call s:bufexplore_mappings()
-augroup END
-let g:bufExplorerShowTabBuffer=1 " 只显示当前tab的buffer
-let g:bufExplorerSplitBelow=1 " explore水平分割时，在下方打开
-let g:bufExplorerDefaultHelp=0 " 默认不显示帮助信息
-let g:bufExplorerSplitBelow=1 " Split new window below current.
-let g:bufExplorerSplitHorzSize=10 " New split window is n rows high.
-let g:bufExplorerSortBy='mru'        " Sort by most recently used.
-" let g:bufExplorerSortBy='extension'  " Sort by file extension.
-" let g:bufExplorerSortBy='fullpath'   " Sort by full file path name.
-" let g:bufExplorerSortBy='name'       " Sort by the buffer's name.
-" let g:bufExplorerSortBy='number'     " Sort by the buffer's number.
 "}}}
 "{{{undotree
 let g:undotree_WindowLayout = 3
