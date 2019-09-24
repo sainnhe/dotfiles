@@ -810,7 +810,7 @@ let g:lightline.active = {
             \ 'left': [ [ 'artify_mode', 'paste' ],
             \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
             \ 'right': [ [ 'artify_lineinfo' ],
-            \            g:Lightline_StatusIndicators + [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+            \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ] + g:Lightline_StatusIndicators,
             \           [ 'asyncrun_status', 'coc_status' ] ]
             \ }
 let g:lightline.inactive = {
@@ -883,10 +883,8 @@ let g:lightline.component_expand = {
             \ 'asyncrun_status': 'lightline#asyncrun#status'
             \ }
 let g:lightline.component_type = {
-            \ 'linter_checking': 'middle',
             \ 'linter_warnings': 'warning',
-            \ 'linter_errors': 'error',
-            \ 'linter_ok': 'middle'
+            \ 'linter_errors': 'error'
             \ }
 let g:lightline.component_visible_condition = {
             \ 'gitstatus': 'lightline_gitdiff#get_status() !=# ""'
