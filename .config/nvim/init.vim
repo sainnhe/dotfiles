@@ -684,7 +684,7 @@ Plug 'lambdalisue/suda.vim'
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/inline_edit.vim'
 Plug 'airblade/vim-rooter'
-Plug 'ianva/vim-youdao-translater'
+Plug 'voldikss/vim-translate-me'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'metakirby5/codi.vim'
 Plug 'mbbill/fencview', { 'on': [ 'FencAutoDetect', 'FencView' ] }
@@ -1072,7 +1072,7 @@ call g:quickmenu#append('Star Wars', 'StarWars', '', '', 0, '')
 " :LeadingSpaceToggle  切换显示Leading Space
 " :IndentLinesToggle  切换显示indentLine
 "}}}
-let g:ExcludeIndentFileType_Universal = [ 'startify', 'coc-explorer', 'codi', 'help', 'man' ]
+let g:ExcludeIndentFileType_Universal = [ 'startify', 'coc-explorer', 'codi', 'help', 'man', 'vtm' ]
 let g:ExcludeIndentFileType_Special = [ 'markdown', 'json' ]
 let g:indentLine_enabled = 1
 let g:indentLine_leadingSpaceEnabled = 0
@@ -2279,15 +2279,17 @@ endfunction
 nnoremap E :<C-u>InlineEdit<CR>
 vnoremap E :InlineEdit<CR>
 "}}}
-"{{{vim-youdao-translater
-"{{{vim-youdao-translater-usage
-" 普通模式<leader>t翻译当前word
-" 可视模式<leader>t翻译选中文本
-" 普通模式<leader>T输入pattern翻译
-"}}}
-vnoremap <silent> <leader>t :<C-u>Ydv<CR>
-nnoremap <silent> <leader>t :<C-u>Ydc<CR>
-nnoremap <silent> <leader>T :<C-u>Yde<CR>
+"{{{vim-translate-me
+let g:vtm_default_mapping = 0
+let g:vtm_default_engines = ['youdao', 'google']
+nmap <silent> <Leader>t <Plug>TranslateW
+vmap <silent> <Leader>t <Plug>TranslateWV
+hi def link vtmQuery            Constant
+hi def link vtmParaphrase       StorageClass
+hi def link vtmPhonetic         Type
+hi def link vtmExplain          String
+hi def link vtmPopupNormal      NormalFloat
+hi def link vtmDelimiter        Comment
 "}}}
 "{{{comfortable-motion.vim
 "{{{comfortable-motion.vim-usage
