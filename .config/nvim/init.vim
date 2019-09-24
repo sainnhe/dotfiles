@@ -799,6 +799,8 @@ let g:lightline_gitdiff#indicator_added = '+'
 let g:lightline_gitdiff#indicator_deleted = '-'
 let g:lightline_gitdiff#indicator_modified = '*'
 let g:lightline_gitdiff#min_winwidth = '70'
+let g:lightline#asyncrun#indicator_none = ''
+let g:lightline#asyncrun#indicator_run = 'Running...'
 if g:vimIsInTmux == 1
     let g:Lightline_StatusIndicators = [ 'tmuxlock' ]
 elseif g:vimIsInTmux == 0
@@ -2173,10 +2175,6 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
-"}}}
-"{{{async.vim
-let g:lightline#asyncrun#indicator_none = ''
-let g:lightline#asyncrun#indicator_run = 'Running...'
 "}}}
 "{{{vim-visual-multi
 "{{{vim-visual-multi-usage
