@@ -67,6 +67,7 @@
     "git.topRemovedSign.hlGroup": "GitGutterDelete",
     "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
     "explorer.icon.enableNerdfont": true,
+    "bookmark.sign": "\uf5c2",
     "suggest.languageSourcePriority": 99,
     "help_snippets": "https://github.com/neoclide/coc-snippets",
     "snippets.shortcut": "S",

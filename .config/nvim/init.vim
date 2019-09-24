@@ -632,6 +632,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'macthecadillac/lightline-gitdiff'
 Plug 'maximbaz/lightline-ale'
+Plug 'albertomontesg/lightline-asyncrun'
 if g:vimIsInTmux == 1
     Plug 'sainnhe/tmuxline.vim', { 'branch': 'dev', 'on': [ 'Tmuxline', 'TmuxlineSnapshot' ] }
 else
@@ -678,10 +679,7 @@ endif
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'albertomontesg/lightline-asyncrun'
 Plug 'mg979/vim-visual-multi'
-Plug 'thinca/vim-qfreplace', { 'on': [] }
-Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/suda.vim'
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/inline_edit.vim'
@@ -1053,7 +1051,6 @@ call g:quickmenu#append('Sneak', 'call Help_vim_sneak()', '', '', 0, 's')
 call g:quickmenu#append('Neoformat', 'call Help_neoformat()', '', '', 0, 'f')
 call g:quickmenu#append('Auto Pairs', 'call Help_auto_pairs()', '', '', 0, 'p')
 call g:quickmenu#append('Nerd Commenter', 'call Help_nerdcommenter()', '', '', 0, 'c')
-call g:quickmenu#append('Bookmarks', 'call Help_vim_bookmarks()', '', '', 0, 'b')
 call g:quickmenu#append('Close Tag', 'call Help_vim_closetag()', '', '', 0, 't')
 call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 'S')
 call g:quickmenu#append('VIM Surround', 'call Help_vim_surround()', '', '', 0, 'r')
@@ -1173,12 +1170,20 @@ function Help_COC_LSP()
     echo '<leader>la        codeaction-selected'
     echo '<leader>lA        codelens-action'
     echo '<leader>l?        toggle this help'
+    echo ''
     echo '<leader>gj        next chunk'
     echo '<leader>gk        prev chunk'
     echo '<leader>gi        chunk info'
     echo '<leader>gc        commit message'
     echo '<leader>gd        diff'
     echo '<leader>g<Tab>    open in browser'
+    echo ''
+    echo '<leader>bt        toggle bookmark'
+    echo '<leader>ba        annotate bookmark'
+    echo '<leader>bn        next bookmark'
+    echo '<leader>bp        prev bookmark'
+    echo '<leader>bb        manage bookmarks'
+    echo ''
     echo '<C-l>             jump to floating window'
     echo '?                 toggle hover'
 endfunction
@@ -1221,14 +1226,15 @@ call g:quickmenu#append('Extension Market', 'CocList marketplace', '', '', 0, '#
 call coc#add_extension(
             \   'coc-lists',
             \   'coc-marketplace',
-            \   'coc-git',
-            \   'coc-explorer',
             \   'coc-snippets',
             \   'coc-syntax',
             \   'coc-tag',
             \   'coc-highlight',
             \   'coc-emoji',
-            \   'coc-dictionary'
+            \   'coc-dictionary',
+            \   'coc-git',
+            \   'coc-explorer',
+            \   'coc-bookmark'
             \   )
 call coc#add_extension(
             \   'coc-html',
@@ -1254,6 +1260,7 @@ augroup cocCustom
     autocmd InsertEnter * call coc#util#float_hide()
     autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
 augroup END
+hi link BookMarkHI GitGutterAdd
 let g:CocHoverEnable = 0
 let g:tmuxcomplete#trigger = ''
 set hidden
@@ -1322,6 +1329,13 @@ function ToggleCocExplorer()
     execute 'CocCommand explorer --toggle --width=35 --sources=buffer+,file+'
 endfunction
 nnoremap <silent> <C-b> :call ToggleCocExplorer()<CR>
+"}}}
+"{{{coc-bookmark
+nmap <leader>bt <Plug>(coc-bookmark-toggle)
+nmap <leader>ba <Plug>(coc-bookmark-annotate)
+nmap <leader>bn <Plug>(coc-bookmark-next)
+nmap <leader>bp <Plug>(coc-bookmark-prev)
+nnoremap <silent> <leader>bb :CocList bookmark<CR>
 "}}}
 "}}}
 "{{{ale
@@ -2230,44 +2244,6 @@ let g:VM_maps['Select e']                    = '<M-z>``````addright'
 let g:VM_maps['Select ge']                   = '<M-z>``````addleft'
 let g:VM_maps['I Arrow w']                   = '<M-z>``````addright'
 let g:VM_maps['I Arrow b']                   = '<M-z>``````addleft'
-"}}}
-"{{{vim-bookmarks
-"{{{vim-bookmarks-usage
-function! Help_vim_bookmarks()
-    echo '<Leader>bb            <Plug>BookmarkToggle'
-    echo '<Leader>ba            <Plug>BookmarkAnnotate'
-    echo '<Leader>bj            <Plug>BookmarkNext'
-    echo '<Leader>bk            <Plug>BookmarkPrev'
-    echo '<Leader>bc            <Plug>BookmarkClear'
-    echo '<Leader>bC            <Plug>BookmarkClearAll'
-    echo '" these will also work with a [count] prefix'
-    echo '<Leader>bK            <Plug>BookmarkMoveUp'
-    echo '<Leader>bJ            <Plug>BookmarkMoveDown'
-    echo '<Leader>b<Tab>        <Plug>BookmarkMoveToLine'
-    echo "\n"
-    echo '<Leader>b?            Help'
-endfunction
-"}}}
-let g:bookmark_sign = '✭'
-let g:bookmark_annotation_sign = '☰'
-let g:bookmark_auto_save = 1
-let g:bookmark_auto_save_file = $HOME .'/.cache/vim/.vimbookmarks'
-let g:bookmark_highlight_lines = 1
-let g:bookmark_show_warning = 0
-let g:bookmark_show_toggle_warning = 0
-let g:bookmark_auto_close = 1
-let g:bookmark_no_default_key_mappings = 1
-nmap <Leader>bb <Plug>BookmarkToggle
-nmap <Leader>ba <Plug>BookmarkAnnotate
-nmap <Leader>bj <Plug>BookmarkNext
-nmap <Leader>bk <Plug>BookmarkPrev
-nmap <Leader>bc <Plug>BookmarkClear
-nmap <Leader>bC <Plug>BookmarkClearAll
-" these will also work with a [count] prefix
-nmap <Leader>bK <Plug>BookmarkMoveUp
-nmap <Leader>bJ <Plug>BookmarkMoveDown
-nmap <Leader>b<Tab> <Plug>BookmarkMoveToLine
-nmap <silent> <Leader>b? :<C-u>call Help_vim_bookmarks()<CR>
 "}}}
 "{{{suda.vim
 "{{{suda.vim-usage
