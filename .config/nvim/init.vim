@@ -324,7 +324,7 @@ nnoremap <leader>y "+y
 " <leader>+P从系统剪切板粘贴
 nnoremap <leader>p "+p
 " Alt+T新建tab
-nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call NerdtreeStartify()<CR>
+nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call ExplorerStartify()<CR>
 " Alt+W关闭当前标签
 nnoremap <silent> <A-w> :<C-u>call CloseOnLastTab()<CR>
 " Alt+上下左右可以跳转和移动窗口
@@ -659,8 +659,6 @@ Plug 'tjdevries/coc-zsh'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': ['NERDTreeVCS', 'NERDTreeToggle'] }
 Plug 'mcchrish/nnn.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'mbbill/undotree'
@@ -1007,29 +1005,22 @@ if g:vimEnableStartify == 1
                 \ { 'type': 'dir',       'header': [" \ufa1eMRU Files in ". getcwd()] },
                 \ { 'type': 'commands',  'header': [" \ufb32 Commands"]       },
                 \ ]
-    " on Start
-    function! NerdtreeStartify()
-        execute 'Startify'
-        execute 'NERDTreeVCS'
-        execute 'wincmd l'
-    endfunction
-    augroup startifyCustom
-        autocmd VimEnter *
-                    \   if !argc()
-                    \ |   call NerdtreeStartify()
-                    \ | endif
-        " on Enter
-        autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):NERDTreeToggle<CR>
-    augroup END
-    " list of commands to be executed before save a session
-    let g:startify_session_before_save = [
-                \ 'echo "Cleaning up before saving.."',
-                \ 'silent! NERDTreeTabsClose',
-                \ ]
     " MRU skipped list, do not use ~
     let g:startify_skiplist = [
                 \ '/mnt/*',
                 \ ]
+    function ExplorerStartify()
+        execute 'Startify'
+        execute 'call ToggleCocExplorer()'
+    endfunction
+    augroup startifyCustom
+        autocmd VimEnter *
+                    \   if !argc()
+                    \ |   call ExplorerStartify()
+                    \ | endif
+        " on Enter
+        autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):call ToggleCocExplorer()<CR>
+    augroup END
 endif
 "}}}
 "{{{quickmenu.vim
@@ -1087,7 +1078,7 @@ call g:quickmenu#append('Star Wars', 'StarWars', '', '', 0, '')
 " :LeadingSpaceToggle  切换显示Leading Space
 " :IndentLinesToggle  切换显示indentLine
 "}}}
-let g:ExcludeIndentFileType_Universal = [ 'startify', 'nerdtree', 'codi', 'help', 'man' ]
+let g:ExcludeIndentFileType_Universal = [ 'startify', 'coc-explorer', 'codi', 'help', 'man' ]
 let g:ExcludeIndentFileType_Special = [ 'markdown', 'json' ]
 let g:indentLine_enabled = 1
 let g:indentLine_leadingSpaceEnabled = 0
@@ -1152,6 +1143,11 @@ let g:golden_ratio_autocommand = 0
 let g:vimade = {}
 let g:vimade.fadelevel = 0.6
 let g:vimade.enablesigns = 1
+augroup vimadeCustom
+    autocmd!
+    autocmd BufEnter,FileType coc-explorer VimadeBufDisable
+    autocmd BufEnter,FileType startify VimadeBufDisable
+augroup END
 "}}}
 "{{{vim-hexokinase
 let g:Hexokinase_highlighters = ['background']  " ['virtual', 'sign_column', 'background', 'foreground', 'foregroundfull']
@@ -1229,6 +1225,7 @@ call coc#add_extension(
             \   'coc-lists',
             \   'coc-marketplace',
             \   'coc-git',
+            \   'coc-explorer',
             \   'coc-snippets',
             \   'coc-syntax',
             \   'coc-tag',
@@ -1323,6 +1320,12 @@ nnoremap <silent> ft :CocList outline<CR>
 nnoremap <silent> fh :CocList helptags<CR>
 nnoremap <silent> fg :CocList grep<CR>
 "}}}
+"{{{coc-explorer
+function ToggleCocExplorer()
+    execute 'CocCommand explorer --toggle --width=35 --sources=buffer+,file+'
+endfunction
+nnoremap <silent> <C-b> :call ToggleCocExplorer()<CR>
+"}}}
 "}}}
 "{{{ale
 "{{{ale-usage
@@ -1391,69 +1394,9 @@ map ' <Plug>Sneak_;
 map " <Plug>Sneak_,
 imap <A-s> <Esc>s
 "}}}
-"{{{nerdtree
-"{{{nerdtree-usage
-function! Help_nerdtree()
-    echo '<C-b>         切换nerdtree'
-    echo '?             切换官方帮助'
-    echo 'h             查看帮助'
-    echo '~             回到project root'
-    echo '<A-f>         FuzzyFinder'
-    echo '<A-g>         Grep'
-    echo '<A-e>         打开nnn (或者直接buffer里<leader><A-e>)'
-    echo '<A-b>         打开bufexplorer(或直接buffer里<leader><A-b>)'
-endfunction
-"}}}
-"{{{extensions
-"{{{vim-nerdtree-syntax-highlight
-" disable highlight
-" let g:NERDTreeDisableFileExtensionHighlight = 1
-" let g:NERDTreeDisableExactMatchHighlight = 1
-" let g:NERDTreeDisablePatternMatchHighlight = 1
-" highlight fullname
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-" highlight folders using exact match
-let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
-"}}}
-"}}}
-nnoremap <silent> <C-B> :<C-u>NERDTreeToggle<CR>
-function! s:nerdtree_mappings() abort
-    nnoremap <silent><buffer> ~ :<C-u>NERDTreeVCS<CR>
-    nnoremap <silent><buffer> <A-f> :call Nerdtree_Fuzzy_Finder()<CR>
-    nnoremap <silent><buffer> <A-g> :call Nerdtree_Grep()<CR>
-    nnoremap <silent><buffer> h :call Help_nerdtree()<CR>
-    nmap <silent><buffer> <A-e> <C-b>:<C-u>NnnPicker '%:p:h'<CR>
-    nmap <silent><buffer> <A-b> <C-b>:<C-u>BufExplorer<CR>
-endfunction
-augroup nerdtreeCustom
-    autocmd!
-    autocmd FileType nerdtree setlocal signcolumn=no
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    autocmd FileType nerdtree call s:nerdtree_mappings()
-augroup END
-let NERDTreeMinimalUI = 1
-let NERDTreeWinSize = 35
-let NERDTreeChDirMode = 0
-let g:NERDTreeDirArrowExpandable = "\u00a0"
-let g:NERDTreeDirArrowCollapsible = "\u00a0"
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-" let NERDTreeShowHidden = 1
-function! Nerdtree_Fuzzy_Finder()
-    execute 'CocList files'
-endfunction
-function! Nerdtree_Grep()
-    execute 'CocList grep'
-endfunction
-"}}}
 "{{{nnn.vim
 "{{{nnn.vim-usage
 " <leader>e  打开nnn
-" nerdtree里 <A-e>  打开nnn
 "}}}
 let g:nnn#set_default_mappings = 0
 nnoremap <silent> <leader>e :<C-u>NnnPicker '%:p:h'<CR>
@@ -1468,7 +1411,6 @@ let g:nnn#command = 'PAGER= nnn'
 "{{{bufexplore
 "{{{bufexplore-usage
 " <leader><A-b> 打开bufexplorer
-" nerdtree里 <A-b> 打开bufexplorer
 " ?  显示帮助文档
 "}}}
 " Use Default Mappings
@@ -2577,6 +2519,5 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[''] = "\uf15b"
-let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "}}}
