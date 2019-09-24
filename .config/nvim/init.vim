@@ -1141,6 +1141,8 @@ augroup vimadeCustom
     autocmd!
     autocmd BufEnter,FileType coc-explorer VimadeBufDisable
     autocmd BufEnter,FileType startify VimadeBufDisable
+    autocmd BufEnter,FileType git VimadeBufDisable
+    autocmd BufEnter,FileType gitcommit VimadeBufDisable
 augroup END
 "}}}
 "{{{vim-hexokinase
