@@ -61,11 +61,6 @@
     "list.normalMappings": {
         "<C-c>": "do:exit"
     },
-    "git.addedSign.hlGroup": "GitGutterAdd",
-    "git.changedSign.hlGroup": "GitGutterChange",
-    "git.removedSign.hlGroup": "GitGutterDelete",
-    "git.topRemovedSign.hlGroup": "GitGutterDelete",
-    "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
     "explorer.icon.enableNerdfont": true,
     "bookmark.sign": "\uf5c2",
     "suggest.languageSourcePriority": 99,
