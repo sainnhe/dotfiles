@@ -407,8 +407,8 @@ export FZF_DEFAULT_OPTS="
 --ansi
 --tabstop=4
 --color=dark
---color=fg:#a0a1a7,bg:-1,hl:#61afef,fg+:#61afef,bg+:-1,hl+:#d858fe
---color=info:#c678dd,prompt:#c678dd,pointer:#98c379,marker:#98c379,spinner:#61afef,header:#98c379
+--color=bg:-1,hl:2,fg+:4,bg+:-1,hl+:2
+--color=info:1,prompt:2,pointer:5,marker:1,spinner:3,header:11
 "
 source /usr/share/fzf/completion.zsh  # 模糊匹配路径，**<Tab>触发
 bindkey '^F'  fzf-select-widget
