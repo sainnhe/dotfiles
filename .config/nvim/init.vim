@@ -607,7 +607,7 @@ augroup PlugDiffExtra
     autocmd FileType vim-plug call s:setup_extra_keys()
 augroup END
 
-command PU PlugUpdate | PlugUpgrade
+command PU PlugUpdate | PlugUpgrade | CocUpdate
 
 call plug#begin('~/.cache/vim/plugins')
 if !has('nvim') && has('python3')
@@ -922,7 +922,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'gruvbox-material-light'
+let g:vimColorScheme = 'gruvbox-material-dark'
 function! ColorScheme()
     call quickmenu#current(99)
     call quickmenu#reset()
