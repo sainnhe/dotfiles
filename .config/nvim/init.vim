@@ -1333,6 +1333,11 @@ function ToggleCocExplorer()
     execute 'CocCommand explorer --toggle --width=35 --sources=buffer+,file+'
 endfunction
 nnoremap <silent> <C-b> :call ToggleCocExplorer()<CR>
+augroup explorerCustom
+    autocmd!
+    autocmd FileType coc-explorer setlocal signcolumn=no
+    autocmd BufEnter * if (winnr("$") == 1 && bufname() ==# '[coc-explorer]') | q | endif
+augroup END
 "}}}
 "{{{coc-bookmark
 nmap <leader>bt <Plug>(coc-bookmark-toggle)
