@@ -32,10 +32,6 @@ if [[ "$1" == "yes" ]]; then
     tmux unbind-key -T prefix C-j
     tmux unbind-key -T prefix C-k
     tmux unbind-key -T prefix C-l
-    tmux unbind-key -T prefix C-,
-    tmux unbind-key -T prefix C--
-    tmux unbind-key -T prefix C-=
-    tmux unbind-key -T prefix C-.
     tmux unbind-key -T prefix C-x
     tmux bind-key -n C-s split-window
     tmux bind-key -n C-v split-window -h
@@ -43,10 +39,6 @@ if [[ "$1" == "yes" ]]; then
     tmux bind-key -n C-j select-pane -D
     tmux bind-key -n C-k select-pane -U
     tmux bind-key -n C-l select-pane -R
-    tmux bind-key -n C-, resize-pane -L
-    tmux bind-key -n C-- resize-pane -D
-    tmux bind-key -n C-= resize-pane -U
-    tmux bind-key -n C-. resize-pane -R
     tmux bind-key -n C-x kill-pane
     touch /tmp/.tmux-bind.lck
 elif [[ "$1" == "no" ]]; then
@@ -59,10 +51,6 @@ elif [[ "$1" == "no" ]]; then
     tmux unbind-key -n C-j
     tmux unbind-key -n C-k
     tmux unbind-key -n C-l
-    tmux unbind-key -n C-.
-    tmux unbind-key -n C-,
-    tmux unbind-key -n C-=
-    tmux unbind-key -n C--
     tmux unbind-key -n C-x
     tmux bind-key -T prefix C-s split-window
     tmux bind-key -T prefix C-v split-window -h
