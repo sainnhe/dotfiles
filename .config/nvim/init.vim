@@ -1131,6 +1131,7 @@ augroup vimadeCustom
     autocmd BufEnter,FileType startify VimadeBufDisable
     autocmd BufEnter,FileType git VimadeBufDisable
     autocmd BufEnter,FileType gitcommit VimadeBufDisable
+    autocmd BufEnter,FileType vtm VimadeBufDisable
 augroup END
 "}}}
 "{{{vim-hexokinase
@@ -2270,7 +2271,7 @@ vnoremap E :InlineEdit<CR>
 "}}}
 "{{{vim-translate-me
 let g:vtm_default_mapping = 0
-let g:vtm_default_engines = ['youdao', 'google']
+let g:vtm_default_engines = ['youdao', 'bing']
 nmap <silent> <Leader>t <Plug>TranslateW
 vmap <silent> <Leader>t <Plug>TranslateWV
 hi def link vtmQuery            Constant
