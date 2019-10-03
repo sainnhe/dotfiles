@@ -180,6 +180,12 @@ hide_edge_borders vertical
 
 # launch polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# layout
+# default
+workspace_layout tabbed
+# for window
+# for_window [class="Firefox"] layout tabbed
 # }}}
 # {{{Auto Start
 exec fcitx
@@ -188,4 +194,4 @@ exec redshiftgui
 # exec --no-startup-id i3-msg 'workspace 1:Alpha; layout tabbed; exec tilix; exec /usr/bin/firefox-developer-edition'
 # exec tilix -e "zsh -c 'source ~/.zshrc; tmux-start'"
 # }}}
-exec feh --bg-fill ~/Pictures/wallpaper/time-2.jpg
+exec feh --bg-fill ~/Pictures/wallpaper/time-3.jpg
