@@ -633,10 +633,9 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'macthecadillac/lightline-gitdiff'
 Plug 'maximbaz/lightline-ale'
 Plug 'albertomontesg/lightline-asyncrun'
+Plug 'rmolin88/pomodoro.vim'
 if g:vimIsInTmux == 1
     Plug 'sainnhe/tmuxline.vim', { 'branch': 'dev', 'on': [ 'Tmuxline', 'TmuxlineSnapshot' ] }
-else
-    Plug 'rmolin88/pomodoro.vim'
 endif
 if g:vimEnableStartify == 1
     Plug 'mhinz/vim-startify'
@@ -731,14 +730,10 @@ function! TmuxBindLock() abort"{{{
     endif
 endfunction"}}}
 function! PomodoroStatus() abort"{{{
-    if g:vimIsInTmux == 0
-        if pomo#remaining_time() ==# '0'
-            return "\ue001"
-        else
-            return "\ue003 ".pomo#remaining_time()
-        endif
-    elseif g:vimIsInTmux == 1
-        return ''
+    if pomo#remaining_time() ==# '0'
+        return "\ue001"
+    else
+        return "\ue003 ".pomo#remaining_time()
     endif
 endfunction"}}}
 function! CocCurrentFunction()"{{{
@@ -801,16 +796,11 @@ let g:lightline_gitdiff#indicator_modified = '*'
 let g:lightline_gitdiff#min_winwidth = '70'
 let g:lightline#asyncrun#indicator_none = ''
 let g:lightline#asyncrun#indicator_run = 'Running...'
-if g:vimIsInTmux == 1
-    let g:Lightline_StatusIndicators = [ 'tmuxlock' ]
-elseif g:vimIsInTmux == 0
-    let g:Lightline_StatusIndicators = [ 'pomodoro' ]
-endif
 let g:lightline.active = {
             \ 'left': [ [ 'artify_mode', 'paste' ],
             \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
             \ 'right': [ [ 'artify_lineinfo' ],
-            \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ] + g:Lightline_StatusIndicators,
+            \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
             \           [ 'asyncrun_status', 'coc_status' ] ]
             \ }
 let g:lightline.inactive = {
@@ -1028,9 +1018,7 @@ call quickmenu#reset()
 nnoremap <silent> <leader><leader> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
 call g:quickmenu#append('Servers', 'call quickmenu#toggle(4)', '', '', 0, 'l')
-if g:vimIsInTmux == 0
-    call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
-endif
+call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
 call g:quickmenu#append('Undo Tree', 'UndotreeToggle', '', '', 0, 'u')
@@ -2349,20 +2337,18 @@ augroup autoPairsCustom
 augroup END
 "}}}
 "{{{pomodoro.vim
-if g:vimIsInTmux == 0
-    let g:Pomodoro_Status = 0
-    function! Toggle_Pomodoro()
-        if g:Pomodoro_Status == 0
-            let g:Pomodoro_Status = 1
-            execute 'PomodoroStart'
-        elseif g:Pomodoro_Status == 1
-            let g:Pomodoro_Status = 0
-            execute 'PomodoroStop'
-        endif
-    endfunction
-    let g:pomodoro_time_work = 25
-    let g:pomodoro_time_slack = 5
-endif
+let g:Pomodoro_Status = 0
+function! Toggle_Pomodoro()
+    if g:Pomodoro_Status == 0
+        let g:Pomodoro_Status = 1
+        execute 'PomodoroStart'
+    elseif g:Pomodoro_Status == 1
+        let g:Pomodoro_Status = 0
+        execute 'PomodoroStop'
+    endif
+endfunction
+let g:pomodoro_time_work = 25
+let g:pomodoro_time_slack = 5
 "}}}
 "{{{vim-matchup
 "{{{vim-matchup-usage
