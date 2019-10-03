@@ -722,13 +722,6 @@ function! SwitchLightlineColorScheme(color)"{{{
     call lightline#colorscheme()
     call lightline#update()
 endfunction"}}}
-function! TmuxBindLock() abort"{{{
-    if filereadable('/tmp/.tmux-bind.lck')
-        return "\uf13e"
-    else
-        return "\uf023"
-    endif
-endfunction"}}}
 function! PomodoroStatus() abort"{{{
     if pomo#remaining_time() ==# '0'
         return "\ue001"
@@ -832,7 +825,6 @@ let g:lightline.component = {
             \ 'artify_lineinfo': "%2{Artify_line_percent()}\uf295 %3{Artify_line_num()}:%-2{Artify_col_num()}",
             \ 'gitstatus' : '%{lightline_gitdiff#get_status()}',
             \ 'bufinfo': '%{bufname("%")}:%{bufnr("%")}',
-            \ 'tmuxlock': '%{TmuxBindLock()}',
             \ 'vim_logo': "\ue7c5",
             \ 'pomodoro': '%{PomodoroStatus()}',
             \ 'mode': '%{lightline#mode()}',
