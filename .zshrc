@@ -382,12 +382,9 @@ zplugin ice lucid wait"1"; zplugin light ytet5uy4/fzf-widgets
 zplugin ice lucid wait"0"; zplugin light urbainvaes/fzf-marks
 zplugin ice lucid wait"1"; zplugin light hlissner/zsh-autopair
 zplugin ice lucid wait"1"; zplugin light peterhurford/git-it-on.zsh
-zplugin ice lucid wait"0"; zplugin snippet OMZ::lib/functions.zsh
 zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
-zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/web-search/web-search.plugin.zsh
-zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/frontend-search/frontend-search.plugin.zsh
 zplugin ice lucid wait"0" blockf; zplugin light zsh-users/zsh-completions
 zplugin ice lucid wait"0" blockf svn; zplugin snippet https://github.com/zchee/zsh-completions/trunk/src/zsh
 zplugin ice lucid wait"0" blockf; zplugin light sainnhe/rust-zsh-completions
@@ -436,14 +433,6 @@ export _ZL_MATCH_MODE=1
 alias zc='z -c' # 严格匹配当前路径的子路径
 alias zz='z -i' # 使用交互式选择模式
 alias zf='z -I' # 使用 fzf 对多个结果进行选择
-# }}}
-# {{{zsh-completion-generator
-# gencomp fzf
-# gencomp fzy
-# gencomp firefox-developer-edition
-# gencomp gotop
-# gencomp browsh
-# gencomp pip
 # }}}
 # }}}
 # {{{TMUX
