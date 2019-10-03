@@ -894,12 +894,12 @@ let g:lightline.component_visible_condition = {
 if g:vimIsInTmux == 1
     let g:tmuxline_preset = {
                 \'a'    : '#S',
-                \'b'    : '%R %a',
+                \'b'    : '%R',
                 \'c'    : [ '#{sysstat_mem} #[fg=blue]\ufa51#{upload_speed}' ],
                 \'win'  : [ '#I', '#W' ],
                 \'cwin' : [ '#I', '#W', '#F' ],
                 \'x'    : [ "#[fg=blue]#{download_speed} \uf6d9 #{sysstat_cpu}" ],
-                \'y'    : [ '#(bash /home/sainnhe/repo/scripts/func/tmux_pomodoro.sh) \ue0bd #(bash /home/sainnhe/repo/scripts/func/tmux_lock.sh)' ],
+                \'y'    : [ '%a' ],
                 \'z'    : '#H #{prefix_highlight}'
                 \}
     let g:tmuxline_separators = {

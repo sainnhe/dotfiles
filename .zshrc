@@ -435,8 +435,7 @@ alias zz='z -i' # 使用交互式选择模式
 alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # }}}
-# {{{TMUX
-~/.tmux-bind.sh no
+# {{{Startup
 # zprof  # 取消注释首行和本行，然后执行 time zsh -i -c exit
 # 若直接执行 zprof，将会测试包括 lazyload 在内的所有启动时间
 # }}}
