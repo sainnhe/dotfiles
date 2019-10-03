@@ -640,7 +640,7 @@ endif
 if g:vimEnableStartify == 1
     Plug 'mhinz/vim-startify'
 endif
-Plug 'CharlesGueunet/quickmenu.vim'
+Plug 'sainnhe/quickmenu.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides', { 'on': [] }
 Plug 'junegunn/vim-easy-align'
