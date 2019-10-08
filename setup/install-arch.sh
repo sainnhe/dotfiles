@@ -161,7 +161,7 @@ elif [ "$1" = "user" ]; then
     sudo pacman -S wget unzip
     cd ~/repo
     proxychains -q wget https://github.com/jakeday/linux-surface/archive/master.zip
-    unzip linux-surface-master.zip
+    unzip master.zip
     sudo mkdir arch-linux-surface/.cache_setup
     sudo mv linux-surface-master arch-linux-surface/.cache_setup/linux-surface
     cd arch-linux-surface
