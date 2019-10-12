@@ -93,7 +93,7 @@ elif [ "$1" = "chroot" ]; then
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/2019/03/15/$repo/os/$arch' /etc/pacman.d/mirrorlist
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/last/$repo/os/$arch' /etc/pacman.d/mirrorlist
     pacman -Syyuu
-    pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode v2ray sudo mesa xf86-video-intel xorg git w3m aria2 wget openssh
+    pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode v2ray sudo mesa xf86-video-intel xorg git w3m aria2 wget openssh netctl
     vim /etc/locale.gen
     locale-gen
     echo -n "add this to the first line: 'LANG=en_US.UTF-8' (enter to continue) "
@@ -106,7 +106,7 @@ elif [ "$1" = "chroot" ]; then
     sed -ri -e '$a ::1		localhost' /etc/hosts
     sed -ri -e '$a 127.0.1.1	myhostname.localdomain	myhostname' /etc/hosts
     vim /etc/hosts
-    pacman -S os-prober grub efibootmgr
+    pacman -S os-prober grub efibootmgr linux
     grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux
     grub-mkconfig -o /boot/grub/grub.cfg
     sed -ri -e 's/use_lvmetad = 1/use_lvmetad = 0/' /etc/lvm/lvm.conf
