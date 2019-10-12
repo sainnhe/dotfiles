@@ -149,7 +149,7 @@ elif [ "$1" = "user" ]; then
     sudo cp ~/repo/dotfiles/.root/etc/proxychains.conf /etc/proxychains.conf
     #}}}
     # LightDM{{{
-    sudo pacman -S lightdm
+    sudo pacman -S lightdm i3-gaps
     sudo pacman -S lightdm-webkit2-greeter
     pikaur -S lightdm-webkit2-theme-material2
     sudo systemctl enable lightdm
