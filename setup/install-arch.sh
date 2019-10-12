@@ -154,7 +154,7 @@ elif [ "$1" = "user" ]; then
     pikaur -S lightdm-webkit2-theme-material2
     sudo systemctl enable lightdm
     sudo cp ~/repo/dotfiles/.root/etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
-    sudo cp ~/repo/dotfiles/.root/etc/lightdm/lightdm-webkit2-greeter.conf etc/lightdm/lightdm-webkit2-greeter.conf
+    sudo cp ~/repo/dotfiles/.root/etc/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/lightdm-webkit2-greeter.conf
     #}}}
     # Surface Linux{{{
     git clone https://github.com/dmhacker/arch-linux-surface.git ~/repo/
