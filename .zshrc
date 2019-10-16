@@ -376,21 +376,21 @@ autoload -Uz _zplugin
 zplugin light romkatv/powerlevel10k
 zplugin light zdharma/fast-syntax-highlighting
 zplugin light zsh-users/zsh-autosuggestions
-zplugin ice lucid wait"0"; zplugin light zsh-users/zsh-history-substring-search
-zplugin ice lucid wait"0"; zplugin light skywind3000/z.lua
-zplugin ice lucid wait"1"; zplugin light ytet5uy4/fzf-widgets
-zplugin ice lucid wait"0"; zplugin light urbainvaes/fzf-marks
-zplugin ice lucid wait"1"; zplugin light hlissner/zsh-autopair
-zplugin ice lucid wait"1"; zplugin light peterhurford/git-it-on.zsh
-zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
-zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
-zplugin ice lucid wait"1"; zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
-zplugin ice lucid wait"0" blockf; zplugin light zsh-users/zsh-completions
-zplugin ice lucid wait"0" blockf svn; zplugin snippet https://github.com/zchee/zsh-completions/trunk/src/zsh
-zplugin ice lucid wait"0" blockf; zplugin light sainnhe/rust-zsh-completions
-zplugin ice lucid wait"0"; zplugin light RobSis/zsh-completion-generator
-zplugin ice lucid wait"0" atload"export FPATH=$HOME/.zplugin/plugins/RobSis---zsh-completion-generator/completions:$HOME/.zplugin/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH; zcomp_init" as"program" atclone"mv run.sh gencomp-manpage; sed -i -e '1i pushd ~/.zplugin/plugins/nevesnunes---sh-manpage-completions/' -e '\$a popd' gencomp-manpage" pick"run.sh"; zplugin light nevesnunes/sh-manpage-completions
-zplugin ice lucid wait"0" pick".zsh-snippets"; zplugin light "$HOME"
+zplugin ice wait'0' lucid; zplugin light zsh-users/zsh-history-substring-search
+zplugin ice wait'0' lucid; zplugin light skywind3000/z.lua
+zplugin ice wait'1' lucid; zplugin light ytet5uy4/fzf-widgets
+zplugin ice wait'0' lucid; zplugin light urbainvaes/fzf-marks
+zplugin ice wait'1' lucid; zplugin light hlissner/zsh-autopair
+zplugin ice wait'1' lucid; zplugin light peterhurford/git-it-on.zsh
+zplugin ice wait'1' lucid; zplugin snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
+zplugin ice wait'1' lucid; zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zplugin ice wait'1' lucid; zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
+zplugin ice wait'0' blockf lucid; zplugin light zsh-users/zsh-completions
+zplugin ice wait'0' blockf svn lucid; zplugin snippet https://github.com/zchee/zsh-completions/trunk/src/zsh
+zplugin ice wait'0' blockf lucid; zplugin light sainnhe/rust-zsh-completions
+zplugin ice wait'0' lucid; zplugin light RobSis/zsh-completion-generator
+zplugin ice wait'0' atload"export FPATH=$HOME/.zplugin/plugins/RobSis---zsh-completion-generator/completions:$HOME/.zplugin/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH; zcomp_init" as"program" atclone"mv run.sh gencomp-manpage; sed -i -e '1i pushd ~/.zplugin/plugins/nevesnunes---sh-manpage-completions/' -e '\$a popd' gencomp-manpage" pick"run.sh" lucid; zplugin light nevesnunes/sh-manpage-completions
+zplugin ice wait'0' pick".zsh-snippets" lucid; zplugin light "$HOME"
 source "$HOME/.zsh-theme"
 # {{{fast-syntax-highlighting
 FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
