@@ -385,6 +385,8 @@ zplugin ice wait'1' lucid; zplugin light peterhurford/git-it-on.zsh
 zplugin ice wait'1' lucid; zplugin snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 zplugin ice wait'1' lucid; zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 zplugin ice wait'1' lucid; zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
+zplugin ice wait'1' lucid; zplugin light zdharma/zsh-lint
+zplugin ice wait'1' lucid; zplugin light denysdovhan/gitio-zsh
 zplugin ice wait'0' blockf lucid; zplugin light zsh-users/zsh-completions
 zplugin ice wait'0' blockf svn lucid; zplugin snippet https://github.com/zchee/zsh-completions/trunk/src/zsh
 zplugin ice wait'0' blockf lucid; zplugin light sainnhe/rust-zsh-completions
