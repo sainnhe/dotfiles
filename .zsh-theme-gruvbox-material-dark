@@ -56,7 +56,7 @@ fi
     p=$ins
   fi
   if [[ "$DESERT_NIGHT_PURE_POWER_TRUE_COLOR" == "true" ]]; then
-    local ok="%F{#dfbf8e}${p}%f"
+    local ok="%F{#d4ba92}${p}%f"
     local err="%F{#ea6962}${p}%f"
   else
     local ok="%F{$(_pp_s 007 223)}${p}%f"
@@ -113,7 +113,7 @@ fi
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED}_MAX_NUM=99
   if [[ "$DESERT_NIGHT_PURE_POWER_TRUE_COLOR" == "true" ]]; then
     typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND='#7daea3'
-    typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='#e3a84e'
+    typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='#dfa856'
     typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='#d3869b'
     typeset -g POWERLEVEL9K_VCS_LOADING_FOREGROUND='#928374'
   else
