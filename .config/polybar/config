@@ -44,15 +44,15 @@ module-margin-left = 1
 module-margin-right = 0
 ; separator between each module
 ; separator =
-; system tray
+; system ; tray
 ; left center right none
-tray-position = right
-tray-padding = 1
-tray-background = ${colors.bg}
-tray-maxsize = 22
-tray-scale = 1.0
-tray-offset-x = 0
-tray-offset-y = 0
+; tray-position = right
+; tray-padding = 1
+; tray-background = ${colors.bg}
+; tray-maxsize = 22
+; tray-scale = 1.0
+; tray-offset-x = 0
+; tray-offset-y = 0
 
 ; font-0 = "FuraCode Nerd Font Mono:size=26"
 font-0 = "DroidSansMono Nerd Font:size=12"
