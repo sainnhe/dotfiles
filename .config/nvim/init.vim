@@ -1121,7 +1121,7 @@ nnoremap <leader><CR> :<C-u>Goyo<CR>
 let g:golden_ratio_autocommand = 0
 "}}}
 "{{{vim-hexokinase
-let g:Hexokinase_highlighters = ['background']  " ['virtual', 'sign_column', 'background', 'foreground', 'foregroundfull']
+let g:Hexokinase_highlighters = ['backgroundfull']  " ['virtual', 'sign_column', 'background', 'foreground', 'foregroundfull']
 let g:Hexokinase_ftAutoload = ['html', 'css', 'javascript', 'vim', 'colortemplate']  " ['*']
 let g:Hexokinase_refreshEvents = ['BufWritePost']
 let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba']  " ['full_hex', 'triple_hex', 'rgb', 'rgba', 'colour_names']
@@ -1200,20 +1200,18 @@ call g:quickmenu#append('Info', 'CocInfo', ':h CocOpenLog for log', '', 0, '@')
 call g:quickmenu#append('Extension Market', 'CocList marketplace', '', '', 0, '#')
 "}}}
 "{{{coc-init
-call coc#add_extension(
+let g:coc_global_extensions = [
             \   'coc-lists',
             \   'coc-marketplace',
+            \   'coc-git',
+            \   'coc-explorer',
+            \   'coc-bookmark',
+            \   'coc-highlight',
             \   'coc-snippets',
             \   'coc-syntax',
             \   'coc-tag',
-            \   'coc-highlight',
             \   'coc-emoji',
             \   'coc-dictionary',
-            \   'coc-git',
-            \   'coc-explorer',
-            \   'coc-bookmark'
-            \   )
-call coc#add_extension(
             \   'coc-html',
             \   'coc-css',
             \   'coc-emmet',
@@ -1226,7 +1224,7 @@ call coc#add_extension(
             \   'coc-json',
             \   'coc-yaml',
             \   'coc-vimlsp'
-            \   )
+            \   ]
 "}}}
 "{{{coc-settings
 augroup cocCustom
