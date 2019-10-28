@@ -696,8 +696,7 @@ if executable('fcitx')
 endif
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
             \| au BufNewFile,BufRead *.html,*.css call Func_emmet_vim()
-Plug 'alvan/vim-closetag', { 'for': 'html' }
-            \| au BufNewFile,BufRead *.html,*.css call Func_vim_closetag()
+Plug 'alvan/vim-closetag'
 Plug 'elzr/vim-json', { 'for': 'json' }
             \| au BufNewFile,BufRead *.json call Func_vim_json()
 Plug 'masukomi/vim-markdown-folding'
@@ -2417,17 +2416,17 @@ endfunction
 "{{{vim-closetag
 "{{{vim-closetag-usage
 function! Help_vim_closetag()
-    echo ''
-    echo '<A-z>>  Add > at current position without closing the current tag'
+    echo '>             press return at current tag'
+    echo '<A-z>>        add > at current position without closing the current tag'
     echo ''
 endfunction
 "}}}
-function! Func_vim_closetag()
-    " Shortcut for closing tags, default is '>'
-    let g:closetag_shortcut = '>'
-    " Add > at current position without closing the current tag, default is ''
-    let g:closetag_close_shortcut = '<A-z>>'
-endfunction
+" Shortcut for closing tags, default is '>'
+let g:closetag_shortcut = '>'
+" Add > at current position without closing the current tag, default is ''
+let g:closetag_close_shortcut = '<A-z>>'
+" whitelist
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.jsx,*.tsx'
 "}}}
 "{{{vim-json
 function! Func_vim_json()
