@@ -623,7 +623,35 @@ Plug 'ryanoasis/vim-devicons'
 "{{{syntax
 Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax' }
 Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-syntax-c-cpp', 'for': [ 'c', 'cpp' ] }
-let g:polyglot_disabled = [ 'c', 'cpp' ]
+let g:polyglot_disabled = [ 'c', 'cpp', 'markdown' ]
+let g:markdown_fenced_languages = [
+            \   'html',
+            \   'css',
+            \   'scss',
+            \   'sass=scss',
+            \   'js=javascript',
+            \   'jsx=javascriptreact',
+            \   'ts=typescript',
+            \   'tsx=typescript.tsx',
+            \   'c',
+            \   'cpp',
+            \   'cs',
+            \   'java',
+            \   'py=python',
+            \   'python',
+            \   'go',
+            \   'rust',
+            \   'rs=rust',
+            \   'php',
+            \   'sh',
+            \   'shell=sh',
+            \   'bash=sh',
+            \   'vim',
+            \   'sql',
+            \   'json',
+            \   'yaml',
+            \   'toml'
+            \   ]
 "}}}
 " User Interface
 "{{{themes
