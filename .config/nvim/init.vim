@@ -679,7 +679,6 @@ Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'roman/golden-ratio'
 Plug 'sainnhe/artify.vim'
-Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 " Productivity
 Plug 'honza/vim-snippets'
@@ -1056,7 +1055,6 @@ call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0,
 call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
 call g:quickmenu#append('Ratio Resize', 'GoldenRatioResize', ':GoldenRatioResize  " resize current window', '', 0, 'g')
 call g:quickmenu#append('Ratio Toggle', 'GoldenRatioToggle', ':GoldenRatioToggle  " toggle golden ratio', '', 0, 'G')
-call g:quickmenu#append('Hexokinase Toggle', 'HexokinaseToggle', '', '', 0, 'H')
 call g:quickmenu#append('FencAutoDetect', 'FencAutoDetect', 'FencAutoDetect && FencView', '', 0, '^')
 call g:quickmenu#append('Entertainment', 'call quickmenu#toggle(12)', '', '', 0, '*')
 call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
@@ -1149,12 +1147,6 @@ nnoremap <leader><CR> :<C-u>Goyo<CR>
 "}}}
 " 默认关闭
 let g:golden_ratio_autocommand = 0
-"}}}
-"{{{vim-hexokinase
-let g:Hexokinase_highlighters = ['backgroundfull']  " ['virtual', 'sign_column', 'background', 'foreground', 'foregroundfull']
-let g:Hexokinase_ftAutoload = ['html', 'css', 'javascript', 'vim', 'colortemplate']  " ['*']
-let g:Hexokinase_refreshEvents = ['BufWritePost']
-let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba']  " ['full_hex', 'triple_hex', 'rgb', 'rgba', 'colour_names']
 "}}}
 " Productivity
 "{{{coc.nvim
