@@ -1273,13 +1273,15 @@ set dictionary+=/usr/share/dict/words
 set dictionary+=/usr/share/dict/american-english
 "}}}
 "{{{coc-mappings
-imap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
+imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
+imap <expr> <C-c> pumvisible() ? "\<Space>\<Backspace>" : "\<C-c>"
+imap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<CR>"
+imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
 inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
 inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
 inoremap <expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
 inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
-imap <expr> <C-z> pumvisible() ? "\<C-e>" : "<C-z>"
 nmap <leader>lJ <Plug>(coc-diagnostic-next)
 nmap <leader>lK <Plug>(coc-diagnostic-prev)
 nmap <leader>li <Plug>(coc-diagnostic-info)
