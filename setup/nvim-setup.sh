@@ -100,6 +100,9 @@ pikaur_setup_func() {
     echo -n "install stylelint from AUR. [enter to continue]  "
     read -r
     pikaur -S stylelint
+    echo -n "install stylelint-config-standard from AUR. [enter to continue]  "
+    read -r
+    pikaur -S stylelint-config-standard
     echo -n "install nodejs-jsonlint from AUR. [enter to continue]  "
     read -r
     pikaur -S nodejs-jsonlint
@@ -138,15 +141,11 @@ npm_yarn_setup() {
         proxychains -q npm install --user vscode-html-languageserver-bin
         proxychains -q npm install --user vscode-css-languageserver-bin
         proxychains -q npm install --user vscode-json-languageserver-bin
-        proxychains -q npm install --user stylelint-config-standard
-        proxychains -q npm install --user jsonlint
         proxychains -q yarn add --dev flow-bin
     else
         npm install --user vscode-html-languageserver-bin
         npm install --user vscode-css-languageserver-bin
         npm install --user vscode-json-languageserver-bin
-        npm install --user stylelint-config-standard
-        npm install --user jsonlint
         yarn add --dev flow-bin
     fi
 }
