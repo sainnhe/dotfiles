@@ -730,6 +730,7 @@ Plug 'alvan/vim-closetag'
 Plug 'elzr/vim-json', { 'for': 'json' }
             \| au BufNewFile,BufRead *.json call Func_vim_json()
 Plug 'masukomi/vim-markdown-folding'
+Plug 'KabbAmine/vCoolor.vim'
 
 " Entertainment
 Plug 'mattn/vim-starwars', { 'on': 'StarWars' }
@@ -1046,9 +1047,10 @@ call g:quickmenu#append('# Menu', '')
 call g:quickmenu#append('Servers', 'call quickmenu#toggle(4)', '', '', 0, 'l')
 call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
-call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'c')
+call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'C')
+call g:quickmenu#append('Color Picker', 'call quickmenu#toggle(13)', '', '', 0, 'c')
 call g:quickmenu#append('Undo Tree', 'UndotreeToggle', '', '', 0, 'u')
-call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'C')
+call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'r')
 call g:quickmenu#append('Toggle Indent', 'call ToggleIndent()', '', '', 0, 'i')
 call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(11)', '', '', 0, 'f')
 call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
@@ -2456,6 +2458,36 @@ function! Func_vim_json()
     set foldmethod=syntax
     call ToggleIndent()
 endfunction
+"}}}
+"{{{vCoolor.vim
+function Help_vCoolor()
+    echo ':Rgb2Hex "255, 0, 255"			" Gives "#FF00FF"'
+    echo ':Rgb2RgbPerc "255, 0, 255"		" Gives "100%, 0%, 100%"'
+    echo ':Rgb2Hsl "255, 0, 255"			" Gives "300, 100%, 50%"'
+    echo ''
+    echo ':RgbPerc2Hex "100%, 0%, 100%" " Gives "#FF00FF"'
+    echo ':RgbPerc2Rgb "100%, 0%, 100%" " Gives "255, 0, 255"'
+    echo ''
+    echo ':Hex2Lit "#FF00FF"				" Gives "magenta"'
+    echo ':Hex2Rgb "#FF00FF"				" Gives "255, 0, 255"'
+    echo ':Hex2RgbPerc "#FF00FF"			" Gives "100%, 0%, 100%"'
+    echo ':Hex2Hsl "#FF00FF"				" Gives "300, 100%, 50%"'
+    echo ''
+    echo ':Hsl2Rgb "300, 100%, 50%"		" Gives "255, 0, 255"'
+    echo ':Hsl2Hex "300, 100%, 50%"		" Gives "#FF00FF"'
+endfunction
+call quickmenu#current(13)
+call quickmenu#reset()
+call g:quickmenu#append('# Color Picker', '')
+call g:quickmenu#append('Modify', 'VCoolor', '', '', 0, 'm')
+call g:quickmenu#append('Insert Hex', 'VCoolor', '', '', 0, 'h')
+call g:quickmenu#append('Insert RGB', 'VCoolIns r', '', '', 0, 'r')
+call g:quickmenu#append('Insert HSL', 'VCoolIns h', '', '', 0, 'H')
+call g:quickmenu#append('Insert RGBA', 'VCoolIns ra', '', '', 0, 'R')
+call g:quickmenu#append('Toggle Case', 'VCase', '', '', 0, 'c')
+call g:quickmenu#append('Convert', 'call Help_vCoolor()', '', '', 0, 'h')
+let g:vcoolor_disable_mappings = 1
+let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --show-palette --color '
 "}}}
 "{{{vim-devicons
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1

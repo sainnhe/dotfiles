@@ -73,6 +73,8 @@ pacman_setup_func() {
     pacman -S --noconfirm bash-language-server &>/dev/null
     echo "installing hasktags..."
     pacman -S --noconfirm hasktags &>/dev/null
+    echo "installing zenity..."
+    pacman -S --noconfirm zenity &>/dev/null
 }
 # }}}
 # {{{pikaur_setup_func()
