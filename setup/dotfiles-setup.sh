@@ -29,6 +29,7 @@ setup_copy .ctags
 setup_symlink .conkyrc
 setup_symlink .bashrc
 setup_symlink .w3m
+setup_symlink .weechat/weechat.conf
 setup_symlink .local/share/applications
 setup_copy .aria2
 setup_symlink .config/alacritty/alacritty.yml
@@ -40,5 +41,6 @@ setup_symlink .config/rofi
 setup_symlink .config/rtv
 setup_symlink .config/compton.conf
 setup_copy .config/pikaur.conf
+setup_symlink package.json
 
 echo "setup root directory manually"
