@@ -392,9 +392,8 @@ inoremap <A-z><C-V> <Space><Backspace><ESC>"+pa
 " Ctrl+S保存文件
 inoremap <C-S> <Esc>:w<CR>a
 " Ctrl+Z撤销上一个动作
-inoremap <C-Z> <ESC>ua
 " Ctrl+R撤销撤销的动作
-inoremap <C-R> <ESC><C-R>a
+inoremap <C-R> <ESC><C-R>i
 " Ctrl+X剪切当前行
 inoremap <C-X> <ESC>"_ddi
 " Alt+hjkl移动
@@ -1274,7 +1273,7 @@ set dictionary+=/usr/share/dict/american-english
 "}}}
 "{{{coc-mappings
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
-imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<C-z>"
+imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<Esc>\u\i"
 imap <expr> <C-c> pumvisible() ? "\<Space>\<Backspace>" : "\<C-c>"
 imap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<CR>"
 imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
