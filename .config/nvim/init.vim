@@ -198,6 +198,10 @@ if has('nvim')
     filetype plugin indent on
     " set pumblend=15
 endif
+augroup vimSettings
+    autocmd!
+    autocmd FileType css,scss,typescript set shiftwidth=2
+augroup END
 " "{{{
 " if exists('g:loaded_sensible') || &compatible
 "         finish
