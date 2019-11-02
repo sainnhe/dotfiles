@@ -200,7 +200,7 @@ if has('nvim')
 endif
 augroup vimSettings
     autocmd!
-    autocmd FileType css,scss,typescript set shiftwidth=2
+    autocmd FileType html,css,scss,typescript set shiftwidth=2
 augroup END
 " "{{{
 " if exists('g:loaded_sensible') || &compatible
