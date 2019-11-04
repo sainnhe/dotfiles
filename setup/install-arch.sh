@@ -104,8 +104,7 @@ elif [ "$1" = "chroot" ]; then
     defaultFalse
     while [ "$judgement" = "n" ]; do
         pacman -Syyuu
-        pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode v2ray sudo mesa xf86-video-intel xorg git w3m aria2 wget openssh netctl
-        pacman -S os-prober grub efibootmgr linux
+        pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode v2ray sudo mesa xf86-video-intel xorg git w3m aria2 wget openssh netctl os-prober grub efibootmgr linux
         echo -n "Continue? [N/y] "
         defaultFalse
     done
@@ -115,6 +114,7 @@ elif [ "$1" = "chroot" ]; then
     read -r wait
     vim /etc/locale.conf
     echo -n "set hostname (enter to continue) "
+    read -r wait
     vim /etc/hostname
     rm /etc/hosts
     echo '127.0.0.1	localhost' >/etc/hosts
