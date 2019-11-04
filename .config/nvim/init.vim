@@ -22,6 +22,7 @@ else
 endif
 "}}}
 let g:vimAutoInstall = 1
+let g:lightlineArtify = 1
 let g:startify_bookmarks = [
             \ {'R': '~/repo/'},
             \ {'N': '~/repo/notes'},
@@ -771,6 +772,16 @@ endfunction"}}}
 function! Artify_active_tab_num(n) abort"{{{
     return Artify(a:n, 'bold')." \ue0bb"
 endfunction"}}}
+function! Tab_num(n) abort"{{{
+    return a:n." \ue0bb"
+endfunction"}}}
+function! Gitbranch() abort"{{{
+    if gitbranch#name() !=# ''
+        return gitbranch#name()." \ue725"
+    else
+        return "\ue61b"
+    endif
+endfunction"}}}
 function! Artify_inactive_tab_num(n) abort"{{{
     return Artify(a:n, 'double_struck')." \ue0bb"
 endfunction"}}}
@@ -818,25 +829,47 @@ let g:lightline_gitdiff#indicator_modified = '*'
 let g:lightline_gitdiff#min_winwidth = '70'
 let g:lightline#asyncrun#indicator_none = ''
 let g:lightline#asyncrun#indicator_run = 'Running...'
-let g:lightline.active = {
-            \ 'left': [ [ 'artify_mode', 'paste' ],
-            \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
-            \ 'right': [ [ 'artify_lineinfo' ],
-            \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
-            \           [ 'asyncrun_status', 'coc_status' ] ]
-            \ }
-let g:lightline.inactive = {
-            \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
-            \ 'right': [ [ 'artify_lineinfo' ] ]
-            \ }
-let g:lightline.tabline = {
-            \ 'left': [ [ 'vim_logo', 'tabs' ] ],
-            \ 'right': [ [ 'artify_gitbranch' ],
-            \ [ 'gitstatus' ] ]
-            \ }
-let g:lightline.tab = {
-            \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
-            \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }
+if g:lightlineArtify == 1
+    let g:lightline.active = {
+                \ 'left': [ [ 'artify_mode', 'paste' ],
+                \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
+                \ 'right': [ [ 'artify_lineinfo' ],
+                \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
+                \           [ 'asyncrun_status', 'coc_status' ] ]
+                \ }
+    let g:lightline.inactive = {
+                \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
+                \ 'right': [ [ 'artify_lineinfo' ] ]
+                \ }
+    let g:lightline.tabline = {
+                \ 'left': [ [ 'vim_logo', 'tabs' ] ],
+                \ 'right': [ [ 'artify_gitbranch' ],
+                \ [ 'gitstatus' ] ]
+                \ }
+    let g:lightline.tab = {
+                \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
+                \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }
+else
+    let g:lightline.active = {
+                \ 'left': [ [ 'mode', 'paste' ],
+                \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
+                \ 'right': [ [ 'lineinfo' ],
+                \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
+                \           [ 'asyncrun_status', 'coc_status' ] ]
+                \ }
+    let g:lightline.inactive = {
+                \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
+                \ 'right': [ [ 'lineinfo' ] ]
+                \ }
+    let g:lightline.tabline = {
+                \ 'left': [ [ 'vim_logo', 'tabs' ] ],
+                \ 'right': [ [ 'gitbranch' ],
+                \ [ 'gitstatus' ] ]
+                \ }
+    let g:lightline.tab = {
+                \ 'active': [ 'tabnum', 'filename', 'modified' ],
+                \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
+endif
 let g:lightline.tab_component = {
             \ }
 let g:lightline.tab_component_function = {
@@ -846,7 +879,7 @@ let g:lightline.tab_component_function = {
             \ 'filename': 'lightline#tab#filename',
             \ 'modified': 'lightline#tab#modified',
             \ 'readonly': 'lightline#tab#readonly',
-            \ 'tabnum': 'lightline#tab#tabnum'
+            \ 'tabnum': 'Tab_num'
             \ }
 let g:lightline.component = {
             \ 'artify_gitbranch' : '%{Artify_gitbranch()}',
@@ -880,7 +913,7 @@ let g:lightline.component = {
             \ 'winnr': '%{winnr()}'
             \ }
 let g:lightline.component_function = {
-            \ 'gitbranch': 'gitbranch#name',
+            \ 'gitbranch': 'Gitbranch',
             \ 'devicons_filetype': 'Devicons_Filetype',
             \ 'devicons_fileformat': 'Devicons_Fileformat',
             \ 'coc_status': 'coc#status',
@@ -2461,20 +2494,20 @@ endfunction
 "}}}
 "{{{vCoolor.vim
 function Help_vCoolor()
-    echo ':Rgb2Hex "255, 0, 255"			" Gives "#FF00FF"'
-    echo ':Rgb2RgbPerc "255, 0, 255"		" Gives "100%, 0%, 100%"'
-    echo ':Rgb2Hsl "255, 0, 255"			" Gives "300, 100%, 50%"'
+    echo ':Rgb2Hex "255, 0, 255"                        " Gives "#FF00FF"'
+    echo ':Rgb2RgbPerc "255, 0, 255"            " Gives "100%, 0%, 100%"'
+    echo ':Rgb2Hsl "255, 0, 255"                        " Gives "300, 100%, 50%"'
     echo ''
     echo ':RgbPerc2Hex "100%, 0%, 100%" " Gives "#FF00FF"'
     echo ':RgbPerc2Rgb "100%, 0%, 100%" " Gives "255, 0, 255"'
     echo ''
-    echo ':Hex2Lit "#FF00FF"				" Gives "magenta"'
-    echo ':Hex2Rgb "#FF00FF"				" Gives "255, 0, 255"'
-    echo ':Hex2RgbPerc "#FF00FF"			" Gives "100%, 0%, 100%"'
-    echo ':Hex2Hsl "#FF00FF"				" Gives "300, 100%, 50%"'
+    echo ':Hex2Lit "#FF00FF"                            " Gives "magenta"'
+    echo ':Hex2Rgb "#FF00FF"                            " Gives "255, 0, 255"'
+    echo ':Hex2RgbPerc "#FF00FF"                        " Gives "100%, 0%, 100%"'
+    echo ':Hex2Hsl "#FF00FF"                            " Gives "300, 100%, 50%"'
     echo ''
-    echo ':Hsl2Rgb "300, 100%, 50%"		" Gives "255, 0, 255"'
-    echo ':Hsl2Hex "300, 100%, 50%"		" Gives "#FF00FF"'
+    echo ':Hsl2Rgb "300, 100%, 50%"             " Gives "255, 0, 255"'
+    echo ':Hsl2Hex "300, 100%, 50%"             " Gives "#FF00FF"'
 endfunction
 call quickmenu#current(13)
 call quickmenu#reset()
