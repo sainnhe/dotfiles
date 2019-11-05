@@ -1,0 +1,257 @@
+// To view the default settings, hold "alt" while clicking on the "Settings" button.
+// For documentation on these settings, see: https://aka.ms/terminal-documentation
+
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+
+    "profiles": [
+        {
+            "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+            "name": "PowerShell",
+            "commandline": "powershell.exe -nologo",
+            "fontFace": "FiraCode NF",
+            "fontSize": 12,
+            "colorScheme": "GruvboxMaterialMediumDark",
+            "cursorColor": "#D7BF94",
+            "cursorShape": "filledBox",
+            "hidden": false
+        },
+        {
+            "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+            "name": "cmd",
+            "commandline": "cmd.exe",
+            "fontFace": "FiraCode NF",
+            "fontSize": 12,
+            "colorScheme": "GruvboxMaterialMediumDark",
+            "cursorColor": "#D7BF94",
+            "cursorShape": "filledBox",
+            "hidden": false
+        },
+        {
+            "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+            "hidden": false,
+            "name": "WSL",
+            "fontFace": "FiraCode NF",
+            "fontSize": 12,
+            "colorScheme": "GruvboxMaterialMediumDark",
+            "cursorColor": "#D7BF94",
+            "cursorShape": "filledBox",
+            "source": "Windows.Terminal.Wsl"
+        },
+        {
+            "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+            "hidden": false,
+            "name": "Azure Cloud Shell",
+            "fontFace": "FiraCode NF",
+            "fontSize": 12,
+            "colorScheme": "GruvboxMaterialMediumDark",
+            "cursorColor": "#D7BF94",
+            "cursorShape": "filledBox",
+            "source": "Windows.Terminal.Azure"
+        }
+    ],
+
+    "schemes": [
+        {
+            "background": "#1d2021",
+            "black": "#665C54",
+            "blue": "#7DAEA3",
+            "brightBlack": "#928374",
+            "brightBlue": "#7DAEA3",
+            "brightCyan": "#89B482",
+            "brightGreen": "#A9B665",
+            "brightPurple": "#D3869B",
+            "brightRed": "#EA6962",
+            "brightWhite": "#D7BF94",
+            "brightYellow": "#D8A657",
+            "cyan": "#89B482",
+            "foreground": "#D7BF94",
+            "green": "#A9B665",
+            "name": "GruvboxMaterialHardDark",
+            "purple": "#D3869B",
+            "red": "#EA6962",
+            "white": "#D7BF94",
+            "yellow": "#D8A657"
+        },
+        {
+            "background": "#282828",
+            "black": "#665C54",
+            "blue": "#7DAEA3",
+            "brightBlack": "#928374",
+            "brightBlue": "#7DAEA3",
+            "brightCyan": "#89B482",
+            "brightGreen": "#A9B665",
+            "brightPurple": "#D3869B",
+            "brightRed": "#EA6962",
+            "brightWhite": "#D7BF94",
+            "brightYellow": "#D8A657",
+            "cyan": "#89B482",
+            "foreground": "#D7BF94",
+            "green": "#A9B665",
+            "name": "GruvboxMaterialMediumDark",
+            "purple": "#D3869B",
+            "red": "#EA6962",
+            "white": "#D7BF94",
+            "yellow": "#D8A657"
+        },
+        {
+            "background": "#32302F",
+            "black": "#665C54",
+            "blue": "#7DAEA3",
+            "brightBlack": "#928374",
+            "brightBlue": "#7DAEA3",
+            "brightCyan": "#89B482",
+            "brightGreen": "#A9B665",
+            "brightPurple": "#D3869B",
+            "brightRed": "#EA6962",
+            "brightWhite": "#D7BF94",
+            "brightYellow": "#D8A657",
+            "cyan": "#89B482",
+            "foreground": "#D7BF94",
+            "green": "#A9B665",
+            "name": "GruvboxMaterialSoftDark",
+            "purple": "#D3869B",
+            "red": "#EA6962",
+            "white": "#D7BF94",
+            "yellow": "#D8A657"
+        },
+        {
+            "background": "#F9F5D7",
+            "black": "#504945",
+            "blue": "#45707A",
+            "brightBlack": "#504945",
+            "brightBlue": "#45707A",
+            "brightCyan": "#4C7A5D",
+            "brightGreen": "#6C782E",
+            "brightPurple": "#945E80",
+            "brightRed": "#C14A4A",
+            "brightWhite": "#D7BF94",
+            "brightYellow": "#B47109",
+            "cyan": "#4C7A5D",
+            "foreground": "#654735",
+            "green": "#6C782E",
+            "name": "GruvboxMaterialHardLight",
+            "purple": "#945E80",
+            "red": "#C14A4A",
+            "white": "#D7BF94",
+            "yellow": "#B47109"
+        },
+        {
+            "background": "#fbf1c7",
+            "black": "#504945",
+            "blue": "#45707A",
+            "brightBlack": "#504945",
+            "brightBlue": "#45707A",
+            "brightCyan": "#4C7A5D",
+            "brightGreen": "#6C782E",
+            "brightPurple": "#945E80",
+            "brightRed": "#C14A4A",
+            "brightWhite": "#D7BF94",
+            "brightYellow": "#B47109",
+            "cyan": "#4C7A5D",
+            "foreground": "#654735",
+            "green": "#6C782E",
+            "name": "GruvboxMaterialMediumLight",
+            "purple": "#945E80",
+            "red": "#C14A4A",
+            "white": "#D7BF94",
+            "yellow": "#B47109"
+        },
+        {
+            "background": "#F2E5BC",
+            "black": "#504945",
+            "blue": "#45707A",
+            "brightBlack": "#504945",
+            "brightBlue": "#45707A",
+            "brightCyan": "#4C7A5D",
+            "brightGreen": "#6C782E",
+            "brightPurple": "#945E80",
+            "brightRed": "#C14A4A",
+            "brightWhite": "#D7BF94",
+            "brightYellow": "#B47109",
+            "cyan": "#4C7A5D",
+            "foreground": "#654735",
+            "green": "#6C782E",
+            "name": "GruvboxMaterialSoftLight",
+            "purple": "#945E80",
+            "red": "#C14A4A",
+            "white": "#D7BF94",
+            "yellow": "#B47109"
+        }
+    ],
+
+    // Add any keybinding overrides to this array.
+    // To unbind a default keybinding, set the command to "unbound"
+    "keybindings": [
+        {
+            "command": "closePane",
+            "keys": ["ctrl+alt+x"]
+        },
+        {
+            "command": "closeTab",
+            "keys": ["ctrl+shift+w"]
+        },
+        {
+            "command": "copy",
+            "keys": ["ctrl+shift+c"]
+        },
+        {
+            "command": "moveFocusDown",
+            "keys": ["ctrl+alt+j"]
+        },
+        {
+            "command": "moveFocusLeft",
+            "keys": ["ctrl+alt+h"]
+        },
+        {
+            "command": "moveFocusRight",
+            "keys": ["ctrl+alt+l"]
+        },
+        {
+            "command": "moveFocusUp",
+            "keys": ["ctrl+alt+k"]
+        },
+        {
+            "command": "newTab",
+            "keys": ["ctrl+shift+t"]
+        },
+        {
+            "command": "nextTab",
+            "keys": ["ctrl+tab"]
+        },
+        {
+            "command": "paste",
+            "keys": ["ctrl+shift+v"]
+        },
+        {
+            "command": "prevTab",
+            "keys": ["ctrl+shift+tab"]
+        },
+        {
+            "command": "resizePaneDown",
+            "keys": ["ctrl+alt+down"]
+        },
+        {
+            "command": "resizePaneLeft",
+            "keys": ["ctrl+alt+left"]
+        },
+        {
+            "command": "resizePaneRight",
+            "keys": ["ctrl+alt+right"]
+        },
+        {
+            "command": "resizePaneUp",
+            "keys": ["ctrl+alt+up"]
+        },
+        {
+            "command": "splitHorizontal",
+            "keys": ["ctrl+alt+s"]
+        },
+        {
+            "command": "splitVertical",
+            "keys": ["ctrl+alt+v"]
+        }
+    ]
+}
