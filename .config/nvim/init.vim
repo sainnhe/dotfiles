@@ -23,14 +23,25 @@ endif
 "}}}
 let g:vimAutoInstall = 1
 let g:lightlineArtify = 1
-let g:startify_bookmarks = [
-            \ {'R': '~/repo/'},
-            \ {'N': '~/repo/notes'},
-            \ {'P': '~/Documents/PlayGround/'},
-            \ {'c': '~/.config/nvim/init.vim'},
-            \ {'c': '~/.zshrc'},
-            \ {'c': '~/.tmux.conf'}
-            \ ]
+if !has('win32')
+    let g:startify_bookmarks = [
+                \ {'R': '~/repo/'},
+                \ {'r': '~/repo/notes'},
+                \ {'r': '~/repo/dotfiles'},
+                \ {'r': '~/repo/scripts'},
+                \ {'P': '~/playground/'},
+                \ {'c': '~/.config/nvim/init.vim'},
+                \ {'c': '~/.zshrc'},
+                \ {'c': '~/.tmux.conf'}
+                \ ]
+else
+    let g:startify_bookmarks = [
+                \ {'R': '~/repo/'},
+                \ {'P': '~/playground/'},
+                \ {'c': '~/AppData/Local/nvim/init.vim'},
+                \ {'c': '~/Documents/WindowsPowerShell/Profile.ps1'}
+                \ ]
+endif
 "}}}
 "{{{Global
 "{{{Function
@@ -333,10 +344,17 @@ nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call ExplorerStartify()<CR>
 " Alt+W关闭当前标签
 nnoremap <silent> <A-w> :<C-u>call CloseOnLastTab()<CR>
 " Alt+上下左右可以跳转和移动窗口
-nnoremap <A-left> <Esc>gT
-nnoremap <A-right> <Esc>gt
-nnoremap <silent> <A-up> :<C-u>tabm -1<CR>
-nnoremap <silent> <A-down> :<C-u>tabm +1<CR>
+if !has('win32')
+    nnoremap <A-left> <Esc>gT
+    nnoremap <A-right> <Esc>gt
+    nnoremap <silent> <A-up> :<C-u>tabm -1<CR>
+    nnoremap <silent> <A-down> :<C-u>tabm +1<CR>
+else
+    nnoremap <C-left> <Esc>gT
+    nnoremap <C-right> <Esc>gt
+    nnoremap <silent> <C-up> :<C-u>tabm -1<CR>
+    nnoremap <silent> <C-down> :<C-u>tabm +1<CR>
+endif
 " Alt+h j k l可以在窗口之间跳转
 nnoremap <silent> <A-h> :<C-u>wincmd h<CR>
 nnoremap <silent> <A-l> :<C-u>wincmd l<CR>
@@ -413,10 +431,17 @@ inoremap <A-J> <down><down><down><down><down>
 inoremap <A-K> <up><up><up><up><up>
 inoremap <A-L> <ESC>A
 " Alt+上下左右可以跳转和移动窗口
-inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
-inoremap <silent> <A-right> <Esc>:wincmd l<CR>i
-inoremap <silent> <A-up> <Esc>:tabm -1<CR>i
-inoremap <silent> <A-down> <Esc>:tabm +1<CR>i
+if !has('win32')
+    inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
+    inoremap <silent> <A-right> <Esc>:wincmd l<CR>i
+    inoremap <silent> <A-up> <Esc>:tabm -1<CR>i
+    inoremap <silent> <A-down> <Esc>:tabm +1<CR>i
+else
+    inoremap <silent> <C-left> <Esc>:wincmd h<CR>i
+    inoremap <silent> <C-right> <Esc>:wincmd l<CR>i
+    inoremap <silent> <C-up> <Esc>:tabm -1<CR>i
+    inoremap <silent> <C-down> <Esc>:tabm +1<CR>i
+endif
 "}}}
 "{{{VisualMode
 " Alt+X进入普通模式
@@ -1276,6 +1301,7 @@ let g:coc_global_extensions = [
             \   'coc-tslint-plugin',
             \   'coc-python',
             \   'coc-rls',
+            \   'coc-powershell',
             \   'coc-json',
             \   'coc-yaml',
             \   'coc-vimlsp'
