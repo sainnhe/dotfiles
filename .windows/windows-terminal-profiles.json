@@ -14,7 +14,7 @@
             "fontFace": "FiraCode NF",
             "fontSize": 12,
             "colorScheme": "GruvboxMaterialMediumDark",
-            "cursorColor": "#D7BF94",
+            "cursorColor": "#D4BE98",
             "cursorShape": "filledBox",
             "hidden": false
         },
@@ -25,7 +25,7 @@
             "fontFace": "FiraCode NF",
             "fontSize": 12,
             "colorScheme": "GruvboxMaterialMediumDark",
-            "cursorColor": "#D7BF94",
+            "cursorColor": "#D4BE98",
             "cursorShape": "filledBox",
             "hidden": false
         },
@@ -36,7 +36,7 @@
             "fontFace": "FiraCode NF",
             "fontSize": 12,
             "colorScheme": "GruvboxMaterialMediumDark",
-            "cursorColor": "#D7BF94",
+            "cursorColor": "#D4BE98",
             "cursorShape": "filledBox",
             "source": "Windows.Terminal.Wsl"
         },
@@ -47,7 +47,7 @@
             "fontFace": "FiraCode NF",
             "fontSize": 12,
             "colorScheme": "GruvboxMaterialMediumDark",
-            "cursorColor": "#D7BF94",
+            "cursorColor": "#D4BE98",
             "cursorShape": "filledBox",
             "source": "Windows.Terminal.Azure"
         }
@@ -64,15 +64,15 @@
             "brightGreen": "#A9B665",
             "brightPurple": "#D3869B",
             "brightRed": "#EA6962",
-            "brightWhite": "#D7BF94",
+            "brightWhite": "#D4BE98",
             "brightYellow": "#D8A657",
             "cyan": "#89B482",
-            "foreground": "#D7BF94",
+            "foreground": "#D4BE98",
             "green": "#A9B665",
             "name": "GruvboxMaterialHardDark",
             "purple": "#D3869B",
             "red": "#EA6962",
-            "white": "#D7BF94",
+            "white": "#D4BE98",
             "yellow": "#D8A657"
         },
         {
@@ -85,15 +85,15 @@
             "brightGreen": "#A9B665",
             "brightPurple": "#D3869B",
             "brightRed": "#EA6962",
-            "brightWhite": "#D7BF94",
+            "brightWhite": "#D4BE98",
             "brightYellow": "#D8A657",
             "cyan": "#89B482",
-            "foreground": "#D7BF94",
+            "foreground": "#D4BE98",
             "green": "#A9B665",
             "name": "GruvboxMaterialMediumDark",
             "purple": "#D3869B",
             "red": "#EA6962",
-            "white": "#D7BF94",
+            "white": "#D4BE98",
             "yellow": "#D8A657"
         },
         {
@@ -106,15 +106,15 @@
             "brightGreen": "#A9B665",
             "brightPurple": "#D3869B",
             "brightRed": "#EA6962",
-            "brightWhite": "#D7BF94",
+            "brightWhite": "#D4BE98",
             "brightYellow": "#D8A657",
             "cyan": "#89B482",
-            "foreground": "#D7BF94",
+            "foreground": "#D4BE98",
             "green": "#A9B665",
             "name": "GruvboxMaterialSoftDark",
             "purple": "#D3869B",
             "red": "#EA6962",
-            "white": "#D7BF94",
+            "white": "#D4BE98",
             "yellow": "#D8A657"
         },
         {
@@ -127,7 +127,7 @@
             "brightGreen": "#6C782E",
             "brightPurple": "#945E80",
             "brightRed": "#C14A4A",
-            "brightWhite": "#D7BF94",
+            "brightWhite": "#D4BE98",
             "brightYellow": "#B47109",
             "cyan": "#4C7A5D",
             "foreground": "#654735",
@@ -135,7 +135,7 @@
             "name": "GruvboxMaterialHardLight",
             "purple": "#945E80",
             "red": "#C14A4A",
-            "white": "#D7BF94",
+            "white": "#D4BE98",
             "yellow": "#B47109"
         },
         {
@@ -148,7 +148,7 @@
             "brightGreen": "#6C782E",
             "brightPurple": "#945E80",
             "brightRed": "#C14A4A",
-            "brightWhite": "#D7BF94",
+            "brightWhite": "#D4BE98",
             "brightYellow": "#B47109",
             "cyan": "#4C7A5D",
             "foreground": "#654735",
@@ -156,7 +156,7 @@
             "name": "GruvboxMaterialMediumLight",
             "purple": "#945E80",
             "red": "#C14A4A",
-            "white": "#D7BF94",
+            "white": "#D4BE98",
             "yellow": "#B47109"
         },
         {
@@ -169,7 +169,7 @@
             "brightGreen": "#6C782E",
             "brightPurple": "#945E80",
             "brightRed": "#C14A4A",
-            "brightWhite": "#D7BF94",
+            "brightWhite": "#D4BE98",
             "brightYellow": "#B47109",
             "cyan": "#4C7A5D",
             "foreground": "#654735",
@@ -177,7 +177,7 @@
             "name": "GruvboxMaterialSoftLight",
             "purple": "#945E80",
             "red": "#C14A4A",
-            "white": "#D7BF94",
+            "white": "#D4BE98",
             "yellow": "#B47109"
         }
     ],
