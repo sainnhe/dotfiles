@@ -20,8 +20,8 @@
         },
         {
             "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-            "name": "CMD",
-            "commandline": "cmd.exe",
+            "name": "Xonsh",
+            "commandline": "C:\\Users\\gaoti\\scoop\\apps\\python\\current\\Scripts\\xonsh.bat",
             "fontFace": "FiraCode NF",
             "fontSize": 12,
             "colorScheme": "GruvboxMaterialMediumDark",
