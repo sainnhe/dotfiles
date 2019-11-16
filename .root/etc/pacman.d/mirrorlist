@@ -5,7 +5,7 @@
 
 ##Archive
 # Server=https://archive.archlinux.org/repos/2019/03/15/$repo/os/$arch
-Server=https://archive.archlinux.org/repos/last/$repo/os/$arch
+# Server=https://archive.archlinux.org/repos/last/$repo/os/$arch
 
 ## Worldwide
 #Server = http://mirrors.evowise.com/archlinux/$repo/os/$arch
@@ -23,7 +23,7 @@ Server=https://archive.archlinux.org/repos/last/$repo/os/$arch
 #Server = https://mirrors.shu6.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux/$repo/os/$arch
 #Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
-# Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 #Server = http://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
