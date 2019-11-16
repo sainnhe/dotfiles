@@ -3,6 +3,7 @@
     email = sainnhe@gmail.com
 [core]
     editor = nvim
+    autocrlf = true
 [merge]
     tool = vimdiff
 [alias]
