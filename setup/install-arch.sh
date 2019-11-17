@@ -170,6 +170,11 @@ elif [ "$1" = "user" ]; then
     sudo cp ~/repo/dotfiles/.root/etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
     sudo cp ~/repo/dotfiles/.root/etc/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/lightdm-webkit2-greeter.conf
     #}}}
+    # LightDM{{{
+    sudo pacman -S sddm
+    pikaur -S sddm-greeter sddm-config-editor sddm-sugar-light
+    sudo cp ~/repo/dotfiles/.root/etc/sddm.conf /etc/sddm.conf
+    #}}}
     # Surface Linux{{{
     git clone https://github.com/dmhacker/arch-linux-surface.git ~/repo/
     sudo pacman -S wget unzip
