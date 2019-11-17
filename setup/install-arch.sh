@@ -91,7 +91,6 @@ elif [ "$1" = "chroot" ]; then
     passwd
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     hwclock --systohc
-    timedatectl set-local-rtc 1 --adjust-system-clock
     rm /etc/pacman.d/mirrorlist
     echo 'Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' >/etc/pacman.d/mirrorlist
     sed -ri -e '$a # Server = http://mirrors.163.com/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
@@ -130,6 +129,7 @@ elif [ "$1" = "chroot" ]; then
     echo ""
     echo "finish"
 elif [ "$1" = "user" ]; then
+    timedatectl set-local-rtc 1 --adjust-system-clock
     # Basic{{{
     ssh-keygen -t rsa -b 4096 -C "sainnhe@gmail.com"
     eval "$(ssh-agent -s)"
