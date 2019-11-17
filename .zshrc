@@ -356,6 +356,7 @@ alias roll-aur='bash ~/repo/scripts/func/roll.sh'
 alias zip-r='bash ~/repo/scripts/func/zip.sh'
 alias browsh-docker='docker run --rm -it browsh/browsh'
 alias net-test="bash ~/repo/scripts/func/net-test.sh"
+alias fix-wifi="sudo iw dev wlp1s0 set power_save off"
 alias t='goldendict'
 alias gencomp-help='gencomp'
 if [[ "$TERM_Emulator" == "tilda" ]]; then
