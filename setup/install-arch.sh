@@ -192,7 +192,6 @@ elif [ "$1" = "user" ]; then
     pikaur -S nerd-fonts-complete wqy-microhei ttf-monaco ttf-droid noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji ttf-symbola
     proxychains -q wget https://github.com/fphoenix88888/ttf-mswin10-arch/raw/master/ttf-ms-win10-zh_cn-10.0.18362.116-1-any.pkg.tar.xz
     pikaur -S fcitx-libpinyin fcitx-cloudpinyin fcitx-ui-light fcitx-table-extra fcitx-table-other fcitx-configtool fcitx-gtk3 ssf2fcitx-git fcitx-skin-material
-    pikaur -S qogir-gtk-theme-git breeze-icons oxygen-icons papirus-icon-theme numix-cursor-theme arc-solid-gtk-theme arc-gtk-theme la-capitaine-icon-theme mojave-gtk-theme-git nordic-theme-git snow-theme-git numix-icon-theme-git
     echo "setup i3, zsh, tmux, vim manually"
 elif [ "$1" = "apps" ]; then
     pikaur -S fzf fontweak gotop persepolis code terminal-markdown-viewer python2-pygments typora nodejs-commitizen iw
