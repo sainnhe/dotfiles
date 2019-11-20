@@ -2276,13 +2276,13 @@ function! Help_vim_visual_multi()
     echo '或者在visual mode选中后，按g/搜索，将会匹配所有搜索结果并进入Extend mode'
     echo '选中完成后，按i或a进入插入模式，也可以返回普通模式'
     echo '普通模式下h, j, k, l来整体挪移光标'
-    echo '<Space>       切换Extend模式'
+    echo 'v             切换Extend模式'
     echo '<Esc>         退出'
     echo "\n"
     echo 'Extend 模式'
     echo '相当于visual模式'
     echo 'h, j, k, l来选中区域'
-    echo '<Space>       切换Extend模式'
+    echo 'v             切换Extend模式'
     echo '<Esc>         退出'
 endfunction
 "}}}
@@ -2291,7 +2291,7 @@ let g:VM_default_mappings = 0
 let g:VM_mouse_mappings = 1
 vmap <leader>] <C-n>
 let g:VM_maps = {}
-let g:VM_maps['Switch Mode']                 = '<Space>'
+let g:VM_maps['Switch Mode']                 = 'v'
 let g:VM_maps['Add Cursor At Pos']           = '<Tab>'
 let g:VM_maps['Visual Cursors']              = '<Tab>'
 let g:VM_maps['Add Cursor Up']               = '<M-z>``````addup'
