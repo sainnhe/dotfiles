@@ -91,7 +91,7 @@
     "coc.source.tag.priority": 78,
     "coc.source.dictionary.shortcut": "D",
     "coc.source.dictionary.priority": 9,
-    "coc.source.dictionary.filetypes": ["markdown", "text", "gitcommit"],
+    "coc.source.dictionary.filetypes": ["markdown", "text", "help", "gitcommit"],
     "coc.source.emoji.shortcut": "E",
     "coc.source.emoji.priority": 8,
     "coc.source.emoji.filetypes": ["markdown", "text"],
