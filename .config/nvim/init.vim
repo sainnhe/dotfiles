@@ -1299,6 +1299,7 @@ let g:coc_global_extensions = [
             \   'coc-explorer',
             \   'coc-bookmark',
             \   'coc-highlight',
+            \   'coc-yank',
             \   'coc-snippets',
             \   'coc-syntax',
             \   'coc-tag',
