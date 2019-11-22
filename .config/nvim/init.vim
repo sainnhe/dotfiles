@@ -1006,6 +1006,7 @@ function! ColorScheme()
     "{{{gruvbox-material-dark
     if g:vimColorScheme ==# 'gruvbox-material-dark'
         set background=dark
+        let g:gruvbox_material_current_word = 'bold'
         colorscheme gruvbox-material
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
@@ -1013,8 +1014,9 @@ function! ColorScheme()
     "}}}
     "{{{gruvbox-material-light
     if g:vimColorScheme ==# 'gruvbox-material-light'
-        let g:gruvbox_material_background = 'soft'
         set background=light
+        let g:gruvbox_material_background = 'soft'
+        let g:gruvbox_material_current_word = 'bold'
         colorscheme gruvbox-material
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
