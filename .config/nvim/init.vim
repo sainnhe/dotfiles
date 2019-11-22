@@ -2457,10 +2457,6 @@ let g:matchup_matchparen_hi_surround_always = 1  " highlight surrounding
 let g:matchup_delim_noskips = 2  " don't recognize anything in comments
 nmap <leader>% ]%V[%
 nmap <2-LeftMouse> ]%V[%
-hi MatchParen cterm=bold gui=bold
-hi MatchParenCur cterm=bold gui=bold
-hi MatchWord cterm=underline gui=underline
-hi MatchWordCur cterm=underline gui=underline
 "}}}
 " {{{vim-manpager
 if exists('g:vimManPager')
