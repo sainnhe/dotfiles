@@ -183,7 +183,8 @@ set termencoding=utf-8
 set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
 set fileformats=unix,dos,mac
 scriptencoding utf-8
-let mapleader=' '
+let g:mapleader = "\<Space>"
+let g:maplocalleader = "\<A-z>"
 nnoremap <SPACE> <Nop>
 set mouse=a
 filetype plugin indent on
@@ -194,7 +195,7 @@ set smartindent                         " 智能缩进
 set hlsearch                            " 高亮搜索
 set undofile                            " 始终保留undo文件
 set undodir=$HOME/.cache/vim/undo       " 设置undo文件的目录
-set timeoutlen=5000                     " 超时时间为5秒
+set timeoutlen=500                      " 超时时间为 0.5 秒
 set foldmethod=marker                   " 折叠方式为按照marker折叠
 set hidden                              " buffer自动隐藏
 set showtabline=2                       " 总是显示标签
@@ -698,6 +699,7 @@ if g:vimEnableStartify == 1
     Plug 'mhinz/vim-startify'
 endif
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'liuchengxu/vim-which-key'
 Plug 'sainnhe/quickmenu.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides', { 'on': [] }
@@ -756,8 +758,6 @@ if executable('fcitx')
     Plug 'lilydjwg/fcitx.vim', { 'on': [] }
                 \| au InsertEnter * call plug#load('fcitx.vim')
 endif
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
-            \| au BufNewFile,BufRead *.html,*.css call Func_emmet_vim()
 Plug 'alvan/vim-closetag'
 Plug 'elzr/vim-json', { 'for': 'json' }
             \| au BufNewFile,BufRead *.json call Func_vim_json()
@@ -1109,6 +1109,22 @@ let g:Hexokinase_ftAutoload = ['html', 'css', 'javascript', 'vim', 'colortemplat
 let g:Hexokinase_refreshEvents = ['BufWritePost']
 let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba']  " ['full_hex', 'triple_hex', 'rgb', 'rgba', 'colour_names']
 "}}}
+"{{{vim-which-key
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+call which_key#register('<Space>', 'g:which_key_map')
+let g:which_key_map = {
+            \   'name': 'main',
+            \   '%': 'select current surrounding',
+            \   '<CR>': 'focus mode',
+            \   '<Tab>': 'format',
+            \   'e': 'explorer',
+            \   'p': 'paste',
+            \   'y': 'yank',
+            \   't': 'translate',
+            \   'c': { 'name': 'comment' }
+            \   }
+"}}}
 "{{{quickmenu.vim
 let g:quickmenu_options = 'HL'  " enable cursorline (L) and cmdline help (H)
 
@@ -1116,7 +1132,6 @@ call quickmenu#current(0)
 call quickmenu#reset()
 nnoremap <silent> <leader><leader> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
-call g:quickmenu#append('Servers', 'call quickmenu#toggle(4)', '', '', 0, 'l')
 call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
 call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'C')
@@ -1225,44 +1240,6 @@ let g:golden_ratio_autocommand = 0
 "}}}
 " Productivity
 "{{{coc.nvim
-"{{{coc.nvim-usage
-function Help_COC_LSP()
-    echo '<leader>lJ        diagnostic-next'
-    echo '<leader>lJ        diagnostic-next'
-    echo '<leader>lK        diagnostic-prev'
-    echo '<leader>li        diagnostic-info'
-    echo '<leader>lI        implementation'
-    echo '<leader>ld        definition'
-    echo '<leader>lD        declaration'
-    echo '<leader>lt        type-definition'
-    echo '<leader>lr        references'
-    echo '<leader>lR        rename'
-    echo '<leader>lf        format'
-    echo '<leader>lf        format-selected'
-    echo '<leader>lF        fix-current'
-    echo '<leader>la        codeaction'
-    echo '<leader>la        codeaction-selected'
-    echo '<leader>lA        codelens-action'
-    echo '<leader>l?        toggle this help'
-    echo ''
-    echo '<leader>gj        next chunk'
-    echo '<leader>gk        prev chunk'
-    echo '<leader>gi        chunk info'
-    echo '<leader>gc        commit message'
-    echo '<leader>gd        diff'
-    echo '<leader>g<Tab>    open in browser'
-    echo ''
-    echo '<leader>bt        toggle bookmark'
-    echo '<leader>ba        annotate bookmark'
-    echo '<leader>bn        next bookmark'
-    echo '<leader>bp        prev bookmark'
-    echo '<leader>bb        manage bookmarks'
-    echo ''
-    echo '<C-l>             jump to floating window'
-    echo '?                 toggle hover'
-endfunction
-nnoremap <silent> <leader>l? :call Help_COC_LSP()<CR>
-"}}}
 "{{{coc-functions
 function! CocHighlight() abort"{{{
     if &filetype !=# 'markdown'
@@ -1282,19 +1259,6 @@ function! CocHover() abort"{{{
         call CocActionAsync('showSignatureHelp')
     endif
 endfunction"}}}
-"}}}
-"{{{quickmenu
-call quickmenu#current(4)
-call quickmenu#reset()
-call g:quickmenu#append('# Language Server', '')
-call g:quickmenu#append('Command', "call CocActionAsync('runCommand')", 'Run global command provided by language server.', '', 0, 'c')
-call g:quickmenu#append('Help', 'call Help_COC_LSP()', '', '', 0, 'h')
-call g:quickmenu#append('# Completion Framework', '')
-call g:quickmenu#append('Restart', 'CocRestart', '', '', 0, '@')
-call g:quickmenu#append('Update Extensions', 'CocUpdate', '', '', 0, 'U')
-call g:quickmenu#append('Rebuild Extensions', 'CocRebuild', '', '', 0, 'B')
-call g:quickmenu#append('Info', 'CocInfo', ':h CocOpenLog for log', '', 0, '@')
-call g:quickmenu#append('Extension Market', 'CocList marketplace', '', '', 0, '#')
 "}}}
 "{{{coc-init
 let g:coc_global_extensions = [
@@ -1352,12 +1316,12 @@ inoremap <expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
 inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
 nmap <leader>lJ <Plug>(coc-diagnostic-next)
 nmap <leader>lK <Plug>(coc-diagnostic-prev)
-nmap <leader>li <Plug>(coc-diagnostic-info)
-nmap <leader>lI <Plug>(coc-implementation)
+nmap <leader>lI <Plug>(coc-diagnostic-info)
 nmap <leader>ld <Plug>(coc-definition)
 nmap <leader>lD <Plug>(coc-declaration)
 nmap <leader>lt <Plug>(coc-type-definition)
 nmap <leader>lr <Plug>(coc-references)
+nmap <leader>lm <Plug>(coc-implementation)
 nmap <leader>lR <Plug>(coc-rename)
 nmap <leader>lf <Plug>(coc-format)
 vmap <leader>lf <Plug>(coc-format-selected)
@@ -1365,29 +1329,56 @@ nmap <leader>lF <Plug>(coc-fix-current)
 nmap <leader>la <Plug>(coc-codeaction)
 vmap <leader>la <Plug>(coc-codeaction-selected)
 nmap <leader>lA <Plug>(coc-codelens-action)
+nmap <leader>le <Plug>(coc-refactor)
+nmap <leader>lv <Plug>(coc-range-select)
+vmap <leader>lv <Plug>(coc-range-select)
 nmap <leader>gj <Plug>(coc-git-nextchunk)
 nmap <leader>gk <Plug>(coc-git-prevchunk)
-nmap <leader>gi <Plug>(coc-git-chunkinfo)
+nmap <leader>gd <Plug>(coc-git-chunkinfo)
+nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
 nmap <leader>gc <Plug>(coc-git-commit)
-nmap <silent> <leader>gd :CocCommand git.diffCached<CR>
+nmap <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
+nmap <leader>gs :<C-u>CocCommand git.chunkStage<CR>
+nmap <leader>gf :<C-u>CocCommand git.foldUnchanged<CR>
+nmap <leader>gF :<C-u>set foldmethod=marker<CR>
 nmap <silent> <leader>g<Tab> :CocCommand git.browserOpen<CR>
+let g:which_key_map['l'] = {
+            \   'name': 'language server',
+            \   'j': 'diagnostic next(ALE)',
+            \   'k': 'diagnostic prev(ALE)',
+            \   'i': 'diagnostic info(ALE)',
+            \   'J': 'diagnostic next(LSP)',
+            \   'K': 'diagnostic prev(LSP)',
+            \   'I': 'diagnostic info(LSP)',
+            \   'd': 'jump to definition',
+            \   'D': 'jump to declaration',
+            \   't': 'jump to type definition',
+            \   'r': 'jump to reference',
+            \   'm': 'jump to implementation',
+            \   'R': 'rename symbol',
+            \   'f': 'format',
+            \   'F': 'fix code',
+            \   'a': 'code action',
+            \   'A': 'codelens action',
+            \   'e': 'open refactor window',
+            \   'v': 'range select',
+            \   }
+let g:which_key_map['g'] = {
+            \   'name': 'git',
+            \   'j': 'next git chunk',
+            \   'k': 'prev git chunk',
+            \   'd': 'show unstaged diff',
+            \   'D': 'show staged diff',
+            \   'c': 'show commit message',
+            \   'u': 'undo chunk',
+            \   's': 'stage chunk',
+            \   'f': 'fold unchanged',
+            \   'F': 'use marker fold method',
+            \   '<Tab>': 'open remote url in the browser',
+            \   }
 nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
 "}}}
 "{{{coc-list
-"{{{coc-list-usage
-function Help_coc_list()
-    echo '<leader>f<leader> CocList'
-    echo '<leader>f?        show this help'
-    echo '<leader>fl        lines'
-    echo '<leader>fb        buffers'
-    echo '<leader>fm        mru'
-    echo '<leader>ff        files'
-    echo '<leader>ft        tags'
-    echo '<leader>fh        helps'
-    echo '<leader>fg        grep'
-endfunction
-nnoremap <silent> <leader>f? :call Help_coc_list()<CR>
-"}}}
 nnoremap <silent> <leader>f<Space> :CocList<CR>
 nnoremap <silent> <leader>fl :CocList lines<CR>
 nnoremap <silent> <leader>fb :CocList buffers<CR>
@@ -1396,6 +1387,17 @@ nnoremap <silent> <leader>ff :CocList files<CR>
 nnoremap <silent> <leader>ft :CocList outline<CR>
 nnoremap <silent> <leader>fh :CocList helptags<CR>
 nnoremap <silent> <leader>fg :CocList grep<CR>
+let g:which_key_map['f'] = {
+            \   'name': 'coc list',
+            \   "\<Space>": 'coc list',
+            \   'l': 'lines',
+            \   'b': 'buffers',
+            \   'm': 'mru',
+            \   'f': 'files',
+            \   't': 'outlines',
+            \   'h': 'help tags',
+            \   'g': 'grep',
+            \   }
 "}}}
 "{{{coc-explorer
 function ToggleCocExplorer()
@@ -1414,6 +1416,14 @@ nmap <leader>ba <Plug>(coc-bookmark-annotate)
 nmap <leader>bn <Plug>(coc-bookmark-next)
 nmap <leader>bp <Plug>(coc-bookmark-prev)
 nnoremap <silent> <leader>bb :CocList bookmark<CR>
+let g:which_key_map['b'] = {
+            \   'name': 'bookmark',
+            \   't': 'toggle',
+            \   'a': 'annotate',
+            \   'n': 'next',
+            \   'p': 'prev',
+            \   'b': 'list',
+            \   }
 "}}}
 "}}}
 "{{{ale
@@ -1441,6 +1451,8 @@ let g:ale_linters = {
 nnoremap <silent> <leader>lk :ALEPrevious<CR>
 "查看下一个错误
 nnoremap <silent> <leader>lj :ALENext<CR>
+"查看详情
+nnoremap <silent> <leader>li :ALEDetail<CR>
 "自定义error和warning图标
 let g:ale_sign_error = "\uf65b"
 let g:ale_sign_warning = "\uf421"
@@ -1506,6 +1518,34 @@ let g:Lf_RgConfig = [
             \ '--multiline',
             \ '--hidden'
             \ ]
+nnoremap <silent> ff :<C-u>Leaderf file<CR>
+nnoremap <silent> ft :<C-u>LeaderfBufTag<CR>
+nnoremap <silent> fT :<C-u>LeaderfBufTagAll<CR>
+nnoremap <silent> fb :<C-u>LeaderfBuffer<CR>
+nnoremap <silent> fB :<C-u>LeaderfBufferAll<CR>
+nnoremap <silent> ff :<C-u>LeaderfFile<CR>
+nnoremap <silent> fh :<C-u>LeaderfHelp<CR>
+nnoremap <silent> fl :<C-u>LeaderfLine<CR>
+nnoremap <silent> fL :<C-u>LeaderfLineAll<CR>
+nnoremap <silent> fm :<C-u>LeaderfMruCwd<CR>
+nnoremap <silent> fM :<C-u>LeaderfMru<CR>
+nnoremap <silent> fg :<C-u>Leaderf rg<CR>
+nnoremap <silent> f :<c-u>WhichKey 'f'<CR>
+call which_key#register('f', 'g:which_key_map_f')
+let g:which_key_map_f = {
+            \   'name': 'leaderf',
+            \   't': 'tag',
+            \   'T': 'tag all',
+            \   'b': 'buffer',
+            \   'B': 'buffer all',
+            \   'f': 'file',
+            \   'h': 'help',
+            \   'l': 'line',
+            \   'L': 'line all',
+            \   'm': 'mru cwd',
+            \   'M': 'mru all',
+            \   'g': 'grep'
+            \   }
 "}}}
 "{{{vim-sneak
 "{{{vim-sneak-help
@@ -1524,9 +1564,6 @@ map " <Plug>Sneak_,
 imap <A-s> <Esc>s
 "}}}
 "{{{nnn.vim
-"{{{nnn.vim-usage
-" <leader>e  打开nnn
-"}}}
 let g:nnn#set_default_mappings = 0
 nnoremap <silent> <leader>e :<C-u>NnnPicker '%:p:h'<CR>
 let g:nnn#action = {
@@ -2517,14 +2554,12 @@ if exists('g:vimManPager')
         echo '<S-Tab>           跳转到上一个历史'
         echo '<C-j>             跳转到下一个keyword'
         echo '<C-k>             跳转到上一个keyword'
-        echo 'f                 FuzzyFind'
         echo 'E                 set modifiable'
         echo '<A-w>             quit'
         echo '?                 Help'
     endfunction
     " }}}
     function! s:vim_manpager_mappings() abort
-        nnoremap <silent><buffer> f :<C-u>CocList lines<CR>
         nnoremap <silent><buffer> ? :<C-u>call Help_vim_manpager()<CR>
         nmap <silent><buffer> <C-j> ]t
         nmap <silent><buffer> <C-k> [t
@@ -2538,16 +2573,6 @@ if exists('g:vimManPager')
     augroup END
 endif
 " }}}
-"{{{emmet-vim
-"{{{emmet-vim-usage
-" https://blog.zfanw.com/zencoding-vim-tutorial-chinese/
-" :h emmet
-"}}}
-function Func_emmet_vim()
-    let g:user_emmet_leader_key='<A-z>'
-    let g:user_emmet_mode='in'  "enable in insert and normal mode
-endfunction
-"}}}
 "{{{vim-closetag
 "{{{vim-closetag-usage
 function! Help_vim_closetag()
