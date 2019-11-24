@@ -714,6 +714,11 @@ Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
 Plug 'tjdevries/coc-zsh'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'dense-analysis/ale'
+if !has('win32')
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+else
+    Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
+endif
 Plug 'justinmk/vim-sneak'
 Plug 'mcchrish/nnn.vim'
 Plug 'mbbill/undotree'
@@ -1371,26 +1376,26 @@ nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
 "{{{coc-list
 "{{{coc-list-usage
 function Help_coc_list()
-    echo '<leader>f CocList'
-    echo 'f?        show this help'
-    echo 'fl        lines'
-    echo 'fb        buffers'
-    echo 'fm        mru'
-    echo 'ff        files'
-    echo 'ft        tags'
-    echo 'fh        helps'
-    echo 'fg        grep'
+    echo '<leader>f<leader> CocList'
+    echo '<leader>f?        show this help'
+    echo '<leader>fl        lines'
+    echo '<leader>fb        buffers'
+    echo '<leader>fm        mru'
+    echo '<leader>ff        files'
+    echo '<leader>ft        tags'
+    echo '<leader>fh        helps'
+    echo '<leader>fg        grep'
 endfunction
-nnoremap <silent> f? :call Help_coc_list()<CR>
+nnoremap <silent> <leader>f? :call Help_coc_list()<CR>
 "}}}
-nnoremap <silent> <leader>f :CocList<CR>
-nnoremap <silent> fl :CocList lines<CR>
-nnoremap <silent> fb :CocList buffers<CR>
-nnoremap <silent> fm :CocList mru<CR>
-nnoremap <silent> ff :CocList files<CR>
-nnoremap <silent> ft :CocList outline<CR>
-nnoremap <silent> fh :CocList helptags<CR>
-nnoremap <silent> fg :CocList grep<CR>
+nnoremap <silent> <leader>f<Space> :CocList<CR>
+nnoremap <silent> <leader>fl :CocList lines<CR>
+nnoremap <silent> <leader>fb :CocList buffers<CR>
+nnoremap <silent> <leader>fm :CocList mru<CR>
+nnoremap <silent> <leader>ff :CocList files<CR>
+nnoremap <silent> <leader>ft :CocList outline<CR>
+nnoremap <silent> <leader>fh :CocList helptags<CR>
+nnoremap <silent> <leader>fg :CocList grep<CR>
 "}}}
 "{{{coc-explorer
 function ToggleCocExplorer()
@@ -1461,6 +1466,47 @@ elseif g:ALE_MODE == 2
     let g:ale_lint_on_text_changed = 'always'
     let g:ale_lint_delay=100
 endif
+"}}}
+"{{{LeaderF
+let g:Lf_ShortcutF = '<A-z>`````ff'
+let g:Lf_ShortcutB = '<A-z>`````ff'
+let g:Lf_WindowHeight = 0.4
+let g:Lf_ShowRelativePath = 0
+let g:Lf_DefaultMode = 'Regex'
+let g:Lf_CursorBlink = 1
+let g:Lf_CacheDirectory = expand('~/.cache/vim/leaderf')
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+let g:Lf_RootMarkers = ['.git', '.hg', '.svn', '.vscode']
+let g:Lf_ShowHidden = 1
+let g:Lf_ReverseOrder = 1
+let g:Lf_PreviewInPopup = 1
+let g:Lf_PreviewHorizontalPosition = 'center'
+let g:Lf_PreviewResult = {
+            \ 'File': 0,
+            \ 'Buffer': 0,
+            \ 'Mru': 0,
+            \ 'Tag': 0,
+            \ 'BufTag': 0,
+            \ 'Function': 0,
+            \ 'Line': 0,
+            \ 'Colorscheme': 0,
+            \ 'Rg': 0,
+            \ 'Gtags': 0
+            \}
+let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn','.git','.hg', '.vscode'],
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+            \}
+let g:Lf_RgConfig = [
+            \ '--glob=!\.git/*',
+            \ '--glob=!\.vscode/*',
+            \ '--glob=!\.svn/*',
+            \ '--glob=!\.hg/*',
+            \ '--case-sensitive',
+            \ has('win32') ? '--crlf' : '--no-crlf',
+            \ '--multiline',
+            \ '--hidden'
+            \ ]
 "}}}
 "{{{vim-sneak
 "{{{vim-sneak-help
