@@ -1314,6 +1314,7 @@ inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
 inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
 inoremap <expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
 inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
+nmap <leader>l<Space> :<C-u>CocList<CR>
 nmap <leader>lJ <Plug>(coc-diagnostic-next)
 nmap <leader>lK <Plug>(coc-diagnostic-prev)
 nmap <leader>lI <Plug>(coc-diagnostic-info)
@@ -1344,6 +1345,7 @@ nmap <leader>gF :<C-u>set foldmethod=marker<CR>
 nmap <silent> <leader>g<Tab> :CocCommand git.browserOpen<CR>
 let g:which_key_map['l'] = {
             \   'name': 'language server',
+            \   "\<Space>": 'list',
             \   'j': 'diagnostic next(ALE)',
             \   'k': 'diagnostic prev(ALE)',
             \   'i': 'diagnostic info(ALE)',
@@ -1379,25 +1381,6 @@ let g:which_key_map['g'] = {
 nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
 "}}}
 "{{{coc-list
-nnoremap <silent> <leader>f<Space> :CocList<CR>
-nnoremap <silent> <leader>fl :CocList lines<CR>
-nnoremap <silent> <leader>fb :CocList buffers<CR>
-nnoremap <silent> <leader>fm :CocList mru<CR>
-nnoremap <silent> <leader>ff :CocList files<CR>
-nnoremap <silent> <leader>ft :CocList outline<CR>
-nnoremap <silent> <leader>fh :CocList helptags<CR>
-nnoremap <silent> <leader>fg :CocList grep<CR>
-let g:which_key_map['f'] = {
-            \   'name': 'coc list',
-            \   "\<Space>": 'coc list',
-            \   'l': 'lines',
-            \   'b': 'buffers',
-            \   'm': 'mru',
-            \   'f': 'files',
-            \   't': 'outlines',
-            \   'h': 'help tags',
-            \   'g': 'grep',
-            \   }
 "}}}
 "{{{coc-explorer
 function ToggleCocExplorer()
@@ -1518,21 +1501,19 @@ let g:Lf_RgConfig = [
             \ '--multiline',
             \ '--hidden'
             \ ]
-nnoremap <silent> ff :<C-u>Leaderf file<CR>
-nnoremap <silent> ft :<C-u>LeaderfBufTag<CR>
-nnoremap <silent> fT :<C-u>LeaderfBufTagAll<CR>
-nnoremap <silent> fb :<C-u>LeaderfBuffer<CR>
-nnoremap <silent> fB :<C-u>LeaderfBufferAll<CR>
-nnoremap <silent> ff :<C-u>LeaderfFile<CR>
-nnoremap <silent> fh :<C-u>LeaderfHelp<CR>
-nnoremap <silent> fl :<C-u>LeaderfLine<CR>
-nnoremap <silent> fL :<C-u>LeaderfLineAll<CR>
-nnoremap <silent> fm :<C-u>LeaderfMruCwd<CR>
-nnoremap <silent> fM :<C-u>LeaderfMru<CR>
-nnoremap <silent> fg :<C-u>Leaderf rg<CR>
-nnoremap <silent> f :<c-u>WhichKey 'f'<CR>
-call which_key#register('f', 'g:which_key_map_f')
-let g:which_key_map_f = {
+nnoremap <silent> <leader>ff :<C-u>Leaderf file<CR>
+nnoremap <silent> <leader>ft :<C-u>LeaderfBufTag<CR>
+nnoremap <silent> <leader>fT :<C-u>LeaderfBufTagAll<CR>
+nnoremap <silent> <leader>fb :<C-u>LeaderfBuffer<CR>
+nnoremap <silent> <leader>fB :<C-u>LeaderfBufferAll<CR>
+nnoremap <silent> <leader>ff :<C-u>LeaderfFile<CR>
+nnoremap <silent> <leader>fh :<C-u>LeaderfHelp<CR>
+nnoremap <silent> <leader>fl :<C-u>LeaderfLine<CR>
+nnoremap <silent> <leader>fL :<C-u>LeaderfLineAll<CR>
+nnoremap <silent> <leader>fm :<C-u>LeaderfMruCwd<CR>
+nnoremap <silent> <leader>fM :<C-u>LeaderfMru<CR>
+nnoremap <silent> <leader>fg :<C-u>Leaderf rg<CR>
+let g:which_key_map['f'] = {
             \   'name': 'leaderf',
             \   't': 'tag',
             \   'T': 'tag all',
@@ -2244,7 +2225,7 @@ function! TagbarInit()
     call plug#load('tagbar', 'tagbar-phpctags.vim')
 endfunction
 function! s:tagbar_mappings() abort
-    nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:CocList outline<CR>
+    nnoremap <silent><buffer> f :<C-u>TagbarToggle<CR>:LeaderfBufTagAll<CR>
 endfunction
 augroup tagbarCustom
     autocmd!
