@@ -28,7 +28,7 @@ setup_copy .gitconfig
 setup_copy .ctags
 setup_symlink .conkyrc
 setup_symlink .bashrc
-setup_symlink .w3m
+setup_symlink .w3m/config
 setup_symlink .weechat/weechat.conf
 setup_symlink .local/share/applications
 setup_copy .aria2
