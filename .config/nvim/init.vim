@@ -1472,7 +1472,6 @@ let g:Lf_ShortcutF = '<A-z>`````ff'
 let g:Lf_ShortcutB = '<A-z>`````ff'
 let g:Lf_WindowHeight = 0.4
 let g:Lf_ShowRelativePath = 0
-let g:Lf_DefaultMode = 'Regex'
 let g:Lf_CursorBlink = 1
 let g:Lf_CacheDirectory = expand('~/.cache/vim/leaderf')
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
