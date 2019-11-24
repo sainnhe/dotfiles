@@ -1367,15 +1367,15 @@ let g:which_key_map['l'] = {
             \   }
 let g:which_key_map['g'] = {
             \   'name': 'git',
-            \   'j': 'next git chunk',
-            \   'k': 'prev git chunk',
-            \   'd': 'show unstaged diff',
-            \   'D': 'show staged diff',
-            \   'c': 'show commit message',
-            \   'u': 'undo chunk',
-            \   's': 'stage chunk',
+            \   'j': 'chunk next',
+            \   'k': 'chunk prev',
+            \   'd': 'diff unstaged',
+            \   'D': 'diff staged',
+            \   'c': 'commit message',
+            \   'u': 'chunk undo',
+            \   's': 'chunk stage',
             \   'f': 'fold unchanged',
-            \   'F': 'use marker fold method',
+            \   'F': 'toggle fold method',
             \   '<Tab>': 'open remote url in the browser',
             \   }
 nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
