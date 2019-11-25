@@ -1536,15 +1536,37 @@ function! Help_vim_sneak()
     echo 'Normal Mode & Visual Mode:'
     echo 's[char][char]                 forward search and highlight'
     echo 'S[char][char]                 backward search and highlight'
-    echo "' \"                          repeat motion"
-    echo "[num]' [num]\"                repeat motion multiple times"
-    echo 'C-o                           jump to start point'
-    echo 's[Enter] S[Enter]             repeat last search'
+    echo 's                             forward repeat'
+    echo 'S                             backward repeat'
+    echo '[count]s[char][char]          vertical search, limit search result in [count] columns'
+    echo 'f/F/t/T                       one character search'
 endfunction
 "}}}
-map ' <Plug>Sneak_;
-map " <Plug>Sneak_,
-imap <A-s> <Esc>s
+let g:sneak#s_next = 1
+
+" 2-character Sneak (default)
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
+xmap s <Plug>Sneak_s
+xmap S <Plug>Sneak_S
+omap s <Plug>Sneak_s
+omap S <Plug>Sneak_S
+
+" 1-character enhanced 'f'
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+
+" 1-character enhanced 't'
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
 "}}}
 "{{{nnn.vim
 let g:nnn#set_default_mappings = 0
