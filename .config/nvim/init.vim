@@ -730,8 +730,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'sodapopcan/vim-twiggy'
-Plug 'junegunn/gv.vim'
 Plug 'rhysd/committia.vim'
+Plug 'cohama/agit.vim'
 Plug 'jsfaint/gen_tags.vim', { 'on': [] }
 Plug 'majutsushi/tagbar', { 'on': [] }
 if executable('proxychains')
@@ -1595,38 +1595,36 @@ let g:twiggy_remote_branch_sort = 'date'
 let g:twiggy_show_full_ui = 0
 let g:twiggy_git_log_command = 'GV'
 "}}}
-"{{{gv
-function! Help_GV()
-    echo 'Commands'
-    echo ':GV           open commit browser'
-    echo ':GV!          only list commits that affected the current file'
-    echo ':GV?          fills the location list with the revisions of the current file'
-    echo ''
-    echo 'Mappings'
-    echo 'o or <cr> on a commit to display the content of it'
-    echo 'o or <cr> on commits to display the diff in the range'
-    echo 'O opens a new tab instead'
-    echo '<Tab> for :Gbrowse'
-    echo ']] and [[ to move between commits'
-    echo '. to start command-line with :Git [CURSOR] SHA via fugitive'
-    echo 'q to close'
+"{{{agit
+function! Help_agit() abort
+    echo '<A-j>         scroll down status window'
+    echo '<A-k>         scroll up status window'
+    echo '<C-j>         scroll down diff window'
+    echo '<C-k>         scroll up diff window'
+    echo 'q             quit'
+    echo '?             show this help'
 endfunction
-function! s:GV_Mappings() abort
-    nnoremap <silent><buffer> ? :call Help_GV()<CR>
-    nnoremap <silent><buffer> <Tab> :Gbrowse<CR>
+function! s:vim_agit_mappings() abort
+    nmap <silent><buffer> <A-j>         <Plug>(agit-scrolldown-stat)
+    nmap <silent><buffer> <A-k>         <Plug>(agit-scrollup-stat)
+    nmap <silent><buffer> <C-j>         <Plug>(agit-scrolldown-diff)
+    nmap <silent><buffer> <C-k>         <Plug>(agit-scrollup-diff)
+    nmap <silent><buffer> q             <PLug>(agit-exit)
+    nmap <silent><buffer> ?             :<C-u>call Help_agit()<CR>
 endfunction
-augroup gvCustom
+augroup agitCustom
     autocmd!
-    autocmd FileType GV call s:GV_Mappings()
+    autocmd FileType agit call s:vim_agit_mappings()
+    autocmd FileType agit_stat nmap <silent><buffer> q <PLug>(agit-exit)
+    autocmd FileType agit_diff nmap <silent><buffer> q <PLug>(agit-exit)
 augroup END
-nnoremap <silent> <leader>gbb :<C-u>GV<CR>
-nnoremap <silent> <leader>gbc :<C-u>GV!<CR>
-nnoremap <silent> <leader>gbr :<C-u>GV?<CR>
+let g:agit_no_default_mappings = 1
+nnoremap <silent> <leader>gbb :<C-u>Agit<CR>
+nnoremap <silent> <leader>gbf :<C-u>AgitFile<CR>
 let g:which_key_map['g']['b'] = {
-            \   'name': 'browser',
-            \   'b': 'commit browser',
-            \   'c': 'commits that affected current file',
-            \   'r': 'revisions for current file'
+            \   'name': 'commit browser',
+            \   'b': 'commits in the entire repo',
+            \   'f': 'commits for current file',
             \}
 "}}}
 "{{{committia.vim
