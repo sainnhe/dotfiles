@@ -1396,18 +1396,18 @@ augroup explorerCustom
 augroup END
 "}}}
 "{{{coc-bookmark
-nmap <leader>bt <Plug>(coc-bookmark-toggle)
+nmap <leader>bb <Plug>(coc-bookmark-toggle)
 nmap <leader>ba <Plug>(coc-bookmark-annotate)
 nmap <leader>bn <Plug>(coc-bookmark-next)
 nmap <leader>bp <Plug>(coc-bookmark-prev)
-nnoremap <silent> <leader>bb :CocList bookmark<CR>
+nnoremap <silent> <leader>b<Space> :CocList bookmark<CR>
 let g:which_key_map['b'] = {
             \   'name': 'bookmark',
-            \   't': 'toggle',
+            \   'b': 'toggle',
             \   'a': 'annotate',
             \   'n': 'next',
             \   'p': 'prev',
-            \   'b': 'list',
+            \   "\<Space>": 'list',
             \   }
 "}}}
 "}}}
