@@ -1377,6 +1377,7 @@ let g:which_key_map['g'] = {
             \   's': 'chunk stage',
             \   'f': 'fold unchanged',
             \   'F': 'toggle fold method',
+            \   'B': 'branch',
             \   '<Tab>': 'open remote url in the browser',
             \   }
 nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
@@ -1564,6 +1565,7 @@ let g:undotree_DiffpanelHeight = 10
 "{{{vim-fugitive
 "{{{twiggy
 command Gbranch Twiggy
+nnoremap <silent> <leader>gB :<C-u>Twiggy<CR>
 let g:twiggy_local_branch_sort = 'mru'
 let g:twiggy_num_columns = 35
 let g:twiggy_close_on_fugitive_command = 1
@@ -1582,18 +1584,28 @@ function! Help_GV()
     echo 'o or <cr> on a commit to display the content of it'
     echo 'o or <cr> on commits to display the diff in the range'
     echo 'O opens a new tab instead'
-    echo 'gb for :Gbrowse'
+    echo '<Tab> for :Gbrowse'
     echo ']] and [[ to move between commits'
     echo '. to start command-line with :Git [CURSOR] SHA via fugitive'
     echo 'q to close'
 endfunction
 function! s:GV_Mappings() abort
     nnoremap <silent><buffer> ? :call Help_GV()<CR>
+    nnoremap <silent><buffer> <Tab> :Gbrowse<CR>
 endfunction
 augroup gvCustom
     autocmd!
     autocmd FileType GV call s:GV_Mappings()
 augroup END
+nnoremap <silent> <leader>gbb :<C-u>GV<CR>
+nnoremap <silent> <leader>gbc :<C-u>GV!<CR>
+nnoremap <silent> <leader>gbr :<C-u>GV?<CR>
+let g:which_key_map['g']['b'] = {
+            \   'name': 'browser',
+            \   'b': 'commit browser',
+            \   'c': 'commits that affected current file',
+            \   'r': 'revisions for current file'
+            \}
 "}}}
 "{{{committia.vim
 let g:committia_hooks = {}
