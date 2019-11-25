@@ -5,6 +5,7 @@
     editor = nvim
 [merge]
     tool = vimdiff
+    conflictStyle = diff3
 [alias]
     ps = push
     ft = fetch
