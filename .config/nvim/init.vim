@@ -186,6 +186,7 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\<A-z>"
 nnoremap <SPACE> <Nop>
+set number cursorline
 set mouse=a
 filetype plugin indent on
 set t_Co=256
