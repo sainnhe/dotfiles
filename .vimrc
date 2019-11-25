@@ -4,8 +4,10 @@ set termencoding=utf-8
 set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
 set fileformats=unix,dos,mac
 scriptencoding utf-8
-let mapleader=' '
+let g:mapleader = "\<Space>"
+let g:maplocalleader = "\<A-z>"
 nnoremap <SPACE> <Nop>
+set number cursorline
 set mouse=a
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
