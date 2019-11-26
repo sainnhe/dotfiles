@@ -1001,7 +1001,7 @@ endfunction
 "}}}
 let g:vimColorScheme = 'gruvbox-material-dark'
 function! ColorScheme()
-    call quickmenu#current(99)
+    call quickmenu#current(10)
     call quickmenu#reset()
     "{{{forest-night
     if g:vimColorScheme ==# 'forest-night'
@@ -1135,23 +1135,23 @@ call quickmenu#reset()
 nnoremap <silent> <leader><leader> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
 call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
-call g:quickmenu#append('To Do', 'call quickmenu#toggle(14)', '', '', 0, 't')
-call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'C')
+call g:quickmenu#append('To Do', 'call quickmenu#toggle(11)', '', '', 0, 't')
+call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(10)', '', '', 0, 'C')
 call g:quickmenu#append('Color Picker', 'call quickmenu#toggle(13)', '', '', 0, 'c')
 call g:quickmenu#append('Undo Tree', 'UndotreeToggle', '', '', 0, 'u')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'r')
 call g:quickmenu#append('Toggle Indent', 'call ToggleIndent()', '', '', 0, 'i')
-call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(11)', '', '', 0, 'f')
+call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(2)', '', '', 0, 'f')
 call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
 call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
 call g:quickmenu#append('Ratio Resize', 'GoldenRatioResize', ':GoldenRatioResize  " resize current window', '', 0, 'g')
 call g:quickmenu#append('Ratio Toggle', 'GoldenRatioToggle', ':GoldenRatioToggle  " toggle golden ratio', '', 0, 'G')
 call g:quickmenu#append('Hexokinase Toggle', 'HexokinaseToggle', '', '', 0, 'H')
-call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 'T')
+call g:quickmenu#append('Tags', 'call quickmenu#toggle(12)', '', '', 0, 'T')
 call g:quickmenu#append('FencAutoDetect', 'FencAutoDetect', 'FencAutoDetect && FencView', '', 0, '^')
-call g:quickmenu#append('Entertainment', 'call quickmenu#toggle(12)', '', '', 0, '*')
-call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
-call quickmenu#current(10)
+call g:quickmenu#append('Entertainment', 'call quickmenu#toggle(3)', '', '', 0, '*')
+call g:quickmenu#append('Help', 'call quickmenu#toggle(1)', '', '', 0, 'h')
+call quickmenu#current(1)
 call quickmenu#reset()
 call g:quickmenu#append('# Help', '')
 call g:quickmenu#append('Visual Multi', 'call Help_vim_visual_multi()', '', '', 0, 'v')
@@ -1164,13 +1164,13 @@ call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 'S')
 call g:quickmenu#append('VIM Surround', 'call Help_vim_surround()', '', '', 0, 'r')
 call g:quickmenu#append('VIM Matchup', 'call Help_vim_matchup()', '', '', 0, 'M')
 call g:quickmenu#append('Inline Edit', 'call Help_inline_edit()', '', '', 0, 'i')
-call quickmenu#current(11)
+call quickmenu#current(2)
 call quickmenu#reset()
 call g:quickmenu#append('# Folding Method', '')
 call g:quickmenu#append('Marker', 'set foldmethod=marker', '', '', 0, 'm')
 call g:quickmenu#append('Syntax', 'set foldmethod=syntax', '', '', 0, 's')
 call g:quickmenu#append('Indent', 'set foldmethod=indnet', '', '', 0, 'i')
-call quickmenu#current(12)
+call quickmenu#current(3)
 call quickmenu#reset()
 call g:quickmenu#append('# Entertainment', '')
 call g:quickmenu#append('Star Wars', 'StarWars', '', '', 0, '')
@@ -1412,7 +1412,7 @@ let g:which_key_map['b'] = {
             \   }
 "}}}
 "{{{coc-todolist
-call quickmenu#current(14)
+call quickmenu#current(11)
 call quickmenu#reset()
 call g:quickmenu#append('# To Do', '')
 call g:quickmenu#append('New Item', 'CocCommand todolist.create', '', '', 0, 'n')
@@ -1678,7 +1678,7 @@ endfunction
 "}}}
 "{{{gen_tags.vim
 "{{{quickmenu
-call quickmenu#current(7)
+call quickmenu#current(12)
 call quickmenu#reset()
 call g:quickmenu#append('# Ctags', '')
 call g:quickmenu#append(' Generate Ctags', 'call InitCtags()', 'Generate ctags database', '', 0, 'c')
