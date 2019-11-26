@@ -4,8 +4,11 @@
 [core]
     editor = nvim
 [merge]
-    tool = vimdiff
+    tool = vim_mergetool
     conflictStyle = diff3
+[mergetool "vim_mergetool"]
+    cmd = nvim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+    trustExitCode = true
 [alias]
     ps = push
     ft = fetch
@@ -42,4 +45,4 @@
 [difftool]
     prompt = false
 [http]
-    proxy = socks5://127.0.0.1:1080
+	proxy = socks5://127.0.0.1:1080

@@ -732,6 +732,7 @@ Plug 'tommcdo/vim-fubitive'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'rhysd/committia.vim'
 Plug 'cohama/agit.vim'
+Plug 'samoshkin/vim-mergetool'
 Plug 'jsfaint/gen_tags.vim', { 'on': [] }
 Plug 'majutsushi/tagbar', { 'on': [] }
 if executable('proxychains')
@@ -1382,8 +1383,6 @@ let g:which_key_map['g'] = {
             \   }
 nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
 "}}}
-"{{{coc-list
-"}}}
 "{{{coc-explorer
 function ToggleCocExplorer()
     execute 'CocCommand explorer --toggle --width=35 --sources=buffer+,file+'
@@ -1643,6 +1642,27 @@ function! g:committia_hooks.edit_open(info)
     imap <buffer><PageUp> <Plug>(committia-scroll-diff-up-half)
     imap <buffer><S-PageDown> <Plug>(committia-scroll-diff-down-page)
     imap <buffer><S-PageUp> <Plug>(committia-scroll-diff-up-page)
+endfunction
+"}}}
+"{{{mergetool
+let g:mergetool_layout = 'mr'  " `l`, `b`, `r`, `m`
+let g:mergetool_prefer_revision = 'local'  " `local`, `base`, `remote`
+nmap <leader>gmt <plug>(MergetoolToggle)
+nnoremap <silent> <leader>gml :<C-u>call MergetoolLayoutCustom()<CR>
+let g:which_key_map['g']['m'] = {
+            \   'name': 'merge tool',
+            \   't': 'toggle',
+            \   'l': 'layout'
+            \   }
+let g:mergetool_layout_custom = 0
+function! MergetoolLayoutCustom()
+    if g:mergetool_layout_custom == 0
+        let g:mergetool_layout_custom = 1
+        execute 'MergetoolToggleLayout lbr,m'
+    else
+        let g:mergetool_layout_custom = 0
+        execute 'MergetoolToggleLayout mr'
+    endif
 endfunction
 "}}}
 "}}}
