@@ -64,6 +64,7 @@
     },
     "explorer.icon.enableNerdfont": true,
     "bookmark.sign": "\uf5c2",
+    "todolist.monitor": true,
     "suggest.languageSourcePriority": 99,
     "help_snippets": "https://github.com/neoclide/coc-snippets",
     "snippets.shortcut": "S",

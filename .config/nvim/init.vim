@@ -1135,7 +1135,7 @@ call quickmenu#reset()
 nnoremap <silent> <leader><leader> :call quickmenu#toggle(0)<cr>
 call g:quickmenu#append('# Menu', '')
 call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
-call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 't')
+call g:quickmenu#append('To Do', 'call quickmenu#toggle(14)', '', '', 0, 't')
 call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(99)', '', '', 0, 'C')
 call g:quickmenu#append('Color Picker', 'call quickmenu#toggle(13)', '', '', 0, 'c')
 call g:quickmenu#append('Undo Tree', 'UndotreeToggle', '', '', 0, 'u')
@@ -1147,6 +1147,7 @@ call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
 call g:quickmenu#append('Ratio Resize', 'GoldenRatioResize', ':GoldenRatioResize  " resize current window', '', 0, 'g')
 call g:quickmenu#append('Ratio Toggle', 'GoldenRatioToggle', ':GoldenRatioToggle  " toggle golden ratio', '', 0, 'G')
 call g:quickmenu#append('Hexokinase Toggle', 'HexokinaseToggle', '', '', 0, 'H')
+call g:quickmenu#append('Tags', 'call quickmenu#toggle(7)', '', '', 0, 'T')
 call g:quickmenu#append('FencAutoDetect', 'FencAutoDetect', 'FencAutoDetect && FencView', '', 0, '^')
 call g:quickmenu#append('Entertainment', 'call quickmenu#toggle(12)', '', '', 0, '*')
 call g:quickmenu#append('Help', 'call quickmenu#toggle(10)', '', '', 0, 'h')
@@ -1269,6 +1270,7 @@ let g:coc_global_extensions = [
             \   'coc-git',
             \   'coc-explorer',
             \   'coc-bookmark',
+            \   'coc-todolist',
             \   'coc-highlight',
             \   'coc-yank',
             \   'coc-snippets',
@@ -1408,6 +1410,14 @@ let g:which_key_map['b'] = {
             \   'p': 'prev',
             \   "\<Space>": 'list',
             \   }
+"}}}
+"{{{coc-todolist
+call quickmenu#current(14)
+call quickmenu#reset()
+call g:quickmenu#append('# To Do', '')
+call g:quickmenu#append('New Item', 'CocCommand todolist.create', '', '', 0, 'n')
+call g:quickmenu#append('Management', 'CocList todolist', '', '', 0, 'm')
+call g:quickmenu#append('Clear Remind', 'CocCommand todolist.clearRemind', '', '', 0, 'c')
 "}}}
 "}}}
 "{{{ale
