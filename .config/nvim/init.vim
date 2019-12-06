@@ -694,7 +694,7 @@ Plug 'maximbaz/lightline-ale'
 Plug 'albertomontesg/lightline-asyncrun'
 Plug 'rmolin88/pomodoro.vim'
 if g:vimIsInTmux == 1
-    Plug 'sainnhe/tmuxline.vim', { 'branch': 'dev', 'on': [ 'Tmuxline', 'TmuxlineSnapshot' ] }
+    Plug 'sainnhe/tmuxline.vim', { 'on': [ 'Tmuxline', 'TmuxlineSnapshot' ] }
 endif
 if g:vimEnableStartify == 1
     Plug 'mhinz/vim-startify'
