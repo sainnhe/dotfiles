@@ -2613,7 +2613,7 @@ call g:quickmenu#append('Insert RGBA', 'VCoolIns ra', '', '', 0, 'R')
 call g:quickmenu#append('Toggle Case', 'VCase', '', '', 0, 'c')
 call g:quickmenu#append('Convert', 'call Help_vCoolor()', '', '', 0, 'h')
 let g:vcoolor_disable_mappings = 1
-let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --show-palette --color '
+let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --color '
 "}}}
 "{{{vim-devicons
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
