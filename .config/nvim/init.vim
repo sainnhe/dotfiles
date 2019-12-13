@@ -1393,7 +1393,7 @@ nnoremap <silent> <C-b> :call ToggleCocExplorer()<CR>
 augroup explorerCustom
     autocmd!
     autocmd FileType coc-explorer setlocal signcolumn=no
-    autocmd BufEnter * if (winnr("$") == 1 && bufname() ==# '[coc-explorer]') | q | endif
+    autocmd BufEnter * if (winnr("$") == 1 && &filetype ==# 'coc-explorer') | q | endif
 augroup END
 "}}}
 "{{{coc-bookmark
