@@ -999,7 +999,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'gruvbox-material-dark'
+let g:vimColorScheme = 'neon-dark'
 function! ColorScheme()
     call quickmenu#current(10)
     call quickmenu#reset()
@@ -1044,6 +1044,38 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'edge'
     endif
     call g:quickmenu#append('Edge Light', 'call SwitchColorScheme("edge-light")', '', '', 0, '')
+    "}}}
+    "{{{neon-dark
+    if g:vimColorScheme ==# 'neon-dark'
+        set background=dark
+        colorscheme neon
+        let g:lightline.colorscheme = 'neon'
+    endif
+    call g:quickmenu#append('Neon Dark', 'call SwitchColorScheme("neon-dark")', '', '', 0, '')
+    "}}}
+    "{{{neon-light
+    if g:vimColorScheme ==# 'neon-light'
+        set background=light
+        colorscheme neon
+        let g:lightline.colorscheme = 'neon'
+    endif
+    call g:quickmenu#append('Neon Light', 'call SwitchColorScheme("neon-light")', '', '', 0, '')
+    "}}}
+    "{{{polar-dark
+    if g:vimColorScheme ==# 'polar-dark'
+        set background=dark
+        colorscheme polar
+        let g:lightline.colorscheme = 'polar'
+    endif
+    call g:quickmenu#append('Polar Dark', 'call SwitchColorScheme("polar-dark")', '', '', 0, '')
+    "}}}
+    "{{{polar-light
+    if g:vimColorScheme ==# 'polar-light'
+        set background=light
+        colorscheme polar
+        let g:lightline.colorscheme = 'polar'
+    endif
+    call g:quickmenu#append('Polar Light', 'call SwitchColorScheme("polar-light")', '', '', 0, '')
     "}}}
 endfunction
 call ColorScheme()
