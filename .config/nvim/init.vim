@@ -683,9 +683,8 @@ let g:markdown_fenced_languages = [
 " User Interface
 "{{{themes
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
-Plug 'sainnhe/vim-color-forest-night'
 Plug 'sainnhe/gruvbox-material', { 'as': 'vim-color-gruvbox-material', 'branch': 'neosyn' }
-Plug 'sainnhe/edge', { 'as': 'vim-color-edge' }
+Plug 'sainnhe/neon', { 'as': 'vim-color-neon' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1003,13 +1002,6 @@ let g:vimColorScheme = 'neon-dark'
 function! ColorScheme()
     call quickmenu#current(10)
     call quickmenu#reset()
-    "{{{forest-night
-    if g:vimColorScheme ==# 'forest-night'
-        colorscheme forest-night
-        let g:lightline.colorscheme = 'forest_night'
-    endif
-    call g:quickmenu#append('Forest Night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
-    "}}}
     "{{{gruvbox-material-dark
     if g:vimColorScheme ==# 'gruvbox-material-dark'
         set background=dark
@@ -1029,22 +1021,6 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('Gruvbox Material Light', 'call SwitchColorScheme("gruvbox-material-light")', '', '', 0, '')
     "}}}
-    "{{{edge-dark
-    if g:vimColorScheme ==# 'edge-dark'
-        set background=dark
-        colorscheme edge
-        let g:lightline.colorscheme = 'edge'
-    endif
-    call g:quickmenu#append('Edge Dark', 'call SwitchColorScheme("edge-dark")', '', '', 0, '')
-    "}}}
-    "{{{edge-light
-    if g:vimColorScheme ==# 'edge-light'
-        set background=light
-        colorscheme edge
-        let g:lightline.colorscheme = 'edge'
-    endif
-    call g:quickmenu#append('Edge Light', 'call SwitchColorScheme("edge-light")', '', '', 0, '')
-    "}}}
     "{{{neon-dark
     if g:vimColorScheme ==# 'neon-dark'
         set background=dark
@@ -1060,22 +1036,6 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'neon'
     endif
     call g:quickmenu#append('Neon Light', 'call SwitchColorScheme("neon-light")', '', '', 0, '')
-    "}}}
-    "{{{polar-dark
-    if g:vimColorScheme ==# 'polar-dark'
-        set background=dark
-        colorscheme polar
-        let g:lightline.colorscheme = 'polar'
-    endif
-    call g:quickmenu#append('Polar Dark', 'call SwitchColorScheme("polar-dark")', '', '', 0, '')
-    "}}}
-    "{{{polar-light
-    if g:vimColorScheme ==# 'polar-light'
-        set background=light
-        colorscheme polar
-        let g:lightline.colorscheme = 'polar'
-    endif
-    call g:quickmenu#append('Polar Light', 'call SwitchColorScheme("polar-light")', '', '', 0, '')
     "}}}
 endfunction
 call ColorScheme()
