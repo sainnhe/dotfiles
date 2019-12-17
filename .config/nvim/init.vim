@@ -685,6 +685,7 @@ let g:markdown_fenced_languages = [
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
 Plug 'sainnhe/gruvbox-material', { 'as': 'vim-color-gruvbox-material', 'branch': 'neosyn' }
 Plug 'sainnhe/neon', { 'as': 'vim-color-neon' }
+Plug 'sainnhe/edge', { 'as': 'vim-color-edge' }
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
