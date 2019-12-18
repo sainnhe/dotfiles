@@ -684,7 +684,6 @@ let g:markdown_fenced_languages = [
 "{{{themes
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
 Plug 'sainnhe/gruvbox-material', { 'as': 'vim-color-gruvbox-material', 'branch': 'neosyn' }
-Plug 'sainnhe/neon', { 'as': 'vim-color-neon' }
 Plug 'sainnhe/edge', { 'as': 'vim-color-edge' }
 "}}}
 Plug 'itchyny/lightline.vim'
@@ -1025,18 +1024,19 @@ function! ColorScheme()
     "{{{neon-dark
     if g:vimColorScheme ==# 'neon-dark'
         set background=dark
-        colorscheme neon
-        let g:lightline.colorscheme = 'neon'
+        let g:edge_style = 'neon'
+        colorscheme edge
+        let g:lightline.colorscheme = 'edge'
     endif
     call g:quickmenu#append('Neon Dark', 'call SwitchColorScheme("neon-dark")', '', '', 0, '')
     "}}}
     "{{{neon-light
-    if g:vimColorScheme ==# 'neon-light'
+    if g:vimColorScheme ==# 'edge-light'
         set background=light
-        colorscheme neon
-        let g:lightline.colorscheme = 'neon'
+        colorscheme edge
+        let g:lightline.colorscheme = 'edge'
     endif
-    call g:quickmenu#append('Neon Light', 'call SwitchColorScheme("neon-light")', '', '', 0, '')
+    call g:quickmenu#append('Edge Light', 'call SwitchColorScheme("edge-light")', '', '', 0, '')
     "}}}
 endfunction
 call ColorScheme()
