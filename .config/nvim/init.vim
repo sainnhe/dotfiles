@@ -495,6 +495,12 @@ endif
 "{{{Command
 " Q强制退出
 command Q q!
+" {{{PasteBin
+function PasteBin() range
+    echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| proxychains -q pastebinit | xclip -selection clipboard && xclip -o -selection clipboard')
+endfunction
+com -range=% -nargs=0 PasteBin :<line1>,<line2>call PasteBin()
+" }}}
 "}}}
 "}}}
 "{{{Plugin
@@ -998,7 +1004,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'neon-dark'
+let g:vimColorScheme = 'gruvbox-material-dark'
 function! ColorScheme()
     call quickmenu#current(10)
     call quickmenu#reset()
