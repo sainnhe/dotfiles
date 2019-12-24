@@ -199,7 +199,7 @@ elif [ "$1" = "user" ]; then
     pikaur -S fcitx-libpinyin fcitx-cloudpinyin fcitx-ui-light fcitx-table-extra fcitx-table-other fcitx-configtool fcitx-gtk3 ssf2fcitx-git fcitx-skin-material
     echo "setup i3, zsh, tmux, vim manually"
 elif [ "$1" = "apps" ]; then
-    pikaur -S fzf fontweak gotop persepolis code terminal-markdown-viewer python2-pygments typora nodejs-commitizen iw
+    pikaur -S fzf fontweak gotop persepolis code terminal-markdown-viewer python2-pygments typora nodejs-commitizen iw pastebinit
     px npm install commitizen
 elif [ "$1" = "appswsl" ]; then
     pikaur -S gotop terminal-markdown-viewer python2-pygments gnome-screenshot tcping nodejs-commitizen
