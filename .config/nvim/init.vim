@@ -1036,7 +1036,7 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('Neon Dark', 'call SwitchColorScheme("neon-dark")', '', '', 0, '')
     "}}}
-    "{{{neon-light
+    "{{{edge-light
     if g:vimColorScheme ==# 'edge-light'
         set background=light
         colorscheme edge
