@@ -656,7 +656,8 @@ Plug 'ryanoasis/vim-devicons'
 "{{{syntax
 Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax' }
 Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-syntax-c-cpp', 'for': [ 'c', 'cpp' ] }
-let g:polyglot_disabled = [ 'c', 'cpp', 'markdown' ]
+Plug 'maxmellon/vim-jsx-pretty', { 'as': 'vim-syntax-jsx', 'for': [ 'javascriptreact' ] }
+let g:polyglot_disabled = [ 'c', 'cpp', 'markdown', 'javascriptreact' ]
 let g:markdown_fenced_languages = [
             \   'html',
             \   'css',
