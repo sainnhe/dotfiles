@@ -130,4 +130,9 @@ elif [ "$1" = "dotfiles" ]; then
     mkdir -p ~/.config/nvim
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
+elif [ "$1" = "fonts" ]; then
+    git clone --depth 1 https://github.com/kencrocken/FiraCodeiScript.git ~/repo/FiraCodeiScript
+    mkdir -p ~/.local/share/fonts
+    cp ~/repo/FiraCodeiScript/*.ttf ~/.local/share/fonts
+    fc-cache
 fi

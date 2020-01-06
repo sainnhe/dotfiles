@@ -41,12 +41,13 @@ font:
 
   # Italic font face
   italic:
-    family: FuraCode Nerd Font Mono
+    # family: Fira Code iScript
+    family: Petit Formal Script
     # The `style` can be specified to pick a specific face.
-    style: Italic
+    style: Regular
 
   # Point size
-  size: 9.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.

@@ -1,3 +1,3 @@
 #!/bin/env bash
 
-pikaur -S gruvbox-material-neosyn-git
+pikaur -S gruvbox-material-git
