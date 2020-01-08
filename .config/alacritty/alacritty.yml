@@ -1,50 +1,126 @@
 # {{{Color Schemes
 background_opacity: 1.0
+# {{{ Gruvbox Material Dark
 colors:
   primary:
     background: '0x282828'
-    foreground: '0xdfbf8e'
+    foreground: '0xd4be98'
 
   normal:
-    black:   '0x665c54'
+    black:   '0x504945'
     red:     '0xea6962'
     green:   '0xa9b665'
-    yellow:  '0xe78a4e'
+    yellow:  '0xd8a657'
     blue:    '0x7daea3'
     magenta: '0xd3869b'
     cyan:    '0x89b482'
-    white:   '0xdfbf8e'
+    white:   '0xd4be98'
 
   bright:
-    black:   '0x928374'
+    black:   '0x504945'
     red:     '0xea6962'
     green:   '0xa9b665'
-    yellow:  '0xe3a84e'
+    yellow:  '0xd8a657'
     blue:    '0x7daea3'
     magenta: '0xd3869b'
     cyan:    '0x89b482'
-    white:   '0xdfbf8e'
+    white:   '0xd4be98'
+# }}}
+# # {{{ Gruvbox Material Light
+# colors:
+#   primary:
+#     background: '0xf2e5bc'
+#     foreground: '0x654735'
+#
+#   normal:
+#     black:   '0x654735'
+#     red:     '0xc14a4a'
+#     green:   '0x6c782e'
+#     yellow:  '0xb47109'
+#     blue:    '0x45707a'
+#     magenta: '0x945e80'
+#     cyan:    '0x4c7a5d'
+#     white:   '0x928374'
+#
+#   bright:
+#     black:   '0x654735'
+#     red:     '0xc14a4a'
+#     green:   '0x6c782e'
+#     yellow:  '0xb47109'
+#     blue:    '0x45707a'
+#     magenta: '0x945e80'
+#     cyan:    '0x4c7a5d'
+#     white:   '0x928374'
+# # }}}
+# # {{{ Edge Light
+# colors:
+#   primary:
+#     background: "0xfafafa"
+#     foreground: "0x4b505b"
+#
+#   normal:
+#     black: "0x4b505b"
+#     red: "0xd15f5f"
+#     green: "0x608e32"
+#     yellow: "0xbe7e05"
+#     blue: "0x5079be"
+#     magenta: "0xb05ccc"
+#     cyan: "0x3a8b84"
+#     white: "0x949ba5"
+#
+#   bright:
+#     black: "0x4b505b"
+#     red: "0xd15f5f"
+#     green: "0x608e32"
+#     yellow: "0xbe7e05"
+#     blue: "0x5079be"
+#     magenta: "0xb05ccc"
+#     cyan: "0x3a8b84"
+#     white: "0x949ba5"
+# # }}}
+# # {{{ Neon Dark
+# colors:
+#   primary:
+#     background: "0x23252e"
+#     foreground: "0xbcc3d2"
+#
+#   normal:
+#     black: "0x7a819d"
+#     red: "0xf07e7e"
+#     green: "0xa4be8e"
+#     yellow: "0xd0b073"
+#     blue: "0x7eb4e7"
+#     magenta: "0xd898eb"
+#     cyan: "0x7bbbb5"
+#     white: "0xbcc3d2"
+#
+#   bright:
+#     black: "0x7a819d"
+#     red: "0xf07e7e"
+#     green: "0xa4be8e"
+#     yellow: "0xd0b073"
+#     blue: "0x7eb4e7"
+#     magenta: "0xd898eb"
+#     cyan: "0x7bbbb5"
+#     white: "0xbcc3d2"
+# # }}}
 # }}}
 # {{{Font
 font:
   # Normal (roman) font face
   normal:
     family: FuraCode Nerd Font Mono
-    # The `style` can be specified to pick a specific face.
     style: Regular
 
   # Bold font face
   bold:
     family: FuraCode Nerd Font Mono
-    # The `style` can be specified to pick a specific face.
     style: Bold
 
   # Italic font face
   italic:
-    # family: Fira Code iScript
-    family: Petit Formal Script
-    # The `style` can be specified to pick a specific face.
-    style: Regular
+    family: Fira Code iScript
+    style: Italic
 
   # Point size
   size: 12.0
@@ -137,109 +213,109 @@ font:
 key_bindings:
   - { key: V, mods: Control|Shift, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
-  - { key: Paste, action: Paste }
-  - { key: Copy, action: Copy }
-  - { key: Q, mods: Command, action: Quit }
-  - { key: W, mods: Command, action: Quit }
-  - { key: Insert, mods: Shift, action: PasteSelection }
-  - { key: Key0, mods: Control, action: ResetFontSize }
-  - { key: Equals, mods: Control, action: IncreaseFontSize }
-  - { key: Subtract, mods: Control, action: DecreaseFontSize }
-  - { key: Home, chars: "\x1bOH", mode: AppCursor }
-  - { key: Home, chars: "\x1b[H", mode: ~AppCursor }
-  - { key: End, chars: "\x1bOF", mode: AppCursor }
-  - { key: End, chars: "\x1b[F", mode: ~AppCursor }
-  - { key: PageUp, mods: Shift, chars: "\x1b[5;2~" }
-  - { key: PageUp, mods: Control, chars: "\x1b[5;5~" }
-  - { key: PageUp, chars: "\x1b[5~" }
-  - { key: PageDown, mods: Shift, chars: "\x1b[6;2~" }
-  - { key: PageDown, mods: Control, chars: "\x1b[6;5~" }
-  - { key: PageDown, chars: "\x1b[6~" }
-  - { key: Tab, mods: Shift, chars: "\x1b[Z" }
-  - { key: Back, chars: "\x7f" }
-  - { key: Back, mods: Alt, chars: "\x1b\x7f" }
-  - { key: Insert, chars: "\x1b[2~" }
-  - { key: Delete, chars: "\x1b[3~" }
-  - { key: Left, mods: Shift, chars: "\x1b[1;2D" }
-  - { key: Left, mods: Control, chars: "\x1b[1;5D" }
-  - { key: Left, mods: Alt, chars: "\x1b[1;3D" }
-  - { key: Left, chars: "\x1b[D", mode: ~AppCursor }
-  - { key: Left, chars: "\x1bOD", mode: AppCursor }
-  - { key: Right, mods: Shift, chars: "\x1b[1;2C" }
-  - { key: Right, mods: Control, chars: "\x1b[1;5C" }
-  - { key: Right, mods: Alt, chars: "\x1b[1;3C" }
-  - { key: Right, chars: "\x1b[C", mode: ~AppCursor }
-  - { key: Right, chars: "\x1bOC", mode: AppCursor }
-  - { key: Up, mods: Shift, chars: "\x1b[1;2A" }
-  - { key: Up, mods: Control, chars: "\x1b[1;5A" }
-  - { key: Up, mods: Alt, chars: "\x1b[1;3A" }
-  - { key: Up, chars: "\x1b[A", mode: ~AppCursor }
-  - { key: Up, chars: "\x1bOA", mode: AppCursor }
-  - { key: Down, mods: Shift, chars: "\x1b[1;2B" }
-  - { key: Down, mods: Control, chars: "\x1b[1;5B" }
-  - { key: Down, mods: Alt, chars: "\x1b[1;3B" }
-  - { key: Down, chars: "\x1b[B", mode: ~AppCursor }
-  - { key: Down, chars: "\x1bOB", mode: AppCursor }
-  - { key: F1, chars: "\x1bOP" }
-  - { key: F2, chars: "\x1bOQ" }
-  - { key: F3, chars: "\x1bOR" }
-  - { key: F4, chars: "\x1bOS" }
-  - { key: F5, chars: "\x1b[15~" }
-  - { key: F6, chars: "\x1b[17~" }
-  - { key: F7, chars: "\x1b[18~" }
-  - { key: F8, chars: "\x1b[19~" }
-  - { key: F9, chars: "\x1b[20~" }
-  - { key: F10, chars: "\x1b[21~" }
-  - { key: F11, chars: "\x1b[23~" }
-  - { key: F12, chars: "\x1b[24~" }
-  - { key: F1, mods: Shift, chars: "\x1b[1;2P" }
-  - { key: F2, mods: Shift, chars: "\x1b[1;2Q" }
-  - { key: F3, mods: Shift, chars: "\x1b[1;2R" }
-  - { key: F4, mods: Shift, chars: "\x1b[1;2S" }
-  - { key: F5, mods: Shift, chars: "\x1b[15;2~" }
-  - { key: F6, mods: Shift, chars: "\x1b[17;2~" }
-  - { key: F7, mods: Shift, chars: "\x1b[18;2~" }
-  - { key: F8, mods: Shift, chars: "\x1b[19;2~" }
-  - { key: F9, mods: Shift, chars: "\x1b[20;2~" }
-  - { key: F10, mods: Shift, chars: "\x1b[21;2~" }
-  - { key: F11, mods: Shift, chars: "\x1b[23;2~" }
-  - { key: F12, mods: Shift, chars: "\x1b[24;2~" }
-  - { key: F1, mods: Control, chars: "\x1b[1;5P" }
-  - { key: F2, mods: Control, chars: "\x1b[1;5Q" }
-  - { key: F3, mods: Control, chars: "\x1b[1;5R" }
-  - { key: F4, mods: Control, chars: "\x1b[1;5S" }
-  - { key: F5, mods: Control, chars: "\x1b[15;5~" }
-  - { key: F6, mods: Control, chars: "\x1b[17;5~" }
-  - { key: F7, mods: Control, chars: "\x1b[18;5~" }
-  - { key: F8, mods: Control, chars: "\x1b[19;5~" }
-  - { key: F9, mods: Control, chars: "\x1b[20;5~" }
-  - { key: F10, mods: Control, chars: "\x1b[21;5~" }
-  - { key: F11, mods: Control, chars: "\x1b[23;5~" }
-  - { key: F12, mods: Control, chars: "\x1b[24;5~" }
-  - { key: F1, mods: Alt, chars: "\x1b[1;6P" }
-  - { key: F2, mods: Alt, chars: "\x1b[1;6Q" }
-  - { key: F3, mods: Alt, chars: "\x1b[1;6R" }
-  - { key: F4, mods: Alt, chars: "\x1b[1;6S" }
-  - { key: F5, mods: Alt, chars: "\x1b[15;6~" }
-  - { key: F6, mods: Alt, chars: "\x1b[17;6~" }
-  - { key: F7, mods: Alt, chars: "\x1b[18;6~" }
-  - { key: F8, mods: Alt, chars: "\x1b[19;6~" }
-  - { key: F9, mods: Alt, chars: "\x1b[20;6~" }
-  - { key: F10, mods: Alt, chars: "\x1b[21;6~" }
-  - { key: F11, mods: Alt, chars: "\x1b[23;6~" }
-  - { key: F12, mods: Alt, chars: "\x1b[24;6~" }
-  - { key: F1, mods: Super, chars: "\x1b[1;3P" }
-  - { key: F2, mods: Super, chars: "\x1b[1;3Q" }
-  - { key: F3, mods: Super, chars: "\x1b[1;3R" }
-  - { key: F4, mods: Super, chars: "\x1b[1;3S" }
-  - { key: F5, mods: Super, chars: "\x1b[15;3~" }
-  - { key: F6, mods: Super, chars: "\x1b[17;3~" }
-  - { key: F7, mods: Super, chars: "\x1b[18;3~" }
-  - { key: F8, mods: Super, chars: "\x1b[19;3~" }
-  - { key: F9, mods: Super, chars: "\x1b[20;3~" }
-  - { key: F10, mods: Super, chars: "\x1b[21;3~" }
-  - { key: F11, mods: Super, chars: "\x1b[23;3~" }
-  - { key: F12, mods: Super, chars: "\x1b[24;3~" }
+  # - { key: Paste, action: Paste }
+  # - { key: Copy, action: Copy }
+  # - { key: Q, mods: Command, action: Quit }
+  # - { key: W, mods: Command, action: Quit }
+  # - { key: Insert, mods: Shift, action: PasteSelection }
+  # - { key: Key0, mods: Control, action: ResetFontSize }
+  # - { key: Equals, mods: Control, action: IncreaseFontSize }
+  # - { key: Subtract, mods: Control, action: DecreaseFontSize }
+  # - { key: Home, chars: "\x1bOH", mode: AppCursor }
+  # - { key: Home, chars: "\x1b[H", mode: ~AppCursor }
+  # - { key: End, chars: "\x1bOF", mode: AppCursor }
+  # - { key: End, chars: "\x1b[F", mode: ~AppCursor }
+  # - { key: PageUp, mods: Shift, chars: "\x1b[5;2~" }
+  # - { key: PageUp, mods: Control, chars: "\x1b[5;5~" }
+  # - { key: PageUp, chars: "\x1b[5~" }
+  # - { key: PageDown, mods: Shift, chars: "\x1b[6;2~" }
+  # - { key: PageDown, mods: Control, chars: "\x1b[6;5~" }
+  # - { key: PageDown, chars: "\x1b[6~" }
+  # - { key: Tab, mods: Shift, chars: "\x1b[Z" }
+  # - { key: Back, chars: "\x7f" }
+  # - { key: Back, mods: Alt, chars: "\x1b\x7f" }
+  # - { key: Insert, chars: "\x1b[2~" }
+  # - { key: Delete, chars: "\x1b[3~" }
+  # - { key: Left, mods: Shift, chars: "\x1b[1;2D" }
+  # - { key: Left, mods: Control, chars: "\x1b[1;5D" }
+  # - { key: Left, mods: Alt, chars: "\x1b[1;3D" }
+  # - { key: Left, chars: "\x1b[D", mode: ~AppCursor }
+  # - { key: Left, chars: "\x1bOD", mode: AppCursor }
+  # - { key: Right, mods: Shift, chars: "\x1b[1;2C" }
+  # - { key: Right, mods: Control, chars: "\x1b[1;5C" }
+  # - { key: Right, mods: Alt, chars: "\x1b[1;3C" }
+  # - { key: Right, chars: "\x1b[C", mode: ~AppCursor }
+  # - { key: Right, chars: "\x1bOC", mode: AppCursor }
+  # - { key: Up, mods: Shift, chars: "\x1b[1;2A" }
+  # - { key: Up, mods: Control, chars: "\x1b[1;5A" }
+  # - { key: Up, mods: Alt, chars: "\x1b[1;3A" }
+  # - { key: Up, chars: "\x1b[A", mode: ~AppCursor }
+  # - { key: Up, chars: "\x1bOA", mode: AppCursor }
+  # - { key: Down, mods: Shift, chars: "\x1b[1;2B" }
+  # - { key: Down, mods: Control, chars: "\x1b[1;5B" }
+  # - { key: Down, mods: Alt, chars: "\x1b[1;3B" }
+  # - { key: Down, chars: "\x1b[B", mode: ~AppCursor }
+  # - { key: Down, chars: "\x1bOB", mode: AppCursor }
+  # - { key: F1, chars: "\x1bOP" }
+  # - { key: F2, chars: "\x1bOQ" }
+  # - { key: F3, chars: "\x1bOR" }
+  # - { key: F4, chars: "\x1bOS" }
+  # - { key: F5, chars: "\x1b[15~" }
+  # - { key: F6, chars: "\x1b[17~" }
+  # - { key: F7, chars: "\x1b[18~" }
+  # - { key: F8, chars: "\x1b[19~" }
+  # - { key: F9, chars: "\x1b[20~" }
+  # - { key: F10, chars: "\x1b[21~" }
+  # - { key: F11, chars: "\x1b[23~" }
+  # - { key: F12, chars: "\x1b[24~" }
+  # - { key: F1, mods: Shift, chars: "\x1b[1;2P" }
+  # - { key: F2, mods: Shift, chars: "\x1b[1;2Q" }
+  # - { key: F3, mods: Shift, chars: "\x1b[1;2R" }
+  # - { key: F4, mods: Shift, chars: "\x1b[1;2S" }
+  # - { key: F5, mods: Shift, chars: "\x1b[15;2~" }
+  # - { key: F6, mods: Shift, chars: "\x1b[17;2~" }
+  # - { key: F7, mods: Shift, chars: "\x1b[18;2~" }
+  # - { key: F8, mods: Shift, chars: "\x1b[19;2~" }
+  # - { key: F9, mods: Shift, chars: "\x1b[20;2~" }
+  # - { key: F10, mods: Shift, chars: "\x1b[21;2~" }
+  # - { key: F11, mods: Shift, chars: "\x1b[23;2~" }
+  # - { key: F12, mods: Shift, chars: "\x1b[24;2~" }
+  # - { key: F1, mods: Control, chars: "\x1b[1;5P" }
+  # - { key: F2, mods: Control, chars: "\x1b[1;5Q" }
+  # - { key: F3, mods: Control, chars: "\x1b[1;5R" }
+  # - { key: F4, mods: Control, chars: "\x1b[1;5S" }
+  # - { key: F5, mods: Control, chars: "\x1b[15;5~" }
+  # - { key: F6, mods: Control, chars: "\x1b[17;5~" }
+  # - { key: F7, mods: Control, chars: "\x1b[18;5~" }
+  # - { key: F8, mods: Control, chars: "\x1b[19;5~" }
+  # - { key: F9, mods: Control, chars: "\x1b[20;5~" }
+  # - { key: F10, mods: Control, chars: "\x1b[21;5~" }
+  # - { key: F11, mods: Control, chars: "\x1b[23;5~" }
+  # - { key: F12, mods: Control, chars: "\x1b[24;5~" }
+  # - { key: F1, mods: Alt, chars: "\x1b[1;6P" }
+  # - { key: F2, mods: Alt, chars: "\x1b[1;6Q" }
+  # - { key: F3, mods: Alt, chars: "\x1b[1;6R" }
+  # - { key: F4, mods: Alt, chars: "\x1b[1;6S" }
+  # - { key: F5, mods: Alt, chars: "\x1b[15;6~" }
+  # - { key: F6, mods: Alt, chars: "\x1b[17;6~" }
+  # - { key: F7, mods: Alt, chars: "\x1b[18;6~" }
+  # - { key: F8, mods: Alt, chars: "\x1b[19;6~" }
+  # - { key: F9, mods: Alt, chars: "\x1b[20;6~" }
+  # - { key: F10, mods: Alt, chars: "\x1b[21;6~" }
+  # - { key: F11, mods: Alt, chars: "\x1b[23;6~" }
+  # - { key: F12, mods: Alt, chars: "\x1b[24;6~" }
+  # - { key: F1, mods: Super, chars: "\x1b[1;3P" }
+  # - { key: F2, mods: Super, chars: "\x1b[1;3Q" }
+  # - { key: F3, mods: Super, chars: "\x1b[1;3R" }
+  # - { key: F4, mods: Super, chars: "\x1b[1;3S" }
+  # - { key: F5, mods: Super, chars: "\x1b[15;3~" }
+  # - { key: F6, mods: Super, chars: "\x1b[17;3~" }
+  # - { key: F7, mods: Super, chars: "\x1b[18;3~" }
+  # - { key: F8, mods: Super, chars: "\x1b[19;3~" }
+  # - { key: F9, mods: Super, chars: "\x1b[20;3~" }
+  # - { key: F10, mods: Super, chars: "\x1b[21;3~" }
+  # - { key: F11, mods: Super, chars: "\x1b[23;3~" }
+  # - { key: F12, mods: Super, chars: "\x1b[24;3~" }
 # }}}
 # {{{More
 # Any items in the `env` entry below will be added as
@@ -288,7 +364,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Windowed
+  startup_mode: Maximized
 
   # Window title
   #title: Alacritty
@@ -315,10 +391,10 @@ scrolling:
   # to allow mouse scrolling for applications like `man`.
   #
   # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 3
+  # faux_multiplier: 3
 
   # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: true
+  auto_scroll: false
 
 # Spaces per Tab (changes require restart)
 #
@@ -327,7 +403,7 @@ scrolling:
 # Some applications, like Emacs, rely on knowing about the width of a tab.
 # To prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
-tabspaces: 4
+tabspaces: 8
 
 # Font configuration (changes require restart)
 #
@@ -435,7 +511,7 @@ selection:
   # When set to `true`, selected text will be copied to both the primary and
   # the selection clipboard. Otherwise, it will only be copied to the selection
   # clipboard.
-  save_to_clipboard: true
+  save_to_clipboard: false
 
 dynamic_title: true
 
