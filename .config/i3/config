@@ -8,8 +8,7 @@ set $mod Mod4
 
 floating_modifier $mod
 
-bindsym $mod+t exec tilix
-bindsym $mod+Shift+z exec tilix -qe "zsh -c 'QUAKE=true zsh'"
+bindsym $mod+t exec alacritty
 bindsym $mod+e exec nautilus
 bindsym $mod+l exec sh ~/.config/polybar/scripts/toggle_tray.sh
 bindsym $mod+b exec sh ~/.config/polybar/scripts/toggle-bar.sh
