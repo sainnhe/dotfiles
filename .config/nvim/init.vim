@@ -1012,6 +1012,8 @@ function! ColorScheme()
     "{{{gruvbox-material-dark
     if g:vimColorScheme ==# 'gruvbox-material-dark'
         set background=dark
+        let g:gruvbox_material_enable_italic = 1
+        let g:gruvbox_material_disable_italic_comment = 1
         colorscheme gruvbox-material
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
@@ -1022,6 +1024,8 @@ function! ColorScheme()
         set background=light
         let g:gruvbox_material_background = 'soft'
         let g:gruvbox_material_visual = 'green background'
+        let g:gruvbox_material_enable_italic = 1
+        let g:gruvbox_material_disable_italic_comment = 1
         colorscheme gruvbox-material
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
