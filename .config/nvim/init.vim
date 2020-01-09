@@ -762,6 +762,7 @@ Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'andymass/vim-matchup'
 Plug 'lambdalisue/vim-manpager'
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-sleuth'
 if executable('fcitx')
     Plug 'lilydjwg/fcitx.vim', { 'on': [] }
                 \| au InsertEnter * call plug#load('fcitx.vim')
