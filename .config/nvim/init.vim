@@ -690,7 +690,7 @@ let g:markdown_fenced_languages = [
 " User Interface
 "{{{themes
 Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
-Plug 'sainnhe/gruvbox-material', { 'as': 'vim-color-gruvbox-material', 'branch': 'neosyn' }
+Plug 'sainnhe/gruvbox-material', { 'as': 'vim-color-gruvbox-material' }
 Plug 'sainnhe/edge', { 'as': 'vim-color-edge' }
 "}}}
 Plug 'itchyny/lightline.vim'
