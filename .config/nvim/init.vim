@@ -179,7 +179,6 @@ endfunc
 "}}}
 "{{{Setting
 set encoding=utf-8 nobomb
-set termencoding=utf-8
 set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
 set fileformats=unix,dos,mac
 scriptencoding utf-8
