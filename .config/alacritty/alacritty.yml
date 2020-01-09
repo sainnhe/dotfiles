@@ -120,6 +120,7 @@ font:
   # Italic font face
   italic:
     family: Fira Code iScript
+    # family: Operator Mono Book
     style: Italic
 
   # Point size

@@ -132,7 +132,9 @@ elif [ "$1" = "dotfiles" ]; then
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 elif [ "$1" = "fonts" ]; then
     git clone --depth 1 https://github.com/kencrocken/FiraCodeiScript.git ~/repo/FiraCodeiScript
+    git clone --depth 1 https://github.com/coderJianXun/Operator-Mono.git ~/repo/Operator-Mono
     mkdir -p ~/.local/share/fonts
     cp ~/repo/FiraCodeiScript/*.ttf ~/.local/share/fonts
+    cp ~/repo/Operator-Mono/src/Operator\ Mono/* ~/.local/share/fonts/
     fc-cache
 fi
