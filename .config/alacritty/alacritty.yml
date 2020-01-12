@@ -106,55 +106,21 @@ colors:
 # # }}}
 # }}}
 # Font{{{
-# {{{Fira Code iCursive S12
-font:
-  # Normal (roman) font face
-  normal:
-    family: Fira Code iCursive S12
-    style: Regular
-
-  # Bold font face
-  bold:
-    family: Fira Code iCursive S12
-    style: Bold
-
-  # Italic font face
-  italic:
-    family: Fira Code iCursive S12
-    style: Italic
-
-  # Point size
-  size: 12.0
-
-  # Offset is the extra space around each character. `offset.y` can be thought of
-  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  offset:
-    x: 0
-    y: 0
-
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the right,
-  # increasing `y` moves the glyph upwards.
-  glyph_offset:
-    x: 0
-    y: 0
-
-# }}}
-# # {{{Fira Code iCursive Op
+# # {{{Fira Code iCursive S12
 # font:
 #   # Normal (roman) font face
 #   normal:
-#     family: Fira Code iCursive Op
+#     family: Fira Code iCursive S12
 #     style: Regular
 #
 #   # Bold font face
 #   bold:
-#     family: Fira Code iCursive Op
+#     family: Fira Code iCursive S12
 #     style: Bold
 #
 #   # Italic font face
 #   italic:
-#     family: Fira Code iCursive Op
+#     family: Fira Code iCursive S12
 #     style: Italic
 #
 #   # Point size
@@ -174,6 +140,40 @@ font:
 #     y: 0
 #
 # # }}}
+# {{{Fira Code iCursive Op
+font:
+  # Normal (roman) font face
+  normal:
+    family: Fira Code iCursive Op
+    style: Regular
+
+  # Bold font face
+  bold:
+    family: Fira Code iCursive Op
+    style: Bold
+
+  # Italic font face
+  italic:
+    family: Fira Code iCursive Op
+    style: Italic
+
+  # Point size
+  size: 12.0
+
+  # Offset is the extra space around each character. `offset.y` can be thought of
+  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  offset:
+    x: 0
+    y: 0
+
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom. Increasing `x` moves the glyph to the right,
+  # increasing `y` moves the glyph upwards.
+  glyph_offset:
+    x: 0
+    y: 0
+
+# }}}
 # # {{{Source Code Pro iCursive S12
 # font:
 #   # Normal (roman) font face
