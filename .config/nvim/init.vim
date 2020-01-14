@@ -203,7 +203,9 @@ set scrolloff=5                         " 保持5行
 set viminfo='1000                       " 文件历史个数
 set autoindent                          " 自动对齐
 set wildmenu                            " 命令框Tab呼出菜单
+set autoread                            " 自动加载变更文件
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
+
 set updatetime=100
 if has('nvim')
     set inccommand=split
@@ -243,8 +245,6 @@ augroup END
 " if has('path_extra')
 "         setglobal tags-=./tags tags-=./tags; tags^=./tags;
 " endif
-"
-" set autoread
 "
 " if &history < 1000
 "         set history=1000
