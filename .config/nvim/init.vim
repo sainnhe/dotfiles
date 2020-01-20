@@ -1278,7 +1278,6 @@ let g:coc_global_extensions = [
             \   'coc-yank',
             \   'coc-snippets',
             \   'coc-syntax',
-            \   'coc-tag',
             \   'coc-emoji',
             \   'coc-dictionary',
             \   'coc-html',
