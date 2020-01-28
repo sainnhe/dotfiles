@@ -1004,7 +1004,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'edge-light'
+let g:vimColorScheme = 'gruvbox-material-dark'
 function! ColorScheme()
     call quickmenu#current(10)
     call quickmenu#reset()
