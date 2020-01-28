@@ -1030,16 +1030,15 @@ function! ColorScheme()
     endif
     call g:quickmenu#append('Gruvbox Material Light', 'call SwitchColorScheme("gruvbox-material-light")', '', '', 0, '')
     "}}}
-    "{{{neon-dark
-    if g:vimColorScheme ==# 'neon-dark'
+    "{{{edge-dark
+    if g:vimColorScheme ==# 'edge-dark'
         set background=dark
-        let g:edge_style = 'neon'
         let g:edge_disable_italic_comment = 1
         let g:edge_enable_italic = 1
         colorscheme edge
         let g:lightline.colorscheme = 'edge'
     endif
-    call g:quickmenu#append('Neon Dark', 'call SwitchColorScheme("neon-dark")', '', '', 0, '')
+    call g:quickmenu#append('Edge Dark', 'call SwitchColorScheme("edge-dark")', '', '', 0, '')
     "}}}
     "{{{edge-light
     if g:vimColorScheme ==# 'edge-light'
