@@ -52,58 +52,58 @@ background_opacity: 1.0
 #     cyan:    '0x4c7a5d'
 #     white:   '0x928374'
 # # }}}
-# # {{{ Edge Light
-# colors:
-#   primary:
-#     background: "0xfafafa"
-#     foreground: "0x4b505b"
-#
-#   normal:
-#     black: "0x4b505b"
-#     red: "0xd15f5f"
-#     green: "0x608e32"
-#     yellow: "0xbe7e05"
-#     blue: "0x5079be"
-#     magenta: "0xb05ccc"
-#     cyan: "0x3a8b84"
-#     white: "0x949ba5"
-#
-#   bright:
-#     black: "0x4b505b"
-#     red: "0xd15f5f"
-#     green: "0x608e32"
-#     yellow: "0xbe7e05"
-#     blue: "0x5079be"
-#     magenta: "0xb05ccc"
-#     cyan: "0x3a8b84"
-#     white: "0x949ba5"
-# # }}}
-# {{{ Neon Dark
+# {{{ Edge Light
 colors:
   primary:
-    background: "0x23252e"
-    foreground: "0xbcc3d2"
+    background: "0xfafafa"
+    foreground: "0x4b505b"
 
   normal:
-    black: "0x7a819d"
-    red: "0xf27a7a"
-    green: "0xa4be8e"
-    yellow: "0xd0b073"
-    blue: "0x7eb4e7"
-    magenta: "0xd597e7"
-    cyan: "0x7bbbb5"
-    white: "0xbcc3d2"
+    black: "0x4b505b"
+    red: "0xd15f5f"
+    green: "0x608e32"
+    yellow: "0xbe7e05"
+    blue: "0x5079be"
+    magenta: "0xb05ccc"
+    cyan: "0x3a8b84"
+    white: "0x949ba5"
 
   bright:
-    black: "0x7a819d"
-    red: "0xf27a7a"
-    green: "0xa4be8e"
-    yellow: "0xd0b073"
-    blue: "0x7eb4e7"
-    magenta: "0xd597e7"
-    cyan: "0x7bbbb5"
-    white: "0xbcc3d2"
+    black: "0x4b505b"
+    red: "0xd15f5f"
+    green: "0x608e32"
+    yellow: "0xbe7e05"
+    blue: "0x5079be"
+    magenta: "0xb05ccc"
+    cyan: "0x3a8b84"
+    white: "0x949ba5"
 # }}}
+# # {{{ Neon Dark
+# colors:
+#   primary:
+#     background: "0x23252e"
+#     foreground: "0xbcc3d2"
+#
+#   normal:
+#     black: "0x7a819d"
+#     red: "0xf27a7a"
+#     green: "0xa4be8e"
+#     yellow: "0xd0b073"
+#     blue: "0x7eb4e7"
+#     magenta: "0xd597e7"
+#     cyan: "0x7bbbb5"
+#     white: "0xbcc3d2"
+#
+#   bright:
+#     black: "0x7a819d"
+#     red: "0xf27a7a"
+#     green: "0xa4be8e"
+#     yellow: "0xd0b073"
+#     blue: "0x7eb4e7"
+#     magenta: "0xd597e7"
+#     cyan: "0x7bbbb5"
+#     white: "0xbcc3d2"
+# # }}}
 # }}}
 # Font{{{
 # # {{{Fira Code iCursive S12
