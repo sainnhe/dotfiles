@@ -688,7 +688,6 @@ let g:markdown_fenced_languages = [
 "}}}
 " User Interface
 "{{{themes
-Plug 'lifepillar/vim-colortemplate', { 'as': 'colortemplate' }
 Plug 'gruvbox-material/vim', { 'as': 'vim-color-gruvbox-material' }
 Plug 'sainnhe/edge', { 'as': 'vim-color-edge' }
 "}}}
