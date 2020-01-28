@@ -1034,6 +1034,8 @@ function! ColorScheme()
     if g:vimColorScheme ==# 'neon-dark'
         set background=dark
         let g:edge_style = 'neon'
+        let g:edge_disable_italic_comment = 1
+        let g:edge_enable_italic = 1
         colorscheme edge
         let g:lightline.colorscheme = 'edge'
     endif
@@ -1042,6 +1044,8 @@ function! ColorScheme()
     "{{{edge-light
     if g:vimColorScheme ==# 'edge-light'
         set background=light
+        let g:edge_disable_italic_comment = 1
+        let g:edge_enable_italic = 1
         colorscheme edge
         let g:lightline.colorscheme = 'edge'
     endif
