@@ -1,31 +1,31 @@
 # {{{Color Schemes
 background_opacity: 1.0
-# {{{ Gruvbox Material Dark
-colors:
-  primary:
-    background: '0x282828'
-    foreground: '0xd4be98'
-
-  normal:
-    black:   '0x504945'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xd8a657'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xd4be98'
-
-  bright:
-    black:   '0x504945'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xd8a657'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xd4be98'
-# }}}
+# # {{{ Gruvbox Material Dark
+# colors:
+#   primary:
+#     background: '0x282828'
+#     foreground: '0xd4be98'
+#
+#   normal:
+#     black:   '0x504945'
+#     red:     '0xea6962'
+#     green:   '0xa9b665'
+#     yellow:  '0xd8a657'
+#     blue:    '0x7daea3'
+#     magenta: '0xd3869b'
+#     cyan:    '0x89b482'
+#     white:   '0xd4be98'
+#
+#   bright:
+#     black:   '0x504945'
+#     red:     '0xea6962'
+#     green:   '0xa9b665'
+#     yellow:  '0xd8a657'
+#     blue:    '0x7daea3'
+#     magenta: '0xd3869b'
+#     cyan:    '0x89b482'
+#     white:   '0xd4be98'
+# # }}}
 # # {{{ Gruvbox Material Light
 # colors:
 #   primary:
@@ -78,32 +78,32 @@ colors:
 #     cyan: "0x3a8b84"
 #     white: "0x949ba5"
 # # }}}
-# # {{{ Neon Dark
-# colors:
-#   primary:
-#     background: "0x23252e"
-#     foreground: "0xbcc3d2"
-#
-#   normal:
-#     black: "0x7a819d"
-#     red: "0xf27a7a"
-#     green: "0xa4be8e"
-#     yellow: "0xd0b073"
-#     blue: "0x7eb4e7"
-#     magenta: "0xd597e7"
-#     cyan: "0x7bbbb5"
-#     white: "0xbcc3d2"
-#
-#   bright:
-#     black: "0x7a819d"
-#     red: "0xf27a7a"
-#     green: "0xa4be8e"
-#     yellow: "0xd0b073"
-#     blue: "0x7eb4e7"
-#     magenta: "0xd597e7"
-#     cyan: "0x7bbbb5"
-#     white: "0xbcc3d2"
-# # }}}
+# {{{ Neon Dark
+colors:
+  primary:
+    background: "0x23252e"
+    foreground: "0xbcc3d2"
+
+  normal:
+    black: "0x7a819d"
+    red: "0xf27a7a"
+    green: "0xa4be8e"
+    yellow: "0xd0b073"
+    blue: "0x7eb4e7"
+    magenta: "0xd597e7"
+    cyan: "0x7bbbb5"
+    white: "0xbcc3d2"
+
+  bright:
+    black: "0x7a819d"
+    red: "0xf27a7a"
+    green: "0xa4be8e"
+    yellow: "0xd0b073"
+    blue: "0x7eb4e7"
+    magenta: "0xd597e7"
+    cyan: "0x7bbbb5"
+    white: "0xbcc3d2"
+# }}}
 # }}}
 # Font{{{
 # # {{{Fira Code iCursive S12

@@ -146,8 +146,8 @@ mode "manage" {
 # }}}
 # {{{Color Scheme
 # Color Scheme              border      bg              fg
-client.focused              #665c54     #665c54         #d4be98
-client.unfocused            #3c3836     #3c3836         #d4be98
+client.focused              #d597e7     #d597e7         #2b2d3a
+client.unfocused            #2b2d3a     #2b2d3a         #bcc4d1
 # }}}
 # {{{UI
 # dpi
