@@ -770,6 +770,7 @@ Plug 'elzr/vim-json', { 'for': 'json' }
             \| au BufNewFile,BufRead *.json call Func_vim_json()
 Plug 'masukomi/vim-markdown-folding'
 Plug 'KabbAmine/vCoolor.vim'
+Plug 'yianwillis/vimcdoc'
 
 " Entertainment
 Plug 'mattn/vim-starwars', { 'on': 'StarWars' }
