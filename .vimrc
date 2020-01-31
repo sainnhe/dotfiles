@@ -84,18 +84,18 @@ nnoremap <silent> Q :q!<CR>
 " Ctrl+S保存文件
 nnoremap <C-S> :<C-u>w<CR>
 " Shift加方向键加速移动
-nnoremap <S-up> <Esc>5<up>
-nnoremap <S-down> <Esc>5<down>
+nnoremap <S-up> <Esc>7<up>
+nnoremap <S-down> <Esc>7<down>
 nnoremap <S-left> <Esc>0
 nnoremap <S-right> <Esc>$
 " Shift+HJKL快速移动
-nnoremap K <Esc>5<up>
-nnoremap J <Esc>5<down>
-nnoremap H <Esc>0
-nnoremap L <Esc>$
+nnoremap K 7<up>
+nnoremap J 7<down>
+nnoremap H 0
+nnoremap L $
 " x删除字符但不保存到剪切板
 nnoremap x "_x
-" Ctrl+X剪切当前行
+" Ctrl+X剪切当前行但不保存到剪切板
 nnoremap <C-X> <ESC>"_dd
 " <leader>+Y复制到系统剪切板
 nnoremap <leader>y "+y
@@ -154,8 +154,10 @@ imap <C-x>d <C-x><C-k>
 imap <C-x>b <C-x><C-i>
 imap <C-x>p <C-x><C-f>
 imap <C-x>o <C-x><C-o>
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" Ctrl+X剪切当前行但不保存到剪切板
+inoremap <C-X> <ESC>"_ddi
 " Alt+X进入普通模式
 inoremap <A-x> <ESC><right>
 inoremap ^@ <ESC>
@@ -169,21 +171,20 @@ inoremap <C-S> <Esc>:w<CR>a
 inoremap <C-Z> <ESC>ua
 " Ctrl+R撤销撤销的动作
 inoremap <C-R> <ESC><C-R>a
-" Alt+hjkl移动
-imap <A-h> <left>
-imap <A-j> <down>
-imap <A-k> <up>
-imap <A-l> <right>
+" Ctrl+hjkl移动
+inoremap <C-h> <left>
+inoremap <C-j> <down>
+inoremap <C-k> <up>
+inoremap <C-l> <right>
 " Shift加方向键加速移动
 inoremap <S-up> <up><up><up><up><up>
 inoremap <S-down> <down><down><down><down><down>
 inoremap <S-left> <ESC>I
 inoremap <S-right> <ESC>A
-" Alt+Shift+hjkl加速移动
-inoremap <A-H> <ESC>I
-inoremap <A-J> <down><down><down><down><down>
-inoremap <A-K> <up><up><up><up><up>
-inoremap <A-L> <ESC>A
+" Ctrl + e/w/b
+inoremap <C-e> <ESC>ea
+inoremap <C-w> <ESC>lwi
+inoremap <C-b> <ESC>lbi
 " Alt+上下左右可以跳转和移动窗口
 inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
 inoremap <silent> <A-right> <Esc>:wincmd l<CR>i
@@ -299,7 +300,8 @@ syntax enable
 set t_Co=256
 set termguicolors
 set background=dark
-let g:gruvbox_material_background = 'soft'
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_background = 'hard'
 colo gruvbox-material
 " Statusline{{{
 " :h 'statusline'

@@ -322,19 +322,19 @@ nnoremap <silent> q :q<CR>
 nnoremap <silent> Q :q!<CR>
 " Ctrl+S保存文件
 nnoremap <C-S> :<C-u>w<CR>
+" Shift+HJKL快速移动
+nnoremap K 7<up>
+nnoremap J 7<down>
+nnoremap H 0
+nnoremap L $
 " Shift加方向键加速移动
-nnoremap <S-up> <Esc>5<up>
-nnoremap <S-down> <Esc>5<down>
+nnoremap <S-up> <Esc>7<up>
+nnoremap <S-down> <Esc>7<down>
 nnoremap <S-left> <Esc>0
 nnoremap <S-right> <Esc>$
-" Shift+HJKL快速移动
-nnoremap K <Esc>5<up>
-nnoremap J <Esc>5<down>
-nnoremap H <Esc>0
-nnoremap L <Esc>$
 " x删除字符但不保存到剪切板
 nnoremap x "_x
-" Ctrl+X剪切当前行
+" Ctrl+X剪切当前行但不保存到剪切板
 nnoremap <C-X> <ESC>"_dd
 " <leader>+Y复制到系统剪切板
 nnoremap <leader>y "+y
@@ -411,26 +411,25 @@ inoremap <C-V> <Space><Backspace><ESC>pa
 inoremap <A-z><C-V> <Space><Backspace><ESC>"+pa
 " Ctrl+S保存文件
 inoremap <C-S> <Esc>:w<CR>a
+" Ctrl+O跳转
+inoremap <C-o> <Esc><C-o>i
 " Ctrl+Z撤销上一个动作
 " Ctrl+R撤销撤销的动作
 inoremap <C-R> <ESC><C-R>i
-" Ctrl+X剪切当前行
+" Ctrl+X剪切当前行但不保存到剪切板
 inoremap <C-X> <ESC>"_ddi
-" Alt+hjkl移动
-imap <A-h> <left>
-imap <A-j> <down>
-imap <A-k> <up>
-imap <A-l> <right>
+" Ctrl+hjkl移动
+inoremap <C-h> <left>
+inoremap <C-l> <right>
 " Shift加方向键加速移动
 inoremap <S-up> <up><up><up><up><up>
 inoremap <S-down> <down><down><down><down><down>
 inoremap <S-left> <ESC>I
 inoremap <S-right> <ESC>A
-" Alt+Shift+hjkl加速移动
-inoremap <A-H> <ESC>I
-inoremap <A-J> <down><down><down><down><down>
-inoremap <A-K> <up><up><up><up><up>
-inoremap <A-L> <ESC>A
+" Ctrl + e/w/b
+inoremap <C-e> <ESC>ea
+inoremap <C-w> <ESC>lwi
+inoremap <C-b> <ESC>lbi
 " Alt+上下左右可以跳转和移动窗口
 if !has('win32')
     inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
@@ -1304,7 +1303,6 @@ augroup cocCustom
     autocmd CursorHold * silent call CocHighlight()
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     autocmd InsertEnter * call coc#util#float_hide()
-    autocmd VimEnter * inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
 augroup END
 hi link BookMarkHI GitGutterAdd
 let g:CocHoverEnable = 0
@@ -1315,10 +1313,23 @@ set dictionary+=/usr/share/dict/words
 set dictionary+=/usr/share/dict/american-english
 "}}}
 "{{{coc-mappings
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-n>"
+inoremap <silent><expr> <C-j>
+            \ coc#jumpable() ? "\<C-R>=coc#rpc#request('snippetNext', [])\<cr>" :
+            \ pumvisible() ? coc#_select_confirm() :
+            \ "\<Down>"
+inoremap <silent><expr> <C-k>
+            \ coc#jumpable() ? "\<C-R>=coc#rpc#request('snippetPrev', [])\<cr>" :
+            \ "\<Up>"
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" :
+            \ <SID>check_back_space() ? "\<S-TAB>" :
+            \ coc#refresh()
 imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<Esc>\u\i"
 imap <expr> <C-c> pumvisible() ? "\<Space>\<Backspace>" : "\<C-c>"
-imap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<CR>"
 imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
 inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
 inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
@@ -2446,10 +2457,8 @@ let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
 nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(130)<CR>
 nnoremap <silent> <pageup> :<C-u>call comfortable_motion#flick(-130)<CR>
-if has('nvim')
-    nnoremap <silent> <A-J> :<C-u>call comfortable_motion#flick(130)<CR>
-    nnoremap <silent> <A-K> :<C-u>call comfortable_motion#flick(-130)<CR>
-endif
+nnoremap <silent> <C-d> :<C-u>call comfortable_motion#flick(120)<CR>
+nnoremap <silent> <C-u> :<C-u>call comfortable_motion#flick(-120)<CR>
 "}}}
 "{{{codi.vim
 let g:codi#width = 40
