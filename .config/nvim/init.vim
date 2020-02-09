@@ -689,7 +689,7 @@ let g:markdown_fenced_languages = [
 "{{{themes
 Plug 'gruvbox-material/vim', { 'as': 'gruvbox-material' }
 Plug 'sainnhe/edge'
-Plug 'sainnhe/maia', { 'rtp': 'vim' }
+Plug 'sainnhe/vim-color-forest-night'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -1005,19 +1005,19 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'maia'
+let g:vimColorScheme = 'forest-night'
 function! ColorScheme()
     call quickmenu#current(10)
     call quickmenu#reset()
-    "{{{maia
-    if g:vimColorScheme ==# 'maia'
+    "{{{forest-night
+    if g:vimColorScheme ==# 'forest-night'
         set background=dark
-        let g:maia_enable_italic = 1
-        let g:maia_disable_italic_comment = 1
-        colorscheme maia
-        let g:lightline.colorscheme = 'maia'
+        let g:forest_night_enable_italic = 1
+        let g:forest_night_disable_italic_comment = 1
+        colorscheme forest-night
+        let g:lightline.colorscheme = 'forest_night'
     endif
-    call g:quickmenu#append('Maia', 'call SwitchColorScheme("maia")', '', '', 0, '')
+    call g:quickmenu#append('Forest Night', 'call SwitchColorScheme("forest_night")', '', '', 0, '')
     "}}}
     "{{{gruvbox-material-dark
     if g:vimColorScheme ==# 'gruvbox-material-dark'
