@@ -302,23 +302,89 @@ colors:
 #     y: 0
 #
 # # }}}
-# {{{InconsolataLGC iCursive Op
+# # {{{InconsolataLGC iCursive Op
+# font:
+#   # Normal (roman) font face
+#   normal:
+#     family: InconsolataLGC iCursive Op
+#     style: Regular
+#
+#   # Bold font face
+#   bold:
+#     family: InconsolataLGC iCursive Op
+#     style: Bold
+#
+#   # Italic font face
+#   italic:
+#     family: InconsolataLGC iCursive Op
+#     style: Italic
+#
+#   # Point size
+#   size: 11.0
+#
+#   # Offset is the extra space around each character. `offset.y` can be thought of
+#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+#   offset:
+#     x: 0
+#     y: 0
+#
+#   # Glyph offset determines the locations of the glyphs within their cells with
+#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
+#   # increasing `y` moves the glyph upwards.
+#   glyph_offset:
+#     x: 0
+#     y: 0
+#
+# # }}}
+# # {{{Meslo iCursive S12
+# font:
+#   # Normal (roman) font face
+#   normal:
+#     family: Meslo iCursive S12
+#     style: Regular
+#
+#   # Bold font face
+#   bold:
+#     family: Meslo iCursive S12
+#     style: Bold
+#
+#   # Italic font face
+#   italic:
+#     family: Meslo iCursive S12
+#     style: Italic
+#
+#   # Point size
+#   size: 11.0
+#
+#   # Offset is the extra space around each character. `offset.y` can be thought of
+#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+#   offset:
+#     x: 0
+#     y: 0
+#
+#   # Glyph offset determines the locations of the glyphs within their cells with
+#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
+#   # increasing `y` moves the glyph upwards.
+#   glyph_offset:
+#     x: 0
+#     y: 0
+#
+# # }}}
+# {{{Meslo iCursive Op
 font:
   # Normal (roman) font face
   normal:
-    family: InconsolataLGC iCursive Op
+    family: Meslo iCursive Op
     style: Regular
-    # family: FuraCode Nerd Font Mono
-    # style: Medium
 
   # Bold font face
   bold:
-    family: InconsolataLGC iCursive Op
+    family: Meslo iCursive Op
     style: Bold
 
   # Italic font face
   italic:
-    family: InconsolataLGC iCursive Op
+    family: Meslo iCursive Op
     style: Italic
 
   # Point size
