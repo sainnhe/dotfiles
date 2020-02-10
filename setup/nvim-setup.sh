@@ -139,11 +139,15 @@ elif [ "$1" = "fonts" ]; then
     cp ~/repo/icursive-nerd-font/Roboto\ Mono\ iCursive\ Pt/* ~/.local/share/fonts/
     cp ~/repo/icursive-nerd-font/InconsolataGo\ iCursive\ Pb/* ~/.local/share/fonts/
     cp ~/repo/icursive-nerd-font/InconsolataLGC\ iCursive\ S12/* ~/.local/share/fonts/
+    cp ~/repo/icursive-nerd-font/Meslo\ iCursive\ S12/* ~/.local/share/fonts/
+    cp ~/repo/icursive-nerd-font/Hack\ iCursive\ S12/* ~/.local/share/fonts/
     cp ~/repo/icursive-nerd-font/Source\ Code\ Pro\ iCursive\ S12/* ~/.local/share/fonts/
     cp ~/repo/icursive-nerd-font-non-free/Dank\ Mono/* ~/.local/share/fonts/
     cp ~/repo/icursive-nerd-font-non-free/Operator\ Mono/* ~/.local/share/fonts/
     cp ~/repo/icursive-nerd-font-non-free/Fira\ Code\ iCursive\ Op/* ~/.local/share/fonts/
     cp ~/repo/icursive-nerd-font-non-free/InconsolataLGC\ iCursive\ Op/* ~/.local/share/fonts/
+    cp ~/repo/icursive-nerd-font-non-free/Meslo\ iCursive\ Op/* ~/.local/share/fonts/
+    cp ~/repo/icursive-nerd-font-non-free/Hack\ iCursive\ Op/* ~/.local/share/fonts/
     cp ~/repo/icursive-nerd-font-non-free/Source\ Code\ Pro\ iCursive\ Op/* ~/.local/share/fonts/
     fc-cache
 fi
