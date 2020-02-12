@@ -1,31 +1,31 @@
 # {{{Color Schemes
 background_opacity: 1.0
-# {{{ Forest Night
-colors:
-  primary:
-    background: '0x323d43'
-    foreground: '0xd8caac'
-
-  normal:
-    black:   '0x868d80'
-    red:     '0xe68183'
-    green:   '0xa7c080'
-    yellow:  '0xd9bb80'
-    blue:    '0x89beba'
-    magenta: '0xd3a0bc'
-    cyan:    '0x87c095'
-    white:   '0xd8caac'
-
-  bright:
-    black:   '0x868d80'
-    red:     '0xe68183'
-    green:   '0xa7c080'
-    yellow:  '0xd9bb80'
-    blue:    '0x89beba'
-    magenta: '0xd3a0bc'
-    cyan:    '0x87c095'
-    white:   '0xd8caac'
-# }}}
+# # {{{ Forest Night
+# colors:
+#   primary:
+#     background: '0x323d43'
+#     foreground: '0xd8caac'
+#
+#   normal:
+#     black:   '0x868d80'
+#     red:     '0xe68183'
+#     green:   '0xa7c080'
+#     yellow:  '0xd9bb80'
+#     blue:    '0x89beba'
+#     magenta: '0xd3a0bc'
+#     cyan:    '0x87c095'
+#     white:   '0xd8caac'
+#
+#   bright:
+#     black:   '0x868d80'
+#     red:     '0xe68183'
+#     green:   '0xa7c080'
+#     yellow:  '0xd9bb80'
+#     blue:    '0x89beba'
+#     magenta: '0xd3a0bc'
+#     cyan:    '0x87c095'
+#     white:   '0xd8caac'
+# # }}}
 # # {{{ Gruvbox Material Dark
 # colors:
 #   primary:
@@ -52,32 +52,32 @@ colors:
 #     cyan:    '0x89b482'
 #     white:   '0xd4be98'
 # # }}}
-# # {{{ Gruvbox Material Light
-# colors:
-#   primary:
-#     background: '0xf2e5bc'
-#     foreground: '0x654735'
-#
-#   normal:
-#     black:   '0x654735'
-#     red:     '0xc14a4a'
-#     green:   '0x6c782e'
-#     yellow:  '0xb47109'
-#     blue:    '0x45707a'
-#     magenta: '0x945e80'
-#     cyan:    '0x4c7a5d'
-#     white:   '0x928374'
-#
-#   bright:
-#     black:   '0x654735'
-#     red:     '0xc14a4a'
-#     green:   '0x6c782e'
-#     yellow:  '0xb47109'
-#     blue:    '0x45707a'
-#     magenta: '0x945e80'
-#     cyan:    '0x4c7a5d'
-#     white:   '0x928374'
-# # }}}
+# {{{ Gruvbox Material Light
+colors:
+  primary:
+    background: '0xf2e5bc'
+    foreground: '0x654735'
+
+  normal:
+    black:   '0x654735'
+    red:     '0xc14a4a'
+    green:   '0x6c782e'
+    yellow:  '0xb47109'
+    blue:    '0x45707a'
+    magenta: '0x945e80'
+    cyan:    '0x4c7a5d'
+    white:   '0x928374'
+
+  bright:
+    black:   '0x654735'
+    red:     '0xc14a4a'
+    green:   '0x6c782e'
+    yellow:  '0xb47109'
+    blue:    '0x45707a'
+    magenta: '0x945e80'
+    cyan:    '0x4c7a5d'
+    white:   '0x928374'
+# }}}
 # # {{{ Edge Light
 # colors:
 #   primary:

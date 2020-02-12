@@ -939,7 +939,7 @@ function! SwitchColorScheme(name)
 endfunction
 "}}}
 "}}}
-let g:vimColorScheme = 'forest-night'
+let g:vimColorScheme = 'gruvbox-material-light'
 function! ColorScheme()
     call quickmenu#current(10)
     call quickmenu#reset()
