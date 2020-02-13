@@ -641,7 +641,6 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'liuchengxu/vim-which-key'
 Plug 'sainnhe/quickmenu.vim'
 Plug 'Yggdroot/indentLine'
-Plug 'nathanaelkane/vim-indent-guides', { 'on': [] }
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
@@ -1090,7 +1089,6 @@ call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(10)', '', '
 call g:quickmenu#append('Color Picker', 'call quickmenu#toggle(13)', '', '', 0, 'c')
 call g:quickmenu#append('Undo Tree', 'UndotreeToggle', '', '', 0, 'u')
 call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'r')
-call g:quickmenu#append('Toggle Indent', 'call ToggleIndent()', '', '', 0, 'i')
 call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(2)', '', '', 0, 'f')
 call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
 call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
@@ -1130,39 +1128,14 @@ call g:quickmenu#append('Star Wars', 'StarWars', '', '', 0, '')
 " :LeadingSpaceToggle  切换显示Leading Space
 " :IndentLinesToggle  切换显示indentLine
 "}}}
-let g:ExcludeIndentFileType_Universal = [ 'startify', 'coc-explorer', 'codi', 'help', 'man', 'vtm' ]
-let g:ExcludeIndentFileType_Special = [ 'markdown', 'json' ]
 let g:indentLine_enabled = 1
 let g:indentLine_leadingSpaceEnabled = 0
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 2
-let g:indentLine_char = "\ue621"  " ¦┆│⎸ ▏  e621
+let g:indentLine_char = ''  " ¦┆│⎸▏
 let g:indentLine_leadingSpaceChar = '·'
-let g:indentLine_fileTypeExclude = g:ExcludeIndentFileType_Universal + g:ExcludeIndentFileType_Special
+let g:indentLine_fileTypeExclude = [ 'startify', 'coc-explorer', 'codi', 'help', 'man', 'vtm', 'markdown' ]
 let g:indentLine_setColors = 0  " disable overwrite with grey by default, use colorscheme instead
-"}}}
-"{{{vim-indent-guides
-"{{{vim-indent-guides-usage
-" :IndentGuidesToggle  切换显示vim-indent-guides
-"}}}
-let g:HasLoadIndentGuides = 0
-function! InitIndentGuides()
-    let g:indent_guides_enable_on_vim_startup = 0
-    let g:indent_guides_exclude_filetypes = g:ExcludeIndentFileType_Universal
-    let g:indent_guides_color_change_percent = 10
-    let g:indent_guides_guide_size = 1
-    let g:indent_guides_default_mapping = 0
-    call plug#load('vim-indent-guides')
-endfunction
-function! ToggleIndent()
-    if g:HasLoadIndentGuides == 0
-        call InitIndentGuides()
-        execute 'IndentGuidesToggle'
-        let g:HasLoadIndentGuides = 1
-    else
-        execute 'IndentGuidesToggle'
-    endif
-endfunction
 "}}}
 "{{{limelight.vim
 "{{{limelight.vim-usage
@@ -2542,7 +2515,6 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.jsx,*.tsx'
 function! Func_vim_json()
     let g:vim_json_syntax_conceal = 0
     set foldmethod=syntax
-    call ToggleIndent()
 endfunction
 "}}}
 "{{{vCoolor.vim
