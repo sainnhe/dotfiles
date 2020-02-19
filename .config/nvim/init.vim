@@ -623,6 +623,7 @@ let g:markdown_fenced_languages = [
 "{{{themes
 Plug 'gruvbox-material/vim', { 'as': 'gruvbox-material' }
 Plug 'sainnhe/edge'
+Plug 'sainnhe/sonokai'
 Plug 'sainnhe/vim-color-forest-night'
 "}}}
 Plug 'itchyny/lightline.vim'
@@ -993,6 +994,46 @@ function! ColorScheme()
         let g:lightline.colorscheme = 'edge'
     endif
     call g:quickmenu#append('Edge Light', 'call SwitchColorScheme("edge-light")', '', '', 0, '')
+    "}}}
+    "{{{sonokai-shusia
+    if g:vimColorScheme ==# 'sonokai-shusia'
+        let g:sonokai_style = 'shusia'
+        let g:sonokai_disable_italic_comment = 1
+        let g:sonokai_enable_italic = 1
+        colorscheme sonokai
+        let g:lightline.colorscheme = 'sonokai'
+    endif
+    call g:quickmenu#append('Sonokai Shusia', 'call SwitchColorScheme("sonokai-shusia")', '', '', 0, '')
+    "}}}
+    "{{{sonokai-andromeda
+    if g:vimColorScheme ==# 'sonokai-andromeda'
+        let g:sonokai_style = 'andromeda'
+        let g:sonokai_disable_italic_comment = 1
+        let g:sonokai_enable_italic = 1
+        colorscheme sonokai
+        let g:lightline.colorscheme = 'sonokai'
+    endif
+    call g:quickmenu#append('Sonokai Andromeda', 'call SwitchColorScheme("sonokai-andromeda")', '', '', 0, '')
+    "}}}
+    "{{{sonokai-atlantis
+    if g:vimColorScheme ==# 'sonokai-atlantis'
+        let g:sonokai_style = 'atlantis'
+        let g:sonokai_disable_italic_comment = 1
+        let g:sonokai_enable_italic = 1
+        colorscheme sonokai
+        let g:lightline.colorscheme = 'sonokai'
+    endif
+    call g:quickmenu#append('Sonokai Atlantis', 'call SwitchColorScheme("sonokai-atlantis")', '', '', 0, '')
+    "}}}
+    "{{{sonokai-maia
+    if g:vimColorScheme ==# 'sonokai-maia'
+        let g:sonokai_style = 'maia'
+        let g:sonokai_disable_italic_comment = 1
+        let g:sonokai_enable_italic = 1
+        colorscheme sonokai
+        let g:lightline.colorscheme = 'sonokai'
+    endif
+    call g:quickmenu#append('Sonokai Maia', 'call SwitchColorScheme("sonokai-maia")', '', '', 0, '')
     "}}}
 endfunction
 call ColorScheme()
