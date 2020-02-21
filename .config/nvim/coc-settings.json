@@ -113,6 +113,53 @@
     "help_json": "https://github.com/neoclide/coc-json",
     "help_yaml": "https://github.com/neoclide/coc-yaml",
     "python.jediEnabled": false,
+    "explorer.keyMappingMode": "none",
+    "explorer.keyMappings": {
+        "k": "nodePrev",
+        "j": "nodeNext",
+
+        "s": "toggleSelection",
+        "<tab>": "actionMenu",
+
+        "h": "collapse",
+        "l": ["expandable?", "expand", "open"],
+        "L": "expandRecursive",
+        "H": "collapseRecursive",
+        "o": ["expandable?", "expandOrCollapse", "open"],
+        "<cr>": "open",
+        "<bs>": "gotoParent",
+
+        "Y": "copyFilepath",
+        "y": "copyFilename",
+        "c": "copyFile",
+        "x": "cutFile",
+        "p": "pasteFile",
+        "d": "delete",
+        "D": "deleteForever",
+
+        "n": "addFile",
+        "N": "addDirectory",
+        "r": "rename",
+
+        ".": "toggleHidden",
+        "R": "refresh",
+
+        "?": "help",
+        "q": "quit",
+        "<esc>": "esc",
+        "e": "systemExecute",
+
+        "f": "search",
+        "F": "searchRecursive",
+
+        "gf": "gotoSource:file",
+        "gb": "gotoSource:buffer",
+
+        "gk": "gitPrev",
+        "gj": "gitNext",
+        "ga": "gitStage",
+        "gu": "gitUnstage"
+    },
     "languageserver": {
         "CLANGD": {
             "command": "clangd",
