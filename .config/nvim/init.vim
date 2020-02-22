@@ -1446,7 +1446,7 @@ nnoremap <silent> <leader>fl :<C-u>LeaderfLine<CR>
 nnoremap <silent> <leader>fL :<C-u>LeaderfLineAll<CR>
 nnoremap <silent> <leader>fm :<C-u>LeaderfMruCwd<CR>
 nnoremap <silent> <leader>fM :<C-u>LeaderfMru<CR>
-nnoremap <silent> <leader>fg :<C-u>Leaderf rg<Space>
+nnoremap <silent> <leader>fg :<C-u>Leaderf rg --hidden<Space>
 nnoremap <silent> <leader>fG :<C-u>Leaderf rg<CR>
 let g:which_key_map['f'] = {
       \   'name': 'leaderf',
