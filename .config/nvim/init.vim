@@ -659,7 +659,6 @@ else
     Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
 endif
 Plug 'justinmk/vim-sneak'
-Plug 'mcchrish/nnn.vim'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -1070,7 +1069,6 @@ let g:which_key_map = {
             \   'name': 'main',
             \   '%': 'select current surrounding',
             \   '<Tab>': 'format',
-            \   'e': 'explorer',
             \   'p': 'paste',
             \   'y': 'yank',
             \   't': 'translate',
@@ -1500,17 +1498,6 @@ xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 "}}}
-"{{{nnn.vim
-let g:nnn#set_default_mappings = 0
-nnoremap <silent> <leader>e :<C-u>NnnPicker '%:p:h'<CR>
-let g:nnn#action = {
-            \ '<c-t>': 'tab split',
-            \ '<c-x>': 'split',
-            \ '<c-v>': 'vsplit' }
-let g:nnn#command = 'PAGER= nnn'
-" let g:nnn#layout = 'new' "or vnew, tabnew, etc.
-" let g:nnn#layout = { 'left': '~20%' }
-"}}}
 "{{{undotree
 let g:undotree_WindowLayout = 3
 let g:undotree_SplitWidth = 35
@@ -1603,8 +1590,10 @@ endfunction
 "}}}
 noremap <silent> <leader>gd :Gdiffsplit<cr>
 noremap <silent> <leader>gs :Gstatus<cr>
+noremap <silent> <leader>gw :Gwrite<cr>
 let g:which_key_map['g']['d'] = 'diff unstaged'
 let g:which_key_map['g']['s'] = 'status'
+let g:which_key_map['g']['w'] = 'write and stage'
 "}}}
 "{{{tagbar
 "{{{Languages
