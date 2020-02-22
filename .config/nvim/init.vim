@@ -253,6 +253,8 @@ nnoremap ; :
 nnoremap <silent> q :q<CR>
 " Q 绑定到:q!
 nnoremap <silent> Q :q!<CR>
+" <leader>q 关闭 quickfix list
+nnoremap <silent> <leader>q :cclose<CR>
 " Ctrl+S保存文件
 nnoremap <C-S> :<C-u>w<CR>
 " Shift+HJKL快速移动
@@ -1070,6 +1072,7 @@ let g:which_key_map = {
             \   '%': 'select current surrounding',
             \   '<Tab>': 'format',
             \   'p': 'paste',
+            \   'q': 'close quickfix',
             \   'y': 'yank',
             \   't': 'translate',
             \   'c': { 'name': 'comment' }
