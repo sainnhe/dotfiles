@@ -1051,6 +1051,7 @@ if g:vimEnableStartify == 1
   function! s:startify_mappings() abort
     nmap <silent><buffer> o <CR>
     nmap <silent><buffer> h :wincmd h<CR>
+    nmap <silent><buffer> <Tab> :CocList project<CR>
   endfunction
   augroup startifyCustom
     autocmd!
@@ -1180,6 +1181,7 @@ let g:coc_global_extensions = [
       \   'coc-marketplace',
       \   'coc-git',
       \   'coc-explorer',
+      \   'coc-project',
       \   'coc-bookmark',
       \   'coc-todolist',
       \   'coc-highlight',
@@ -1307,7 +1309,7 @@ nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
 "}}}
 "{{{coc-explorer
 function ToggleCocExplorer()
-  execute 'CocCommand explorer --toggle --width=35 --sources=buffer+,file+'
+  execute 'CocCommand explorer --toggle --width=35 --sources=buffer+,file+ ' . getcwd()
 endfunction
 nnoremap <silent> <C-b> :call ToggleCocExplorer()<CR>
 augroup explorerCustom
@@ -1315,6 +1317,10 @@ augroup explorerCustom
   autocmd FileType coc-explorer setlocal signcolumn=no
   autocmd BufEnter * if (winnr("$") == 1 && &filetype ==# 'coc-explorer') | q | endif
 augroup END
+"}}}
+"{{{coc-project
+nnoremap <silent> <leader><space><Tab> :<c-u>CocList project<cr>
+let g:which_key_map["\<space>"]['<Tab>'] = 'project'
 "}}}
 "{{{coc-bookmark
 nmap <leader>mm <Plug>(coc-bookmark-toggle)
