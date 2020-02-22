@@ -1260,13 +1260,12 @@ nmap <leader>lv <Plug>(coc-range-select)
 vmap <leader>lv <Plug>(coc-range-select)
 nmap <leader>gj <Plug>(coc-git-nextchunk)
 nmap <leader>gk <Plug>(coc-git-prevchunk)
-nmap <leader>gd <Plug>(coc-git-chunkinfo)
+nmap <leader>gi <Plug>(coc-git-chunkinfo)
 nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
-nmap <leader>gc <Plug>(coc-git-commit)
-nmap <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
-nmap <leader>gs :<C-u>CocCommand git.chunkStage<CR>
-nmap <leader>gf :<C-u>CocCommand git.foldUnchanged<CR>
-nmap <leader>gF :<C-u>set foldmethod=marker<CR>
+nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
+nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
+nmap <silent> <leader>gf :<C-u>CocCommand git.foldUnchanged<CR>
+nmap <silent> <leader>gF :<C-u>set foldmethod=marker<CR>
 nmap <silent> <leader>g<Tab> :CocCommand git.browserOpen<CR>
 let g:which_key_map['l'] = {
             \   'name': 'language server',
@@ -1294,14 +1293,12 @@ let g:which_key_map['g'] = {
             \   'name': 'git',
             \   'j': 'chunk next',
             \   'k': 'chunk prev',
-            \   'd': 'diff unstaged',
             \   'D': 'diff staged',
-            \   'c': 'commit message',
+            \   'i': 'chunk info',
             \   'u': 'chunk undo',
-            \   's': 'chunk stage',
+            \   'a': 'chunk stage',
             \   'f': 'fold unchanged',
             \   'F': 'toggle fold method',
-            \   'B': 'branch',
             \   '<Tab>': 'open remote url in the browser',
             \   }
 nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
@@ -1524,13 +1521,14 @@ let g:which_key_map["\<space>"]['u'] = 'undotree'
 "{{{vim-fugitive
 "{{{twiggy
 command Gbranch Twiggy
-nnoremap <silent> <leader>gB :<C-u>Twiggy<CR>
+nnoremap <silent> <leader>gb :<C-u>Twiggy<CR>
+let g:which_key_map['g']['b'] = 'branch'
 let g:twiggy_local_branch_sort = 'mru'
 let g:twiggy_num_columns = 35
 let g:twiggy_close_on_fugitive_command = 1
 let g:twiggy_remote_branch_sort = 'date'
 let g:twiggy_show_full_ui = 0
-let g:twiggy_git_log_command = 'GV'
+let g:twiggy_git_log_command = 'Agit'
 "}}}
 "{{{agit
 function! Help_agit() abort
@@ -1556,12 +1554,12 @@ augroup agitCustom
     autocmd FileType agit_diff nmap <silent><buffer> q <PLug>(agit-exit)
 augroup END
 let g:agit_no_default_mappings = 1
-nnoremap <silent> <leader>gbb :<C-u>Agit<CR>
-nnoremap <silent> <leader>gbf :<C-u>AgitFile<CR>
-let g:which_key_map['g']['b'] = {
-            \   'name': 'commit browser',
-            \   'b': 'commits in the entire repo',
-            \   'f': 'commits for current file',
+nnoremap <silent> <leader>gll :<C-u>Agit<CR>
+nnoremap <silent> <leader>glc :<C-u>AgitFile<CR>
+let g:which_key_map['g']['l'] = {
+            \   'name': 'logs',
+            \   'l': 'logs in the entire repo',
+            \   'c': 'logs for current file',
             \}
 "}}}
 "{{{committia.vim
@@ -1603,6 +1601,10 @@ function! MergetoolLayoutCustom()
     endif
 endfunction
 "}}}
+noremap <silent> <leader>gd :Gdiffsplit<cr>
+noremap <silent> <leader>gs :Gstatus<cr>
+let g:which_key_map['g']['d'] = 'diff unstaged'
+let g:which_key_map['g']['s'] = 'status'
 "}}}
 "{{{tagbar
 "{{{Languages
@@ -2266,17 +2268,22 @@ let g:NERDToggleCheckAllLines = 1
 "{{{asynctasks
 let g:asyncrun_open = 6
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
-let g:asynctasks_term_pos = 'bottom' " tab
-let g:asynctasks_term_rows = 10
+let g:asynctasks_term_pos = 'tab'
 let g:asynctasks_config_name = '.git/tasks.ini'
 noremap <silent> <leader>rf :AsyncTask file-run<cr>
 noremap <silent> <leader>bf :AsyncTask file-build<cr>
 noremap <silent> <leader>rp :AsyncTask project-run<cr>
 noremap <silent> <leader>bp :AsyncTask project-build<cr>
+noremap <silent> <leader>gp :AsyncTask git-proxy-on<cr>
+noremap <silent> <leader>gP :AsyncTask git-proxy-off<cr>
+noremap <silent> <leader>gc :AsyncTask git-commit<cr>
 noremap <silent> <leader><space>E :AsyncTaskEdit<cr>
 let g:which_key_map['r'] = {'name': 'run', 'f': 'file', 'p': 'project'}
 let g:which_key_map['b'] = {'name': 'build', 'f': 'file', 'p': 'project'}
 let g:which_key_map["\<space>"]['E'] = 'task config'
+let g:which_key_map['g']['p'] = 'set proxy'
+let g:which_key_map['g']['P'] = 'unset proxy'
+let g:which_key_map['g']['c'] = 'commit'
 "}}}
 "{{{vim-visual-multi
 "{{{vim-visual-multi-usage
