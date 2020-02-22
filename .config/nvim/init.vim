@@ -20,9 +20,8 @@ if exists('g:vimManPager')
 else
     let g:vimEnableStartify = 1
 endif
+execute 'source '.expand('~/.config/nvim/env.vim')
 "}}}
-let g:vimAutoInstall = 1
-let g:lightlineArtify = 1
 if !has('win32')
     let g:startify_bookmarks = [
                 \ {'R': '~/repo/'},
@@ -640,7 +639,6 @@ if g:vimEnableStartify == 1
 endif
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'liuchengxu/vim-which-key'
-Plug 'sainnhe/quickmenu.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
@@ -671,7 +669,6 @@ Plug 'sodapopcan/vim-twiggy'
 Plug 'rhysd/committia.vim'
 Plug 'cohama/agit.vim'
 Plug 'samoshkin/vim-mergetool'
-Plug 'jsfaint/gen_tags.vim', { 'on': [] }
 Plug 'majutsushi/tagbar', { 'on': [] }
 if executable('proxychains')
     Plug 'vim-php/tagbar-phpctags.vim', { 'on': [], 'do': 'proxychains -q make' }
@@ -688,7 +685,6 @@ Plug 'AndrewRadev/inline_edit.vim'
 Plug 'airblade/vim-rooter'
 Plug 'voldikss/vim-translate-me'
 Plug 'yuttie/comfortable-motion.vim'
-Plug 'metakirby5/codi.vim'
 Plug 'mbbill/fencview', { 'on': [ 'FencAutoDetect', 'FencView' ] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'andymass/vim-matchup'
@@ -705,9 +701,6 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'masukomi/vim-markdown-folding'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'yianwillis/vimcdoc'
-
-" Entertainment
-Plug 'mattn/vim-starwars', { 'on': 'StarWars' }
 "{{{
 call plug#end()
 "}}}
@@ -719,12 +712,6 @@ call plug#end()
 " :h g:lightline.component
 "}}}
 "{{{functions
-function! SwitchLightlineColorScheme(color)"{{{
-    let g:lightline.colorscheme = a:color
-    call lightline#init()
-    call lightline#colorscheme()
-    call lightline#update()
-endfunction"}}}
 function! PomodoroStatus() abort"{{{
     if pomo#remaining_time() ==# '0'
         return "\ue001"
@@ -928,115 +915,94 @@ if g:vimIsInTmux == 1
 endif
 "}}}
 "{{{colorscheme
+let g:colorSchemeList = {}
+let g:colorSchemeList['Forest Night'] = [
+            \   'set background=dark',
+            \   'let g:forest_night_enable_italic = 1',
+            \   'let g:forest_night_disable_italic_comment = 1',
+            \   'colorscheme forest-night',
+            \   'call SwitchLightlineColorScheme("vim-color-forest-night", "forest_night")'
+            \   ]
+let g:colorSchemeList['Gruvbox Material Dark'] = [
+            \   'set background=dark',
+            \   "let g:gruvbox_material_background = 'medium'",
+            \   "let g:gruvbox_material_visual = 'grey background'",
+            \   'let g:gruvbox_material_enable_italic = 1',
+            \   'let g:gruvbox_material_disable_italic_comment = 1',
+            \   'colorscheme gruvbox-material',
+            \   'call SwitchLightlineColorScheme("gruvbox-material", "gruvbox_material")'
+            \   ]
+let g:colorSchemeList['Gruvbox Material Light'] = [
+            \   'set background=light',
+            \   "let g:gruvbox_material_background = 'soft'",
+            \   "let g:gruvbox_material_visual = 'green background'",
+            \   'let g:gruvbox_material_enable_italic = 1',
+            \   'let g:gruvbox_material_disable_italic_comment = 1',
+            \   'colorscheme gruvbox-material',
+            \   'call SwitchLightlineColorScheme("gruvbox-material", "gruvbox_material")'
+            \   ]
+let g:colorSchemeList['Edge Dark'] = [
+            \   'set background=dark',
+            \   'let g:edge_disable_italic_comment = 1',
+            \   'let g:edge_enable_italic = 1',
+            \   'colorscheme edge',
+            \   'call SwitchLightlineColorScheme("edge", "edge")'
+            \   ]
+let g:colorSchemeList['Edge Light'] = [
+            \   'set background=light',
+            \   'let g:edge_disable_italic_comment = 1',
+            \   'let g:edge_enable_italic = 1',
+            \   'colorscheme edge',
+            \   'call SwitchLightlineColorScheme("edge", "edge")'
+            \   ]
+let g:colorSchemeList['Sonokai Shusia'] = [
+            \   "let g:sonokai_style = 'shusia'",
+            \   'let g:sonokai_disable_italic_comment = 1',
+            \   'let g:sonokai_enable_italic = 1',
+            \   'colorscheme sonokai',
+            \   'call SwitchLightlineColorScheme("sonokai", "sonokai")'
+            \   ]
+let g:colorSchemeList['Sonokai Andromeda'] = [
+            \   "let g:sonokai_style = 'andromeda'",
+            \   'let g:sonokai_disable_italic_comment = 1',
+            \   'let g:sonokai_enable_italic = 1',
+            \   'colorscheme sonokai',
+            \   'call SwitchLightlineColorScheme("sonokai", "sonokai")'
+            \   ]
+let g:colorSchemeList['Sonokai Atlantis'] = [
+            \   "let g:sonokai_style = 'atlantis'",
+            \   'let g:sonokai_disable_italic_comment = 1',
+            \   'let g:sonokai_enable_italic = 1',
+            \   'colorscheme sonokai',
+            \   'call SwitchLightlineColorScheme("sonokai", "sonokai")'
+            \   ]
+let g:colorSchemeList['Sonokai Maia'] = [
+            \   "let g:sonokai_style = 'maia'",
+            \   'let g:sonokai_disable_italic_comment = 1',
+            \   'let g:sonokai_enable_italic = 1',
+            \   'colorscheme sonokai',
+            \   'call SwitchLightlineColorScheme("sonokai", "sonokai")'
+            \   ]
 "{{{Functions
-"{{{SwitchColorScheme()
-function! SwitchColorScheme(name)
-    let g:vimColorScheme = a:name
-    call ColorScheme()
+function SwitchLightlineColorScheme(plugName, lightlineName) abort
+    let l:exe = ['source ', g:plugs[a:plugName]['dir'], 'autoload/lightline/colorscheme/', a:lightlineName, '.vim']
+    execute join(l:exe, '')
+    let g:lightline.colorscheme = a:lightlineName
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
 endfunction
-"}}}
-"}}}
-let g:vimColorScheme = 'gruvbox-material-light'
-function! ColorScheme()
-    call quickmenu#current(10)
-    call quickmenu#reset()
-    "{{{forest-night
-    if g:vimColorScheme ==# 'forest-night'
-        set background=dark
-        let g:forest_night_enable_italic = 1
-        let g:forest_night_disable_italic_comment = 1
-        colorscheme forest-night
-        let g:lightline.colorscheme = 'forest_night'
-    endif
-    call g:quickmenu#append('Forest Night', 'call SwitchColorScheme("forest-night")', '', '', 0, '')
-    "}}}
-    "{{{gruvbox-material-dark
-    if g:vimColorScheme ==# 'gruvbox-material-dark'
-        set background=dark
-        let g:gruvbox_material_enable_italic = 1
-        let g:gruvbox_material_disable_italic_comment = 1
-        colorscheme gruvbox-material
-        let g:lightline.colorscheme = 'gruvbox_material'
-    endif
-    call g:quickmenu#append('Gruvbox Material Dark', 'call SwitchColorScheme("gruvbox-material-dark")', '', '', 0, '')
-    "}}}
-    "{{{gruvbox-material-light
-    if g:vimColorScheme ==# 'gruvbox-material-light'
-        set background=light
-        let g:gruvbox_material_background = 'soft'
-        let g:gruvbox_material_visual = 'green background'
-        let g:gruvbox_material_enable_italic = 1
-        let g:gruvbox_material_disable_italic_comment = 1
-        colorscheme gruvbox-material
-        let g:lightline.colorscheme = 'gruvbox_material'
-    endif
-    call g:quickmenu#append('Gruvbox Material Light', 'call SwitchColorScheme("gruvbox-material-light")', '', '', 0, '')
-    "}}}
-    "{{{edge-dark
-    if g:vimColorScheme ==# 'edge-dark'
-        set background=dark
-        let g:edge_disable_italic_comment = 1
-        let g:edge_enable_italic = 1
-        colorscheme edge
-        let g:lightline.colorscheme = 'edge'
-    endif
-    call g:quickmenu#append('Edge Dark', 'call SwitchColorScheme("edge-dark")', '', '', 0, '')
-    "}}}
-    "{{{edge-light
-    if g:vimColorScheme ==# 'edge-light'
-        set background=light
-        let g:edge_disable_italic_comment = 1
-        let g:edge_enable_italic = 1
-        colorscheme edge
-        let g:lightline.colorscheme = 'edge'
-    endif
-    call g:quickmenu#append('Edge Light', 'call SwitchColorScheme("edge-light")', '', '', 0, '')
-    "}}}
-    "{{{sonokai-shusia
-    if g:vimColorScheme ==# 'sonokai-shusia'
-        let g:sonokai_style = 'shusia'
-        let g:sonokai_disable_italic_comment = 1
-        let g:sonokai_enable_italic = 1
-        colorscheme sonokai
-        let g:lightline.colorscheme = 'sonokai'
-    endif
-    call g:quickmenu#append('Sonokai Shusia', 'call SwitchColorScheme("sonokai-shusia")', '', '', 0, '')
-    "}}}
-    "{{{sonokai-andromeda
-    if g:vimColorScheme ==# 'sonokai-andromeda'
-        let g:sonokai_style = 'andromeda'
-        let g:sonokai_disable_italic_comment = 1
-        let g:sonokai_enable_italic = 1
-        colorscheme sonokai
-        let g:lightline.colorscheme = 'sonokai'
-    endif
-    call g:quickmenu#append('Sonokai Andromeda', 'call SwitchColorScheme("sonokai-andromeda")', '', '', 0, '')
-    "}}}
-    "{{{sonokai-atlantis
-    if g:vimColorScheme ==# 'sonokai-atlantis'
-        let g:sonokai_style = 'atlantis'
-        let g:sonokai_disable_italic_comment = 1
-        let g:sonokai_enable_italic = 1
-        colorscheme sonokai
-        let g:lightline.colorscheme = 'sonokai'
-    endif
-    call g:quickmenu#append('Sonokai Atlantis', 'call SwitchColorScheme("sonokai-atlantis")', '', '', 0, '')
-    "}}}
-    "{{{sonokai-maia
-    if g:vimColorScheme ==# 'sonokai-maia'
-        let g:sonokai_style = 'maia'
-        let g:sonokai_disable_italic_comment = 1
-        let g:sonokai_enable_italic = 1
-        colorscheme sonokai
-        let g:lightline.colorscheme = 'sonokai'
-    endif
-    call g:quickmenu#append('Sonokai Maia', 'call SwitchColorScheme("sonokai-maia")', '', '', 0, '')
-    "}}}
+function SwitchColorScheme(name) abort
+    for l:item in g:colorSchemeList[a:name]
+        execute l:item
+    endfor
 endfunction
-call ColorScheme()
+function! s:Colo(a, l, p)
+  return keys(g:colorSchemeList)
+endfunction
+command! -bar -nargs=? -complete=customlist,<sid>Colo Colo call SwitchColorScheme(<f-args>)
+call SwitchColorScheme(g:vimColorScheme)
+"}}}
 "}}}
 "{{{vim-startify
 if g:vimEnableStartify == 1
@@ -1095,12 +1061,6 @@ if g:vimEnableStartify == 1
     augroup END
 endif
 "}}}
-"{{{vim-hexokinase
-let g:Hexokinase_highlighters = ['backgroundfull']  " ['virtual', 'sign_column', 'background', 'foreground', 'foregroundfull']
-let g:Hexokinase_ftAutoload = ['html', 'css', 'javascript', 'vim', 'colortemplate', 'json', 'yaml', 'toml']  " ['*']
-let g:Hexokinase_refreshEvents = ['BufWritePost']
-let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba']  " ['full_hex', 'triple_hex', 'rgb', 'rgba', 'colour_names']
-"}}}
 "{{{vim-which-key
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
@@ -1108,7 +1068,6 @@ call which_key#register('<Space>', 'g:which_key_map')
 let g:which_key_map = {
             \   'name': 'main',
             \   '%': 'select current surrounding',
-            \   '<CR>': 'focus mode',
             \   '<Tab>': 'format',
             \   'e': 'explorer',
             \   'p': 'paste',
@@ -1116,53 +1075,39 @@ let g:which_key_map = {
             \   't': 'translate',
             \   'c': { 'name': 'comment' }
             \   }
+let g:which_key_map["\<space>"] = {
+            \   'name': 'menu'
+            \   }
+let g:which_key_map["\<space>"]['h'] = {
+            \   'name': 'help',
+            \   'v': 'visual multi',
+            \   's': 'sneak',
+            \   'f': 'neoformat',
+            \   'p': 'autopairs',
+            \   'c': 'nerd commenter',
+            \   't': 'close tag',
+            \   'S': 'signify',
+            \   'r': 'surround',
+            \   'm': 'matchup',
+            \   'i': 'markdown inline edit'
+            \   }
+nnoremap <silent> <leader><space>hv :<c-u>call Help_vim_visual_multi()<cr>
+nnoremap <silent> <leader><space>hs :<c-u>call Help_vim_sneak()<cr>
+nnoremap <silent> <leader><space>hf :<c-u>call Help_neoformat()<cr>
+nnoremap <silent> <leader><space>hp :<c-u>call Help_auto_pairs()<cr>
+nnoremap <silent> <leader><space>hc :<c-u>call Help_nerdcommenter()<cr>
+nnoremap <silent> <leader><space>ht :<c-u>call Help_vim_closetag()<cr>
+nnoremap <silent> <leader><space>hr :<c-u>call Help_vim_surround()<cr>
+nnoremap <silent> <leader><space>hm :<c-u>call Help_vim_matchup()<cr>
+nnoremap <silent> <leader><space>hi :<c-u>call Help_inline_edit()<cr>
 "}}}
-"{{{quickmenu.vim
-let g:quickmenu_options = 'HL'  " enable cursorline (L) and cmdline help (H)
-
-call quickmenu#current(0)
-call quickmenu#reset()
-nnoremap <silent> <leader><leader> :call quickmenu#toggle(0)<cr>
-call g:quickmenu#append('# Menu', '')
-call g:quickmenu#append('Pomodoro Toggle', 'call Toggle_Pomodoro()', '', '', 0, 'p')
-call g:quickmenu#append('To Do', 'call quickmenu#toggle(11)', '', '', 0, 't')
-call g:quickmenu#append('Switch ColorScheme', 'call quickmenu#toggle(10)', '', '', 0, 'C')
-call g:quickmenu#append('Color Picker', 'call quickmenu#toggle(13)', '', '', 0, 'c')
-call g:quickmenu#append('Undo Tree', 'UndotreeToggle', '', '', 0, 'u')
-call g:quickmenu#append('Codi', 'Codi!!', '', '', 0, 'r')
-call g:quickmenu#append('Folding Method', 'call quickmenu#toggle(2)', '', '', 0, 'f')
-call g:quickmenu#append('Focus Mode', 'Limelight!!', 'toggle focus mode', '', 0, 'F')
-call g:quickmenu#append('Read Mode', 'Goyo', 'toggle read mode', '', 0, 'R')
-call g:quickmenu#append('Ratio Resize', 'GoldenRatioResize', ':GoldenRatioResize  " resize current window', '', 0, 'g')
-call g:quickmenu#append('Ratio Toggle', 'GoldenRatioToggle', ':GoldenRatioToggle  " toggle golden ratio', '', 0, 'G')
-call g:quickmenu#append('Hexokinase Toggle', 'HexokinaseToggle', '', '', 0, 'H')
-call g:quickmenu#append('Tags', 'call quickmenu#toggle(12)', '', '', 0, 'T')
-call g:quickmenu#append('FencAutoDetect', 'FencAutoDetect', 'FencAutoDetect && FencView', '', 0, '^')
-call g:quickmenu#append('Entertainment', 'call quickmenu#toggle(3)', '', '', 0, '*')
-call g:quickmenu#append('Help', 'call quickmenu#toggle(1)', '', '', 0, 'h')
-call quickmenu#current(1)
-call quickmenu#reset()
-call g:quickmenu#append('# Help', '')
-call g:quickmenu#append('Visual Multi', 'call Help_vim_visual_multi()', '', '', 0, 'v')
-call g:quickmenu#append('Sneak', 'call Help_vim_sneak()', '', '', 0, 's')
-call g:quickmenu#append('Neoformat', 'call Help_neoformat()', '', '', 0, 'f')
-call g:quickmenu#append('Auto Pairs', 'call Help_auto_pairs()', '', '', 0, 'p')
-call g:quickmenu#append('Nerd Commenter', 'call Help_nerdcommenter()', '', '', 0, 'c')
-call g:quickmenu#append('Close Tag', 'call Help_vim_closetag()', '', '', 0, 't')
-call g:quickmenu#append('Signify', 'call Help_vim_signify()', '', '', 0, 'S')
-call g:quickmenu#append('VIM Surround', 'call Help_vim_surround()', '', '', 0, 'r')
-call g:quickmenu#append('VIM Matchup', 'call Help_vim_matchup()', '', '', 0, 'M')
-call g:quickmenu#append('Inline Edit', 'call Help_inline_edit()', '', '', 0, 'i')
-call quickmenu#current(2)
-call quickmenu#reset()
-call g:quickmenu#append('# Folding Method', '')
-call g:quickmenu#append('Marker', 'set foldmethod=marker', '', '', 0, 'm')
-call g:quickmenu#append('Syntax', 'set foldmethod=syntax', '', '', 0, 's')
-call g:quickmenu#append('Indent', 'set foldmethod=indnet', '', '', 0, 'i')
-call quickmenu#current(3)
-call quickmenu#reset()
-call g:quickmenu#append('# Entertainment', '')
-call g:quickmenu#append('Star Wars', 'StarWars', '', '', 0, '')
+"{{{vim-hexokinase
+let g:Hexokinase_highlighters = ['backgroundfull']  " ['virtual', 'sign_column', 'background', 'foreground', 'foregroundfull']
+let g:Hexokinase_ftAutoload = ['html', 'css', 'javascript', 'vim', 'colortemplate', 'json', 'yaml', 'toml']  " ['*']
+let g:Hexokinase_refreshEvents = ['BufWritePost']
+let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba']  " ['full_hex', 'triple_hex', 'rgb', 'rgba', 'colour_names']
+nnoremap <silent> <leader><space>H :<c-u>HexokinaseToggle<cr>
+let g:which_key_map["\<space>"]['H'] = 'live color'
 "}}}
 "{{{indentLine
 "{{{indentLine-usage
@@ -1179,9 +1124,6 @@ let g:indentLine_fileTypeExclude = [ 'startify', 'coc-explorer', 'codi', 'help',
 let g:indentLine_setColors = 0  " disable overwrite with grey by default, use colorscheme instead
 "}}}
 "{{{limelight.vim
-"{{{limelight.vim-usage
-" <leader>mf  toggle focus mode
-"}}}
 let g:limelight_default_coefficient = 0.7
 "}}}
 "{{{goyo.vim
@@ -1196,14 +1138,16 @@ augroup goyoCustom
     autocmd! User GoyoEnter Limelight
     autocmd! User GoyoLeave Limelight!
 augroup END
-nnoremap <leader><CR> :<C-u>Goyo<CR>
+nnoremap <silent> <leader><space>f :<C-u>Limelight!!<CR>
+nnoremap <silent> <leader><space>r :<C-u>Goyo<CR>
+let g:which_key_map["\<space>"]['f'] = 'focus mode'
+let g:which_key_map["\<space>"]['r'] = 'reading mode'
 "}}}
 "{{{golden-ratio
-"{{{golden-ratio-usage
-" 主quickmenu
-"}}}
 " 默认关闭
 let g:golden_ratio_autocommand = 0
+nnoremap <silent> <leader><space>g :<c-u>GoldenRatioResize<cr>
+let g:which_key_map["\<space>"]['g'] = 'resize window'
 "}}}
 " Productivity
 "{{{coc.nvim
@@ -1388,12 +1332,15 @@ let g:which_key_map['b'] = {
             \   }
 "}}}
 "{{{coc-todolist
-call quickmenu#current(11)
-call quickmenu#reset()
-call g:quickmenu#append('# To Do', '')
-call g:quickmenu#append('New Item', 'CocCommand todolist.create', '', '', 0, 'n')
-call g:quickmenu#append('Management', 'CocList todolist', '', '', 0, 'm')
-call g:quickmenu#append('Clear Remind', 'CocCommand todolist.clearRemind', '', '', 0, 'c')
+nnoremap <silent> <leader><space>tn :<c-u>CocCommand todolist.create<cr>
+nnoremap <silent> <leader><space>tm :<c-u>CocList todolist<cr>
+nnoremap <silent> <leader><space>tc :<c-u>CocCommand todolist.clearRemind<cr>
+let g:which_key_map["\<space>"]['t'] = {
+            \   'name': 'todo',
+            \   'n': 'new item',
+            \   'm': 'management',
+            \   'c': 'clear remind'
+            \   }
 "}}}
 "}}}
 "{{{ale
@@ -1568,6 +1515,8 @@ let g:nnn#command = 'PAGER= nnn'
 let g:undotree_WindowLayout = 3
 let g:undotree_SplitWidth = 35
 let g:undotree_DiffpanelHeight = 10
+nnoremap <silent> <leader><space>u :<c-u>UndotreeToggle<cr>
+let g:which_key_map["\<space>"]['u'] = 'undotree'
 "}}}
 "{{{vim-fugitive
 "{{{twiggy
@@ -1651,42 +1600,6 @@ function! MergetoolLayoutCustom()
     endif
 endfunction
 "}}}
-"}}}
-"{{{gen_tags.vim
-"{{{quickmenu
-call quickmenu#current(12)
-call quickmenu#reset()
-call g:quickmenu#append('# Ctags', '')
-call g:quickmenu#append(' Generate Ctags', 'call InitCtags()', 'Generate ctags database', '', 0, 'c')
-call g:quickmenu#append('Remove Ctags files', 'ClearCtags', 'Remove tags files', '', 0, 'rc')
-call g:quickmenu#append('Remove all Ctags files', 'ClearCtags!', 'Remove all files, include db directory', '', 0, 'Rc')
-call g:quickmenu#append('# Gtags', '')
-call g:quickmenu#append(' Generate Gtags', 'call InitGtags()', 'Generate gtags database', '', 0, 'g')
-call g:quickmenu#append('Remove Gtags files', 'ClearGTAGS', 'Remove GTAGS files', '', 0, 'rg')
-call g:quickmenu#append('Remove all Gtags files', 'ClearGTAGS', 'Remove all files, include the db directory', '', 0, 'Rg')
-call g:quickmenu#append(' Edit config', 'EditExt', 'Edit an extend configuration file for this project', '', 0, 'e')
-function! InitCtags()
-    call Init_gen_tags()
-    execute 'GenCtags'
-    call plug#load('asyncomplete-tags.vim')
-endfunction
-function! InitGtags()
-    call Init_gen_tags()
-    execute 'GenGTAGS'
-endfunction
-"}}}
-function! Init_gen_tags()
-    " let g:gen_tags#ctags_opts = '--c++-kinds=+px --c-kinds=+px'
-    " let g:gen_tags#gtags_opts = '-c --verbose'
-    let g:gen_tags#use_cache_dir = 1  " 0: use project directory to store tags; 1: $HOME/.cache/tags_dir/<project name>
-    let g:gen_tags#ctags_auto_gen = 0
-    let g:gen_tags#gtags_auto_gen = 0
-    let g:gen_tags#ctags_auto_update = 1
-    let g:gen_tags#gtags_auto_update = 1
-    let g:gen_tags#blacklist = ['$HOME']
-    let g:gen_tags#gtags_default_map = 0
-    call plug#load('gen_tags.vim')
-endfunction
 "}}}
 "{{{tagbar
 "{{{Languages
@@ -2372,7 +2285,6 @@ command W w suda://%
 "}}}
 "{{{vim-surround
 "{{{vim-surround-usage
-" 主quickmenu
 function! Help_vim_surround()
     echo 'ds([          delete surround'
     echo 'cs([          change surround () to []'
@@ -2384,7 +2296,6 @@ endfunction
 "}}}
 "{{{inline_edit.vim
 "{{{inline-edit-usage
-" 主quickmenu
 function! Help_inline_edit()
     echo ''
     echo 'visual 或 normal 模式下按 E'
@@ -2419,14 +2330,8 @@ nnoremap <silent> <pageup> :<C-u>call comfortable_motion#flick(-130)<CR>
 nnoremap <silent> <C-d> :<C-u>call comfortable_motion#flick(120)<CR>
 nnoremap <silent> <C-u> :<C-u>call comfortable_motion#flick(-120)<CR>
 "}}}
-"{{{codi.vim
-let g:codi#width = 40
-let g:codi#rightsplit = 1
-let g:codi#rightalign = 0
-"}}}
 "{{{auto-pairs
 "{{{auto-pairs-usage
-" 主quickmenu
 function! Help_auto_pairs()
     echo '插入模式下：'
     echo '<A-z>p            toggle auto-pairs'
@@ -2471,6 +2376,8 @@ function! Toggle_Pomodoro()
 endfunction
 let g:pomodoro_time_work = 25
 let g:pomodoro_time_slack = 5
+nnoremap <silent> <leader><space>p :<c-u>call Toggle_Pomodoro()<cr>
+let g:which_key_map["\<space>"]['p'] = 'pomodoro toggle'
 "}}}
 "{{{vim-matchup
 "{{{vim-matchup-usage
@@ -2575,18 +2482,22 @@ function Help_vCoolor()
     echo ':Hsl2Rgb "300, 100%, 50%"             " Gives "255, 0, 255"'
     echo ':Hsl2Hex "300, 100%, 50%"             " Gives "#FF00FF"'
 endfunction
-call quickmenu#current(13)
-call quickmenu#reset()
-call g:quickmenu#append('# Color Picker', '')
-call g:quickmenu#append('Modify', 'VCoolor', '', '', 0, 'm')
-call g:quickmenu#append('Insert Hex', 'VCoolor', '', '', 0, 'h')
-call g:quickmenu#append('Insert RGB', 'VCoolIns r', '', '', 0, 'r')
-call g:quickmenu#append('Insert HSL', 'VCoolIns h', '', '', 0, 'H')
-call g:quickmenu#append('Insert RGBA', 'VCoolIns ra', '', '', 0, 'R')
-call g:quickmenu#append('Toggle Case', 'VCase', '', '', 0, 'c')
-call g:quickmenu#append('Convert', 'call Help_vCoolor()', '', '', 0, 'h')
 let g:vcoolor_disable_mappings = 1
+let g:vcoolor_lowercase = 1
 let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --color '
+nnoremap <silent> <leader><space>cc :<c-u>VCoolor<cr>
+nnoremap <silent> <leader><space>cr :<c-u>VCoolor r<cr>
+nnoremap <silent> <leader><space>cH :<c-u>VCoolor h<cr>
+nnoremap <silent> <leader><space>cR :<c-u>VCoolor ra<cr>
+nnoremap <silent> <leader><space>ch :<c-u>call Help_vCoolor()<cr>
+let g:which_key_map["\<space>"]['c'] = {
+            \   'name': 'color picker',
+            \   'c': 'insert hex',
+            \   'r': 'insert rgb',
+            \   'H': 'insert hsl',
+            \   'R': 'insert rgba',
+            \   'h': 'help'
+            \   }
 "}}}
 "{{{vim-devicons
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1

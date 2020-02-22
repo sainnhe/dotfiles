@@ -129,6 +129,7 @@ elif [ "$1" = "dotfiles" ]; then
     cp /home/sainnhe/repo/dotfiles/.vimrc ~/
     mkdir -p ~/.config/nvim
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
+    cp /home/sainnhe/repo/dotfiles/.config/nvim/env.vim ~/.config/nvim/env.vim
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 elif [ "$1" = "fonts" ]; then
     mkdir -p ~/repo
