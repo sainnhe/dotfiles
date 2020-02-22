@@ -32,7 +32,9 @@ setup_symlink .w3m/config
 setup_symlink .weechat/weechat.conf
 setup_symlink .local/share/applications
 setup_copy .aria2
-setup_symlink .config/alacritty/alacritty.yml
+setup_copy .config/alacritty/alacritty.yml
+setup_copy ../.config/i3/config
+setup_symlink ../.config/i3/scripts
 setup_copy .config/autostart
 setup_symlink .config/browsh/config.toml
 setup_symlink .config/fontconfig/fonts.conf
