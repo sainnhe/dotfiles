@@ -2268,15 +2268,16 @@ let g:NERDToggleCheckAllLines = 1
 "{{{asynctasks
 let g:asyncrun_open = 6
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
-let g:asynctasks_term_pos = 'tab'
+let g:asynctasks_term_pos = 'bottom' " tab
+let g:asynctasks_term_rows = 10
 let g:asynctasks_config_name = '.git/tasks.ini'
 noremap <silent> <leader>rf :AsyncTask file-run<cr>
 noremap <silent> <leader>bf :AsyncTask file-build<cr>
 noremap <silent> <leader>rp :AsyncTask project-run<cr>
 noremap <silent> <leader>bp :AsyncTask project-build<cr>
-noremap <silent> <leader>gp :AsyncTask git-proxy-on<cr>
-noremap <silent> <leader>gP :AsyncTask git-proxy-off<cr>
-noremap <silent> <leader>gc :AsyncTask git-commit<cr>
+noremap <silent> <leader>gp :AsyncRun git config --global http.proxy "socks5://127.0.0.1:1080" && git config --global https.proxy "socks5://127.0.0.1:1080"<cr>
+noremap <silent> <leader>gP :AsyncRun git config --global --unset http.proxy && git config --global --unset https.proxy<cr>
+noremap <silent> <leader>gc :Git commit<cr>
 noremap <silent> <leader><space>E :AsyncTaskEdit<cr>
 let g:which_key_map['r'] = {'name': 'run', 'f': 'file', 'p': 'project'}
 let g:which_key_map['b'] = {'name': 'build', 'f': 'file', 'p': 'project'}
