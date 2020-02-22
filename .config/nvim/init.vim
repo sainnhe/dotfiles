@@ -579,7 +579,7 @@ augroup END
 
 command PU PlugUpdate | PlugUpgrade | CocUpdate
 
-call plug#begin('~/.cache/vim/plugins')
+call plug#begin('~/.local/share/nvim/plugins')
 if !has('nvim') && has('python3')
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
@@ -1349,7 +1349,7 @@ let g:ALE_MODE = 1  " 0则只在保存文件时检查，1则只在normal模式�
 " 普通模式下<leader>lk和<leader>lj分别跳转到上一个、下一个错误
 " :ALEDetail  查看详细错误信息
 "}}}
-" ls ~/.cache/vim/plugins/ale/ale_linters/
+" ls ~/.local/share/nvim/plugins/ale/ale_linters/
 let g:ale_linters = {
       \       'asm': ['gcc'],
       \       'c': ['cppcheck', 'flawfinder'],
@@ -1905,7 +1905,7 @@ let g:tagbar_type_perl = {
       \ }
 "}}}
 "{{{PHP
-let g:tagbar_phpctags_bin='~/.cache/vim/plugins/tagbar-phpctags.vim/bin/phpctags'
+let g:tagbar_phpctags_bin='~/.local/share/nvim/plugins/tagbar-phpctags.vim/bin/phpctags'
 let g:tagbar_phpctags_memory_limit = '512M'
 "}}}
 "{{{Puppet

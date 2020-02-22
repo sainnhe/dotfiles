@@ -1,5 +1,5 @@
 {
-    "$schema": "/home/sainnhe/.cache/vim/plugins/coc.nvim/data/schema.json",
+    "$schema": "/home/sainnhe/.local/share/nvim/plugins/coc.nvim/data/schema.json",
     "http.proxy_bak": "127.0.0.1:32650",
     "suggest.timeout": 500,
     "suggest.enablePreview": true,
