@@ -1174,6 +1174,13 @@ function! CocHover() abort"{{{
     call CocActionAsync('showSignatureHelp')
   endif
 endfunction"}}}
+function! CocToggleFold() abort"{{{
+  if &foldmethod ==# 'marker'
+    execute 'CocCommand git.foldUnchanged'
+  else
+    set foldmethod=marker
+  endif
+endfunction"}}}
 "}}}
 "{{{coc-init
 let g:coc_global_extensions = [
@@ -1268,8 +1275,7 @@ nmap <leader>gi <Plug>(coc-git-chunkinfo)
 nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
 nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
 nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
-nmap <silent> <leader>gf :<C-u>CocCommand git.foldUnchanged<CR>
-nmap <silent> <leader>gF :<C-u>set foldmethod=marker<CR>
+nmap <silent> <leader>gF :<C-u>call CocToggleFold()<CR>
 nmap <silent> <leader>go :CocCommand git.browserOpen<CR>
 let g:which_key_map['l'] = {
       \   'name': 'language server',
@@ -1301,8 +1307,7 @@ let g:which_key_map['g'] = {
       \   'i': 'chunk info',
       \   'u': 'chunk undo',
       \   'a': 'chunk stage',
-      \   'f': 'fold unchanged',
-      \   'F': 'toggle fold method',
+      \   'F': 'toggle fold unchanged',
       \   'o': 'open remote url in the browser',
       \   }
 nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
@@ -2269,6 +2274,7 @@ noremap <silent> <leader>bp :AsyncTask project-build<cr>
 noremap <silent> <leader>g^ :AsyncRun git config --global http.proxy "socks5://127.0.0.1:1080" && git config --global https.proxy "socks5://127.0.0.1:1080"<cr>
 noremap <silent> <leader>g$ :AsyncRun git config --global --unset http.proxy && git config --global --unset https.proxy<cr>
 noremap <silent> <leader>gp :AsyncRun git push origin HEAD<cr>
+noremap <silent> <leader>gf :AsyncRun git fetch origin<cr>
 noremap <silent> <leader>gc :Git commit<cr>
 noremap <silent> <leader><space>E :AsyncTaskEdit<cr>
 let g:which_key_map['r'] = {'name': 'run', 'f': 'file', 'p': 'project'}
@@ -2278,6 +2284,7 @@ let g:which_key_map['g']['^'] = 'set proxy'
 let g:which_key_map['g']['$'] = 'unset proxy'
 let g:which_key_map['g']['c'] = 'commit'
 let g:which_key_map['g']['p'] = 'push'
+let g:which_key_map['g']['f'] = 'fetch'
 "}}}
 "{{{vim-terminal-help
 let g:terminal_default_mapping = 0
