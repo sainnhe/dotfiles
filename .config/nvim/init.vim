@@ -1266,7 +1266,7 @@ nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
 nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
 nmap <silent> <leader>gf :<C-u>CocCommand git.foldUnchanged<CR>
 nmap <silent> <leader>gF :<C-u>set foldmethod=marker<CR>
-nmap <silent> <leader>g<Tab> :CocCommand git.browserOpen<CR>
+nmap <silent> <leader>go :CocCommand git.browserOpen<CR>
 let g:which_key_map['l'] = {
             \   'name': 'language server',
             \   "\<Space>": 'list',
@@ -1299,7 +1299,7 @@ let g:which_key_map['g'] = {
             \   'a': 'chunk stage',
             \   'f': 'fold unchanged',
             \   'F': 'toggle fold method',
-            \   '<Tab>': 'open remote url in the browser',
+            \   'o': 'open remote url in the browser',
             \   }
 nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
 "}}}
@@ -2275,16 +2275,18 @@ noremap <silent> <leader>rf :AsyncTask file-run<cr>
 noremap <silent> <leader>bf :AsyncTask file-build<cr>
 noremap <silent> <leader>rp :AsyncTask project-run<cr>
 noremap <silent> <leader>bp :AsyncTask project-build<cr>
-noremap <silent> <leader>gp :AsyncRun git config --global http.proxy "socks5://127.0.0.1:1080" && git config --global https.proxy "socks5://127.0.0.1:1080"<cr>
-noremap <silent> <leader>gP :AsyncRun git config --global --unset http.proxy && git config --global --unset https.proxy<cr>
+noremap <silent> <leader>g^ :AsyncRun git config --global http.proxy "socks5://127.0.0.1:1080" && git config --global https.proxy "socks5://127.0.0.1:1080"<cr>
+noremap <silent> <leader>g$ :AsyncRun git config --global --unset http.proxy && git config --global --unset https.proxy<cr>
+noremap <silent> <leader>gp :AsyncRun git push origin HEAD<cr>
 noremap <silent> <leader>gc :Git commit<cr>
 noremap <silent> <leader><space>E :AsyncTaskEdit<cr>
 let g:which_key_map['r'] = {'name': 'run', 'f': 'file', 'p': 'project'}
 let g:which_key_map['b'] = {'name': 'build', 'f': 'file', 'p': 'project'}
 let g:which_key_map["\<space>"]['E'] = 'task config'
-let g:which_key_map['g']['p'] = 'set proxy'
-let g:which_key_map['g']['P'] = 'unset proxy'
+let g:which_key_map['g']['^'] = 'set proxy'
+let g:which_key_map['g']['$'] = 'unset proxy'
 let g:which_key_map['g']['c'] = 'commit'
+let g:which_key_map['g']['p'] = 'push'
 "}}}
 "{{{vim-visual-multi
 "{{{vim-visual-multi-usage
