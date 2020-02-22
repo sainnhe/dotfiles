@@ -677,6 +677,7 @@ else
 endif
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
+Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'lambdalisue/suda.vim'
@@ -1317,14 +1318,14 @@ augroup explorerCustom
 augroup END
 "}}}
 "{{{coc-bookmark
-nmap <leader>bb <Plug>(coc-bookmark-toggle)
-nmap <leader>ba <Plug>(coc-bookmark-annotate)
-nmap <leader>bn <Plug>(coc-bookmark-next)
-nmap <leader>bp <Plug>(coc-bookmark-prev)
-nnoremap <silent> <leader>b<Space> :CocList bookmark<CR>
-let g:which_key_map['b'] = {
+nmap <leader>mm <Plug>(coc-bookmark-toggle)
+nmap <leader>ma <Plug>(coc-bookmark-annotate)
+nmap <leader>mn <Plug>(coc-bookmark-next)
+nmap <leader>mp <Plug>(coc-bookmark-prev)
+nnoremap <silent> <leader>m<Space> :CocList bookmark<CR>
+let g:which_key_map['m'] = {
             \   'name': 'bookmark',
-            \   'b': 'toggle',
+            \   'm': 'toggle',
             \   'a': 'annotate',
             \   'n': 'next',
             \   'p': 'prev',
@@ -2259,6 +2260,21 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
+"}}}
+"{{{asynctasks
+let g:asyncrun_open = 6
+let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
+let g:asynctasks_term_pos = 'bottom' " tab
+let g:asynctasks_term_rows = 10
+let g:asynctasks_config_name = '.git/tasks.ini'
+noremap <silent> <leader>rf :AsyncTask file-run<cr>
+noremap <silent> <leader>bf :AsyncTask file-build<cr>
+noremap <silent> <leader>rp :AsyncTask project-run<cr>
+noremap <silent> <leader>bp :AsyncTask project-build<cr>
+noremap <silent> <leader><space>E :AsyncTaskEdit<cr>
+let g:which_key_map['r'] = {'name': 'run', 'f': 'file', 'p': 'project'}
+let g:which_key_map['b'] = {'name': 'build', 'f': 'file', 'p': 'project'}
+let g:which_key_map["\<space>"]['E'] = 'task config'
 "}}}
 "{{{vim-visual-multi
 "{{{vim-visual-multi-usage
