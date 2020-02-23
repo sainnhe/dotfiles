@@ -670,6 +670,7 @@ Plug 'sodapopcan/vim-twiggy'
 Plug 'rhysd/committia.vim'
 Plug 'cohama/agit.vim'
 Plug 'samoshkin/vim-mergetool'
+Plug 'APZelos/blamer.nvim'
 Plug 'majutsushi/tagbar', { 'on': [] }
 if executable('proxychains')
   Plug 'vim-php/tagbar-phpctags.vim', { 'on': [], 'do': 'proxychains -q make' }
@@ -1518,8 +1519,8 @@ let g:which_key_map["\<space>"]['u'] = 'undotree'
 "{{{vim-fugitive
 "{{{twiggy
 command Gbranch Twiggy
-nnoremap <silent> <leader>gb :<C-u>Twiggy<CR>
-let g:which_key_map['g']['b'] = 'branch'
+nnoremap <silent> <leader>gB :<C-u>Twiggy<CR>
+let g:which_key_map['g']['B'] = 'branch'
 let g:twiggy_local_branch_sort = 'mru'
 let g:twiggy_num_columns = 35
 let g:twiggy_close_on_fugitive_command = 1
@@ -1597,6 +1598,15 @@ function! MergetoolLayoutCustom()
     execute 'MergetoolToggleLayout mr'
   endif
 endfunction
+"}}}
+"{{{blamer
+let g:blamer_enabled = 0
+let g:blamer_delay = 0
+let g:blamer_show_in_visual_modes = 1
+let g:blamer_prefix = "\ue729 "
+let g:blamer_template = '<author>, <author-time> • <summary>'
+nmap <silent> <leader>gb :BlamerToggle<CR>
+let g:which_key_map['g']['b'] = 'blame'
 "}}}
 noremap <silent> <leader>gd :Gdiffsplit<cr>
 noremap <silent> <leader>gs :Gstatus<cr>
