@@ -704,6 +704,7 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'masukomi/vim-markdown-folding'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'yianwillis/vimcdoc'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 "{{{
 call plug#end()
 "}}}
@@ -2424,8 +2425,8 @@ function! Toggle_Pomodoro()
 endfunction
 let g:pomodoro_time_work = 25
 let g:pomodoro_time_slack = 5
-nnoremap <silent> <leader><space>p :<c-u>call Toggle_Pomodoro()<cr>
-let g:which_key_map["\<space>"]['p'] = 'pomodoro toggle'
+nnoremap <silent> <leader><space>P :<c-u>call Toggle_Pomodoro()<cr>
+let g:which_key_map["\<space>"]['P'] = 'pomodoro toggle'
 "}}}
 "{{{vim-matchup
 "{{{vim-matchup-usage
@@ -2554,4 +2555,14 @@ let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[''] = "\uf15b"
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
+"}}}
+"{{{markdown-preview.nvim
+if !has('win32')
+  let g:mkdp_browser = 'firefox-developer-edition'
+else
+  let g:mkdp_browser = 'firefox'
+endif
+let g:mkdp_echo_preview_url = 1
+nmap <silent> <leader><space>p <Plug>MarkdownPreviewToggle
+let g:which_key_map["\<space>"]['p'] = 'preview markdown'
 "}}}
