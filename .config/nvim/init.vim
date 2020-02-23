@@ -1191,6 +1191,7 @@ let g:coc_global_extensions = [
       \   'coc-git',
       \   'coc-explorer',
       \   'coc-project',
+      \   'coc-gitignore',
       \   'coc-bookmark',
       \   'coc-todolist',
       \   'coc-highlight',
@@ -1330,6 +1331,10 @@ augroup END
 "{{{coc-project
 nnoremap <silent> <leader><space><Tab> :<c-u>CocList project<cr>
 let g:which_key_map["\<space>"]['<Tab>'] = 'project'
+"}}}
+"{{{coc-project
+nnoremap <silent> <leader><space>I :<c-u>CocList gitignore<cr>
+let g:which_key_map["\<space>"]['I'] = 'gitignore'
 "}}}
 "{{{coc-bookmark
 nmap <leader>mm <Plug>(coc-bookmark-toggle)
