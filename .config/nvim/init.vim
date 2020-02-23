@@ -1272,6 +1272,7 @@ vmap <leader>lv <Plug>(coc-range-select)
 nmap <leader>gj <Plug>(coc-git-nextchunk)
 nmap <leader>gk <Plug>(coc-git-prevchunk)
 nmap <leader>gi <Plug>(coc-git-chunkinfo)
+nmap <leader>gM <Plug>(coc-git-commit)
 nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
 nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
 nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
@@ -1307,6 +1308,7 @@ let g:which_key_map['g'] = {
       \   'i': 'chunk info',
       \   'u': 'chunk undo',
       \   'a': 'chunk stage',
+      \   'M': 'commits of current chunk',
       \   'F': 'toggle fold unchanged',
       \   'o': 'open remote url in the browser',
       \   }
