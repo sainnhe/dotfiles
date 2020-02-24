@@ -1280,7 +1280,10 @@ nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
 nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
 nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
 nmap <silent> <leader>gF :<C-u>call CocToggleFold()<CR>
-nmap <silent> <leader>go :CocCommand git.browserOpen<CR>
+nmap <silent> <leader>go :<C-u>CocCommand git.browserOpen<CR>
+nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
+nmap <silent> <leader>glC :<C-u>CocList bcommits<cr>
+nmap <silent> <leader>glA :<C-u>CocList commits<cr>
 let g:which_key_map['l'] = {
       \   'name': 'language server',
       \   "\<Space>": 'list',
@@ -1311,6 +1314,8 @@ let g:which_key_map['g'] = {
       \   'i': 'chunk info',
       \   'u': 'chunk undo',
       \   'a': 'chunk stage',
+      \   's': 'status',
+      \   'l': {'name': 'logs', 'C': 'log(cur buf) fuzzy finder', 'A': 'log(all): fuzzy finder'},
       \   'M': 'commits of current chunk',
       \   'F': 'toggle fold unchanged',
       \   'o': 'open remote url in the browser',
@@ -1557,13 +1562,10 @@ augroup agitCustom
   autocmd FileType agit_diff nmap <silent><buffer> q <PLug>(agit-exit)
 augroup END
 let g:agit_no_default_mappings = 1
-nnoremap <silent> <leader>gll :<C-u>Agit<CR>
+nnoremap <silent> <leader>gla :<C-u>Agit<CR>
 nnoremap <silent> <leader>glc :<C-u>AgitFile<CR>
-let g:which_key_map['g']['l'] = {
-      \   'name': 'logs',
-      \   'l': 'logs in the entire repo',
-      \   'c': 'logs for current file',
-      \}
+let g:which_key_map['g']['l']['a'] = 'log(all) browser'
+let g:which_key_map['g']['l']['c'] = 'log(cur buf) browser'
 "}}}
 "{{{committia.vim
 let g:committia_hooks = {}
@@ -1614,10 +1616,8 @@ nmap <silent> <leader>gb :BlamerToggle<CR>
 let g:which_key_map['g']['b'] = 'blame'
 "}}}
 noremap <silent> <leader>gd :Gdiffsplit<cr>
-noremap <silent> <leader>gs :Gstatus<cr>
 noremap <silent> <leader>gw :Gwrite<cr>
 let g:which_key_map['g']['d'] = 'diff unstaged'
-let g:which_key_map['g']['s'] = 'status'
 let g:which_key_map['g']['w'] = 'write and stage'
 "}}}
 "{{{tagbar
