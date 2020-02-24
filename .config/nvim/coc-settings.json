@@ -62,13 +62,11 @@
     "list.normalMappings": {
         "<C-c>": "do:exit"
     },
-    "explorer.icon.enableNerdfont": true,
     "project.dbpath": "~/.cache/vim/coc-project",
     "project.rootPatterns": [".git", ".svn", ".root", ".project", ".hg"],
     "bookmark.sign": "\uf5c2",
     "todolist.monitor": true,
     "suggest.languageSourcePriority": 99,
-    "help_snippets": "https://github.com/neoclide/coc-snippets",
     "snippets.shortcut": "S",
     "snippets.priority": 98,
     "snippets.extends": {
@@ -76,10 +74,7 @@
         "javascriptreact": ["javascript"],
         "typescript": ["javascript"]
     },
-    "coc.source.ultisnips.shortcut": "US",
-    "coc.source.ultisnips.priority": 98,
-    "coc.source.neosnippet.shortcut": "NS",
-    "coc.source.neosnippet.priority": 98,
+    "snippets.userSnippetsDirectory": "~/.local/share/nvim/snippets",
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,
     "coc.source.file.ignoreHidden": false,
@@ -94,27 +89,21 @@
     "coc.source.tag.priority": 78,
     "coc.source.dictionary.shortcut": "D",
     "coc.source.dictionary.priority": 9,
-    "coc.source.dictionary.filetypes": ["markdown", "text", "help", "gitcommit"],
+    "coc.source.dictionary.filetypes": ["markdown", "text", "help", "gitcommit", "snippets"],
     "coc.source.emoji.shortcut": "E",
     "coc.source.emoji.priority": 8,
     "coc.source.emoji.filetypes": ["markdown", "text"],
-    "help_highlight": "https://github.com/neoclide/coc-highlight",
     "coc.preferences.colorSupport": true,
     "highlight.document.enable": true,
     "highlight.colors.enable": false,
     "highlight.disableLanguages": [],
-    "help_emmet": "https://github.com/neoclide/coc-emmet",
     "emmet.includeLanguages": {
         "vue-html": "html",
         "javascript": "javascriptreact"
     },
-    "help_pairs": "https://github.com/neoclide/coc-pairs",
     "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
-    "help_html": "https://github.com/neoclide/coc-html",
-    "help_css": "https://github.com/neoclide/coc-css",
-    "help_json": "https://github.com/neoclide/coc-json",
-    "help_yaml": "https://github.com/neoclide/coc-yaml",
     "python.jediEnabled": false,
+    "explorer.icon.enableNerdfont": true,
     "explorer.keyMappingMode": "none",
     "explorer.keyMappings": {
         "k": "nodePrev",
@@ -173,11 +162,12 @@
                 ".git/",
                 ".hg/"
             ],
-            "filetypes_bak": ["none"],
-            "filetypes": ["c", "cpp", "objc", "objcpp"]
+            "filetypes": ["none"],
+            "filetypes_bak": ["c", "cpp", "objc", "objcpp"]
         },
         "CCLS": {
             "command": "ccls",
+            "filetypes_bak": ["none"],
             "filetypes": ["c", "cpp", "objc", "objcpp"],
             "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
             "initializationOptions": {

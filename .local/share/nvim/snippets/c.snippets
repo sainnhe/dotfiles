@@ -1,0 +1,128 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when /*condition*/ matches.
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet main "main() function" b
+int main(int argc, const char *argv[]) {
+	${0:/*statements*/}
+	return 0;
+}
+endsnippet
+
+snippet mainv "main() function that accepts no parameters" b
+int main(void) {
+	${0:/*statements*/}
+	return 0;
+}
+endsnippet
+
+snippet whi "while loop" b
+while (${1:/*condition*/}) {
+	${0:/*statements*/}
+}
+endsnippet
+
+snippet do "do...while loop" b
+do {
+	${0:/*statements*/}
+} (${1:/*condition*/})
+endsnippet
+
+snippet for "for loop" b
+for(${1:/*initialization*/}; ${2:/*condition*/}; ${3:/*increment/decrement*/}) {
+	${0:/*statements*/}
+}
+endsnippet
+
+snippet fori "for loop using index" b
+for(int ${1:i} = 0; ${1:i} ${2:< 10}; ${1:i}++) {
+	${0:/*statements*/}
+}
+endsnippet
+
+snippet if "if statement" b
+if (${1:/*condition*/}) {
+	${0:/*statements*/}
+}
+endsnippet
+
+snippet elif "else if statement"
+else if (${1:/*condition*/}) {
+	${0:/*statements*/}
+}
+endsnippet
+
+snippet el "else statement"
+else {
+	${0:/*statements*/}
+}
+endsnippet
+
+snippet ifel "if...else statement" b
+if (${1:/*condition*/}) {
+	${2:/*statements*/}
+} else {
+	${3:/*statements*/}
+}
+endsnippet
+
+snippet sw "switch statement" b
+switch (${1:/*variable*/}) {
+	case ${2:/*variable case*/}:
+		${3:/*statements*/}
+		${4:break;}${5}
+	default:
+		${6}
+}
+endsnippet
+
+snippet swn "switch statement without default" b
+switch (${1:/*variable*/}) {
+	case ${2:/*variable case*/}:
+		${3:/*statements*/}
+		${4:break;}${5}
+}
+endsnippet
+
+snippet fn "function" b
+${1:void} ${2:func_name}(${3:void}) {
+	${0:/*statements*/}
+}
+endsnippet
+
+snippet fnde "function declaration" b
+${1:void} ${2:func_name}(${3:void});
+endsnippet
+
+snippet fncm "function with comments" b
+${2:void} ${3:func_name}(${4:void}) { /*${1:comments}*/
+	${0:/*statements*/}
+}
+endsnippet
+
+snippet fndecm "function declaration with comments" b
+${2:void} ${3:func_name}(${4:void}); /*${1:comments}*/
+endsnippet
+
+snippet t "ternary"
+(${1:/*condition*/}) ? ${2:/*expression true*/} : ${3:/*expression false*/}
+endsnippet
+
+snippet ret "return"
+return ${0:${VISUAL}};
+endsnippet

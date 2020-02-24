@@ -649,7 +649,6 @@ Plug 'roman/golden-ratio'
 Plug 'sainnhe/artify.vim'
 
 " Productivity
-Plug 'honza/vim-snippets'
 Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
 Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
 Plug 'tjdevries/coc-zsh'
@@ -1284,6 +1283,13 @@ nmap <silent> <leader>go :<C-u>CocCommand git.browserOpen<CR>
 nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
 nmap <silent> <leader>glC :<C-u>CocList bcommits<cr>
 nmap <silent> <leader>glA :<C-u>CocList commits<cr>
+nmap <silent> <leader><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
+nmap <silent> <leader><space>se :<C-u>CocCommand snippets.editSnippets<cr>
+let g:which_key_map["\<space>"]['s'] = {
+      \   'name': 'snippets',
+      \   'e': 'edit snippets for current file type',
+      \   'o': 'open snippet file'
+      \   }
 let g:which_key_map['l'] = {
       \   'name': 'language server',
       \   "\<Space>": 'list',

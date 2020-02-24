@@ -134,6 +134,7 @@ elif [ "$1" = "dotfiles" ]; then
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/tasks.ini ~/.config/nvim/tasks.ini
     cp /home/sainnhe/repo/dotfiles/.config/nvim/env.vim ~/.config/nvim/env.vim
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
+    ln -s /home/sainnhe/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
 elif [ "$1" = "fonts" ]; then
     mkdir -p ~/repo
     git clone git@github.com:sainnhe/icursive-nerd-font-non-free.git ~/repo/icursive-nerd-font-non-free
