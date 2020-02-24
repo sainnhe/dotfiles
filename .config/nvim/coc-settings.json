@@ -173,50 +173,18 @@
                 ".git/",
                 ".hg/"
             ],
+            "filetypes_bak": ["none"],
+            "filetypes": ["c", "cpp", "objc", "objcpp"]
+        },
+        "CCLS": {
+            "command": "ccls",
             "filetypes": ["c", "cpp", "objc", "objcpp"],
-            "filetypes_bak": ["none"]
-        },
-        "MPLS": {
-            "command": "mspyls",
-            "trace.server": "verbose",
-            "filetypes": ["none"],
-            "filetypes_bak": ["python"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
             "initializationOptions": {
-                "interpreter": {
-                    "properties": {
-                        "InterpreterPath": "/usr/bin/python3",
-                        "UseDefaultDatabase": true
-                    }
-                },
-                "displayOptions": {
-                    "preferredFormat": "markdown",
-                    "trimDocumentationLines": false,
-                    "maxDocumentationLineLength": 0,
-                    "trimDocumentationText": false,
-                    "maxDocumentationTextLength": 0
-                },
-                "searchPaths": ["/usr/bin"],
-                "testEnvironment": false,
-                "analysisUpdates": true,
-                "traceLogging": true,
-                "asyncStartup": true
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
             }
-        },
-        "FLOW": {
-            "command": "flow",
-            "args": ["lsp"],
-            "filetypes": ["none"],
-            "filetypes_bak": ["javascript", "javascriptreact"],
-            "initializationOptions": {},
-            "requireRootPattern": true,
-            "settings": {},
-            "rootPatterns": [".git", ".flowconfig"]
-        },
-        "JTLS": {
-            "command": "javascript-typescript-stdio",
-            "filetypes": ["none"],
-            "filetypes_bak": ["javascript"],
-            "rootPatterns": [".git"]
         },
         "SHLS": {
             "command": "bash-language-server",

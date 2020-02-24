@@ -37,6 +37,8 @@ pacman_setup_func() {
     pacman -S --noconfirm languagetool &>/dev/null
     echo "installing clang..."
     pacman -S --noconfirm clang &>/dev/null
+    echo "installing ccls..."
+    pacman -S --noconfirm ccls &>/dev/null
     echo "installing tidy..."
     pacman -S --noconfirm tidy &>/dev/null
     echo "installing jedi..."
