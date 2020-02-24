@@ -129,6 +129,7 @@
         "H": "collapseRecursive",
         "o": ["expandable?", "expandOrCollapse", "open"],
         "<cr>": "open",
+        "t": "open:tab",
         "<bs>": "gotoParent",
 
         "Y": "copyFilepath",
