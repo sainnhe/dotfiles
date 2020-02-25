@@ -989,7 +989,7 @@ let g:colorSchemeList['Sonokai Maia'] = [
       \   ]
 "{{{Functions
 function SwitchLightlineColorScheme(lightlineName) abort
-  execute join(['source', globpath(&runtimepath, join(['autoload/lightline/colorscheme/', a:lightlineName, '.vim'], ''))], ' ')
+  execute join(['source', globpath(&runtimepath, join(['autoload/lightline/colorscheme/', a:lightlineName, '.vim'], ''), 0, 1)[0]], ' ')
   let g:lightline.colorscheme = a:lightlineName
   call lightline#init()
   call lightline#colorscheme()
