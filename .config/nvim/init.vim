@@ -925,7 +925,7 @@ let g:colorSchemeList['Forest Night'] = [
       \   'let g:forest_night_enable_italic = 1',
       \   'let g:forest_night_disable_italic_comment = 1',
       \   'colorscheme forest-night',
-      \   'call SwitchLightlineColorScheme("vim-color-forest-night", "forest_night")'
+      \   'call SwitchLightlineColorScheme("forest_night")'
       \   ]
 let g:colorSchemeList['Gruvbox Material Dark'] = [
       \   'set background=dark',
@@ -934,7 +934,7 @@ let g:colorSchemeList['Gruvbox Material Dark'] = [
       \   'let g:gruvbox_material_enable_italic = 1',
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   'colorscheme gruvbox-material',
-      \   'call SwitchLightlineColorScheme("gruvbox-material", "gruvbox_material")'
+      \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
 let g:colorSchemeList['Gruvbox Material Light'] = [
       \   'set background=light',
@@ -943,54 +943,53 @@ let g:colorSchemeList['Gruvbox Material Light'] = [
       \   'let g:gruvbox_material_enable_italic = 1',
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   'colorscheme gruvbox-material',
-      \   'call SwitchLightlineColorScheme("gruvbox-material", "gruvbox_material")'
+      \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
 let g:colorSchemeList['Edge Dark'] = [
       \   'set background=dark',
       \   'let g:edge_disable_italic_comment = 1',
       \   'let g:edge_enable_italic = 1',
       \   'colorscheme edge',
-      \   'call SwitchLightlineColorScheme("edge", "edge")'
+      \   'call SwitchLightlineColorScheme("edge")'
       \   ]
 let g:colorSchemeList['Edge Light'] = [
       \   'set background=light',
       \   'let g:edge_disable_italic_comment = 1',
       \   'let g:edge_enable_italic = 1',
       \   'colorscheme edge',
-      \   'call SwitchLightlineColorScheme("edge", "edge")'
+      \   'call SwitchLightlineColorScheme("edge")'
       \   ]
 let g:colorSchemeList['Sonokai Shusia'] = [
       \   "let g:sonokai_style = 'shusia'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
       \   'colorscheme sonokai',
-      \   'call SwitchLightlineColorScheme("sonokai", "sonokai")'
+      \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
 let g:colorSchemeList['Sonokai Andromeda'] = [
       \   "let g:sonokai_style = 'andromeda'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
       \   'colorscheme sonokai',
-      \   'call SwitchLightlineColorScheme("sonokai", "sonokai")'
+      \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
 let g:colorSchemeList['Sonokai Atlantis'] = [
       \   "let g:sonokai_style = 'atlantis'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
       \   'colorscheme sonokai',
-      \   'call SwitchLightlineColorScheme("sonokai", "sonokai")'
+      \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
 let g:colorSchemeList['Sonokai Maia'] = [
       \   "let g:sonokai_style = 'maia'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
       \   'colorscheme sonokai',
-      \   'call SwitchLightlineColorScheme("sonokai", "sonokai")'
+      \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
 "{{{Functions
-function SwitchLightlineColorScheme(plugName, lightlineName) abort
-  let l:exe = ['source ', g:plugs[a:plugName]['dir'], 'autoload/lightline/colorscheme/', a:lightlineName, '.vim']
-  execute join(l:exe, '')
+function SwitchLightlineColorScheme(lightlineName) abort
+  execute join(['source', globpath(&runtimepath, join(['autoload/lightline/colorscheme/', a:lightlineName, '.vim'], ''))], ' ')
   let g:lightline.colorscheme = a:lightlineName
   call lightline#init()
   call lightline#colorscheme()
