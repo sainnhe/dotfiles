@@ -625,7 +625,7 @@ let g:markdown_fenced_languages = [
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/sonokai'
-Plug 'sainnhe/vim-color-forest-night'
+Plug 'sainnhe/forest-night'
 "}}}
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
