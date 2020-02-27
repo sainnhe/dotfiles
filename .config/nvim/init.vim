@@ -622,7 +622,7 @@ let g:markdown_fenced_languages = [
 "}}}
 " User Interface
 "{{{themes
-Plug 'gruvbox-material/vim', { 'as': 'gruvbox-material' }
+Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/sonokai'
 Plug 'sainnhe/vim-color-forest-night'
