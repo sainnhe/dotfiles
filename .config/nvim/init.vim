@@ -22,25 +22,14 @@ else
 endif
 execute 'source '.expand('~/.config/nvim/env.vim')
 "}}}
-if !has('win32')
-  let g:startify_bookmarks = [
-        \ {'R': '~/repo/'},
-        \ {'r': '~/repo/notes'},
-        \ {'r': '~/repo/dotfiles'},
-        \ {'r': '~/repo/scripts'},
-        \ {'P': '~/playground/'},
-        \ {'c': '~/.config/nvim/init.vim'},
-        \ {'c': '~/.zshrc'},
-        \ {'c': '~/.tmux.conf'}
-        \ ]
-else
-  let g:startify_bookmarks = [
-        \ {'R': '~/repo/'},
-        \ {'P': '~/playground/'},
-        \ {'c': '~/AppData/Local/nvim/init.vim'},
-        \ {'c': '~/Documents/WindowsPowerShell/Profile.ps1'}
-        \ ]
+"FVim{{{
+if exists('g:fvim_loaded')
+  FVimCursorSmoothMove v:true
+  FVimCursorSmoothBlink v:true
+  FVimCustomTitleBar v:true
+  FVimFontLigature v:true
 endif
+"}}}
 "}}}
 "{{{Global
 "{{{Function
