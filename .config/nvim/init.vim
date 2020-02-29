@@ -280,17 +280,10 @@ nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call ExplorerStartify()<CR>
 " Alt+W关闭当前标签
 nnoremap <silent> <A-w> :<C-u>call CloseOnLastTab()<CR>
 " Alt+上下左右可以跳转和移动窗口
-if !has('win32')
-  nnoremap <A-left> <Esc>gT
-  nnoremap <A-right> <Esc>gt
-  nnoremap <silent> <A-up> :<C-u>tabm -1<CR>
-  nnoremap <silent> <A-down> :<C-u>tabm +1<CR>
-else
-  nnoremap <C-left> <Esc>gT
-  nnoremap <C-right> <Esc>gt
-  nnoremap <silent> <C-up> :<C-u>tabm -1<CR>
-  nnoremap <silent> <C-down> :<C-u>tabm +1<CR>
-endif
+nnoremap <A-left> <Esc>gT
+nnoremap <A-right> <Esc>gt
+nnoremap <silent> <A-up> :<C-u>tabm -1<CR>
+nnoremap <silent> <A-down> :<C-u>tabm +1<CR>
 " Alt+h j k l可以在窗口之间跳转
 nnoremap <silent> <A-h> :<C-u>wincmd h<CR>
 nnoremap <silent> <A-l> :<C-u>wincmd l<CR>
@@ -366,17 +359,10 @@ inoremap <C-e> <ESC>ea
 inoremap <C-w> <ESC>lwi
 inoremap <C-b> <ESC>lbi
 " Alt+上下左右可以跳转和移动窗口
-if !has('win32')
-  inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
-  inoremap <silent> <A-right> <Esc>:wincmd l<CR>i
-  inoremap <silent> <A-up> <Esc>:tabm -1<CR>i
-  inoremap <silent> <A-down> <Esc>:tabm +1<CR>i
-else
-  inoremap <silent> <C-left> <Esc>:wincmd h<CR>i
-  inoremap <silent> <C-right> <Esc>:wincmd l<CR>i
-  inoremap <silent> <C-up> <Esc>:tabm -1<CR>i
-  inoremap <silent> <C-down> <Esc>:tabm +1<CR>i
-endif
+inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
+inoremap <silent> <A-right> <Esc>:wincmd l<CR>i
+inoremap <silent> <A-up> <Esc>:tabm -1<CR>i
+inoremap <silent> <A-down> <Esc>:tabm +1<CR>i
 "}}}
 "{{{VisualMode
 " Alt+X进入普通模式
