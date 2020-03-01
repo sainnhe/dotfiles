@@ -908,6 +908,7 @@ let g:colorSchemeList['Gruvbox Material Dark'] = [
       \   "let g:gruvbox_material_background = 'medium'",
       \   "let g:gruvbox_material_visual = 'grey background'",
       \   'let g:gruvbox_material_enable_italic = 1',
+      \   "let g:gruvbox_material_cursor = 'green'",
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
@@ -917,6 +918,7 @@ let g:colorSchemeList['Gruvbox Material Light'] = [
       \   "let g:gruvbox_material_background = 'soft'",
       \   "let g:gruvbox_material_visual = 'green background'",
       \   'let g:gruvbox_material_enable_italic = 1',
+      \   "let g:gruvbox_material_cursor = 'auto'",
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
@@ -925,6 +927,7 @@ let g:colorSchemeList['Edge Dark'] = [
       \   'set background=dark',
       \   'let g:edge_disable_italic_comment = 1',
       \   'let g:edge_enable_italic = 1',
+      \   "let g:edge_cursor = 'blue'",
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
@@ -932,6 +935,7 @@ let g:colorSchemeList['Edge Light'] = [
       \   'set background=light',
       \   'let g:edge_disable_italic_comment = 1',
       \   'let g:edge_enable_italic = 1',
+      \   "let g:edge_cursor = 'purple'",
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
@@ -939,6 +943,7 @@ let g:colorSchemeList['Sonokai Shusia'] = [
       \   "let g:sonokai_style = 'shusia'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
+      \   "let g:sonokai_cursor = 'blue'",
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -946,6 +951,7 @@ let g:colorSchemeList['Sonokai Andromeda'] = [
       \   "let g:sonokai_style = 'andromeda'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
+      \   "let g:sonokai_cursor = 'blue'",
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -953,6 +959,7 @@ let g:colorSchemeList['Sonokai Atlantis'] = [
       \   "let g:sonokai_style = 'atlantis'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
+      \   "let g:sonokai_cursor = 'blue'",
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -960,6 +967,7 @@ let g:colorSchemeList['Sonokai Maia'] = [
       \   "let g:sonokai_style = 'maia'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
+      \   "let g:sonokai_cursor = 'blue'",
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
