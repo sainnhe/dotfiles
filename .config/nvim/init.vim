@@ -660,6 +660,7 @@ else
   Plug 'vim-php/tagbar-phpctags.vim', { 'on': [], 'do': 'make' }
 endif
 Plug 'sbdchd/neoformat'
+Plug 'hotoo/pangu.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
@@ -2231,6 +2232,10 @@ let g:neoformat_basic_format_retab = 1
 let g:neoformat_basic_format_trim = 1
 nnoremap <silent> <leader><Tab> :<C-u>call Neoformat_Default_Filetype_Formatter()<CR>
 vnoremap <silent> <leader><Tab> :Neoformat! &ft<CR>
+"}}}
+"{{{pangu
+nnoremap <silent> <leader><space>F :<C-u>Pangu<CR>
+let g:which_key_map["\<space>"]['F'] = 'chinese format'
 "}}}
 "{{{nerdcommenter
 "{{{nerdcommenter-usage
