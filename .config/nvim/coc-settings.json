@@ -105,6 +105,7 @@
     "python.jediEnabled": false,
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappingMode": "none",
+    "explorer.previewAction.onHover": false,
     "explorer.keyMappings": {
         "k": "nodePrev",
         "j": "nodeNext",

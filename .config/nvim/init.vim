@@ -22,25 +22,14 @@ else
 endif
 execute 'source '.expand('~/.config/nvim/env.vim')
 "}}}
-if !has('win32')
-  let g:startify_bookmarks = [
-        \ {'R': '~/repo/'},
-        \ {'r': '~/repo/notes'},
-        \ {'r': '~/repo/dotfiles'},
-        \ {'r': '~/repo/scripts'},
-        \ {'P': '~/playground/'},
-        \ {'c': '~/.config/nvim/init.vim'},
-        \ {'c': '~/.zshrc'},
-        \ {'c': '~/.tmux.conf'}
-        \ ]
-else
-  let g:startify_bookmarks = [
-        \ {'R': '~/repo/'},
-        \ {'P': '~/playground/'},
-        \ {'c': '~/AppData/Local/nvim/init.vim'},
-        \ {'c': '~/Documents/WindowsPowerShell/Profile.ps1'}
-        \ ]
+"FVim{{{
+if exists('g:fvim_loaded')
+  FVimCursorSmoothMove v:true
+  FVimCursorSmoothBlink v:true
+  FVimCustomTitleBar v:true
+  FVimFontLigature v:true
 endif
+"}}}
 "}}}
 "{{{Global
 "{{{Function
@@ -138,6 +127,7 @@ set autoindent                          " 自动对齐
 set wildmenu                            " 命令框Tab呼出菜单
 set autoread                            " 自动加载变更文件
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
+set signcolumn=yes
 
 set updatetime=100
 if has('nvim')
@@ -256,7 +246,7 @@ nnoremap <silent> Q :q!<CR>
 " <leader>q 关闭 quickfix list
 nnoremap <silent> <leader>q :cclose<CR>
 " Ctrl+S保存文件
-nnoremap <C-S> :<C-u>w<CR>
+nnoremap <silent> <C-S> :<C-u>w<CR>
 " Shift+HJKL快速移动
 nnoremap K 7<up>
 nnoremap J 7<down>
@@ -280,17 +270,10 @@ nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call ExplorerStartify()<CR>
 " Alt+W关闭当前标签
 nnoremap <silent> <A-w> :<C-u>call CloseOnLastTab()<CR>
 " Alt+上下左右可以跳转和移动窗口
-if !has('win32')
-  nnoremap <A-left> <Esc>gT
-  nnoremap <A-right> <Esc>gt
-  nnoremap <silent> <A-up> :<C-u>tabm -1<CR>
-  nnoremap <silent> <A-down> :<C-u>tabm +1<CR>
-else
-  nnoremap <C-left> <Esc>gT
-  nnoremap <C-right> <Esc>gt
-  nnoremap <silent> <C-up> :<C-u>tabm -1<CR>
-  nnoremap <silent> <C-down> :<C-u>tabm +1<CR>
-endif
+nnoremap <A-left> <Esc>gT
+nnoremap <A-right> <Esc>gt
+nnoremap <silent> <A-up> :<C-u>tabm -1<CR>
+nnoremap <silent> <A-down> :<C-u>tabm +1<CR>
 " Alt+h j k l可以在窗口之间跳转
 nnoremap <silent> <A-h> :<C-u>wincmd h<CR>
 nnoremap <silent> <A-l> :<C-u>wincmd l<CR>
@@ -345,7 +328,7 @@ inoremap <C-V> <Space><Backspace><ESC>pa
 " <A-z><C-v>从系统剪切板粘贴
 inoremap <A-z><C-V> <Space><Backspace><ESC>"+pa
 " Ctrl+S保存文件
-inoremap <C-S> <Esc>:w<CR>a
+inoremap <silent> <C-S> <Esc>:w<CR>a
 " Ctrl+O跳转
 inoremap <C-o> <Esc><C-o>i
 " Ctrl+Z撤销上一个动作
@@ -366,17 +349,10 @@ inoremap <C-e> <ESC>ea
 inoremap <C-w> <ESC>lwi
 inoremap <C-b> <ESC>lbi
 " Alt+上下左右可以跳转和移动窗口
-if !has('win32')
-  inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
-  inoremap <silent> <A-right> <Esc>:wincmd l<CR>i
-  inoremap <silent> <A-up> <Esc>:tabm -1<CR>i
-  inoremap <silent> <A-down> <Esc>:tabm +1<CR>i
-else
-  inoremap <silent> <C-left> <Esc>:wincmd h<CR>i
-  inoremap <silent> <C-right> <Esc>:wincmd l<CR>i
-  inoremap <silent> <C-up> <Esc>:tabm -1<CR>i
-  inoremap <silent> <C-down> <Esc>:tabm +1<CR>i
-endif
+inoremap <silent> <A-left> <Esc>:wincmd h<CR>i
+inoremap <silent> <A-right> <Esc>:wincmd l<CR>i
+inoremap <silent> <A-up> <Esc>:tabm -1<CR>i
+inoremap <silent> <A-down> <Esc>:tabm +1<CR>i
 "}}}
 "{{{VisualMode
 " Alt+X进入普通模式
@@ -388,7 +364,7 @@ endif
 " ; 绑定到 :
 vnoremap ; :
 " Ctrl+S保存文件
-vnoremap <C-S> :<C-u>w<CR>v
+vnoremap <silent> <C-S> :<C-u>w<CR>v
 " x删除字符但不保存到剪切板
 vnoremap x "_x
 " Shift+方向键快速移动
@@ -633,13 +609,15 @@ Plug 'macthecadillac/lightline-gitdiff'
 Plug 'maximbaz/lightline-ale'
 Plug 'albertomontesg/lightline-asyncrun'
 Plug 'rmolin88/pomodoro.vim'
-if g:vimIsInTmux == 1
+if g:vimIsInTmux == 1 && !has('win32')
   Plug 'sainnhe/tmuxline.vim', { 'on': [ 'Tmuxline', 'TmuxlineSnapshot' ] }
 endif
 if g:vimEnableStartify == 1
   Plug 'mhinz/vim-startify'
 endif
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+if !has('win32')
+  Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+endif
 Plug 'liuchengxu/vim-which-key'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
@@ -649,16 +627,21 @@ Plug 'roman/golden-ratio'
 Plug 'sainnhe/artify.vim'
 
 " Productivity
-Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
-Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
-Plug 'tjdevries/coc-zsh'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'dense-analysis/ale'
 if !has('win32')
   Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+  Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
+  Plug 'tjdevries/coc-zsh'
+  Plug 'lambdalisue/suda.vim'
+  Plug 'lambdalisue/vim-manpager'
+  Plug 'lilydjwg/fcitx.vim', { 'on': [] }
+        \| au InsertEnter * call plug#load('fcitx.vim')
+  Plug 'KabbAmine/vCoolor.vim'
 else
   Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
 endif
+Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
@@ -682,7 +665,6 @@ Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/vim-terminal-help'
 Plug 'mg979/vim-visual-multi'
-Plug 'lambdalisue/suda.vim'
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/inline_edit.vim'
 Plug 'airblade/vim-rooter'
@@ -691,18 +673,12 @@ Plug 'yuttie/comfortable-motion.vim'
 Plug 'mbbill/fencview', { 'on': [ 'FencAutoDetect', 'FencView' ] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'andymass/vim-matchup'
-Plug 'lambdalisue/vim-manpager'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-sleuth'
-if executable('fcitx')
-  Plug 'lilydjwg/fcitx.vim', { 'on': [] }
-        \| au InsertEnter * call plug#load('fcitx.vim')
-endif
 Plug 'alvan/vim-closetag'
 Plug 'elzr/vim-json', { 'for': 'json' }
       \| au BufNewFile,BufRead *.json call Func_vim_json()
 Plug 'masukomi/vim-markdown-folding'
-Plug 'KabbAmine/vCoolor.vim'
 Plug 'yianwillis/vimcdoc'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 "{{{
@@ -899,7 +875,7 @@ let g:lightline.component_visible_condition = {
       \ }
 "}}}
 "{{{tmuxline.vim
-if g:vimIsInTmux == 1
+if g:vimIsInTmux == 1 && !has('win32')
   let g:tmuxline_preset = {
         \'a'    : '#S',
         \'b'    : '%R',
@@ -2484,7 +2460,7 @@ nmap <leader>% ]%V[%
 nmap <2-LeftMouse> ]%V[%
 "}}}
 " {{{vim-manpager
-if exists('g:vimManPager')
+if exists('g:vimManPager') && !has('win32')
   " {{{vim-manpager-usage
   function! Help_vim_manpager()
     echo 'shell里"man foo"启动'
@@ -2535,38 +2511,40 @@ function! Func_vim_json()
 endfunction
 "}}}
 "{{{vCoolor.vim
-function Help_vCoolor()
-  echo ':Rgb2Hex "255, 0, 255"                        " Gives "#FF00FF"'
-  echo ':Rgb2RgbPerc "255, 0, 255"            " Gives "100%, 0%, 100%"'
-  echo ':Rgb2Hsl "255, 0, 255"                        " Gives "300, 100%, 50%"'
-  echo ''
-  echo ':RgbPerc2Hex "100%, 0%, 100%" " Gives "#FF00FF"'
-  echo ':RgbPerc2Rgb "100%, 0%, 100%" " Gives "255, 0, 255"'
-  echo ''
-  echo ':Hex2Lit "#FF00FF"                            " Gives "magenta"'
-  echo ':Hex2Rgb "#FF00FF"                            " Gives "255, 0, 255"'
-  echo ':Hex2RgbPerc "#FF00FF"                        " Gives "100%, 0%, 100%"'
-  echo ':Hex2Hsl "#FF00FF"                            " Gives "300, 100%, 50%"'
-  echo ''
-  echo ':Hsl2Rgb "300, 100%, 50%"             " Gives "255, 0, 255"'
-  echo ':Hsl2Hex "300, 100%, 50%"             " Gives "#FF00FF"'
-endfunction
-let g:vcoolor_disable_mappings = 1
-let g:vcoolor_lowercase = 1
-let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --color '
-nnoremap <silent> <leader><space>cc :<c-u>VCoolor<cr>
-nnoremap <silent> <leader><space>cr :<c-u>VCoolor r<cr>
-nnoremap <silent> <leader><space>cH :<c-u>VCoolor h<cr>
-nnoremap <silent> <leader><space>cR :<c-u>VCoolor ra<cr>
-nnoremap <silent> <leader><space>ch :<c-u>call Help_vCoolor()<cr>
-let g:which_key_map["\<space>"]['c'] = {
-      \   'name': 'color picker',
-      \   'c': 'insert hex',
-      \   'r': 'insert rgb',
-      \   'H': 'insert hsl',
-      \   'R': 'insert rgba',
-      \   'h': 'help'
-      \   }
+if !has('win32')
+  function Help_vCoolor()
+    echo ':Rgb2Hex "255, 0, 255"                        " Gives "#FF00FF"'
+    echo ':Rgb2RgbPerc "255, 0, 255"            " Gives "100%, 0%, 100%"'
+    echo ':Rgb2Hsl "255, 0, 255"                        " Gives "300, 100%, 50%"'
+    echo ''
+    echo ':RgbPerc2Hex "100%, 0%, 100%" " Gives "#FF00FF"'
+    echo ':RgbPerc2Rgb "100%, 0%, 100%" " Gives "255, 0, 255"'
+    echo ''
+    echo ':Hex2Lit "#FF00FF"                            " Gives "magenta"'
+    echo ':Hex2Rgb "#FF00FF"                            " Gives "255, 0, 255"'
+    echo ':Hex2RgbPerc "#FF00FF"                        " Gives "100%, 0%, 100%"'
+    echo ':Hex2Hsl "#FF00FF"                            " Gives "300, 100%, 50%"'
+    echo ''
+    echo ':Hsl2Rgb "300, 100%, 50%"             " Gives "255, 0, 255"'
+    echo ':Hsl2Hex "300, 100%, 50%"             " Gives "#FF00FF"'
+  endfunction
+  let g:vcoolor_disable_mappings = 1
+  let g:vcoolor_lowercase = 1
+  let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --color '
+  nnoremap <silent> <leader><space>cc :<c-u>VCoolor<cr>
+  nnoremap <silent> <leader><space>cr :<c-u>VCoolor r<cr>
+  nnoremap <silent> <leader><space>cH :<c-u>VCoolor h<cr>
+  nnoremap <silent> <leader><space>cR :<c-u>VCoolor ra<cr>
+  nnoremap <silent> <leader><space>ch :<c-u>call Help_vCoolor()<cr>
+  let g:which_key_map["\<space>"]['c'] = {
+        \   'name': 'color picker',
+        \   'c': 'insert hex',
+        \   'r': 'insert rgb',
+        \   'H': 'insert hsl',
+        \   'R': 'insert rgba',
+        \   'h': 'help'
+        \   }
+endif
 "}}}
 "{{{vim-devicons
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
