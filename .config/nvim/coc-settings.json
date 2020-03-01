@@ -107,9 +107,6 @@
     "explorer.keyMappingMode": "none",
     "explorer.previewAction.onHover": false,
     "explorer.keyMappings": {
-        "k": "nodePrev",
-        "j": "nodeNext",
-
         "s": "toggleSelection",
         "<tab>": "actionMenu",
 
