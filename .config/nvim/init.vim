@@ -28,6 +28,11 @@ if exists('g:fvim_loaded')
   FVimCursorSmoothBlink v:true
   FVimCustomTitleBar v:true
   FVimFontLigature v:true
+  FVimFontNoBuiltinSymbols v:true
+  FVimFontLcdRender v:false
+  FVimFontAutoSnap v:true
+  FVimUIPopupMenu v:false
+  FVimToggleFullScreen
 endif
 "}}}
 "}}}
