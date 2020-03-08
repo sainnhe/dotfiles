@@ -2284,8 +2284,9 @@ noremap <silent> <leader>rf :AsyncTask file-run<cr>
 noremap <silent> <leader>bf :AsyncTask file-build<cr>
 noremap <silent> <leader>rp :AsyncTask project-run<cr>
 noremap <silent> <leader>bp :AsyncTask project-build<cr>
-noremap <silent> <leader>g^ :AsyncRun git config --global http.proxy "socks5://127.0.0.1:1080" && git config --global https.proxy "socks5://127.0.0.1:1080"<cr>
-noremap <silent> <leader>g$ :AsyncRun git config --global --unset http.proxy && git config --global --unset https.proxy<cr>
+noremap <silent> <leader>g^s :AsyncRun git config --global http.proxy "socks5://127.0.0.1:1080"<cr>
+noremap <silent> <leader>g^h :AsyncRun git config --global http.proxy "http://127.0.0.1:1081"<cr>
+noremap <silent> <leader>g$ :AsyncRun git config --global --unset http.proxy<cr>
 noremap <silent> <leader>gp :AsyncRun git push origin HEAD<cr>
 noremap <silent> <leader>gf :AsyncRun git fetch origin<cr>
 noremap <silent> <leader>gc :Git commit<cr>
@@ -2293,7 +2294,7 @@ noremap <silent> <leader><space>E :AsyncTaskEdit<cr>
 let g:which_key_map['r'] = {'name': 'run', 'f': 'file', 'p': 'project'}
 let g:which_key_map['b'] = {'name': 'build', 'f': 'file', 'p': 'project'}
 let g:which_key_map["\<space>"]['E'] = 'task config'
-let g:which_key_map['g']['^'] = 'set proxy'
+let g:which_key_map['g']['^'] = {'name': 'set proxy', 's': 'socks5', 'h': 'http'}
 let g:which_key_map['g']['$'] = 'unset proxy'
 let g:which_key_map['g']['c'] = 'commit'
 let g:which_key_map['g']['p'] = 'push'
