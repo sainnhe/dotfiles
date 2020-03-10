@@ -81,7 +81,7 @@ pacman_setup_func() {
 pikaur_setup_func() {
     echo -n "make sure you have configured makepkg proxy correctly. [enter to continue]  "
     read -r
-    pikaur -S global stylelint stylelint-config-standard nodejs-jsonlint js-beautify universal-ctags-git gotags-git jsctags-tern-git markdown2ctags rst2ctags
+    pikaur -S ruby-neovim global stylelint stylelint-config-standard nodejs-jsonlint js-beautify universal-ctags-git gotags-git jsctags-tern-git markdown2ctags rst2ctags
     # echo -n "install global from AUR. [enter to continue]  "
     # read -r
     # pikaur -S global
