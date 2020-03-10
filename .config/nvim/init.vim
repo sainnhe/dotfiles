@@ -568,10 +568,10 @@ Plug 'tpope/vim-repeat'
 Plug 'ryanoasis/vim-devicons'
 "}}}
 "{{{syntax
-Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax' }
-Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-syntax-c-cpp', 'for': [ 'c', 'cpp' ] }
-Plug 'maxmellon/vim-jsx-pretty', { 'as': 'vim-syntax-jsx', 'for': [ 'javascriptreact' ] }
-let g:polyglot_disabled = [ 'c', 'cpp', 'markdown', 'javascriptreact' ]
+Plug 'sheerun/vim-polyglot', {'as': 'vim-syntax'}
+Plug 'bfrg/vim-cpp-modern', {'as': 'vim-syntax-c-cpp', 'for': ['c', 'cpp']}
+Plug 'maxmellon/vim-jsx-pretty', {'as': 'vim-syntax-jsx', 'for': ['javascriptreact']}
+let g:polyglot_disabled = ['c', 'cpp', 'markdown', 'javascriptreact']
 let g:vim_json_syntax_conceal = 0
 let g:markdown_fenced_languages = [
       \   'html',
@@ -616,37 +616,37 @@ Plug 'maximbaz/lightline-ale'
 Plug 'albertomontesg/lightline-asyncrun'
 Plug 'rmolin88/pomodoro.vim'
 if g:vimIsInTmux == 1 && !has('win32')
-  Plug 'sainnhe/tmuxline.vim', { 'on': [ 'Tmuxline', 'TmuxlineSnapshot' ] }
+  Plug 'sainnhe/tmuxline.vim', {'on': ['Tmuxline', 'TmuxlineSnapshot']}
 endif
 if g:vimEnableStartify == 1
   Plug 'mhinz/vim-startify'
 endif
 if !has('win32')
-  Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+  Plug 'rrethy/vim-hexokinase', {'do': 'make hexokinase'}
 endif
 Plug 'liuchengxu/vim-which-key'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'junegunn/limelight.vim', {'on': 'Limelight!!'}
+Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'roman/golden-ratio'
 Plug 'sainnhe/artify.vim'
 
 " Productivity
 if !has('win32')
-  Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-  Plug 'wellle/tmux-complete.vim', { 'for': 'tmux' }
+  Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
+  Plug 'wellle/tmux-complete.vim', {'for': 'tmux'}
   Plug 'tjdevries/coc-zsh'
   Plug 'lambdalisue/suda.vim'
   Plug 'lambdalisue/vim-manpager'
-  Plug 'lilydjwg/fcitx.vim', { 'on': [] }
+  Plug 'lilydjwg/fcitx.vim', {'on': []}
         \| au InsertEnter * call plug#load('fcitx.vim')
   Plug 'KabbAmine/vCoolor.vim'
 else
-  Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
+  Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
 endif
 Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
@@ -659,11 +659,11 @@ Plug 'rhysd/committia.vim'
 Plug 'cohama/agit.vim'
 Plug 'samoshkin/vim-mergetool'
 Plug 'APZelos/blamer.nvim'
-Plug 'majutsushi/tagbar', { 'on': [] }
+Plug 'majutsushi/tagbar', {'on': []}
 if executable('proxychains')
-  Plug 'vim-php/tagbar-phpctags.vim', { 'on': [], 'do': 'proxychains -q make' }
+  Plug 'vim-php/tagbar-phpctags.vim', {'on': [], 'do': 'proxychains -q make'}
 else
-  Plug 'vim-php/tagbar-phpctags.vim', { 'on': [], 'do': 'make' }
+  Plug 'vim-php/tagbar-phpctags.vim', {'on': [], 'do': 'make'}
 endif
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
@@ -676,17 +676,17 @@ Plug 'AndrewRadev/inline_edit.vim'
 Plug 'airblade/vim-rooter'
 Plug 'voldikss/vim-translate-me'
 Plug 'yuttie/comfortable-motion.vim'
-Plug 'mbbill/fencview', { 'on': [ 'FencAutoDetect', 'FencView' ] }
-Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
+Plug 'mbbill/fencview', {'on': ['FencAutoDetect', 'FencView']}
+Plug 'tweekmonster/startuptime.vim', {'on': 'StartupTime'}
 Plug 'andymass/vim-matchup'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-sleuth'
 Plug 'alvan/vim-closetag'
-Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'elzr/vim-json', {'for': 'json'}
       \| au BufNewFile,BufRead *.json call Func_vim_json()
 Plug 'masukomi/vim-markdown-folding'
 Plug 'yianwillis/vimcdoc'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
+Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & npm install'}
 "{{{
 call plug#end()
 "}}}
