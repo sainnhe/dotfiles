@@ -2,8 +2,8 @@
 
 sudo pacman -S lua zsh
 chsh -s /usr/bin/zsh
-mkdir ~/.zplugin
-git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+mkdir ~/.zinit
+git clone --depth 1 https://github.com/zdharma/zinit.git ~/.zinit/bin
 
 ln -s /home/sainnhe/repo/dotfiles/.zshrc ~/.zshrc
 ln -s /home/sainnhe/repo/dotfiles/.zsh-snippets ~/.zsh-snippets

@@ -304,7 +304,7 @@ zcomp-gen () {
         if [[ "$TARGET"x == "[cancel]"x ]]; then
             echo ""
         else
-            echo "$TARGET" | xargs -i sh ~/.zplugin/plugins/nevesnunes---sh-manpage-completions/gencomp-manpage {}
+            echo "$TARGET" | xargs -i sh ~/.zinit/plugins/nevesnunes---sh-manpage-completions/gencomp-manpage {}
             zpcompinit
         fi
     elif [[ "$var"x == "2"x ]]; then
@@ -367,31 +367,29 @@ else
 fi
 # }}}
 # {{{Plugins
-# https://github.com/zdharma/zplugin
+# https://github.com/zdharma/zinit
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview
 # https://github.com/sorin-ionescu/prezto
-source ~/.zplugin/bin/zplugin.zsh
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
-zplugin light romkatv/powerlevel10k
-zplugin light zdharma/fast-syntax-highlighting
-zplugin light zsh-users/zsh-autosuggestions
-zplugin ice wait'0' lucid; zplugin light zsh-users/zsh-history-substring-search
-zplugin ice wait'0' lucid; zplugin light skywind3000/z.lua
-zplugin ice wait'1' lucid; zplugin light ytet5uy4/fzf-widgets
-zplugin ice wait'0' lucid; zplugin light urbainvaes/fzf-marks
-zplugin ice wait'1' lucid; zplugin light hlissner/zsh-autopair
-zplugin ice wait'1' lucid; zplugin light peterhurford/git-it-on.zsh
-zplugin ice wait'1' lucid; zplugin snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
-zplugin ice wait'1' lucid; zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
-zplugin ice wait'1' lucid; zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
-zplugin ice wait'1' lucid; zplugin light denysdovhan/gitio-zsh
-zplugin ice wait'0' blockf lucid; zplugin light zsh-users/zsh-completions
-zplugin ice wait'0' blockf svn lucid; zplugin snippet https://github.com/zchee/zsh-completions/trunk/src/zsh
-zplugin ice wait'0' blockf lucid; zplugin light sainnhe/rust-zsh-completions
-zplugin ice wait'0' lucid; zplugin light RobSis/zsh-completion-generator
-zplugin ice wait'0' atload"export FPATH=$HOME/.zplugin/plugins/RobSis---zsh-completion-generator/completions:$HOME/.zplugin/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH; zcomp_init" as"program" atclone"mv run.sh gencomp-manpage; sed -i -e '1i pushd ~/.zplugin/plugins/nevesnunes---sh-manpage-completions/' -e '\$a popd' gencomp-manpage" pick"run.sh" lucid; zplugin light nevesnunes/sh-manpage-completions
-zplugin ice wait'0' pick".zsh-snippets" lucid; zplugin light "$HOME"
+source ~/.zinit/bin/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+zinit light romkatv/powerlevel10k
+zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit ice wait'0' lucid; zinit light zsh-users/zsh-history-substring-search
+zinit ice wait'0' lucid; zinit light skywind3000/z.lua
+zinit ice wait'1' lucid; zinit light ytet5uy4/fzf-widgets
+zinit ice wait'0' lucid; zinit light urbainvaes/fzf-marks
+zinit ice wait'1' lucid; zinit light hlissner/zsh-autopair
+zinit ice wait'1' lucid; zinit light peterhurford/git-it-on.zsh
+zinit ice wait'1' lucid; zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
+zinit ice wait'1' lucid; zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zinit ice wait'1' lucid; zinit light denysdovhan/gitio-zsh
+zinit ice wait'0' blockf lucid; zinit light zsh-users/zsh-completions
+zinit ice wait'0' blockf lucid; zinit light sainnhe/rust-zsh-completions
+zinit ice wait'0' lucid; zinit light RobSis/zsh-completion-generator
+zinit ice wait'0' atload"export FPATH=$HOME/.zinit/plugins/RobSis---zsh-completion-generator/completions:$HOME/.zinit/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH; zcomp_init" as"program" atclone"mv run.sh gencomp-manpage; sed -i -e '1i pushd ~/.zinit/plugins/nevesnunes---sh-manpage-completions/' -e '\$a popd' gencomp-manpage" pick"run.sh" lucid; zinit light nevesnunes/sh-manpage-completions
+zinit ice wait'0' pick".zsh-snippets" lucid; zinit light "$HOME"
 source "$HOME/.zsh-theme"
 # {{{fast-syntax-highlighting
 FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
