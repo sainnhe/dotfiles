@@ -912,6 +912,18 @@ let g:colorSchemeList['Forest Night'] = [
 let g:colorSchemeList['Gruvbox Material Dark'] = [
       \   'set background=dark',
       \   "let g:gruvbox_material_background = 'medium'",
+      \   "let g:gruvbox_material_palette = 'material'",
+      \   "let g:gruvbox_material_visual = 'grey background'",
+      \   'let g:gruvbox_material_enable_italic = g:vimEnableItalic',
+      \   "let g:gruvbox_material_cursor = 'green'",
+      \   'let g:gruvbox_material_disable_italic_comment = 1',
+      \   'colorscheme gruvbox-material',
+      \   'call SwitchLightlineColorScheme("gruvbox_material")'
+      \   ]
+let g:colorSchemeList['Gruvbox Mix Dark'] = [
+      \   'set background=dark',
+      \   "let g:gruvbox_material_background = 'medium'",
+      \   "let g:gruvbox_material_palette = 'mix'",
       \   "let g:gruvbox_material_visual = 'grey background'",
       \   'let g:gruvbox_material_enable_italic = g:vimEnableItalic',
       \   "let g:gruvbox_material_cursor = 'green'",
@@ -922,6 +934,7 @@ let g:colorSchemeList['Gruvbox Material Dark'] = [
 let g:colorSchemeList['Gruvbox Material Light'] = [
       \   'set background=light',
       \   "let g:gruvbox_material_background = 'soft'",
+      \   "let g:gruvbox_material_palette = 'material'",
       \   "let g:gruvbox_material_visual = 'green background'",
       \   'let g:gruvbox_material_enable_italic = g:vimEnableItalic',
       \   "let g:gruvbox_material_cursor = 'auto'",

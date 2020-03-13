@@ -52,6 +52,32 @@ colors:
 #     cyan:    '0x89b482'
 #     white:   '0xd4be98'
 # # }}}
+# # {{{ Gruvbox Mix Dark
+# colors:
+#   primary:
+#     background: '0x282828'
+#     foreground: '0xe2cca9'
+#
+#   normal:
+#     black:   '0x504945'
+#     red:     '0xf2594b'
+#     green:   '0xb0b846'
+#     yellow:  '0xe9b143'
+#     blue:    '0x80aa9e'
+#     magenta: '0xd3869b'
+#     cyan:    '0x8bba7f'
+#     white:   '0xe2cca9'
+#
+#   bright:
+#     black:   '0x504945'
+#     red:     '0xf2594b'
+#     green:   '0xb0b846'
+#     yellow:  '0xe9b143'
+#     blue:    '0x80aa9e'
+#     magenta: '0xd3869b'
+#     cyan:    '0x8bba7f'
+#     white:   '0xe2cca9'
+# # }}}
 # # {{{ Gruvbox Material Light
 # colors:
 #   primary:
