@@ -153,6 +153,8 @@ elif [ "$1" = "fonts" ]; then
     cp ~/repo/icursive-nerd-font-non-free/InconsolataLGC\ iCursive\ Op/* ~/.local/share/fonts/
     cp ~/repo/icursive-nerd-font-non-free/Meslo\ iCursive\ Op/* ~/.local/share/fonts/
     cp ~/repo/icursive-nerd-font-non-free/Hack\ iCursive\ Op/* ~/.local/share/fonts/
+    cp ~/repo/icursive-nerd-font-non-free/Fantasque\ iCursive\ Op/* ~/.local/share/fonts/
+    cp ~/repo/icursive-nerd-font-non-free/Fantasque\ iCursive\ Dk/* ~/.local/share/fonts/
     cp ~/repo/icursive-nerd-font-non-free/Source\ Code\ Pro\ iCursive\ Op/* ~/.local/share/fonts/
     fc-cache
 fi

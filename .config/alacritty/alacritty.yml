@@ -602,6 +602,74 @@ font:
 #     y: 0
 #
 # # }}}
+# # {{{Fantasque iCursive Op
+# font:
+#   # Normal (roman) font face
+#   normal:
+#     family: Fantasque iCursive Op
+#     style: Regular
+#
+#   # Bold font face
+#   bold:
+#     family: Fantasque iCursive Op
+#     style: Bold
+#
+#   # Italic font face
+#   italic:
+#     family: Fantasque iCursive Op
+#     style: Italic
+#
+#   # Point size
+#   size: 13.0
+#
+#   # Offset is the extra space around each character. `offset.y` can be thought of
+#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+#   offset:
+#     x: 0
+#     y: 0
+#
+#   # Glyph offset determines the locations of the glyphs within their cells with
+#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
+#   # increasing `y` moves the glyph upwards.
+#   glyph_offset:
+#     x: 0
+#     y: 0
+#
+# # }}}
+# # {{{Fantasque iCursive Dk
+# font:
+#   # Normal (roman) font face
+#   normal:
+#     family: Fantasque iCursive Dk
+#     style: Regular
+#
+#   # Bold font face
+#   bold:
+#     family: Fantasque iCursive Dk
+#     style: Bold
+#
+#   # Italic font face
+#   italic:
+#     family: Fantasque iCursive Dk
+#     style: Italic
+#
+#   # Point size
+#   size: 13.0
+#
+#   # Offset is the extra space around each character. `offset.y` can be thought of
+#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+#   offset:
+#     x: 0
+#     y: 0
+#
+#   # Glyph offset determines the locations of the glyphs within their cells with
+#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
+#   # increasing `y` moves the glyph upwards.
+#   glyph_offset:
+#     x: 0
+#     y: 0
+#
+# # }}}
 # # {{{InconsolataGo iCursive Pb
 # font:
 #   # Normal (roman) font face
