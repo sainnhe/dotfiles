@@ -38,7 +38,7 @@ setup_symlink ../.config/i3/scripts
 setup_copy .config/autostart
 setup_symlink .config/browsh/config.toml
 setup_symlink .config/fontconfig/fonts.conf
-setup_symlink .config/polybar
+setup_copy .config/polybar
 setup_symlink .config/rofi
 setup_symlink .config/rtv
 setup_symlink .config/compton.conf
