@@ -381,7 +381,7 @@ vnoremap <S-right> $<left>
 vnoremap K 5<up>
 vnoremap J 5<down>
 vnoremap H 0
-vnoremap L $
+vnoremap L $h
 " <leader>+Y复制到系统剪切板
 vnoremap <leader>y "+y
 " <leader>+P从系统剪切板粘贴
