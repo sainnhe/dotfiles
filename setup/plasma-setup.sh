@@ -17,3 +17,5 @@ sh ~/repo/Qogir-kde/install.sh
 git clone --depth 1 https://github.com/vinceliuice/Qogir-icon-theme.git
 sh ~/repo/Qogir-icon-theme/install.sh
 echo "https://store.kde.org/p/1364064/"
+echo "https://github.com/EliverLara/Sweet/tree/nova/kde"
+echo "https://www.pling.com/p/1305251/"
