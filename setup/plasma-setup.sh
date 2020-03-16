@@ -10,3 +10,4 @@ mkdir -p ~/repo
 cd ~/repo || exit
 git clone --depth 1 https://github.com/vinceliuice/McMojave-circle.git
 git clone --depth 1 https://github.com/vinceliuice/McMojave-kde.git
+echo "https://store.kde.org/p/1364064/"
