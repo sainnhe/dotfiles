@@ -9,5 +9,11 @@ pikaur -S capitaine-cursors numix-cursor-theme
 mkdir -p ~/repo
 cd ~/repo || exit
 git clone --depth 1 https://github.com/vinceliuice/McMojave-circle.git
+sh ~/repo/McMojave-circle/install.sh
 git clone --depth 1 https://github.com/vinceliuice/McMojave-kde.git
+sh ~/repo/McMojave-kde/install.sh
+git clone --depth 1 https://github.com/vinceliuice/Qogir-kde.git
+sh ~/repo/Qogir-kde/install.sh
+git clone --depth 1 https://github.com/vinceliuice/Qogir-icon-theme.git
+sh ~/repo/Qogir-icon-theme/install.sh
 echo "https://store.kde.org/p/1364064/"
