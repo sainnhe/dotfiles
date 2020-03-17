@@ -207,6 +207,9 @@ elif [ "$1" = "apps" ]; then
     sudo pacman -S xsettingsd deepin.com.qq.office
     echo "https://github.com/countstarlight/deepin-wine-tim-arch/issues/1"
     echo 'snippet-add tim         "xsettingsd &"'
+    sudo pacman -S wps-office-cn
+    pikaur -S ttf-wps-fonts wps-office-mime-cn wps-office-mui-zh-cn
+    echo "ttf-ms"
 elif [ "$1" = "appswsl" ]; then
     pikaur -S gotop terminal-markdown-viewer python2-pygments gnome-screenshot tcping nodejs-commitizen
     px npm install commitizen
