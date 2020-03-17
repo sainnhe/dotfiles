@@ -203,6 +203,10 @@ elif [ "$1" = "user" ]; then
 elif [ "$1" = "apps" ]; then
     pikaur -S fzf fontweak gotop persepolis code terminal-markdown-viewer python2-pygments typora nodejs-commitizen iw pastebinit
     px npm install commitizen
+    sudo pacman -S wine
+    sudo pacman -S xsettingsd deepin.com.qq.office
+    echo "https://github.com/countstarlight/deepin-wine-tim-arch/issues/1"
+    echo 'snippet-add tim         "xsettingsd &"'
 elif [ "$1" = "appswsl" ]; then
     pikaur -S gotop terminal-markdown-viewer python2-pygments gnome-screenshot tcping nodejs-commitizen
     px npm install commitizen
