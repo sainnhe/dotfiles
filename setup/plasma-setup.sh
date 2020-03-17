@@ -2,7 +2,7 @@
 
 sudo pacman -S plasma
 sudo pacman -S kde-applications
-sudo pacman -S kvantum-qt5
+sudo pacman -S kvantum-qt5 qtcurve-kde
 sudo pacman -S plasma5-applets-active-window-control
 sudo pacman -S latte-dock
 mkdir -p ~/repo
