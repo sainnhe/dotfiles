@@ -405,6 +405,7 @@ export FZF_DEFAULT_OPTS="
 --color=dark
 --color=bg:-1,hl:2,fg+:4,bg+:-1,hl+:2
 --color=info:1,prompt:2,pointer:5,marker:1,spinner:3,header:11
+--bind=tab:down,btab:up,ctrl-space:accept,ctrl-s:toggle
 "
 source /usr/share/fzf/completion.zsh  # 模糊匹配路径，**<Tab>触发
 bindkey '^F'  fzf-select-widget
