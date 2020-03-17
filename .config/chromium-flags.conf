@@ -1,0 +1,1 @@
+--password-store=basic
