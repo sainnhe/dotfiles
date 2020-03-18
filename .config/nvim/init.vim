@@ -245,11 +245,11 @@ endif
 " ; 绑定到 :
 nnoremap ; :
 " q 绑定到:q
-nnoremap <silent> q :q<CR>
-" Q 绑定到:q!
-nnoremap <silent> Q :q!<CR>
+nmap <silent> q :q<CR>
 " <leader>q 关闭 quickfix list
 nnoremap <silent> <leader>q :cclose<CR>
+" m 绑定到 q
+nnoremap m q
 " Ctrl+S保存文件
 nnoremap <silent> <C-S> :<C-u>w<CR>
 " Shift+HJKL快速移动
