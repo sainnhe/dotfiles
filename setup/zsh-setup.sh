@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-sudo pacman -S lua zsh exa
+sudo pacman -S lua zsh
 chsh -s /usr/bin/zsh
 mkdir ~/.zinit
 git clone --depth 1 https://github.com/zdharma/zinit.git ~/.zinit/bin
