@@ -158,5 +158,6 @@ elif [ "$1" = "fonts" ]; then
     cp ~/repo/icursive-nerd-font-non-free/Source\ Code\ Pro\ iCursive\ Op/* ~/.local/share/fonts/
     cd ~/.local/share/fonts || exit
     proxychains -q wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CascadiaCode/complete/Caskaydia%20Cove%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+    proxychains -q wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Agave/complete/agave%20regular%20Nerd%20Font%20Complete%20Mono.ttf
     fc-cache
 fi
