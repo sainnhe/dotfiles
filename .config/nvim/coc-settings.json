@@ -53,8 +53,9 @@
         "<C-p>": "action:preview",
         "<C-j>": "do:next",
         "<C-k>": "do:previous",
-        "<C-x>": "do:toggle",
-        "<C-s>": "do:switch",
+        "<C-s>": "do:toggle",
+        "<C-f>": "do:switch",
+        "<A-x>": "do:toggleMode",
         "<Down>": "prompt:next",
         "<Up>": "prompt:previous",
         "<C-v>": "prompt:paste"
