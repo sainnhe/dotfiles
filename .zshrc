@@ -1,7 +1,7 @@
 # {{{Settings
 # zmodload zsh/zprof
 # {{{env
-export PATH="$HOME/.cargo/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
+export PATH="$HOME/go/bin:$HOME/.cargo/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
 export TERM=xterm-256color
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
@@ -14,6 +14,7 @@ export BROWSER="chromium"
 export PAGER="nvim --cmd 'let g:vimManPager = 1' -c MANPAGER -"
 export MANPAGER="nvim --cmd 'let g:vimManPager = 1' -c MANPAGER -"
 export FuzzyFinder="fzf"
+export NEXTWORD_DATA_PATH="$HOME/.local/share/nextword/nextword-data-large"
 # }}}
 # {{{general
 set -o monitor

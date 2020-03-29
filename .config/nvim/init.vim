@@ -1209,6 +1209,7 @@ let g:coc_global_extensions = [
       \   'coc-tag',
       \   'coc-emoji',
       \   'coc-dictionary',
+      \   'coc-nextword',
       \   'coc-html',
       \   'coc-css',
       \   'coc-emmet',

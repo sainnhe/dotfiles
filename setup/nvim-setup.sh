@@ -135,6 +135,13 @@ elif [ "$1" = "dotfiles" ]; then
     cp /home/sainnhe/repo/dotfiles/.config/nvim/env.vim ~/.config/nvim/env.vim
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
     ln -s /home/sainnhe/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
+elif [ "$1" = "other" ]; then
+    go get -u github.com/high-moctane/nextword
+    mkdir -p ~/.local/share/nextword
+    cd ~/.local/share/nextword || exit
+    proxychains -q wget https://github.com/high-moctane/nextword-data/archive/large.zip
+    unzip large.zip
+    rm large.zip
 elif [ "$1" = "fonts" ]; then
     mkdir -p ~/repo
     git clone git@github.com:sainnhe/icursive-nerd-font-non-free.git ~/repo/icursive-nerd-font-non-free
