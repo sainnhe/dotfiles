@@ -691,6 +691,7 @@ Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'masukomi/vim-markdown-folding'
 Plug 'yianwillis/vimcdoc'
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & npm install'}
+Plug 'junegunn/vim-peekaboo'
 "{{{
 call plug#end()
 "}}}
@@ -2599,4 +2600,7 @@ endif
 let g:mkdp_echo_preview_url = 1
 nmap <silent> <leader><space>p <Plug>MarkdownPreviewToggle
 let g:which_key_map["\<space>"]['p'] = 'preview markdown'
+"}}}
+"{{{vim-peekaboo
+let g:peekaboo_delay = 500
 "}}}
