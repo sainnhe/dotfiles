@@ -626,7 +626,6 @@ if !has('win32')
 endif
 Plug 'liuchengxu/vim-which-key'
 Plug 'Yggdroot/indentLine'
-Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim', {'on': 'Limelight!!'}
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'roman/golden-ratio'
@@ -692,6 +691,7 @@ Plug 'masukomi/vim-markdown-folding'
 Plug 'yianwillis/vimcdoc'
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & npm install'}
 Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-easy-align'
 "{{{
 call plug#end()
 "}}}
@@ -2603,4 +2603,9 @@ let g:which_key_map["\<space>"]['p'] = 'preview markdown'
 "}}}
 "{{{vim-peekaboo
 let g:peekaboo_delay = 500
+"}}}
+"{{{vim-easy-align
+xmap <leader>a <Plug>(EasyAlign)
+nmap <leader>a <Plug>(EasyAlign)
+let g:which_key_map['a'] = 'align'
 "}}}
