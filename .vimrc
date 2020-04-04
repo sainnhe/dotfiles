@@ -302,8 +302,10 @@ syntax enable
 set t_Co=256
 set termguicolors
 set background=dark
+let g:gruvbox_material_palette = 'mix'
 let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_disable_italic_comment = 1
+let g:gruvbox_material_menu_selection_background = 'green'
 colo gruvbox-material
 " Statusline{{{
 " :h 'statusline'
