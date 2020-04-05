@@ -432,6 +432,40 @@ font:
 #     y: 0
 #
 # # }}}
+# # {{{Fira Code iCursive Op Light
+# font:
+#   # Normal (roman) font face
+#   normal:
+#     family: FuraCode Nerd Font Mono
+#     style: Light
+#
+#   # Bold font face
+#   bold:
+#     family: FuraCode Nerd Font Mono
+#     style: Medium
+#
+#   # Italic font face
+#   italic:
+#     family: Operator Mono Light
+#     style: Italic
+#
+#   # Point size
+#   size: 12.0
+#
+#   # Offset is the extra space around each character. `offset.y` can be thought of
+#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+#   offset:
+#     x: 0
+#     y: 0
+#
+#   # Glyph offset determines the locations of the glyphs within their cells with
+#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
+#   # increasing `y` moves the glyph upwards.
+#   glyph_offset:
+#     x: 0
+#     y: 0
+#
+# # }}}
 # # {{{Source Code Pro
 # font:
 #   # Normal (roman) font face
