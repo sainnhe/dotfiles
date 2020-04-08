@@ -16,6 +16,7 @@
     mg = merge
     mt = mergetool
     st = status
+    sm = submodule
     br = branch
     dt = difftool
     dt-staged = difftool --staged
