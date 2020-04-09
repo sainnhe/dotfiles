@@ -103,6 +103,36 @@ function! SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 "}}}
+"{{{ApplyLocalSettings
+function! ApplyLocalSettings(dirname)
+    " Don't try to walk a remote directory tree -- takes too long, too many
+    " what if's
+    let l:netrwProtocol = strpart(a:dirname, 0, stridx(a:dirname, '://'))
+    if l:netrwProtocol !=# ''
+        return
+    endif
+
+    " Convert windows paths to unix style (they still work)
+    let l:curDir = substitute(a:dirname, "\\", '/', 'g')
+
+    " Walk up to the top of the directory tree
+    let l:parentDir = strpart(l:curDir, 0, strridx(l:curDir, '/'))
+    if isdirectory(l:parentDir)
+        call ApplyLocalSettings(l:parentDir)
+    endif
+
+    " Now walk back down the path and source .settings.vim as you find them. This
+    " way child directories can 'inherit' from their parents
+    let l:settingsFile = a:dirname . '/.settings.vim'
+    if filereadable(l:settingsFile)
+        exec ':source ' . l:settingsFile
+    endif
+endfunction
+augroup LocalSettings
+  autocmd!
+  autocmd! BufEnter * call ApplyLocalSettings(expand("<afile>:p:h"))
+augroup END
+"}}}
 "}}}
 "{{{Setting
 set encoding=utf-8 nobomb
