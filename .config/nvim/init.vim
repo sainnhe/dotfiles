@@ -707,7 +707,6 @@ Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/inline_edit.vim'
 Plug 'airblade/vim-rooter'
-Plug 'voldikss/vim-translate-me'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'mbbill/fencview', {'on': ['FencAutoDetect', 'FencView']}
 Plug 'tweekmonster/startuptime.vim', {'on': 'StartupTime'}
@@ -1232,6 +1231,7 @@ let g:coc_global_extensions = [
       \   'coc-project',
       \   'coc-gitignore',
       \   'coc-bookmark',
+      \   'coc-translator',
       \   'coc-todolist',
       \   'coc-highlight',
       \   'coc-yank',
@@ -1402,6 +1402,10 @@ let g:which_key_map['m'] = {
       \   'p': 'prev',
       \   "\<Space>": 'list',
       \   }
+"}}}
+"{{{coc-translator
+nmap <Leader>t <Plug>(coc-translator-p)
+vmap <Leader>t <Plug>(coc-translator-pv)
 "}}}
 "{{{coc-todolist
 nnoremap <silent> <leader><space>tn :<c-u>CocCommand todolist.create<cr>
@@ -2416,18 +2420,6 @@ endfunction
 "}}}
 nnoremap E :<C-u>InlineEdit<CR>
 vnoremap E :InlineEdit<CR>
-"}}}
-"{{{vim-translate-me
-let g:vtm_default_mapping = 0
-let g:vtm_default_engines = ['youdao', 'bing']
-nmap <silent> <Leader>t <Plug>TranslateW
-vmap <silent> <Leader>t <Plug>TranslateWV
-hi def link vtmQuery            Constant
-hi def link vtmParaphrase       StorageClass
-hi def link vtmPhonetic         Type
-hi def link vtmExplain          String
-hi def link vtmPopupNormal      NormalFloat
-hi def link vtmDelimiter        Comment
 "}}}
 "{{{comfortable-motion.vim
 "{{{comfortable-motion.vim-usage
