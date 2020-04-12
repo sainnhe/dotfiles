@@ -386,8 +386,7 @@ zinit ice wait'1' lucid; zinit light peterhurford/git-it-on.zsh
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 zinit ice wait'1' lucid; zinit light denysdovhan/gitio-zsh
-zinit ice wait'0' blockf lucid; zinit light zsh-users/zsh-completions
-zinit ice wait'0' blockf lucid; zinit light sainnhe/rust-zsh-completions
+zinit ice wait'0' blockf lucid; zinit light sainnhe/zsh-completions
 zinit ice wait'0' lucid; zinit light RobSis/zsh-completion-generator
 zinit ice wait'0' atload"export FPATH=$HOME/.zinit/plugins/RobSis---zsh-completion-generator/completions:$HOME/.zinit/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH; zcomp_init" as"program" atclone"mv run.sh gencomp-manpage; sed -i -e '1i pushd ~/.zinit/plugins/nevesnunes---sh-manpage-completions/' -e '\$a popd' gencomp-manpage" pick"run.sh" lucid; zinit light nevesnunes/sh-manpage-completions
 zinit ice wait'0' pick".zsh-snippets" lucid; zinit light "$HOME"
