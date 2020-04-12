@@ -41,6 +41,7 @@
     rg-ls = !rg $(git rev-parse --show-toplevel) --files
     rg-all = !rg $(git rev-parse --show-toplevel) --column --smart-case --no-ignore --hidden -g '!.git' -e
     rg-all-ls = !rg $(git rev-parse --show-toplevel) --no-ignore --hidden -g '!.git' --files
+    ls-committed = ls-tree --full-tree -r --name-only HEAD
 [diff]
     tool = vimdiff
 [difftool]
