@@ -322,8 +322,8 @@ zcomp-gen () {
 # }}}
 # {{{Alias
 alias ls='lsd'
-alias ls-rec='lsd --tree'
-alias ls-all='/usr/bin/ls --color=auto -F -ilsh'
+alias ls-tree='lsd --tree -A'
+alias ls-all='find $PWD -type f | fzf'
 alias fzy="fzy --lines=15 --prompt='➤ '"
 alias du='du -hc'
 alias df='df -h'
