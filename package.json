@@ -1,7 +1,7 @@
 {
     "config": {
         "commitizen": {
-            "path": "/home/sainnhe/node_modules/cz-conventional-changelog"
+            "path": "/usr/lib/node_modules/cz-conventional-changelog"
         }
     },
     "stylelint-comment": "https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules.md",
