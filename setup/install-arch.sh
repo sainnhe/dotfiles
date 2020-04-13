@@ -201,8 +201,7 @@ elif [ "$1" = "user" ]; then
     sudo pacman -S archlinuxcn-keyring
     echo "setup i3, zsh, tmux, vim manually"
 elif [ "$1" = "apps" ]; then
-    pikaur -S fzf fontweak gotop persepolis code terminal-markdown-viewer python2-pygments typora nodejs-commitizen iw pastebinit ppet-bin
-    px npm install commitizen
+    pikaur -S fzf fontweak gotop persepolis code terminal-markdown-viewer python2-pygments typora nodejs-commitizen nodejs-cz-conventional-changelog iw pastebinit ppet-bin
     sudo pacman -S wine
     sudo pacman -S xsettingsd deepin.com.qq.office
     echo "https://github.com/countstarlight/deepin-wine-tim-arch/issues/1"
@@ -211,6 +210,5 @@ elif [ "$1" = "apps" ]; then
     pikaur -S ttf-wps-fonts wps-office-mime-cn wps-office-mui-zh-cn
     echo "ttf-ms"
 elif [ "$1" = "appswsl" ]; then
-    pikaur -S gotop terminal-markdown-viewer python2-pygments gnome-screenshot tcping nodejs-commitizen
-    px npm install commitizen
+    pikaur -S gotop terminal-markdown-viewer python2-pygments gnome-screenshot tcping nodejs-commitizen nodejs-cz-conventional-changelog
 fi
