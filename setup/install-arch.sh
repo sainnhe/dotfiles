@@ -190,7 +190,7 @@ elif [ "$1" = "user" ]; then
     proxychains -q wget https://github.com/dmhacker/arch-linux-surface/releases/download/5.1.15-1/linux-surface-headers-5.1.15-1-x86_64.pkg.tar.xz
     sudo pacman -U linux-surface-5.1.15-1-x86_64.pkg.tar.xz
     sudo pacman -U linux-surface-docs-5.1.15-1-x86_64.pkg.tar.xz linux-surface-headers-5.1.15-1-x86_64.pkg.tar.xz
-    pikaur -S update-grub aic94xx-firmware wd719x-firmware
+    pikaur -S update-grub aic94xx-firmware wd719x-firmware acpi acpi_call
     sudo update-grub
     #}}}
     pikaur -S gvim firefox-developer-edition telegram-desktop alacritty lsd svn evince nautilus chromium
