@@ -108,6 +108,7 @@
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappingMode": "none",
     "explorer.previewAction.onHover": false,
+    "explorer.buffer.tabOnly": true,
     "explorer.keyMappings": {
         "s": "toggleSelection",
         "<tab>": "actionMenu",
