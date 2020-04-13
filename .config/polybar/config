@@ -1,12 +1,12 @@
 ; {{{color scheme
 [colors]
-bg = #3c4c5500
-fg = #f2ddb5
-border_bg = #f2ddb5
-border_fg = #3c4c5500
-comment = #788898
-sys = #f2ddb5
-net = #f2ddb5
+bg = #282828
+fg = #d4be98
+border_bg = #d4be98
+border_fg = #282828
+comment = #928374
+sys = #7daea3
+net = #a9b665
 ; }}}
 ; {{{mainbar
 [bar/mainbar]
@@ -54,8 +54,7 @@ module-margin-right = 0
 ; tray-offset-x = 0
 ; tray-offset-y = 0
 
-; font-0 = "FuraCode Nerd Font Mono:size=26"
-font-0 = "DroidSansMono Nerd Font:size=12"
+font-0 = "FuraCode Nerd Font:size=12"
 
 ; i3
 wm-restack = i3
