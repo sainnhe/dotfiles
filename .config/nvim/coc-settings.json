@@ -135,14 +135,14 @@
 
         ".": "toggleHidden",
         "R": "refresh",
+        "<C-p>": "preview",
 
         "?": "help",
         "q": "quit",
         "<esc>": "esc",
         "e": "systemExecute",
 
-        "f": "search",
-        "F": "searchRecursive",
+        "f": "searchRecursive",
 
         "gf": "gotoSource:file",
         "gb": "gotoSource:buffer",
