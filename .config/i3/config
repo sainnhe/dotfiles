@@ -190,6 +190,7 @@ workspace_layout tabbed
 exec fcitx
 exec compton -b
 exec redshiftgui
+exec ppet
 # exec --no-startup-id i3-msg 'workspace 1:Alpha; layout tabbed; exec tilix; exec /usr/bin/firefox-developer-edition'
 # exec tilix -e "zsh -c 'source ~/.zshrc; tmux-start'"
 # }}}
