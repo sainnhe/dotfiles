@@ -874,7 +874,7 @@ font:
 #     y: 0
 #
 # # }}}
-# # {{{CaskaydiaCove
+# # {{{Cascadia Code
 # font:
 #   # Normal (roman) font face
 #   normal:
@@ -890,6 +890,40 @@ font:
 #   italic:
 #     family: CaskaydiaCove Nerd Font Mono
 #     style: Regular
+#
+#   # Point size
+#   size: 12.0
+#
+#   # Offset is the extra space around each character. `offset.y` can be thought of
+#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+#   offset:
+#     x: 0
+#     y: 0
+#
+#   # Glyph offset determines the locations of the glyphs within their cells with
+#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
+#   # increasing `y` moves the glyph upwards.
+#   glyph_offset:
+#     x: 0
+#     y: 0
+#
+# # }}}
+# # {{{Cascadia Code iCursive Cg
+# font:
+#   # Normal (roman) font face
+#   normal:
+#     family: Cascadia Code iCursive Cg
+#     style: Regular
+#
+#   # Bold font face
+#   bold:
+#     family: Cascadia Code iCursive Cg
+#     style: Regular
+#
+#   # Italic font face
+#   italic:
+#     family: Cascadia Code iCursive Cg
+#     style: Italic
 #
 #   # Point size
 #   size: 12.0
@@ -1171,6 +1205,74 @@ font:
 #   offset:
 #     x: 0
 #     y: 6
+#
+#   # Glyph offset determines the locations of the glyphs within their cells with
+#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
+#   # increasing `y` moves the glyph upwards.
+#   glyph_offset:
+#     x: 0
+#     y: 0
+#
+# # }}}
+# # {{{Cartograph Mono
+# font:
+#   # Normal (roman) font face
+#   normal:
+#     family: Cartograph Mono
+#     style: Regular
+#
+#   # Bold font face
+#   bold:
+#     family: Cartograph Mono
+#     style: Bold
+#
+#   # Italic font face
+#   italic:
+#     family: Cartograph Mono
+#     style: Italic
+#
+#   # Point size
+#   size: 12.0
+#
+#   # Offset is the extra space around each character. `offset.y` can be thought of
+#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+#   offset:
+#     x: 0
+#     y: 0
+#
+#   # Glyph offset determines the locations of the glyphs within their cells with
+#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
+#   # increasing `y` moves the glyph upwards.
+#   glyph_offset:
+#     x: 0
+#     y: 0
+#
+# # }}}
+# # {{{Ellograph Mono
+# font:
+#   # Normal (roman) font face
+#   normal:
+#     family: Ellograph Mono
+#     style: Regular
+#
+#   # Bold font face
+#   bold:
+#     family: Ellograph Mono
+#     style: Bold
+#
+#   # Italic font face
+#   italic:
+#     family: Ellograph Mono
+#     style: Italic
+#
+#   # Point size
+#   size: 12.0
+#
+#   # Offset is the extra space around each character. `offset.y` can be thought of
+#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+#   offset:
+#     x: 0
+#     y: 0
 #
 #   # Glyph offset determines the locations of the glyphs within their cells with
 #   # the default being at the bottom. Increasing `x` moves the glyph to the right,
