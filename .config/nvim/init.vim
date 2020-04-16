@@ -766,10 +766,18 @@ function! Artify_inactive_tab_num(n) abort"{{{
   return Artify(a:n, 'double_struck')." \ue0bb"
 endfunction"}}}
 function! Artify_lightline_tab_filename(s) abort"{{{
-  return Artify(lightline#tab#filename(a:s), 'monospace')
+  if g:lightlineArtify ==# 2
+    return Artify(lightline#tab#filename(a:s), 'monospace')
+  else
+    return lightline#tab#filename(a:s)
+  endif
 endfunction"}}}
 function! Artify_lightline_mode() abort"{{{
-  return Artify(lightline#mode(), 'monospace')
+  if g:lightlineArtify ==# 2
+    return Artify(lightline#mode(), 'monospace')
+  else
+    return lightline#mode()
+  endif
 endfunction"}}}
 function! Artify_line_percent() abort"{{{
   return Artify(string((100*line('.'))/line('$')), 'bold')
@@ -782,7 +790,11 @@ function! Artify_col_num() abort"{{{
 endfunction"}}}
 function! Artify_gitbranch() abort"{{{
   if gitbranch#name() !=# ''
-    return Artify(gitbranch#name(), 'monospace')." \ue725"
+    if g:lightlineArtify ==# 2
+      return Artify(gitbranch#name(), 'monospace')." \ue725"
+    else
+      return gitbranch#name()." \ue725"
+    endif
   else
     return "\ue61b"
   endif
@@ -809,27 +821,7 @@ let g:lightline_gitdiff#indicator_modified = '*'
 let g:lightline_gitdiff#min_winwidth = '70'
 let g:lightline#asyncrun#indicator_none = ''
 let g:lightline#asyncrun#indicator_run = 'Running...'
-if g:lightlineArtify == 1
-  let g:lightline.active = {
-        \ 'left': [ [ 'artify_mode', 'paste' ],
-        \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
-        \ 'right': [ [ 'artify_lineinfo' ],
-        \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
-        \           [ 'asyncrun_status', 'coc_status' ] ]
-        \ }
-  let g:lightline.inactive = {
-        \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
-        \ 'right': [ [ 'artify_lineinfo' ] ]
-        \ }
-  let g:lightline.tabline = {
-        \ 'left': [ [ 'vim_logo', 'tabs' ] ],
-        \ 'right': [ [ 'artify_gitbranch' ],
-        \ [ 'gitstatus' ] ]
-        \ }
-  let g:lightline.tab = {
-        \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
-        \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }
-else
+if g:lightlineArtify == 0
   let g:lightline.active = {
         \ 'left': [ [ 'mode', 'paste' ],
         \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
@@ -849,6 +841,26 @@ else
   let g:lightline.tab = {
         \ 'active': [ 'tabnum', 'filename', 'modified' ],
         \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
+else
+  let g:lightline.active = {
+        \ 'left': [ [ 'artify_mode', 'paste' ],
+        \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
+        \ 'right': [ [ 'artify_lineinfo' ],
+        \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
+        \           [ 'asyncrun_status', 'coc_status' ] ]
+        \ }
+  let g:lightline.inactive = {
+        \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
+        \ 'right': [ [ 'artify_lineinfo' ] ]
+        \ }
+  let g:lightline.tabline = {
+        \ 'left': [ [ 'vim_logo', 'tabs' ] ],
+        \ 'right': [ [ 'artify_gitbranch' ],
+        \ [ 'gitstatus' ] ]
+        \ }
+  let g:lightline.tab = {
+        \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
+        \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }
 endif
 let g:lightline.tab_component = {
       \ }
@@ -940,6 +952,7 @@ let g:colorSchemeList['Forest Night'] = [
       \   'set background=dark',
       \   'let g:forest_night_enable_italic = g:vimEnableItalic',
       \   'let g:forest_night_disable_italic_comment = 1',
+      \   'let g:forest_night_lightline_disable_bold = 1',
       \   'colorscheme forest-night',
       \   'call SwitchLightlineColorScheme("forest_night")'
       \   ]
@@ -951,6 +964,7 @@ let g:colorSchemeList['Gruvbox Material Dark'] = [
       \   'let g:gruvbox_material_enable_italic = g:vimEnableItalic',
       \   "let g:gruvbox_material_cursor = 'green'",
       \   'let g:gruvbox_material_disable_italic_comment = 1',
+      \   'let g:gruvbox_material_lightline_disable_bold = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -962,6 +976,7 @@ let g:colorSchemeList['Gruvbox Mix Dark'] = [
       \   'let g:gruvbox_material_enable_italic = g:vimEnableItalic',
       \   "let g:gruvbox_material_cursor = 'green'",
       \   'let g:gruvbox_material_disable_italic_comment = 1',
+      \   'let g:gruvbox_material_lightline_disable_bold = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -973,6 +988,7 @@ let g:colorSchemeList['Gruvbox Material Light'] = [
       \   'let g:gruvbox_material_enable_italic = g:vimEnableItalic',
       \   "let g:gruvbox_material_cursor = 'auto'",
       \   'let g:gruvbox_material_disable_italic_comment = 1',
+      \   'let g:gruvbox_material_lightline_disable_bold = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -981,6 +997,7 @@ let g:colorSchemeList['Edge Dark'] = [
       \   'let g:edge_disable_italic_comment = 1',
       \   'let g:edge_enable_italic = g:vimEnableItalic',
       \   "let g:edge_cursor = 'blue'",
+      \   'let g:edge_lightline_disable_bold = 1',
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
@@ -989,6 +1006,7 @@ let g:colorSchemeList['Edge Light'] = [
       \   'let g:edge_disable_italic_comment = 1',
       \   'let g:edge_enable_italic = g:vimEnableItalic',
       \   "let g:edge_cursor = 'purple'",
+      \   'let g:edge_lightline_disable_bold = 1',
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
@@ -997,6 +1015,7 @@ let g:colorSchemeList['Sonokai Shusia'] = [
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = g:vimEnableItalic',
       \   "let g:sonokai_cursor = 'blue'",
+      \   'let g:sonokai_lightline_disable_bold = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -1005,6 +1024,7 @@ let g:colorSchemeList['Sonokai Andromeda'] = [
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = g:vimEnableItalic',
       \   "let g:sonokai_cursor = 'blue'",
+      \   'let g:sonokai_lightline_disable_bold = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -1013,6 +1033,7 @@ let g:colorSchemeList['Sonokai Atlantis'] = [
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = g:vimEnableItalic',
       \   "let g:sonokai_cursor = 'blue'",
+      \   'let g:sonokai_lightline_disable_bold = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -1021,6 +1042,7 @@ let g:colorSchemeList['Sonokai Maia'] = [
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = g:vimEnableItalic',
       \   "let g:sonokai_cursor = 'blue'",
+      \   'let g:sonokai_lightline_disable_bold = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
