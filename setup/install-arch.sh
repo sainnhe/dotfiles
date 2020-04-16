@@ -159,7 +159,7 @@ elif [ "$1" = "user" ]; then
     sudo cp ~/repo/scripts/func/v2ray/v2ray-tcp.json /etc/v2ray/config.json
     sudo systemctl enable v2ray
     sudo systemctl start v2ray
-    sudo pacman -S proxychains
+    sudo pacman -S proxychains net-tools
     sudo cp ~/repo/dotfiles/.root/etc/proxychains.conf /etc/proxychains.conf
     #}}}
     # LightDM{{{
