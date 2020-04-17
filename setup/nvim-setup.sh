@@ -17,6 +17,8 @@ pacman_setup_func() {
     pacman -S --noconfirm yarn &>/dev/null
     echo "installing go..."
     pacman -S --noconfirm go &>/dev/null
+    echo "installing dotnet..."
+    pacman -S --noconfirm dotnet-runtime dotnet-sdk &>/dev/null
     echo "installing lua..."
     pacman -S --noconfirm lua &>/dev/null
     echo "installing nnn..."

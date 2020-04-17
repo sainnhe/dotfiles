@@ -1270,6 +1270,7 @@ let g:coc_global_extensions = [
       \   'coc-tslint-plugin',
       \   'coc-python',
       \   'coc-rls',
+      \   'coc-omnisharp',
       \   'coc-powershell',
       \   'coc-json',
       \   'coc-yaml',
