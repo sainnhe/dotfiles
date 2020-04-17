@@ -15,6 +15,7 @@ export PAGER="nvim --cmd 'let g:vimManPager = 1' -c MANPAGER -"
 export MANPAGER="nvim --cmd 'let g:vimManPager = 1' -c MANPAGER -"
 export FuzzyFinder="fzf"
 export NEXTWORD_DATA_PATH="$HOME/.local/share/nextword/nextword-data-large"
+# export HTTP_PROXY=http://127.0.0.1:1081 && export HTTP_PROXY=http://127.0.0.1:1081
 # }}}
 # {{{general
 set -o monitor
