@@ -1,265 +1,267 @@
 # {{{Color Schemes
 background_opacity: 1.0
-# {{{ Forest Night
-colors:
-  primary:
-    background: '0x323d43'
-    foreground: '0xd8caac'
+schemes:
+# {{{ Gruvbox Material Dark
+  gruvbox_material_dark: &gruvbox_material_dark
+    primary:
+      background: '0x282828'
+      foreground: '0xd4be98'
 
-  normal:
-    black:   '0x868d80'
-    red:     '0xe68183'
-    green:   '0xa7c080'
-    yellow:  '0xd9bb80'
-    blue:    '0x89beba'
-    magenta: '0xd3a0bc'
-    cyan:    '0x87c095'
-    white:   '0xd8caac'
+    normal:
+      black:   '0x504945'
+      red:     '0xea6962'
+      green:   '0xa9b665'
+      yellow:  '0xd8a657'
+      blue:    '0x7daea3'
+      magenta: '0xd3869b'
+      cyan:    '0x89b482'
+      white:   '0xd4be98'
 
-  bright:
-    black:   '0x868d80'
-    red:     '0xe68183'
-    green:   '0xa7c080'
-    yellow:  '0xd9bb80'
-    blue:    '0x89beba'
-    magenta: '0xd3a0bc'
-    cyan:    '0x87c095'
-    white:   '0xd8caac'
+    bright:
+      black:   '0x504945'
+      red:     '0xea6962'
+      green:   '0xa9b665'
+      yellow:  '0xd8a657'
+      blue:    '0x7daea3'
+      magenta: '0xd3869b'
+      cyan:    '0x89b482'
+      white:   '0xd4be98'
 # }}}
-# # {{{ Gruvbox Material Dark
-# colors:
-#   primary:
-#     background: '0x282828'
-#     foreground: '0xd4be98'
-#
-#   normal:
-#     black:   '0x504945'
-#     red:     '0xea6962'
-#     green:   '0xa9b665'
-#     yellow:  '0xd8a657'
-#     blue:    '0x7daea3'
-#     magenta: '0xd3869b'
-#     cyan:    '0x89b482'
-#     white:   '0xd4be98'
-#
-#   bright:
-#     black:   '0x504945'
-#     red:     '0xea6962'
-#     green:   '0xa9b665'
-#     yellow:  '0xd8a657'
-#     blue:    '0x7daea3'
-#     magenta: '0xd3869b'
-#     cyan:    '0x89b482'
-#     white:   '0xd4be98'
-# # }}}
-# # {{{ Gruvbox Mix Dark
-# colors:
-#   primary:
-#     background: '0x282828'
-#     foreground: '0xe2cca9'
-#
-#   normal:
-#     black:   '0x504945'
-#     red:     '0xf2594b'
-#     green:   '0xb0b846'
-#     yellow:  '0xe9b143'
-#     blue:    '0x80aa9e'
-#     magenta: '0xd3869b'
-#     cyan:    '0x8bba7f'
-#     white:   '0xe2cca9'
-#
-#   bright:
-#     black:   '0x504945'
-#     red:     '0xf2594b'
-#     green:   '0xb0b846'
-#     yellow:  '0xe9b143'
-#     blue:    '0x80aa9e'
-#     magenta: '0xd3869b'
-#     cyan:    '0x8bba7f'
-#     white:   '0xe2cca9'
-# # }}}
-# # {{{ Gruvbox Material Light
-# colors:
-#   primary:
-#     background: '0xf2e5bc'
-#     foreground: '0x654735'
-#
-#   normal:
-#     black:   '0x654735'
-#     red:     '0xc14a4a'
-#     green:   '0x6c782e'
-#     yellow:  '0xb47109'
-#     blue:    '0x45707a'
-#     magenta: '0x945e80'
-#     cyan:    '0x4c7a5d'
-#     white:   '0x928374'
-#
-#   bright:
-#     black:   '0x654735'
-#     red:     '0xc14a4a'
-#     green:   '0x6c782e'
-#     yellow:  '0xb47109'
-#     blue:    '0x45707a'
-#     magenta: '0x945e80'
-#     cyan:    '0x4c7a5d'
-#     white:   '0x928374'
-# # }}}
-# # {{{ Edge Light
-# colors:
-#   primary:
-#     background: "0xfafafa"
-#     foreground: "0x4b505b"
-#
-#   normal:
-#     black: "0x4b505b"
-#     red: "0xd15b5b"
-#     green: "0x608e32"
-#     yellow: "0xbe7e05"
-#     blue: "0x5079be"
-#     magenta: "0xb05ccc"
-#     cyan: "0x3a8b84"
-#     white: "0x949ba5"
-#
-#   bright:
-#     black: "0x4b505b"
-#     red: "0xd15b5b"
-#     green: "0x608e32"
-#     yellow: "0xbe7e05"
-#     blue: "0x5079be"
-#     magenta: "0xb05ccc"
-#     cyan: "0x3a8b84"
-#     white: "0x949ba5"
-# # }}}
-# # {{{ Edge Dark
-# colors:
-#   primary:
-#     background: "0x2c2e34"
-#     foreground: "0xc5cdd9"
-#
-#   normal:
-#     black: "0x3e4249"
-#     red: "0xec7279"
-#     green: "0xa0c980"
-#     yellow: "0xdeb974"
-#     blue: "0x6cb6eb"
-#     magenta: "0xd38aea"
-#     cyan: "0x5dbbc1"
-#     white: "0x88909f"
-#
-#   bright:
-#     black: "0x3e4249"
-#     red: "0xec7279"
-#     green: "0xa0c980"
-#     yellow: "0xdeb974"
-#     blue: "0x6cb6eb"
-#     magenta: "0xd38aea"
-#     cyan: "0x5dbbc1"
-#     white: "0x88909f"
-# # }}}
-# # {{{ Sonokai Shusia
-# colors:
-#   primary:
-#     background: "0x2d2a2e"
-#     foreground: "0xe3e1e4"
-#
-#   normal:
-#     black: "0x1a181a"
-#     red: "0xf85e84"
-#     green: "0x9ecd6f"
-#     yellow: "0xe5c463"
-#     blue: "0x7accd7"
-#     magenta: "0xab9df2"
-#     cyan: "0xef9062"
-#     white: "0xe3e1e4"
-#
-#   bright:
-#     black: "0x1a181a"
-#     red: "0xf85e84"
-#     green: "0x9ecd6f"
-#     yellow: "0xe5c463"
-#     blue: "0x7accd7"
-#     magenta: "0xab9df2"
-#     cyan: "0xef9062"
-#     white: "0xe3e1e4"
-# # }}}
-# # {{{ Sonokai Andromeda
-# colors:
-#   primary:
-#     background: "0x2b2d37"
-#     foreground: "0xe1e3e4"
-#
-#   normal:
-#     black: "0x181a1c"
-#     red: "0xfb617e"
-#     green: "0x9ed06c"
-#     yellow: "0xf0c362"
-#     blue: "0x6dcae8"
-#     magenta: "0xbb97ee"
-#     cyan: "0xf89860"
-#     white: "0xe1e3e4"
-#
-#   bright:
-#     black: "0x181a1c"
-#     red: "0xfb617e"
-#     green: "0x9ed06c"
-#     yellow: "0xf0c362"
-#     blue: "0x6dcae8"
-#     magenta: "0xbb97ee"
-#     cyan: "0xf89860"
-#     white: "0xe1e3e4"
-# # }}}
-# # {{{ Sonokai Atlantis
-# colors:
-#   primary:
-#     background: "0x2a2f38"
-#     foreground: "0xe1e3e4"
-#
-#   normal:
-#     black: "0x181a1c"
-#     red: "0xff6578"
-#     green: "0x9dd274"
-#     yellow: "0xeacb64"
-#     blue: "0x72cce8"
-#     magenta: "0xba9cf3"
-#     cyan: "0xf69c5e"
-#     white: "0xe1e3e4"
-#
-#   bright:
-#     black: "0x181a1c"
-#     red: "0xff6578"
-#     green: "0x9dd274"
-#     yellow: "0xeacb64"
-#     blue: "0x72cce8"
-#     magenta: "0xba9cf3"
-#     cyan: "0xf69c5e"
-#     white: "0xe1e3e4"
-# # }}}
-# # {{{ Sonokai Maia
-# colors:
-#   primary:
-#     background: "0x273136"
-#     foreground: "0xe1e2e3"
-#
-#   normal:
-#     black: "0x1c1e1f"
-#     red: "0xf76c7c"
-#     green: "0x9cd57b"
-#     yellow: "0xe3d367"
-#     blue: "0x78cee9"
-#     magenta: "0xbaa0f8"
-#     cyan: "0xf3a96a"
-#     white: "0xe1e2e3"
-#
-#   bright:
-#     black: "0x1c1e1f"
-#     red: "0xf76c7c"
-#     green: "0x9cd57b"
-#     yellow: "0xe3d367"
-#     blue: "0x78cee9"
-#     magenta: "0xbaa0f8"
-#     cyan: "0xf3a96a"
-#     white: "0xe1e2e3"
-# # }}}
+# {{{ Gruvbox Mix Dark
+  gruvbox_mix_dark: &gruvbox_mix_dark
+    primary:
+      background: '0x282828'
+      foreground: '0xe2cca9'
+
+    normal:
+      black:   '0x504945'
+      red:     '0xf2594b'
+      green:   '0xb0b846'
+      yellow:  '0xe9b143'
+      blue:    '0x80aa9e'
+      magenta: '0xd3869b'
+      cyan:    '0x8bba7f'
+      white:   '0xe2cca9'
+
+    bright:
+      black:   '0x504945'
+      red:     '0xf2594b'
+      green:   '0xb0b846'
+      yellow:  '0xe9b143'
+      blue:    '0x80aa9e'
+      magenta: '0xd3869b'
+      cyan:    '0x8bba7f'
+      white:   '0xe2cca9'
+# }}}
+# {{{ Gruvbox Material Light
+  gruvbox_material_light: &gruvbox_material_light
+    primary:
+      background: '0xf2e5bc'
+      foreground: '0x654735'
+
+    normal:
+      black:   '0x654735'
+      red:     '0xc14a4a'
+      green:   '0x6c782e'
+      yellow:  '0xb47109'
+      blue:    '0x45707a'
+      magenta: '0x945e80'
+      cyan:    '0x4c7a5d'
+      white:   '0x928374'
+
+    bright:
+      black:   '0x654735'
+      red:     '0xc14a4a'
+      green:   '0x6c782e'
+      yellow:  '0xb47109'
+      blue:    '0x45707a'
+      magenta: '0x945e80'
+      cyan:    '0x4c7a5d'
+      white:   '0x928374'
+# }}}
+# {{{ Edge Light
+  edge_dark: &edge_light
+    primary:
+      background: "0xfafafa"
+      foreground: "0x4b505b"
+
+    normal:
+      black: "0x4b505b"
+      red: "0xd15b5b"
+      green: "0x608e32"
+      yellow: "0xbe7e05"
+      blue: "0x5079be"
+      magenta: "0xb05ccc"
+      cyan: "0x3a8b84"
+      white: "0x949ba5"
+
+    bright:
+      black: "0x4b505b"
+      red: "0xd15b5b"
+      green: "0x608e32"
+      yellow: "0xbe7e05"
+      blue: "0x5079be"
+      magenta: "0xb05ccc"
+      cyan: "0x3a8b84"
+      white: "0x949ba5"
+# }}}
+# {{{ Edge Dark
+  edge_dark: &edge_dark
+    primary:
+      background: "0x2c2e34"
+      foreground: "0xc5cdd9"
+
+    normal:
+      black: "0x3e4249"
+      red: "0xec7279"
+      green: "0xa0c980"
+      yellow: "0xdeb974"
+      blue: "0x6cb6eb"
+      magenta: "0xd38aea"
+      cyan: "0x5dbbc1"
+      white: "0x88909f"
+
+    bright:
+      black: "0x3e4249"
+      red: "0xec7279"
+      green: "0xa0c980"
+      yellow: "0xdeb974"
+      blue: "0x6cb6eb"
+      magenta: "0xd38aea"
+      cyan: "0x5dbbc1"
+      white: "0x88909f"
+# }}}
+# {{{ Forest Night
+  forest_night: &forest_night
+    primary:
+      background: '0x323d43'
+      foreground: '0xd8caac'
+
+    normal:
+      black:   '0x868d80'
+      red:     '0xe68183'
+      green:   '0xa7c080'
+      yellow:  '0xd9bb80'
+      blue:    '0x89beba'
+      magenta: '0xd3a0bc'
+      cyan:    '0x87c095'
+      white:   '0xd8caac'
+
+    bright:
+      black:   '0x868d80'
+      red:     '0xe68183'
+      green:   '0xa7c080'
+      yellow:  '0xd9bb80'
+      blue:    '0x89beba'
+      magenta: '0xd3a0bc'
+      cyan:    '0x87c095'
+      white:   '0xd8caac'
+# }}}
+# {{{ Sonokai Shusia
+  sonokai_shusia: &sonokai_shusia
+    primary:
+      background: "0x2d2a2e"
+      foreground: "0xe3e1e4"
+
+    normal:
+      black: "0x1a181a"
+      red: "0xf85e84"
+      green: "0x9ecd6f"
+      yellow: "0xe5c463"
+      blue: "0x7accd7"
+      magenta: "0xab9df2"
+      cyan: "0xef9062"
+      white: "0xe3e1e4"
+
+    bright:
+      black: "0x1a181a"
+      red: "0xf85e84"
+      green: "0x9ecd6f"
+      yellow: "0xe5c463"
+      blue: "0x7accd7"
+      magenta: "0xab9df2"
+      cyan: "0xef9062"
+      white: "0xe3e1e4"
+# }}}
+# {{{ Sonokai Andromeda
+  sonokai_shusia: &sonokai_andromeda
+    primary:
+      background: "0x2b2d37"
+      foreground: "0xe1e3e4"
+
+    normal:
+      black: "0x181a1c"
+      red: "0xfb617e"
+      green: "0x9ed06c"
+      yellow: "0xf0c362"
+      blue: "0x6dcae8"
+      magenta: "0xbb97ee"
+      cyan: "0xf89860"
+      white: "0xe1e3e4"
+
+    bright:
+      black: "0x181a1c"
+      red: "0xfb617e"
+      green: "0x9ed06c"
+      yellow: "0xf0c362"
+      blue: "0x6dcae8"
+      magenta: "0xbb97ee"
+      cyan: "0xf89860"
+      white: "0xe1e3e4"
+# }}}
+# {{{ Sonokai Atlantis
+  sonokai_shusia: &sonokai_atlantis
+    primary:
+      background: "0x2a2f38"
+      foreground: "0xe1e3e4"
+
+    normal:
+      black: "0x181a1c"
+      red: "0xff6578"
+      green: "0x9dd274"
+      yellow: "0xeacb64"
+      blue: "0x72cce8"
+      magenta: "0xba9cf3"
+      cyan: "0xf69c5e"
+      white: "0xe1e3e4"
+
+    bright:
+      black: "0x181a1c"
+      red: "0xff6578"
+      green: "0x9dd274"
+      yellow: "0xeacb64"
+      blue: "0x72cce8"
+      magenta: "0xba9cf3"
+      cyan: "0xf69c5e"
+      white: "0xe1e3e4"
+# }}}
+# {{{ Sonokai Maia
+  sonokai_shusia: &sonokai_maia
+    primary:
+      background: "0x273136"
+      foreground: "0xe1e2e3"
+
+    normal:
+      black: "0x1c1e1f"
+      red: "0xf76c7c"
+      green: "0x9cd57b"
+      yellow: "0xe3d367"
+      blue: "0x78cee9"
+      magenta: "0xbaa0f8"
+      cyan: "0xf3a96a"
+      white: "0xe1e2e3"
+
+    bright:
+      black: "0x1c1e1f"
+      red: "0xf76c7c"
+      green: "0x9cd57b"
+      yellow: "0xe3d367"
+      blue: "0x78cee9"
+      magenta: "0xbaa0f8"
+      cyan: "0xf3a96a"
+      white: "0xe1e2e3"
+# }}}
+colors: *forest_night
 # }}}
 # Font{{{
 # {{{Fira Code
