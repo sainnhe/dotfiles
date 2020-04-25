@@ -11,7 +11,6 @@ if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
   let g:vimIsInTmux = 1
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
 else
   let g:vimIsInTmux = 0
 endif
@@ -105,28 +104,28 @@ endfunc
 "}}}
 "{{{ApplyLocalSettings
 function! ApplyLocalSettings(dirname)
-    " Don't try to walk a remote directory tree -- takes too long, too many
-    " what if's
-    let l:netrwProtocol = strpart(a:dirname, 0, stridx(a:dirname, '://'))
-    if l:netrwProtocol !=# ''
-        return
-    endif
+  " Don't try to walk a remote directory tree -- takes too long, too many
+  " what if's
+  let l:netrwProtocol = strpart(a:dirname, 0, stridx(a:dirname, '://'))
+  if l:netrwProtocol !=# ''
+    return
+  endif
 
-    " Convert windows paths to unix style (they still work)
-    let l:curDir = substitute(a:dirname, "\\", '/', 'g')
+  " Convert windows paths to unix style (they still work)
+  let l:curDir = substitute(a:dirname, "\\", '/', 'g')
 
-    " Walk up to the top of the directory tree
-    let l:parentDir = strpart(l:curDir, 0, strridx(l:curDir, '/'))
-    if isdirectory(l:parentDir)
-        call ApplyLocalSettings(l:parentDir)
-    endif
+  " Walk up to the top of the directory tree
+  let l:parentDir = strpart(l:curDir, 0, strridx(l:curDir, '/'))
+  if isdirectory(l:parentDir)
+    call ApplyLocalSettings(l:parentDir)
+  endif
 
-    " Now walk back down the path and source .settings.vim as you find them. This
-    " way child directories can 'inherit' from their parents
-    let l:settingsFile = a:dirname . '/.settings.vim'
-    if filereadable(l:settingsFile)
-        exec ':source ' . l:settingsFile
-    endif
+  " Now walk back down the path and source .settings.vim as you find them. This
+  " way child directories can 'inherit' from their parents
+  let l:settingsFile = a:dirname . '/.settings.vim'
+  if filereadable(l:settingsFile)
+    exec ':source ' . l:settingsFile
+  endif
 endfunction
 augroup LocalSettings
   autocmd!
@@ -147,7 +146,9 @@ set mouse=a
 filetype plugin indent on
 set t_Co=256
 syntax enable                           " 开启语法支持
-set termguicolors                       " 开启GUI颜色支持
+if has('termguicolors')
+  set termguicolors                       " 开启GUI颜色支持
+endif
 set smartindent                         " 智能缩进
 set hlsearch                            " 高亮搜索
 set undofile                            " 始终保留undo文件
