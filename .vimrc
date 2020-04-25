@@ -300,7 +300,9 @@ endfunction"}}}
 " UI{{{
 syntax enable
 set t_Co=256
-set termguicolors
+if has('termguicolors')
+  set termguicolors
+endif
 set background=dark
 let g:gruvbox_material_palette = 'mix'
 let g:gruvbox_material_enable_italic = 1
