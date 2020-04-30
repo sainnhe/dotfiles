@@ -63,6 +63,11 @@
     "list.normalMappings": {
         "<C-c>": "do:exit"
     },
+    "git.changedSign.text": "▌",
+    "git.addedSign.text": "▌",
+    "git.removedSign.text": "▁",
+    "git.changeRemovedSign.text": "▁",
+    "git.topRemovedSign.text": "▔",
     "project.dbpath": "~/.cache/vim/coc-project",
     "project.rootPatterns": [".git", ".svn", ".root", ".project", ".hg"],
     "bookmark.sign": "\uf5c2",
