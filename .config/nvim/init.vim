@@ -967,6 +967,7 @@ let g:colorSchemeList['Gruvbox Material Dark'] = [
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
       \   'let g:gruvbox_material_lightline_disable_bold = 1',
+      \   'let g:gruvbox_material_better_performance = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -980,6 +981,7 @@ let g:colorSchemeList['Gruvbox Mix Dark'] = [
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
       \   'let g:gruvbox_material_lightline_disable_bold = 1',
+      \   'let g:gruvbox_material_better_performance = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -993,6 +995,7 @@ let g:colorSchemeList['Gruvbox Material Light'] = [
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
       \   'let g:gruvbox_material_lightline_disable_bold = 1',
+      \   'let g:gruvbox_material_better_performance = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
