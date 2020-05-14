@@ -186,14 +186,14 @@ schemes:
 # {{{ Sonokai Andromeda
   sonokai_shusia: &sonokai_andromeda
     primary:
-      background: "0x2b2d37"
+      background: "0x2b2d3a"
       foreground: "0xe1e3e4"
 
     normal:
       black: "0x181a1c"
       red: "0xfb617e"
       green: "0x9ed06c"
-      yellow: "0xf0c362"
+      yellow: "0xedc763"
       blue: "0x6dcae8"
       magenta: "0xbb97ee"
       cyan: "0xf89860"
@@ -203,7 +203,7 @@ schemes:
       black: "0x181a1c"
       red: "0xfb617e"
       green: "0x9ed06c"
-      yellow: "0xf0c362"
+      yellow: "0xedc763"
       blue: "0x6dcae8"
       magenta: "0xbb97ee"
       cyan: "0xf89860"
