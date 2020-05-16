@@ -657,6 +657,7 @@ if !has('win32')
 endif
 Plug 'liuchengxu/vim-which-key'
 Plug 'Yggdroot/indentLine'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'junegunn/limelight.vim', {'on': 'Limelight!!'}
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'roman/golden-ratio'
@@ -1189,6 +1190,7 @@ let g:indentLine_leadingSpaceEnabled = 0
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 2
 let g:indentLine_char = ''  " ¦┆│⎸▏
+let g:indent_blankline_char = g:indentLine_char
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_fileTypeExclude = [ 'startify', 'coc-explorer', 'codi', 'help', 'man', 'vtm', 'markdown' ]
 let g:indentLine_setColors = 0  " disable overwrite with grey by default, use colorscheme instead
