@@ -309,6 +309,7 @@ let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_disable_italic_comment = 1
 let g:gruvbox_material_menu_selection_background = 'green'
 let g:gruvbox_material_sign_column_background = 'none'
+let g:gruvbox_material_better_performance = 1
 colo gruvbox-material
 " Statusline{{{
 " :h 'statusline'
