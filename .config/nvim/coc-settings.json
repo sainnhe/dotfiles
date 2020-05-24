@@ -122,7 +122,7 @@
         "l": ["expandable?", "expand", "open"],
         "L": "expandRecursive",
         "H": "collapseRecursive",
-        "o": ["expandable?", "expandOrCollapse", "open"],
+        "o": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
         "<cr>": "open",
         "t": "open:tab",
         "<bs>": "gotoParent",
