@@ -1721,6 +1721,7 @@ let g:vista_executive_for = {
 augroup vista_custom
   autocmd!
   autocmd FileType vista,vista_kind nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 150m<CR>:call ToggleCocExplorer()<CR>
+  autocmd FileType vista,vista_kind nmap <buffer><silent> o <CR>
 augroup END
 "}}}
 "{{{neoformat
