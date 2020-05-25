@@ -944,6 +944,43 @@ if g:vimIsInTmux == 1 && !has('win32')
 endif
 "}}}
 "{{{colorscheme
+" {{{
+let g:gruvbox_material_palette_soft_era = {
+      \ 'bg0':              ['#f9f5f5',   '229'],
+      \ 'bg1':              ['#f4f0f0',   '228'],
+      \ 'bg2':              ['#f4f0f0',   '228'],
+      \ 'bg3':              ['#f2edec',   '223'],
+      \ 'bg4':              ['#efeae9',   '223'],
+      \ 'bg5':              ['#ebe6e4',   '250'],
+      \ 'bg_statusline1':   ['#f4f0f0',   '223'],
+      \ 'bg_statusline2':   ['#f4f0f0',   '223'],
+      \ 'bg_statusline3':   ['#ebe6e4',   '250'],
+      \ 'bg_diff_green':    ['#daf0a7',   '194'],
+      \ 'bg_visual_green':  ['#daf0a7',   '194'],
+      \ 'bg_diff_red':      ['#fbcdb9',   '217'],
+      \ 'bg_visual_red':    ['#fbcdb9',   '217'],
+      \ 'bg_diff_blue':     ['#c6eaf0',   '117'],
+      \ 'bg_visual_blue':   ['#c6eaf0',   '117'],
+      \ 'bg_visual_yellow': ['#f2dfab',   '226'],
+      \ 'bg_current_word':  ['#efeae9',   '228'],
+      \ 'fg0':              ['#be9898',   '237'],
+      \ 'fg1':              ['#be9898',   '237'],
+      \ 'red':              ['#f165bd',   '88'],
+      \ 'orange':           ['#f165bd',   '130'],
+      \ 'yellow':           ['#ec9157',   '136'],
+      \ 'green':            ['#96ad01',   '100'],
+      \ 'aqua':             ['#25b7b8',   '165'],
+      \ 'blue':             ['#75a9d9',   '24'],
+      \ 'purple':           ['#aea6e1',   '96'],
+      \ 'bg_red':           ['#f165bd',   '88'],
+      \ 'bg_green':         ['#96ad01',   '100'],
+      \ 'bg_yellow':        ['#ec9157',   '130'],
+      \ 'grey0':            ['#dabfbf',   '246'],
+      \ 'grey1':            ['#dabfbf',   '245'],
+      \ 'grey2':            ['#dabfbf',   '243'],
+      \ 'none':             ['NONE',      'NONE']
+      \ }
+" }}}
 let g:colorSchemeList = {}
 let g:colorSchemeList['Forest Night'] = [
       \   'set background=dark',
@@ -1048,6 +1085,20 @@ let g:colorSchemeList['Sonokai Maia'] = [
       \   'let g:sonokai_lightline_disable_bold = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
+      \   ]
+let g:colorSchemeList['Soft Era'] = [
+      \   'set background=light',
+      \   "let g:gruvbox_material_background = 'medium'",
+      \   'let g:gruvbox_material_palette = g:gruvbox_material_palette_soft_era',
+      \   "let g:gruvbox_material_visual = 'grey background'",
+      \   'let g:gruvbox_material_enable_italic = g:vimEnableItalic',
+      \   "let g:gruvbox_material_cursor = 'auto'",
+      \   'let g:gruvbox_material_disable_italic_comment = 1',
+      \   "let g:gruvbox_material_sign_column_background = 'none'",
+      \   'let g:gruvbox_material_lightline_disable_bold = 1',
+      \   'let g:gruvbox_material_better_performance = 1',
+      \   'colorscheme gruvbox-material',
+      \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
 "{{{Functions
 function SwitchLightlineColorScheme(lightlineName) abort
