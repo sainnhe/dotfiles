@@ -73,8 +73,6 @@ pacman_setup_func() {
     pacman -S --noconfirm yapf &>/dev/null
     echo "installing bash-language-server..."
     pacman -S --noconfirm bash-language-server &>/dev/null
-    echo "installing hasktags..."
-    pacman -S --noconfirm hasktags &>/dev/null
     echo "installing zenity..."
     pacman -S --noconfirm zenity &>/dev/null
 }
@@ -83,7 +81,7 @@ pacman_setup_func() {
 pikaur_setup_func() {
     echo -n "make sure you have configured makepkg proxy correctly. [enter to continue]  "
     read -r
-    pikaur -S ruby-neovim global stylelint stylelint-config-standard nodejs-jsonlint js-beautify universal-ctags-git gotags-git jsctags-tern-git markdown2ctags rst2ctags
+    pikaur -S ruby-neovim global stylelint stylelint-config-standard nodejs-jsonlint js-beautify universal-ctags-git
     # echo -n "install global from AUR. [enter to continue]  "
     # read -r
     # pikaur -S global
@@ -102,18 +100,6 @@ pikaur_setup_func() {
     # echo -n "install universal-ctags-git from AUR. [enter to continue]  "
     # read -r
     # pikaur -S universal-ctags-git
-    # echo -n "install gotags-git from AUR. [enter to continue]  "
-    # read -r
-    # pikaur -S gotags-git
-    # echo -n "install jsctags-tern-git from AUR. [enter to continue]  "
-    # read -r
-    # pikaur -S jsctags-tern-git
-    # echo -n "install markdown2ctags from AUR. [enter to continue]  "
-    # read -r
-    # pikaur -S markdown2ctags
-    # echo -n "install rst2ctags from AUR. [enter to continue]  "
-    # read -r
-    # pikaur -S rst2ctags
 }
 # }}}
 rust_setup() { #{{{

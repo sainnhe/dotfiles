@@ -116,7 +116,7 @@
     "explorer.buffer.tabOnly": true,
     "explorer.keyMappings": {
         "s": "toggleSelection",
-        "<tab>": "actionMenu",
+        ":": "actionMenu",
 
         "h": "collapse",
         "l": ["expandable?", "expand", "open"],
