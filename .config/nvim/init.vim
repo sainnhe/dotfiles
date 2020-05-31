@@ -677,11 +677,7 @@ else
   Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
 endif
 Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
-if !has('win32') && executable('proxychains')
-  Plug 'neoclide/coc.nvim', {'do': 'proxychains -q yarn install --frozen-lockfile'}
-else
-  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-endif
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
