@@ -142,6 +142,8 @@ let g:mapleader = "\<Space>"
 let g:maplocalleader = "\<A-z>"
 nnoremap <SPACE> <Nop>
 set number cursorline
+set noshowmode
+set incsearch
 set mouse=a
 filetype plugin indent on
 set t_Co=256
@@ -189,7 +191,6 @@ augroup END
 "
 " set nrformats-=octal
 "
-" set incsearch
 " set laststatus=2
 " set ruler
 "
@@ -714,6 +715,7 @@ Plug 'yianwillis/vimcdoc'
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & npm install'}
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-easy-align'
+Plug 'haya14busa/incsearch.vim'
 "{{{
 call plug#end()
 "}}}
@@ -794,7 +796,6 @@ function! Artify_gitbranch() abort"{{{
 endfunction"}}}
 "}}}
 set laststatus=2  " Basic
-set noshowmode  " Disable show mode info
 augroup lightlineCustom
   autocmd!
   autocmd BufWritePost * call lightline_gitdiff#query_git() | call lightline#update()
@@ -1624,26 +1625,17 @@ function! Help_vim_sneak()
   echo 's                             forward repeat'
   echo 'S                             backward repeat'
   echo '[count]s[char][char]          vertical search, limit search result in [count] columns'
-  echo 'f/F                           one character search'
 endfunction
 "}}}
 let g:sneak#s_next = 1
 
 " 2-character Sneak (default)
-nmap s <Plug>Sneak_s
-nmap S <Plug>Sneak_S
-xmap s <Plug>Sneak_s
-xmap S <Plug>Sneak_S
-omap s <Plug>Sneak_s
-omap S <Plug>Sneak_S
-
-" 1-character enhanced 'f'
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
+nmap f <Plug>Sneak_s
+nmap F <Plug>Sneak_S
+xmap f <Plug>Sneak_s
+xmap F <Plug>Sneak_S
+omap f <Plug>Sneak_s
+omap F <Plug>Sneak_S
 "}}}
 "{{{undotree
 let g:undotree_WindowLayout = 3
@@ -2147,4 +2139,16 @@ let g:peekaboo_delay = 500
 xmap <leader>a <Plug>(EasyAlign)
 nmap <leader>a <Plug>(EasyAlign)
 let g:which_key_map['a'] = 'align'
+"}}}
+"{{{incsearch.vim
+let g:incsearch#auto_nohlsearch = 1
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 "}}}

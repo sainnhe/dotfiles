@@ -8,6 +8,8 @@ let g:mapleader = "\<Space>"
 let g:maplocalleader = "\<A-z>"
 nnoremap <SPACE> <Nop>
 set number cursorline
+set noshowmode
+set incsearch
 set mouse=a
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
@@ -312,7 +314,6 @@ let g:gruvbox_material_sign_column_background = 'none'
 colo gruvbox-material
 " Statusline{{{
 " :h 'statusline'
-set noshowmode
 set laststatus=2
 set statusline=
 set statusline+=%#TabLineSel#
