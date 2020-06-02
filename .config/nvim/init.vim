@@ -716,6 +716,17 @@ Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & npm install'}
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-easy-align'
 Plug 'haya14busa/incsearch.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'glts/vim-textobj-comment'
+Plug 'somini/vim-textobj-fold'
+Plug 'mattn/vim-textobj-url'
+Plug 'Julian/vim-textobj-variable-segment'
+Plug 'kana/vim-textobj-entire'
+Plug 'sgur/vim-textobj-parameter'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-lastpat'
+Plug 'kana/vim-textobj-function'
+Plug 'haya14busa/vim-textobj-function-syntax'
 "{{{
 call plug#end()
 "}}}
@@ -1625,17 +1636,22 @@ function! Help_vim_sneak()
   echo 's                             forward repeat'
   echo 'S                             backward repeat'
   echo '[count]s[char][char]          vertical search, limit search result in [count] columns'
+  echo 'f/F                           one character search'
 endfunction
 "}}}
 let g:sneak#s_next = 1
-
-" 2-character Sneak (default)
-nmap f <Plug>Sneak_s
-nmap F <Plug>Sneak_S
-xmap f <Plug>Sneak_s
-xmap F <Plug>Sneak_S
-omap f <Plug>Sneak_s
-omap F <Plug>Sneak_S
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
+xmap s <Plug>Sneak_s
+xmap S <Plug>Sneak_S
+omap s <Plug>Sneak_s
+omap S <Plug>Sneak_S
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
 "}}}
 "{{{undotree
 let g:undotree_WindowLayout = 3
@@ -2151,4 +2167,33 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+"}}}
+"{{{vim-textobj-user
+call textobj#user#plugin('line', {
+      \   '-': {
+      \     'select-a-function': 'CurrentLineA',
+      \     'select-a': 'al',
+      \     'select-i-function': 'CurrentLineI',
+      \     'select-i': 'il',
+      \   },
+      \ })
+function! CurrentLineA()
+  normal! 0
+  let head_pos = getpos('.')
+  normal! $
+  let tail_pos = getpos('.')
+  let tail_pos[2] = tail_pos[2] + 1
+  return ['v', head_pos, tail_pos]
+endfunction
+function! CurrentLineI()
+  normal! ^
+  let head_pos = getpos('.')
+  normal! g_
+  let tail_pos = getpos('.')
+  let non_blank_char_exists_p = getline('.')[head_pos[2] - 1] !~# '\s'
+  return
+        \ non_blank_char_exists_p
+        \ ? ['v', head_pos, tail_pos]
+        \ : 0
+endfunction
 "}}}
