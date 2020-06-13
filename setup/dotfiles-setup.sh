@@ -42,7 +42,7 @@ setup_copy .config/polybar
 setup_copy .config/rofi/config.rasi
 setup_symlink .config/rofi/themes
 setup_symlink .config/rtv
-setup_symlink .config/compton.conf
+setup_symlink .config/picom.conf
 setup_copy .config/pikaur.conf
 setup_symlink package.json
 
