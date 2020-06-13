@@ -28,6 +28,7 @@ setopt autopushd pushdignoredups                # auto push dir into stack and a
 # {{{prompt
 autoload -U promptinit
 promptinit
+printf "\e[5 q" > $TTY
 # }}}
 # {{{completion
 zcomp_init () {

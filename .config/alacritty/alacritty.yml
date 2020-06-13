@@ -1682,7 +1682,7 @@ dynamic_title: true
 #   - Underline
 #   - Beam
 cursor:
-  style: Block
+  style: Beam
   unfocused_hollow: true
 
 # Live config reload (changes require restart)

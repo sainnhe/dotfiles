@@ -177,6 +177,7 @@ endif
 augroup vimSettings
   autocmd!
   autocmd FileType html,css,scss,typescript set shiftwidth=2
+  autocmd VimLeave * set guicursor=a:ver25-Cursor/lCursor
 augroup END
 " "{{{
 " if exists('g:loaded_sensible') || &compatible
@@ -1464,7 +1465,7 @@ augroup explorer_custom
   autocmd!
   autocmd FileType coc-explorer setlocal signcolumn=no
   autocmd FileType coc-explorer nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 100m<CR>:Vista!!<CR>
-  autocmd BufEnter * if (winnr("$") == 1 && &filetype ==# 'coc-explorer') | q | endif
+  autocmd BufEnter * if (winnr("$") == 1 && &filetype ==# 'coc-explorer') | set guicursor=a:ver25-Cursor/lCursor | q | endif
 augroup END
 "}}}
 "{{{coc-project

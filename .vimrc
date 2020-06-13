@@ -8,8 +8,6 @@ let g:mapleader = "\<Space>"
 let g:maplocalleader = "\<A-z>"
 nnoremap <SPACE> <Nop>
 set number cursorline
-set noshowmode
-set incsearch
 set mouse=a
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
@@ -31,6 +29,13 @@ set wildmenu                            " 命令框Tab呼出菜单
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
 set updatetime=100
 set incsearch
+augroup Custom
+    autocmd!
+    autocmd VimLeave * call system('printf "\e[5 q" > $TTY')
+    autocmd VimEnter * call system('printf "\e[1 q" > $TTY')
+    autocmd InsertEnter * call system('printf "\e[5 q" > $TTY')
+    autocmd InsertLeave * call system('printf "\e[1 q" > $TTY')
+augroup END
 " Key{{{
 execute "set <M-a>=\ea"
 execute "set <M-b>=\eb"
@@ -302,18 +307,16 @@ endfunction"}}}
 " UI{{{
 syntax enable
 set t_Co=256
-if has('termguicolors')
-  set termguicolors
-endif
+set termguicolors
 set background=dark
-let g:gruvbox_material_palette = 'mix'
 let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_palette = 'mix'
 let g:gruvbox_material_disable_italic_comment = 1
-let g:gruvbox_material_menu_selection_background = 'green'
 let g:gruvbox_material_sign_column_background = 'none'
 colo gruvbox-material
 " Statusline{{{
 " :h 'statusline'
+set noshowmode
 set laststatus=2
 set statusline=
 set statusline+=%#TabLineSel#
