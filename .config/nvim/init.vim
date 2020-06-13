@@ -178,6 +178,7 @@ augroup vimSettings
   autocmd!
   autocmd FileType html,css,scss,typescript set shiftwidth=2
   autocmd VimLeave * set guicursor=a:ver25-Cursor/lCursor
+  autocmd VimEnter silent! execute 'nohlsearch'
 augroup END
 " "{{{
 " if exists('g:loaded_sensible') || &compatible

@@ -35,6 +35,7 @@ augroup Custom
     autocmd VimEnter * call system('printf "\e[1 q" > $TTY')
     autocmd InsertEnter * call system('printf "\e[5 q" > $TTY')
     autocmd InsertLeave * call system('printf "\e[1 q" > $TTY')
+    autocmd VimEnter silent! execute 'nohlsearch'
 augroup END
 " Key{{{
 execute "set <M-a>=\ea"
