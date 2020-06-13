@@ -1267,9 +1267,9 @@ augroup goyoCustom
   autocmd! User GoyoEnter Limelight
   autocmd! User GoyoLeave Limelight!
 augroup END
-nnoremap <silent> <leader><space>f :<C-u>Limelight!!<CR>
+nnoremap <silent> <leader><space>F :<C-u>Limelight!!<CR>
 nnoremap <silent> <leader><space>r :<C-u>Goyo<CR>
-let g:which_key_map["\<space>"]['f'] = 'focus mode'
+let g:which_key_map["\<space>"]['F'] = 'focus mode'
 let g:which_key_map["\<space>"]['r'] = 'reading mode'
 "}}}
 "{{{golden-ratio
@@ -2223,4 +2223,13 @@ nmap <leader>v <plug>(ts-init-selection)
 vmap gk <plug>(ts-node-incremental)
 vmap gj <plug>(ts-node-decremental)
 vmap gg <plug>(ts-scope-incremental)
+nnoremap <silent> <leader><space>f :<C-u>call Toggle_foldmethod()<CR>
+let g:which_key_map["\<space>"]['f'] = 'foldmethod toggle'
+function! Toggle_foldmethod() abort
+  if &foldmethod ==# 'marker'
+    set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
+  else
+    set foldmethod=marker
+  endif
+endfunction
 "}}}
