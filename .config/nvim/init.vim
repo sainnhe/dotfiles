@@ -728,6 +728,7 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-lastpat'
 Plug 'kana/vim-textobj-function'
 Plug 'haya14busa/vim-textobj-function-syntax'
+Plug 'nvim-treesitter/nvim-treesitter'
 "{{{
 call plug#end()
 "}}}
@@ -2197,4 +2198,28 @@ function! CurrentLineI()
         \ ? ['v', head_pos, tail_pos]
         \ : 0
 endfunction
+"}}}
+"{{{nvim-treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+    highlight = {
+        enable = true,                                          -- false will disable the whole extension
+        disable = { 'python', 'html', 'css' },                  -- list of language that will be disabled
+    },
+    incremental_selection = {
+        enable = true,
+        keymaps = {                                             -- mappings for incremental selection (visual mappings)
+          init_selection = '<plug>(ts-init-selection)',         -- maps in normal mode to init the node/scope selection
+          scope_incremental = '<plug>(ts-scope-incremental)',   -- increment to the upper scope (as defined in locals.scm)
+          node_incremental = '<plug>(ts-node-incremental)',     -- increment to the upper named parent
+          node_decremental = '<plug>(ts-node-decremental)',     -- decrement to the previous node
+        }
+    },
+    ensure_installed = { 'lua', 'c', 'go', 'python', 'html', 'css' } -- one of 'all', 'language', or a list of languages
+}
+EOF
+nmap <leader>v <plug>(ts-init-selection)
+vmap gk <plug>(ts-node-incremental)
+vmap gj <plug>(ts-node-decremental)
+vmap gg <plug>(ts-scope-incremental)
 "}}}
