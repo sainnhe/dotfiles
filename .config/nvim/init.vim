@@ -1899,8 +1899,7 @@ endfunction
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
     highlight = {
-        enable = true,                                          -- false will disable the whole extension
-        disable = { 'python', 'html', 'css' },                  -- list of language that will be disabled
+        enable = false,                                         -- false will disable the whole extension
     },
     incremental_selection = {
         enable = true,
@@ -1911,7 +1910,7 @@ require'nvim-treesitter.configs'.setup {
           node_decremental = '<plug>(ts-node-decremental)',     -- decrement to the previous node
         }
     },
-    ensure_installed = { 'lua', 'c', 'go', 'python', 'html', 'css' } -- one of 'all', 'language', or a list of languages
+    ensure_installed = 'all' -- one of 'all', 'language', or a list of languages
 }
 EOF
 nmap <leader>v <plug>(ts-init-selection)
