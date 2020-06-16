@@ -361,13 +361,6 @@ alias net-test="bash ~/repo/scripts/func/net-test.sh"
 alias fix-wifi="sudo iw dev wlp1s0 set power_save off"
 alias t='goldendict'
 alias gencomp-help='gencomp'
-if [[ "$TERM_Emulator" == "tilda" ]]; then
-    alias g='BROWSER=w3m proxychains -q googler -x -n 2 -N -c us -l en --color nJmkxy'
-    alias d='BROWSER=w3m proxychains -q ddgr -n 2 -x --unsafe --color mJklxy'
-else
-    alias g='BROWSER=w3m proxychains -q googler -x -n 7 -N -c us -l en --color nJmkxy'
-    alias d='BROWSER=w3m proxychains -q ddgr -n 7 -x --unsafe --color mJklxy'
-fi
 # }}}
 # {{{Plugins
 # https://github.com/zdharma/zinit

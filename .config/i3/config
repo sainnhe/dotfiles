@@ -190,7 +190,5 @@ workspace_layout tabbed
 exec fcitx
 exec picom -b
 exec redshiftgui
-# exec --no-startup-id i3-msg 'workspace 1:Alpha; layout tabbed; exec tilix; exec /usr/bin/firefox-developer-edition'
-# exec tilix -e "zsh -c 'source ~/.zshrc; tmux-start'"
 # }}}
 exec feh --bg-fill ~/Pictures/wallpapers/time-3.jpg
