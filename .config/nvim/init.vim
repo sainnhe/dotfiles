@@ -1918,6 +1918,7 @@ vmap gk <plug>(ts-node-incremental)
 vmap gj <plug>(ts-node-decremental)
 vmap gg <plug>(ts-scope-incremental)
 nnoremap <silent> <leader><space>f :<C-u>call Toggle_foldmethod()<CR>
+let g:which_key_map['v'] = 'incremental selection'
 let g:which_key_map["\<space>"]['f'] = 'foldmethod toggle'
 function! Toggle_foldmethod() abort
   if &foldmethod ==# 'marker'
