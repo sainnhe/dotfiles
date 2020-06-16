@@ -123,6 +123,7 @@ elif [ "$1" = "dotfiles" ]; then
     cp /home/sainnhe/repo/dotfiles/.config/nvim/env.vim ~/.config/nvim/env.vim
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
     ln -s /home/sainnhe/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
+    ln -s /home/sainnhe/repo/dotfiles/.config/nvim/doc ~/.config/nvim/doc
 elif [ "$1" = "other" ]; then
     go get -u github.com/high-moctane/nextword
     mkdir -p ~/.local/share/nextword

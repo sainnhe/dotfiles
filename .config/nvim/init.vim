@@ -152,7 +152,7 @@ if has('termguicolors')
   set termguicolors                       " 开启GUI颜色支持
 endif
 set smartindent                         " 智能缩进
-set hlsearch                            " 高亮搜索
+set nohlsearch                          " 禁用高亮搜索
 set undofile                            " 始终保留undo文件
 set undodir=$HOME/.cache/vim/undo       " 设置undo文件的目录
 set timeoutlen=500                      " 超时时间为 0.5 秒
@@ -166,8 +166,10 @@ set wildmenu                            " 命令框Tab呼出菜单
 set autoread                            " 自动加载变更文件
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
 set signcolumn=yes
-
 set updatetime=100
+if &history < 1000
+  set history=1000
+endif
 if has('nvim')
   set inccommand=split
   set wildoptions=pum
@@ -178,63 +180,11 @@ augroup vimSettings
   autocmd!
   autocmd FileType html,css,scss,typescript set shiftwidth=2
   autocmd VimLeave * set guicursor=a:ver25-Cursor/lCursor
-  autocmd VimEnter silent! execute 'nohlsearch'
 augroup END
-" "{{{
-" if exists('g:loaded_sensible') || &compatible
-"         finish
-" else
-"         let g:loaded_sensible = 'yes'
-" endif
-"
-" " Use :help 'option' to see the documentation for the given option.
-"
-" set backspace=indent,eol,start
-"
-" set nrformats-=octal
-"
-" set laststatus=2
-" set ruler
-"
-" if &listchars ==# 'eol:$'
-"         set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-" endif
-"
-" if v:version > 703 || v:version == 703 && has('patch541')
-"         set formatoptions+=j " Delete comment character when joining commented lines
-" endif
-"
-" if has('path_extra')
-"         setglobal tags-=./tags tags-=./tags; tags^=./tags;
-" endif
-"
-" if &history < 1000
-"         set history=1000
-" endif
-" if &tabpagemax < 50
-"         set tabpagemax=50
-" endif
-" if !empty(&viminfo)
-"         set viminfo^=!
-" endif
-" set sessionoptions-=options
-"
-" " Allow color schemes to do bright colors without forcing bold.
-" if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-"         set t_Co=16
-" endif
-"
-" " Load matchit.vim, but only if the user hasn't installed a newer version.
-" if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &runtimepath) ==# ''
-"         runtime! macros/matchit.vim
-" endif
-" "}}}
 "}}}
 "{{{Mapping
 "{{{VIM-Compatible
 " sed -n l
-" https://stackoverflow.com/questions/5379837/is-it-possible-to-mapping-alt-hjkl-in-insert-mode
-" https://vi.stackexchange.com/questions/2350/how-to-map-alt-key
 if !has('nvim')
   execute "set <M-a>=\ea"
   execute "set <M-b>=\eb"
@@ -452,84 +402,10 @@ com -range=% -nargs=0 PasteBin :<line1>,<line2>call PasteBin()
 "}}}
 "}}}
 "{{{Plugin
-"{{{vim-plug-usage
-" 安装插件：
-" :PlugInstall
-" 更新插件：
-" :PlugUpdate
-" 更新vim-plug自身：
-" :PlugUpgrade
-" 清理插件：
-" :PlugClean[!]
-" 查看插件状态：
-" :PlugStatus
-" 查看插件更新后的更改：
-" :PlugDiff
-" 为当前插件生成快照：
-" :PlugSnapshot[!] [output path]
-" 立即加载插件：
-" :call plug#load(name_list)
-"
-" 在vim-plug窗口的键位绑定：
-" `D` - `PlugDiff`
-" `S` - `PlugStatus`
-" `R` - Retry failed update or installation tasks
-" `U` - Update plugins in the selected range
-" `q` - Close the window
-" `:PlugStatus`
-" - `L` - Load plugin
-" `:PlugDiff`
-" - `X` - Revert the update
-" `o` - Preview window
-" `H` - Help Docs
-" `<Tab>` - Open GitHub URL in browser
-" J \ K - scroll the preview window
-" CTRL-N / CTRL-P - move between the commits
-" CTRL-J / CTRL-K - move between the commits and synchronize the preview window
-"
-" on command load example:
-" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
-"
-" on filetype load example:
-" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-" Plug 'kovisoft/paredit', { 'for': ['clojure', 'scheme'] }
-"
-" on both conditions example:
-" Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': 'vader' }
-"
-" Load manually:
-" Plug 'SirVer/ultisnips', { 'on': [] }
-" Plug 'Valloric/YouCompleteMe', { 'on': [] }
-" augroup load_us_ycm
-"   autocmd!
-"   autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-"                      \| autocmd! load_us_ycm
-" augroup END
-"
-" more info     :h plug-options
-"}}}
 "{{{init
-function Help_vim_plug() abort
-  echo ''
-  echo 'D     show diff'
-  echo 'S     plugin status'
-  echo 'R     retry'
-  echo 'U     update plugins in the selected range'
-  echo 'q     close window'
-  echo ':PlugStatus L load plugin'
-  echo ':PlugDiff X revert the update'
-  echo '<tab> open github url'
-  echo 'p     open preview window'
-  echo 'h     show help docs'
-  echo 'J/K   scroll preview window'
-  echo 'C-J/C-K move between commits'
-endfunction
-
 augroup vimPlugMappings
   autocmd!
-  autocmd FileType vim-plug nnoremap <buffer> ? :call Help_vim_plug()<CR>
-  autocmd FileType vim-plug nmap <buffer> p <plug>(plug-preview)
+  autocmd FileType vim-plug nmap <buffer> ? <plug>(plug-preview)
   autocmd FileType vim-plug nnoremap <buffer> <silent> h :call <sid>plug_doc()<cr>
   autocmd FileType vim-plug nnoremap <buffer> <silent> <Tab> :call <sid>plug_gx()<cr>
 augroup END
@@ -1206,28 +1082,6 @@ let g:which_key_map = {
 let g:which_key_map["\<space>"] = {
       \   'name': 'menu'
       \   }
-let g:which_key_map["\<space>"]['h'] = {
-      \   'name': 'help',
-      \   'v': 'visual multi',
-      \   's': 'sneak',
-      \   'f': 'neoformat',
-      \   'p': 'autopairs',
-      \   'c': 'nerd commenter',
-      \   't': 'close tag',
-      \   'S': 'signify',
-      \   'r': 'surround',
-      \   'm': 'matchup',
-      \   'i': 'markdown inline edit'
-      \   }
-nnoremap <silent> <leader><space>hv :<c-u>call Help_vim_visual_multi()<cr>
-nnoremap <silent> <leader><space>hs :<c-u>call Help_vim_sneak()<cr>
-nnoremap <silent> <leader><space>hf :<c-u>call Help_neoformat()<cr>
-nnoremap <silent> <leader><space>hp :<c-u>call Help_auto_pairs()<cr>
-nnoremap <silent> <leader><space>hc :<c-u>call Help_nerdcommenter()<cr>
-nnoremap <silent> <leader><space>ht :<c-u>call Help_vim_closetag()<cr>
-nnoremap <silent> <leader><space>hr :<c-u>call Help_vim_surround()<cr>
-nnoremap <silent> <leader><space>hm :<c-u>call Help_vim_matchup()<cr>
-nnoremap <silent> <leader><space>hi :<c-u>call Help_inline_edit()<cr>
 "}}}
 "{{{vim-hexokinase
 let g:Hexokinase_highlighters = ['backgroundfull']  " ['virtual', 'sign_column', 'background', 'foreground', 'foregroundfull']
@@ -1631,17 +1485,6 @@ let g:which_key_map['f'] = {
       \   }
 "}}}
 "{{{vim-sneak
-"{{{vim-sneak-help
-function! Help_vim_sneak()
-  echo 'Normal Mode & Visual Mode:'
-  echo 's[char][char]                 forward search and highlight'
-  echo 'S[char][char]                 backward search and highlight'
-  echo 's                             forward repeat'
-  echo 'S                             backward repeat'
-  echo '[count]s[char][char]          vertical search, limit search result in [count] columns'
-  echo 'f/F                           one character search'
-endfunction
-"}}}
 let g:sneak#s_next = 1
 nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
@@ -1676,21 +1519,12 @@ let g:twiggy_show_full_ui = 0
 let g:twiggy_git_log_command = 'Agit'
 "}}}
 "{{{agit
-function! Help_agit() abort
-  echo '<A-j>         scroll down status window'
-  echo '<A-k>         scroll up status window'
-  echo '<C-j>         scroll down diff window'
-  echo '<C-k>         scroll up diff window'
-  echo 'q             quit'
-  echo '?             show this help'
-endfunction
 function! s:vim_agit_mappings() abort
   nmap <silent><buffer> <A-j>         <Plug>(agit-scrolldown-stat)
   nmap <silent><buffer> <A-k>         <Plug>(agit-scrollup-stat)
   nmap <silent><buffer> <C-j>         <Plug>(agit-scrolldown-diff)
   nmap <silent><buffer> <C-k>         <Plug>(agit-scrollup-diff)
   nmap <silent><buffer> q             <PLug>(agit-exit)
-  nmap <silent><buffer> ?             :<C-u>call Help_agit()<CR>
 endfunction
 augroup agitCustom
   autocmd!
@@ -1783,19 +1617,6 @@ augroup vista_custom
 augroup END
 "}}}
 "{{{neoformat
-"{{{neoformat-usage
-function! Help_neoformat()
-  echo '<leader><Tab>         普通模式和可视模式排版'
-  echo ''
-  echo 'Normal Mode Syntax'
-  echo ':<C-u>Neoformat python'
-  echo ':<C-u>Neoformat yapf'
-  echo ''
-  echo 'Visual Mode Syntax'
-  echo ':Neoformat! python'
-  echo ':Neoformat! yapf'
-endfunction
-"}}}
 "{{{Neoformat_Default_Filetype_Formatter
 function! Neoformat_Default_Filetype_Formatter()
   if &filetype ==# 'c'
@@ -1807,12 +1628,6 @@ function! Neoformat_Default_Filetype_Formatter()
   endif
 endfunction
 "}}}
-" :h neoformat-supported-filetypes
-" format on save
-" augroup fmt
-" autocmd!
-" autocmd BufWritePre * undojoin | Neoformat
-" augroup END
 " Enable alignment
 let g:neoformat_basic_format_align = 1
 " Enable tab to spaces conversion
@@ -1823,24 +1638,6 @@ nnoremap <silent> <leader><Tab> :<C-u>call Neoformat_Default_Filetype_Formatter(
 vnoremap <silent> <leader><Tab> :Neoformat! &ft<CR>
 "}}}
 "{{{nerdcommenter
-"{{{nerdcommenter-usage
-" <leader>c?  显示帮助
-function! Help_nerdcommenter()
-  echo "[count]<Leader>cc                             NERDComComment, Comment out the current [count] line or text selected in visual mode\n"
-  echo "[count]<Leader>cu                             NERDComUncommentLine, Uncomments the selected line(s)\n"
-  echo "[count]<Leader>cn                             NERDComNestedComment, Same as <Leader>cc but forces nesting\n"
-  echo "[count]<Leader>c<space>                       NERDComToggleComment, Toggles the comment state of the selected line(s). If the topmost selected, line is commented, all selected lines are uncommented and vice versa.\n"
-  echo "[count]<Leader>cm                             NERDComMinimalComment, Comments the given lines using only one set of multipart delimiters\n"
-  echo "[count]<Leader>ci                             NERDComInvertComment, Toggles the comment state of the selected line(s) individually\n"
-  echo "[count]<Leader>cs                             NERDComSexyComment, Comments out the selected lines sexily'\n"
-  echo "[count]<Leader>cy                             NERDComYankComment, Same as <Leader>cc except that the commented line(s) are yanked first\n"
-  echo "<Leader>c$                                    NERDComEOLComment, Comments the current line from the cursor to the end of line\n"
-  echo "<Leader>cA                                    NERDComAppendComment, Adds comment delimiters to the end of line and goes into insert mode between them\n"
-  echo "<Leader>ca                                    NERDComAltDelim, Switches to the alternative set of delimiters\n"
-  echo '[count]<Leader>cl && [count]<Leader>cb        NERDComAlignedComment, Same as NERDComComment except that the delimiters are aligned down the left side (<Leader>cl) or both sides (<Leader>cb)'
-endfunction
-nnoremap <silent> <leader>c? :<C-u>call Help_nerdcommenter()<CR>
-"}}}
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
@@ -1905,14 +1702,6 @@ endif
 "}}}
 "}}}
 "{{{vim-visual-multi
-"{{{vim-visual-multi-usage
-function! Help_vim_visual_multi()
-  echo 'Normal & Visual'
-  echo '`             添加光标'
-  echo '<Esc>         退出'
-endfunction
-"}}}
-" https://github.com/mg979/vim-visual-multi/wiki
 let g:VM_default_mappings = 0
 let g:VM_maps = {}
 let g:VM_maps['Switch Mode']                 = 'v'
@@ -1927,25 +1716,7 @@ let g:VM_maps['Visual Cursors']              = '`'
 command! -nargs=1 E  edit  suda://<args>
 command W w suda://%
 "}}}
-"{{{vim-surround
-"{{{vim-surround-usage
-function! Help_vim_surround()
-  echo 'ds([          delete surround'
-  echo 'cs([          change surround () to []'
-  echo 'ysw[          add surround [] from current position to the end of this word'
-  echo 'ysiw[         add surround [] from the begin of this word to the end'
-  echo 'yss[          add surround [] from the begin of this line to the end'
-endfunction
-"}}}
-"}}}
 "{{{inline_edit.vim
-"{{{inline-edit-usage
-function! Help_inline_edit()
-  echo ''
-  echo 'visual 或 normal 模式下按 E'
-  echo ''
-endfunction
-"}}}
 nnoremap E :<C-u>InlineEdit<CR>
 vnoremap E :InlineEdit<CR>
 "}}}
@@ -1963,15 +1734,6 @@ nnoremap <silent> <C-d> :<C-u>call comfortable_motion#flick(120)<CR>
 nnoremap <silent> <C-u> :<C-u>call comfortable_motion#flick(-120)<CR>
 "}}}
 "{{{auto-pairs
-"{{{auto-pairs-usage
-function! Help_auto_pairs()
-  echo '插入模式下：'
-  echo '<A-z>p            toggle auto-pairs'
-  echo '<A-n>             jump to next closed pair'
-  echo '<A-Backspace>     delete without pairs'
-  echo '<A-z>[key]        insert without pairs'
-endfunction
-"}}}
 let g:AutoPairsShortcutToggle = '<A-z>p'
 let g:AutoPairsShortcutFastWrap = '<A-z>`sadsfvf'
 let g:AutoPairsShortcutJump = '<A-n>'
@@ -2012,62 +1774,16 @@ nnoremap <silent> <leader><space>P :<c-u>call Toggle_Pomodoro()<cr>
 let g:which_key_map["\<space>"]['P'] = 'pomodoro toggle'
 "}}}
 "{{{vim-matchup
-"{{{vim-matchup-usage
-function! Help_vim_matchup()
-  echo 'surrounding match highlight bold, word match highlight underline'
-  echo ''
-  echo 'Match Word Jump:'
-  echo '%     jump to next word match current cursor position'
-  echo 'g%    jump to previous word match current cursor position'
-  echo '[%    jump to first word match current cursor position'
-  echo ']%    jump to last word match current cursor position'
-  echo '[%    if at the beginning of current outer, jump to previous outer'
-  echo ']%    if at the end of current outer, jump to next outer'
-  echo ''
-  echo 'Match Surrounding Jump:'
-  echo 'z%    jump inside the nearest surrounding'
-  echo '[%    jump to the beginning of current surrounding'
-  echo ']%    jump to the end of current surrounding'
-  echo '[%    if at the beginning of current surrounding, jump to previous outer surrounding'
-  echo ']%    if at the end of current surrounding, jump to next outer surrounding'
-  echo '<leader>% or double-click     select current surrounding'
-  echo ''
-  echo 'Exception:'
-  echo '%     if not recognize, seek forwards to one and then jump to its match (surrounding or word)'
-  echo 'g%    if at an open word, cycle around to the corresponding open word'
-  echo 'g%    if the cursor is not on a word, seek forwards to one and then jump to its match'
-  echo ''
-  echo 'support [count][motion] and [action][motion] syntax'
-endfunction
-"}}}
 let g:matchup_matchparen_deferred = 1  " highlight surrounding
 let g:matchup_matchparen_hi_surround_always = 1  " highlight surrounding
 let g:matchup_delim_noskips = 2  " don't recognize anything in comments
-nmap <leader>% ]%V[%
-nmap <2-LeftMouse> ]%V[%
 "}}}
 " {{{vim-manpager
 if exists('g:vimManPager') && !has('win32')
-  " {{{vim-manpager-usage
-  function! Help_vim_manpager()
-    echo 'shell里"man foo"启动'
-    echo '<CR>              打开当前word的manual page'
-    echo '<C-o>             跳转到之前的位置'
-    echo '<Tab>             跳转到下一个历史'
-    echo '<S-Tab>           跳转到上一个历史'
-    echo '<C-j>             跳转到下一个keyword'
-    echo '<C-k>             跳转到上一个keyword'
-    echo 'E                 set modifiable'
-    echo '<A-w>             quit'
-    echo '?                 Help'
-  endfunction
-  " }}}
   function! s:vim_manpager_mappings() abort
-    nnoremap <silent><buffer> ? :<C-u>call Help_vim_manpager()<CR>
+    nmap <C-]> <Plug>(manpager-open)
     nmap <silent><buffer> <C-j> ]t
     nmap <silent><buffer> <C-k> [t
-    nmap <silent><buffer> <A-w> :<C-u>call ForceCloseRecursively()<CR>
-    nnoremap <silent><buffer> K zz:<C-u>call smooth_scroll#up(&scroll, 10, 1)<CR>
     nnoremap <silent><buffer> E :<C-u>set modifiable<CR>
   endfunction
   augroup manPagerCustom
@@ -2077,13 +1793,6 @@ if exists('g:vimManPager') && !has('win32')
 endif
 " }}}
 "{{{vim-closetag
-"{{{vim-closetag-usage
-function! Help_vim_closetag()
-  echo '>             press return at current tag'
-  echo '<A-z>>        add > at current position without closing the current tag'
-  echo ''
-endfunction
-"}}}
 " Shortcut for closing tags, default is '>'
 let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
@@ -2099,22 +1808,6 @@ endfunction
 "}}}
 "{{{vCoolor.vim
 if !has('win32')
-  function Help_vCoolor()
-    echo ':Rgb2Hex "255, 0, 255"                        " Gives "#FF00FF"'
-    echo ':Rgb2RgbPerc "255, 0, 255"            " Gives "100%, 0%, 100%"'
-    echo ':Rgb2Hsl "255, 0, 255"                        " Gives "300, 100%, 50%"'
-    echo ''
-    echo ':RgbPerc2Hex "100%, 0%, 100%" " Gives "#FF00FF"'
-    echo ':RgbPerc2Rgb "100%, 0%, 100%" " Gives "255, 0, 255"'
-    echo ''
-    echo ':Hex2Lit "#FF00FF"                            " Gives "magenta"'
-    echo ':Hex2Rgb "#FF00FF"                            " Gives "255, 0, 255"'
-    echo ':Hex2RgbPerc "#FF00FF"                        " Gives "100%, 0%, 100%"'
-    echo ':Hex2Hsl "#FF00FF"                            " Gives "300, 100%, 50%"'
-    echo ''
-    echo ':Hsl2Rgb "300, 100%, 50%"             " Gives "255, 0, 255"'
-    echo ':Hsl2Hex "300, 100%, 50%"             " Gives "#FF00FF"'
-  endfunction
   let g:vcoolor_disable_mappings = 1
   let g:vcoolor_lowercase = 1
   let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --color '
@@ -2122,14 +1815,12 @@ if !has('win32')
   nnoremap <silent> <leader><space>cr :<c-u>VCoolor r<cr>
   nnoremap <silent> <leader><space>cH :<c-u>VCoolor h<cr>
   nnoremap <silent> <leader><space>cR :<c-u>VCoolor ra<cr>
-  nnoremap <silent> <leader><space>ch :<c-u>call Help_vCoolor()<cr>
   let g:which_key_map["\<space>"]['c'] = {
         \   'name': 'color picker',
         \   'c': 'insert hex',
         \   'r': 'insert rgb',
         \   'H': 'insert hsl',
-        \   'R': 'insert rgba',
-        \   'h': 'help'
+        \   'R': 'insert rgba'
         \   }
 endif
 "}}}
@@ -2170,6 +1861,10 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+augroup IncsearchCustom
+  autocmd!
+  autocmd User IncSearchEnter set hlsearch
+augroup END
 "}}}
 "{{{vim-textobj-user
 call textobj#user#plugin('line', {
