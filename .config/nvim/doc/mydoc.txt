@@ -3,6 +3,17 @@
 CONTENTS                                     *mydoc-contents*
 
 plug                                         |mydoc-plug|
+sneak                                        |mydoc-sneak|
+neoformat                                    |mydoc-neoformat|
+autopairs                                    |mydoc-autopairs|
+nerdcommenter                                |mydoc-nerdcommenter|
+closetag                                     |mydoc-closetag|
+surround                                     |mydoc-surround|
+matchup                                      |mydoc-matchup|
+inline-edit                                  |mydoc-inline-edit|
+agit                                         |mydoc-agit|
+manpager                                     |mydoc-manpager|
+textobj                                      |mydoc-textobj|
 
 ==============================================================================
 PLUG                                                                *mydoc-plug*
