@@ -604,6 +604,7 @@ Plug 'kana/vim-textobj-lastpat'
 Plug 'kana/vim-textobj-function'
 Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'pechorin/any-jump.vim'
 "{{{
 call plug#end()
 "}}}
@@ -1920,4 +1921,9 @@ function! Toggle_foldmethod() abort
     set foldmethod=marker
   endif
 endfunction
+"}}}
+"{{{any-jump.vim
+nnoremap <leader>lg :AnyJump<CR>
+xnoremap <leader>lg :AnyJumpVisual<CR>
+let g:which_key_map['l']['g'] = 'go to def/ref'
 "}}}
