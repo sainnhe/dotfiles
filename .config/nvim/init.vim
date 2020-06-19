@@ -531,9 +531,7 @@ endif
 if g:vimEnableStartify == 1
   Plug 'mhinz/vim-startify'
 endif
-if !has('win32')
-  Plug 'rrethy/vim-hexokinase', {'do': 'make hexokinase'}
-endif
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'liuchengxu/vim-which-key'
 Plug 'Yggdroot/indentLine'
 Plug 'lukas-reineke/indent-blankline.nvim'
@@ -1083,13 +1081,8 @@ let g:which_key_map["\<space>"] = {
       \   'name': 'menu'
       \   }
 "}}}
-"{{{vim-hexokinase
-let g:Hexokinase_highlighters = ['backgroundfull']  " ['virtual', 'sign_column', 'background', 'foreground', 'foregroundfull']
-let g:Hexokinase_ftAutoload = ['html', 'css', 'javascript', 'vim', 'colortemplate', 'json', 'yaml', 'toml']  " ['*']
-let g:Hexokinase_refreshEvents = ['BufWritePost']
-let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba']  " ['full_hex', 'triple_hex', 'rgb', 'rgba', 'colour_names']
-nnoremap <silent> <leader><space>H :<c-u>HexokinaseToggle<cr>
-let g:which_key_map["\<space>"]['H'] = 'live color'
+"{{{nvim-colorizer.lua
+lua require'colorizer'.setup()
 "}}}
 "{{{indentLine
 "{{{indentLine-usage
