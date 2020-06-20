@@ -129,7 +129,9 @@ elif [ "$1" = "chroot" ]; then
     echo ""
     echo "finish"
 elif [ "$1" = "user" ]; then
-    timedatectl set-local-rtc 1 --adjust-system-clock
+    # timedatectl set-local-rtc 1 --adjust-system-clock
+    sudo timedatectl set-local-rtc 1
+    sudo hwclock --systohc --localtime
     # Basic{{{
     ssh-keygen -t rsa -b 4096 -C "sainnhe@gmail.com"
     eval "$(ssh-agent -s)"
@@ -175,23 +177,37 @@ elif [ "$1" = "user" ]; then
     pikaur -S sddm-greeter sddm-config-editor sddm-sugar-light
     sudo cp ~/repo/dotfiles/.root/etc/sddm.conf /etc/sddm.conf
     #}}}
-    # Surface Linux{{{
-    git clone https://github.com/dmhacker/arch-linux-surface.git ~/repo/
-    sudo pacman -S wget unzip
-    cd ~/repo
-    proxychains -q wget https://github.com/jakeday/linux-surface/archive/master.zip
-    unzip master.zip
-    sudo mkdir arch-linux-surface/.cache_setup
-    sudo mv linux-surface-master arch-linux-surface/.cache_setup/linux-surface
-    cd arch-linux-surface
-    sudo bash setup.sh
-    proxychains -q wget https://github.com/dmhacker/arch-linux-surface/releases/download/5.1.15-1/linux-surface-5.1.15-1-x86_64.pkg.tar.xz
-    proxychains -q wget https://github.com/dmhacker/arch-linux-surface/releases/download/5.1.15-1/linux-surface-docs-5.1.15-1-x86_64.pkg.tar.xz
-    proxychains -q wget https://github.com/dmhacker/arch-linux-surface/releases/download/5.1.15-1/linux-surface-headers-5.1.15-1-x86_64.pkg.tar.xz
-    sudo pacman -U linux-surface-5.1.15-1-x86_64.pkg.tar.xz
-    sudo pacman -U linux-surface-docs-5.1.15-1-x86_64.pkg.tar.xz linux-surface-headers-5.1.15-1-x86_64.pkg.tar.xz
-    pikaur -S update-grub aic94xx-firmware wd719x-firmware acpi acpi_call
+    # Surface{{{
+    mkdir -p ~/playground
+    cd ~/playground || exit
+    # DKMS modules
+    sudo pacman -S dkms acpi acpi_call-dkms
+    # Add arch linux repository
+    wget https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc
+    sudo pacman-key --add surface.asc
+    sudo pacman-key --finger 56C464BAAC421453
+    sudo pacman-key --lsign-key 56C464BAAC421453
+    sudo cp ~/repo/dotfiles/.root/etc/pacman.conf /etc/pacman.conf
+    sudo pacman -Sy
+    # Install the kernel and firmwares
+    sudo pacman -S linux-surface-headers linux-surface surface-ipts-firmware
+    # Post-Installation
+    pikaur -S update-grub aic94xx-firmware wd719x-firmware libwacom-surface surface-control surface-dtx-daemon
     sudo update-grub
+    sudo systemctl enable surface-dtx-daemon.service
+    # Nvidia
+    sudo pacman -S nvidia nvidia-dkms bumblebee
+    sudo mkdir -p /etc/modprobe.d
+    sudo mkdir -p /etc/X11/xorg.conf.d
+    sudo mkdir -p /etc/modules-load.d
+    sudo cp ~/repo/dotfiles/.root/etc/modprobe.d/dgpu.conf /etc/modprobe.d/
+    sudo cp ~/repo/dotfiles/.root/etc/modprobe.d/blacklist-nouveau.conf /etc/modprobe.d/
+    sudo cp ~/repo/dotfiles/.root/etc/X11/xorg.conf.d/20-intel.conf /etc/X11/xorg.conf.d/
+    sudo cp ~/repo/dotfiles/.root/etc/X11/xorg.conf.d/20-nvidia.conf /etc/X11/xorg.conf.d/
+    sudo cp ~/repo/dotfiles/.root/etc/modules-load.d/nvidia.conf /etc/modules-load.d/
+    sudo sed -i 's/^Driver=.*/Driver=nvidia/' /etc/bumblebee/bumblebee.conf
+    sudo usermod -a -G bumblebee sainnhe
+    sudo systemctl enable bumblebeed.service
     #}}}
     pikaur -S gvim firefox-developer-edition telegram-desktop alacritty lsd svn evince nautilus chromium
     pikaur -S nerd-fonts-complete wqy-microhei ttf-monaco ttf-droid noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji ttf-symbola
