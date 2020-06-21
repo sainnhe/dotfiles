@@ -198,6 +198,7 @@ elif [ "$1" = "user" ]; then
     # Nvidia
     # pikaur -S nvidia-beta-dkms nvidia-settings-beta nvidia-utils-beta opencl-nvidia-beta lib32-nvidia-utils-beta lib32-opencl-nvidia-beta bumblebee
     sudo pacman -S nvidia nvidia-dkms nvidia-settings nvidia-utils opencl-nvidia lib32-nvidia-utils lib32-opencl-nvidia bumblebee
+    sudo pacman -S virtualgl lib32-virtualgl lib32-primus lib32-primus_vk primus primus_vk
     sudo mkdir -p /etc/modprobe.d
     sudo mkdir -p /etc/X11/xorg.conf.d
     sudo mkdir -p /etc/modules-load.d
