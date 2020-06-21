@@ -1923,7 +1923,6 @@ function! Toggle_foldmethod() abort
 endfunction
 "}}}
 "{{{any-jump.vim
-nnoremap <leader>lg :AnyJump<CR>
-xnoremap <leader>lg :AnyJumpVisual<CR>
-let g:which_key_map['l']['g'] = 'go to def/ref'
+nnoremap gd :AnyJump<CR>
+xnoremap gd :AnyJumpVisual<CR>
 "}}}
