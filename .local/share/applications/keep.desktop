@@ -2,6 +2,6 @@
 Version=1.0
 Type=Application
 Name=Google Keep
-Exec=chromium --app=https://keep.google.com/
+Exec=optirun chromium --app=https://keep.google.com/
 Icon=keep
 Categories=Network;

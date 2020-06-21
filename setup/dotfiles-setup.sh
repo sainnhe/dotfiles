@@ -30,7 +30,6 @@ setup_symlink .conkyrc
 setup_symlink .bashrc
 setup_symlink .w3m/config
 setup_symlink .weechat/weechat.conf
-setup_symlink .local/share/applications
 setup_copy .aria2
 setup_copy .config/alacritty/alacritty.yml
 setup_copy ../.config/i3/config
@@ -45,5 +44,6 @@ setup_symlink .config/rtv
 setup_symlink .config/picom.conf
 setup_copy .config/pikaur.conf
 setup_symlink package.json
+cp -r $DOTFILES_DIR/.local/share/applications/* ~/.local/share/applications/
 
 echo "setup root directory manually"

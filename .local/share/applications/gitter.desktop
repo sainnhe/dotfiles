@@ -2,6 +2,6 @@
 Version=1.0
 Type=Application
 Name=Gitter
-Exec=chromium --app=https://gitter.im/
+Exec=optirun chromium --app=https://gitter.im/
 Icon=gitter
 Categories=Network;

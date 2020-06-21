@@ -2,6 +2,6 @@
 Version=1.0
 Type=Application
 Name=V2EX
-Exec=chromium --app=https://www.v2ex.com/?tab=all
+Exec=optirun chromium --app=https://www.v2ex.com/?tab=all
 Icon=v2ex
 Categories=Network;

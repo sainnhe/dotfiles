@@ -10,6 +10,7 @@ floating_modifier $mod
 
 bindsym $mod+t exec alacritty
 bindsym $mod+e exec nautilus
+bindsym $mod+a exec optirun firefox-developer-edition
 bindsym $mod+l exec sh ~/.config/polybar/scripts/toggle_tray.sh
 bindsym $mod+b exec sh ~/.config/polybar/scripts/toggle-bar.sh
 

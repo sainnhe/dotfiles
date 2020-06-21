@@ -2,6 +2,6 @@
 Version=1.0
 Type=Application
 Name=Twitter
-Exec=chromium --app=https://twitter.com/
+Exec=optirun chromium --app=https://twitter.com/
 Icon=twitter
 Categories=Network;

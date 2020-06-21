@@ -2,6 +2,6 @@
 Version=1.0
 Type=Application
 Name=Word
-Exec=chromium --app=https://office.live.com/start/Word.aspx?omkt=en&auth=1&nf=1
+Exec=optirun chromium --app=https://office.live.com/start/Word.aspx?omkt=en&auth=1&nf=1
 Icon=word
 Categories=Office;Education;

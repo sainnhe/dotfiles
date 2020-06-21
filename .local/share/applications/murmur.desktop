@@ -2,6 +2,6 @@
 Version=1.0
 Type=Application
 Name=Murmur
-Exec=chromium --app=https://asoftmurmur.com/
+Exec=optirun chromium --app=https://asoftmurmur.com/
 Icon=soundcloud
 Categories=Network;

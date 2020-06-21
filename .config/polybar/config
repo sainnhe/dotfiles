@@ -87,7 +87,7 @@ content = 
 content-background = ${colors.bg}
 content-foreground = ${colors.fg}
 
-click-left = firefox-developer-edition
+click-left = optirun firefox-developer-edition
 ; }}}
 ; chrome{{{
 [module/chrome]
@@ -96,7 +96,7 @@ content = 
 content-background = ${colors.bg}
 content-foreground = ${colors.fg}
 
-click-left = chromium
+click-left = optirun chromium
 ; }}}
 ; telegram{{{
 [module/telegram]

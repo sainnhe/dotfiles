@@ -2,6 +2,6 @@
 Version=1.0
 Type=Application
 Name=Quora
-Exec=chromium --app=https://quora.com/
+Exec=optirun chromium --app=https://quora.com/
 Icon=quora
 Categories=Network;

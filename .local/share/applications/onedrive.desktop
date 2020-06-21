@@ -2,6 +2,6 @@
 Version=1.0
 Type=Application
 Name=OneDrive
-Exec=chromium --app=https://onedrive.live.com/
+Exec=optirun chromium --app=https://onedrive.live.com/
 Icon=onedrive
 Categories=Office;Education;

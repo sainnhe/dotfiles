@@ -2,6 +2,6 @@
 Version=1.0
 Type=Application
 Name=YouTube
-Exec=chromium --app=https://www.youtube.com
+Exec=optirun chromium --app=https://www.youtube.com
 Icon=youtube
 Categories=Network;
