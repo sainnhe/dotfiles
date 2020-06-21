@@ -361,6 +361,7 @@ alias net-test="bash ~/repo/scripts/func/net-test.sh"
 alias fix-wifi="sudo iw dev wlp1s0 set power_save off"
 alias t='goldendict'
 alias gencomp-help='gencomp'
+alias nvistat='nvidia-smi'
 # }}}
 # {{{Plugins
 # https://github.com/zdharma/zinit
