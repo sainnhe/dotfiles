@@ -192,7 +192,7 @@ elif [ "$1" = "user" ]; then
     # Install the kernel and firmwares
     sudo pacman -S linux-surface-headers linux-surface surface-ipts-firmware
     # Post-Installation
-    pikaur -S update-grub aic94xx-firmware wd719x-firmware libwacom-surface surface-control surface-dtx-daemon
+    pikaur -S update-grub aic94xx-firmware wd719x-firmware libwacom-surface surface-control surface-dtx-daemon libva-vdpau-driver-vp9
     sudo update-grub
     sudo systemctl enable surface-dtx-daemon.service
     # Nvidia

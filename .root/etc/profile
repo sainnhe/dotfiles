@@ -1,6 +1,10 @@
 # /etc/profile
 
-export VDPAU_DRIVER=va_gl
+# ls -1 /usr/lib/vdpau
+# ls -1 /usr/lib/dri | grep video
+export VDPAU_DRIVER=nvidia
+#export LIBVA_DRIVER_NAME=vdpau
+export LIBVA_DRIVER_NAME=nvidia
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
