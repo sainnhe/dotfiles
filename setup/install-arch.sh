@@ -196,7 +196,8 @@ elif [ "$1" = "user" ]; then
     sudo update-grub
     sudo systemctl enable surface-dtx-daemon.service
     # Nvidia
-    sudo pacman -S nvidia nvidia-dkms bumblebee
+    # pikaur -S nvidia-beta-dkms nvidia-settings-beta nvidia-utils-beta opencl-nvidia-beta lib32-nvidia-utils-beta lib32-opencl-nvidia-beta bumblebee
+    sudo pacman -S nvidia nvidia-dkms nvidia-settings nvidia-utils opencl-nvidia lib32-nvidia-utils lib32-opencl-nvidia bumblebee
     sudo mkdir -p /etc/modprobe.d
     sudo mkdir -p /etc/X11/xorg.conf.d
     sudo mkdir -p /etc/modules-load.d
