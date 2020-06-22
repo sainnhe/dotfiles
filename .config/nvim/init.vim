@@ -1847,7 +1847,6 @@ let g:which_key_map['a'] = 'align'
 "{{{incsearch.vim
 let g:incsearch#auto_nohlsearch = 1
 map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
