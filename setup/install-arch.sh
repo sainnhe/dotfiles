@@ -220,6 +220,7 @@ elif [ "$1" = "user" ]; then
     echo "setup i3, zsh, tmux, vim manually"
 elif [ "$1" = "apps" ]; then
     pikaur -S fzf fontweak gotop persepolis code terminal-markdown-viewer python2-pygments typora nodejs-commitizen nodejs-cz-conventional-changelog iw pastebinit ppet-bin
+    sudo pacman -S ranger atool elinks ffmpegthumbnailer highlight odt2txt perl-image-exiftool
     sudo pacman -S wine
     sudo pacman -S xsettingsd deepin.com.qq.office
     echo "https://github.com/countstarlight/deepin-wine-tim-arch/issues/1"
