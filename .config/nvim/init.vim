@@ -1892,7 +1892,7 @@ endfunction
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
     highlight = {
-        enable = false,                                         -- false will disable the whole extension
+        enable = true,                                         -- false will disable the whole extension
     },
     incremental_selection = {
         enable = true,
