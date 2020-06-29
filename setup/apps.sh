@@ -3,14 +3,27 @@
 if [ "$1" = "general" ]; then
     pikaur -S \
         fzf \
-        gotop \
         terminal-markdown-viewer \
         python2-pygments \
         nodejs-commitizen \
         nodejs-cz-conventional-changelog \
         pastebinit \
-        tcping
-    sudo pacman -S ranger atool elinks ffmpegthumbnailer highlight odt2txt perl-image-exiftool
+        tcping \
+        hyperfine \
+        fd \
+        ytop \
+        ripgrep \
+        ripgrep-all \
+        bingrep-rs \
+        xclip
+    pikaur -S \
+        npm \
+        yarn \
+        go \
+        typescript \
+        dotnet \
+        lua
+    sudo pacman -S nnn ranger atool elinks ffmpegthumbnailer highlight odt2txt perl-image-exiftool
     pikaur -S qv2ray-dev-git qv2ray-plugin-command-dev-git qv2ray-plugin-ssr-dev-git qv2ray-plugin-trojan-dev-git
 elif [ "$1" = "physical" ]; then
     pikaur -S fontweak persepolis code typora iw ppet-bin

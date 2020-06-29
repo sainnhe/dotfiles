@@ -11,28 +11,10 @@ pacman_setup_func() {
     pacman -S --noconfirm python-pynvim &>/dev/null
     pacman -S --noconfirm python2-neovim &>/dev/null
     pacman -S --noconfirm python-pip python2-pip &>/dev/null
-    echo "installing npm..."
-    pacman -S --noconfirm npm &>/dev/null
-    echo "installing yarn..."
-    pacman -S --noconfirm yarn &>/dev/null
-    echo "installing go..."
-    pacman -S --noconfirm go &>/dev/null
-    echo "installing dotnet..."
-    pacman -S --noconfirm dotnet-runtime dotnet-sdk &>/dev/null
-    echo "installing lua..."
-    pacman -S --noconfirm lua &>/dev/null
-    echo "installing nnn..."
-    pacman -S --noconfirm nnn &>/dev/null
     echo "installing boost..."
     pacman -S --noconfirm boost &>/dev/null
-    echo "installing xclip..."
-    pacman -S --noconfirm xclip &>/dev/null
     echo "installing words..."
     pacman -S --noconfirm words &>/dev/null
-    echo "installing the_silver_searcher..."
-    pacman -S --noconfirm the_silver_searcher &>/dev/null
-    echo "installing ripgrep..."
-    pacman -S --noconfirm ripgrep &>/dev/null
     echo "installing python-wcwidth..."
     pacman -S --noconfirm python-wcwidth &>/dev/null
     echo "installing languagetool..."
