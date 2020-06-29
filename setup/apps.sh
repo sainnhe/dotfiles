@@ -11,6 +11,7 @@ if [ "$1" = "general" ]; then
         pastebinit \
         tcping
     sudo pacman -S ranger atool elinks ffmpegthumbnailer highlight odt2txt perl-image-exiftool
+    pikaur -S qv2ray-dev-git qv2ray-plugin-command-dev-git qv2ray-plugin-ssr-dev-git qv2ray-plugin-trojan-dev-git
 elif [ "$1" = "physical" ]; then
     pikaur -S fontweak persepolis code typora iw ppet-bin
     sudo pacman -S wine
