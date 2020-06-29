@@ -26,7 +26,7 @@ if [ "$1" = "usb" ]; then
     echo "+512M efi /boot"
     echo "+4G swap /swap"
     echo "+30G xfs /home"
-    echo "+30G ext4 /"
+    echo "+30G xfs /"
     echo ""
     echo "Tips in fdisk:"
     echo "m    help"
