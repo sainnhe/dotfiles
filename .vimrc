@@ -29,6 +29,9 @@ set wildmenu                            " 命令框Tab呼出菜单
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
 set updatetime=100
 set incsearch
+if &diff
+    set nocursorline
+endif
 augroup Custom
     autocmd!
     autocmd VimLeave * call system('printf "\e[5 q" > $TTY')
