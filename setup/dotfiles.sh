@@ -43,6 +43,9 @@ setup_symlink .config/rofi/themes
 setup_symlink .config/rtv
 setup_symlink .config/picom.conf
 setup_copy .config/pikaur.conf
+setup_symlink .config/fcitx/conf
+setup_symlink .config/fcitx/config
+setup_symlink .config/fcitx/profile
 setup_symlink package.json
 cp -r $DOTFILES_DIR/.local/share/applications/* ~/.local/share/applications/
 
