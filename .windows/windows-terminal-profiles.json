@@ -1,59 +1,72 @@
 // To view the default settings, hold "alt" while clicking on the "Settings" button.
 // For documentation on these settings, see: https://aka.ms/terminal-documentation
-
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-
     "profiles": [
         {
             "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
             "name": "PowerShell",
             "commandline": "powershell.exe -nologo",
-            "fontFace": "FiraCode NF",
+            "fontFace": "Source Code Pro iCursive Op",
             "fontSize": 12,
-            "colorScheme": "GruvboxMaterialMediumDark",
-            "cursorColor": "#D4BE98",
-            "cursorShape": "filledBox",
+            "colorScheme": "EdgeLight",
+            "cursorColor": "#b05ccc",
+            "cursorShape": "bar",
+            "useAcrylic": true,
+            "acrylicOpacity": 0.7,
             "hidden": false
-        },
-        {
-            "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-            "name": "Xonsh",
-            "commandline": "C:\\Users\\gaoti\\scoop\\apps\\python\\current\\Scripts\\xonsh.bat",
-            "fontFace": "FiraCode NF",
-            "fontSize": 12,
-            "colorScheme": "GruvboxMaterialMediumDark",
-            "cursorColor": "#D4BE98",
-            "cursorShape": "filledBox",
-            "hidden": false
-        },
-        {
-            "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-            "hidden": false,
-            "name": "WSL",
-            "fontFace": "FiraCode NF",
-            "fontSize": 12,
-            "colorScheme": "GruvboxMaterialMediumDark",
-            "cursorColor": "#D4BE98",
-            "cursorShape": "filledBox",
-            "source": "Windows.Terminal.Wsl"
         },
         {
             "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
             "hidden": false,
             "name": "Azure Cloud Shell",
-            "fontFace": "FiraCode NF",
-            "fontSize": 12,
-            "colorScheme": "GruvboxMaterialMediumDark",
-            "cursorColor": "#D4BE98",
-            "cursorShape": "filledBox",
             "source": "Windows.Terminal.Azure"
         }
     ],
-
     "schemes": [
+        {
+            "background": "#fafafa",
+            "black": "#4b505b",
+            "blue": "#5079be",
+            "brightBlack": "#4b505b",
+            "brightBlue": "#5079be",
+            "brightCyan": "#3a8b84",
+            "brightGreen": "#608e32",
+            "brightPurple": "#b05ccc",
+            "brightRed": "#d05858",
+            "brightWhite": "#fafafa",
+            "brightYellow": "#be7e05",
+            "cyan": "#3a8b84",
+            "foreground": "#4b505b",
+            "green": "#608e32",
+            "name": "EdgeLight",
+            "purple": "#b05ccc",
+            "red": "#d05858",
+            "white": "#fafafa",
+            "yellow": "#be7e05"
+        },
+        {
+            "background": "#2c2e34",
+            "black": "#2c2e34",
+            "blue": "#6cb6eb",
+            "brightBlack": "#2c2e34",
+            "brightBlue": "#6cb6eb",
+            "brightCyan": "#5dbbc1",
+            "brightGreen": "#a0c980",
+            "brightPurple": "#d38aea",
+            "brightRed": "#ec7279",
+            "brightWhite": "#c5cdd9",
+            "brightYellow": "#deb974",
+            "cyan": "#5dbbc1",
+            "foreground": "#c5cdd9",
+            "green": "#a0c980",
+            "name": "EdgeDark",
+            "purple": "#d38aea",
+            "red": "#ec7279",
+            "white": "#c5cdd9",
+            "yellow": "#deb974"
+        },
         {
             "background": "#1d2021",
             "black": "#665C54",
@@ -181,77 +194,110 @@
             "yellow": "#B47109"
         }
     ],
-
     // Add any keybinding overrides to this array.
     // To unbind a default keybinding, set the command to "unbound"
     "keybindings": [
         {
             "command": "closePane",
-            "keys": ["ctrl+alt+x"]
+            "keys": [
+                "ctrl+alt+x"
+            ]
         },
         {
             "command": "closeTab",
-            "keys": ["ctrl+shift+w"]
+            "keys": [
+                "ctrl+shift+w"
+            ]
         },
         {
             "command": "copy",
-            "keys": ["ctrl+shift+c"]
+            "keys": [
+                "ctrl+shift+c"
+            ]
         },
         {
             "command": "moveFocusDown",
-            "keys": ["ctrl+alt+j"]
+            "keys": [
+                "ctrl+alt+j"
+            ]
         },
         {
             "command": "moveFocusLeft",
-            "keys": ["ctrl+alt+h"]
+            "keys": [
+                "ctrl+alt+h"
+            ]
         },
         {
             "command": "moveFocusRight",
-            "keys": ["ctrl+alt+l"]
+            "keys": [
+                "ctrl+alt+l"
+            ]
         },
         {
             "command": "moveFocusUp",
-            "keys": ["ctrl+alt+k"]
+            "keys": [
+                "ctrl+alt+k"
+            ]
         },
         {
             "command": "newTab",
-            "keys": ["ctrl+shift+t"]
+            "keys": [
+                "ctrl+shift+t"
+            ]
         },
         {
             "command": "nextTab",
-            "keys": ["ctrl+tab"]
+            "keys": [
+                "ctrl+tab"
+            ]
         },
         {
             "command": "paste",
-            "keys": ["ctrl+shift+v"]
+            "keys": [
+                "ctrl+shift+v"
+            ]
         },
         {
             "command": "prevTab",
-            "keys": ["ctrl+shift+tab"]
+            "keys": [
+                "ctrl+shift+tab"
+            ]
         },
         {
             "command": "resizePaneDown",
-            "keys": ["ctrl+alt+down"]
+            "keys": [
+                "ctrl+alt+down"
+            ]
         },
         {
             "command": "resizePaneLeft",
-            "keys": ["ctrl+alt+left"]
+            "keys": [
+                "ctrl+alt+left"
+            ]
         },
         {
             "command": "resizePaneRight",
-            "keys": ["ctrl+alt+right"]
+            "keys": [
+                "ctrl+alt+right"
+            ]
         },
         {
             "command": "resizePaneUp",
-            "keys": ["ctrl+alt+up"]
+            "keys": [
+                "ctrl+alt+up"
+            ]
         },
         {
             "command": "splitHorizontal",
-            "keys": ["ctrl+alt+s"]
+            "keys": [
+                "ctrl+alt+s"
+            ]
         },
         {
             "command": "splitVertical",
-            "keys": ["ctrl+alt+v"]
+            "keys": [
+                "ctrl+alt+v"
+            ]
         }
     ]
 }
