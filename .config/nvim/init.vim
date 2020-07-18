@@ -596,7 +596,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'glts/vim-textobj-comment'
 Plug 'somini/vim-textobj-fold'
 Plug 'mattn/vim-textobj-url'
-Plug 'Julian/vim-textobj-variable-segment'
 Plug 'kana/vim-textobj-entire'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'kana/vim-textobj-indent'
@@ -605,6 +604,7 @@ Plug 'kana/vim-textobj-function'
 Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'pechorin/any-jump.vim'
+Plug 'chaoren/vim-wordmotion'
 "{{{
 call plug#end()
 "}}}
@@ -1925,4 +1925,13 @@ endfunction
 "{{{any-jump.vim
 nnoremap gd :AnyJump<CR>
 xnoremap gd :AnyJumpVisual<CR>
+"}}}
+"{{{vim-wordmotion
+augroup WordMotion
+  autocmd!
+  autocmd VimEnter * nnoremap W w
+  autocmd VimEnter * vnoremap W w
+  autocmd VimEnter * nnoremap B b
+  autocmd VimEnter * vnoremap B b
+augroup END
 "}}}
