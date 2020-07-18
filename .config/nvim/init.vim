@@ -1711,8 +1711,9 @@ command! -nargs=1 E  edit  suda://<args>
 command W w suda://%
 "}}}
 "{{{inline_edit.vim
-nnoremap E :<C-u>InlineEdit<CR>
-vnoremap E :InlineEdit<CR>
+nnoremap <silent> <leader><space>e :<C-u>InlineEdit<CR>
+vnoremap <silent> <leader><space>e :InlineEdit<CR>
+let g:which_key_map["\<space>"]['e'] = 'inline edit'
 "}}}
 "{{{comfortable-motion.vim
 "{{{comfortable-motion.vim-usage
@@ -1927,11 +1928,21 @@ nnoremap gd :AnyJump<CR>
 xnoremap gd :AnyJumpVisual<CR>
 "}}}
 "{{{vim-wordmotion
-augroup WordMotion
-  autocmd!
-  autocmd VimEnter * nnoremap W w
-  autocmd VimEnter * vnoremap W w
-  autocmd VimEnter * nnoremap B b
-  autocmd VimEnter * vnoremap B b
-augroup END
+let g:wordmotion_disable_default_mappings = v:true
+nmap W <Plug>WordMotion_w
+omap W <Plug>WordMotion_w
+xmap W <Plug>WordMotion_w
+nmap B <Plug>WordMotion_b
+omap B <Plug>WordMotion_b
+xmap B <Plug>WordMotion_b
+nmap E <Plug>WordMotion_e
+omap E <Plug>WordMotion_e
+xmap E <Plug>WordMotion_e
+nmap gE <Plug>WordMotion_ge
+omap gE <Plug>WordMotion_ge
+xmap gE <Plug>WordMotion_ge
+omap aW <Plug>WordMotion_aw
+xmap aW <Plug>WordMotion_aw
+omap iW <Plug>WordMotion_iw
+xmap iW <Plug>WordMotion_iw
 "}}}

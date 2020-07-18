@@ -10,7 +10,6 @@ nerdcommenter                                |mydoc-nerdcommenter|
 closetag                                     |mydoc-closetag|
 surround                                     |mydoc-surround|
 matchup                                      |mydoc-matchup|
-inline-edit                                  |mydoc-inline-edit|
 agit                                         |mydoc-agit|
 manpager                                     |mydoc-manpager|
 textobj                                      |mydoc-textobj|
@@ -98,11 +97,6 @@ MATCHUP                                                          *mydoc-matchup*
 - `z%`: 跳转到最近的环绕内部
 
 ==============================================================================
-INLINE_EDIT                                                  *mydoc-inline-edit*
-
-- Normal 或 Visual 模式下按 `E`
-
-==============================================================================
 AGIT                                                                *mydoc-agit*
 
 - `<A-j>`/`<A-k>`: 向下/上滚动状态窗口
@@ -147,6 +141,7 @@ TEXTOBJ                                                          *mydoc-textobj*
 - `I`：当前缩进
 - `/`：上一次搜索
 - `f`：函数
+- `W`：分段单词
 
 ==============================================================================
 vim:tw=78:nosta:noet:ts=8:sts=0:ft=help:noet:fen:fdm=marker:fmr={{{,}}}:
