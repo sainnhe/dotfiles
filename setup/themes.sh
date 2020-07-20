@@ -3,11 +3,13 @@
 # Icon/Cursor
 pikaur -S capitaine-cursors numix-cursor-theme
 pikaur -S papirus-icon-theme numix-circle-icon-theme-git
+pikaur -S tencent-icon-theme-git
 
 # GTK
 pikaur -S arc-gtk-theme snow-theme-git nordic-theme-git mojave-gtk-theme-git qogir-gtk-theme-git x-arc-plus x-arc-white x-arc-darker x-arc-shadow
 
 # KDE
+pikaur -S moe-kde-git sierrabreeze-kwin-decoration-git
 mkdir -p ~/repo
 cd ~/repo || exit
 git clone --depth 1 https://github.com/vinceliuice/McMojave-circle.git
