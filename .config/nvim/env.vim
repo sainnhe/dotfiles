@@ -1,7 +1,6 @@
 let g:vimAutoInstall = 1
 let g:lightlineArtify = 1
 let g:vimColorScheme = 'Gruvbox Material Light'
-let g:vimEnableItalic = 0
 if !has('win32')
   let g:startify_bookmarks = [
         \ {'R': '~/repo/'},

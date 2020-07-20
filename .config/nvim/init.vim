@@ -870,7 +870,6 @@ let g:gruvbox_material_palette_soft_era = {
 let g:colorSchemeList = {}
 let g:colorSchemeList['Forest Night'] = [
       \   'set background=dark',
-      \   'let g:forest_night_enable_italic = g:vimEnableItalic',
       \   'let g:forest_night_disable_italic_comment = 1',
       \   'let g:forest_night_lightline_disable_bold = 1',
       \   'colorscheme forest-night',
@@ -881,7 +880,6 @@ let g:colorSchemeList['Gruvbox Material Dark'] = [
       \   "let g:gruvbox_material_background = 'medium'",
       \   "let g:gruvbox_material_palette = 'material'",
       \   "let g:gruvbox_material_visual = 'grey background'",
-      \   'let g:gruvbox_material_enable_italic = g:vimEnableItalic',
       \   "let g:gruvbox_material_cursor = 'green'",
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
@@ -895,7 +893,6 @@ let g:colorSchemeList['Gruvbox Mix Dark'] = [
       \   "let g:gruvbox_material_background = 'medium'",
       \   "let g:gruvbox_material_palette = 'mix'",
       \   "let g:gruvbox_material_visual = 'grey background'",
-      \   'let g:gruvbox_material_enable_italic = g:vimEnableItalic',
       \   "let g:gruvbox_material_cursor = 'green'",
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
@@ -909,7 +906,6 @@ let g:colorSchemeList['Gruvbox Material Light'] = [
       \   "let g:gruvbox_material_background = 'soft'",
       \   "let g:gruvbox_material_palette = 'material'",
       \   "let g:gruvbox_material_visual = 'green background'",
-      \   'let g:gruvbox_material_enable_italic = g:vimEnableItalic',
       \   "let g:gruvbox_material_cursor = 'auto'",
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
@@ -921,7 +917,7 @@ let g:colorSchemeList['Gruvbox Material Light'] = [
 let g:colorSchemeList['Edge Dark'] = [
       \   'set background=dark',
       \   'let g:edge_disable_italic_comment = 1',
-      \   'let g:edge_enable_italic = g:vimEnableItalic',
+      \   'let g:edge_enable_italic = 1',
       \   "let g:edge_cursor = 'blue'",
       \   'let g:edge_lightline_disable_bold = 1',
       \   'colorscheme edge',
@@ -930,45 +926,59 @@ let g:colorSchemeList['Edge Dark'] = [
 let g:colorSchemeList['Edge Light'] = [
       \   'set background=light',
       \   'let g:edge_disable_italic_comment = 1',
-      \   'let g:edge_enable_italic = g:vimEnableItalic',
+      \   'let g:edge_enable_italic = 1',
       \   "let g:edge_cursor = 'purple'",
       \   'let g:edge_lightline_disable_bold = 1',
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
+let g:colorSchemeList['Sonokai Default'] = [
+      \   "let g:sonokai_style = 'default'",
+      \   'let g:sonokai_disable_italic_comment = 1',
+      \   'let g:sonokai_enable_italic = 1',
+      \   "let g:sonokai_cursor = 'blue'",
+      \   'let g:sonokai_lightline_disable_bold = 1',
+      \   'let g:sonokai_better_performance = 1',
+      \   'colorscheme sonokai',
+      \   'call SwitchLightlineColorScheme("sonokai")'
+      \   ]
 let g:colorSchemeList['Sonokai Shusia'] = [
       \   "let g:sonokai_style = 'shusia'",
       \   'let g:sonokai_disable_italic_comment = 1',
-      \   'let g:sonokai_enable_italic = g:vimEnableItalic',
+      \   'let g:sonokai_enable_italic = 1',
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
+      \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
 let g:colorSchemeList['Sonokai Andromeda'] = [
       \   "let g:sonokai_style = 'andromeda'",
       \   'let g:sonokai_disable_italic_comment = 1',
-      \   'let g:sonokai_enable_italic = g:vimEnableItalic',
+      \   'let g:sonokai_enable_italic = 1',
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
+      \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
 let g:colorSchemeList['Sonokai Atlantis'] = [
       \   "let g:sonokai_style = 'atlantis'",
       \   'let g:sonokai_disable_italic_comment = 1',
-      \   'let g:sonokai_enable_italic = g:vimEnableItalic',
+      \   'let g:sonokai_enable_italic = 1',
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
+      \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
 let g:colorSchemeList['Sonokai Maia'] = [
       \   "let g:sonokai_style = 'maia'",
       \   'let g:sonokai_disable_italic_comment = 1',
-      \   'let g:sonokai_enable_italic = g:vimEnableItalic',
+      \   'let g:sonokai_enable_italic = 1',
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
+      \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -977,7 +987,6 @@ let g:colorSchemeList['Soft Era'] = [
       \   "let g:gruvbox_material_background = 'medium'",
       \   'let g:gruvbox_material_palette = g:gruvbox_material_palette_soft_era',
       \   "let g:gruvbox_material_visual = 'grey background'",
-      \   'let g:gruvbox_material_enable_italic = g:vimEnableItalic',
       \   "let g:gruvbox_material_cursor = 'auto'",
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
