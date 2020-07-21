@@ -1,0 +1,17 @@
+include themes/gruvbox-material-dark
+
+map j feedkeys 5<Down>
+map k feedkeys 5<Up>
+map J feedkeys <C-d>
+map K feedkeys <C-u>
+map <Return> feedkeys f
+map ; feedkeys :
+map <C-f> feedkeys F11
+
+set adjust-open "width"
+set continuous-hist-save true
+set page-padding 10
+set recolor true
+set show-hidden true
+set statusbar-home-tilde true
+set selection-clipboard "clipboard"

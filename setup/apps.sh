@@ -25,6 +25,7 @@ if [ "$1" = "general" ]; then
         dotnet \
         lua
     sudo pacman -S nnn ranger atool elinks ffmpegthumbnailer highlight odt2txt perl-image-exiftool
+    sudo pacman -S zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb
     pikaur -S qv2ray-dev-git qv2ray-plugin-command-dev-git qv2ray-plugin-ssr-dev-git qv2ray-plugin-trojan-dev-git
 elif [ "$1" = "physical" ]; then
     pikaur -S fontweak persepolis code typora iw ppet-bin
