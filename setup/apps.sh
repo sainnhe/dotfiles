@@ -12,6 +12,7 @@ if [ "$1" = "general" ]; then
         hyperfine \
         fd \
         ytop \
+        htop \
         ripgrep \
         ripgrep-all \
         bingrep-rs \
