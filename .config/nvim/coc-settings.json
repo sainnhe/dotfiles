@@ -2,6 +2,7 @@
     "$schema": "/home/sainnhe/.local/share/nvim/plugins/coc.nvim/data/schema.json",
     "http.proxy_bak": "http://127.0.0.1:1081",
     "suggest.timeout": 500,
+    "suggest.triggerCompletionWait": 0,
     "suggest.enablePreview": true,
     "suggest.maxPreviewWidth": 35,
     "suggest.detailMaxLength": 100,

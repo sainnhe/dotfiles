@@ -167,6 +167,7 @@ set autoread                            " 自动加载变更文件
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
 set signcolumn=yes
 set updatetime=100
+set sessionoptions+=globals
 if &history < 1000
   set history=1000
 endif
@@ -1166,7 +1167,7 @@ endfunction"}}}
 "}}}
 "{{{coc-init
 if !has('win32')
-  let g:coc_data_home = expand('~/.local/share/coc.nvim')
+  let g:coc_data_home = expand('~/.local/share/nvim/coc')
 endif
 let g:coc_global_extensions = [
       \   'coc-lists',
@@ -1907,7 +1908,7 @@ require'nvim-treesitter.configs'.setup {
         disable = { 'json' },
     },
     incremental_selection = {
-        enable = true,
+        enable = false,
         keymaps = {                                             -- mappings for incremental selection (visual mappings)
           init_selection = '<plug>(ts-init-selection)',         -- maps in normal mode to init the node/scope selection
           scope_incremental = '<plug>(ts-scope-incremental)',   -- increment to the upper scope (as defined in locals.scm)
@@ -1915,15 +1916,18 @@ require'nvim-treesitter.configs'.setup {
           node_decremental = '<plug>(ts-node-decremental)',     -- decrement to the previous node
         }
     },
+    textobjects = { -- syntax-aware textobjects
+        enable = true,
+        disable = {},
+        keymaps = {
+            ["aF"] = "@function.outer",
+            ["iF"] = "@function.inner"
+        }
+    },
     ensure_installed = 'all' -- one of 'all', 'language', or a list of languages
 }
 EOF
-nmap <leader>v <plug>(ts-init-selection)
-vmap gk <plug>(ts-node-incremental)
-vmap gj <plug>(ts-node-decremental)
-vmap gg <plug>(ts-scope-incremental)
 nnoremap <silent> <leader><space>f :<C-u>call Toggle_foldmethod()<CR>
-let g:which_key_map['v'] = 'incremental selection'
 let g:which_key_map["\<space>"]['f'] = 'foldmethod toggle'
 function! Toggle_foldmethod() abort
   if &foldmethod ==# 'marker'
