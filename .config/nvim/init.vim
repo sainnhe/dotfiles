@@ -1179,6 +1179,7 @@ let g:coc_global_extensions = [
       \   'coc-translator',
       \   'coc-todolist',
       \   'coc-highlight',
+      \   'coc-actions',
       \   'coc-yank',
       \   'coc-snippets',
       \   'coc-syntax',
@@ -1252,7 +1253,7 @@ nmap <leader>lR <Plug>(coc-rename)
 nmap <leader>lf <Plug>(coc-format)
 vmap <leader>lf <Plug>(coc-format-selected)
 nmap <leader>lF <Plug>(coc-fix-current)
-nmap <leader>la <Plug>(coc-codeaction)
+nmap <silent> <leader>la :<C-u>CocCommand actions.open<CR>
 vmap <leader>la <Plug>(coc-codeaction-selected)
 nmap <leader>lA <Plug>(coc-codelens-action)
 nmap <leader>le <Plug>(coc-refactor)
