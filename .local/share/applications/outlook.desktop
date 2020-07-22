@@ -1,7 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Outlook
-Exec=optirun chromium --app=https://outlook.live.com/
-Icon=outlook
-Categories=Office;Education;

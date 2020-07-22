@@ -15,7 +15,7 @@ dpi = 200
 bottom = true
 
 ; modules
-modules-left = appmenu telegram firefox chrome nautilus evince netspeedup mem
+modules-left = appmenu telegram firefox chrome dolphin zathura netspeedup mem
 modules-center = date
 modules-right = cpu netspeeddown alsa backlight bluetooth battery network powermenu
 
@@ -107,23 +107,23 @@ content-foreground = ${colors.fg}
 
 click-left = telegram-desktop; i3-msg floating enable
 ; }}}
-; evince{{{
-[module/evince]
+; zathura{{{
+[module/zathura]
 type = custom/text
 content = 
 content-background = ${colors.bg}
 content-foreground = ${colors.fg}
 
-click-left = evince
+click-left = zathura
 ; }}}
-; nautilus{{{
-[module/nautilus]
+; dolphin{{{
+[module/dolphin]
 type = custom/text
 content = 
 content-background = ${colors.bg}
 content-foreground = ${colors.fg}
 
-click-left = nautilus
+click-left = dolphin
 ; }}}
 ; {{{date
 [module/date]

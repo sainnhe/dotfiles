@@ -1,7 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=OneDrive
-Exec=optirun chromium --app=https://onedrive.live.com/
-Icon=onedrive
-Categories=Office;Education;

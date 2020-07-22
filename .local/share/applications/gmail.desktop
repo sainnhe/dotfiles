@@ -1,7 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Gmail
-Exec=optirun chromium --app=https://mail.google.com/
-Icon=gmail
-Categories=Office;Network;

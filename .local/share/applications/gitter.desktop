@@ -1,7 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Gitter
-Exec=optirun chromium --app=https://gitter.im/
-Icon=gitter
-Categories=Network;

@@ -1,7 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Excel
-Exec=optirun chromium --app=https://office.live.com/start/Excel.aspx?omkt=en&auth=1&nf=1
-Icon=excel
-Categories=Office;Education;

@@ -211,7 +211,7 @@ elif [ "$1" = "user" ]; then
     sudo usermod -a -G bumblebee sainnhe
     sudo systemctl enable bumblebeed.service
     #}}}
-    pikaur -S gvim firefox-developer-edition telegram-desktop alacritty lsd svn evince nautilus chromium
+    pikaur -S gvim firefox-developer-edition telegram-desktop alacritty lsd svn chromium
     pikaur -S nerd-fonts-complete wqy-microhei ttf-monaco ttf-droid noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji ttf-symbola
     proxychains -q wget https://github.com/fphoenix88888/ttf-mswin10-arch/raw/master/ttf-ms-win10-zh_cn-10.0.18362.116-1-any.pkg.tar.xz
     sudo pacman -Syy

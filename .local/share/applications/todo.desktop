@@ -1,7 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Todo
-Exec=optirun chromium --app=https://to-do.microsoft.com/
-Icon=gnome-todo
-Categories=Office;Education;

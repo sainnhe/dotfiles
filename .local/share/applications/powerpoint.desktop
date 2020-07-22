@@ -1,7 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=PowerPoint
-Exec=optirun chromium --app=https://office.live.com/start/PowerPoint.aspx?omkt=en&auth=1&nf=1
-Icon=powerpoint
-Categories=Office;Education;

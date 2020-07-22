@@ -1,7 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Inoreader
-Exec=optirun chromium --app=https://www.inoreader.com/all_articles
-Icon=feedreader
-Categories=Network;

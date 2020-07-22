@@ -1,7 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Google Drive
-Exec=optirun chromium --app=https://drive.google.com/
-Icon=google-drive
-Categories=Office;Network;
