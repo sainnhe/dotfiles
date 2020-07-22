@@ -7,7 +7,6 @@ sudo pacman -S \
     juk \
     kaddressbook \
     kalarm \
-    kalgebra \
     kcron \
     dolphin \
     dolphin-plugins \
@@ -42,7 +41,6 @@ sudo pacman -S \
     krdc \
     krfb \
     kross-interpreters \
-    kruler \
     ksystemlog \
     ktimer \
     kwalletmanager \
