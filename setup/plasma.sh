@@ -51,7 +51,6 @@ sudo pacman -S \
     pim-data-exporter \
     spectacle \
     svgpart \
-    sweeper \
     telepathy-kde-accounts-kcm \
     telepathy-kde-approver \
     telepathy-kde-auth-handler \
