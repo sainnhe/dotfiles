@@ -159,20 +159,19 @@
         "ga": "gitStage",
         "gu": "gitUnstage"
     },
-    "pyright.disableCompletion": true,
     "languageserver": {
         "PYLANCE": {
             "enable": true,
             "filetypes": ["python"],
-            "module": "/home/sainnhe/.vscode/extensions/ms-python.vscode-pylance-2020.7.2/server/server.bundle.js",
+            "module": "/home/sainnhe/.vscode/extensions/ms-python.vscode-pylance-2020.7.3/server/server.bundle.js",
             "initializationOptions": {},
             "settings": {
-                "python.analysis.autoSearchPaths": true,
+                "python.analysis.typeCheckingMode": "basic",
                 "python.analysis.diagnosticMode": "openFilesOnly",
-                "python.analysis.diagnosticSeverityOverrides": {},
-                "python.analysis.extraPaths": [],
                 "python.analysis.stubPath": "./typings",
-                "python.analysis.typeCheckingMode": "off",
+                "python.analysis.autoSearchPaths": true,
+                "python.analysis.extraPaths": [],
+                "python.analysis.diagnosticSeverityOverrides": {},
                 "python.analysis.useLibraryCodeForTypes": true
             }
         },

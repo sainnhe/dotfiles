@@ -1191,7 +1191,6 @@ let g:coc_global_extensions = [
       \   'coc-emmet',
       \   'coc-tsserver',
       \   'coc-tslint-plugin',
-      \   'coc-pyright',
       \   'coc-rls',
       \   'coc-omnisharp',
       \   'coc-powershell',
