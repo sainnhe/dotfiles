@@ -1155,7 +1155,6 @@ let g:coc_global_extensions = [
       \   'coc-tsserver',
       \   'coc-tslint-plugin',
       \   'coc-rust-analyzer',
-      \   'coc-omnisharp',
       \   'coc-sh',
       \   'coc-markdownlint',
       \   'coc-json',
