@@ -1154,10 +1154,10 @@ let g:coc_global_extensions = [
       \   'coc-emmet',
       \   'coc-tsserver',
       \   'coc-tslint-plugin',
-      \   'coc-rls',
+      \   'coc-rust-analyzer',
       \   'coc-omnisharp',
       \   'coc-sh',
-      \   'coc-powershell',
+      \   'coc-markdownlint',
       \   'coc-json',
       \   'coc-yaml',
       \   'coc-vimlsp'

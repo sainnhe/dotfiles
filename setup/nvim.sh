@@ -86,7 +86,7 @@ rust_setup() { #{{{
     sudo pacman -S rustup
     proxychains -q rustup install nightly
     rustup default nightly
-    proxychains -q rustup component add rls rust-analysis rust-src rustfmt
+    proxychains -q rustup component add rls rust-analyzer-preview rust-analysis rust-src rustfmt
 }
 # }}}
 if [ "$1" = "pacman" ]; then

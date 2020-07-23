@@ -168,6 +168,8 @@
     "clangd.enabled": true,
     "clangd.arguments": ["--clang-tidy", "--completion-style=detailed", "--fallback-style=google", "--header-insertion=iwyu", "--suggest-missing-includes"],
     "clangd.semanticHighlighting": true,
+    "rust-analyzer.serverPath": "rust-analyzer",
+    "rust-analyzer.updates.channel": "nightly",
     "languageserver": {
         "PYLANCE": {
             "enable": true,
