@@ -17,8 +17,6 @@ pacman_setup_func() {
     pacman -S --noconfirm words &>/dev/null
     echo "installing python-wcwidth..."
     pacman -S --noconfirm python-wcwidth &>/dev/null
-    echo "installing languagetool..."
-    pacman -S --noconfirm languagetool &>/dev/null
     echo "installing clang..."
     pacman -S --noconfirm clang &>/dev/null
     echo "installing ccls..."
@@ -33,6 +31,8 @@ pacman_setup_func() {
     pacman -S --noconfirm flake8 python2-flake8 &>/dev/null
     echo "installing mypy..."
     pacman -S --noconfirm mypy &>/dev/null
+    echo "installing pycodestyle..."
+    pacman -S --noconfirm python-pycodestyle python2-pycodestyle &>/dev/null
     echo "installing pydocstyle..."
     pacman -S --noconfirm python-pydocstyle python2-pydocstyle &>/dev/null
     echo "installing flawfinder..."

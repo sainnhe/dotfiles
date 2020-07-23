@@ -1,6 +1,7 @@
 {
     "$schema": "/home/sainnhe/.local/share/nvim/plugins/coc.nvim/data/schema.json",
-    "http.proxy_bak": "http://127.0.0.1:1081",
+    "http.proxy": "http://127.0.0.1:1081",
+    "http.proxyStrictSSL": "http://127.0.0.1:1081",
     "suggest.timeout": 500,
     "suggest.triggerCompletionWait": 0,
     "suggest.enablePreview": true,
@@ -82,6 +83,7 @@
         "typescript": ["javascript"]
     },
     "snippets.userSnippetsDirectory": "~/.local/share/nvim/snippets",
+    "nextword.filetypes": ["markdown", "text", "help", "gitcommit", "snippets"],
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,
     "coc.source.file.ignoreHidden": false,
@@ -97,7 +99,6 @@
     "coc.source.dictionary.shortcut": "D",
     "coc.source.dictionary.priority": 9,
     "coc.source.dictionary.filetypes": ["markdown", "text", "help", "gitcommit", "snippets"],
-    "nextword.filetypes": ["markdown", "text", "help", "gitcommit", "snippets"],
     "coc.source.emoji.shortcut": "E",
     "coc.source.emoji.priority": 8,
     "coc.source.emoji.filetypes": ["markdown", "text"],
@@ -110,7 +111,6 @@
         "javascript": "javascriptreact"
     },
     "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
-    "python.jediEnabled": false,
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappingMode": "none",
     "explorer.previewAction.onHover": false,
@@ -159,8 +159,25 @@
         "ga": "gitStage",
         "gu": "gitUnstage"
     },
+    "pyright.disableCompletion": true,
     "languageserver": {
+        "PYLANCE": {
+            "enable": true,
+            "filetypes": ["python"],
+            "module": "/home/sainnhe/.vscode/extensions/ms-python.vscode-pylance-2020.7.2/server/server.bundle.js",
+            "initializationOptions": {},
+            "settings": {
+                "python.analysis.autoSearchPaths": true,
+                "python.analysis.diagnosticMode": "openFilesOnly",
+                "python.analysis.diagnosticSeverityOverrides": {},
+                "python.analysis.extraPaths": [],
+                "python.analysis.stubPath": "./typings",
+                "python.analysis.typeCheckingMode": "off",
+                "python.analysis.useLibraryCodeForTypes": true
+            }
+        },
         "CLANGD": {
+            "enable": false,
             "command": "clangd",
             "rootPatterns": [
                 "compile_flags.txt",
@@ -169,10 +186,10 @@
                 ".git/",
                 ".hg/"
             ],
-            "filetypes": ["none"],
-            "filetypes_bak": ["c", "cpp", "objc", "objcpp"]
+            "filetypes": ["c", "cpp", "objc", "objcpp"]
         },
         "CCLS": {
+            "enable": true,
             "command": "ccls",
             "filetypes_bak": ["none"],
             "filetypes": ["c", "cpp", "objc", "objcpp"],
@@ -187,6 +204,7 @@
             }
         },
         "SHLS": {
+            "enable": true,
             "command": "bash-language-server",
             "filetypes": ["sh", "zsh"],
             "args": ["start"]

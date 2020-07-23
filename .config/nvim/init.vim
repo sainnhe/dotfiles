@@ -1191,7 +1191,7 @@ let g:coc_global_extensions = [
       \   'coc-emmet',
       \   'coc-tsserver',
       \   'coc-tslint-plugin',
-      \   'coc-python',
+      \   'coc-pyright',
       \   'coc-rls',
       \   'coc-omnisharp',
       \   'coc-powershell',
@@ -1380,11 +1380,11 @@ let g:ale_linters = {
       \       'css': ['stylelint'],
       \       'html': ['tidy'],
       \       'json': [],
-      \       'markdown': [''],
-      \       'python': ['pylint', 'flake8', 'mypy', 'pydocstyle'],
+      \       'markdown': [],
+      \       'python': ['pylint', 'flake8', 'mypy', 'pycodestyle', 'pydocstyle'],
       \       'rust': ['cargo'],
       \       'sh': ['shellcheck'],
-      \       'text': ['languagetool'],
+      \       'text': [],
       \       'vim': ['vint'],
       \}
 "查看上一个错误
