@@ -521,8 +521,6 @@ Plug 'sainnhe/sonokai'
 Plug 'sainnhe/forest-night'
 "}}}
 Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-gitbranch'
-Plug 'macthecadillac/lightline-gitdiff'
 Plug 'maximbaz/lightline-ale'
 Plug 'albertomontesg/lightline-asyncrun'
 Plug 'rmolin88/pomodoro.vim'
@@ -567,7 +565,6 @@ Plug 'sodapopcan/vim-twiggy'
 Plug 'rhysd/committia.vim'
 Plug 'cohama/agit.vim'
 Plug 'samoshkin/vim-mergetool'
-Plug 'APZelos/blamer.nvim'
 Plug 'liuchengxu/vista.vim'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
@@ -615,6 +612,10 @@ call plug#end()
 " :h g:lightline.component
 "}}}
 "{{{functions
+function! GitGlobal() abort"{{{
+  let status = get(g:, 'coc_git_status', '')
+  return status ==# '' ? "\ue61b" : status
+endfunction"}}}
 function! PomodoroStatus() abort"{{{
   if pomo#remaining_time() ==# '0'
     return "\ue001"
@@ -622,72 +623,44 @@ function! PomodoroStatus() abort"{{{
     return "\ue003 ".pomo#remaining_time()
   endif
 endfunction"}}}
-function! CocCurrentFunction()"{{{
-  return get(b:, 'coc_current_function', '')
-endfunction"}}}
-function! Devicons_Filetype()"{{{
+function! DeviconsFiletype()"{{{
   " return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'no ft') : ''
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction"}}}
-function! Devicons_Fileformat()"{{{
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction"}}}
-function! Artify_active_tab_num(n) abort"{{{
-  return Artify(a:n, 'bold')." \ue0bb"
-endfunction"}}}
-function! Tab_num(n) abort"{{{
+function! TabNum(n) abort"{{{
   return a:n." \ue0bb"
 endfunction"}}}
-function! Gitbranch() abort"{{{
-  if gitbranch#name() !=# ''
-    return gitbranch#name()." \ue725"
-  else
-    return "\ue61b"
-  endif
+function! ArtifyActiveTabNum(n) abort"{{{
+  return Artify(a:n, 'bold')." \ue0bb"
 endfunction"}}}
-function! Artify_inactive_tab_num(n) abort"{{{
+function! ArtifyInactiveTabNum(n) abort"{{{
   return Artify(a:n, 'double_struck')." \ue0bb"
 endfunction"}}}
-function! Artify_lightline_tab_filename(s) abort"{{{
+function! ArtifyLightlineTabFilename(s) abort"{{{
   if g:lightlineArtify ==# 2
     return Artify(lightline#tab#filename(a:s), 'monospace')
   else
     return lightline#tab#filename(a:s)
   endif
 endfunction"}}}
-function! Artify_lightline_mode() abort"{{{
+function! ArtifyLightlineMode() abort"{{{
   if g:lightlineArtify ==# 2
     return Artify(lightline#mode(), 'monospace')
   else
     return lightline#mode()
   endif
 endfunction"}}}
-function! Artify_line_percent() abort"{{{
+function! ArtifyLinePercent() abort"{{{
   return Artify(string((100*line('.'))/line('$')), 'bold')
 endfunction"}}}
-function! Artify_line_num() abort"{{{
+function! ArtifyLineNum() abort"{{{
   return Artify(string(line('.')), 'bold')
 endfunction"}}}
-function! Artify_col_num() abort"{{{
+function! ArtifyColNum() abort"{{{
   return Artify(string(getcurpos()[2]), 'bold')
-endfunction"}}}
-function! Artify_gitbranch() abort"{{{
-  if gitbranch#name() !=# ''
-    if g:lightlineArtify ==# 2
-      return Artify(gitbranch#name(), 'monospace')." \ue725"
-    else
-      return gitbranch#name()." \ue725"
-    endif
-  else
-    return "\ue61b"
-  endif
 endfunction"}}}
 "}}}
 set laststatus=2  " Basic
-augroup lightlineCustom
-  autocmd!
-  autocmd BufWritePost * call lightline_gitdiff#query_git() | call lightline#update()
-augroup END
 let g:lightline = {}
 let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
 let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
@@ -697,10 +670,6 @@ let g:lightline#ale#indicator_checking = "\uf110"
 let g:lightline#ale#indicator_warnings = "\uf529"
 let g:lightline#ale#indicator_errors = "\uf00d"
 let g:lightline#ale#indicator_ok = "\uf00c"
-let g:lightline_gitdiff#indicator_added = '+'
-let g:lightline_gitdiff#indicator_deleted = '-'
-let g:lightline_gitdiff#indicator_modified = '*'
-let g:lightline_gitdiff#min_winwidth = '70'
 let g:lightline#asyncrun#indicator_none = ''
 let g:lightline#asyncrun#indicator_run = 'Running...'
 if g:lightlineArtify == 0
@@ -717,8 +686,8 @@ if g:lightlineArtify == 0
         \ }
   let g:lightline.tabline = {
         \ 'left': [ [ 'vim_logo', 'tabs' ] ],
-        \ 'right': [ [ 'gitbranch' ],
-        \ [ 'gitstatus' ] ]
+        \ 'right': [ [ 'git_global' ],
+        \ [ 'git_buffer' ] ]
         \ }
   let g:lightline.tab = {
         \ 'active': [ 'tabnum', 'filename', 'modified' ],
@@ -737,29 +706,27 @@ else
         \ }
   let g:lightline.tabline = {
         \ 'left': [ [ 'vim_logo', 'tabs' ] ],
-        \ 'right': [ [ 'artify_gitbranch' ],
-        \ [ 'gitstatus' ] ]
+        \ 'right': [ [ 'git_global' ],
+        \ [ 'git_buffer' ] ]
         \ }
   let g:lightline.tab = {
         \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
         \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }
 endif
-let g:lightline.tab_component = {
-      \ }
 let g:lightline.tab_component_function = {
-      \ 'artify_activetabnum': 'Artify_active_tab_num',
-      \ 'artify_inactivetabnum': 'Artify_inactive_tab_num',
-      \ 'artify_filename': 'Artify_lightline_tab_filename',
+      \ 'artify_activetabnum': 'ArtifyActiveTabNum',
+      \ 'artify_inactivetabnum': 'ArtifyInactiveTabNum',
+      \ 'artify_filename': 'ArtifyLightlineTabFilename',
+      \ 'tabnum': 'TabNum',
       \ 'filename': 'lightline#tab#filename',
       \ 'modified': 'lightline#tab#modified',
-      \ 'readonly': 'lightline#tab#readonly',
-      \ 'tabnum': 'Tab_num'
+      \ 'readonly': 'lightline#tab#readonly'
       \ }
 let g:lightline.component = {
-      \ 'artify_gitbranch' : '%{Artify_gitbranch()}',
-      \ 'artify_mode': '%{Artify_lightline_mode()}',
-      \ 'artify_lineinfo': "%2{Artify_line_percent()}\uf295 %3{Artify_line_num()}:%-2{Artify_col_num()}",
-      \ 'gitstatus' : '%{lightline_gitdiff#get_status()}',
+      \ 'git_buffer' : '%{get(b:, "coc_git_status", "")}',
+      \ 'git_global' : '%{GitGlobal()}',
+      \ 'artify_mode': '%{ArtifyLightlineMode()}',
+      \ 'artify_lineinfo': "%2{ArtifyLinePercent()}\uf295 %3{ArtifyLineNum()}:%-2{ArtifyColNum()}",
       \ 'bufinfo': '%{bufname("%")}:%{bufnr("%")}',
       \ 'vim_logo': "\ue7c5",
       \ 'pomodoro': '%{PomodoroStatus()}',
@@ -787,11 +754,8 @@ let g:lightline.component = {
       \ 'winnr': '%{winnr()}'
       \ }
 let g:lightline.component_function = {
-      \ 'gitbranch': 'Gitbranch',
-      \ 'devicons_filetype': 'Devicons_Filetype',
-      \ 'devicons_fileformat': 'Devicons_Fileformat',
+      \ 'devicons_filetype': 'DeviconsFiletype',
       \ 'coc_status': 'coc#status',
-      \ 'coc_currentfunction': 'CocCurrentFunction'
       \ }
 let g:lightline.component_expand = {
       \ 'linter_checking': 'lightline#ale#checking',
@@ -803,9 +767,6 @@ let g:lightline.component_expand = {
 let g:lightline.component_type = {
       \ 'linter_warnings': 'warning',
       \ 'linter_errors': 'error'
-      \ }
-let g:lightline.component_visible_condition = {
-      \ 'gitstatus': 'lightline_gitdiff#get_status() !=# ""'
       \ }
 "}}}
 "{{{tmuxline.vim
@@ -1200,12 +1161,13 @@ let g:coc_global_extensions = [
       \   ]
 "}}}
 "{{{coc-settings
-augroup cocCustom
+augroup CocCustom
   autocmd!
   autocmd CursorHold * silent call CocHover()
   autocmd CursorHold * silent call CocHighlight()
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  autocmd InsertEnter * call coc#util#float_hide()
+  autocmd User CocGitStatusChange call lightline#update()
+  autocmd CursorHold * CocCommand git.refresh
 augroup END
 hi link BookMarkHI GitGutterAdd
 let g:CocHoverEnable = 0
@@ -1578,15 +1540,6 @@ function! MergetoolLayoutCustom()
     execute 'MergetoolToggleLayout mr'
   endif
 endfunction
-"}}}
-"{{{blamer
-let g:blamer_enabled = 0
-let g:blamer_delay = 0
-let g:blamer_show_in_visual_modes = 1
-let g:blamer_prefix = "\ue729 "
-let g:blamer_template = '<author>, <author-time> • <summary>'
-nmap <silent> <leader>gb :BlamerToggle<CR>
-let g:which_key_map['g']['b'] = 'blame'
 "}}}
 noremap <silent> <leader>gd :Gdiffsplit<cr>
 noremap <silent> <leader>gw :Gwrite<cr>
