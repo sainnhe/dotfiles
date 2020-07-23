@@ -27,7 +27,7 @@ if [ "$1" = "general" ]; then
     sudo pacman -S nnn ranger lynx atool ffmpegthumbnailer highlight odt2txt perl-image-exiftool
 elif [ "$1" = "physical" ]; then
     sudo pacman -S zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb
-    pikaur -S qv2ray-dev-git qv2ray-plugin-command-dev-git qv2ray-plugin-ssr-dev-git qv2ray-plugin-trojan-dev-git
+    pikaur -S v2ray qv2ray-dev-git qv2ray-plugin-command-dev-git qv2ray-plugin-ssr-dev-git qv2ray-plugin-trojan-dev-git
     pikaur -S fontweak persepolis code typora iw bleachbit
     pikaur -S fcitx fcitx-configtool fcitx-libpinyin fcitx-cloudpinyin fcitx-table-extra fcitx-table-other kcm-fcitx fcitx-skins fcitx-skin-material
     pikaur -S wps-office-cn ttf-wps-fonts wps-office-mime-cn wps-office-mui-zh-cn wps-office-fonts

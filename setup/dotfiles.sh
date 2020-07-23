@@ -22,8 +22,6 @@ setup_copy() {
 
 setup_symlink .Xresources
 setup_copy .redshiftgrc
-setup_symlink .haxornewsconfig
-setup_symlink .gitsomeconfig
 setup_copy .gitconfig
 setup_copy .ctags
 setup_symlink .conkyrc
@@ -36,7 +34,6 @@ setup_copy ../.config/i3/config
 setup_symlink ../.config/i3/scripts
 setup_copy .config/autostart
 setup_copy .config/autostart-scripts
-setup_symlink .config/browsh/config.toml
 setup_symlink .config/fontconfig/fonts.conf
 setup_copy .config/polybar
 setup_copy .config/rofi/config.rasi

@@ -15,7 +15,7 @@ elif [ "$1" = "base" ]; then
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/2019/03/15/$repo/os/$arch' /etc/pacman.d/mirrorlist
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/last/$repo/os/$arch' /etc/pacman.d/mirrorlist
     pacman -Syyuu
-    pacman -S sudo vi vim aria2 curl wget git dialog wpa_supplicant ntfs-3g v2ray w3m proxychains lsd svn fzf openssh
+    pacman -S sudo vi vim aria2 curl wget git dialog wpa_supplicant ntfs-3g w3m proxychains lsd svn fzf openssh
     visudo
     cd /tmp
     wget https://github.com/sainnhe/gruvbox-material/files/3513850/fakeroot-tcp-1.23-1-x86_64.pkg.tar.xz.zip

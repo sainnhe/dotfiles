@@ -325,9 +325,7 @@ zcomp-gen () {
 # {{{Alias
 alias ls='lsd'
 alias ls-tree='lsd --tree -A'
-alias ls-all='find $PWD -type f | fzf'
-alias fzy="fzy --lines=15 --prompt='➤ '"
-alias du='du -hc'
+alias du='du -sh'
 alias df='df -h'
 alias cp='cp -ip'
 alias mv='mv -i'
@@ -341,25 +339,17 @@ alias job-ls='jobs -l'
 alias nnn='PAGER= nnn'
 alias vimpager="nvim --cmd 'let g:vimManPager = 1' -c MANPAGER -"
 alias help='bash ~/repo/scripts/func/help.sh'
-alias GCT='bash ~/repo/scripts/func/GCT.sh'
 alias TCT='bash ~/repo/scripts/func/TCT.sh'
-alias KCT='kcmcolorfulhelper -s -p'
 alias tmux-start='tmux new-session -s Alpha'
 alias px='proxychains -q'
-alias haxor-news='proxychains -q haxor-news'
-alias gitsome='proxychains -q gitsome'
-alias rtv='proxychains -q rtv'
 alias hn='proxychains -q hn'
 alias gitproxyon='git config --global http.proxy "socks5://127.0.0.1:1080" && git config --global https.proxy "socks5://127.0.0.1:1080"'
 alias gitproxyoff='git config --global --unset http.proxy && git config --global --unset https.proxy'
 alias bebusy='python ~/repo/scripts/func/bebusy.py'
 alias clean='bash ~/repo/scripts/func/clean.sh'
-alias switch-v2ray='bash ~/repo/scripts/v2ray/v2ray_switch.sh'
 alias zip-r='bash ~/repo/scripts/func/zip.sh'
-alias browsh-docker='docker run --rm -it browsh/browsh'
 alias net-test="bash ~/repo/scripts/func/net-test.sh"
 alias fix-wifi="sudo iw dev wlp1s0 set power_save off"
-alias t='goldendict'
 alias gencomp-help='gencomp'
 alias nvistat='nvidia-smi'
 # }}}

@@ -98,12 +98,12 @@ elif [ "$1" = "chroot" ]; then
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/2019/03/15/$repo/os/$arch' /etc/pacman.d/mirrorlist
     sed -ri -e '$a # Server = https://archive.archlinux.org/repos/last/$repo/os/$arch' /etc/pacman.d/mirrorlist
     pacman -Syyuu
-    pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode v2ray sudo mesa xf86-video-intel xorg git w3m aria2 wget openssh netctl os-prober grub efibootmgr linux pacman-contrib
+    pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode sudo mesa xf86-video-intel xorg git w3m aria2 wget openssh netctl os-prober grub efibootmgr linux pacman-contrib
     echo -n "Continue? [N/y] "
     defaultFalse
     while [ "$judgement" = "n" ]; do
         pacman -Syyuu
-        pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode v2ray sudo mesa xf86-video-intel xorg git w3m aria2 wget openssh netctl os-prober grub efibootmgr linux pacman-contrib
+        pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager intel-ucode sudo mesa xf86-video-intel xorg git w3m aria2 wget openssh netctl os-prober grub efibootmgr linux pacman-contrib
         echo -n "Continue? [N/y] "
         defaultFalse
     done
@@ -158,9 +158,6 @@ elif [ "$1" = "user" ]; then
     # Network{{{
     sudo systemctl disable netctl
     sudo systemctl enable NetworkManager
-    sudo cp ~/repo/scripts/func/v2ray/v2ray-tcp.json /etc/v2ray/config.json
-    sudo systemctl enable v2ray
-    sudo systemctl start v2ray
     sudo pacman -S proxychains net-tools
     sudo cp ~/repo/dotfiles/.root/etc/proxychains.conf /etc/proxychains.conf
     #}}}
