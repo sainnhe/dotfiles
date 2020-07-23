@@ -53,8 +53,6 @@ pacman_setup_func() {
     pacman -S --noconfirm uncrustify &>/dev/null
     echo "installing yapf..."
     pacman -S --noconfirm yapf &>/dev/null
-    echo "installing bash-language-server..."
-    pacman -S --noconfirm bash-language-server &>/dev/null
     echo "installing zenity..."
     pacman -S --noconfirm zenity &>/dev/null
 }

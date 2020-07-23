@@ -1,7 +1,7 @@
 {
     "$schema": "/home/sainnhe/.local/share/nvim/plugins/coc.nvim/data/schema.json",
-    "http.proxy": "http://127.0.0.1:1081",
-    "http.proxyStrictSSL": "http://127.0.0.1:1081",
+    // "http.proxy": "http://127.0.0.1:1081",
+    // "http.proxyStrictSSL": "http://127.0.0.1:1081",
     "suggest.timeout": 500,
     "suggest.triggerCompletionWait": 0,
     "suggest.enablePreview": true,
@@ -165,6 +165,9 @@
         "ga": "gitStage",
         "gu": "gitUnstage"
     },
+    "clangd.enabled": true,
+    "clangd.arguments": ["--clang-tidy", "--completion-style=detailed", "--fallback-style=google", "--header-insertion=iwyu", "--suggest-missing-includes"],
+    "clangd.semanticHighlighting": true,
     "languageserver": {
         "PYLANCE": {
             "enable": true,
@@ -181,20 +184,8 @@
                 "python.analysis.useLibraryCodeForTypes": true
             }
         },
-        "CLANGD": {
-            "enable": false,
-            "command": "clangd",
-            "rootPatterns": [
-                "compile_flags.txt",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "filetypes": ["c", "cpp", "objc", "objcpp"]
-        },
         "CCLS": {
-            "enable": true,
+            "enable": false,
             "command": "ccls",
             "filetypes_bak": ["none"],
             "filetypes": ["c", "cpp", "objc", "objcpp"],
@@ -207,12 +198,6 @@
                     "lsRanges": true
                 }
             }
-        },
-        "SHLS": {
-            "enable": true,
-            "command": "bash-language-server",
-            "filetypes": ["sh", "zsh"],
-            "args": ["start"]
         }
     }
 }

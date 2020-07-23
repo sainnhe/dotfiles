@@ -480,6 +480,7 @@ Plug 'ryanoasis/vim-devicons'
 "}}}
 "{{{syntax
 Plug 'sheerun/vim-polyglot', {'as': 'vim-syntax'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'bfrg/vim-cpp-modern', {'as': 'vim-syntax-c-cpp', 'for': ['c', 'cpp']}
 Plug 'maxmellon/vim-jsx-pretty', {'as': 'vim-syntax-jsx', 'for': ['javascriptreact']}
 let g:polyglot_disabled = ['c', 'cpp', 'markdown', 'javascriptreact']
@@ -1147,6 +1148,7 @@ let g:coc_global_extensions = [
       \   'coc-emoji',
       \   'coc-dictionary',
       \   'coc-nextword',
+      \   'coc-clangd',
       \   'coc-html',
       \   'coc-css',
       \   'coc-emmet',
@@ -1154,6 +1156,7 @@ let g:coc_global_extensions = [
       \   'coc-tslint-plugin',
       \   'coc-rls',
       \   'coc-omnisharp',
+      \   'coc-sh',
       \   'coc-powershell',
       \   'coc-json',
       \   'coc-yaml',
