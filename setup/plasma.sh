@@ -62,7 +62,14 @@ sudo pacman -S \
     telepathy-kde-send-file \
     telepathy-kde-text-ui \
     yakuake \
-    zeroconf-ioslave
+    zeroconf-ioslave \
+    konversation \
+    keditbookmarks \
+    kget \
+    ktorrent \
+    kplotting \
+    kdewebkit \
+    geoip
 sudo pacman -S kvantum-qt5 qtcurve-kde
 sudo pacman -S plasma5-applets-active-window-control
 sudo pacman -S latte-dock
