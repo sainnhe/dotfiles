@@ -601,8 +601,6 @@ Plug 'kana/vim-textobj-entire'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-lastpat'
-Plug 'kana/vim-textobj-function'
-Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'pechorin/any-jump.vim'
 Plug 'chaoren/vim-wordmotion'
@@ -1920,8 +1918,8 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
         disable = {},
         keymaps = {
-            ["aF"] = "@function.outer",
-            ["iF"] = "@function.inner"
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner"
         }
     },
     ensure_installed = 'all' -- one of 'all', 'language', or a list of languages
