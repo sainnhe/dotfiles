@@ -69,10 +69,11 @@ sudo pacman -S \
     ktorrent \
     kplotting \
     kdewebkit \
-    geoip
-sudo pacman -S kvantum-qt5 qtcurve-kde
-sudo pacman -S plasma5-applets-active-window-control
-sudo pacman -S latte-dock
+    geoip \
+    kvantum-qt5 \
+    qtcurve-kde \
+    plasma5-applets-active-window-control
+sudo pacman -S latte-dock-git
 echo "https://store.kde.org/p/1364064/"
 pikaur -S libinput-gestures gestures
 sudo gpasswd -a "$USER" input
