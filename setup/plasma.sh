@@ -73,7 +73,13 @@ sudo pacman -S \
     kvantum-qt5 \
     qtcurve-kde \
     plasma5-applets-active-window-control
-sudo pacman -S latte-dock-git
+pikaur -S \
+    latte-dock-git \
+    plasma5-applets-virtual-desktop-bar-git \
+    plasma5-applets-window-title \
+    plasma5-applets-latte-separator \
+    plasma5-applets-window-buttons \
+    plasma5-applets-betterinlineclock-git
 echo "https://store.kde.org/p/1364064/"
 pikaur -S libinput-gestures gestures
 sudo gpasswd -a "$USER" input

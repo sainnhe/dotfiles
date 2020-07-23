@@ -35,6 +35,7 @@ setup_copy .config/alacritty/alacritty.yml
 setup_copy ../.config/i3/config
 setup_symlink ../.config/i3/scripts
 setup_copy .config/autostart
+setup_copy .config/autostart-scripts
 setup_symlink .config/browsh/config.toml
 setup_symlink .config/fontconfig/fonts.conf
 setup_copy .config/polybar

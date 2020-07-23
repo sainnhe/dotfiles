@@ -36,5 +36,6 @@ elif [ "$1" = "physical" ]; then
     echo ""
     echo "https://github.com/countstarlight/deepin-wine-tim-arch/issues/1"
     echo 'snippet-add tim         "xsettingsd &"'
+    echo 'Fix already done in ~/.config/autostart-scripts/wine.sh'
 # elif [ "$1" = "wsl" ]; then
 fi
