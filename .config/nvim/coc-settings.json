@@ -79,7 +79,6 @@
     "project.dbpath": "~/.cache/vim/coc-project",
     "project.rootPatterns": [".git", ".svn", ".root", ".project", ".hg"],
     "bookmark.sign": "\uf5c2",
-    "todolist.monitor": true,
     "suggest.languageSourcePriority": 99,
     "snippets.shortcut": "S",
     "snippets.priority": 98,

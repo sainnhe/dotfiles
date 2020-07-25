@@ -1035,21 +1035,22 @@ if g:vimEnableStartify == 1
 endif
 "}}}
 "{{{vim-which-key
+let g:which_key_sort_horizontal = 1
+let g:which_key_sep = ''
+let g:which_key_display_names = {' ': '', '<CR>': '↵', '<C-H>': '', '<C-I>': 'ﲑ', '<TAB>': '⇆'}
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 call which_key#register('<Space>', 'g:which_key_map')
 let g:which_key_map = {
-      \   'name': 'main',
-      \   '%': 'select current surrounding',
+      \   'name': 'Alpha',
       \   '<Tab>': 'format',
       \   'p': 'paste',
       \   'q': 'close quickfix',
       \   'y': 'yank',
-      \   't': 'translate',
       \   'c': { 'name': 'comment' }
       \   }
 let g:which_key_map["\<space>"] = {
-      \   'name': 'menu'
+      \   'name': 'Beta'
       \   }
 "}}}
 "{{{nvim-colorizer.lua
@@ -1086,9 +1087,9 @@ augroup goyoCustom
   autocmd! User GoyoLeave Limelight!
 augroup END
 nnoremap <silent> <leader><space>F :<C-u>Limelight!!<CR>
-nnoremap <silent> <leader><space>r :<C-u>Goyo<CR>
+nnoremap <silent> <leader><space>R :<C-u>Goyo<CR>
 let g:which_key_map["\<space>"]['F'] = 'focus mode'
-let g:which_key_map["\<space>"]['r'] = 'reading mode'
+let g:which_key_map["\<space>"]['R'] = 'reading mode'
 "}}}
 "{{{golden-ratio
 " 默认关闭
@@ -1138,7 +1139,6 @@ let g:coc_global_extensions = [
       \ 'coc-gitignore',
       \ 'coc-bookmark',
       \ 'coc-translator',
-      \ 'coc-todolist',
       \ 'coc-highlight',
       \ 'coc-actions',
       \ 'coc-yank',
@@ -1205,17 +1205,16 @@ inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right
 nmap <leader>f<Space> :<C-u>CocList<CR>
 nmap <leader>fy :<C-u>CocList yank<CR>
 nmap <leader>fs :<C-u>CocList symbols<CR>
-nmap <leader>lgd <Plug>(coc-definition)
-nmap <leader>lgD <Plug>(coc-declaration)
-nmap <leader>lgt <Plug>(coc-type-definition)
-nmap <leader>lgr <Plug>(coc-references)
-nmap <leader>lgm <Plug>(coc-implementation)
-nmap <leader>lr <Plug>(coc-rename)
-nmap <silent> <leader>la :<C-u>CocCommand actions.open<CR>
-vmap <leader>la <Plug>(coc-codeaction-selected)
-nmap <leader>lR <Plug>(coc-refactor)
-nmap <leader>lv <Plug>(coc-range-select)
-vmap <leader>lv <Plug>(coc-range-select)
+nmap <leader>jd <Plug>(coc-definition)
+nmap <leader>jD <Plug>(coc-declaration)
+nmap <leader>jt <Plug>(coc-type-definition)
+nmap <leader>jr <Plug>(coc-references)
+nmap <leader>jm <Plug>(coc-implementation)
+nmap <leader><Space>r <Plug>(coc-refactor)
+nmap <silent> <leader><Space>a :<C-u>CocCommand actions.open<CR>
+vmap <leader><Space>a <Plug>(coc-codeaction-selected)
+nmap <leader>v <Plug>(coc-range-select)
+vmap <leader>v <Plug>(coc-range-select)
 nmap <leader>gj <Plug>(coc-git-nextchunk)
 nmap <leader>gk <Plug>(coc-git-prevchunk)
 nmap <leader>gi <Plug>(coc-git-chunkinfo)
@@ -1235,21 +1234,17 @@ let g:which_key_map["\<space>"]['s'] = {
       \   'e': 'edit snippets for current file type',
       \   'o': 'open snippet file'
       \   }
-let g:which_key_map['l'] = {
-      \   'name': 'server',
-      \   'r': 'rename symbol',
-      \   'a': 'code action',
-      \   'R': 'refactor window',
-      \   'v': 'range select',
-      \   }
-let g:which_key_map['l']['g'] = {
-      \   'name': 'go to',
+let g:which_key_map['j'] = {
+      \   'name': 'jump',
       \   'd': 'definition',
       \   'D': 'declaration',
       \   't': 'type definition',
       \   'r': 'reference',
       \   'm': 'implementation',
       \   }
+let g:which_key_map["\<space>"]['r'] = 'refactor'
+let g:which_key_map["\<space>"]['a'] = 'code action'
+let g:which_key_map['v'] = 'range select'
 let g:which_key_map['g'] = {
       \   'name': 'git',
       \   'j': 'chunk next',
@@ -1308,19 +1303,9 @@ let g:which_key_map['m'] = {
       \   }
 "}}}
 "{{{coc-translator
-nmap <Leader>t <Plug>(coc-translator-p)
-vmap <Leader>t <Plug>(coc-translator-pv)
-"}}}
-"{{{coc-todolist
-nnoremap <silent> <leader><space>tn :<c-u>CocCommand todolist.create<cr>
-nnoremap <silent> <leader><space>tm :<c-u>CocList todolist<cr>
-nnoremap <silent> <leader><space>tc :<c-u>CocCommand todolist.clearRemind<cr>
-let g:which_key_map["\<space>"]['t'] = {
-      \   'name': 'todo',
-      \   'n': 'new item',
-      \   'm': 'management',
-      \   'c': 'clear remind'
-      \   }
+nmap <leader><Space>t <Plug>(coc-translator-p)
+vmap <leader><Space>t <Plug>(coc-translator-pv)
+let g:which_key_map["\<space>"]['t'] = 'translate'
 "}}}
 "}}}
 "{{{ale
@@ -1344,12 +1329,15 @@ let g:ale_linters = {
       \       'text': [],
       \       'vim': ['vint'],
       \}
-nnoremap <silent> <leader>lk :ALEPrevious<CR>
-nnoremap <silent> <leader>lj :ALENext<CR>
-nnoremap <silent> <leader>li :ALEDetail<CR>
-let g:which_key_map['l']['j'] = 'diagnostic next'
-let g:which_key_map['l']['k'] = 'diagnostic prev'
-let g:which_key_map['l']['i'] = 'diagnostic info'
+nnoremap <silent> <leader>dk :ALEPrevious<CR>
+nnoremap <silent> <leader>dj :ALENext<CR>
+nnoremap <silent> <leader>di :ALEDetail<CR>
+let g:which_key_map['d'] = {
+      \ 'name': 'diagnostics',
+      \ 'j': 'next',
+      \ 'k': 'prev',
+      \ 'i': 'info'
+      \ }
 let g:ale_sign_error = "\uf65b"
 let g:ale_sign_warning = "\uf421"
 let g:ale_echo_msg_error_str = 'E'
@@ -1593,20 +1581,23 @@ let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 let g:asynctasks_term_pos = 'bottom' " tab
 let g:asynctasks_term_rows = 10
 let g:asynctasks_config_name = '.git/tasks.ini'
-noremap <silent> <leader>rf :AsyncTask file-run<cr>
-noremap <silent> <leader>bf :AsyncTask file-build<cr>
-noremap <silent> <leader>rp :AsyncTask project-run<cr>
-noremap <silent> <leader>bp :AsyncTask project-build<cr>
+noremap <silent> <leader>trf :AsyncTask file-run<cr>
+noremap <silent> <leader>trp :AsyncTask project-run<cr>
+noremap <silent> <leader>tbf :AsyncTask file-build<cr>
+noremap <silent> <leader>tbp :AsyncTask project-build<cr>
+noremap <silent> <leader>te :AsyncTaskEdit<cr>
 noremap <silent> <leader>g^s :AsyncRun git config --global http.proxy "socks5://127.0.0.1:1080"<cr>
 noremap <silent> <leader>g^h :AsyncRun git config --global http.proxy "http://127.0.0.1:1081"<cr>
 noremap <silent> <leader>g$ :AsyncRun git config --global --unset http.proxy<cr>
 noremap <silent> <leader>gp :AsyncRun git push origin HEAD<cr>
 noremap <silent> <leader>gf :AsyncRun git fetch origin<cr>
 noremap <silent> <leader>gc :Git commit<cr>
-noremap <silent> <leader><space>E :AsyncTaskEdit<cr>
-let g:which_key_map['r'] = {'name': 'run', 'f': 'file', 'p': 'project'}
-let g:which_key_map['b'] = {'name': 'build', 'f': 'file', 'p': 'project'}
-let g:which_key_map["\<space>"]['E'] = 'task config'
+let g:which_key_map['t'] = {
+      \ 'name': 'task',
+      \ 'r': {'name': 'run task', 'f': 'file', 'p': 'project'},
+      \ 'b': {'name': 'build task', 'f': 'file', 'p': 'project'},
+      \ 'e': 'edit config'
+      \ }
 let g:which_key_map['g']['^'] = {'name': 'set proxy', 's': 'socks5', 'h': 'http'}
 let g:which_key_map['g']['$'] = 'unset proxy'
 let g:which_key_map['g']['c'] = 'commit'
@@ -1855,7 +1846,7 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 nnoremap <silent> <leader><space>f :<C-u>call Toggle_foldmethod()<CR>
-let g:which_key_map["\<space>"]['f'] = 'foldmethod toggle'
+let g:which_key_map["\<space>"]['f'] = 'fold method'
 function! Toggle_foldmethod() abort
   if &foldmethod ==# 'marker'
     set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
@@ -1865,6 +1856,7 @@ function! Toggle_foldmethod() abort
 endfunction
 "}}}
 "{{{any-jump.vim
+let g:any_jump_disable_default_keybindings = 1
 nnoremap gd :AnyJump<CR>
 xnoremap gd :AnyJumpVisual<CR>
 "}}}
