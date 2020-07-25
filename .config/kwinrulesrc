@@ -1,0 +1,29 @@
+[$Version]
+update_info=kwinrules.upd:replace-placement-string-to-enum
+
+[1]
+Description=alacritty opacity
+opacityactive=90
+opacityactiverule=2
+wmclass=alacritty
+wmclasscomplete=true
+wmclassmatch=3
+
+[2]
+Description=vscode opacity
+opacityactive=90
+opacityactiverule=2
+wmclass=code
+wmclasscomplete=true
+wmclassmatch=3
+
+[3]
+Description=rofi opacity
+opacityactive=90
+opacityactiverule=2
+wmclass=rofi
+wmclasscomplete=true
+wmclassmatch=3
+
+[General]
+count=3

@@ -79,8 +79,18 @@ pikaur -S \
     plasma5-applets-window-title \
     plasma5-applets-latte-separator \
     plasma5-applets-window-buttons \
-    plasma5-applets-betterinlineclock-git
-echo "https://store.kde.org/p/1364064/"
-pikaur -S libinput-gestures gestures
+    plasma5-applets-betterinlineclock-git \
+    libinput-gestures \
+    gestures \
+    kwin-scripts-forceblur
 sudo gpasswd -a "$USER" input
 libinput-gestures-setup autostart
+ln -s /home/sainnhe/repo/dotfiles/.config/kwinrulesrc ~/.config/kwinrulesrc
+echo ""
+echo "Blur:"
+echo "System Settings -> Kwin Scripts -> Force Blur"
+echo "Shortcuts:"
+echo "/home/sainnhe/repo/scripts/func/plasma-blur.sh 'rofi -show drun' 'Rofi'"
+echo ""
+echo "Launchpad:"
+echo "https://store.kde.org/p/1364064/"
