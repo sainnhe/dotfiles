@@ -1,14 +1,28 @@
 #!/usr/bin/env bash
 
 # Icon/Cursor
-pikaur -S capitaine-cursors numix-cursor-theme
-pikaur -S papirus-icon-theme
+pikaur -S \
+    papirus-icon-theme \
+    capitaine-cursors \
+    numix-cursor-theme
 
 # GTK
-pikaur -S arc-gtk-theme snow-theme-git nordic-theme-git mojave-gtk-theme-git qogir-gtk-theme-git x-arc-plus x-arc-white x-arc-darker x-arc-shadow
+pikaur -S \
+    arc-gtk-theme \
+    x-arc-plus \
+    x-arc-white \
+    x-arc-darker \
+    x-arc-shadow
 
 # KDE
-pikaur -S moe-kde-git sierrabreeze-kwin-decoration-git
+pikaur -S pikaur -S \
+    sierrabreeze-kwin-decoration-git \
+    sensual-kde-theme-git \
+    sensual-kvantum-theme-git \
+    sensual-breeze-icons-git \
+    sensual-breeze-git
+
+# Extras
 mkdir -p ~/repo
 cd ~/repo || exit
 git clone --depth 1 https://github.com/vinceliuice/McMojave-circle.git
