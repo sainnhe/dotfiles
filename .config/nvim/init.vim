@@ -1202,7 +1202,9 @@ inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
 inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
 inoremap <expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
 inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
-nmap <leader>l<Space> :<C-u>CocList<CR>
+nmap <leader>f<Space> :<C-u>CocList<CR>
+nmap <leader>fy :<C-u>CocList yank<CR>
+nmap <leader>fs :<C-u>CocList symbols<CR>
 nmap <leader>lJ <Plug>(coc-diagnostic-next)
 nmap <leader>lK <Plug>(coc-diagnostic-prev)
 nmap <leader>lI <Plug>(coc-diagnostic-info)
@@ -1242,7 +1244,6 @@ let g:which_key_map["\<space>"]['s'] = {
       \   }
 let g:which_key_map['l'] = {
       \   'name': 'language server',
-      \   "\<Space>": 'list',
       \   'j': 'diagnostic next(ALE)',
       \   'k': 'diagnostic prev(ALE)',
       \   'i': 'diagnostic info(ALE)',
@@ -1276,6 +1277,12 @@ let g:which_key_map['g'] = {
       \   'F': 'toggle fold unchanged',
       \   'o': 'open remote url in the browser',
       \   }
+let g:which_key_map['f'] = {
+      \   'name': 'fuzzy finder',
+      \   "\<Space>": 'list',
+      \   's': 'symbols',
+      \   'y': 'yank',
+      \   }
 nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
 "}}}
 "{{{coc-explorer
@@ -1291,10 +1298,10 @@ augroup explorer_custom
 augroup END
 "}}}
 "{{{coc-project
-nnoremap <silent> <leader><space><Tab> :<c-u>CocList project<cr>
-let g:which_key_map["\<space>"]['<Tab>'] = 'project'
+nnoremap <silent> <leader>fM :<c-u>CocList project<cr>
+let g:which_key_map['f']['M'] = 'mru projects'
 "}}}
-"{{{coc-project
+"{{{coc-gitignore
 nnoremap <silent> <leader><space>I :<c-u>CocList gitignore<cr>
 let g:which_key_map["\<space>"]['I'] = 'gitignore'
 "}}}
@@ -1421,34 +1428,20 @@ let g:Lf_RgConfig = [
       \ '--multiline',
       \ '--hidden'
       \ ]
-nnoremap <silent> <leader>ff :<C-u>Leaderf file<CR>
-nnoremap <silent> <leader>ft :<C-u>LeaderfBufTag<CR>
-nnoremap <silent> <leader>fT :<C-u>LeaderfBufTagAll<CR>
-nnoremap <silent> <leader>fb :<C-u>LeaderfBuffer<CR>
-nnoremap <silent> <leader>fB :<C-u>LeaderfBufferAll<CR>
+nnoremap <silent> <leader>ft :<C-u>LeaderfBufTagAll<CR>
+nnoremap <silent> <leader>fb :<C-u>LeaderfBufferAll<CR>
 nnoremap <silent> <leader>ff :<C-u>LeaderfFile<CR>
 nnoremap <silent> <leader>fh :<C-u>LeaderfHelp<CR>
 nnoremap <silent> <leader>fl :<C-u>LeaderfLine<CR>
-nnoremap <silent> <leader>fL :<C-u>LeaderfLineAll<CR>
 nnoremap <silent> <leader>fm :<C-u>LeaderfMruCwd<CR>
-nnoremap <silent> <leader>fM :<C-u>LeaderfMru<CR>
-nnoremap <silent> <leader>fg :<C-u>Leaderf rg --hidden<Space>
-nnoremap <silent> <leader>fG :<C-u>Leaderf rg<CR>
-let g:which_key_map['f'] = {
-      \   'name': 'leaderf',
-      \   't': 'tag',
-      \   'T': 'tag all',
-      \   'b': 'buffer',
-      \   'B': 'buffer all',
-      \   'f': 'file',
-      \   'h': 'help',
-      \   'l': 'line',
-      \   'L': 'line all',
-      \   'm': 'mru cwd',
-      \   'M': 'mru all',
-      \   'g': 'grep',
-      \   'G': 'fuzzy grep'
-      \   }
+nnoremap <silent> <leader>fg :<C-u>Leaderf rg<CR>
+let g:which_key_map['f']['t'] = 'tags'
+let g:which_key_map['f']['b'] = 'buffers'
+let g:which_key_map['f']['f'] = 'files'
+let g:which_key_map['f']['h'] = 'helps'
+let g:which_key_map['f']['l'] = 'lines'
+let g:which_key_map['f']['m'] = 'mru files'
+let g:which_key_map['f']['g'] = 'grep'
 "}}}
 "{{{vim-sneak
 let g:sneak#s_next = 1
@@ -1550,8 +1543,6 @@ let g:which_key_map['g']['w'] = 'write and stage'
 "}}}
 "{{{vista.vim
 nnoremap <silent> <A-b> :<C-u>Vista!!<CR>
-nnoremap <silent> <leader>fs :<C-u>Vista finder<CR>
-let g:which_key_map['f']['s'] = 'symbols'
 let g:vista_sidebar_position = 'vertical topleft'
 let g:vista_sidebar_width = 35
 let g:vista_cursor_delay = 100
