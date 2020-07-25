@@ -171,7 +171,7 @@ elif [ "$1" = "user" ]; then
     #}}}
     # LightDM{{{
     sudo pacman -S sddm
-    pikaur -S sddm-greeter sddm-config-editor sddm-sugar-light
+    pikaur -S sddm-greeter sddm-config-editor sddm-sugar-candy-git
     sudo cp ~/repo/dotfiles/.root/etc/sddm.conf /etc/sddm.conf
     #}}}
     # Surface{{{
