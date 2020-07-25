@@ -1205,22 +1205,15 @@ inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right
 nmap <leader>f<Space> :<C-u>CocList<CR>
 nmap <leader>fy :<C-u>CocList yank<CR>
 nmap <leader>fs :<C-u>CocList symbols<CR>
-nmap <leader>lJ <Plug>(coc-diagnostic-next)
-nmap <leader>lK <Plug>(coc-diagnostic-prev)
-nmap <leader>lI <Plug>(coc-diagnostic-info)
-nmap <leader>ld <Plug>(coc-definition)
-nmap <leader>lD <Plug>(coc-declaration)
-nmap <leader>lt <Plug>(coc-type-definition)
-nmap <leader>lr <Plug>(coc-references)
-nmap <leader>lm <Plug>(coc-implementation)
-nmap <leader>lR <Plug>(coc-rename)
-nmap <leader>lf <Plug>(coc-format)
-vmap <leader>lf <Plug>(coc-format-selected)
-nmap <leader>lF <Plug>(coc-fix-current)
+nmap <leader>lgd <Plug>(coc-definition)
+nmap <leader>lgD <Plug>(coc-declaration)
+nmap <leader>lgt <Plug>(coc-type-definition)
+nmap <leader>lgr <Plug>(coc-references)
+nmap <leader>lgm <Plug>(coc-implementation)
+nmap <leader>lr <Plug>(coc-rename)
 nmap <silent> <leader>la :<C-u>CocCommand actions.open<CR>
 vmap <leader>la <Plug>(coc-codeaction-selected)
-nmap <leader>lA <Plug>(coc-codelens-action)
-nmap <leader>le <Plug>(coc-refactor)
+nmap <leader>lR <Plug>(coc-refactor)
 nmap <leader>lv <Plug>(coc-range-select)
 vmap <leader>lv <Plug>(coc-range-select)
 nmap <leader>gj <Plug>(coc-git-nextchunk)
@@ -1243,25 +1236,19 @@ let g:which_key_map["\<space>"]['s'] = {
       \   'o': 'open snippet file'
       \   }
 let g:which_key_map['l'] = {
-      \   'name': 'language server',
-      \   'j': 'diagnostic next(ALE)',
-      \   'k': 'diagnostic prev(ALE)',
-      \   'i': 'diagnostic info(ALE)',
-      \   'J': 'diagnostic next(LSP)',
-      \   'K': 'diagnostic prev(LSP)',
-      \   'I': 'diagnostic info(LSP)',
-      \   'd': 'jump to definition',
-      \   'D': 'jump to declaration',
-      \   't': 'jump to type definition',
-      \   'r': 'jump to reference',
-      \   'm': 'jump to implementation',
-      \   'R': 'rename symbol',
-      \   'f': 'format',
-      \   'F': 'fix code',
+      \   'name': 'server',
+      \   'r': 'rename symbol',
       \   'a': 'code action',
-      \   'A': 'codelens action',
-      \   'e': 'open refactor window',
+      \   'R': 'refactor window',
       \   'v': 'range select',
+      \   }
+let g:which_key_map['l']['g'] = {
+      \   'name': 'go to',
+      \   'd': 'definition',
+      \   'D': 'declaration',
+      \   't': 'type definition',
+      \   'r': 'reference',
+      \   'm': 'implementation',
       \   }
 let g:which_key_map['g'] = {
       \   'name': 'git',
@@ -1357,27 +1344,24 @@ let g:ale_linters = {
       \       'text': [],
       \       'vim': ['vint'],
       \}
-"查看上一个错误
 nnoremap <silent> <leader>lk :ALEPrevious<CR>
-"查看下一个错误
 nnoremap <silent> <leader>lj :ALENext<CR>
-"查看详情
 nnoremap <silent> <leader>li :ALEDetail<CR>
-"自定义error和warning图标
+let g:which_key_map['l']['j'] = 'diagnostic next'
+let g:which_key_map['l']['k'] = 'diagnostic prev'
+let g:which_key_map['l']['i'] = 'diagnostic info'
 let g:ale_sign_error = "\uf65b"
 let g:ale_sign_warning = "\uf421"
-"防止java在中文系统上警告和提示乱码
-let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
-"显示Linter名称,出错或警告等相关信息
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" 光标移动到错误的地方时立即显示错误
 let g:ale_echo_delay = 0
-" virtual text
 let g:ale_virtualtext_cursor = 1
 let g:ale_virtualtext_delay = 10
 let g:ale_virtualtext_prefix = '▸'
+"防止java在中文系统上警告和提示乱码
+let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
+"显示Linter名称,出错或警告等相关信息
 " ale-mode
 if g:ALE_MODE == 0
   let g:ale_lint_on_text_changed = 'never'
