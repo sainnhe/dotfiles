@@ -192,7 +192,7 @@
         "pylance": {
             "enable": true,
             "filetypes": ["python"],
-            "module": "~/.vscode/extensions/ms-python.vscode-pylance-2020.7.3/server/server.bundle.js",
+            "command": "pylance-language-server",
             "initializationOptions": {},
             "settings": {
                 "python.analysis.typeCheckingMode": "basic",

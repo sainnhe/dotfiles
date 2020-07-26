@@ -48,7 +48,8 @@ pikaur_setup_func() {
         stylelint-config-standard \
         nodejs-jsonlint \
         js-beautify \
-        universal-ctags-git
+        universal-ctags-git \
+        pylance-language-server
 }
 # }}}
 rust_setup() { #{{{
