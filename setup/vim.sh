@@ -8,5 +8,4 @@ pikaur -S \
     vim-leaderf-git \
     vim-coc \
     vim-coc-extras-meta-git \
-    vim-coc-git-git \
-    vim-coc-pairs-git
+    vim-coc-git-git
