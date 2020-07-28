@@ -13,7 +13,7 @@ wmclassmatch=3
 Description=vscode opacity
 opacityactive=90
 opacityactiverule=2
-wmclass=code
+wmclass=code-oss
 wmclasscomplete=true
 wmclassmatch=3
 
