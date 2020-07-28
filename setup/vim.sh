@@ -2,6 +2,7 @@
 
 pikaur -S \
     gruvbox-material-git \
+    vim-selenized-git \
     vim-onedark-git \
     vim-polyglot-git \
     vim-leaderf-git \
