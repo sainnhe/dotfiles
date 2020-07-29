@@ -1,11 +1,8 @@
 "{{{Basic
 "{{{BasicConfig
-if has('nvim')
-  set runtimepath^=~/.vim runtimepath+=~/.vim/after
-  let &packpath = &runtimepath
-endif
-if !filereadable(expand('~/.vim/autoload/plug.vim'))
-  execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+set runtimepath-=/usr/share/vim/vimfiles
+if !filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+  execute '!curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
   let g:vimIsInTmux = 1
