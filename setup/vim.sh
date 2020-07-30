@@ -21,5 +21,4 @@ pikaur -S \
     vim-coc-json-git \
     vim-coc-html-git \
     vim-coc-css-git \
-    vim-coc-sh-git \
-    vim-coc-rust-analyzer-git
+    vim-coc-sh-git
