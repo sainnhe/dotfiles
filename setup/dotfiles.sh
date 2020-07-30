@@ -48,6 +48,7 @@ setup_symlink package.json
 setup_copy .config/zathura/zathurarc
 setup_symlink .config/zathura/themes
 setup_copy .config/libinput-gestures.conf
+setup_copy .xinitrc
 cp -r $DOTFILES_DIR/.local/share/applications/* ~/.local/share/applications/
 
 echo "setup root directory manually"

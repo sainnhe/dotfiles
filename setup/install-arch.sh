@@ -189,24 +189,9 @@ elif [ "$1" = "user" ]; then
     # Install the kernel and firmwares
     sudo pacman -S linux-surface-headers linux-surface surface-ipts-firmware
     # Post-Installation
-    pikaur -S update-grub aic94xx-firmware wd719x-firmware libwacom-surface surface-control surface-dtx-daemon libva-vdpau-driver-vp9
+    pikaur -S update-grub aic94xx-firmware wd719x-firmware libwacom-surface surface-control surface-dtx-daemon
     sudo update-grub
     sudo systemctl enable surface-dtx-daemon.service
-    # Nvidia
-    # pikaur -S nvidia-beta-dkms nvidia-settings-beta nvidia-utils-beta opencl-nvidia-beta lib32-nvidia-utils-beta lib32-opencl-nvidia-beta bumblebee
-    sudo pacman -S nvidia-dkms nvidia-settings nvidia-utils opencl-nvidia lib32-nvidia-utils lib32-opencl-nvidia bumblebee
-    sudo pacman -S virtualgl lib32-virtualgl lib32-primus lib32-primus_vk primus primus_vk
-    sudo mkdir -p /etc/modprobe.d
-    sudo mkdir -p /etc/X11/xorg.conf.d
-    sudo mkdir -p /etc/modules-load.d
-    sudo cp ~/repo/dotfiles/.root/etc/modprobe.d/dgpu.conf /etc/modprobe.d/
-    sudo cp ~/repo/dotfiles/.root/etc/modprobe.d/blacklist-nouveau.conf /etc/modprobe.d/
-    sudo cp ~/repo/dotfiles/.root/etc/X11/xorg.conf.d/20-intel.conf /etc/X11/xorg.conf.d/
-    sudo cp ~/repo/dotfiles/.root/etc/X11/xorg.conf.d/20-nvidia.conf /etc/X11/xorg.conf.d/
-    sudo cp ~/repo/dotfiles/.root/etc/modules-load.d/nvidia.conf /etc/modules-load.d/
-    sudo sed -i 's/^Driver=.*/Driver=nvidia/' /etc/bumblebee/bumblebee.conf
-    sudo usermod -a -G bumblebee sainnhe
-    sudo systemctl enable bumblebeed.service
     #}}}
     pikaur -S gvim firefox-developer-edition telegram-desktop alacritty lsd svn chromium
     pikaur -S nerd-fonts-complete wqy-microhei ttf-monaco ttf-droid noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji ttf-symbola
