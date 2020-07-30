@@ -896,6 +896,7 @@ let g:colorSchemeList['Sonokai Default'] = [
       \   'let g:sonokai_enable_italic = 1',
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
+      \   "let g:sonokai_sign_column_background = 'none'",
       \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
@@ -906,6 +907,7 @@ let g:colorSchemeList['Sonokai Shusia'] = [
       \   'let g:sonokai_enable_italic = 1',
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
+      \   "let g:sonokai_sign_column_background = 'none'",
       \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
@@ -916,6 +918,7 @@ let g:colorSchemeList['Sonokai Andromeda'] = [
       \   'let g:sonokai_enable_italic = 1',
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
+      \   "let g:sonokai_sign_column_background = 'none'",
       \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
@@ -926,6 +929,7 @@ let g:colorSchemeList['Sonokai Atlantis'] = [
       \   'let g:sonokai_enable_italic = 1',
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
+      \   "let g:sonokai_sign_column_background = 'none'",
       \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
@@ -936,6 +940,7 @@ let g:colorSchemeList['Sonokai Maia'] = [
       \   'let g:sonokai_enable_italic = 1',
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
+      \   "let g:sonokai_sign_column_background = 'none'",
       \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
