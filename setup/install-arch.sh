@@ -198,5 +198,7 @@ elif [ "$1" = "user" ]; then
     proxychains -q wget https://github.com/fphoenix88888/ttf-mswin10-arch/raw/master/ttf-ms-win10-zh_cn-10.0.18362.116-1-any.pkg.tar.xz
     sudo pacman -Syy
     sudo pacman -S archlinuxcn-keyring
+    echo ""
+    echo "https://archstrike.org/wiki/setup"
     echo "setup i3, zsh, tmux, vim manually"
 fi
