@@ -15,7 +15,6 @@ export PAGER="nvim --cmd 'let g:vimManPager = 1' -c MANPAGER -"
 export MANPAGER="nvim --cmd 'let g:vimManPager = 1' -c MANPAGER -"
 export FuzzyFinder="fzf"
 export NEXTWORD_DATA_PATH="$HOME/.local/share/nextword/nextword-data-large"
-# export HTTP_PROXY=http://127.0.0.1:1081 && export HTTP_PROXY=http://127.0.0.1:1081
 # }}}
 # {{{general
 set -o monitor
@@ -352,6 +351,7 @@ alias net-test="bash ~/repo/scripts/func/net-test.sh"
 alias fix-wifi="sudo iw dev wlp1s0 set power_save off"
 alias gencomp-help='gencomp'
 alias nvistat='nvidia-smi'
+alias proxyenv='export HTTP_PROXY=http://127.0.0.1:1081 && export HTTP_PROXY=http://127.0.0.1:1081'
 # }}}
 # {{{Plugins
 # https://github.com/zdharma/zinit
