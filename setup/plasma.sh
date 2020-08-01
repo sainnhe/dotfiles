@@ -17,6 +17,7 @@ sudo pacman -S \
     gwenview \
     kate \
     kdeconnect \
+    sshfs \
     kdesdk-thumbnailers \
     kfind \
     kgpg \
