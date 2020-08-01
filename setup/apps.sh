@@ -17,7 +17,8 @@ if [ "$1" = "general" ]; then
         ripgrep-all \
         bingrep-rs \
         xclip \
-        pkgfile
+        pkgfile \
+        dust
     pikaur -S \
         npm \
         yarn \
