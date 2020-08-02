@@ -1,1341 +1,893 @@
 # {{{Color Schemes
-background_opacity: 1.0
 schemes:
 # {{{ Gruvbox Material Dark
   gruvbox_material_dark: &gruvbox_material_dark
     primary:
-      background: '0x282828'
-      foreground: '0xd4be98'
+      background: '#282828'
+      foreground: '#d4be98'
 
     normal:
-      black:   '0x504945'
-      red:     '0xea6962'
-      green:   '0xa9b665'
-      yellow:  '0xd8a657'
-      blue:    '0x7daea3'
-      magenta: '0xd3869b'
-      cyan:    '0x89b482'
-      white:   '0xd4be98'
+      black:   '#282828'
+      red:     '#ea6962'
+      green:   '#a9b665'
+      yellow:  '#d8a657'
+      blue:    '#7daea3'
+      magenta: '#d3869b'
+      cyan:    '#89b482'
+      white:   '#d4be98'
 
     bright:
-      black:   '0x504945'
-      red:     '0xea6962'
-      green:   '0xa9b665'
-      yellow:  '0xd8a657'
-      blue:    '0x7daea3'
-      magenta: '0xd3869b'
-      cyan:    '0x89b482'
-      white:   '0xd4be98'
+      black:   '#282828'
+      red:     '#ea6962'
+      green:   '#a9b665'
+      yellow:  '#d8a657'
+      blue:    '#7daea3'
+      magenta: '#d3869b'
+      cyan:    '#89b482'
+      white:   '#d4be98'
 # }}}
 # {{{ Gruvbox Mix Dark
   gruvbox_mix_dark: &gruvbox_mix_dark
     primary:
-      background: '0x282828'
-      foreground: '0xe2cca9'
+      background: '#282828'
+      foreground: '#e2cca9'
 
     normal:
-      black:   '0x504945'
-      red:     '0xf2594b'
-      green:   '0xb0b846'
-      yellow:  '0xe9b143'
-      blue:    '0x80aa9e'
-      magenta: '0xd3869b'
-      cyan:    '0x8bba7f'
-      white:   '0xe2cca9'
+      black:   '#504945'
+      red:     '#f2594b'
+      green:   '#b0b846'
+      yellow:  '#e9b143'
+      blue:    '#80aa9e'
+      magenta: '#d3869b'
+      cyan:    '#8bba7f'
+      white:   '#e2cca9'
 
     bright:
-      black:   '0x504945'
-      red:     '0xf2594b'
-      green:   '0xb0b846'
-      yellow:  '0xe9b143'
-      blue:    '0x80aa9e'
-      magenta: '0xd3869b'
-      cyan:    '0x8bba7f'
-      white:   '0xe2cca9'
+      black:   '#504945'
+      red:     '#f2594b'
+      green:   '#b0b846'
+      yellow:  '#e9b143'
+      blue:    '#80aa9e'
+      magenta: '#d3869b'
+      cyan:    '#8bba7f'
+      white:   '#e2cca9'
 # }}}
 # {{{ Gruvbox Material Light
   gruvbox_material_light: &gruvbox_material_light
     primary:
-      background: '0xf2e5bc'
-      foreground: '0x654735'
+      background: '#f2e5bc'
+      foreground: '#654735'
 
     normal:
-      black:   '0x654735'
-      red:     '0xc14a4a'
-      green:   '0x6c782e'
-      yellow:  '0xb47109'
-      blue:    '0x45707a'
-      magenta: '0x945e80'
-      cyan:    '0x4c7a5d'
-      white:   '0x928374'
+      black:   '#654735'
+      red:     '#c14a4a'
+      green:   '#6c782e'
+      yellow:  '#b47109'
+      blue:    '#45707a'
+      magenta: '#945e80'
+      cyan:    '#4c7a5d'
+      white:   '#928374'
 
     bright:
-      black:   '0x654735'
-      red:     '0xc14a4a'
-      green:   '0x6c782e'
-      yellow:  '0xb47109'
-      blue:    '0x45707a'
-      magenta: '0x945e80'
-      cyan:    '0x4c7a5d'
-      white:   '0x928374'
+      black:   '#654735'
+      red:     '#c14a4a'
+      green:   '#6c782e'
+      yellow:  '#b47109'
+      blue:    '#45707a'
+      magenta: '#945e80'
+      cyan:    '#4c7a5d'
+      white:   '#928374'
 # }}}
 # {{{ Edge Light
   edge_dark: &edge_light
     primary:
-      background: "0xfafafa"
-      foreground: "0x4b505b"
+      background: '#fafafa'
+      foreground: '#4b505b'
 
     normal:
-      black: "0x4b505b"
-      red: "0xd15b5b"
-      green: "0x608e32"
-      yellow: "0xbe7e05"
-      blue: "0x5079be"
-      magenta: "0xb05ccc"
-      cyan: "0x3a8b84"
-      white: "0x949ba5"
+      black: '#4b505b'
+      red: '#d15b5b'
+      green: '#608e32'
+      yellow: '#be7e05'
+      blue: '#5079be'
+      magenta: '#b05ccc'
+      cyan: '#3a8b84'
+      white: '#949ba5'
 
     bright:
-      black: "0x4b505b"
-      red: "0xd15b5b"
-      green: "0x608e32"
-      yellow: "0xbe7e05"
-      blue: "0x5079be"
-      magenta: "0xb05ccc"
-      cyan: "0x3a8b84"
-      white: "0x949ba5"
+      black: '#4b505b'
+      red: '#d15b5b'
+      green: '#608e32'
+      yellow: '#be7e05'
+      blue: '#5079be'
+      magenta: '#b05ccc'
+      cyan: '#3a8b84'
+      white: '#949ba5'
 # }}}
 # {{{ Edge Dark
   edge_dark: &edge_dark
     primary:
-      background: "0x2c2e34"
-      foreground: "0xc5cdd9"
+      background: '#2c2e34'
+      foreground: '#c5cdd9'
 
     normal:
-      black: "0x3e4249"
-      red: "0xec7279"
-      green: "0xa0c980"
-      yellow: "0xdeb974"
-      blue: "0x6cb6eb"
-      magenta: "0xd38aea"
-      cyan: "0x5dbbc1"
-      white: "0x88909f"
+      black: '#3e4249'
+      red: '#ec7279'
+      green: '#a0c980'
+      yellow: '#deb974'
+      blue: '#6cb6eb'
+      magenta: '#d38aea'
+      cyan: '#5dbbc1'
+      white: '#88909f'
 
     bright:
-      black: "0x3e4249"
-      red: "0xec7279"
-      green: "0xa0c980"
-      yellow: "0xdeb974"
-      blue: "0x6cb6eb"
-      magenta: "0xd38aea"
-      cyan: "0x5dbbc1"
-      white: "0x88909f"
+      black: '#3e4249'
+      red: '#ec7279'
+      green: '#a0c980'
+      yellow: '#deb974'
+      blue: '#6cb6eb'
+      magenta: '#d38aea'
+      cyan: '#5dbbc1'
+      white: '#88909f'
 # }}}
 # {{{ Forest Night
   forest_night: &forest_night
     primary:
-      background: '0x323d43'
-      foreground: '0xd8caac'
+      background: '#323d43'
+      foreground: '#d8caac'
 
     normal:
-      black:   '0x868d80'
-      red:     '0xe68183'
-      green:   '0xa7c080'
-      yellow:  '0xd9bb80'
-      blue:    '0x89beba'
-      magenta: '0xd3a0bc'
-      cyan:    '0x87c095'
-      white:   '0xd8caac'
+      black:   '#868d80'
+      red:     '#e68183'
+      green:   '#a7c080'
+      yellow:  '#d9bb80'
+      blue:    '#89beba'
+      magenta: '#d3a0bc'
+      cyan:    '#87c095'
+      white:   '#d8caac'
 
     bright:
-      black:   '0x868d80'
-      red:     '0xe68183'
-      green:   '0xa7c080'
-      yellow:  '0xd9bb80'
-      blue:    '0x89beba'
-      magenta: '0xd3a0bc'
-      cyan:    '0x87c095'
-      white:   '0xd8caac'
+      black:   '#868d80'
+      red:     '#e68183'
+      green:   '#a7c080'
+      yellow:  '#d9bb80'
+      blue:    '#89beba'
+      magenta: '#d3a0bc'
+      cyan:    '#87c095'
+      white:   '#d8caac'
 # }}}
 # {{{ Sonokai Default
   sonokai_default: &sonokai_default
     primary:
-      background: "0x2c2e34"
-      foreground: "0xe2e2e3"
+      background: '#2c2e34'
+      foreground: '#e2e2e3'
 
     normal:
-      black: "0x181819"
-      red: "0xfc5d7c"
-      green: "0x9ed072"
-      yellow: "0xe7c664"
-      blue: "0x76cce0"
-      magenta: "0xb39df3"
-      cyan: "0xf39660"
-      white: "0xe2e2e3"
+      black: '#181819'
+      red: '#fc5d7c'
+      green: '#9ed072'
+      yellow: '#e7c664'
+      blue: '#76cce0'
+      magenta: '#b39df3'
+      cyan: '#f39660'
+      white: '#e2e2e3'
 
     bright:
-      black: "0x181819"
-      red: "0xfc5d7c"
-      green: "0x9ed072"
-      yellow: "0xe7c664"
-      blue: "0x76cce0"
-      magenta: "0xb39df3"
-      cyan: "0xf39660"
-      white: "0xe2e2e3"
+      black: '#181819'
+      red: '#fc5d7c'
+      green: '#9ed072'
+      yellow: '#e7c664'
+      blue: '#76cce0'
+      magenta: '#b39df3'
+      cyan: '#f39660'
+      white: '#e2e2e3'
 # }}}
 # {{{ Sonokai Shusia
   sonokai_shusia: &sonokai_shusia
     primary:
-      background: "0x2d2a2e"
-      foreground: "0xe3e1e4"
+      background: '#2d2a2e'
+      foreground: '#e3e1e4'
 
     normal:
-      black: "0x1a181a"
-      red: "0xf85e84"
-      green: "0x9ecd6f"
-      yellow: "0xe5c463"
-      blue: "0x7accd7"
-      magenta: "0xab9df2"
-      cyan: "0xef9062"
-      white: "0xe3e1e4"
+      black: '#1a181a'
+      red: '#f85e84'
+      green: '#9ecd6f'
+      yellow: '#e5c463'
+      blue: '#7accd7'
+      magenta: '#ab9df2'
+      cyan: '#ef9062'
+      white: '#e3e1e4'
 
     bright:
-      black: "0x1a181a"
-      red: "0xf85e84"
-      green: "0x9ecd6f"
-      yellow: "0xe5c463"
-      blue: "0x7accd7"
-      magenta: "0xab9df2"
-      cyan: "0xef9062"
-      white: "0xe3e1e4"
+      black: '#1a181a'
+      red: '#f85e84'
+      green: '#9ecd6f'
+      yellow: '#e5c463'
+      blue: '#7accd7'
+      magenta: '#ab9df2'
+      cyan: '#ef9062'
+      white: '#e3e1e4'
 # }}}
 # {{{ Sonokai Andromeda
   sonokai_shusia: &sonokai_andromeda
     primary:
-      background: "0x2b2d3a"
-      foreground: "0xe1e3e4"
+      background: '#2b2d3a'
+      foreground: '#e1e3e4'
 
     normal:
-      black: "0x181a1c"
-      red: "0xfb617e"
-      green: "0x9ed06c"
-      yellow: "0xedc763"
-      blue: "0x6dcae8"
-      magenta: "0xbb97ee"
-      cyan: "0xf89860"
-      white: "0xe1e3e4"
+      black: '#181a1c'
+      red: '#fb617e'
+      green: '#9ed06c'
+      yellow: '#edc763'
+      blue: '#6dcae8'
+      magenta: '#bb97ee'
+      cyan: '#f89860'
+      white: '#e1e3e4'
 
     bright:
-      black: "0x181a1c"
-      red: "0xfb617e"
-      green: "0x9ed06c"
-      yellow: "0xedc763"
-      blue: "0x6dcae8"
-      magenta: "0xbb97ee"
-      cyan: "0xf89860"
-      white: "0xe1e3e4"
+      black: '#181a1c'
+      red: '#fb617e'
+      green: '#9ed06c'
+      yellow: '#edc763'
+      blue: '#6dcae8'
+      magenta: '#bb97ee'
+      cyan: '#f89860'
+      white: '#e1e3e4'
 # }}}
 # {{{ Sonokai Atlantis
   sonokai_shusia: &sonokai_atlantis
     primary:
-      background: "0x2a2f38"
-      foreground: "0xe1e3e4"
+      background: '#2a2f38'
+      foreground: '#e1e3e4'
 
     normal:
-      black: "0x181a1c"
-      red: "0xff6578"
-      green: "0x9dd274"
-      yellow: "0xeacb64"
-      blue: "0x72cce8"
-      magenta: "0xba9cf3"
-      cyan: "0xf69c5e"
-      white: "0xe1e3e4"
+      black: '#181a1c'
+      red: '#ff6578'
+      green: '#9dd274'
+      yellow: '#eacb64'
+      blue: '#72cce8'
+      magenta: '#ba9cf3'
+      cyan: '#f69c5e'
+      white: '#e1e3e4'
 
     bright:
-      black: "0x181a1c"
-      red: "0xff6578"
-      green: "0x9dd274"
-      yellow: "0xeacb64"
-      blue: "0x72cce8"
-      magenta: "0xba9cf3"
-      cyan: "0xf69c5e"
-      white: "0xe1e3e4"
+      black: '#181a1c'
+      red: '#ff6578'
+      green: '#9dd274'
+      yellow: '#eacb64'
+      blue: '#72cce8'
+      magenta: '#ba9cf3'
+      cyan: '#f69c5e'
+      white: '#e1e3e4'
 # }}}
 # {{{ Sonokai Maia
   sonokai_shusia: &sonokai_maia
     primary:
-      background: "0x273136"
-      foreground: "0xe1e2e3"
+      background: '#273136'
+      foreground: '#e1e2e3'
 
     normal:
-      black: "0x1c1e1f"
-      red: "0xf76c7c"
-      green: "0x9cd57b"
-      yellow: "0xe3d367"
-      blue: "0x78cee9"
-      magenta: "0xbaa0f8"
-      cyan: "0xf3a96a"
-      white: "0xe1e2e3"
+      black: '#1c1e1f'
+      red: '#f76c7c'
+      green: '#9cd57b'
+      yellow: '#e3d367'
+      blue: '#78cee9'
+      magenta: '#baa0f8'
+      cyan: '#f3a96a'
+      white: '#e1e2e3'
 
     bright:
-      black: "0x1c1e1f"
-      red: "0xf76c7c"
-      green: "0x9cd57b"
-      yellow: "0xe3d367"
-      blue: "0x78cee9"
-      magenta: "0xbaa0f8"
-      cyan: "0xf3a96a"
-      white: "0xe1e2e3"
+      black: '#1c1e1f'
+      red: '#f76c7c'
+      green: '#9cd57b'
+      yellow: '#e3d367'
+      blue: '#78cee9'
+      magenta: '#baa0f8'
+      cyan: '#f3a96a'
+      white: '#e1e2e3'
 # }}}
 # {{{ Soft Era
   soft_era: &soft_era
     primary:
-      background: "0xf9f5f5"
-      foreground: "0xbe9898"
+      background: '#f9f5f5'
+      foreground: '#be9898'
 
     normal:
-      black: "0xbe9898"
-      red: "0xf165bd"
-      green: "0x96ad01"
-      yellow: "0xec9157"
-      blue: "0x75a9d9"
-      magenta: "0xaea6e1"
-      cyan: "0x25b7b8"
-      white: "0xf2edec"
+      black: '#be9898'
+      red: '#f165bd'
+      green: '#96ad01'
+      yellow: '#ec9157'
+      blue: '#75a9d9'
+      magenta: '#aea6e1'
+      cyan: '#25b7b8'
+      white: '#be9898'
 
     bright:
-      black: "0xbe9898"
-      red: "0xf165bd"
-      green: "0x96ad01"
-      yellow: "0xec9157"
-      blue: "0x75a9d9"
-      magenta: "0xaea6e1"
-      cyan: "0x25b7b8"
-      white: "0xf2edec"
+      black: '#be9898'
+      red: '#f165bd'
+      green: '#96ad01'
+      yellow: '#ec9157'
+      blue: '#75a9d9'
+      magenta: '#aea6e1'
+      cyan: '#25b7b8'
+      white: '#be9898'
 # }}}
 colors: *forest_night
+background_opacity: 1.0
+draw_bold_text_with_bright_colors: true
 # }}}
 # Font{{{
-# {{{Fira Code
-font:
-  # Normal (roman) font face
-  normal:
-    family: Fira Code iCursive Op
-    style: Regular
-
-  # Bold font face
-  bold:
-    family: Fira Code iCursive Op
-    style: Bold
-
-  # Italic font face
-  italic:
-    family: Fira Code iCursive Op
-    style: Regular
-
-  # Point size
-  size: 12.0
-
-  # Offset is the extra space around each character. `offset.y` can be thought of
-  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  offset:
-    x: 0
-    y: 0
-
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the right,
-  # increasing `y` moves the glyph upwards.
-  glyph_offset:
-    x: 0
-    y: 0
-
-# }}}
-# # {{{Fira Code Light
+# # {{{Fira Code
 # font:
-#   # Normal (roman) font face
 #   normal:
-#     family: FuraCode Nerd Font Mono
-#     style: Light
-#
-#   # Bold font face
+#     family: Fira Code iCursive Op
+#     style: Regular
 #   bold:
-#     family: FuraCode Nerd Font Mono
-#     style: Medium
-#
-#   # Italic font face
+#     family: Fira Code iCursive Op
+#     style: Bold
 #   italic:
-#     family: FuraCode Nerd Font Mono
-#     style: Light
-#
-#   # Point size
+#     family: Fira Code iCursive Op
+#     style: Regular
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
+# # }}}
+# # {{{Fira Code Light
+# font:
+#   normal:
+#     family: FuraCode Nerd Font Mono
+#     style: Light
+#   bold:
+#     family: FuraCode Nerd Font Mono
+#     style: Medium
+#   italic:
+#     family: FuraCode Nerd Font Mono
+#     style: Light
+#   size: 12.0
+#   offset:
+#     x: 0
+#     y: 0
+#   glyph_offset:
+#     x: 0
+#     y: 0
 # # }}}
 # # {{{Fira Code Retina
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: FuraCode Nerd Font Mono
 #     style: Retina
-#
-#   # Bold font face
 #   bold:
 #     family: FuraCode Nerd Font Mono
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: FuraCode Nerd Font Mono
 #     style: Retina
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Fira Code iCursive S12
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Fira Code iCursive S12
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Fira Code iCursive S12
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Fira Code iCursive S12
 #     style: Italic
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
-# # {{{Fira Code iCursive Op
-# font:
-#   # Normal (roman) font face
-#   normal:
-#     family: Fira Code iCursive Op
-#     style: Regular
-#
-#   # Bold font face
-#   bold:
-#     family: Fira Code iCursive Op
-#     style: Bold
-#
-#   # Italic font face
-#   italic:
-#     family: Fira Code iCursive Op
-#     style: Italic
-#
-#   # Point size
-#   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-#   offset:
-#     x: 0
-#     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
-#   glyph_offset:
-#     x: 0
-#     y: 0
-#
-# # }}}
+# {{{Fira Code iCursive Op
+font:
+  normal:
+    family: Fira Code iCursive Op
+    style: Regular
+  bold:
+    family: Fira Code iCursive Op
+    style: Bold
+  italic:
+    family: Fira Code iCursive Op
+    style: Italic
+  size: 12.0
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
+# }}}
 # # {{{Fira Code iCursive Op Light
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: FuraCode Nerd Font Mono
 #     style: Light
-#
-#   # Bold font face
 #   bold:
 #     family: FuraCode Nerd Font Mono
 #     style: Medium
-#
-#   # Italic font face
 #   italic:
 #     family: Operator Mono Light
 #     style: Italic
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Source Code Pro
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Source Code Pro iCursive S12
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Source Code Pro iCursive S12
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Source Code Pro iCursive S12
 #     style: Regular
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Source Code Pro iCursive S12
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Source Code Pro iCursive S12
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Source Code Pro iCursive S12
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Source Code Pro iCursive S12
 #     style: Italic
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Source Code Pro iCursive Op
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Source Code Pro iCursive Op
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Source Code Pro iCursive Op
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Source Code Pro iCursive Op
 #     style: Italic
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{InconsolataLGC iCursive
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: InconsolataLGC iCursive Op
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: InconsolataLGC iCursive Op
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: InconsolataLGC iCursive Op
 #     style: Regular
-#
-#   # Point size
 #   size: 11.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{InconsolataLGC iCursive S12
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: InconsolataLGC iCursive S12
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: InconsolataLGC iCursive S12
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: InconsolataLGC iCursive S12
 #     style: Italic
-#
-#   # Point size
 #   size: 11.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{InconsolataLGC iCursive Op
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: InconsolataLGC iCursive Op
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: InconsolataLGC iCursive Op
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: InconsolataLGC iCursive Op
 #     style: Italic
-#
-#   # Point size
 #   size: 11.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Meslo iCursive
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Meslo iCursive S12
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Meslo iCursive S12
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Meslo iCursive S12
 #     style: Regular
-#
-#   # Point size
 #   size: 11.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Meslo iCursive S12
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Meslo iCursive S12
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Meslo iCursive S12
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Meslo iCursive S12
 #     style: Italic
-#
-#   # Point size
 #   size: 11.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Meslo iCursive Op
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Meslo iCursive Op
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Meslo iCursive Op
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Meslo iCursive Op
 #     style: Italic
-#
-#   # Point size
 #   size: 11.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Hack iCursive
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Hack iCursive S12
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Hack iCursive S12
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Hack iCursive S12
 #     style: Regular
-#
-#   # Point size
 #   size: 11.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Hack iCursive S12
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Hack iCursive S12
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Hack iCursive S12
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Hack iCursive S12
 #     style: Italic
-#
-#   # Point size
 #   size: 11.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Hack iCursive Op
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Hack iCursive Op
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Hack iCursive Op
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Hack iCursive Op
 #     style: Italic
-#
-#   # Point size
 #   size: 11.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Cascadia Code
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: CaskaydiaCove Nerd Font Mono
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: CaskaydiaCove Nerd Font Mono
 #     style: Regular
-#
-#   # Italic font face
 #   italic:
 #     family: CaskaydiaCove Nerd Font Mono
 #     style: Regular
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Cascadia Code iCursive Cg
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Cascadia Code iCursive Cg
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Cascadia Code iCursive Cg
 #     style: Regular
-#
-#   # Italic font face
 #   italic:
 #     family: Cascadia Code iCursive Cg
 #     style: Italic
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Agave iCursive Dk
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: agave Nerd Font Mono
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: agave Nerd Font Mono
 #     style: Regular
-#
-#   # Italic font face
 #   italic:
 #     family: Dank Mono
 #     style: Italic
-#
-#   # Point size
 #   size: 13.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 5
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Fantasque iCursive Op
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Fantasque iCursive Op
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Fantasque iCursive Op
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Fantasque iCursive Op
 #     style: Italic
-#
-#   # Point size
 #   size: 13.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Fantasque iCursive Dk
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Fantasque iCursive Dk
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Fantasque iCursive Dk
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
-#     family: Fantasque iCursive Dk
+#     family: Dank Mono
 #     style: Italic
-#
-#   # Point size
 #   size: 13.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{InconsolataGo iCursive Pb
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: InconsolataGo iCursive Pb
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: InconsolataGo iCursive Pb
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: InconsolataGo iCursive Pb
 #     style: Italic
-#
-#   # Point size
 #   size: 13.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Roboto Mono iCursive Pt
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Roboto Mono iCursive Pt
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Roboto Mono iCursive Pt
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Roboto Mono iCursive Pt
 #     style: Italic
-#
-#   # Point size
 #   size: 11.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Operator Mono Book
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Operator Mono Book
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Operator Mono Book
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Operator Mono Book
 #     style: Italic
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Operator Mono Light
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Operator Mono Light
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Operator Mono Light
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Operator Mono Light
 #     style: Italic
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Dank Mono
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Dank Mono
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Dank Mono
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Dank Mono
 #     style: Italic
-#
-#   # Point size
 #   size: 13.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 6
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Cartograph Mono
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Cartograph Mono
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Cartograph Mono
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Cartograph Mono
 #     style: Italic
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
 # # {{{Ellograph Mono
 # font:
-#   # Normal (roman) font face
 #   normal:
 #     family: Ellograph Mono
 #     style: Regular
-#
-#   # Bold font face
 #   bold:
 #     family: Ellograph Mono
 #     style: Bold
-#
-#   # Italic font face
 #   italic:
 #     family: Ellograph Mono
 #     style: Italic
-#
-#   # Point size
 #   size: 12.0
-#
-#   # Offset is the extra space around each character. `offset.y` can be thought of
-#   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
 #   offset:
 #     x: 0
 #     y: 0
-#
-#   # Glyph offset determines the locations of the glyphs within their cells with
-#   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-#   # increasing `y` moves the glyph upwards.
 #   glyph_offset:
 #     x: 0
 #     y: 0
-#
 # # }}}
+  use_thin_strokes: true
 # }}}
 # Key bindings{{{
 #
@@ -1516,211 +1068,47 @@ key_bindings:
   # - { key: F12, mods: Super, chars: "\x1b[24;3~" }
 # }}}
 # {{{More
-# Any items in the `env` entry below will be added as
-# environment variables. Some entries may override variables
-# set by alacritty itself.
 env:
-  # TERM variable
-  #
-  # This value is used to set the `$TERM` environment variable for
-  # each instance of Alacritty. If it is not present, alacritty will
-  # check the local terminfo database and use 'alacritty' if it is
-  # available, otherwise 'xterm-256color' is used.
-  #
   TERM: xterm-256color
 
 window:
-  # Window dimensions (changes require restart)
-  #
-  # Specified in number of columns/lines, not pixels.
-  # If both are `0`, this setting is ignored.
   dimensions:
     columns: 180
     lines: 60
-
-  # Window padding (changes require restart)
-  #
-  # Blank space added around the window in pixels. This padding is not scaled
-  # by DPI and the specified value is always added at both opposing sides.
+  position:
+    x: 0
+    y: 0
   padding:
     x: 0
     y: 0
-
-  # Window decorations
-  #
-  # Values for `decorations`:
-  #     - full: Borders and title bar
-  #     - none: Neither borders nor title bar
-  decorations: full
-
-  # Startup Mode (changes require restart)
-  #
-  # Values for `startup_mode`:
-  #   - Windowed
-  #   - Maximized
-  #   - Fullscreen
-  #
-  # Values for `startup_mode` (macOS only):
-  #   - SimpleFullscreen
+  dynamic_padding: false
+  decorations: none
   startup_mode: Maximized
-
-  # Window title
-  #title: Alacritty
-
-  # GTK theme variant (Linux only)
-  #
-  # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
-  # Set this to `None` to use the default theme variant.
+  title: Alacritty
+  dynamic_title: true
+  class:
+    instance: Alacritty
+    general: Alacritty
   gtk_theme_variant: None
 
-scrolling:
-  # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
-  history: 10000
-
-  # Number of lines the viewport will move for every line scrolled when
-  # scrollback is enabled (history > 0).
-  multiplier: 3
-
-  # Faux Scrolling
-  #
-  # The `faux_multiplier` setting controls the number of lines the terminal
-  # should scroll when the alternate screen buffer is active. This is used
-  # to allow mouse scrolling for applications like `man`.
-  #
-  # Specifying `0` will disable faux scrolling.
-  # faux_multiplier: 3
-
-# Font configuration (changes require restart)
-#
-# Important font attributes like antialiasing, subpixel aa, and hinting can be
-# controlled through fontconfig. Specifically, the following attributes should
-# have an effect:
-#   - hintstyle
-#   - antialias
-#   - lcdfilter
-#   - rgba
-#
-# For instance, if you wish to disable subpixel antialiasing, you might set the
-# rgba property to `none`. If you wish to completely disable antialiasing, you
-# can set antialias to `false`.
-#
-# Please see these resources for more information on how to use fontconfig:
-#   - https://wiki.archlinux.org/index.php/font_configuration#Fontconfig_configuration
-#   - file:///usr/share/doc/fontconfig/fontconfig-user.html
-# Send ESC (\x1b) before characters when alt is pressed.
-alt_send_esc: true
-
-debug:
-  # Display the time it takes to redraw each frame.
-  render_timer: false
-
-  # Keep the log file after quitting Alacritty.
-  persistent_logging: false
-
-  # Log level
-  #
-  # Values for `log_level`:
-  #   - None
-  #   - Error
-  #   - Warn
-  #   - Info
-  #   - Debug
-  #   - Trace
-  log_level: Warn
-
-  # Print all received window events.
-  print_events: false
-
-  # Record all characters and escape sequences as test data.
-  ref_test: false
-
-# If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
-
-# Visual Bell
-#
-# Any time the BEL code is received, Alacritty "rings" the visual bell. Once
-# rung, the terminal background will be set to white and transition back to the
-# default background color. You can control the rate of this transition by
-# setting the `duration` property (represented in milliseconds). You can also
-# configure the transition function by setting the `animation` property.
-#
-# Values for `animation`:
-#   - Ease
-#   - EaseOut
-#   - EaseOutSine
-#   - EaseOutQuad
-#   - EaseOutCubic
-#   - EaseOutQuart
-#   - EaseOutQuint
-#   - EaseOutExpo
-#   - EaseOutCirc
-#   - Linear
-#
-# Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
-  animation: EaseOutExpo
-  duration: 0
-
-# Mouse bindings
-#
-# Available fields:
-#   - mouse
-#   - action
-#   - mods (optional)
-#
-# Values for `mouse`:
-#   - Middle
-#   - Left
-#   - Right
-#   - Numeric identifier such as `5`
-#
-# All available `mods` and `action` values are documented in the key binding
-# section.
-mouse_bindings:
-  - { mouse: Middle, action: PasteSelection }
-
-mouse:
-  # Click settings
-  #
-  # The `double_click` and `triple_click` settings control the time
-  # alacritty should wait for accepting multiple clicks as one double
-  # or triple click.
-  double_click: { threshold: 300 }
-  triple_click: { threshold: 300 }
-  hide_when_typing: false
-
-selection:
-  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
-
-  # When set to `true`, selected text will be copied to both the primary and
-  # the selection clipboard. Otherwise, it will only be copied to the selection
-  # clipboard.
-  save_to_clipboard: false
-
-dynamic_title: true
-
-# Cursor style
-#
-# Values for 'cursor_style':
-#   - Block
-#   - Underline
-#   - Beam
 cursor:
   style: Beam
   unfocused_hollow: true
 
-# Live config reload (changes require restart)
-live_config_reload: true
+scrolling:
+  history: 10000
+  multiplier: 3
 
-# Shell
-#
-# You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
-# Entries in `shell.args` are passed unmodified as arguments to the shell.
-#
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
+alt_send_esc: true
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: true
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+  save_to_clipboard: false
+
+live_config_reload: true
 # }}}
