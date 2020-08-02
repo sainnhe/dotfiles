@@ -878,6 +878,8 @@ let g:colorSchemeList['Edge Dark'] = [
       \   'let g:edge_enable_italic = 1',
       \   "let g:edge_cursor = 'blue'",
       \   'let g:edge_lightline_disable_bold = 1',
+      \   "let g:edge_sign_column_background = 'none'",
+      \   'let g:edge_better_performance = 1',
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
@@ -887,6 +889,8 @@ let g:colorSchemeList['Edge Light'] = [
       \   'let g:edge_enable_italic = 1',
       \   "let g:edge_cursor = 'purple'",
       \   'let g:edge_lightline_disable_bold = 1',
+      \   "let g:edge_sign_column_background = 'none'",
+      \   'let g:edge_better_performance = 1',
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
