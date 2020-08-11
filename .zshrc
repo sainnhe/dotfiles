@@ -370,6 +370,7 @@ zinit ice wait'0' lucid; zinit light urbainvaes/fzf-marks
 zinit ice wait'1' lucid; zinit light hlissner/zsh-autopair
 zinit ice wait'1' lucid; zinit light peterhurford/git-it-on.zsh
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
+zinit ice wait'1' lucid; zinit snippet OMZ::plugins/extract/extract.plugin.zsh
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 zinit ice wait'1' lucid; zinit light denysdovhan/gitio-zsh
 zinit ice wait'0' blockf lucid; zinit light sainnhe/zsh-completions
