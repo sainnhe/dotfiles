@@ -87,6 +87,7 @@ elif [ "$1" = "other" ]; then
     unzip large.zip
     rm large.zip
 elif [ "$1" = "fonts" ]; then
+    pikaur -S nerd-fonts-fira-code ttf-monaco
     mkdir -p ~/repo
     git clone git@github.com:sainnhe/icursive-nerd-font-non-free.git ~/repo/icursive-nerd-font-non-free
     git clone git@github.com:sainnhe/icursive-nerd-font.git ~/repo/icursive-nerd-font

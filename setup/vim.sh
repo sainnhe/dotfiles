@@ -13,12 +13,7 @@ pikaur -S \
     vim-coc-explorer-git \
     vim-coc-git-git \
     vim-coc-pairs-git \
-    vim-coc-clangd-git \
-    vim-coc-pyright-git \
-    vim-coc-tsserver-git \
     vim-coc-vimlsp-git \
     vim-coc-yaml-git \
     vim-coc-json-git \
-    vim-coc-html-git \
-    vim-coc-css-git \
     vim-coc-sh-git

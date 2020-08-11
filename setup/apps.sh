@@ -24,7 +24,6 @@ if [ "$1" = "general" ]; then
         yarn \
         go \
         typescript \
-        dotnet \
         lua
     sudo pacman -S nnn ranger lynx atool ffmpegthumbnailer highlight odt2txt perl-image-exiftool
 elif [ "$1" = "physical" ]; then

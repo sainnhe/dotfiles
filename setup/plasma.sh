@@ -4,14 +4,12 @@ sudo pacman -S plasma
 sudo pacman -S \
     akregator \
     ark \
-    juk \
     kaddressbook \
     kalarm \
     kcron \
     dolphin \
     dolphin-plugins \
     kmail \
-    dragon \
     elisa \
     ffmpegthumbs \
     gwenview \
@@ -30,7 +28,6 @@ sudo pacman -S \
     kmag \
     kmix \
     kmousetool \
-    knotes \
     kdegraphics-mobipocket \
     kdegraphics-thumbnailers \
     kdenetwork-filesharing \

@@ -545,25 +545,6 @@ font:
 #     x: 0
 #     y: 0
 # # }}}
-# # {{{Agave iCursive Dk
-# font:
-#   normal:
-#     family: agave Nerd Font Mono
-#     style: Regular
-#   bold:
-#     family: agave Nerd Font Mono
-#     style: Regular
-#   italic:
-#     family: Dank Mono
-#     style: Italic
-#   size: 13.0
-#   offset:
-#     x: 0
-#     y: 5
-#   glyph_offset:
-#     x: 0
-#     y: 0
-# # }}}
 # # {{{Fantasque iCursive Op
 # font:
 #   normal:
