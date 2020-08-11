@@ -317,92 +317,16 @@ background_opacity: 1.0
 draw_bold_text_with_bright_colors: true
 # }}}
 # Font{{{
-# # {{{Fira Code
-# font:
-#   normal:
-#     family: Fira Code iCursive Op
-#     style: Regular
-#   bold:
-#     family: Fira Code iCursive Op
-#     style: Bold
-#   italic:
-#     family: Fira Code iCursive Op
-#     style: Regular
-#   size: 12.0
-#   offset:
-#     x: 0
-#     y: 0
-#   glyph_offset:
-#     x: 0
-#     y: 0
-# # }}}
-# # {{{Fira Code Light
-# font:
-#   normal:
-#     family: FuraCode Nerd Font Mono
-#     style: Light
-#   bold:
-#     family: FuraCode Nerd Font Mono
-#     style: Medium
-#   italic:
-#     family: FuraCode Nerd Font Mono
-#     style: Light
-#   size: 12.0
-#   offset:
-#     x: 0
-#     y: 0
-#   glyph_offset:
-#     x: 0
-#     y: 0
-# # }}}
-# # {{{Fira Code Retina
-# font:
-#   normal:
-#     family: FuraCode Nerd Font Mono
-#     style: Retina
-#   bold:
-#     family: FuraCode Nerd Font Mono
-#     style: Bold
-#   italic:
-#     family: FuraCode Nerd Font Mono
-#     style: Retina
-#   size: 12.0
-#   offset:
-#     x: 0
-#     y: 0
-#   glyph_offset:
-#     x: 0
-#     y: 0
-# # }}}
-# # {{{Fira Code iCursive S12
-# font:
-#   normal:
-#     family: Fira Code iCursive S12
-#     style: Regular
-#   bold:
-#     family: Fira Code iCursive S12
-#     style: Bold
-#   italic:
-#     family: Fira Code iCursive S12
-#     style: Italic
-#   size: 12.0
-#   offset:
-#     x: 0
-#     y: 0
-#   glyph_offset:
-#     x: 0
-#     y: 0
-# # }}}
-# {{{Fira Code iCursive Op
+# {{{Fira Code iCursive S12
 font:
   normal:
-    family: Fira Code iCursive Op
+    family: Fira Code iCursive S12
     style: Regular
   bold:
-    family: Fira Code iCursive Op
+    family: Fira Code iCursive S12
     style: Bold
   italic:
-    family: Fira Code iCursive Op
+    family: Fira Code iCursive S12
     style: Italic
   size: 12.0
   offset:
@@ -412,6 +336,25 @@ font:
     x: 0
     y: 0
 # }}}
+# # {{{Fira Code iCursive Op
+# font:
+#   normal:
+#     family: Fira Code iCursive Op
+#     style: Regular
+#   bold:
+#     family: Fira Code iCursive Op
+#     style: Bold
+#   italic:
+#     family: Fira Code iCursive Op
+#     style: Italic
+#   size: 12.0
+#   offset:
+#     x: 0
+#     y: 0
+#   glyph_offset:
+#     x: 0
+#     y: 0
+# # }}}
 # # {{{Fira Code iCursive Op Light
 # font:
 #   normal:
@@ -423,25 +366,6 @@ font:
 #   italic:
 #     family: Operator Mono Light
 #     style: Italic
-#   size: 12.0
-#   offset:
-#     x: 0
-#     y: 0
-#   glyph_offset:
-#     x: 0
-#     y: 0
-# # }}}
-# # {{{Source Code Pro
-# font:
-#   normal:
-#     family: Source Code Pro iCursive S12
-#     style: Regular
-#   bold:
-#     family: Source Code Pro iCursive S12
-#     style: Bold
-#   italic:
-#     family: Source Code Pro iCursive S12
-#     style: Regular
 #   size: 12.0
 #   offset:
 #     x: 0
@@ -488,25 +412,6 @@ font:
 #     x: 0
 #     y: 0
 # # }}}
-# # {{{InconsolataLGC iCursive
-# font:
-#   normal:
-#     family: InconsolataLGC iCursive Op
-#     style: Regular
-#   bold:
-#     family: InconsolataLGC iCursive Op
-#     style: Bold
-#   italic:
-#     family: InconsolataLGC iCursive Op
-#     style: Regular
-#   size: 11.0
-#   offset:
-#     x: 0
-#     y: 0
-#   glyph_offset:
-#     x: 0
-#     y: 0
-# # }}}
 # # {{{InconsolataLGC iCursive S12
 # font:
 #   normal:
@@ -537,25 +442,6 @@ font:
 #   italic:
 #     family: InconsolataLGC iCursive Op
 #     style: Italic
-#   size: 11.0
-#   offset:
-#     x: 0
-#     y: 0
-#   glyph_offset:
-#     x: 0
-#     y: 0
-# # }}}
-# # {{{Meslo iCursive
-# font:
-#   normal:
-#     family: Meslo iCursive S12
-#     style: Regular
-#   bold:
-#     family: Meslo iCursive S12
-#     style: Bold
-#   italic:
-#     family: Meslo iCursive S12
-#     style: Regular
 #   size: 11.0
 #   offset:
 #     x: 0
@@ -602,25 +488,6 @@ font:
 #     x: 0
 #     y: 0
 # # }}}
-# # {{{Hack iCursive
-# font:
-#   normal:
-#     family: Hack iCursive S12
-#     style: Regular
-#   bold:
-#     family: Hack iCursive S12
-#     style: Bold
-#   italic:
-#     family: Hack iCursive S12
-#     style: Regular
-#   size: 11.0
-#   offset:
-#     x: 0
-#     y: 0
-#   glyph_offset:
-#     x: 0
-#     y: 0
-# # }}}
 # # {{{Hack iCursive S12
 # font:
 #   normal:
@@ -652,25 +519,6 @@ font:
 #     family: Hack iCursive Op
 #     style: Italic
 #   size: 11.0
-#   offset:
-#     x: 0
-#     y: 0
-#   glyph_offset:
-#     x: 0
-#     y: 0
-# # }}}
-# # {{{Cascadia Code
-# font:
-#   normal:
-#     family: CaskaydiaCove Nerd Font Mono
-#     style: Regular
-#   bold:
-#     family: CaskaydiaCove Nerd Font Mono
-#     style: Regular
-#   italic:
-#     family: CaskaydiaCove Nerd Font Mono
-#     style: Regular
-#   size: 12.0
 #   offset:
 #     x: 0
 #     y: 0
