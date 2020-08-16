@@ -189,9 +189,10 @@ elif [ "$1" = "user" ]; then
     # Install the kernel and firmwares
     sudo pacman -S linux-surface-headers linux-surface surface-ipts-firmware
     # Post-Installation
-    pikaur -S update-grub aic94xx-firmware wd719x-firmware libwacom-surface surface-control surface-dtx-daemon
+    pikaur -S update-grub aic94xx-firmware wd719x-firmware libwacom-surface surface-control surface-dtx-daemon iptsd
     sudo update-grub
-    sudo systemctl enable surface-dtx-daemon.service
+    sudo systemctl enable --now surface-dtx-daemon.service
+    sudo systemctl enable --now iptsd.service
     #}}}
     pikaur -S gvim firefox-developer-edition telegram-desktop alacritty lsd svn chromium
     pikaur -S wqy-microhei noto-fonts ttf-symbola
