@@ -193,6 +193,7 @@ elif [ "$1" = "user" ]; then
     sudo update-grub
     sudo systemctl enable --now surface-dtx-daemon.service
     sudo systemctl enable --now iptsd.service
+    sudo pacman -Rs linux linux-headers
     #}}}
     pikaur -S gvim firefox-developer-edition telegram-desktop alacritty lsd svn chromium
     pikaur -S wqy-microhei noto-fonts ttf-symbola
