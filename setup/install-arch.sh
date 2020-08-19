@@ -169,7 +169,7 @@ elif [ "$1" = "user" ]; then
     sudo cp ~/repo/dotfiles/.root/etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
     sudo cp ~/repo/dotfiles/.root/etc/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/lightdm-webkit2-greeter.conf
     #}}}
-    # LightDM{{{
+    # SDDM{{{
     sudo pacman -S sddm
     pikaur -S sddm-greeter sddm-config-editor sddm-sugar-candy-git
     sudo cp ~/repo/dotfiles/.root/etc/sddm.conf /etc/sddm.conf
