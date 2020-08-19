@@ -8,7 +8,7 @@ setup_symlink() {
         DIR=$(echo "$1" | grep -o ".*\/")
         mkdir -p "$HOME/$DIR"
     fi
-    ln -s "$DOTFILES_DIR/$1" "$HOME/$1"
+    ln -sf "$DOTFILES_DIR/$1" "$HOME/$1"
 }
 
 setup_copy() {
@@ -16,7 +16,7 @@ setup_copy() {
         DIR=$(echo "$1" | grep -o ".*\/")
         mkdir -p "$HOME/$DIR"
     fi
-    cp -r "$DOTFILES_DIR/$1" "$HOME/$1"
+    cp -rf "$DOTFILES_DIR/$1" "$HOME/$1"
 }
 #}}}
 
@@ -49,6 +49,5 @@ setup_copy .config/zathura/zathurarc
 setup_symlink .config/zathura/themes
 setup_copy .config/libinput-gestures.conf
 setup_copy .xinitrc
-cp -r $DOTFILES_DIR/.local/share/applications/* ~/.local/share/applications/
 
 echo "setup root directory manually"
