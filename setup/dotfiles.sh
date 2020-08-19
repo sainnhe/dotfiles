@@ -30,8 +30,8 @@ setup_symlink .w3m/config
 setup_symlink .weechat/weechat.conf
 setup_copy .aria2
 setup_copy .config/alacritty/alacritty.yml
-setup_copy ../.config/i3/config
-setup_symlink ../.config/i3/scripts
+setup_copy .config/i3/config
+setup_symlink .config/i3/scripts
 setup_copy .config/autostart
 setup_copy .config/autostart-scripts
 setup_symlink .config/fontconfig/fonts.conf
