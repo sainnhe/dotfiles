@@ -188,7 +188,7 @@
             }
         },
         "pylance": {
-            "enable": true,
+            "enable": false,
             "filetypes": ["python"],
             "command": "pylance-language-server",
             "initializationOptions": {},

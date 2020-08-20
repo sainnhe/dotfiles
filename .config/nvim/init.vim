@@ -1162,6 +1162,7 @@ let g:coc_global_extensions = [
       \ 'coc-tslint-plugin',
       \ 'coc-rust-analyzer',
       \ 'coc-sh',
+      \ 'coc-pyright',
       \ 'coc-markdownlint',
       \ 'coc-json',
       \ 'coc-yaml',
