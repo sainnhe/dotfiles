@@ -78,6 +78,7 @@ pikaur -S \
     plasma5-applets-latte-separator \
     plasma5-applets-window-buttons \
     plasma5-applets-betterinlineclock-git \
+    plasma-browser-integration \
     libinput-gestures \
     gestures \
     kwin-scripts-forceblur
