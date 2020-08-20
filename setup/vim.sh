@@ -1,7 +1,8 @@
 #!/bin/env bash
 
+cp ~/repo/dotfiles/.vimrc ~/
+
 pikaur -S \
-    gruvbox-material-git \
     vim-selenized-git \
     vim-solarized8-git \
     vim-onedark-git \
