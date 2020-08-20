@@ -7,6 +7,9 @@ pacman_setup_func() {
     sudo pacman -Sy
     sudo pacman -S \
         neovim \
+        nodejs \
+        npm \
+        yarn \
         python \
         python2 \
         python-pynvim \
