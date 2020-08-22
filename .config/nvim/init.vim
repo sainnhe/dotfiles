@@ -596,9 +596,11 @@ Plug 'kana/vim-textobj-entire'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-lastpat'
-Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'pechorin/any-jump.vim'
 Plug 'chaoren/vim-wordmotion'
+if !has('win32')
+  Plug 'nvim-treesitter/nvim-treesitter'
+endif
 "{{{
 call plug#end()
 "}}}
@@ -842,7 +844,7 @@ let g:colorSchemeList['Gruvbox Material Dark'] = [
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
       \   'let g:gruvbox_material_lightline_disable_bold = 1',
-      \   'let g:gruvbox_material_better_performance = 1',
+      \   'let g:gruvbox_material_better_performance = !has("win32")',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -855,7 +857,7 @@ let g:colorSchemeList['Gruvbox Mix Dark'] = [
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
       \   'let g:gruvbox_material_lightline_disable_bold = 1',
-      \   'let g:gruvbox_material_better_performance = 1',
+      \   'let g:gruvbox_material_better_performance = !has("win32")',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -868,7 +870,7 @@ let g:colorSchemeList['Gruvbox Material Light'] = [
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
       \   'let g:gruvbox_material_lightline_disable_bold = 1',
-      \   'let g:gruvbox_material_better_performance = 1',
+      \   'let g:gruvbox_material_better_performance = !has("win32")',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -879,7 +881,7 @@ let g:colorSchemeList['Edge Dark'] = [
       \   "let g:edge_cursor = 'blue'",
       \   'let g:edge_lightline_disable_bold = 1',
       \   "let g:edge_sign_column_background = 'none'",
-      \   'let g:edge_better_performance = 1',
+      \   'let g:edge_better_performance = !has("win32")',
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
@@ -890,7 +892,7 @@ let g:colorSchemeList['Edge Light'] = [
       \   "let g:edge_cursor = 'purple'",
       \   'let g:edge_lightline_disable_bold = 1',
       \   "let g:edge_sign_column_background = 'none'",
-      \   'let g:edge_better_performance = 1',
+      \   'let g:edge_better_performance = !has("win32")',
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
@@ -901,7 +903,7 @@ let g:colorSchemeList['Sonokai Default'] = [
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
       \   "let g:sonokai_sign_column_background = 'none'",
-      \   'let g:sonokai_better_performance = 1',
+      \   'let g:sonokai_better_performance = !has("win32")',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -912,7 +914,7 @@ let g:colorSchemeList['Sonokai Shusia'] = [
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
       \   "let g:sonokai_sign_column_background = 'none'",
-      \   'let g:sonokai_better_performance = 1',
+      \   'let g:sonokai_better_performance = !has("win32")',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -923,7 +925,7 @@ let g:colorSchemeList['Sonokai Andromeda'] = [
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
       \   "let g:sonokai_sign_column_background = 'none'",
-      \   'let g:sonokai_better_performance = 1',
+      \   'let g:sonokai_better_performance = !has("win32")',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -934,7 +936,7 @@ let g:colorSchemeList['Sonokai Atlantis'] = [
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
       \   "let g:sonokai_sign_column_background = 'none'",
-      \   'let g:sonokai_better_performance = 1',
+      \   'let g:sonokai_better_performance = !has("win32")',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -945,7 +947,7 @@ let g:colorSchemeList['Sonokai Maia'] = [
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
       \   "let g:sonokai_sign_column_background = 'none'",
-      \   'let g:sonokai_better_performance = 1',
+      \   'let g:sonokai_better_performance = !has("win32")',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -958,7 +960,7 @@ let g:colorSchemeList['Soft Era'] = [
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
       \   'let g:gruvbox_material_lightline_disable_bold = 1',
-      \   'let g:gruvbox_material_better_performance = 1',
+      \   'let g:gruvbox_material_better_performance = !has("win32")',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -1826,6 +1828,7 @@ function! CurrentLineI()
 endfunction
 "}}}
 "{{{nvim-treesitter
+if !has('win32')
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
     highlight = {
@@ -1852,15 +1855,16 @@ require'nvim-treesitter.configs'.setup {
     ensure_installed = 'all' -- one of 'all', 'language', or a list of languages
 }
 EOF
-nnoremap <silent> <leader><space>f :<C-u>call Toggle_foldmethod()<CR>
-let g:which_key_map["\<space>"]['f'] = 'fold method'
-function! Toggle_foldmethod() abort
-  if &foldmethod ==# 'marker'
-    set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
-  else
-    set foldmethod=marker
-  endif
-endfunction
+  nnoremap <silent> <leader><space>f :<C-u>call Toggle_foldmethod()<CR>
+  let g:which_key_map["\<space>"]['f'] = 'fold method'
+  function! Toggle_foldmethod() abort
+    if &foldmethod ==# 'marker'
+      set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
+    else
+      set foldmethod=marker
+    endif
+  endfunction
+endif
 "}}}
 "{{{any-jump.vim
 let g:any_jump_disable_default_keybindings = 1
