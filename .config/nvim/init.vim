@@ -598,9 +598,7 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-lastpat'
 Plug 'pechorin/any-jump.vim'
 Plug 'chaoren/vim-wordmotion'
-if !has('win32')
-  Plug 'nvim-treesitter/nvim-treesitter'
-endif
+" Plug 'nvim-treesitter/nvim-treesitter'
 "{{{
 call plug#end()
 "}}}
@@ -1827,45 +1825,6 @@ function! CurrentLineI()
         \ : 0
 endfunction
 "}}}
-"{{{nvim-treesitter
-if !has('win32')
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-    highlight = {
-        enable = false,                                         -- false will disable the whole extension
-        disable = { 'json' },
-    },
-    incremental_selection = {
-        enable = false,
-        keymaps = {                                             -- mappings for incremental selection (visual mappings)
-          init_selection = '<plug>(ts-init-selection)',         -- maps in normal mode to init the node/scope selection
-          scope_incremental = '<plug>(ts-scope-incremental)',   -- increment to the upper scope (as defined in locals.scm)
-          node_incremental = '<plug>(ts-node-incremental)',     -- increment to the upper named parent
-          node_decremental = '<plug>(ts-node-decremental)',     -- decrement to the previous node
-        }
-    },
-    textobjects = { -- syntax-aware textobjects
-        enable = true,
-        disable = {},
-        keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner"
-        }
-    },
-    ensure_installed = 'all' -- one of 'all', 'language', or a list of languages
-}
-EOF
-  nnoremap <silent> <leader><space>f :<C-u>call Toggle_foldmethod()<CR>
-  let g:which_key_map["\<space>"]['f'] = 'fold method'
-  function! Toggle_foldmethod() abort
-    if &foldmethod ==# 'marker'
-      set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
-    else
-      set foldmethod=marker
-    endif
-  endfunction
-endif
-"}}}
 "{{{any-jump.vim
 let g:any_jump_disable_default_keybindings = 1
 nnoremap gd :AnyJump<CR>
@@ -1890,3 +1849,42 @@ xmap aW <Plug>WordMotion_aw
 omap iW <Plug>WordMotion_iw
 xmap iW <Plug>WordMotion_iw
 "}}}
+" "{{{nvim-treesitter
+" if !has('win32')
+" lua <<EOF
+" require'nvim-treesitter.configs'.setup {
+"     highlight = {
+"         enable = false,                                         -- false will disable the whole extension
+"         disable = { 'json' },
+"     },
+"     incremental_selection = {
+"         enable = false,
+"         keymaps = {                                             -- mappings for incremental selection (visual mappings)
+"           init_selection = '<plug>(ts-init-selection)',         -- maps in normal mode to init the node/scope selection
+"           scope_incremental = '<plug>(ts-scope-incremental)',   -- increment to the upper scope (as defined in locals.scm)
+"           node_incremental = '<plug>(ts-node-incremental)',     -- increment to the upper named parent
+"           node_decremental = '<plug>(ts-node-decremental)',     -- decrement to the previous node
+"         }
+"     },
+"     textobjects = { -- syntax-aware textobjects
+"         enable = true,
+"         disable = {},
+"         keymaps = {
+"             ["af"] = "@function.outer",
+"             ["if"] = "@function.inner"
+"         }
+"     },
+"     ensure_installed = 'all' -- one of 'all', 'language', or a list of languages
+" }
+" EOF
+"   nnoremap <silent> <leader><space>f :<C-u>call Toggle_foldmethod()<CR>
+"   let g:which_key_map["\<space>"]['f'] = 'fold method'
+"   function! Toggle_foldmethod() abort
+"     if &foldmethod ==# 'marker'
+"       set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
+"     else
+"       set foldmethod=marker
+"     endif
+"   endfunction
+" endif
+" "}}}
