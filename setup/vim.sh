@@ -3,9 +3,10 @@
 cp ~/repo/dotfiles/.vimrc ~/
 
 pikaur -S \
-    vim-selenized-git \
-    vim-solarized8-git \
-    vim-onedark-git \
+    vim-gruvbox-material-git \
+    vim-forest-night-git \
+    vim-edge-git \
+    vim-sonokai-git \
     vim-polyglot-git \
     vim-leaderf-git \
     vim-coc \
