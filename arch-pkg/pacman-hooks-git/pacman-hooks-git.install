@@ -1,0 +1,16 @@
+post_install() {
+    systemctl daemon-reload
+    systemctl start linux-modules-cleanup
+    systemctl enable linux-modules-cleanup
+}
+
+post_upgrade() {
+    systemctl daemon-reload
+    systemctl restart linux-modules-cleanup
+}
+
+pre_remove() {
+    systemctl stop linux-modules-cleanup
+    systemctl disable linux-modules-cleanup
+    systemctl daemon-reload
+}

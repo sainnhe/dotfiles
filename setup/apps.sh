@@ -26,9 +26,6 @@ if [ "$1" = "general" ]; then
         typescript \
         lua
     sudo pacman -S nnn ranger lynx atool ffmpegthumbnailer highlight odt2txt perl-image-exiftool
-    echo -n "Remove reflector (depends/install) in PKGBUILD. [enter to continue]"
-    read -r
-    pikaur -S pacman-hooks-desbma-git
 elif [ "$1" = "physical" ]; then
     sudo pacman -S zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb
     pikaur -S v2ray qv2ray-dev-git qv2ray-plugin-command-dev-git qv2ray-plugin-ssr-dev-git qv2ray-plugin-trojan-dev-git
