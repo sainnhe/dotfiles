@@ -1,4 +1,4 @@
-    pikaur -S gvim firefox-developer-edition telegram-desktop alacritty lsd svn chromium
+    pikaur -S firefox-developer-edition telegram-desktop alacritty lsd svn chromium
     pikaur -S wqy-microhei noto-fonts ttf-symbola
     proxychains -q wget https://github.com/fphoenix88888/ttf-mswin10-arch/raw/master/ttf-ms-win10-zh_cn-10.0.18362.116-1-any.pkg.tar.xz
     sudo pacman -Syy
@@ -9,27 +9,6 @@
 Fonts:
     pikaur -S nerd-fonts-fira-code ttf-monaco
     icursive
-
-
-
-VIM:
-pikaur -S \
-    vim-gruvbox-material-git \
-    vim-forest-night-git \
-    vim-edge-git \
-    vim-sonokai-git \
-    vim-polyglot-git \
-    vim-leaderf-git \
-    vim-coc \
-    vim-coc-extras-meta-git \
-    vim-coc-dictionary-git \
-    vim-coc-explorer-git \
-    vim-coc-git-git \
-    vim-coc-pairs-git \
-    vim-coc-vimlsp-git \
-    vim-coc-yaml-git \
-    vim-coc-json-git \
-    vim-coc-sh-git
 
 
 

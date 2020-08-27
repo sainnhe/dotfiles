@@ -1,0 +1,30 @@
+# Maintainer: Sainnhe Park <sainnhe@gmail.com>
+pkgname=vim-meta
+pkgdesc='Meta package to install some components for vim'
+pkgver=2020.08.27
+pkgrel=1
+arch=(any)
+url='https://github.com/sainnhe/dotfiles'
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+depends=(vim
+         vim-gruvbox-material-git
+         vim-forest-night-git
+         vim-edge-git
+         vim-sonokai-git
+         vim-polyglot-git
+         vim-leaderf-git
+         vim-coc
+         vim-coc-extras-meta-git
+         vim-coc-dictionary-git
+         vim-coc-explorer-git
+         vim-coc-git-git
+         vim-coc-pairs-git
+         vim-coc-vimlsp-git
+         vim-coc-yaml-git
+         vim-coc-json-git
+         vim-coc-sh-git)
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}
