@@ -118,11 +118,7 @@ setup_chroot() { #{{{
             vim \
             git \
             wget \
-            w3m \
-            aria2 \
-            pacman-contrib \
             openssh \
-            net-tools \
             zip \
             unzip
     done

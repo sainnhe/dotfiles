@@ -7,7 +7,12 @@ arch=(any)
 url='https://github.com/sainnhe/dotfiles'
 provides=("${pkgname}")
 conflicts=("${pkgname}")
-depends=(fzf
+depends=(pacman-contrib
+         iw
+         net-tools
+         w3m
+         aria2
+         fzf
          lsd
          svn
          terminal-markdown-viewer
