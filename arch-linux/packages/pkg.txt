@@ -12,29 +12,6 @@ Fonts:
 
 
 
-themes:
-# Icon/Cursor
-pikaur -S \
-    papirus-icon-theme \
-    capitaine-cursors \
-    numix-cursor-theme
-# GTK
-pikaur -S \
-    arc-gtk-theme \
-    x-arc-plus \
-    x-arc-white \
-    x-arc-darker \
-    x-arc-shadow
-# KDE
-pikaur -S pikaur -S \
-    sierrabreeze-kwin-decoration-git \
-    sensual-kde-theme-git \
-    sensual-kvantum-theme-git \
-    sensual-breeze-icons-git \
-    sensual-breeze-git
-
-
-
 if [ "$1" = "general" ]; then
     pikaur -S \
         fzf \
