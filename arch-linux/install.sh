@@ -38,8 +38,8 @@ setup_live() { #{{{
     echo ""
     printf "${BBLUE}>> Execute ${BYELLOW}'fdisk /dev/sdx'${BBLUE} to start the partition operation.${NC} [Enter to continue] "
     read -r
-    printf "${BYELLOW}>> bash${NC}\n"
-    bash
+    printf "${BYELLOW}>> sh${NC}\n"
+    sh
     #}}}
     # Filesystems{{{
     printf "${BBLUE}>> Recommendations for filesystems:${GREEN}\n"
@@ -52,14 +52,14 @@ setup_live() { #{{{
     echo ""
     printf "${BBLUE}>> Execute ${BYELLOW}'fdisk -l'${BBLUE} to get more info.${NC} [Enter to continue] "
     read -r
-    printf "${BYELLOW}>> bash${NC}\n"
-    bash
+    printf "${BYELLOW}>> sh${NC}\n"
+    sh
     #}}}
     # Mount{{{
     printf "${BBLUE}>> Mount like this: ${BYELLOW}'mount /dev/sdxY /mnt'${NC} [Enter to continue] "
     read -r
-    printf "${BYELLOW}>> bash${NC}\n"
-    bash
+    printf "${BYELLOW}>> sh${NC}\n"
+    sh
     #}}}
     # Mirror{{{
     mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
@@ -102,6 +102,7 @@ setup_chroot() { #{{{
     (exit 1)
     while [ $? -ne 0 ]; do
         pacman -S \
+            bash \
             dialog \
             wpa_supplicant \
             ntfs-3g \
