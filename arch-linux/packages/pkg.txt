@@ -12,51 +12,6 @@ Fonts:
 
 
 
-NVIM:
-    pikaur -S \
-        neovim \
-        nodejs \
-        npm \
-        yarn \
-        python \
-        python2 \
-        python-pynvim \
-        python2-neovim \
-        python-pip \
-        python2-pip \
-        boost \
-        words \
-        python-wcwidth \
-        clang \
-        ccls \
-        tidy \
-        python-jedi \
-        python-pylint python2-pylint \
-        flake8 python2-flake8 \
-        mypy \
-        python-pycodestyle python2-pycodestyle \
-        python-pydocstyle python2-pydocstyle \
-        flawfinder \
-        cppcheck \
-        shellcheck \
-        vint \
-        astyle \
-        prettier \
-        shfmt \
-        uncrustify \
-        yapf \
-        zenity \
-        ruby-neovim \
-        global \
-        stylelint \
-        stylelint-config-standard \
-        nodejs-jsonlint \
-        js-beautify \
-        universal-ctags-git \
-        pylance-language-server
-
-
-
 i3
 pikaur -S i3-gaps xorg-xrdb polybar lxappearance-gtk3 feh perl-anyevent-i3 picom-ibhagwan-git redshiftgui-bin nm-connection-editor blueman gbacklight rofi
 
