@@ -36,8 +36,6 @@ package() {
 
     cd "${srcdir}/pacman-hook-desbma"
     install -Dm 644 -t "${pkgdir}/usr/share/libalpm/hooks" check-broken-packages/check-broken-packages.hook
-    install -Dm 644 -t "${pkgdir}/usr/share/libalpm/hooks" pacdiff/pacdiff.hook
-    install -Dm 755 -t "${pkgdir}/usr/share/libalpm/scripts" pacdiff/pacdiff_diffprog
     install -Dm 644 sync/boot_sync.hook "${pkgdir}/usr/share/libalpm/hooks/99-boot_sync.hook"
     install -Dm 644 sync/root_sync.hook "${pkgdir}/usr/share/libalpm/hooks/99-root_sync.hook"
     install -Dm 755 -t "${pkgdir}/usr/bin" check-broken-packages/target/release/check-broken-packages
