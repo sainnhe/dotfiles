@@ -1,13 +1,7 @@
-    pikaur -S firefox-developer-edition telegram-desktop alacritty lsd svn chromium
-    pikaur -S wqy-microhei noto-fonts ttf-symbola
-    proxychains -q wget https://github.com/fphoenix88888/ttf-mswin10-arch/raw/master/ttf-ms-win10-zh_cn-10.0.18362.116-1-any.pkg.tar.xz
-    sudo pacman -Syy
-    sudo pacman -S archlinuxcn-keyring
-
-
-
 Fonts:
     pikaur -S nerd-fonts-fira-code ttf-monaco
+    pikaur -S wqy-microhei noto-fonts ttf-symbola
+    proxychains -q wget https://github.com/fphoenix88888/ttf-mswin10-arch/raw/master/ttf-ms-win10-zh_cn-10.0.18362.116-1-any.pkg.tar.xz
     icursive
 
 
@@ -15,6 +9,8 @@ Fonts:
 if [ "$1" = "general" ]; then
     pikaur -S \
         fzf \
+        lsd \
+        svn \
         terminal-markdown-viewer \
         python2-pygments \
         nodejs-commitizen \
@@ -32,13 +28,12 @@ if [ "$1" = "general" ]; then
         pkgfile \
         dust
     pikaur -S \
-        npm \
-        yarn \
         go \
         typescript \
         lua
     sudo pacman -S nnn ranger lynx atool ffmpegthumbnailer highlight odt2txt perl-image-exiftool
 elif [ "$1" = "physical" ]; then
+    pikaur -S firefox-developer-edition telegram-desktop alacritty chromium
     sudo pacman -S zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb
     pikaur -S v2ray qv2ray-dev-git qv2ray-plugin-command-dev-git qv2ray-plugin-ssr-dev-git qv2ray-plugin-trojan-dev-git
     pikaur -S fontweak persepolis code typora iw bleachbit

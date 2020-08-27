@@ -57,6 +57,9 @@ setup_dotfiles() { #{{{
     setup_copy .xinitrc
     printf "${BBLUE}>> Setup root directory manually.${NC}"
 } #}}}
+setup_archlinuxcn() { #{{{
+    sudo pacman -S archlinuxcn-keyring
+} #}}}
 setup_repos() { #{{{
     ssh-keygen -t rsa -b 4096 -C "sainnhe@gmail.com"
     eval "$(ssh-agent -s)"
@@ -237,6 +240,8 @@ setup_themes() { #{{{
 
 if [ "$1" = 'dotfiles' ]; then
     setup_dotfiles
+elif [ "$1" = 'archlinuxcn' ]; then
+    setup_archlinuxcn
 elif [ "$1" = 'repos' ]; then
     setup_repos
 elif [ "$1" = 'network' ]; then
