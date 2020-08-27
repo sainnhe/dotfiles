@@ -1,0 +1,229 @@
+    pikaur -S gvim firefox-developer-edition telegram-desktop alacritty lsd svn chromium
+    pikaur -S wqy-microhei noto-fonts ttf-symbola
+    proxychains -q wget https://github.com/fphoenix88888/ttf-mswin10-arch/raw/master/ttf-ms-win10-zh_cn-10.0.18362.116-1-any.pkg.tar.xz
+    sudo pacman -Syy
+    sudo pacman -S archlinuxcn-keyring
+
+
+
+Fonts:
+    pikaur -S nerd-fonts-fira-code ttf-monaco
+    icursive
+
+
+
+VIM:
+pikaur -S \
+    vim-gruvbox-material-git \
+    vim-forest-night-git \
+    vim-edge-git \
+    vim-sonokai-git \
+    vim-polyglot-git \
+    vim-leaderf-git \
+    vim-coc \
+    vim-coc-extras-meta-git \
+    vim-coc-dictionary-git \
+    vim-coc-explorer-git \
+    vim-coc-git-git \
+    vim-coc-pairs-git \
+    vim-coc-vimlsp-git \
+    vim-coc-yaml-git \
+    vim-coc-json-git \
+    vim-coc-sh-git
+
+
+
+NVIM:
+    pikaur -S \
+        neovim \
+        nodejs \
+        npm \
+        yarn \
+        python \
+        python2 \
+        python-pynvim \
+        python2-neovim \
+        python-pip \
+        python2-pip \
+        boost \
+        words \
+        python-wcwidth \
+        clang \
+        ccls \
+        tidy \
+        python-jedi \
+        python-pylint python2-pylint \
+        flake8 python2-flake8 \
+        mypy \
+        python-pycodestyle python2-pycodestyle \
+        python-pydocstyle python2-pydocstyle \
+        flawfinder \
+        cppcheck \
+        shellcheck \
+        vint \
+        astyle \
+        prettier \
+        shfmt \
+        uncrustify \
+        yapf \
+        zenity \
+        ruby-neovim \
+        global \
+        stylelint \
+        stylelint-config-standard \
+        nodejs-jsonlint \
+        js-beautify \
+        universal-ctags-git \
+        pylance-language-server
+
+
+
+i3
+pikaur -S i3-gaps xorg-xrdb polybar lxappearance-gtk3 feh perl-anyevent-i3 picom-ibhagwan-git redshiftgui-bin nm-connection-editor blueman gbacklight rofi
+
+
+
+Plasma:
+sudo pacman -S plasma
+sudo pacman -S \
+    akregator \
+    ark \
+    kaddressbook \
+    kalarm \
+    kcron \
+    dolphin \
+    dolphin-plugins \
+    kmail \
+    elisa \
+    ffmpegthumbs \
+    gwenview \
+    kate \
+    kdeconnect \
+    sshfs \
+    kdesdk-thumbnailers \
+    kfind \
+    kgpg \
+    khelpcenter \
+    kio \
+    kio-extras \
+    kio-gdrive \
+    kipi-plugins \
+    kleopatra \
+    kmag \
+    kmix \
+    kmousetool \
+    kdegraphics-mobipocket \
+    kdegraphics-thumbnailers \
+    kdenetwork-filesharing \
+    kdepim-addons \
+    kolourpaint \
+    konsole \
+    kontact \
+    korganizer \
+    krdc \
+    krfb \
+    kross-interpreters \
+    ksystemlog \
+    ktimer \
+    kwalletmanager \
+    mbox-importer \
+    okular \
+    pim-data-exporter \
+    spectacle \
+    svgpart \
+    telepathy-kde-accounts-kcm \
+    telepathy-kde-approver \
+    telepathy-kde-auth-handler \
+    telepathy-kde-call-ui \
+    telepathy-kde-common-internals \
+    telepathy-kde-contact-list \
+    telepathy-kde-contact-runner \
+    telepathy-kde-desktop-applets \
+    telepathy-kde-filetransfer-handler \
+    telepathy-kde-integration-module \
+    telepathy-kde-send-file \
+    telepathy-kde-text-ui \
+    yakuake \
+    zeroconf-ioslave \
+    konversation \
+    keditbookmarks \
+    kget \
+    ktorrent \
+    kplotting \
+    kdewebkit \
+    geoip \
+    kvantum-qt5 \
+    qtcurve-kde \
+    plasma5-applets-active-window-control
+pikaur -S \
+    latte-dock-git \
+    plasma5-applets-virtual-desktop-bar-git \
+    plasma5-applets-window-title \
+    plasma5-applets-latte-separator \
+    plasma5-applets-window-buttons \
+    plasma5-applets-betterinlineclock-git \
+    plasma-browser-integration \
+    libinput-gestures \
+    gestures \
+    kwin-scripts-forceblur
+# Icon/Cursor
+pikaur -S \
+    papirus-icon-theme \
+    capitaine-cursors \
+    numix-cursor-theme
+# GTK
+pikaur -S \
+    arc-gtk-theme \
+    x-arc-plus \
+    x-arc-white \
+    x-arc-darker \
+    x-arc-shadow
+# KDE
+pikaur -S pikaur -S \
+    sierrabreeze-kwin-decoration-git \
+    sensual-kde-theme-git \
+    sensual-kvantum-theme-git \
+    sensual-breeze-icons-git \
+    sensual-breeze-git
+
+
+
+if [ "$1" = "general" ]; then
+    pikaur -S \
+        fzf \
+        terminal-markdown-viewer \
+        python2-pygments \
+        nodejs-commitizen \
+        nodejs-cz-conventional-changelog \
+        pastebinit \
+        tcping \
+        hyperfine \
+        fd \
+        ytop \
+        htop \
+        ripgrep \
+        ripgrep-all \
+        bingrep-rs \
+        xclip \
+        pkgfile \
+        dust
+    pikaur -S \
+        npm \
+        yarn \
+        go \
+        typescript \
+        lua
+    sudo pacman -S nnn ranger lynx atool ffmpegthumbnailer highlight odt2txt perl-image-exiftool
+elif [ "$1" = "physical" ]; then
+    sudo pacman -S zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb
+    pikaur -S v2ray qv2ray-dev-git qv2ray-plugin-command-dev-git qv2ray-plugin-ssr-dev-git qv2ray-plugin-trojan-dev-git
+    pikaur -S fontweak persepolis code typora iw bleachbit
+    pikaur -S fcitx fcitx-configtool fcitx-libpinyin fcitx-cloudpinyin fcitx-table-extra fcitx-table-other kcm-fcitx fcitx-skins fcitx-skin-material
+    pikaur -S wps-office-cn ttf-wps-fonts wps-office-mime-cn wps-office-mui-zh-cn wps-office-fonts
+    sudo pacman -S wine xsettingsd deepin.com.qq.office lib32-freetype2-infinality-ultimate
+    echo "TIM"
+    echo ""
+    echo "https://github.com/countstarlight/deepin-wine-tim-arch/issues/1"
+    echo 'snippet-add tim         "xsettingsd &"'
+    echo 'Fix already done in ~/.config/autostart-scripts/wine.sh'
+fi
