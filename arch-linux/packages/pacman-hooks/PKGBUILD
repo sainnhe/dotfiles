@@ -1,7 +1,6 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
-pkgname=pacman-hooks-git
-_pkgname='pacman-hooks'
-pkgver=r1201.1bb07df
+pkgname=pacman-hooks
+pkgver=2020.08.27
 pkgrel=1
 pkgdesc='Pacman hooks'
 arch=('any')
@@ -24,7 +23,7 @@ md5sums=('SKIP'
          'SKIP')
 
 pkgver() {
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+    date --utc +"%Y.%m.%d"
 }
 
 build() {
