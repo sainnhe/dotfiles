@@ -12,11 +12,6 @@ Fonts:
 
 
 
-i3
-pikaur -S i3-gaps xorg-xrdb polybar lxappearance-gtk3 feh perl-anyevent-i3 picom-ibhagwan-git redshiftgui-bin nm-connection-editor blueman gbacklight rofi
-
-
-
 Plasma:
 sudo pacman -S plasma
 sudo pacman -S \
@@ -100,6 +95,10 @@ pikaur -S \
     libinput-gestures \
     gestures \
     kwin-scripts-forceblur
+
+
+
+themes:
 # Icon/Cursor
 pikaur -S \
     papirus-icon-theme \
