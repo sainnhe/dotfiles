@@ -1,0 +1,43 @@
+# Maintainer: Sainnhe Park <sainnhe@gmail.com>
+pkgname=apps-common-meta
+pkgdesc='Meta package to install some common apps'
+pkgver=2020.08.27
+pkgrel=1
+arch=(any)
+url='https://github.com/sainnhe/dotfiles'
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+depends=(fzf
+         lsd
+         svn
+         terminal-markdown-viewer
+         python2-pygments
+         nodejs-commitizen
+         nodejs-cz-conventional-changelog
+         pastebinit
+         tcping
+         hyperfine
+         fd
+         ytop
+         htop
+         ripgrep
+         ripgrep-all
+         bingrep-rs
+         xclip
+         pkgfile
+         dust
+         go
+         typescript
+         lua
+         nnn
+         ranger
+         lynx
+         atool
+         ffmpegthumbnailer
+         highlight
+         odt2txt
+         perl-image-exiftool)
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}

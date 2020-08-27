@@ -6,32 +6,6 @@ Fonts:
 
 
 
-if [ "$1" = "general" ]; then
-    pikaur -S \
-        fzf \
-        lsd \
-        svn \
-        terminal-markdown-viewer \
-        python2-pygments \
-        nodejs-commitizen \
-        nodejs-cz-conventional-changelog \
-        pastebinit \
-        tcping \
-        hyperfine \
-        fd \
-        ytop \
-        htop \
-        ripgrep \
-        ripgrep-all \
-        bingrep-rs \
-        xclip \
-        pkgfile \
-        dust
-    pikaur -S \
-        go \
-        typescript \
-        lua
-    sudo pacman -S nnn ranger lynx atool ffmpegthumbnailer highlight odt2txt perl-image-exiftool
 elif [ "$1" = "physical" ]; then
     pikaur -S firefox-developer-edition telegram-desktop alacritty chromium
     sudo pacman -S zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb
