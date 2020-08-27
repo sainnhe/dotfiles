@@ -76,12 +76,12 @@ setup_live() { #{{{
     else
         echo 'Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' >/etc/pacman.d/mirrorlist
     fi
-    pacman -Syy
+    (exit 1)
     while [ $? -ne 0 ]; do
         pacman -Syy
     done
     #}}}
-    pacstrap /mnt base base-devel linux linux-firmware
+    (exit 1)
     while [ $? -ne 0 ]; do
         pacstrap /mnt base base-devel
     done
@@ -94,28 +94,12 @@ setup_chroot() { #{{{
     hwclock --systohc --localtime
     rm /etc/pacman.d/mirrorlist
     echo 'Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' >/etc/pacman.d/mirrorlist
-    pacman -Syyuu
+    (exit 1)
     while [ $? -ne 0 ]; do
         pacman -Syyuu
     done
     #{{{Basic packages
-    pacman -S \
-        dialog \
-        wpa_supplicant \
-        ntfs-3g \
-        networkmanager \
-        intel-ucode \
-        mesa \
-        xorg \
-        xorg-drivers \
-        netctl \
-        os-prober \
-        grub \
-        efibootmgr \
-        vim \
-        git \
-        wget \
-        openssh
+    (exit 1)
     while [ $? -ne 0 ]; do
         pacman -S \
             dialog \
@@ -133,7 +117,13 @@ setup_chroot() { #{{{
             vim \
             git \
             wget \
-            openssh
+            w3m \
+            aria2 \
+            pacman-contrib \
+            openssh \
+            net-tools \
+            zip \
+            unzip
     done
     sync
     #}}}
@@ -161,8 +151,8 @@ EOF
     visudo
 } #}}}
 
-if [ "$1" = 'live' ]; then # run as root
+if [ "$1" = 'live' ]; then
     setup_live
-elif [ "$1" = 'chroot' ]; then # run as root
+elif [ "$1" = 'chroot' ]; then
     setup_chroot
 fi

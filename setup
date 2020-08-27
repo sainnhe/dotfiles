@@ -1,0 +1,267 @@
+#!/bin/env bash
+
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+BGREEN='\033[1;32m'
+BYELLOW='\033[1;33m'
+BBLUE='\033[1;34m'
+NC='\033[0m'
+
+# Util Func{{{
+setup_symlink() {
+    if [[ "$1" == *"/"* ]]; then
+        DIR=$(echo "$1" | grep -o ".*\/")
+        mkdir -p "$HOME/$DIR"
+    fi
+    ln -sf "$DOTFILES_DIR/$1" "$HOME/$1"
+}
+
+setup_copy() {
+    if [[ "$1" == *"/"* ]]; then
+        DIR=$(echo "$1" | grep -o ".*\/")
+        mkdir -p "$HOME/$DIR"
+    fi
+    cp -rf "$DOTFILES_DIR/$1" "$HOME/$1"
+}
+#}}}
+setup_dotfiles() { #{{{
+    setup_symlink .Xresources
+    setup_copy .redshiftgrc
+    setup_copy .gitconfig
+    setup_copy .ctags
+    setup_symlink .conkyrc
+    setup_symlink .bashrc
+    setup_symlink .w3m/config
+    setup_symlink .weechat/weechat.conf
+    setup_copy .aria2
+    setup_copy .config/alacritty/alacritty.yml
+    setup_copy .config/i3/config
+    setup_symlink .config/i3/scripts
+    setup_copy .config/autostart
+    setup_copy .config/autostart-scripts
+    setup_symlink .config/fontconfig/fonts.conf
+    setup_copy .config/polybar
+    setup_copy .config/rofi/config.rasi
+    setup_symlink .config/rofi/themes
+    setup_symlink .config/rtv
+    setup_symlink .config/picom.conf
+    setup_copy .config/pikaur.conf
+    setup_symlink .config/fcitx/conf
+    setup_symlink .config/fcitx/config
+    setup_symlink .config/fcitx/profile
+    setup_symlink package.json
+    setup_copy .config/zathura/zathurarc
+    setup_symlink .config/zathura/themes
+    setup_copy .config/libinput-gestures.conf
+    setup_copy .xinitrc
+    printf "${BBLUE}>> Setup root directory manually.${NC}"
+} #}}}
+setup_repos() { #{{{
+    ssh-keygen -t rsa -b 4096 -C "sainnhe@gmail.com"
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_rsa
+    mkdir ~/repo
+    cd ~/repo
+    git clone https://github.com/sainnhe/dotfiles.git
+    git clone https://github.com/sainnhe/scripts.git
+    git clone https://github.com/sainnhe/notes.git
+    cd dotfiles
+    git remote set-url origin git@github.com:sainnhe/dotfiles.git
+    cd ../scripts
+    git remote set-url origin git@github.com:sainnhe/scripts.git
+    cd ../notes
+    git remote set-url origin git@github.com:sainnhe/notes.git
+    cd ../
+    git clone https://aur.archlinux.org/pikaur.git
+    cd ~/repo/pikaur
+    makepkg -si
+    sudo pacman -S python-pysocks asp
+    printf "${BYELLOW}>> cat ~/.ssh/id_rsa.pub${NC}"
+    cat ~/.ssh/id_rsa.pub
+} #}}}
+setup_network() { #{{{
+    sudo pacman -S proxychains
+    sudo systemctl disable netctl
+    sudo systemctl enable NetworkManager
+    sudo cp ~/repo/dotfiles/.root/etc/proxychains.conf /etc/proxychains.conf
+} #}}}
+setup_sddm() { #{{{
+    sudo pacman -S sddm
+    pikaur -S sddm-greeter sddm-config-editor sddm-sugar-candy-git
+    sudo cp ~/repo/dotfiles/.root/etc/sddm.conf /etc/sddm.conf
+    sudo cp ~/repo/dotfiles/.root/usr/share/sddm/themes/sugar-candy/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf
+} #}}}
+setup_surface() { #{{{
+    mkdir -p ~/playground
+    cd ~/playground || exit
+    # Add arch linux repository
+    wget https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc
+    sudo pacman-key --add surface.asc
+    sudo pacman-key --finger 56C464BAAC421453
+    sudo pacman-key --lsign-key 56C464BAAC421453
+    sudo cp ~/repo/dotfiles/.root/etc/pacman.conf /etc/pacman.conf
+    sudo pacman -Sy
+    # DKMS modules
+    sudo pacman -S dkms acpi acpi_call-dkms
+    # Install the kernel and firmwares
+    sudo pacman -S linux-surface-headers linux-surface surface-ipts-firmware
+    # Post-Installation
+    pikaur -S update-grub aic94xx-firmware wd719x-firmware libwacom-surface surface-control surface-dtx-daemon iptsd
+    sudo update-grub
+    sudo systemctl enable --now surface-dtx-daemon.service
+    sudo systemctl enable --now iptsd.service
+    sudo pacman -Rs linux linux-headers
+    sudo sync
+} #}}}
+setup_nvidia() { #{{{
+    pikaur -S \
+        nvidia-beta-dkms \
+        nvidia-settings-beta \
+        nvidia-utils-beta \
+        opencl-nvidia-beta \
+        lib32-nvidia-utils-beta \
+        lib32-opencl-nvidia-beta \
+        virtualgl \
+        lib32-virtualgl \
+        libva-vdpau-driver-vp9 \
+        libvdpau \
+        vdpauinfo \
+        bbswitch-dkms \
+        xorg-xrandr \
+        optimus-manager-qt-kde
+    sudo sync
+    # surface setup
+    sudo mkdir -p /etc/modprobe.d
+    sudo cp ~/repo/dotfiles/.root/etc/modprobe.d/dgpu.conf /etc/modprobe.d/
+    sudo cp ~/repo/dotfiles/.root/etc/modprobe.d/blacklist-nouveau.conf /etc/modprobe.d/
+    # nvidia setup
+    sudo mkdir -p /etc/modules-load.d
+    sudo cp ~/repo/dotfiles/.root/etc/modules-load.d/nvidia.conf /etc/modules-load.d/
+    # X11 setup
+    sudo mkdir -p /etc/X11/xorg.conf.d
+    sudo cp ~/repo/dotfiles/.root/etc/X11/xorg.conf.d/20-intel.conf /etc/X11/xorg.conf.d/
+    sudo cp ~/repo/dotfiles/.root/etc/X11/xorg.conf.d/20-nvidia.conf /etc/X11/xorg.conf.d/
+    
+    printf "\n\n${BBLUE}>> In ${BGREEN}/etc/X11/xorg.conf.d/20-nvidia.conf${NC}\n"
+    printf "${BBLUE}>> Get PCI address: ${BGREEN}https://wiki.archlinux.org/index.php/NVIDIA_Optimus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)${NC}\n"
+    printf "${BBLUE}>> Adjust ${BGREEN}/usr/share/sddm/scripts/Xsetup${NC}\n"
+} #}}}
+setup_zsh() { #{{{
+    sudo pacman -S lua zsh
+    chsh -s /usr/bin/zsh
+    mkdir ~/.zinit
+    git clone --depth 1 https://github.com/zdharma/zinit.git ~/.zinit/bin
+    ln -s /home/sainnhe/repo/dotfiles/.zshrc ~/.zshrc
+    ln -s /home/sainnhe/repo/dotfiles/.zsh-snippets ~/.zsh-snippets
+    cp /home/sainnhe/repo/dotfiles/.zsh-theme ~/
+    printf "${BBLUE}>> Execute ${BYELLOW}'zsh'${BBLUE} to install zsh plugins${NC}\n"
+} #}}}
+setup_tmux() { #{{{
+    sudo pacman -S xsel tmux
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    mkdir -p ~/.tmux
+    ln -s /home/sainnhe/repo/dotfiles/.tmux.conf ~/.tmux.conf
+    ln -s /home/sainnhe/repo/dotfiles/.tmux/tmuxline ~/.tmux/tmuxline
+    printf "${BBLUE}>> Press ${BYELLOW}'prefix+I'${BBLUE} to install plugins.${NC}\n"
+    echo "'prefix I' to install plugins"
+} #}}}
+setup_vim() { #{{{
+    cp /home/sainnhe/repo/dotfiles/.vimrc ~/
+    mkdir -p ~/.config/nvim
+    ln -s /home/sainnhe/repo/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
+    ln -s /home/sainnhe/repo/dotfiles/.config/nvim/tasks.ini ~/.config/nvim/tasks.ini
+    cp /home/sainnhe/repo/dotfiles/.config/nvim/env.vim ~/.config/nvim/env.vim
+    ln -s /home/sainnhe/repo/dotfiles/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
+    ln -s /home/sainnhe/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
+    ln -s /home/sainnhe/repo/dotfiles/.config/nvim/doc ~/.config/nvim/doc
+    go get -u github.com/high-moctane/nextword
+    mkdir -p ~/.local/share/nextword
+    cd ~/.local/share/nextword || exit
+    proxychains -q wget https://github.com/high-moctane/nextword-data/archive/large.zip
+    unzip large.zip
+    rm large.zip
+} #}}}
+setup_rust() { #{{{
+    sudo pacman -S rustup
+    proxychains -q rustup install nightly
+    rustup default nightly
+    proxychains -q rustup component add \
+        rust-analyzer-preview \
+        rust-analysis \
+        rust-src \
+        rustfmt
+} #}}}
+setup_firefox() { #{{{
+    cd ~/.mozilla/firefox/*.dev-edition-default || exit
+    git clone https://github.com/sainnhe/minimal-functional-fox.git chrome
+    cd chrome || exit
+    git checkout forest-night
+    printf "${BBLUE}>> In ${BGREEN}'about:config'${NC}\n"
+    printf "${BBLUE}>> Set ${BGREEN}'toolkit.legacyUserProfileCustomizations.stylesheets'${BBLUE} to ${BGREEN}'true'${NC}\n"
+} #}}}
+setup_weechat() { #{{{
+    proxychains -q curl -L --create-dirs -o ~/.weechat/python/autoload/autojoin.py http://www.weechat.org/files/scripts/autojoin.py
+} #}}}
+setup_plasma() { #{{{
+    sudo gpasswd -a "$USER" input
+    libinput-gestures-setup autostart
+    ln -sf /home/sainnhe/repo/dotfiles/.config/kwinrulesrc ~/.config/kwinrulesrc
+    printf "\n${BBLUE}>> Blur:\n${BGREEN}System Settings -> Kwin Scripts -> Force Blur\n${BBLUE}Shortcuts:\n${BGREEN}/home/sainnhe/repo/scripts/func/plasma-blur.sh 'rofi -show drun' 'Rofi'${NC}\n"
+} #}}}
+setup_themes() { #{{{
+    mkdir -p ~/repo
+    cd ~/repo || exit
+    git clone --depth 1 https://github.com/vinceliuice/McMojave-circle.git
+    sh ~/repo/McMojave-circle/install.sh
+    git clone --depth 1 https://github.com/vinceliuice/McMojave-kde.git
+    sh ~/repo/McMojave-kde/install.sh
+    git clone --depth 1 https://github.com/vinceliuice/Qogir-kde.git
+    sh ~/repo/Qogir-kde/install.sh
+    git clone --depth 1 https://github.com/vinceliuice/Qogir-icon-theme.git
+    sh ~/repo/Qogir-icon-theme/install.sh
+    git clone --depth 1 https://github.com/vinceliuice/Canta-kde.git
+    sh ~/repo/Canta-kde/install.sh
+    git clone --depth 1 https://github.com/vinceliuice/Canta-theme.git
+    sh ~/repo/Canta-theme/install.sh -i
+    git clone --depth 1 https://github.com/yeyushengfan258/Tencent-icon-theme.git
+    sh ~/repo/Tencent-icon-theme/install.sh
+    printf "${BBLUE}>> Sweet: ${BGREEN}https://github.com/EliverLara/Sweet/tree/nova/kde${NC}\n"
+    printf "${BBLUE}>> Candy Icons: ${BGREEN}https://www.pling.com/p/1305251/${NC}\n"
+    printf "${BBLUE}>> Imagination: ${BGREEN}https://www.reddit.com/r/unixporn/comments/hxqr8u/plasma_dark_plasma_theme_imagination/${NC}\n"
+    printf "${BBLUE}>> Mild Gradient: ${BGREEN}https://www.reddit.com/r/unixporn/comments/i14m4f/plasma_new_dark_plasma_theme_mildgradientplasma/${NC}\n"
+    printf "${BBLUE}>> Cheerful Phantasy: ${BGREEN}https://www.reddit.com/r/unixporn/comments/hchq3w/plasma_5_update_dark_plasma_theme_cheerfulphantasy/${NC}\n"
+    printf "${BBLUE}>> Ambient Blue: ${BGREEN}https://www.reddit.com/r/kde/comments/gk5sll/new_dark_plasma_theme_ambientblue/${NC}\n"
+    printf "${BBLUE}>> Kvantum: ${BGREEN}~/.local/share/themes/THEME_NAME/Kvantum/${NC}\n"
+} #}}}
+
+if [ "$1" = 'dotfiles' ]; then
+    setup_dotfiles
+elif [ "$1" = 'repos' ]; then
+    setup_repos
+elif [ "$1" = 'network' ]; then
+    setup_network
+elif [ "$1" = 'sddm' ]; then
+    setup_sddm
+elif [ "$1" = 'surface' ]; then
+    setup_surface
+elif [ "$1" = 'nvidia' ]; then
+    setup_nvidia
+elif [ "$1" = 'zsh' ]; then
+    setup_zsh
+elif [ "$1" = 'tmux' ]; then
+    setup_tmux
+elif [ "$1" = 'vim' ]; then
+    setup_vim
+elif [ "$1" = 'rust' ]; then
+    setup_rust
+elif [ "$1" = 'firefox' ]; then
+    setup_firefox
+elif [ "$1" = 'weechat' ]; then
+    setup_weechat
+elif [ "$1" = 'plasma' ]; then
+    setup_plasma
+elif [ "$1" = 'themes' ]; then
+    setup_themes
+fi
+    printf "\n${BBLUE}>> Blur:\n${BGREEN}System Settings -> Kwin Scripts -> Force Blur\n${BBLUE}>> Shortcuts:\n${BGREEN}/home/sainnhe/repo/scripts/func/plasma-blur.sh 'rofi -show drun' 'Rofi'${NC}\n"
