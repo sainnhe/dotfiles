@@ -119,12 +119,12 @@ setup_surface() { #{{{
 } #}}}
 setup_nvidia() { #{{{
     pikaur -S \
-        nvidia-beta-dkms \
-        nvidia-settings-beta \
-        nvidia-utils-beta \
-        opencl-nvidia-beta \
-        lib32-nvidia-utils-beta \
-        lib32-opencl-nvidia-beta \
+        nvidia-dkms \
+        nvidia-settings \
+        nvidia-utils \
+        opencl-nvidia \
+        lib32-nvidia-utils \
+        lib32-opencl-nvidia \
         virtualgl \
         lib32-virtualgl \
         libva-vdpau-driver-vp9 \
