@@ -829,7 +829,9 @@ let g:colorSchemeList = {}
 let g:colorSchemeList['Forest Night'] = [
       \   'set background=dark',
       \   'let g:forest_night_disable_italic_comment = 1',
+      \   "let g:forest_night_sign_column_background = 'none'",
       \   'let g:forest_night_lightline_disable_bold = 1',
+      \   'let g:forest_night_better_performance = !has("win32")',
       \   'colorscheme forest-night',
       \   'call SwitchLightlineColorScheme("forest_night")'
       \   ]
