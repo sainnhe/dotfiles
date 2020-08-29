@@ -11,7 +11,7 @@ NC='\033[0m'
 setup_live() { #{{{
     printf "${BBLUE}>> Make sure you have connected to the internet.${NC} [Enter to continue] "
     read -r
-    timedatectl set-local-rtc 1 --adjust-system-clock
+    timedatectl set-local-rtc 1
     # Partition{{{
     printf "${BYELLOW}>> fdisk -l${NC}\n"
     echo ""
@@ -91,6 +91,7 @@ setup_live() { #{{{
 setup_chroot() { #{{{
     passwd
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+    timedatectl set-local-rtc 1
     hwclock --systohc --localtime
     rm /etc/pacman.d/mirrorlist
     echo 'Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' >/etc/pacman.d/mirrorlist
