@@ -584,6 +584,7 @@ Plug 'elzr/vim-json', {'for': 'json'}
       \| au BufNewFile,BufRead *.json call Func_vim_json()
 Plug 'masukomi/vim-markdown-folding'
 Plug 'yianwillis/vimcdoc'
+Plug 'voldikss/vim-translator'
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & npm install'}
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-easy-align'
@@ -1143,7 +1144,6 @@ let g:coc_global_extensions = [
       \ 'coc-project',
       \ 'coc-gitignore',
       \ 'coc-bookmark',
-      \ 'coc-translator',
       \ 'coc-highlight',
       \ 'coc-actions',
       \ 'coc-yank',
@@ -1307,11 +1307,6 @@ let g:which_key_map['m'] = {
       \   'p': 'prev',
       \   "\<Space>": 'list',
       \   }
-"}}}
-"{{{coc-translator
-nmap <leader><Space>t <Plug>(coc-translator-p)
-vmap <leader><Space>t <Plug>(coc-translator-pv)
-let g:which_key_map["\<space>"]['t'] = 'translate'
 "}}}
 "}}}
 "{{{ale
@@ -1761,6 +1756,14 @@ let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[''] = "\uf15b"
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
+"}}}
+"{{{vim-translator
+let g:translator_target_lang = 'zh'
+let g:translator_source_lang = 'auto'
+let g:translator_default_engines = ['bing', 'youdao']
+nmap <leader><Space>t <Plug>TranslateW
+vmap <leader><Space>t <Plug>TranslateWV
+let g:which_key_map["\<space>"]['t'] = 'translate'
 "}}}
 "{{{markdown-preview.nvim
 if !has('win32')
