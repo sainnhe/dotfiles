@@ -41,7 +41,9 @@ depends=(pacman-contrib
          ffmpegthumbnailer
          highlight
          odt2txt
-         perl-image-exiftool)
+         perl-image-exiftool
+         arch-wiki-docs
+         arch-wiki-lite)
 
 pkgver() {
     date --utc +"%Y.%m.%d"
