@@ -14,7 +14,7 @@ set -- "${1:-/etc}"/**/*.pacnew
 for file; do
   current="${file/.pacnew/}"
 
-  ${DIFFTOOL:-nvim -d} "$current" "$file"
+  ${DIFFTOOL:-vimdiff} "$current" "$file"
 
   rm -iv "$file" # -i gets us prompting for free
   [[ -f "$file" ]] && mv -iv "$file" "$current"
