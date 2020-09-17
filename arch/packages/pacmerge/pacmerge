@@ -14,7 +14,7 @@ set -- "${1:-/etc}"/**/*.pacnew
 for file; do
   current="${file/.pacnew/}"
 
-  ${DIFFTOOL:-vimdiff} "$current" "$file"
+  ${DIFFTOOL:-vimdiff -c 'set termguicolors | set background=dark | colorscheme edge'} "$current" "$file"
 
   rm -iv "$file" # -i gets us prompting for free
   [[ -f "$file" ]] && mv -iv "$file" "$current"

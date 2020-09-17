@@ -1,0 +1,22 @@
+# Maintainer: Sainnhe Park <sainnhe@gmail.com>
+pkgname=pacmerge
+pkgver=2020.09.17
+pkgrel=1
+pkgdesc="Merge .pacnew files"
+arch=(any)
+url="https://github.com/sainnhe/dotfiles"
+license=('unknown')
+depends=('vim' 'vim-edge-git')
+provides=('pacmerge')
+conflicts=('pacmerge')
+source=('pacmerge')
+md5sums=('8ea7b0bd6a88dc0bb6bbac8fd98ddd61')
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}
+
+package() {
+    install -d "${pkgdir}/usr/bin"
+    install -Dm 755 "${srcdir}/pacmerge" "${pkgdir}/usr/bin/"
+}
