@@ -43,7 +43,9 @@ depends=(pacman-contrib
          odt2txt
          perl-image-exiftool
          arch-wiki-docs
-         arch-wiki-lite)
+         arch-wiki-lite
+         man-pages-zh_cn
+         wikiman)
 
 pkgver() {
     date --utc +"%Y.%m.%d"

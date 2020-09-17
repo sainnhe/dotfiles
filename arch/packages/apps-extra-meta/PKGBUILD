@@ -43,8 +43,7 @@ depends=(firefox-developer-edition
          wine
          xsettingsd
          deepin.com.qq.office
-         lib32-freetype2-infinality-ultimate
-         wikiman)
+         lib32-freetype2-infinality-ultimate)
 
 pkgver() {
     date --utc +"%Y.%m.%d"
