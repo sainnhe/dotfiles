@@ -189,7 +189,7 @@ workspace_layout tabbed
 # }}}
 # {{{Auto Start
 exec fcitx
-exec picom -b
+exec picom --experimental-backends -b
 exec redshiftgui
 # }}}
 exec feh --bg-fill ~/Pictures/wallpapers/time-3.jpg
