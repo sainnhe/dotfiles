@@ -84,9 +84,10 @@ setup_repos() { #{{{
     cat ~/.ssh/id_rsa.pub
 } #}}}
 setup_network() { #{{{
-    sudo pacman -S proxychains
+    sudo pacman -S proxychains blueman
     sudo systemctl disable netctl
     sudo systemctl enable NetworkManager
+    sudo systemctl enable bluetooth.service
     sudo cp ~/repo/dotfiles/.root/etc/proxychains.conf /etc/proxychains.conf
 } #}}}
 setup_sddm() { #{{{
@@ -118,6 +119,8 @@ setup_surface() { #{{{
     sudo sync
 } #}}}
 setup_nvidia() { #{{{
+    printf "${BYELLOW}>> Edit PKGBUILD for optimus-manager-qt${NC} [Enter to continue] "
+    read -r
     pikaur -S \
         nvidia-dkms \
         nvidia-settings \
@@ -132,7 +135,7 @@ setup_nvidia() { #{{{
         vdpauinfo \
         bbswitch-dkms \
         xorg-xrandr \
-        optimus-manager-qt-kde
+        optimus-manager-qt
     sudo sync
     # surface setup
     sudo mkdir -p /etc/modprobe.d

@@ -1,12 +1,12 @@
 ; {{{color scheme
 [colors]
-bg = #282828
-fg = #d4be98
-border_bg = #d4be98
-border_fg = #282828
-comment = #928374
-sys = #7daea3
-net = #a9b665
+bg = #00000000
+fg = #c5cdd9
+border_bg = #c5cdd9
+border_fg = #2c2e34
+comment = #7f8490
+sys = #d38aea
+net = #6cb6eb
 ; }}}
 ; {{{mainbar
 [bar/mainbar]
@@ -73,9 +73,7 @@ content-background = ${colors.border_bg}
 content-foreground = ${colors.border_fg}
 content-padding = 1
 
-click-left = rofi -show window
-click-middle = rofi -show ssh
-click-right = rofi -show drun
+click-left = rofi -show drun -location 7 -yoffset -100 -xoffset 30
 
 ; scroll-up = echo scroll up
 ; scroll-down = echo scroll down
@@ -302,9 +300,9 @@ interval = 5
 ;   %pid%
 ;
 ; "click-(left|middle|right)" will be executed using "/usr/bin/env sh -c [command]"
-click-left = nm-connection-editor &
+click-left = alacritty -e nmtui-connect
 ; click-middle = networkmanager_dmenu &
-; click-right = networkmanager_dmenu &
+click-right = nm-connection-editor &
 ;;double-click-left = echo double left %counter%
 ;;double-click-middle = echo double middle %counter%
 ;;double-click-right = echo double right %counter%
@@ -337,14 +335,12 @@ click-left = gbacklight
 ; }}}
 ;{{{alsa
 [module/alsa]
-type = internal/alsa
+type = custom/text
+content = 
+content-background = ${colors.bg}
+content-foreground = ${colors.fg}
 
-format-volume = <label-volume>
-label-volume = 
-label-volume-foreground = ${colors.fg}
-
-format-muted-foreground = ${colors.comment}
-label-muted = 婢
+click-left = alacritty -e alsamixer
 ;}}}
 ; {{{netspeedup
 [module/netspeedup]
@@ -388,29 +384,32 @@ label-open-foreground = ${colors.border_fg}
 label-open-background = ${colors.border_bg}
 label-open-padding = 1
 label-close = ﰸ
-label-close-foreground = ${colors.comment}
-label-close-background = ${colors.bg}
 
-menu-0-0 = 
+menu-0-0 = 
 menu-0-0-exec = menu-open-1
-menu-0-1 = ⏼
+menu-0-1 = 
 menu-0-1-exec = menu-open-2
-menu-0-0-margin-right = 1
-menu-0-1-margin-right = 1
+menu-0-2 = ⏼
+menu-0-2-exec = menu-open-3
+menu-0-2-margin-right = 1
 
-menu-1-0 = 
-menu-1-0-exec = reboot
-menu-1-1 = 
-menu-1-1-exec = menu-open-0
-menu-1-0-margin-right = 1
+menu-1-0 = 
+menu-1-0-exec = menu-open-0
+menu-1-1 = 
+menu-1-1-exec = i3-msg exit
 menu-1-1-margin-right = 1
 
 menu-2-0 = 
 menu-2-0-exec = menu-open-0
-menu-2-1 = ⏼
-menu-2-1-exec = poweroff
-menu-2-0-margin-right = 1
+menu-2-1 = 
+menu-2-1-exec = reboot
 menu-2-1-margin-right = 1
+
+menu-3-0 = 
+menu-3-0-exec = menu-open-0
+menu-3-1 = ⏼
+menu-3-1-exec = poweroff
+menu-3-1-margin-right = 1
 ;}}}
 ; }}}
 ; {{{settings

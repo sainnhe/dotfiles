@@ -16,7 +16,7 @@ depends=(i3-gaps
          picom-git
          redshiftgui-bin
          nm-connection-editor
-         blueman
+         alsa-utils
          gbacklight
          rofi)
 

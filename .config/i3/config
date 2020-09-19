@@ -191,5 +191,6 @@ workspace_layout tabbed
 exec fcitx
 exec picom --experimental-backends -b
 exec redshiftgui
+exec qv2ray
 # }}}
 exec feh --bg-fill ~/Pictures/wallpapers/time-3.jpg
