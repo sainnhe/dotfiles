@@ -550,7 +550,6 @@ if !has('win32')
 else
   Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
 endif
-Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
