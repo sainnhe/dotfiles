@@ -12,7 +12,6 @@ depends=(spectrwm
          polybar
          lxappearance-gtk3
          feh
-         perl-anyevent-i3
          picom-git
          redshiftgui-bin
          nm-connection-editor
