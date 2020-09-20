@@ -11,7 +11,7 @@ floating_modifier $mod
 bindsym $mod+t exec alacritty
 bindsym $mod+e exec dolphin
 bindsym $mod+a exec firefox-developer-edition
-bindsym $mod+l exec sh ~/.config/polybar/scripts/toggle_tray.sh
+bindsym $mod+l exec sh ~/.config/polybar/scripts/toggle-tray.sh
 bindsym $mod+b exec sh ~/.config/polybar/scripts/toggle-bar.sh
 
 # kill focused window
