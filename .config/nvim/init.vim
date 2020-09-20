@@ -550,7 +550,7 @@ if !has('win32')
 else
   Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
 endif
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
