@@ -1,0 +1,25 @@
+# Maintainer: Sainnhe Park <sainnhe@gmail.com>
+pkgname=spectrwm-meta
+pkgdesc='Meta package to install some components for spectrwm'
+pkgver=2020.09.20
+pkgrel=1
+arch=(any)
+url='https://github.com/sainnhe/dotfiles'
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+depends=(spectrwm
+         xorg-xrdb
+         polybar
+         lxappearance-gtk3
+         feh
+         perl-anyevent-i3
+         picom-git
+         redshiftgui-bin
+         nm-connection-editor
+         alsa-utils
+         gbacklight
+         rofi)
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}

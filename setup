@@ -37,6 +37,7 @@ setup_dotfiles() { #{{{
     setup_copy .aria2
     setup_copy .config/alacritty/alacritty.yml
     setup_copy .config/i3/config
+    setup_copy .config/spectrwm
     setup_symlink .config/i3/scripts
     setup_copy .config/autostart
     setup_copy .config/autostart-scripts

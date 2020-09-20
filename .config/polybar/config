@@ -56,11 +56,7 @@ module-margin-right = 0
 
 font-0 = "FuraCode Nerd Font:size=12"
 
-; i3
-wm-restack = i3
 override-redirect = true
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
 cursor-click = pointer
 cursor-scroll = ns-resize
 ; }}}
@@ -103,7 +99,7 @@ content = 切
 content-background = ${colors.bg}
 content-foreground = ${colors.fg}
 
-click-left = telegram-desktop; i3-msg floating enable
+click-left = telegram-desktop
 ; }}}
 ; zathura{{{
 [module/zathura]
@@ -396,7 +392,7 @@ menu-0-2-margin-right = 1
 menu-1-0 = 
 menu-1-0-exec = menu-open-0
 menu-1-1 = 
-menu-1-1-exec = i3-msg exit
+menu-1-1-exec = kill -9 -1
 menu-1-1-margin-right = 1
 
 menu-2-0 = 
