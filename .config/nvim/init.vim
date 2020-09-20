@@ -560,7 +560,6 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'rhysd/committia.vim'
-Plug 'cohama/agit.vim'
 Plug 'samoshkin/vim-mergetool'
 Plug 'liuchengxu/vista.vim'
 Plug 'sbdchd/neoformat'
@@ -1232,8 +1231,8 @@ nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
 nmap <silent> <leader>gF :<C-u>call CocToggleFold()<CR>
 nmap <silent> <leader>go :<C-u>CocCommand git.browserOpen<CR>
 nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
-nmap <silent> <leader>glC :<C-u>CocList bcommits<cr>
-nmap <silent> <leader>glA :<C-u>CocList commits<cr>
+nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
+nmap <silent> <leader>gla :<C-u>CocList commits<cr>
 nmap <silent> <leader><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
 nmap <silent> <leader><space>se :<C-u>CocCommand snippets.editSnippets<cr>
 let g:which_key_map["\<space>"]['s'] = {
@@ -1261,7 +1260,7 @@ let g:which_key_map['g'] = {
       \   'u': 'chunk undo',
       \   'a': 'chunk stage',
       \   's': 'status',
-      \   'l': {'name': 'logs', 'C': 'log(cur buf) fuzzy finder', 'A': 'log(all): fuzzy finder'},
+      \   'l': {'name': 'logs', 'c': 'log (cur buf)', 'a': 'log (all)'},
       \   'M': 'commits of current chunk',
       \   'F': 'toggle fold unchanged',
       \   'o': 'open remote url in the browser',
@@ -1449,27 +1448,6 @@ let g:twiggy_num_columns = 35
 let g:twiggy_close_on_fugitive_command = 1
 let g:twiggy_remote_branch_sort = 'date'
 let g:twiggy_show_full_ui = 0
-let g:twiggy_git_log_command = 'Agit'
-"}}}
-"{{{agit
-function! s:vim_agit_mappings() abort
-  nmap <silent><buffer> <A-j>         <Plug>(agit-scrolldown-stat)
-  nmap <silent><buffer> <A-k>         <Plug>(agit-scrollup-stat)
-  nmap <silent><buffer> <C-j>         <Plug>(agit-scrolldown-diff)
-  nmap <silent><buffer> <C-k>         <Plug>(agit-scrollup-diff)
-  nmap <silent><buffer> q             <PLug>(agit-exit)
-endfunction
-augroup agitCustom
-  autocmd!
-  autocmd FileType agit call s:vim_agit_mappings()
-  autocmd FileType agit_stat nmap <silent><buffer> q <PLug>(agit-exit)
-  autocmd FileType agit_diff nmap <silent><buffer> q <PLug>(agit-exit)
-augroup END
-let g:agit_no_default_mappings = 1
-nnoremap <silent> <leader>gla :<C-u>Agit<CR>
-nnoremap <silent> <leader>glc :<C-u>AgitFile<CR>
-let g:which_key_map['g']['l']['a'] = 'log(all) browser'
-let g:which_key_map['g']['l']['c'] = 'log(cur buf) browser'
 "}}}
 "{{{committia.vim
 let g:committia_hooks = {}
