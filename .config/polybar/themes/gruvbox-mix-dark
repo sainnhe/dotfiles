@@ -1,0 +1,10 @@
+[colors]
+bg = #3c3836
+fg = #e2cca9
+border_bg = #e2cca9
+border_fg = #3c3836
+comment = #928374
+sys = #80aa9e
+net = #b0b846
+
+; vim:ft=dosini
