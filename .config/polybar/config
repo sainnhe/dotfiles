@@ -298,7 +298,7 @@ interval = 5
 ; "click-(left|middle|right)" will be executed using "/usr/bin/env sh -c [command]"
 click-left = alacritty -e nmtui-connect
 ; click-middle = networkmanager_dmenu &
-click-right = nm-connection-editor &
+click-right = alacritty -e nmtui-edit
 ;;double-click-left = echo double left %counter%
 ;;double-click-middle = echo double middle %counter%
 ;;double-click-right = echo double right %counter%

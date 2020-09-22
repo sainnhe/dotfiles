@@ -15,7 +15,6 @@ depends=(xorg-xrdb
          feh
          picom-git
          redshiftgui-bin
-         nm-connection-editor
          alsa-utils
          light
          rofi)
