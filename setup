@@ -27,6 +27,7 @@ setup_copy() {
 #}}}
 setup_dotfiles() { #{{{
     setup_symlink .Xresources
+    setup_copy .wmrc
     setup_copy .redshiftgrc
     setup_copy .gitconfig
     setup_copy .ctags
@@ -36,7 +37,7 @@ setup_dotfiles() { #{{{
     setup_symlink .weechat/weechat.conf
     setup_copy .aria2
     setup_copy .config/alacritty/alacritty.yml
-    setup_copy .config/spectrwm
+    setup_symlink .config/spectrwm/spectrwm.conf
     setup_copy .config/autostart
     setup_copy .config/autostart-scripts
     setup_symlink .config/fontconfig/fonts.conf
