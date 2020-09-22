@@ -327,7 +327,8 @@ content = 
 content-background = ${colors.bg}
 content-foreground = ${colors.fg}
 
-click-left = gbacklight
+scroll-up = light -U 5
+scroll-down = light -A 5
 ; }}}
 ;{{{alsa
 [module/alsa]

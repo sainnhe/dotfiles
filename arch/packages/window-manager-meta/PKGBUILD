@@ -17,7 +17,7 @@ depends=(xorg-xrdb
          redshiftgui-bin
          nm-connection-editor
          alsa-utils
-         gbacklight
+         light
          rofi)
 
 pkgver() {
