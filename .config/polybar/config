@@ -1,4 +1,4 @@
-include-file = ~/.config/polybar/themes/forest-night
+include-file = ~/.config/polybar/themes/soft-era
 ; {{{mainbar
 [bar/mainbar]
 dpi = 200
@@ -6,9 +6,9 @@ dpi = 200
 bottom = true
 
 ; modules
-modules-left = appmenu telegram firefox chrome dolphin zathura
+modules-left = appmenu telegram firefox chrome dolphin zathura netspeedup mem
 modules-center = date workspaces
-modules-right = alsa backlight bluetooth battery network powermenu
+modules-right = cpu netspeeddown alsa backlight bluetooth battery network powermenu
 
 ; position
 width = 98%
@@ -396,6 +396,34 @@ label-urgent-padding-right = 1
 label-occupied-padding-right = 1
 label-empty-padding-right = 0
 ;}}}
+; {{{netspeedup
+[module/netspeedup]
+type = custom/script
+exec = sh ~/.config/polybar/scripts/net-speed.sh wlp1s0 lo out
+tail = true
+format-foreground = ${colors.net}
+; }}}
+; {{{netspeeddown
+[module/netspeeddown]
+type = custom/script
+exec = sh ~/.config/polybar/scripts/net-speed.sh wlp1s0 lo in
+tail = true
+format-foreground = ${colors.net}
+; }}}
+; {{{cpu
+[module/cpu]
+type = internal/cpu
+interval = 1
+label = CPU %percentage%%
+label-foreground = ${colors.sys}
+; }}}
+; {{{mem
+[module/mem]
+type = internal/memory
+interval = 1
+label = RAM %percentage_used%%
+label-foreground = ${colors.sys}
+; }}}
 ; }}}
 ; {{{settings
 [settings]

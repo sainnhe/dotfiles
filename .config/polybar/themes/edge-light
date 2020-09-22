@@ -3,5 +3,8 @@ bg = #00000000
 fg = #4b505b
 border_bg = #6996e0
 border_fg = #4b505b
+comment = #949ba5
+sys = #b05ccc
+net = #5079be
 
 ; vim:ft=dosini
