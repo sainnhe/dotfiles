@@ -1,4 +1,4 @@
-include-file = ~/.config/polybar/themes/soft-era
+include-file = ~/.config/polybar/themes/gruvbox-mix-dark
 ; {{{mainbar
 [bar/mainbar]
 dpi = 200
@@ -6,9 +6,9 @@ dpi = 200
 bottom = true
 
 ; modules
-modules-left = appmenu telegram firefox chrome dolphin zathura netspeedup mem
+modules-left = appmenu telegram firefox chrome dolphin zathura netspeedup ntemp mem
 modules-center = date workspaces
-modules-right = cpu netspeeddown alsa backlight bluetooth battery network powermenu
+modules-right = cpu itemp netspeeddown alsa backlight bluetooth battery network powermenu
 
 ; position
 width = 98%
@@ -423,6 +423,20 @@ type = internal/memory
 interval = 1
 label = RAM %percentage_used%%
 label-foreground = ${colors.sys}
+; }}}
+; {{{itemp
+[module/itemp]
+type = custom/script
+exec = sh ~/.tmux/plugins/tmux-plugin-sysstat/scripts/itemp.sh
+tail = true
+format-foreground = ${colors.temp}
+; }}}
+; {{{ntemp
+[module/ntemp]
+type = custom/script
+exec = sh ~/.tmux/plugins/tmux-plugin-sysstat/scripts/ntemp.sh
+tail = true
+format-foreground = ${colors.temp}
 ; }}}
 ; }}}
 ; {{{settings

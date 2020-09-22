@@ -4,7 +4,8 @@ fg = #654735
 border_bg = #654735
 border_fg = #f2e5bc
 comment = #928374
-sys = #45707a
-net = #6c782e
+net = #945e80
+temp = #6c782e
+sys = #b47109
 
 ; vim:ft=dosini
