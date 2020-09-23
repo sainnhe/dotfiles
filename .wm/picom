@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+(exit 1)
+while [ $? -ne 0 ]; do
+    picom --experimental-backends
+    rm ~/core*
+done

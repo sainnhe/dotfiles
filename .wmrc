@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 xrandr --dpi 200 &
-picom --experimental-backends -b &
-polybar --reload mainbar &
+~/.wm/picom &
+~/.wm/polybar mainbar &
 fcitx &
 redshiftgui &
 qv2ray &
