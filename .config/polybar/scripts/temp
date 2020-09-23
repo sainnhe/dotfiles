@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ "$1" == intel ]]; then
+    temp=$(sensors | sed '/^[^Package]/d' | sed '/^\s*$/d' | tail -n 1 | awk '{a=$4} END {printf("%f", a)}')
+    printf "I:%3.0fºC" "$temp"
+elif [[ "$1" == nvidia ]]; then
+    temp=$(nvidia-smi -q --display=TEMPERATURE | grep 'GPU Current' | grep -Eo "[[:digit:]]+")
+    printf "N:%3.0fºC" "$temp"
+fi

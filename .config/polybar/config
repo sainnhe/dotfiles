@@ -399,14 +399,14 @@ label-empty-padding-right = 0
 ; {{{netspeedup
 [module/netspeedup]
 type = custom/script
-exec = sh ~/.config/polybar/scripts/net-speed.sh wlp1s0 lo out
+exec = ~/.config/polybar/scripts/net-speed wlp1s0 lo out
 tail = true
 format-foreground = ${colors.net}
 ; }}}
 ; {{{netspeeddown
 [module/netspeeddown]
 type = custom/script
-exec = sh ~/.config/polybar/scripts/net-speed.sh wlp1s0 lo in
+exec = ~/.config/polybar/scripts/net-speed wlp1s0 lo in
 tail = true
 format-foreground = ${colors.net}
 ; }}}
@@ -427,14 +427,14 @@ label-foreground = ${colors.sys}
 ; {{{itemp
 [module/itemp]
 type = custom/script
-exec = sh ~/.tmux/plugins/tmux-plugin-sysstat/scripts/itemp.sh
+exec = ~/.config/polybar/scripts/temp intel
 tail = true
 format-foreground = ${colors.temp}
 ; }}}
 ; {{{ntemp
 [module/ntemp]
 type = custom/script
-exec = sh ~/.tmux/plugins/tmux-plugin-sysstat/scripts/ntemp.sh
+exec = ~/.config/polybar/scripts/temp nvidia
 tail = true
 format-foreground = ${colors.temp}
 ; }}}

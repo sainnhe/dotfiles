@@ -2,7 +2,7 @@
 
 xrandr --dpi 200 &
 ~/.wm/picom &
-~/.wm/polybar mainbar &
+~/.wm/polybar &
 fcitx &
 redshiftgui &
 qv2ray &
