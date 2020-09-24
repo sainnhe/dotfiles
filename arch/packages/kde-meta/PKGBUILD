@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=kde-meta
 pkgdesc='Meta package to install some components for KDE Plasma'
-pkgver=2020.08.27
+pkgver=2020.09.24
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
@@ -65,6 +65,8 @@ depends=(plasma-meta
          telepathy-kde-integration-module
          telepathy-kde-send-file
          telepathy-kde-text-ui
+         systemdgenie
+         kshutdown
          yakuake
          zeroconf-ioslave
          konversation
