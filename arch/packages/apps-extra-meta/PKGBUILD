@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=apps-extra-meta
 pkgdesc='Meta package to install some extra apps'
-pkgver=2020.08.27
+pkgver=2020.09.24
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
@@ -43,7 +43,8 @@ depends=(firefox-developer-edition
          wine
          xsettingsd
          deepin.com.qq.office
-         lib32-freetype2-infinality-ultimate)
+         lib32-freetype2-infinality-ultimate
+         zeal-git)
 
 pkgver() {
     date --utc +"%Y.%m.%d"

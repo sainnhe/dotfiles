@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=apps-common-meta
 pkgdesc='Meta package to install some common apps'
-pkgver=2020.08.27
+pkgver=2020.09.24
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
@@ -23,8 +23,10 @@ depends=(pacman-contrib
          tcping
          hyperfine
          fd
+         neofetch
          ytop
          htop
+         nmon
          ripgrep
          ripgrep-all
          bingrep-rs
