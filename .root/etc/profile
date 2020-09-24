@@ -7,7 +7,7 @@ export VDPAU_DRIVER=nvidia
 export LIBVA_DRIVER_NAME=nvidia
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
+export XMODIFIERS="@im=fcitx"
 
 # Set our umask
 umask 022
