@@ -90,9 +90,9 @@ static const Layout layouts[] = {
     { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
     { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 #define STACKKEYS(MOD,ACTION) \
-    { MOD,  XK_j,   ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD,  XK_k,   ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD,  XK_t,   ACTION##stack,  {.i = 0 } }, \
+    { MOD,  XK_j,       ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD,  XK_k,       ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD,  XK_Return,  ACTION##stack,  {.i = 0 } }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -106,10 +106,12 @@ static const char *termcmd[]  = { TERMINAL, NULL };
 #include "shiftview.c"
 static Key keys[] = {
     /* modifier                 key             function        argument */
-    STACKKEYS(MODKEY,                           focus)          /* MOD+j/k/t: focus on lower/upper/top window */
-    STACKKEYS(MODKEY|ShiftMask,                 push)           /* MOD+Shift+j/k/t: move current window lower/upper/top */
+    STACKKEYS(MODKEY,                           focus)          /* MOD+j/k/return: focus on lower/upper/top window */
+    STACKKEYS(MODKEY|ShiftMask,                 push)           /* MOD+Shift+j/k/return: move current window lower/upper/top */
     { MODKEY,                   XK_z,           spawn,          {.v = dmenucmd } },     /* launch menu */
-    { MODKEY,                   XK_Return,      spawn,          {.v = termcmd } },      /* launch terminal */
+    { MODKEY,                   XK_t,           spawn,          {.v = termcmd } },      /* launch terminal */
+    { MODKEY,                   XK_b,           spawn,          SHCMD("~/.config/polybar/scripts/toggle-tray") },
+    { MODKEY|ShiftMask,         XK_b,           spawn,          SHCMD("~/.config/polybar/scripts/toggle-bar") },
     { MODKEY,                   XK_w,           killclient,     {0} },                  /* close window */
     { MODKEY,                   XK_equal,       incnmaster,     {.i = +1 } },           /* increase number of windows in master area */
     { MODKEY,                   XK_minus,       incnmaster,     {.i = -1 } },           /* decrease number of windows in master area */
