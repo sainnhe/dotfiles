@@ -38,7 +38,6 @@ setup_dotfiles() { #{{{
     setup_symlink .weechat/weechat.conf
     setup_copy .aria2
     setup_copy .config/alacritty/alacritty.yml
-    setup_symlink .config/spectrwm/spectrwm.conf
     setup_copy .config/autostart
     setup_copy .config/autostart-scripts
     setup_symlink .config/fontconfig/fonts.conf
