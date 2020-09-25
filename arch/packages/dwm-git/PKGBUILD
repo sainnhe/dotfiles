@@ -1,6 +1,6 @@
 pkgname=dwm-git
 _pkgname=dwm
-pkgver=r1840.28d87d4
+pkgver=r1848.ebfc17c
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
@@ -12,13 +12,9 @@ makedepends=('git')
 provides=('dwm')
 conflicts=('dwm')
 source=(dwm.desktop
-        ewmh.diff
-        polybar.diff
-        "${_pkgname}::git+https://github.com/LukeSmithxyz/dwm.git"
+        "${_pkgname}::git+https://github.com/sainnhe/dwm.git"
         config.h)
 md5sums=('7f873efd596b8b30e2cdc09583209874'
-         '958fb2e165541a7d3c5b42ef9404bb4a'
-         '393c899b096a4c15dea231f928f13562'
          'SKIP'
          'SKIP') # so you can customize config.h
 
@@ -29,7 +25,6 @@ pkgver() {
 
 prepare() {
   cd "${srcdir}/${_pkgname}"
-  git apply ../*.diff
   if [[ -f "$srcdir/config.h" ]]; then
     cp -fv "$srcdir/config.h" config.h
   fi
