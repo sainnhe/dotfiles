@@ -29,6 +29,7 @@ setup_dotfiles() { #{{{
     setup_symlink .Xresources
     setup_copy .wmrc
     setup_symlink .wm
+    setup_symlink .dwm
     setup_copy .redshiftgrc
     setup_copy .gitconfig
     setup_copy .ctags
