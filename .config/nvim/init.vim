@@ -31,6 +31,10 @@ if exists('g:fvim_loaded')
   FVimToggleFullScreen
 endif
 "}}}
+"Neovide{{{
+let g:neovide_cursor_vfx_mode = 'torpedo'
+let g:neovide_fullscreen = v:true
+"}}}
 "}}}
 "{{{Global
 "{{{Function
