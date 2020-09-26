@@ -1,13 +1,4 @@
-; {{{color scheme
-[colors]
-bg = #282828
-fg = #d4be98
-border_bg = #d4be98
-border_fg = #282828
-comment = #928374
-sys = #7daea3
-net = #a9b665
-; }}}
+include-file = ~/.config/polybar/themes/gruvbox-mix-dark
 ; {{{mainbar
 [bar/mainbar]
 dpi = 200
@@ -15,9 +6,9 @@ dpi = 200
 bottom = true
 
 ; modules
-modules-left = appmenu telegram firefox chrome dolphin zathura netspeedup mem
-modules-center = date
-modules-right = cpu netspeeddown alsa backlight bluetooth battery network powermenu
+modules-left = appmenu telegram firefox chrome dolphin zathura netspeedup ntemp mem
+modules-center = date workspaces
+modules-right = cpu itemp netspeeddown alsa backlight bluetooth battery network powermenu
 
 ; position
 width = 98%
@@ -56,11 +47,7 @@ module-margin-right = 0
 
 font-0 = "FuraCode Nerd Font:size=12"
 
-; i3
-wm-restack = i3
 override-redirect = true
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
 cursor-click = pointer
 cursor-scroll = ns-resize
 ; }}}
@@ -73,9 +60,7 @@ content-background = ${colors.border_bg}
 content-foreground = ${colors.border_fg}
 content-padding = 1
 
-click-left = rofi -show window
-click-middle = rofi -show ssh
-click-right = rofi -show drun
+click-left = rofi -show drun -location 7 -yoffset -100 -xoffset 30
 
 ; scroll-up = echo scroll up
 ; scroll-down = echo scroll down
@@ -105,7 +90,7 @@ content = 切
 content-background = ${colors.bg}
 content-foreground = ${colors.fg}
 
-click-left = telegram-desktop; i3-msg floating enable
+click-left = telegram-desktop
 ; }}}
 ; zathura{{{
 [module/zathura]
@@ -302,9 +287,9 @@ interval = 5
 ;   %pid%
 ;
 ; "click-(left|middle|right)" will be executed using "/usr/bin/env sh -c [command]"
-click-left = nm-connection-editor &
+click-left = alacritty -e nmtui-connect
 ; click-middle = networkmanager_dmenu &
-; click-right = networkmanager_dmenu &
+click-right = alacritty -e nmtui-edit
 ;;double-click-left = echo double left %counter%
 ;;double-click-middle = echo double middle %counter%
 ;;double-click-right = echo double right %counter%
@@ -333,30 +318,95 @@ content = 
 content-background = ${colors.bg}
 content-foreground = ${colors.fg}
 
-click-left = gbacklight
+scroll-up = light -U 5
+scroll-down = light -A 5
 ; }}}
 ;{{{alsa
 [module/alsa]
-type = internal/alsa
+type = custom/text
+content = 
+content-background = ${colors.bg}
+content-foreground = ${colors.fg}
 
-format-volume = <label-volume>
-label-volume = 
-label-volume-foreground = ${colors.fg}
+click-left = alacritty -e alsamixer
+;}}}
+;{{{powermenu
+[module/powermenu]
+type = custom/menu
 
-format-muted-foreground = ${colors.comment}
-label-muted = 婢
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.border_fg}
+label-open-background = ${colors.border_bg}
+label-open-padding = 1
+label-close = ﰸ
+
+menu-0-0 = 
+menu-0-0-exec = menu-open-1
+menu-0-1 = 
+menu-0-1-exec = menu-open-2
+menu-0-2 = ⏼
+menu-0-2-exec = menu-open-3
+menu-0-2-margin-right = 1
+
+menu-1-0 = 
+menu-1-0-exec = menu-open-0
+menu-1-1 = 
+menu-1-1-exec = kill -9 -1
+menu-1-1-margin-right = 1
+
+menu-2-0 = 
+menu-2-0-exec = menu-open-0
+menu-2-1 = 
+menu-2-1-exec = reboot
+menu-2-1-margin-right = 1
+
+menu-3-0 = 
+menu-3-0-exec = menu-open-0
+menu-3-1 = ⏼
+menu-3-1-exec = poweroff
+menu-3-1-margin-right = 1
+;}}}
+;{{{workspaces
+[module/workspaces]
+type = internal/xworkspaces
+
+pin-workspaces = true
+enable-click = true
+enable-scroll = true
+
+label-active = 
+label-occupied = 
+label-urgent = 硫
+label-empty =
+
+format = <label-state>
+
+label-monitor = %name%
+; label-active-foreground = ${color.accent}
+; label-occupied-foreground = ${color.yellow}
+; label-urgent-foreground = ${color.red}
+; label-empty-foreground = ${color.modulefg-alt}
+
+label-active-padding-right = 1
+label-urgent-padding-right = 1
+label-occupied-padding-right = 1
+label-empty-padding-right = 0
 ;}}}
 ; {{{netspeedup
 [module/netspeedup]
 type = custom/script
-exec = sh ~/.config/polybar/scripts/net-speed.sh wlp1s0 lo out
+exec = ~/.config/polybar/scripts/net-speed wlp1s0 lo out
 tail = true
 format-foreground = ${colors.net}
 ; }}}
 ; {{{netspeeddown
 [module/netspeeddown]
 type = custom/script
-exec = sh ~/.config/polybar/scripts/net-speed.sh wlp1s0 lo in
+exec = ~/.config/polybar/scripts/net-speed wlp1s0 lo in
 tail = true
 format-foreground = ${colors.net}
 ; }}}
@@ -374,44 +424,20 @@ interval = 1
 label = RAM %percentage_used%%
 label-foreground = ${colors.sys}
 ; }}}
-
-;{{{powermenu
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = ${colors.border_fg}
-label-open-background = ${colors.border_bg}
-label-open-padding = 1
-label-close = ﰸ
-label-close-foreground = ${colors.comment}
-label-close-background = ${colors.bg}
-
-menu-0-0 = 
-menu-0-0-exec = menu-open-1
-menu-0-1 = ⏼
-menu-0-1-exec = menu-open-2
-menu-0-0-margin-right = 1
-menu-0-1-margin-right = 1
-
-menu-1-0 = 
-menu-1-0-exec = reboot
-menu-1-1 = 
-menu-1-1-exec = menu-open-0
-menu-1-0-margin-right = 1
-menu-1-1-margin-right = 1
-
-menu-2-0 = 
-menu-2-0-exec = menu-open-0
-menu-2-1 = ⏼
-menu-2-1-exec = poweroff
-menu-2-0-margin-right = 1
-menu-2-1-margin-right = 1
-;}}}
+; {{{itemp
+[module/itemp]
+type = custom/script
+exec = ~/.config/polybar/scripts/temp intel
+tail = true
+format-foreground = ${colors.temp}
+; }}}
+; {{{ntemp
+[module/ntemp]
+type = custom/script
+exec = ~/.config/polybar/scripts/temp nvidia
+tail = true
+format-foreground = ${colors.temp}
+; }}}
 ; }}}
 ; {{{settings
 [settings]

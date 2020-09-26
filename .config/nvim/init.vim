@@ -554,8 +554,7 @@ if !has('win32')
 else
   Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
 endif
-Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
@@ -565,7 +564,6 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'rhysd/committia.vim'
-Plug 'cohama/agit.vim'
 Plug 'samoshkin/vim-mergetool'
 Plug 'liuchengxu/vista.vim'
 Plug 'sbdchd/neoformat'
@@ -588,6 +586,7 @@ Plug 'elzr/vim-json', {'for': 'json'}
       \| au BufNewFile,BufRead *.json call Func_vim_json()
 Plug 'masukomi/vim-markdown-folding'
 Plug 'yianwillis/vimcdoc'
+Plug 'voldikss/vim-translator'
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & npm install'}
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-easy-align'
@@ -602,9 +601,6 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-lastpat'
 Plug 'pechorin/any-jump.vim'
 Plug 'chaoren/vim-wordmotion'
-if !has('win32')
-  Plug 'nvim-treesitter/nvim-treesitter'
-endif
 "{{{
 call plug#end()
 "}}}
@@ -835,7 +831,9 @@ let g:colorSchemeList = {}
 let g:colorSchemeList['Forest Night'] = [
       \   'set background=dark',
       \   'let g:forest_night_disable_italic_comment = 1',
+      \   "let g:forest_night_sign_column_background = 'none'",
       \   'let g:forest_night_lightline_disable_bold = 1',
+      \   'let g:forest_night_better_performance = !has("win32")',
       \   'colorscheme forest-night',
       \   'call SwitchLightlineColorScheme("forest_night")'
       \   ]
@@ -1150,7 +1148,6 @@ let g:coc_global_extensions = [
       \ 'coc-project',
       \ 'coc-gitignore',
       \ 'coc-bookmark',
-      \ 'coc-translator',
       \ 'coc-highlight',
       \ 'coc-actions',
       \ 'coc-yank',
@@ -1238,8 +1235,8 @@ nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
 nmap <silent> <leader>gF :<C-u>call CocToggleFold()<CR>
 nmap <silent> <leader>go :<C-u>CocCommand git.browserOpen<CR>
 nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
-nmap <silent> <leader>glC :<C-u>CocList bcommits<cr>
-nmap <silent> <leader>glA :<C-u>CocList commits<cr>
+nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
+nmap <silent> <leader>gla :<C-u>CocList commits<cr>
 nmap <silent> <leader><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
 nmap <silent> <leader><space>se :<C-u>CocCommand snippets.editSnippets<cr>
 let g:which_key_map["\<space>"]['s'] = {
@@ -1267,7 +1264,7 @@ let g:which_key_map['g'] = {
       \   'u': 'chunk undo',
       \   'a': 'chunk stage',
       \   's': 'status',
-      \   'l': {'name': 'logs', 'C': 'log(cur buf) fuzzy finder', 'A': 'log(all): fuzzy finder'},
+      \   'l': {'name': 'logs', 'c': 'log (cur buf)', 'a': 'log (all)'},
       \   'M': 'commits of current chunk',
       \   'F': 'toggle fold unchanged',
       \   'o': 'open remote url in the browser',
@@ -1314,11 +1311,6 @@ let g:which_key_map['m'] = {
       \   'p': 'prev',
       \   "\<Space>": 'list',
       \   }
-"}}}
-"{{{coc-translator
-nmap <leader><Space>t <Plug>(coc-translator-p)
-vmap <leader><Space>t <Plug>(coc-translator-pv)
-let g:which_key_map["\<space>"]['t'] = 'translate'
 "}}}
 "}}}
 "{{{ale
@@ -1460,27 +1452,6 @@ let g:twiggy_num_columns = 35
 let g:twiggy_close_on_fugitive_command = 1
 let g:twiggy_remote_branch_sort = 'date'
 let g:twiggy_show_full_ui = 0
-let g:twiggy_git_log_command = 'Agit'
-"}}}
-"{{{agit
-function! s:vim_agit_mappings() abort
-  nmap <silent><buffer> <A-j>         <Plug>(agit-scrolldown-stat)
-  nmap <silent><buffer> <A-k>         <Plug>(agit-scrollup-stat)
-  nmap <silent><buffer> <C-j>         <Plug>(agit-scrolldown-diff)
-  nmap <silent><buffer> <C-k>         <Plug>(agit-scrollup-diff)
-  nmap <silent><buffer> q             <PLug>(agit-exit)
-endfunction
-augroup agitCustom
-  autocmd!
-  autocmd FileType agit call s:vim_agit_mappings()
-  autocmd FileType agit_stat nmap <silent><buffer> q <PLug>(agit-exit)
-  autocmd FileType agit_diff nmap <silent><buffer> q <PLug>(agit-exit)
-augroup END
-let g:agit_no_default_mappings = 1
-nnoremap <silent> <leader>gla :<C-u>Agit<CR>
-nnoremap <silent> <leader>glc :<C-u>AgitFile<CR>
-let g:which_key_map['g']['l']['a'] = 'log(all) browser'
-let g:which_key_map['g']['l']['c'] = 'log(cur buf) browser'
 "}}}
 "{{{committia.vim
 let g:committia_hooks = {}
@@ -1501,25 +1472,10 @@ function! g:committia_hooks.edit_open(info)
 endfunction
 "}}}
 "{{{mergetool
-let g:mergetool_layout = 'mr'  " `l`, `b`, `r`, `m`
+let g:mergetool_layout = 'br,m'  " `l`, `b`, `r`, `m`
 let g:mergetool_prefer_revision = 'local'  " `local`, `base`, `remote`
-nmap <leader>gmt <plug>(MergetoolToggle)
-nnoremap <silent> <leader>gml :<C-u>call MergetoolLayoutCustom()<CR>
-let g:which_key_map['g']['m'] = {
-      \   'name': 'merge tool',
-      \   't': 'toggle',
-      \   'l': 'layout'
-      \   }
-let g:mergetool_layout_custom = 0
-function! MergetoolLayoutCustom()
-  if g:mergetool_layout_custom == 0
-    let g:mergetool_layout_custom = 1
-    execute 'MergetoolToggleLayout lbr,m'
-  else
-    let g:mergetool_layout_custom = 0
-    execute 'MergetoolToggleLayout mr'
-  endif
-endfunction
+nmap <leader>gm <plug>(MergetoolToggle)
+let g:which_key_map['g']['m'] = 'merge'
 "}}}
 noremap <silent> <leader>gd :Gdiffsplit<cr>
 noremap <silent> <leader>gw :Gwrite<cr>
@@ -1769,6 +1725,14 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[''] = "\uf15b"
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "}}}
+"{{{vim-translator
+let g:translator_target_lang = 'zh'
+let g:translator_source_lang = 'auto'
+let g:translator_default_engines = ['bing', 'youdao']
+nmap <leader><Space>t <Plug>TranslateW
+vmap <leader><Space>t <Plug>TranslateWV
+let g:which_key_map["\<space>"]['t'] = 'translate'
+"}}}
 "{{{markdown-preview.nvim
 if !has('win32')
   let g:mkdp_browser = 'firefox-developer-edition'
@@ -1830,45 +1794,6 @@ function! CurrentLineI()
         \ ? ['v', head_pos, tail_pos]
         \ : 0
 endfunction
-"}}}
-"{{{nvim-treesitter
-if !has('win32')
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-    highlight = {
-        enable = false,                                         -- false will disable the whole extension
-        disable = { 'json' },
-    },
-    incremental_selection = {
-        enable = false,
-        keymaps = {                                             -- mappings for incremental selection (visual mappings)
-          init_selection = '<plug>(ts-init-selection)',         -- maps in normal mode to init the node/scope selection
-          scope_incremental = '<plug>(ts-scope-incremental)',   -- increment to the upper scope (as defined in locals.scm)
-          node_incremental = '<plug>(ts-node-incremental)',     -- increment to the upper named parent
-          node_decremental = '<plug>(ts-node-decremental)',     -- decrement to the previous node
-        }
-    },
-    textobjects = { -- syntax-aware textobjects
-        enable = true,
-        disable = {},
-        keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner"
-        }
-    },
-    ensure_installed = 'all' -- one of 'all', 'language', or a list of languages
-}
-EOF
-  nnoremap <silent> <leader><space>f :<C-u>call Toggle_foldmethod()<CR>
-  let g:which_key_map["\<space>"]['f'] = 'fold method'
-  function! Toggle_foldmethod() abort
-    if &foldmethod ==# 'marker'
-      set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
-    else
-      set foldmethod=marker
-    endif
-  endfunction
-endif
 "}}}
 "{{{any-jump.vim
 let g:any_jump_disable_default_keybindings = 1

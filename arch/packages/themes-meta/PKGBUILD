@@ -1,0 +1,26 @@
+# Maintainer: Sainnhe Park <sainnhe@gmail.com>
+pkgname=themes-meta
+pkgdesc='Meta package to install some themes'
+pkgver=2020.08.27
+pkgrel=1
+arch=(any)
+url='https://github.com/sainnhe/dotfiles'
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+depends=(papirus-icon-theme
+         capitaine-cursors
+         numix-cursor-theme
+         arc-gtk-theme
+         x-arc-plus
+         x-arc-white
+         x-arc-darker
+         x-arc-shadow
+         sierrabreeze-kwin-decoration-git
+         sensual-kde-theme-git
+         sensual-kvantum-theme-git
+         sensual-breeze-icons-git
+         sensual-breeze-git)
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}

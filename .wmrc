@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+xrandr --dpi 200 &
+~/.wm/picom &
+~/.wm/polybar &
+fcitx &
+redshiftgui &
+qv2ray &
+feh --bg-fill ~/Pictures/wallpapers/landscape-17.jpg &

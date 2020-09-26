@@ -1,0 +1,58 @@
+# Maintainer: Sainnhe Park <sainnhe@gmail.com>
+pkgname=pacman-hooks
+pkgver=2020.08.27
+pkgrel=1
+pkgdesc='Pacman hooks'
+arch=('any')
+url="https://github.com/sainnhe/dotfiles"
+license=('unknown')
+depends=('git' 'pacman-contrib' 'rsync' 'systemd' 'findutils' 'pkgfile' 'grub')
+makedepends=('rust')
+install="${pkgname}.install"
+source=('pacman-hook-desbma::git+https://github.com/desbma/pacman-hooks.git'
+        'pacman-hook-systemd-cleanup::git+https://github.com/YHNdnzj/systemd-cleanup-pacman-hook.git'
+        'pacman-hook-kernel-modules::git+https://github.com/saber-nyan/kernel-modules-hook.git'
+        'pacman-hook-pkgfile::git+https://aur.archlinux.org/pacman-pkgfile-hook.git'
+        'pacman-hook-grub::git+https://aur.archlinux.org/grub-hook.git')
+md5sums=('SKIP'
+         'SKIP'
+         'SKIP'
+         'SKIP'
+         'SKIP')
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}
+
+build() {
+    cd "${srcdir}/pacman-hook-desbma/check-broken-packages"
+    cargo build --release --locked
+}
+
+package() {
+    install -m755 -d "${pkgdir}/usr/share/libalpm/hooks"
+
+    cd "${srcdir}/pacman-hook-desbma"
+    install -Dm 644 -t "${pkgdir}/usr/share/libalpm/hooks" check-broken-packages/check-broken-packages.hook
+    install -Dm 644 -t "${pkgdir}/usr/share/libalpm/hooks" pacdiff/pacdiff.hook
+    install -Dm 755 -t "${pkgdir}/usr/share/libalpm/scripts" pacdiff/pacdiff_diffprog
+    install -Dm 644 sync/boot_sync.hook "${pkgdir}/usr/share/libalpm/hooks/99-boot_sync.hook"
+    install -Dm 644 sync/root_sync.hook "${pkgdir}/usr/share/libalpm/hooks/99-root_sync.hook"
+    install -Dm 755 -t "${pkgdir}/usr/bin" check-broken-packages/target/release/check-broken-packages
+
+    cd "${srcdir}/pacman-hook-systemd-cleanup"
+    install -Dm644 systemd-cleanup.hook "$pkgdir/usr/share/libalpm/hooks/systemd-cleanup.hook"
+    install -Dm755 systemd-cleanup "$pkgdir/usr/share/libalpm/scripts/systemd-cleanup"
+
+    cd "${srcdir}/pacman-hook-kernel-modules"
+    install -Dm644 linux-modules-cleanup.conf "${pkgdir}/usr/lib/tmpfiles.d/linux-modules-cleanup.conf"
+    install -Dm644 linux-modules-cleanup.service "${pkgdir}/usr/lib/systemd/system/linux-modules-cleanup.service"
+    install -Dm644 10-linux-modules-post.hook "${pkgdir}/usr/share/libalpm/hooks/10-linux-modules-post.hook"
+    install -Dm644 10-linux-modules-pre.hook "${pkgdir}/usr/share/libalpm/hooks/10-linux-modules-pre.hook"
+
+    cd "${srcdir}/pacman-hook-pkgfile"
+    install -D -m0644 pkgfile.hook "${pkgdir}/usr/share/libalpm/hooks/pkgfile.hook"
+
+    cd "${srcdir}/pacman-hook-grub"
+    install -m644 grub.hook "${pkgdir}/usr/share/libalpm/hooks/grub.hook"
+}

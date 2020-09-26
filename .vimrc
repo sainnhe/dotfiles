@@ -314,7 +314,7 @@ syntax enable
 set t_Co=256
 set termguicolors
 set background=dark
-colo onedark
+colo edge
 " Statusline{{{
 " :h 'statusline'
 set noshowmode
