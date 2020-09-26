@@ -1,13 +1,13 @@
 pkgname=dwm-git
 _pkgname=dwm
-pkgver=r1852.bd1fa38
+pkgver=r1856.3cd4c1b
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
 arch=('any')
 license=('MIT')
 options=(zipman)
-depends=('libx11' 'libxinerama' 'libxft-bgra-git' 'window-manager-meta')
+depends=('libx11' 'libxinerama' 'libxft-bgra-git' 'yajl' 'window-manager-meta')
 makedepends=('git')
 provides=('dwm')
 conflicts=('dwm')
