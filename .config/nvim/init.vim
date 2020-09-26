@@ -1468,25 +1468,10 @@ function! g:committia_hooks.edit_open(info)
 endfunction
 "}}}
 "{{{mergetool
-let g:mergetool_layout = 'mr'  " `l`, `b`, `r`, `m`
+let g:mergetool_layout = 'br,m'  " `l`, `b`, `r`, `m`
 let g:mergetool_prefer_revision = 'local'  " `local`, `base`, `remote`
-nmap <leader>gmt <plug>(MergetoolToggle)
-nnoremap <silent> <leader>gml :<C-u>call MergetoolLayoutCustom()<CR>
-let g:which_key_map['g']['m'] = {
-      \   'name': 'merge tool',
-      \   't': 'toggle',
-      \   'l': 'layout'
-      \   }
-let g:mergetool_layout_custom = 0
-function! MergetoolLayoutCustom()
-  if g:mergetool_layout_custom == 0
-    let g:mergetool_layout_custom = 1
-    execute 'MergetoolToggleLayout lbr,m'
-  else
-    let g:mergetool_layout_custom = 0
-    execute 'MergetoolToggleLayout mr'
-  endif
-endfunction
+nmap <leader>gm <plug>(MergetoolToggle)
+let g:which_key_map['g']['m'] = 'merge'
 "}}}
 noremap <silent> <leader>gd :Gdiffsplit<cr>
 noremap <silent> <leader>gw :Gwrite<cr>
