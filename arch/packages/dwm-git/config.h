@@ -6,7 +6,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int snap      = 0;       /* snap pixel */
+static const unsigned int snap      = 0;        /* snap pixel */
 static const unsigned int gappih    = 30;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 30;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 30;       /* horiz outer gap between windows and screen edge */
@@ -15,9 +15,11 @@ static const int swallowfloating    = 1;        /* 1 means swallow floating wind
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const int yoffset            = 70;       /* y-offset */
-static const char *fonts[]          = { "monospace:size=12", "JoyPixels:pixelsize=12:antialias=true:autohint=true"  };
-static char dmenufont[]             = "monospace:size=12";
+static const int vertpad            = 0;        /* vertical padding of bar */
+static const int sidepad            = 0;        /* horizontal padding of bar */
+static const int yoffset            = 70;       /* y-offset, use this to create an empty area for other bars */
+static const char *fonts[]          = { "monospace:size=12" };
+static const char dmenufont[]       = "monospace:size=12";
 static char normbgcolor[]           = "#2c2e34";
 static char normbordercolor[]       = "#3b3e48";
 static char normfgcolor[]           = "#828a98";
@@ -40,6 +42,12 @@ static Sp scratchpads[] = {
     /* name          cmd  */
     {"spterm",      spcmd1},
     {"spranger",    spcmd2},
+};
+
+static const char *const autostart[] = {
+    "alacritty", NULL,
+    "sh", "-c", "~/.wmrc", NULL,
+    NULL /* terminate */
 };
 
 /* tagging */
