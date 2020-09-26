@@ -27,6 +27,7 @@ setup_copy() {
 #}}}
 setup_dotfiles() { #{{{
     setup_symlink .Xresources
+    setup_symlink .xinitrc
     setup_copy .wmrc
     setup_symlink .wm
     setup_copy .redshiftgrc
@@ -54,7 +55,6 @@ setup_dotfiles() { #{{{
     setup_copy .config/zathura/zathurarc
     setup_symlink .config/zathura/themes
     setup_copy .config/libinput-gestures.conf
-    setup_copy .xinitrc
     printf "${BBLUE}>> Setup root directory manually.${NC}"
 } #}}}
 setup_archlinuxcn() { #{{{
