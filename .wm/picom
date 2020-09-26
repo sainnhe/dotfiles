@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 rm ~/core* &>/dev/null
+picom --experimental-backends
 (exit 1)
 while [ $? -ne 0 ]; do
+    sleep 3
+    rm ~/core* &>/dev/null
     picom --experimental-backends
 done
