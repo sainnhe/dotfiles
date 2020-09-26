@@ -370,7 +370,7 @@ menu-3-1 = ⏼
 menu-3-1-exec = poweroff
 menu-3-1-margin-right = 1
 ;}}}
-;{{{powermenu
+;{{{workspaces
 [module/workspaces]
 type = internal/xworkspaces
 
