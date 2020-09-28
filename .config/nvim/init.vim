@@ -550,7 +550,7 @@ if !has('win32')
 else
   Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
 endif
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
@@ -1145,7 +1145,6 @@ let g:coc_global_extensions = [
       \ 'coc-gitignore',
       \ 'coc-bookmark',
       \ 'coc-highlight',
-      \ 'coc-actions',
       \ 'coc-yank',
       \ 'coc-snippets',
       \ 'coc-syntax',
@@ -1217,7 +1216,7 @@ nmap <leader>jt <Plug>(coc-type-definition)
 nmap <leader>jr <Plug>(coc-references)
 nmap <leader>jm <Plug>(coc-implementation)
 nmap <leader><Space>r <Plug>(coc-refactor)
-nmap <silent> <leader><Space>a :<C-u>CocCommand actions.open<CR>
+nmap <leader><Space>a <Plug>(coc-codeaction-line)
 vmap <leader><Space>a <Plug>(coc-codeaction-selected)
 nmap <leader>v <Plug>(coc-range-select)
 vmap <leader>v <Plug>(coc-range-select)
