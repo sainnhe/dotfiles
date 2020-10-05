@@ -141,8 +141,8 @@ schemes:
       red:     '#e68183'
       green:   '#a7c080'
       yellow:  '#d9bb80'
-      blue:    '#89beba'
-      magenta: '#d3a0bc'
+      blue:    '#83b6af'
+      magenta: '#d39bb6'
       cyan:    '#87c095'
       white:   '#d8caac'
 
@@ -151,8 +151,8 @@ schemes:
       red:     '#e68183'
       green:   '#a7c080'
       yellow:  '#d9bb80'
-      blue:    '#89beba'
-      magenta: '#d3a0bc'
+      blue:    '#83b6af'
+      magenta: '#d39bb6'
       cyan:    '#87c095'
       white:   '#d8caac'
 # }}}
