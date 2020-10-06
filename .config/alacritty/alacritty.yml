@@ -137,7 +137,7 @@ schemes:
       foreground: '#d8caac'
 
     normal:
-      black:   '#868d80'
+      black:   '#505a60'
       red:     '#e68183'
       green:   '#a7c080'
       yellow:  '#d9bb80'
@@ -147,7 +147,7 @@ schemes:
       white:   '#d8caac'
 
     bright:
-      black:   '#868d80'
+      black:   '#505a60'
       red:     '#e68183'
       green:   '#a7c080'
       yellow:  '#d9bb80'
