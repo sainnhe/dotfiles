@@ -24,6 +24,7 @@ depends=(pacman-contrib
          hyperfine
          fd
          neofetch
+         onefetch
          ytop
          htop
          nmon
