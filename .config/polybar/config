@@ -1,4 +1,4 @@
-include-file = ~/.config/polybar/themes/gruvbox-mix-dark
+include-file = ~/.config/polybar/themes/forest-night
 ; {{{mainbar
 [bar/mainbar]
 dpi = 200
