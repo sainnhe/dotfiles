@@ -5,16 +5,16 @@ if !filereadable(expand('~/.config/nvim/autoload/plug.vim'))
   execute '!curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
-  let g:vimIsInTmux = 1
+  let g:vim_is_in_tmux = 1
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 else
-  let g:vimIsInTmux = 0
+  let g:vim_is_in_tmux = 0
 endif
-if exists('g:vimManPager')
-  let g:vimEnableStartify = 0
+if exists('g:vim_man_pager')
+  let g:vim_enable_startify = 0
 else
-  let g:vimEnableStartify = 1
+  let g:vim_enable_startify = 1
 endif
 execute 'source '.expand('~/.config/nvim/env.vim')
 "}}}
@@ -38,35 +38,14 @@ let g:neovide_fullscreen = v:true
 "}}}
 "{{{Global
 "{{{Function
-"{{{CloseOnLastTab
-function! CloseOnLastTab()
+"{{{s:close_on_last_tab
+function! s:close_on_last_tab()
   if tabpagenr('$') == 1
     execute 'windo bd'
     execute 'q'
   elseif tabpagenr('$') > 1
     execute 'windo bd'
   endif
-endfunction
-"}}}
-"{{{HumanSize
-fun! HumanSize(bytes) abort
-  let l:bytes = a:bytes
-  let l:sizes = ['B', 'KiB', 'MiB', 'GiB']
-  let l:i = 0
-  while l:bytes >= 1024
-    let l:bytes = l:bytes / 1024.0
-    let l:i += 1
-  endwhile
-  return printf('%.1f%s', l:bytes, l:sizes[l:i])
-endfun
-"}}}
-"{{{ForceCloseRecursively
-function! ForceCloseRecursively()
-  let Loop_Var = 0
-  while Loop_Var < 100
-    execute 'q!'
-    Loop_Var = s:Loop_Var + 1
-  endwhile
 endfunction
 "}}}
 "{{{s:go_indent
@@ -95,16 +74,17 @@ endfunction
 nnoremap <silent> gi :<c-u>call <SID>go_indent(v:count1, 1)<cr>
 nnoremap <silent> gI :<c-u>call <SID>go_indent(v:count1, -1)<cr>
 "}}}
-"{{{SynStack
-function! SynStack()
+"{{{s:get_highlight
+function! s:get_highlight()
   if !exists('*synstack')
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 "}}}
-"{{{ApplyLocalSettings
-function! ApplyLocalSettings(dirname)
+"{{{s:local_vimrc
+" Apply `.settings.vim`
+function! s:local_vimrc(dirname)
   " Don't try to walk a remote directory tree -- takes too long, too many
   " what if's
   let l:netrwProtocol = strpart(a:dirname, 0, stridx(a:dirname, '://'))
@@ -118,7 +98,7 @@ function! ApplyLocalSettings(dirname)
   " Walk up to the top of the directory tree
   let l:parentDir = strpart(l:curDir, 0, strridx(l:curDir, '/'))
   if isdirectory(l:parentDir)
-    call ApplyLocalSettings(l:parentDir)
+    call s:local_vimrc(l:parentDir)
   endif
 
   " Now walk back down the path and source .settings.vim as you find them. This
@@ -130,7 +110,7 @@ function! ApplyLocalSettings(dirname)
 endfunction
 augroup LocalSettings
   autocmd!
-  autocmd! BufEnter * call ApplyLocalSettings(expand("<afile>:p:h"))
+  autocmd! BufEnter * call s:local_vimrc(expand("<afile>:p:h"))
 augroup END
 "}}}
 "}}}
@@ -259,7 +239,7 @@ nnoremap <leader>p "+p
 " Alt+T新建tab
 nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call ExplorerStartify()<CR>
 " Alt+W关闭当前标签
-nnoremap <silent> <A-w> :<C-u>call CloseOnLastTab()<CR>
+nnoremap <silent> <A-w> :<C-u>call <SID>close_on_last_tab()<CR>
 " Alt+上下左右可以跳转和移动窗口
 nnoremap <A-left> <Esc>gT
 nnoremap <A-right> <Esc>gt
@@ -307,6 +287,8 @@ nmap zn $vbda<Space><CR><Space><CR><Space><ESC>v<up><up>zfa<Backspace><down><rig
 " zs保存折叠视图，zl加载折叠视图
 nnoremap zs :<C-u>mkview<CR>
 nnoremap zl :<C-u>loadview<CR>
+" 获取当前光标下的高亮组
+nnoremap <leader><Space>h :call <SID>get_highlight()<CR>
 "}}}
 "{{{InsertMode
 " Alt+X进入普通模式
@@ -395,12 +377,6 @@ endif
 "{{{Command
 " Q强制退出
 command Q q!
-" {{{PasteBin
-function PasteBin() range
-  echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| proxychains -q pastebinit | xclip -selection clipboard && xclip -o -selection clipboard')
-endfunction
-com -range=% -nargs=0 PasteBin :<line1>,<line2>call PasteBin()
-" }}}
 "}}}
 "}}}
 "{{{Plugin
@@ -413,8 +389,8 @@ augroup vimPlugMappings
 augroup END
 
 " automatically install missing plugins on startup
-if g:vimAutoInstall == 1
-  augroup vim_plug_auto_install
+if g:vim_plug_auto_install == 1
+  augroup vim_vim_plug_auto_install
     autocmd!
     autocmd VimEnter *
           \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
@@ -526,10 +502,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'albertomontesg/lightline-asyncrun'
 Plug 'rmolin88/pomodoro.vim'
-if g:vimIsInTmux == 1 && !has('win32')
+if g:vim_is_in_tmux == 1 && !has('win32')
   Plug 'sainnhe/tmuxline.vim', {'on': ['Tmuxline', 'TmuxlineSnapshot']}
 endif
-if g:vimEnableStartify == 1
+if g:vim_enable_startify == 1
   Plug 'mhinz/vim-startify'
 endif
 Plug 'norcalli/nvim-colorizer.lua'
@@ -637,14 +613,14 @@ function! ArtifyInactiveTabNum(n) abort"{{{
   return Artify(a:n, 'double_struck')." \ue0bb"
 endfunction"}}}
 function! ArtifyLightlineTabFilename(s) abort"{{{
-  if g:lightlineArtify ==# 2
+  if g:vim_lightline_artify ==# 2
     return Artify(lightline#tab#filename(a:s), 'monospace')
   else
     return lightline#tab#filename(a:s)
   endif
 endfunction"}}}
 function! ArtifyLightlineMode() abort"{{{
-  if g:lightlineArtify ==# 2
+  if g:vim_lightline_artify ==# 2
     return Artify(lightline#mode(), 'monospace')
   else
     return lightline#mode()
@@ -672,7 +648,7 @@ let g:lightline#ale#indicator_errors = "\uf00d"
 let g:lightline#ale#indicator_ok = "\uf00c"
 let g:lightline#asyncrun#indicator_none = ''
 let g:lightline#asyncrun#indicator_run = 'Running...'
-if g:lightlineArtify == 0
+if g:vim_lightline_artify == 0
   let g:lightline.active = {
         \ 'left': [ [ 'mode', 'paste' ],
         \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
@@ -734,7 +710,6 @@ let g:lightline.component = {
       \ 'absolutepath': '%F',
       \ 'relativepath': '%f',
       \ 'filename': '%t',
-      \ 'filesize': "%{HumanSize(line2byte('$') + len(getline('$')))}",
       \ 'fileencoding': '%{&fenc!=#""?&fenc:&enc}',
       \ 'fileformat': '%{&fenc!=#""?&fenc:&enc}[%{&ff}]',
       \ 'filetype': '%{&ft!=#""?&ft:"no ft"}',
@@ -770,7 +745,7 @@ let g:lightline.component_type = {
       \ }
 "}}}
 "{{{tmuxline.vim
-if g:vimIsInTmux == 1 && !has('win32')
+if g:vim_is_in_tmux == 1 && !has('win32')
   let g:tmuxline_preset = {
         \'a'    : '#S',
         \'b'    : '%R',
@@ -827,8 +802,8 @@ let g:gruvbox_material_palette_soft_era = {
       \ 'none':             ['NONE',      'NONE']
       \ }
 " }}}
-let g:colorSchemeList = {}
-let g:colorSchemeList['Forest Night'] = [
+let g:color_scheme_list = {}
+let g:color_scheme_list['Forest Night'] = [
       \   'set background=dark',
       \   'let g:forest_night_disable_italic_comment = 1',
       \   "let g:forest_night_sign_column_background = 'none'",
@@ -837,7 +812,7 @@ let g:colorSchemeList['Forest Night'] = [
       \   'colorscheme forest-night',
       \   'call SwitchLightlineColorScheme("forest_night")'
       \   ]
-let g:colorSchemeList['Gruvbox Material Dark'] = [
+let g:color_scheme_list['Gruvbox Material Dark'] = [
       \   'set background=dark',
       \   "let g:gruvbox_material_background = 'medium'",
       \   "let g:gruvbox_material_palette = 'material'",
@@ -851,7 +826,7 @@ let g:colorSchemeList['Gruvbox Material Dark'] = [
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
-let g:colorSchemeList['Gruvbox Mix Dark'] = [
+let g:color_scheme_list['Gruvbox Mix Dark'] = [
       \   'set background=dark',
       \   "let g:gruvbox_material_background = 'medium'",
       \   "let g:gruvbox_material_palette = 'mix'",
@@ -865,7 +840,7 @@ let g:colorSchemeList['Gruvbox Mix Dark'] = [
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
-let g:colorSchemeList['Gruvbox Material Light'] = [
+let g:color_scheme_list['Gruvbox Material Light'] = [
       \   'set background=light',
       \   "let g:gruvbox_material_background = 'soft'",
       \   "let g:gruvbox_material_palette = 'material'",
@@ -879,7 +854,7 @@ let g:colorSchemeList['Gruvbox Material Light'] = [
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
-let g:colorSchemeList['Edge Dark'] = [
+let g:color_scheme_list['Edge Dark'] = [
       \   'set background=dark',
       \   'let g:edge_disable_italic_comment = 1',
       \   'let g:edge_enable_italic = 1',
@@ -890,7 +865,7 @@ let g:colorSchemeList['Edge Dark'] = [
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
-let g:colorSchemeList['Edge Light'] = [
+let g:color_scheme_list['Edge Light'] = [
       \   'set background=light',
       \   'let g:edge_disable_italic_comment = 1',
       \   'let g:edge_enable_italic = 1',
@@ -901,7 +876,7 @@ let g:colorSchemeList['Edge Light'] = [
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
-let g:colorSchemeList['Sonokai Default'] = [
+let g:color_scheme_list['Sonokai Default'] = [
       \   "let g:sonokai_style = 'default'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
@@ -912,7 +887,7 @@ let g:colorSchemeList['Sonokai Default'] = [
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
-let g:colorSchemeList['Sonokai Shusia'] = [
+let g:color_scheme_list['Sonokai Shusia'] = [
       \   "let g:sonokai_style = 'shusia'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
@@ -923,7 +898,7 @@ let g:colorSchemeList['Sonokai Shusia'] = [
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
-let g:colorSchemeList['Sonokai Andromeda'] = [
+let g:color_scheme_list['Sonokai Andromeda'] = [
       \   "let g:sonokai_style = 'andromeda'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
@@ -934,7 +909,7 @@ let g:colorSchemeList['Sonokai Andromeda'] = [
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
-let g:colorSchemeList['Sonokai Atlantis'] = [
+let g:color_scheme_list['Sonokai Atlantis'] = [
       \   "let g:sonokai_style = 'atlantis'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
@@ -945,7 +920,7 @@ let g:colorSchemeList['Sonokai Atlantis'] = [
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
-let g:colorSchemeList['Sonokai Maia'] = [
+let g:color_scheme_list['Sonokai Maia'] = [
       \   "let g:sonokai_style = 'maia'",
       \   'let g:sonokai_disable_italic_comment = 1',
       \   'let g:sonokai_enable_italic = 1',
@@ -956,7 +931,7 @@ let g:colorSchemeList['Sonokai Maia'] = [
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
-let g:colorSchemeList['Soft Era'] = [
+let g:color_scheme_list['Soft Era'] = [
       \   'set background=light',
       \   "let g:gruvbox_material_background = 'medium'",
       \   'let g:gruvbox_material_palette = g:gruvbox_material_palette_soft_era',
@@ -978,19 +953,19 @@ function SwitchLightlineColorScheme(lightlineName) abort
   call lightline#update()
 endfunction
 function SwitchColorScheme(name) abort
-  for l:item in g:colorSchemeList[a:name]
+  for l:item in g:color_scheme_list[a:name]
     execute l:item
   endfor
 endfunction
-function! s:Colo(a, l, p)
-  return keys(g:colorSchemeList)
+function! s:colo(a, l, p)
+  return keys(g:color_scheme_list)
 endfunction
-command! -bar -nargs=? -complete=customlist,<sid>Colo Colo call SwitchColorScheme(<f-args>)
-call SwitchColorScheme(g:vimColorScheme)
+command! -bar -nargs=? -complete=customlist,<sid>colo Colo call SwitchColorScheme(<f-args>)
+call SwitchColorScheme(g:vim_color_scheme)
 "}}}
 "}}}
 "{{{vim-startify
-if g:vimEnableStartify == 1
+if g:vim_enable_startify == 1
   let g:startify_session_dir = '~/.vim/sessions'
   let g:startify_files_number = 5
   let g:startify_update_oldfiles = 1
@@ -1063,7 +1038,8 @@ let g:which_key_map = {
       \   'c': { 'name': 'comment' }
       \   }
 let g:which_key_map["\<space>"] = {
-      \   'name': 'Beta'
+      \   'name': 'Beta',
+      \   'h': 'highlight'
       \   }
 "}}}
 "{{{nvim-colorizer.lua
@@ -1653,7 +1629,7 @@ let g:matchup_matchparen_hi_surround_always = 1  " highlight surrounding
 let g:matchup_delim_noskips = 2  " don't recognize anything in comments
 "}}}
 " {{{vim-manpager
-if exists('g:vimManPager') && !has('win32')
+if exists('g:vim_man_pager') && !has('win32')
   function! s:vim_manpager_mappings() abort
     nmap <C-]> <Plug>(manpager-open)
     nmap <silent><buffer> <C-j> ]t

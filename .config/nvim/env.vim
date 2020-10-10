@@ -1,6 +1,6 @@
-let g:vimAutoInstall = 1
-let g:lightlineArtify = 1
-let g:vimColorScheme = 'Forest Night'
+let g:vim_plug_auto_install = 1
+let g:vim_lightline_artify = 1
+let g:vim_color_scheme = 'Forest Night'
 if !has('win32')
   let g:startify_bookmarks = [
         \ {'R': '~/repo/'},
