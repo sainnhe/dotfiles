@@ -1214,6 +1214,12 @@ inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
 inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
 inoremap <expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
 inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
+nnoremap <expr> <C-pagedown> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-pagedown>"
+nnoremap <expr> <C-pageup> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-pageup>"
+inoremap <expr> <C-pagedown> coc#util#has_float() ? coc#util#float_scroll_i(1) : "\<C-pagedown>"
+inoremap <expr> <C-pageup> coc#util#has_float() ? coc#util#float_scroll_i(-1) : "\<C-pageup>"
+vnoremap <expr> <C-pagedown> coc#util#has_float() ? coc#util#float_scroll_i(1) : "\<C-pagedown>"
+vnoremap <expr> <C-pageup> coc#util#has_float() ? coc#util#float_scroll_i(-1) : "\<C-pageup>"
 nmap <leader>f<Space> :<C-u>CocList<CR>
 nmap <leader>fy :<C-u>CocList yank<CR>
 nmap <leader>fs :<C-u>CocList symbols<CR>
