@@ -370,7 +370,6 @@ zinit ice wait'0' lucid; zinit light skywind3000/z.lua
 zinit ice wait'1' lucid; zinit light ytet5uy4/fzf-widgets
 zinit ice wait'0' lucid; zinit light urbainvaes/fzf-marks
 zinit ice wait'1' lucid; zinit light hlissner/zsh-autopair
-zinit ice wait'1' lucid; zinit light peterhurford/git-it-on.zsh
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/extract/extract.plugin.zsh
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
@@ -396,14 +395,27 @@ export FZF_DEFAULT_OPTS="
 --color=info:1,prompt:2,pointer:5,marker:1,spinner:3,header:11
 --bind=tab:down,btab:up,ctrl-s:toggle,ctrl-p:toggle-preview
 "
-source /usr/share/fzf/completion.zsh  # 模糊匹配路径，**<Tab>触发
+
+# C-f fzf-widgets
+# A-f file-widget
+# C-r history search
+# **<Tab> fuzzy matching path
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
 bindkey '^F'  fzf-select-widget
+bindkey -r "^[c"
+bindkey -r "^T"
+bindkey '\ef' fzf-file-widget
 # }}}
 # {{{fzf-marks
-# Usage: mark fzm C-d
+# Usage:
+# $ mark        # mark current directory
+# $ fzm         # select marked directories using fzf
+# ^j            # select marked directories using fzf
 FZF_MARKS_FILE="$HOME/.cache/fzf-marks"
 FZF_MARKS_COMMAND="fzf"
 FZF_MARKS_COLOR_RHS="249"
+FZF_MARKS_JUMP="^j"
 # }}}
 # {{{zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
