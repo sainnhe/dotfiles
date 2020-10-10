@@ -415,12 +415,12 @@ bindkey '\ef' fzf-file-widget
 # Usage:
 # $ mark        # mark current directory
 # $ fzm         # select marked directories using fzf
-# ^j            # select marked directories using fzf
+# ^z            # select marked directories using fzf
 # ^d            # delete selected items when in fzf
 FZF_MARKS_FILE="$HOME/.cache/fzf-marks"
 FZF_MARKS_COMMAND="fzf"
 FZF_MARKS_COLOR_RHS="249"
-FZF_MARKS_JUMP="^j"
+FZF_MARKS_JUMP="^z"
 # }}}
 # {{{zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
