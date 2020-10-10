@@ -1166,6 +1166,7 @@ let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-tslint-plugin',
       \ 'coc-rust-analyzer',
+      \ 'coc-julia',
       \ 'coc-sh',
       \ 'coc-markdownlint',
       \ 'coc-json',
