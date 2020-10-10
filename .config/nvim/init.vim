@@ -1112,33 +1112,6 @@ let g:which_key_map["\<space>"]['g'] = 'resize window'
 "}}}
 " Productivity
 "{{{coc.nvim
-"{{{coc-functions
-function! CocHighlight() abort"{{{
-  if &filetype !=# 'markdown'
-    call CocActionAsync('highlight')
-  endif
-endfunction"}}}
-function! CocFloatingLockToggle() abort"{{{
-  if g:CocFloatingLock == 0
-    let g:CocFloatingLock = 1
-  elseif g:CocFloatingLock == 1
-    let g:CocFloatingLock = 0
-  endif
-endfunction"}}}
-function! CocHover() abort"{{{
-  if !coc#util#has_float() && g:CocHoverEnable == 1
-    call CocActionAsync('doHover')
-    call CocActionAsync('showSignatureHelp')
-  endif
-endfunction"}}}
-function! CocToggleFold() abort"{{{
-  if &foldmethod ==# 'marker'
-    execute 'CocCommand git.foldUnchanged'
-  else
-    set foldmethod=marker
-  endif
-endfunction"}}}
-"}}}
 "{{{coc-init
 if !has('win32')
   let g:coc_data_home = expand('~/.local/share/nvim/coc')
@@ -1177,14 +1150,14 @@ let g:coc_global_extensions = [
 "{{{coc-settings
 augroup CocCustom
   autocmd!
-  autocmd CursorHold * silent call CocHover()
-  autocmd CursorHold * silent call CocHighlight()
+  autocmd CursorHold * silent if g:coc_hover_enable == 1 && !coc#util#has_float() | call CocActionAsync('doHover') | endif
+  autocmd CursorHold * silent if &filetype !=# 'markdown' | call CocActionAsync('highlight') | endif
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   autocmd User CocGitStatusChange call lightline#update()
   autocmd CursorHold * CocCommand git.refresh
 augroup END
 hi link BookMarkHI GitGutterAdd
-let g:CocHoverEnable = 0
+let g:coc_hover_enable = 0
 let g:tmuxcomplete#trigger = ''
 set hidden
 set completeopt=noinsert,noselect,menuone
@@ -1240,7 +1213,7 @@ nmap <leader>gM <Plug>(coc-git-commit)
 nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
 nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
 nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
-nmap <silent> <leader>gF :<C-u>call CocToggleFold()<CR>
+nmap <silent> <leader>gF :<C-u>CocCommand git.foldUnchanged<CR>
 nmap <silent> <leader>go :<C-u>CocCommand git.browserOpen<CR>
 nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
 nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
@@ -1283,7 +1256,7 @@ let g:which_key_map['f'] = {
       \   's': 'symbols',
       \   'y': 'yank',
       \   }
-nnoremap <silent> ? :let g:CocHoverEnable = g:CocHoverEnable == 1 ? 0 : 1<CR>
+nnoremap <silent> ? :let g:coc_hover_enable = (g:coc_hover_enable == 1 ? 0 : 1)<CR>
 "}}}
 "{{{coc-explorer
 function ToggleCocExplorer()
