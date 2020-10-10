@@ -383,6 +383,10 @@ source "$HOME/.zsh-theme"
 FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
 # }}}
 # {{{fzf
+# $ fzf                 # fuzzy search files
+# Tab/Down/S-Tab/Up     # navigate
+# C-s                   # Select items
+# C-p                   # Toggle preview
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
 -m --height=50%
@@ -412,6 +416,7 @@ bindkey '\ef' fzf-file-widget
 # $ mark        # mark current directory
 # $ fzm         # select marked directories using fzf
 # ^j            # select marked directories using fzf
+# ^d            # delete selected items when in fzf
 FZF_MARKS_FILE="$HOME/.cache/fzf-marks"
 FZF_MARKS_COMMAND="fzf"
 FZF_MARKS_COLOR_RHS="249"
