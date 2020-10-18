@@ -1177,7 +1177,7 @@ nmap <leader>jD <Plug>(coc-declaration)
 nmap <leader>jt <Plug>(coc-type-definition)
 nmap <leader>jr <Plug>(coc-references)
 nmap <leader>jm <Plug>(coc-implementation)
-nmap <leader><Space>r <Plug>(coc-refactor)
+nmap <leader><Space>r :<C-u>call CocActionAsync('rename')<CR>
 nmap <leader><Space>a <Plug>(coc-codeaction-line)
 vmap <leader><Space>a <Plug>(coc-codeaction-selected)
 nmap <leader>v <Plug>(coc-range-select)
@@ -1209,7 +1209,7 @@ let g:which_key_map['j'] = {
       \   'r': 'reference',
       \   'm': 'implementation',
       \   }
-let g:which_key_map["\<space>"]['r'] = 'refactor'
+let g:which_key_map["\<space>"]['r'] = 'rename'
 let g:which_key_map["\<space>"]['a'] = 'code action'
 let g:which_key_map['v'] = 'range select'
 let g:which_key_map['g'] = {
