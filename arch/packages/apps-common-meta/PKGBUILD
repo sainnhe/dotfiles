@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=apps-common-meta
 pkgdesc='Meta package to install some common apps'
-pkgver=2020.10.10
+pkgver=2020.10.18
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
@@ -47,7 +47,8 @@ depends=(pacman-contrib
          arch-wiki-docs
          arch-wiki-lite
          man-pages-zh_cn
-         wikiman)
+         wikiman
+         palette-git)
 
 pkgver() {
     date --utc +"%Y.%m.%d"

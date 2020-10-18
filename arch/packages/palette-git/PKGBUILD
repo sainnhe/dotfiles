@@ -1,0 +1,30 @@
+# Maintainer: Sainnhe Park <sainnhe@gmail.com>
+pkgname="palette-git"
+pkgdesc='Print color palette'
+url='https://github.com/stark/Color-Scripts'
+provides=('palette')
+conflicts=('palette')
+arch=('any')
+depends=('bash' 'python' 'perl')
+makedepends=('git')
+license=('unknown')
+source=("${pkgname}::git+${url}.git"
+        'palette')
+pkgver=r59.299a816
+pkgrel=1
+sha256sums=('SKIP'
+            '7d749899574a06a280c5b50b821135d7c8fe171c515aecfcc4ebdc4c12437d44')
+
+pkgver() {
+    cd "${srcdir}/${pkgname}"
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+    cd "${srcdir}/${pkgname}/color-scripts"
+    find . -type f -exec \
+        install -Dm 755 '{}' "${pkgdir}/usr/bin/{}" \;
+    cd "${pkgdir}/usr/bin"
+    for f in *; do mv "$f" $(echo "$f" | sed 's/^/palette-/g'); done
+    install -Dm 755 "${srcdir}/palette" "${pkgdir}/usr/bin/palette"
+}
