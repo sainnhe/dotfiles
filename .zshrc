@@ -353,7 +353,8 @@ alias net-test="bash ~/repo/scripts/func/net-test.sh"
 alias fix-wifi="sudo iw dev wlp1s0 set power_save off"
 alias gencomp-help='gencomp'
 alias nvistat='nvidia-smi'
-alias proxyenv='export HTTP_PROXY=http://127.0.0.1:1081 && export HTTP_PROXY=http://127.0.0.1:1081'
+alias proxyenv='export HTTP_PROXY=http://127.0.0.1:1081 && export HTTPS_PROXY=http://127.0.0.1:1081 && export http_proxy=http://127.0.0.1:1081 && export https_proxy=http://127.0.0.1:1081'
+alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
 # }}}
 # {{{Plugins
 # https://github.com/zdharma/zinit
