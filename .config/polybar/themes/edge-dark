@@ -2,8 +2,8 @@
 bg = #00000000
 fg = #c5cdd9
 border_bg = #c5cdd9
-border_fg = #2c2e34
-comment = #7f8490
+border_fg = #2b2d37
+comment = #7e8294
 net = #a0c980
 temp = #6cb6eb
 sys = #d38aea

@@ -92,7 +92,7 @@ schemes:
       blue: '#5079be'
       magenta: '#b05ccc'
       cyan: '#3a8b84'
-      white: '#949ba5'
+      white: '#dde2e7'
 
     bright:
       black: '#4b505b'
@@ -102,33 +102,33 @@ schemes:
       blue: '#5079be'
       magenta: '#b05ccc'
       cyan: '#3a8b84'
-      white: '#949ba5'
+      white: '#dde2e7'
 # }}}
 # {{{ Edge Dark
   edge_dark: &edge_dark
     primary:
-      background: '#2c2e34'
+      background: '#2b2d37'
       foreground: '#c5cdd9'
 
     normal:
-      black: '#3e4249'
+      black: '#3a3e4e'
       red: '#ec7279'
       green: '#a0c980'
       yellow: '#deb974'
       blue: '#6cb6eb'
       magenta: '#d38aea'
       cyan: '#5dbbc1'
-      white: '#88909f'
+      white: '#c5cdd9'
 
     bright:
-      black: '#3e4249'
+      black: '#3a3e4e'
       red: '#ec7279'
       green: '#a0c980'
       yellow: '#deb974'
       blue: '#6cb6eb'
       magenta: '#d38aea'
       cyan: '#5dbbc1'
-      white: '#88909f'
+      white: '#c5cdd9'
 # }}}
 # {{{ Forest Night
   forest_night: &forest_night

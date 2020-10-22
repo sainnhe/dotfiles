@@ -856,6 +856,7 @@ let g:color_scheme_list['Gruvbox Material Light'] = [
       \   ]
 let g:color_scheme_list['Edge Dark'] = [
       \   'set background=dark',
+      \   "let g:edge_style = 'aura'",
       \   'let g:edge_disable_italic_comment = 1',
       \   'let g:edge_enable_italic = 1',
       \   "let g:edge_cursor = 'blue'",
@@ -867,6 +868,7 @@ let g:color_scheme_list['Edge Dark'] = [
       \   ]
 let g:color_scheme_list['Edge Light'] = [
       \   'set background=light',
+      \   "let g:edge_style = 'aura'",
       \   'let g:edge_disable_italic_comment = 1',
       \   'let g:edge_enable_italic = 1',
       \   "let g:edge_cursor = 'purple'",
