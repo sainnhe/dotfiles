@@ -1171,23 +1171,23 @@ inoremap <expr> <C-pagedown> coc#util#has_float() ? coc#util#float_scroll_i(1) :
 inoremap <expr> <C-pageup> coc#util#has_float() ? coc#util#float_scroll_i(-1) : "\<C-pageup>"
 vnoremap <expr> <C-pagedown> coc#util#has_float() ? coc#util#float_scroll_i(1) : "\<C-pagedown>"
 vnoremap <expr> <C-pageup> coc#util#has_float() ? coc#util#float_scroll_i(-1) : "\<C-pageup>"
-nmap <leader>f<Space> :<C-u>CocList<CR>
-nmap <leader>fy :<C-u>CocList yank<CR>
-nmap <leader>fs :<C-u>CocList symbols<CR>
-nmap <leader>jd <Plug>(coc-definition)
-nmap <leader>jD <Plug>(coc-declaration)
-nmap <leader>jt <Plug>(coc-type-definition)
-nmap <leader>jr <Plug>(coc-references)
-nmap <leader>jm <Plug>(coc-implementation)
-nmap <leader><Space>r :<C-u>call CocActionAsync('rename')<CR>
-nmap <leader><Space>a <Plug>(coc-codeaction-line)
-vmap <leader><Space>a <Plug>(coc-codeaction-selected)
-nmap <leader>v <Plug>(coc-range-select)
-vmap <leader>v <Plug>(coc-range-select)
-nmap <leader>gj <Plug>(coc-git-nextchunk)
-nmap <leader>gk <Plug>(coc-git-prevchunk)
-nmap <leader>gi <Plug>(coc-git-chunkinfo)
-nmap <leader>gM <Plug>(coc-git-commit)
+nmap <silent> <leader>f<Space> :<C-u>CocList<CR>
+nmap <silent> <leader>fy :<C-u>CocList yank<CR>
+nmap <silent> <leader>fs :<C-u>CocList symbols<CR>
+nmap <silent> <leader>jd <Plug>(coc-definition)
+nmap <silent> <leader>jD <Plug>(coc-declaration)
+nmap <silent> <leader>jt <Plug>(coc-type-definition)
+nmap <silent> <leader>jr <Plug>(coc-references)
+nmap <silent> <leader>jm <Plug>(coc-implementation)
+nmap <silent> <leader><Space>r :<C-u>call CocActionAsync('rename')<CR>
+nmap <silent> <leader><Space>a <Plug>(coc-codeaction-line)
+vmap <silent> <leader><Space>a <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>v <Plug>(coc-range-select)
+vmap <silent> <leader>v <Plug>(coc-range-select)
+nmap <silent> <leader>gj <Plug>(coc-git-nextchunk)
+nmap <silent> <leader>gk <Plug>(coc-git-prevchunk)
+nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
+nmap <silent> <leader>gM <Plug>(coc-git-commit)
 nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
 nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
 nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
