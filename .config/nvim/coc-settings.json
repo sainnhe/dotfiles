@@ -1,9 +1,5 @@
 {
-    "$schema": "/home/sainnhe/.local/share/nvim/plugins/coc.nvim/data/schema.json",
-    // "http.proxy": "http://127.0.0.1:1081",
-    // "http.proxyStrictSSL": "http://127.0.0.1:1081",
     "suggest.timeout": 500,
-    "suggest.triggerCompletionWait": 0,
     "suggest.enablePreview": true,
     "suggest.maxPreviewWidth": 35,
     "suggest.detailMaxLength": 100,
@@ -49,7 +45,6 @@
     "codeLens.enable": true,
     "codeLens.separator": "‣",
     "list.indicator": "➤",
-    "list.maxHeight": 15,
     "list.insertMappings": {
         "<C-c>": "do:exit",
         "<C-p>": "action:preview",
@@ -115,7 +110,6 @@
         "vue-html": "html",
         "javascript": "javascriptreact"
     },
-    "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappingMode": "none",
     "explorer.previewAction.onHover": false,
