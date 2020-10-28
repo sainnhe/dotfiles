@@ -3,7 +3,7 @@
 # {{{env
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-export PATH="$HOME/.nimble/bin:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
+export PATH="$HOME/.nimble/bin:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$HOME/.yarn/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
 export TERM=xterm-256color
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
