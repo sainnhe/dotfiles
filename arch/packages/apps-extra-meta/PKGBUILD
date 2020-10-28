@@ -24,6 +24,7 @@ depends=(firefox-developer-edition
          fontweak
          persepolis
          code
+         code-marketplace
          typora
          bleachbit
          fcitx
