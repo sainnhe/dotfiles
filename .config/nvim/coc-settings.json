@@ -162,24 +162,9 @@
     "clangd.semanticHighlighting": true,
     "rust-analyzer.serverPath": "rust-analyzer",
     "rust-analyzer.updates.channel": "nightly",
+    "rust-analyzer.cargo.allFeatures": true,
     "markdownlint.config": {
         "MD013": false,
         "MD041": false
-    },
-    "languageserver": {
-        "ccls": {
-            "enable": false,
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "objc", "objcpp"],
-            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                },
-                "highlight": {
-                    "lsRanges": true
-                }
-            }
-        }
     }
 }
