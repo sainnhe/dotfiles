@@ -18,7 +18,6 @@ depends=(neovim
          words
          python-wcwidth
          clang
-         ccls
          tidy
          python-jedi
          python-pylint
