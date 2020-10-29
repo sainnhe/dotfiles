@@ -113,7 +113,7 @@
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappingMode": "none",
     "explorer.previewAction.onHover": false,
-    "explorer.keyMappings": {
+    "explorer.keyMappings.global": {
         "s": "toggleSelection",
         ":": "actionMenu",
 
@@ -179,24 +179,6 @@
                 "highlight": {
                     "lsRanges": true
                 }
-            }
-        },
-        "pylance": {
-            "enable": true,
-            "filetypes": ["python"],
-            "command": "pylance",
-            "args": ["--stdio"],
-            "initializationOptions": {},
-            "settings": {
-                "python.analysis.typeCheckingMode": "basic",
-                "python.analysis.diagnosticMode": "openFilesOnly",
-                "python.analysis.stubPath": "./typings",
-                "python.analysis.autoSearchPaths": true,
-                "python.analysis.extraPaths": [],
-                "python.analysis.diagnosticSeverityOverrides": {},
-                "python.analysis.useLibraryCodeForTypes": true,
-                "python.analysis.autoImportCompletions": true,
-                "python.analysis.completeFunctionParens": false
             }
         }
     }

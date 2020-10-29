@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=neovim-meta
 pkgdesc='Meta package to install some components for neovim'
-pkgver=2020.10.11
+pkgver=2020.10.29
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
@@ -24,7 +24,6 @@ depends=(neovim
          python-pylint
          flake8
          mypy
-         python-pycodestyle
          python-pydocstyle
          flawfinder
          cppcheck
@@ -44,8 +43,7 @@ depends=(neovim
          js-beautify
          universal-ctags-git
          julia
-         julia-docs
-         pylance)
+         julia-docs)
 
 pkgver() {
     date --utc +"%Y.%m.%d"
