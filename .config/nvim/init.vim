@@ -1159,19 +1159,15 @@ inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" :
       \ <SID>check_back_space() ? "\<S-TAB>" :
       \ coc#refresh()
-imap <expr> <C-z> pumvisible() ? "\<C-e>" : "\<Esc>\u\i"
-imap <expr> <C-c> pumvisible() ? "\<Space>\<Backspace>" : "\<C-c>"
-imap <expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
-inoremap <expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
-inoremap <expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
-inoremap <expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
-inoremap <expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
-nnoremap <expr> <C-pagedown> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-pagedown>"
-nnoremap <expr> <C-pageup> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-pageup>"
-inoremap <expr> <C-pagedown> coc#util#has_float() ? coc#util#float_scroll_i(1) : "\<C-pagedown>"
-inoremap <expr> <C-pageup> coc#util#has_float() ? coc#util#float_scroll_i(-1) : "\<C-pageup>"
-vnoremap <expr> <C-pagedown> coc#util#has_float() ? coc#util#float_scroll_i(1) : "\<C-pagedown>"
-vnoremap <expr> <C-pageup> coc#util#has_float() ? coc#util#float_scroll_i(-1) : "\<C-pageup>"
+inoremap <silent><expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
+inoremap <silent><expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
+inoremap <silent><expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
+inoremap <silent><expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
+inoremap <silent><expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
+nnoremap <silent><expr> <C-pagedown> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-pagedown>"
+nnoremap <silent><expr> <C-pageup> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-pageup>"
+inoremap <silent><expr> <C-pagedown> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<C-pagedown>"
+inoremap <silent><expr> <C-pageup> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<C-pageup>"
 nmap <silent> <leader>f<Space> :<C-u>CocList<CR>
 nmap <silent> <leader>fy :<C-u>CocList yank<CR>
 nmap <silent> <leader>fs :<C-u>CocList symbols<CR>
