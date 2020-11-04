@@ -1285,7 +1285,7 @@ let g:ale_linters = {
       \       'json': [],
       \       'markdown': [],
       \       'python': ['pylint', 'flake8', 'mypy', 'pydocstyle'],
-      \       'rust': ['cargo'],
+      \       'rust': [],
       \       'sh': ['shellcheck'],
       \       'text': [],
       \       'vim': ['vint'],
