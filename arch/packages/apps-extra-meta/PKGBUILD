@@ -1,12 +1,13 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=apps-extra-meta
 pkgdesc='Meta package to install some extra apps'
-pkgver=2020.09.24
+pkgver=2020.11.04
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
 provides=("${pkgname}")
 conflicts=("${pkgname}")
+install="${pkgname}.install"
 depends=(firefox-developer-edition
          chromium
          alacritty
@@ -41,9 +42,9 @@ depends=(firefox-developer-edition
          wps-office-mime-cn
          wps-office-mui-zh-cn
          wps-office-fonts
-         wine
+         deepin-wine-tim
+         deepin-wine
          xsettingsd
-         deepin.com.qq.office
          lib32-freetype2-infinality-ultimate
          zeal-git)
 
