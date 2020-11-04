@@ -40,6 +40,7 @@ setup_dotfiles() { #{{{
     setup_copy .aria2
     setup_copy .config/alacritty/alacritty.yml
     setup_copy .config/autostart
+    setup_copy .config/xsettingsd
     setup_copy .config/autostart-scripts
     setup_symlink .config/fontconfig/fonts.conf
     setup_copy .config/polybar

@@ -1,9 +1,12 @@
 post_install() {
     /opt/deepinwine/apps/Deepin-TIM/run.sh -d
+    /opt/deepinwine/apps/Deepin-WeChat/run.sh -d
 
     BBLUE='\033[1;34m'
     GREEN='\033[0;32m'
     NC='\033[0m' # No Color
 
-    printf "${BBLUE}HIDPI: ${GREEN}https://github.com/countstarlight/deepin-wine-tim-arch/issues/1${NC}\n"
+    printf "${BBLUE}HIDPI: ${GREEN}\$ env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" deepin-wine winecfg${NC}\n"
+    printf "${BBLUE}HIDPI: ${GREEN}\$ env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" deepin-wine winecfg${NC}\n"
+    printf "${BBLUE}注意：登录微信后请在设置里关闭自动更新。${NC}\n"
 }

@@ -28,6 +28,7 @@ depends=(firefox-developer-edition
          code-marketplace
          typora
          bleachbit
+         zeal-git
          fcitx
          fcitx-configtool
          fcitx-libpinyin
@@ -43,10 +44,10 @@ depends=(firefox-developer-edition
          wps-office-mui-zh-cn
          wps-office-fonts
          deepin-wine-tim
+         deepin-wine-wechat
          deepin-wine
          xsettingsd
-         lib32-freetype2-infinality-ultimate
-         zeal-git)
+         lib32-freetype2-infinality-ultimate)
 
 pkgver() {
     date --utc +"%Y.%m.%d"
