@@ -71,7 +71,7 @@
     "git.conflictedDecorator": "⇡⇣",
     "git.addGBlameToVirtualText": true,
     "git.virtualTextPrefix": " \ue729 ",
-    "project.dbpath": "~/.cache/vim/coc-project",
+    "project.dbpath": "~/.local/share/nvim/coc/project.json",
     "project.rootPatterns": [".git", ".svn", ".root", ".project", ".hg"],
     "bookmark.sign": "\uf5c2",
     "suggest.languageSourcePriority": 99,
