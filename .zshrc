@@ -340,7 +340,7 @@ alias job-ls='jobs -l'
 alias nnn='PAGER= nnn'
 alias vimpager="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER -"
 alias help='bash ~/repo/scripts/func/help.sh'
-alias TCT='bash ~/repo/scripts/func/TCT.sh'
+alias colorscheme='bash ~/repo/scripts/func/colorscheme.sh'
 alias tmux-start='tmux new-session -s Alpha'
 alias px='proxychains -q'
 alias hn='proxychains -q hn'
