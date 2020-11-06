@@ -1183,15 +1183,15 @@ vmap <silent> <leader>v <Plug>(coc-range-select)
 nmap <silent> <leader>gj <Plug>(coc-git-nextchunk)
 nmap <silent> <leader>gk <Plug>(coc-git-prevchunk)
 nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
-nmap <silent> <leader>gM <Plug>(coc-git-commit)
 nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
 nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
 nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
 nmap <silent> <leader>gF :<C-u>CocCommand git.foldUnchanged<CR>
 nmap <silent> <leader>go :<C-u>CocCommand git.browserOpen<CR>
 nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
-nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
 nmap <silent> <leader>gla :<C-u>CocList commits<cr>
+nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
+nmap <silent> <leader>gll <Plug>(coc-git-commit)
 nmap <silent> <leader><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
 nmap <silent> <leader><space>se :<C-u>CocCommand snippets.editSnippets<cr>
 let g:which_key_map["\<space>"]['s'] = {
@@ -1219,8 +1219,7 @@ let g:which_key_map['g'] = {
       \   'u': 'chunk undo',
       \   'a': 'chunk stage',
       \   's': 'status',
-      \   'l': {'name': 'logs', 'c': 'log (cur buf)', 'a': 'log (all)'},
-      \   'M': 'commits of current chunk',
+      \   'l': {'name': 'logs', 'a': 'log (all)', 'c': 'log (cur buf)', 'l': 'log (cur line)'},
       \   'F': 'toggle fold unchanged',
       \   'o': 'open remote url in the browser',
       \   }

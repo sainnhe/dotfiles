@@ -69,7 +69,6 @@
     "git.stagedDecorator": " ",
     "git.untrackedDecorator": " ✩",
     "git.conflictedDecorator": "⇡⇣",
-    "git.addGBlameToVirtualText": true,
     "git.virtualTextPrefix": " \ue729 ",
     "project.dbpath": "~/.local/share/nvim/coc/project.json",
     "project.rootPatterns": [".git", ".svn", ".root", ".project", ".hg"],
