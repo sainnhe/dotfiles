@@ -621,6 +621,25 @@ font:
 #     x: 0
 #     y: 0
 # # }}}
+# # {{{Code New Roman
+# font:
+#   normal:
+#     family: CodeNewRoman Nerd Font Mono
+#     style: Book
+#   bold:
+#     family: CodeNewRoman Nerd Font Mono
+#     style: Bold
+#   italic:
+#     family: CodeNewRoman Nerd Font Mono
+#     style: Book
+#   size: 13.0
+#   offset:
+#     x: 0
+#     y: 8
+#   glyph_offset:
+#     x: 0
+#     y: 0
+# # }}}
 # # {{{Operator Mono Book
 # font:
 #   normal:

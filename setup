@@ -248,6 +248,7 @@ setup_fonts() { #{{{
         noto-fonts \
         ttf-symbola \
         nerd-fonts-fira-code \
+        nerd-fonts-code-new-roman \
         ttf-monaco
     mkdir -p ~/repo
     git clone git@github.com:sainnhe/icursive-nerd-font-non-free.git ~/repo/icursive-nerd-font-non-free
