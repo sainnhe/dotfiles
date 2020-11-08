@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=apps-common-meta
 pkgdesc='Meta package to install some common apps'
-pkgver=2020.10.18
+pkgver=2020.11.08
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
@@ -15,7 +15,7 @@ depends=(pacman-contrib
          fzf
          lsd
          svn
-         terminal-markdown-viewer
+         python-mdv-git
          python2-pygments
          nodejs-commitizen
          nodejs-cz-conventional-changelog

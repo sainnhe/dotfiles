@@ -131,7 +131,7 @@ setup_nvidia() { #{{{
         lib32-opencl-nvidia \
         virtualgl \
         lib32-virtualgl \
-        libva-vdpau-driver-vp9 \
+        libva-vdpau-driver-vp9-git \
         libvdpau \
         vdpauinfo \
         bbswitch-dkms \
