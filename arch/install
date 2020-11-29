@@ -103,25 +103,21 @@ setup_chroot() { #{{{
     (exit 1)
     while [ $? -ne 0 ]; do
         pacman -S \
-            bash \
+            iwd \
             dialog \
-            wpa_supplicant \
             ntfs-3g \
             networkmanager \
             intel-ucode \
             mesa \
             xorg \
             xorg-drivers \
-            netctl \
             os-prober \
             grub \
             efibootmgr \
             vim \
             git \
             wget \
-            openssh \
-            zip \
-            unzip
+            openssh
     done
     sync
     #}}}

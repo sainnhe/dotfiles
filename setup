@@ -85,10 +85,8 @@ setup_repos() { #{{{
     cat ~/.ssh/id_rsa.pub
 } #}}}
 setup_network() { #{{{
-    sudo pacman -S proxychains blueman
-    sudo systemctl disable netctl
-    sudo systemctl enable NetworkManager
-    sudo systemctl enable bluetooth.service
+    sudo pacman -S proxychains
+    sudo systemctl enable --now NetworkManager
     sudo cp ~/repo/dotfiles/.root/etc/proxychains.conf /etc/proxychains.conf
 } #}}}
 setup_sddm() { #{{{
