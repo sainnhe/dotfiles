@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=apps-extra-meta
 pkgdesc='Meta package to install some extra apps'
-pkgver=2020.11.04
+pkgver=2020.12.04
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
