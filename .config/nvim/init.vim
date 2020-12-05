@@ -1779,7 +1779,7 @@ xmap iW <Plug>WordMotion_iw
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   highlight = {
-    enable = true,
+    enable = false,
     use_languagetree = false, -- Use this to enable language injection (this is very unstable)
   },
   textobjects = {
