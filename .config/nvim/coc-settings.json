@@ -102,6 +102,7 @@
     "coc.source.emoji.priority": 8,
     "coc.source.emoji.filetypes": ["markdown", "text"],
     "coc.preferences.colorSupport": true,
+    "coc.preferences.enableMessageDialog": true,
     "highlight.document.enable": true,
     "highlight.colors.enable": false,
     "highlight.disableLanguages": [],
