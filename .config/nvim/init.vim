@@ -517,8 +517,6 @@ Plug 'roman/golden-ratio'
 Plug 'sainnhe/artify.vim'
 
 " Productivity
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 if !has('win32')
   Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
   Plug 'wellle/tmux-complete.vim', {'for': 'tmux'}
@@ -1774,23 +1772,4 @@ omap aW <Plug>WordMotion_aw
 xmap aW <Plug>WordMotion_aw
 omap iW <Plug>WordMotion_iw
 xmap iW <Plug>WordMotion_iw
-"}}}
-"{{{nvim-treesitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = false,
-    use_languagetree = false, -- Use this to enable language injection (this is very unstable)
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-      }
-    }
-  }
-}
-EOF
 "}}}
