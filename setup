@@ -93,7 +93,7 @@ setup_network() { #{{{
 } #}}}
 setup_sddm() { #{{{
     sudo pacman -S sddm
-    pikaur -S sddm-greeter sddm-config-editor sddm-sugar-candy-git
+    pikaur -S sddm-config-editor sddm-sugar-candy-git
     sudo cp ~/repo/dotfiles/.root/etc/sddm.conf /etc/sddm.conf
     sudo cp ~/repo/dotfiles/.root/usr/share/sddm/themes/sugar-candy/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf
 } #}}}
