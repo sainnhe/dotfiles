@@ -199,7 +199,6 @@ setup_rust() { #{{{
         rust-analysis \
         rust-src \
         rustfmt
-    ln -s $HOME/.rustup/toolchains/nightly-*/bin $HOME/.rustup/bin
 } #}}}
 setup_firefox() { #{{{
     cd ~/.mozilla/firefox/*.dev-edition-default || exit
