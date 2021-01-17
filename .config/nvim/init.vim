@@ -1100,7 +1100,6 @@ let g:coc_global_extensions = [
       \ 'coc-explorer',
       \ 'coc-project',
       \ 'coc-gitignore',
-      \ 'coc-bookmark',
       \ 'coc-highlight',
       \ 'coc-yank',
       \ 'coc-snippets',
@@ -1250,21 +1249,6 @@ let g:which_key_map['f']['M'] = 'mru projects'
 "{{{coc-gitignore
 nnoremap <silent> <leader><space>I :<c-u>CocList gitignore<cr>
 let g:which_key_map["\<space>"]['I'] = 'gitignore'
-"}}}
-"{{{coc-bookmark
-nmap <leader>mm <Plug>(coc-bookmark-toggle)
-nmap <leader>ma <Plug>(coc-bookmark-annotate)
-nmap <leader>mn <Plug>(coc-bookmark-next)
-nmap <leader>mp <Plug>(coc-bookmark-prev)
-nnoremap <silent> <leader>m<Space> :CocList bookmark<CR>
-let g:which_key_map['m'] = {
-      \   'name': 'bookmark',
-      \   'm': 'toggle',
-      \   'a': 'annotate',
-      \   'n': 'next',
-      \   'p': 'prev',
-      \   "\<Space>": 'list',
-      \   }
 "}}}
 "}}}
 "{{{ale
