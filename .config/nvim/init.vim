@@ -1274,12 +1274,12 @@ let g:ale_linters = {
       \}
 nnoremap <silent> <leader>dk :ALEPrevious<CR>
 nnoremap <silent> <leader>dj :ALENext<CR>
-nnoremap <silent> <leader>di :ALEDetail<CR>
+nnoremap <silent> <leader>dd :ALEDetail<CR>
 let g:which_key_map['d'] = {
       \ 'name': 'diagnostics',
       \ 'j': 'next',
       \ 'k': 'prev',
-      \ 'i': 'info'
+      \ 'd': 'details'
       \ }
 let g:ale_sign_error = "\uf65b"
 let g:ale_sign_warning = "\uf421"
@@ -1290,6 +1290,7 @@ let g:ale_echo_delay = 0
 let g:ale_virtualtext_cursor = 1
 let g:ale_virtualtext_delay = 10
 let g:ale_virtualtext_prefix = '▸'
+let g:ale_floating_preview = 1
 "防止java在中文系统上警告和提示乱码
 let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
 "显示Linter名称,出错或警告等相关信息
