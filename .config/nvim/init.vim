@@ -1519,6 +1519,9 @@ let g:terminal_cwd = 2
 let g:terminal_height = 13
 let g:terminal_kill = 'term'
 let g:terminal_list = 0
+if has('win32')
+  let g:terminal_shell = 'powershell'
+endif
 "{{{
 let s:cmd = 'nnoremap <silent>'.(g:terminal_key). ' '
 exec s:cmd . ':call TerminalToggle()<cr>'
