@@ -582,10 +582,6 @@ call plug#end()
 "}}}
 " User Interface
 "{{{lightline.vim
-"{{{lightline.vim-usage
-" :h 'statusline'
-" :h g:lightline.component
-"}}}
 "{{{functions
 function! GitGlobal() abort"{{{
   let status = get(g:, 'coc_git_status', '')
@@ -1047,10 +1043,6 @@ let g:which_key_map["\<space>"] = {
 lua require'colorizer'.setup()
 "}}}
 "{{{indentLine
-"{{{indentLine-usage
-" :LeadingSpaceToggle  切换显示Leading Space
-" :IndentLinesToggle  切换显示indentLine
-"}}}
 let g:indentLine_enabled = 1
 let g:indentLine_leadingSpaceEnabled = 0
 let g:indentLine_concealcursor = 'inc'
@@ -1065,9 +1057,6 @@ let g:indentLine_setColors = 0  " disable overwrite with grey by default, use co
 let g:limelight_default_coefficient = 0.7
 "}}}
 "{{{goyo.vim
-"{{{goyo.vim-usage
-" <leader>mr  toggle reading mode
-"}}}
 let g:goyo_width = 95
 let g:goyo_height = 85
 let g:goyo_linenr = 0
