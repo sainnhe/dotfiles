@@ -498,7 +498,6 @@ Plug 'sainnhe/sonokai'
 Plug 'sainnhe/forest-night'
 "}}}
 Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
 Plug 'albertomontesg/lightline-asyncrun'
 Plug 'rmolin88/pomodoro.vim'
 if g:vim_is_in_tmux == 1 && !has('win32')
@@ -530,7 +529,6 @@ else
   Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
 endif
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
@@ -583,53 +581,73 @@ call plug#end()
 " User Interface
 "{{{lightline.vim
 "{{{functions
-function! GitGlobal() abort"{{{
+function! CocDiagnosticError() abort "{{{
+  let info = get(b:, 'coc_diagnostic_info', {})
+  return get(info, 'error', 0) ==# 0 ? '' : "\uf00d" . info['error']
+endfunction "}}}
+function! CocDiagnosticWarning() abort "{{{
+  let info = get(b:, 'coc_diagnostic_info', {})
+  return get(info, 'warning', 0) ==# 0 ? '' : "\uf529" . info['warning']
+endfunction "}}}
+function! CocDiagnosticOK() abort "{{{
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if get(info, 'error', 0) ==# 0 && get(info, 'error', 0) ==# 0
+    let msg = "\uf00c"
+  else
+    let msg = ''
+  endif
+  return msg
+endfunction "}}}
+function! CocStatus() abort "{{{
+  return get(g:, 'coc_status', '')
+endfunction "}}}
+function! GitGlobal() abort "{{{
   let status = get(g:, 'coc_git_status', '')
   return status ==# '' ? "\ue61b" : status
-endfunction"}}}
-function! PomodoroStatus() abort"{{{
+endfunction "}}}
+function! PomodoroStatus() abort "{{{
   if pomo#remaining_time() ==# '0'
     return "\ue001"
   else
     return "\ue003 ".pomo#remaining_time()
   endif
-endfunction"}}}
-function! DeviconsFiletype()"{{{
+endfunction "}}}
+function! DeviconsFiletype() "{{{
   " return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'no ft') : ''
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction"}}}
-function! TabNum(n) abort"{{{
+endfunction "}}}
+function! TabNum(n) abort "{{{
   return a:n." \ue0bb"
-endfunction"}}}
-function! ArtifyActiveTabNum(n) abort"{{{
+endfunction "}}}
+function! ArtifyActiveTabNum(n) abort "{{{
   return Artify(a:n, 'bold')." \ue0bb"
-endfunction"}}}
-function! ArtifyInactiveTabNum(n) abort"{{{
+endfunction "}}}
+function! ArtifyInactiveTabNum(n) abort "{{{
   return Artify(a:n, 'double_struck')." \ue0bb"
-endfunction"}}}
-function! ArtifyLightlineTabFilename(s) abort"{{{
+endfunction "}}}
+function! ArtifyLightlineTabFilename(s) abort "{{{
   if g:vim_lightline_artify ==# 2
     return Artify(lightline#tab#filename(a:s), 'monospace')
   else
     return lightline#tab#filename(a:s)
   endif
-endfunction"}}}
-function! ArtifyLightlineMode() abort"{{{
+endfunction "}}}
+function! ArtifyLightlineMode() abort "{{{
   if g:vim_lightline_artify ==# 2
     return Artify(lightline#mode(), 'monospace')
   else
     return lightline#mode()
   endif
-endfunction"}}}
-function! ArtifyLinePercent() abort"{{{
+endfunction "}}}
+function! ArtifyLinePercent() abort "{{{
   return Artify(string((100*line('.'))/line('$')), 'bold')
-endfunction"}}}
-function! ArtifyLineNum() abort"{{{
+endfunction "}}}
+function! ArtifyLineNum() abort "{{{
   return Artify(string(line('.')), 'bold')
-endfunction"}}}
-function! ArtifyColNum() abort"{{{
+endfunction "}}}
+function! ArtifyColNum() abort "{{{
   return Artify(string(getcurpos()[2]), 'bold')
-endfunction"}}}
+endfunction "}}}
 "}}}
 set laststatus=2  " Basic
 let g:lightline = {}
@@ -637,10 +655,6 @@ let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
 let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
 let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
 let g:lightline.tabline_subseparator = { 'left': "\ue0bb", 'right': "\ue0bb" }
-let g:lightline#ale#indicator_checking = "\uf110"
-let g:lightline#ale#indicator_warnings = "\uf529"
-let g:lightline#ale#indicator_errors = "\uf00d"
-let g:lightline#ale#indicator_ok = "\uf00c"
 let g:lightline#asyncrun#indicator_none = ''
 let g:lightline#asyncrun#indicator_run = 'Running...'
 if g:vim_lightline_artify == 0
@@ -648,7 +662,7 @@ if g:vim_lightline_artify == 0
         \ 'left': [ [ 'mode', 'paste' ],
         \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
         \ 'right': [ [ 'lineinfo' ],
-        \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
+        \            [ 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
         \           [ 'asyncrun_status', 'coc_status' ] ]
         \ }
   let g:lightline.inactive = {
@@ -668,7 +682,7 @@ else
         \ 'left': [ [ 'artify_mode', 'paste' ],
         \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
         \ 'right': [ [ 'artify_lineinfo' ],
-        \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
+        \            [ 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
         \           [ 'asyncrun_status', 'coc_status' ] ]
         \ }
   let g:lightline.inactive = {
@@ -725,13 +739,12 @@ let g:lightline.component = {
       \ }
 let g:lightline.component_function = {
       \ 'devicons_filetype': 'DeviconsFiletype',
-      \ 'coc_status': 'coc#status',
+      \ 'coc_status': 'CocStatus',
       \ }
 let g:lightline.component_expand = {
-      \ 'linter_checking': 'lightline#ale#checking',
-      \ 'linter_warnings': 'lightline#ale#warnings',
-      \ 'linter_errors': 'lightline#ale#errors',
-      \ 'linter_ok': 'lightline#ale#ok',
+      \ 'linter_warnings': 'CocDiagnosticWarning',
+      \ 'linter_errors': 'CocDiagnosticError',
+      \ 'linter_ok': 'CocDiagnosticOK',
       \ 'asyncrun_status': 'lightline#asyncrun#status'
       \ }
 let g:lightline.component_type = {
@@ -1121,6 +1134,7 @@ augroup CocCustom
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   autocmd User CocGitStatusChange call lightline#update()
   autocmd CursorHold * CocCommand git.refresh
+  autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 augroup END
 hi link BookMarkHI GitGutterAdd
 let g:coc_hover_enable = 0
@@ -1182,6 +1196,10 @@ nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
 nmap <silent> <leader>gll <Plug>(coc-git-commit)
 nmap <silent> <leader><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
 nmap <silent> <leader><space>se :<C-u>CocCommand snippets.editSnippets<cr>
+nmap <silent> <leader>dj <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>dk <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>df <Plug>(coc-fix-current)
+nmap <silent> <leader>d<space> :<C-u>CocList diagnostics<cr>
 let g:which_key_map["\<space>"]['s'] = {
       \   'name': 'snippets',
       \   'e': 'edit snippets for current file type',
@@ -1217,6 +1235,13 @@ let g:which_key_map['f'] = {
       \   's': 'symbols',
       \   'y': 'yank',
       \   }
+let g:which_key_map['d'] = {
+      \   'name': 'diagnostics',
+      \   "\<Space>": 'list',
+      \   'f': 'fix',
+      \   'j': 'next',
+      \   'k': 'prev',
+      \   }
 nnoremap <silent> ? :let g:coc_hover_enable = (g:coc_hover_enable == 1 ? 0 : 1)<CR>
 "}}}
 "{{{coc-explorer
@@ -1239,61 +1264,6 @@ let g:which_key_map['f']['M'] = 'mru projects'
 nnoremap <silent> <leader><space>I :<c-u>CocList gitignore<cr>
 let g:which_key_map["\<space>"]['I'] = 'gitignore'
 "}}}
-"}}}
-"{{{ale
-"{{{ale-usage
-let g:ALE_MODE = 1  " 0则只在保存文件时检查，1则只在normal模式下检查，2则异步检查
-" 普通模式下<leader>lk和<leader>lj分别跳转到上一个、下一个错误
-" :ALEDetail  查看详细错误信息
-"}}}
-" ls ~/.local/share/nvim/plugins/ale/ale_linters/
-let g:ale_linters = {
-      \       'asm': ['gcc'],
-      \       'c': ['cppcheck', 'flawfinder'],
-      \       'cpp': ['cppcheck', 'flawfinder'],
-      \       'css': ['stylelint'],
-      \       'html': ['tidy'],
-      \       'json': [],
-      \       'markdown': [],
-      \       'python': [],
-      \       'rust': [],
-      \       'sh': ['shellcheck'],
-      \       'text': [],
-      \       'vim': ['vint'],
-      \}
-      " \       'python': ['pylint', 'flake8', 'mypy', 'pydocstyle'],
-nnoremap <silent> <leader>dk :ALEPrevious<CR>
-nnoremap <silent> <leader>dj :ALENext<CR>
-nnoremap <silent> <leader>dd :ALEDetail<CR>
-let g:which_key_map['d'] = {
-      \ 'name': 'diagnostics',
-      \ 'j': 'next',
-      \ 'k': 'prev',
-      \ 'd': 'details'
-      \ }
-let g:ale_sign_error = "\uf65b"
-let g:ale_sign_warning = "\uf421"
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_echo_delay = 0
-let g:ale_virtualtext_cursor = 1
-let g:ale_virtualtext_delay = 10
-let g:ale_virtualtext_prefix = '▸'
-let g:ale_floating_preview = 1
-"防止java在中文系统上警告和提示乱码
-let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
-"显示Linter名称,出错或警告等相关信息
-" ale-mode
-if g:ALE_MODE == 0
-  let g:ale_lint_on_text_changed = 'never'
-elseif g:ALE_MODE == 1
-  let g:ale_lint_on_text_changed = 'normal'
-  let g:ale_lint_on_insert_leave = 1
-elseif g:ALE_MODE == 2
-  let g:ale_lint_on_text_changed = 'always'
-  let g:ale_lint_delay=100
-endif
 "}}}
 "{{{LeaderF
 let g:Lf_ShortcutF = '<A-z>`````ff'

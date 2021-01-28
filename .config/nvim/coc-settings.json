@@ -35,7 +35,6 @@
     },
     "diagnostic.level": "hint",
     "diagnostic.refreshOnInsertMode": false,
-    "diagnostic.displayByAle": true,
     "diagnostic.virtualText": true,
     "diagnostic.errorSign": "\uf65b",
     "diagnostic.warningSign": "\uf421",
