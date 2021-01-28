@@ -40,6 +40,11 @@
     "diagnostic.warningSign": "\uf421",
     "diagnostic.infoSign": "ℹ",
     "diagnostic.hintSign": "➤",
+    "diagnostic-languageserver.filetypes": {
+        "html": "tidy",
+        "sh": "shellcheck",
+        "css": "stylelint"
+    },
     "codeLens.enable": true,
     "codeLens.separator": "‣",
     "list.indicator": "➤",

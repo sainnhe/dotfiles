@@ -1098,6 +1098,7 @@ endif
 let g:coc_global_extensions = [
       \ 'coc-lists',
       \ 'coc-marketplace',
+      \ 'coc-diagnostic',
       \ 'coc-git',
       \ 'coc-explorer',
       \ 'coc-project',

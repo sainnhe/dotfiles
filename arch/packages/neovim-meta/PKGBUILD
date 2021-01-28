@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=neovim-meta
 pkgdesc='Meta package to install some components for neovim'
-pkgver=2020.10.29
+pkgver=2021.01.28
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
@@ -19,15 +19,7 @@ depends=(neovim
          python-wcwidth
          clang
          tidy
-         python-jedi
-         python-pylint
-         flake8
-         mypy
-         python-pydocstyle
-         flawfinder
-         cppcheck
          shellcheck
-         vint
          astyle
          prettier
          shfmt
