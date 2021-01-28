@@ -1266,12 +1266,13 @@ let g:ale_linters = {
       \       'html': ['tidy'],
       \       'json': [],
       \       'markdown': [],
-      \       'python': ['pylint', 'flake8', 'mypy', 'pydocstyle'],
+      \       'python': [],
       \       'rust': [],
       \       'sh': ['shellcheck'],
       \       'text': [],
       \       'vim': ['vint'],
       \}
+      " \       'python': ['pylint', 'flake8', 'mypy', 'pydocstyle'],
 nnoremap <silent> <leader>dk :ALEPrevious<CR>
 nnoremap <silent> <leader>dj :ALENext<CR>
 nnoremap <silent> <leader>dd :ALEDetail<CR>
