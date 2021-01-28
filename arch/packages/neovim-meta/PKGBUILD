@@ -14,9 +14,7 @@ depends=(neovim
          python
          python-pynvim
          python-pip
-         boost
          words
-         python-wcwidth
          clang
          tidy
          shellcheck
@@ -30,7 +28,6 @@ depends=(neovim
          global
          stylelint
          stylelint-config-standard
-         nodejs-jsonlint
          js-beautify
          universal-ctags-git
          julia
