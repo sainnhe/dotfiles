@@ -1200,6 +1200,7 @@ nmap <silent> <leader><space>se :<C-u>CocCommand snippets.editSnippets<cr>
 nmap <silent> <leader>dj <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>dk <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>df <Plug>(coc-fix-current)
+nmap <silent> <leader>dd :<C-u>CocDiagnostics<cr>
 nmap <silent> <leader>d<space> :<C-u>CocList diagnostics<cr>
 let g:which_key_map["\<space>"]['s'] = {
       \   'name': 'snippets',
@@ -1238,7 +1239,8 @@ let g:which_key_map['f'] = {
       \   }
 let g:which_key_map['d'] = {
       \   'name': 'diagnostics',
-      \   "\<Space>": 'list',
+      \   "\<Space>": 'list (global)',
+      \   'd': 'list (current)',
       \   'f': 'fix',
       \   'j': 'next',
       \   'k': 'prev',
