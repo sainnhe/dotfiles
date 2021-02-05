@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=apps-extra-meta
 pkgdesc='Meta package to install some extra apps'
-pkgver=2020.12.04
+pkgver=2021.02.05
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
@@ -9,7 +9,7 @@ provides=("${pkgname}")
 conflicts=("${pkgname}")
 install="${pkgname}.install"
 depends=(firefox-developer-edition
-         chromium
+         microsoft-edge-dev-bin
          alacritty
          telegram-desktop
          zathura
