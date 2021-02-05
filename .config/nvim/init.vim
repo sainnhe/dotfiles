@@ -37,22 +37,18 @@ let g:neovide_fullscreen = v:true
 "}}}
 "{{{Global
 "{{{Function
-"{{{s:close_on_last_tab
-function! s:close_on_last_tab()
+function! s:close_on_last_tab() "{{{
   if tabpagenr('$') == 1
     execute 'windo bd'
     execute 'q'
   elseif tabpagenr('$') > 1
     execute 'windo bd'
   endif
-endfunction
-"}}}
-"{{{s:go_indent
-" gi, gI跳转indent
-function! s:indent_len(str)
+endfunction "}}}
+function! s:indent_len(str) "{{{
   return type(a:str) == 1 ? len(matchstr(a:str, '^\s*')) : 0
-endfunction
-function! s:go_indent(times, dir)
+endfunction "}}}
+function! s:go_indent(times, dir) "{{{
   for _ in range(a:times)
     let l = line('.')
     let x = line('$')
@@ -69,21 +65,22 @@ function! s:go_indent(times, dir)
     let l = min([max([1, l]), x])
     execute 'normal! '. l .'G^'
   endfor
-endfunction
-nnoremap <silent> gi :<c-u>call <SID>go_indent(v:count1, 1)<cr>
-nnoremap <silent> gI :<c-u>call <SID>go_indent(v:count1, -1)<cr>
-"}}}
-"{{{s:get_highlight
-function! s:get_highlight()
+endfunction "}}}
+function! s:get_highlight() "{{{
   if !exists('*synstack')
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-"}}}
-"{{{s:local_vimrc
-" Apply `.settings.vim`
-function! s:local_vimrc(dirname)
+endfunc "}}}
+function! s:escaped_search() range "{{{
+  let l:saved_reg = @"
+  execute 'normal! vgvy'
+  let l:pattern = escape(@", "\\/.*'$^~[]")
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
+  let @/ = l:pattern
+  let @" = l:saved_reg
+endfunction "}}}
+function! s:local_vimrc(dirname) "{{{
   " Don't try to walk a remote directory tree -- takes too long, too many
   " what if's
   let l:netrwProtocol = strpart(a:dirname, 0, stridx(a:dirname, '://'))
@@ -106,12 +103,7 @@ function! s:local_vimrc(dirname)
   if filereadable(l:settingsFile)
     exec ':source ' . l:settingsFile
   endif
-endfunction
-augroup LocalSettings
-  autocmd!
-  autocmd! BufEnter * call s:local_vimrc(expand("<afile>:p:h"))
-augroup END
-"}}}
+endfunction "}}}
 "}}}
 "{{{Setting
 set encoding=utf-8 nobomb
@@ -157,10 +149,11 @@ if has('nvim')
   filetype plugin indent on
   " set pumblend=15
 endif
-augroup vimSettings
+augroup VimSettings
   autocmd!
   autocmd FileType html,css,scss,typescript set shiftwidth=2
   autocmd VimLeave * set guicursor=a:ver25-Cursor/lCursor
+  autocmd BufEnter * call s:local_vimrc(expand("<afile>:p:h")) " Apply `.settings.vim`
 augroup END
 "}}}
 "{{{Mapping
@@ -288,6 +281,9 @@ nnoremap zs :<C-u>mkview<CR>
 nnoremap zl :<C-u>loadview<CR>
 " 获取当前光标下的高亮组
 nnoremap <leader><Space>h :call <SID>get_highlight()<CR>
+" gi, gI跳转indent
+nnoremap <silent> gi :<c-u>call <SID>go_indent(v:count1, 1)<cr>
+nnoremap <silent> gI :<c-u>call <SID>go_indent(v:count1, -1)<cr>
 "}}}
 "{{{InsertMode
 " Alt+X进入普通模式
@@ -353,6 +349,8 @@ vnoremap L $h
 vnoremap <leader>y "+y
 " <leader>+P从系统剪切板粘贴
 vnoremap <leader>p "+p
+" * 搜索选中文本
+vnoremap <silent> * :<C-u>call <SID>escaped_search()<CR>/<C-R>=@/<CR><CR>N
 "}}}
 "{{{CommandMode
 " Alt+X进入普通模式
@@ -380,7 +378,7 @@ command Q q!
 "}}}
 "{{{Plugin
 "{{{init
-augroup vimPlugMappings
+augroup VimPlugMappings
   autocmd!
   autocmd FileType vim-plug nmap <buffer> ? <plug>(plug-preview)
   autocmd FileType vim-plug nnoremap <buffer> <silent> h :call <sid>plug_doc()<cr>
@@ -389,7 +387,7 @@ augroup END
 
 " automatically install missing plugins on startup
 if g:vim_plug_auto_install == 1
-  augroup vim_vim_plug_auto_install
+  augroup PlugAutoInstall
     autocmd!
     autocmd VimEnter *
           \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
@@ -1020,7 +1018,7 @@ if g:vim_enable_startify == 1
     nmap <silent><buffer> h :wincmd h<CR>
     nmap <silent><buffer> <Tab> :CocList project<CR>
   endfunction
-  augroup startifyCustom
+  augroup StartifyCustom
     autocmd!
     autocmd VimEnter *
           \   if !argc()
@@ -1074,7 +1072,7 @@ let g:goyo_width = 95
 let g:goyo_height = 85
 let g:goyo_linenr = 0
 "进入goyo模式后自动触发limelight,退出后则关闭
-augroup goyoCustom
+augroup GoyoCustom
   autocmd! User GoyoEnter Limelight
   autocmd! User GoyoLeave Limelight!
 augroup END
@@ -1252,7 +1250,7 @@ function ToggleCocExplorer()
   execute 'CocCommand explorer --toggle --width=35 --sources=buffer+,file+ ' . getcwd()
 endfunction
 nnoremap <silent> <C-b> :call ToggleCocExplorer()<CR>
-augroup explorer_custom
+augroup ExplorerCustom
   autocmd!
   autocmd FileType coc-explorer setlocal signcolumn=no
   autocmd FileType coc-explorer nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 100m<CR>:Vista!!<CR>
@@ -1401,7 +1399,7 @@ let g:vista_executive_for = {
       \ 'python': 'coc',
       \ 'rust': 'coc',
       \ }
-augroup vista_custom
+augroup VistaCustom
   autocmd!
   autocmd FileType vista,vista_kind nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 150m<CR>:call ToggleCocExplorer()<CR>
   autocmd FileType vista,vista_kind nmap <buffer><silent> o <CR>
@@ -1550,7 +1548,7 @@ inoremap <A-z>] ]
 inoremap <A-z>} }
 inoremap <A-Backspace> <Space><Esc><left>"_xa<Backspace>
 " imap <A-Backspace> <A-z>p<Backspace><A-z>p
-augroup autoPairsCustom
+augroup AutoPairsCustom
   autocmd!
   " au Filetype html let b:AutoPairs = {"<": ">"}
 augroup END
@@ -1584,7 +1582,7 @@ if exists('g:vim_man_pager') && !has('win32')
     nmap <silent><buffer> <C-k> [t
     nnoremap <silent><buffer> E :<C-u>set modifiable<CR>
   endfunction
-  augroup manPagerCustom
+  augroup ManPagerCustom
     autocmd!
     autocmd FileType man call s:vim_manpager_mappings()
   augroup END
