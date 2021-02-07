@@ -1,5 +1,5 @@
 {
-    "suggest.timeout": 500,
+    "suggest.timeout": 3000,
     "suggest.enablePreview": true,
     "suggest.maxPreviewWidth": 35,
     "suggest.detailMaxLength": 100,

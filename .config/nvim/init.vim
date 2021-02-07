@@ -1128,7 +1128,7 @@ let g:coc_global_extensions = [
 "{{{coc-settings
 augroup CocCustom
   autocmd!
-  autocmd CursorHold * silent if g:coc_hover_enable == 1 && !coc#util#has_float() | call CocActionAsync('doHover') | endif
+  autocmd CursorHold * silent if g:coc_hover_enable == 1 && !coc#float#has_float() | call CocActionAsync('doHover') | endif
   autocmd CursorHold * silent if &filetype !=# 'markdown' | call CocActionAsync('highlight') | endif
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   autocmd User CocGitStatusChange call lightline#update()
