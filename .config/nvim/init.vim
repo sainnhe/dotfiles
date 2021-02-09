@@ -1,8 +1,11 @@
 "{{{Basic
 "{{{BasicConfig
-set runtimepath-=/usr/share/vim/vimfiles
-if !filereadable(expand('~/.config/nvim/autoload/plug.vim'))
-  execute '!curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+if !len(nvim_get_runtime_file('autoload/plug.vim', v:false))
+  echoerr 'Unable to find autoload/plug.vim. Download it from https://github.com/junegunn/vim-plug'
+  finish
+endif
+if !has('win32')
+  set runtimepath-=/usr/share/vim/vimfiles
 endif
 if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
   let g:vim_is_in_tmux = 1
@@ -16,7 +19,7 @@ if exists('g:vim_man_pager')
 else
   let g:vim_enable_startify = 1
 endif
-execute 'source '.expand('~/.config/nvim/env.vim')
+execute 'source ' . fnamemodify(stdpath('config'), ':p') . 'env.vim'
 "}}}
 "FVim{{{
 if exists('g:fvim_loaded')
@@ -80,28 +83,11 @@ function! s:escaped_search() range "{{{
   let @/ = l:pattern
   let @" = l:saved_reg
 endfunction "}}}
-function! s:local_vimrc(dirname) "{{{
-  " Don't try to walk a remote directory tree -- takes too long, too many
-  " what if's
-  let l:netrwProtocol = strpart(a:dirname, 0, stridx(a:dirname, '://'))
-  if l:netrwProtocol !=# ''
-    return
-  endif
-
-  " Convert windows paths to unix style (they still work)
-  let l:curDir = substitute(a:dirname, "\\", '/', 'g')
-
-  " Walk up to the top of the directory tree
-  let l:parentDir = strpart(l:curDir, 0, strridx(l:curDir, '/'))
-  if isdirectory(l:parentDir)
-    call s:local_vimrc(l:parentDir)
-  endif
-
-  " Now walk back down the path and source .settings.vim as you find them. This
-  " way child directories can 'inherit' from their parents
-  let l:settingsFile = a:dirname . '/.settings.vim'
-  if filereadable(l:settingsFile)
-    exec ':source ' . l:settingsFile
+function! s:local_vimrc() "{{{ Apply `.settings.vim`
+  let root_dir = FindRootDirectory()
+  let settings_file = fnamemodify(root_dir, ':p') . '.settings.vim'
+  if filereadable(settings_file)
+    exec 'source ' . settings_file
   endif
 endfunction "}}}
 "}}}
@@ -120,13 +106,10 @@ set mouse=a
 filetype plugin indent on
 set t_Co=256
 syntax enable                           " 开启语法支持
-if has('termguicolors')
-  set termguicolors                       " 开启GUI颜色支持
-endif
+set termguicolors                       " 开启GUI颜色支持
 set smartindent                         " 智能缩进
 set nohlsearch                          " 禁用高亮搜索
 set undofile                            " 始终保留undo文件
-set undodir=$HOME/.cache/vim/undo       " 设置undo文件的目录
 set timeoutlen=500                      " 超时时间为 0.5 秒
 set foldmethod=marker                   " 折叠方式为按照marker折叠
 set hidden                              " buffer自动隐藏
@@ -139,21 +122,23 @@ set autoread                            " 自动加载变更文件
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
 set signcolumn=yes
 set updatetime=100
+set history=1000
 set sessionoptions+=globals
-if &history < 1000
-  set history=1000
+execute 'set undodir=' . fnamemodify(stdpath('cache'), ':p') . 'undo'
+if !has('win32')
+  set dictionary+=/usr/share/dict/words
+  set dictionary+=/usr/share/dict/american-english
 endif
 if has('nvim')
   set inccommand=split
   set wildoptions=pum
   filetype plugin indent on
-  " set pumblend=15
 endif
 augroup VimSettings
   autocmd!
   autocmd FileType html,css,scss,typescript set shiftwidth=2
   autocmd VimLeave * set guicursor=a:ver25-Cursor/lCursor
-  autocmd BufEnter * call s:local_vimrc(expand("<afile>:p:h")) " Apply `.settings.vim`
+  autocmd BufEnter * call s:local_vimrc()
 augroup END
 "}}}
 "{{{Mapping
@@ -371,21 +356,10 @@ if has('nvim')
 endif
 "}}}
 "}}}
-"{{{Command
-" Q强制退出
-command Q q!
-"}}}
 "}}}
 "{{{Plugin
 "{{{init
-augroup VimPlugMappings
-  autocmd!
-  autocmd FileType vim-plug nmap <buffer> ? <plug>(plug-preview)
-  autocmd FileType vim-plug nnoremap <buffer> <silent> h :call <sid>plug_doc()<cr>
-  autocmd FileType vim-plug nnoremap <buffer> <silent> <Tab> :call <sid>plug_gx()<cr>
-augroup END
-
-" automatically install missing plugins on startup
+"{{{ automatically install missing plugins on startup
 if g:vim_plug_auto_install == 1
   augroup PlugAutoInstall
     autocmd!
@@ -394,18 +368,16 @@ if g:vim_plug_auto_install == 1
           \|   PlugInstall --sync | q
           \| endif
   augroup END
-endif
-
-function! s:plug_doc()
+endif "}}}
+function! s:plug_doc() "{{{
   let name = matchstr(getline('.'), '^- \zs\S\+\ze:')
   if has_key(g:plugs, name)
     for doc in split(globpath(g:plugs[name].dir, 'doc/*.txt'), '\n')
       execute 'tabe' doc
     endfor
   endif
-endfunction
-
-function! s:plug_gx()
+endfunction "}}}
+function! s:plug_gx() "{{{
   let line = getline('.')
   let sha  = matchstr(line, '^  \X*\zs\x\{7,9}\ze ')
   let name = empty(sha) ? matchstr(line, '^[-x+] \zs[^:]\+\ze:')
@@ -418,39 +390,31 @@ function! s:plug_gx()
   let url  = empty(sha) ? 'https://github.com/'.repo
         \ : printf('https://github.com/%s/commit/%s', repo, sha)
   call netrw#BrowseX(url, 0)
-endfunction
-augroup PlugGx
-  autocmd!
-augroup END
-
-function! s:scroll_preview(down)
+endfunction "}}}
+function! s:scroll_preview(down) "{{{
   silent! wincmd P
   if &previewwindow
     execute 'normal!' a:down ? "\<c-e>" : "\<c-y>"
     wincmd p
   endif
-endfunction
-function! s:setup_extra_keys()
+endfunction "}}}
+function! s:setup_extra_keys() "{{{
   nnoremap <silent> <buffer> J :call <sid>scroll_preview(1)<cr>
   nnoremap <silent> <buffer> K :call <sid>scroll_preview(0)<cr>
   nnoremap <silent> <buffer> <c-n> :call search('^  \X*\zs\x')<cr>
   nnoremap <silent> <buffer> <c-p> :call search('^  \X*\zs\x', 'b')<cr>
   nmap <silent> <buffer> <c-j> <c-n>o
   nmap <silent> <buffer> <c-k> <c-p>o
-endfunction
-augroup PlugDiffExtra
+endfunction "}}}
+augroup VimPlug
   autocmd!
+  autocmd FileType vim-plug nmap <buffer> ? <plug>(plug-preview)
+  autocmd FileType vim-plug nnoremap <buffer> <silent> h :call <sid>plug_doc()<cr>
+  autocmd FileType vim-plug nnoremap <buffer> <silent> <Tab> :call <sid>plug_gx()<cr>
   autocmd FileType vim-plug call s:setup_extra_keys()
 augroup END
-
 command PU PlugUpdate | PlugUpgrade | CocUpdate
-
-call plug#begin('~/.local/share/nvim/plugins')
-if !has('nvim') && has('python3')
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'tpope/vim-repeat'
-Plug 'ryanoasis/vim-devicons'
+call plug#begin(fnamemodify(stdpath('data'), ':p') . 'plugins')
 "}}}
 "{{{syntax
 Plug 'sheerun/vim-polyglot', {'as': 'vim-syntax'}
@@ -489,12 +453,13 @@ let g:markdown_fenced_languages = [
       \   ]
 "}}}
 " User Interface
-"{{{themes
+"{{{colorschemes
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/sonokai'
 Plug 'sainnhe/forest-night'
 "}}}
+Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'albertomontesg/lightline-asyncrun'
 Plug 'rmolin88/pomodoro.vim'
@@ -531,6 +496,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-repeat'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'sodapopcan/vim-twiggy'
@@ -974,7 +940,7 @@ call SwitchColorScheme(g:vim_color_scheme)
 "}}}
 "{{{vim-startify
 if g:vim_enable_startify == 1
-  let g:startify_session_dir = '~/.vim/sessions'
+  let g:startify_session_dir = fnamemodify(stdpath('data'), ':p') . 'sessions'
   let g:startify_files_number = 5
   let g:startify_update_oldfiles = 1
   let g:startify_session_delete_buffers = 1 " delete all buffers when loading or closing a session, ignore unsaved buffers
@@ -1082,7 +1048,6 @@ let g:which_key_map["\<space>"]['F'] = 'focus mode'
 let g:which_key_map["\<space>"]['R'] = 'reading mode'
 "}}}
 "{{{golden-ratio
-" 默认关闭
 let g:golden_ratio_autocommand = 0
 nnoremap <silent> <leader><space>g :<c-u>GoldenRatioResize<cr>
 let g:which_key_map["\<space>"]['g'] = 'resize window'
@@ -1090,9 +1055,7 @@ let g:which_key_map["\<space>"]['g'] = 'resize window'
 " Productivity
 "{{{coc.nvim
 "{{{coc-init
-if !has('win32')
-  let g:coc_data_home = expand('~/.local/share/nvim/coc')
-endif
+let g:coc_data_home = fnamemodify(stdpath('data'), ':p') . 'coc'
 let g:coc_global_extensions = [
       \ 'coc-lists',
       \ 'coc-marketplace',
@@ -1140,8 +1103,12 @@ let g:coc_hover_enable = 0
 let g:tmuxcomplete#trigger = ''
 set hidden
 set completeopt=noinsert,noselect,menuone
-set dictionary+=/usr/share/dict/words
-set dictionary+=/usr/share/dict/american-english
+call coc#config('project', {
+		\ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
+		\ })
+call coc#config('snippets', {
+		\ 'userSnippetsDirectory': fnamemodify(stdpath('data'), ':p') . 'snippets',
+		\ })
 "}}}
 "{{{coc-mappings
 inoremap <silent><expr> <C-j>
@@ -1272,7 +1239,7 @@ let g:Lf_ShortcutB = '<A-z>`````ff'
 let g:Lf_WindowHeight = 0.4
 let g:Lf_ShowRelativePath = 0
 let g:Lf_CursorBlink = 1
-let g:Lf_CacheDirectory = expand('~/.cache/vim/leaderf')
+let g:Lf_CacheDirectory = fnamemodify(stdpath('cache'), ':p') . 'leaderf'
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_RootMarkers = ['.git', '.hg', '.svn', '.vscode']
 let g:Lf_ShowHidden = 1
@@ -1504,10 +1471,6 @@ let g:VM_maps['Add Cursor At Pos']           = '`'
 let g:VM_maps['Visual Cursors']              = '`'
 "}}}
 "{{{suda.vim
-"{{{suda.vim-usage
-" :E filename  sudo edit
-" :W       sudo edit
-"}}}
 command! -nargs=1 E  edit  suda://<args>
 command W w suda://%
 "}}}
@@ -1517,17 +1480,11 @@ vnoremap <silent> <leader><space>e :InlineEdit<CR>
 let g:which_key_map["\<space>"]['e'] = 'inline edit'
 "}}}
 "{{{comfortable-motion.vim
-"{{{comfortable-motion.vim-usage
-" <pageup> <pagedown>平滑滚动
-" nvim中，<A-J>和<A-K>平滑滚动
-"}}}
 let g:comfortable_motion_no_default_key_mappings = 1
 let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
 nnoremap <silent> <pagedown> :<C-u>call comfortable_motion#flick(130)<CR>
 nnoremap <silent> <pageup> :<C-u>call comfortable_motion#flick(-130)<CR>
-nnoremap <silent> <C-d> :<C-u>call comfortable_motion#flick(120)<CR>
-nnoremap <silent> <C-u> :<C-u>call comfortable_motion#flick(-120)<CR>
 "}}}
 "{{{auto-pairs
 let g:AutoPairsShortcutToggle = '<A-z>p'
@@ -1547,11 +1504,6 @@ inoremap <A-z>) )
 inoremap <A-z>] ]
 inoremap <A-z>} }
 inoremap <A-Backspace> <Space><Esc><left>"_xa<Backspace>
-" imap <A-Backspace> <A-z>p<Backspace><A-z>p
-augroup AutoPairsCustom
-  autocmd!
-  " au Filetype html let b:AutoPairs = {"<": ">"}
-augroup END
 "}}}
 "{{{pomodoro.vim
 let g:Pomodoro_Status = 0
@@ -1637,11 +1589,7 @@ vmap <leader><Space>t <Plug>TranslateWV
 let g:which_key_map["\<space>"]['t'] = 'translate'
 "}}}
 "{{{markdown-preview.nvim
-if !has('win32')
-  let g:mkdp_browser = 'firefox-developer-edition'
-else
-  let g:mkdp_browser = 'firefox'
-endif
+let g:mkdp_browser = 'firefox-developer-edition'
 let g:mkdp_echo_preview_url = 1
 nmap <silent> <leader><space>p <Plug>MarkdownPreviewToggle
 let g:which_key_map["\<space>"]['p'] = 'preview markdown'
@@ -1722,3 +1670,4 @@ xmap aW <Plug>WordMotion_aw
 omap iW <Plug>WordMotion_iw
 xmap iW <Plug>WordMotion_iw
 "}}}
+" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

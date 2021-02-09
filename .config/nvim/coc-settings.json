@@ -73,7 +73,6 @@
     "git.untrackedDecorator": " ✩",
     "git.conflictedDecorator": "⇡⇣",
     "git.virtualTextPrefix": " \ue729 ",
-    "project.dbpath": "~/.local/share/nvim/coc/project.json",
     "project.rootPatterns": [".git", ".svn", ".root", ".project", ".hg"],
     "suggest.languageSourcePriority": 99,
     "snippets.shortcut": "S",
@@ -83,7 +82,6 @@
         "javascriptreact": ["javascript"],
         "typescript": ["javascript"]
     },
-    "snippets.userSnippetsDirectory": "~/.local/share/nvim/snippets",
     "nextword.filetypes": ["markdown", "text", "help", "gitcommit", "snippets"],
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,
