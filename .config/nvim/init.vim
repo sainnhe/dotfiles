@@ -1104,11 +1104,11 @@ let g:tmuxcomplete#trigger = ''
 set hidden
 set completeopt=noinsert,noselect,menuone
 call coc#config('project', {
-		\ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
-		\ })
+      \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
+      \ })
 call coc#config('snippets', {
-		\ 'userSnippetsDirectory': fnamemodify(stdpath('data'), ':p') . 'snippets',
-		\ })
+      \ 'userSnippetsDirectory': fnamemodify(stdpath('data'), ':p') . 'snippets',
+      \ })
 "}}}
 "{{{coc-mappings
 inoremap <silent><expr> <C-j>
