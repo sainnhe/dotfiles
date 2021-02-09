@@ -1,6 +1,6 @@
 "{{{Basic
 "{{{BasicConfig
-if !len(nvim_get_runtime_file('autoload/plug.vim', v:false))
+if empty(globpath(&runtimepath, '/autoload/plug.vim'))
   echoerr 'Unable to find autoload/plug.vim. Download it from https://github.com/junegunn/vim-plug'
   finish
 endif
