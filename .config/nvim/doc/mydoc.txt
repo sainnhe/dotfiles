@@ -4,7 +4,6 @@ CONTENTS                                     *mydoc-contents*
 
 plug                                         |mydoc-plug|
 sneak                                        |mydoc-sneak|
-neoformat                                    |mydoc-neoformat|
 autopairs                                    |mydoc-autopairs|
 nerdcommenter                                |mydoc-nerdcommenter|
 closetag                                     |mydoc-closetag|
@@ -36,17 +35,6 @@ SNEAK                                                              *mydoc-sneak*
 - `[count]s[char][char]`: 向前搜索或重复上次搜索
 - `[count]S[char][char]`: 向后搜索或重复上次搜索
 - `f/F`: 一个字符的搜索
-
-==============================================================================
-NEOFORMAT                                                      *mydoc-neoformat*
-
-在 Normal 或 Visual 模式下：
-
-- `<leader><Tab>`: 排版
-- `:Neoformat`: 排版
-- `:Neoformat yapf`: 用特定的工具排版
-- `:Neoformat! python`: 对特定的文件类型排版
-- `:Neoformat! python yapf`: 用特定的工具对特定的文件类型排版
 
 ==============================================================================
 AUTOPAIRS                                                      *mydoc-autopairs*

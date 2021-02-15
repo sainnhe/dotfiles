@@ -43,7 +43,11 @@
     "diagnostic-languageserver.filetypes": {
         "html": "tidy",
         "sh": "shellcheck",
-        "css": "stylelint"
+        "zsh": "shellcheck"
+    },
+    "diagnostic-languageserver.formatFiletypes": {
+        "sh": "shfmt",
+        "zsh": "shfmt"
     },
     "codeLens.enable": true,
     "codeLens.separator": "‣",
@@ -163,6 +167,8 @@
     "rust-analyzer.server.path": "rust-analyzer",
     "rust-analyzer.updates.channel": "nightly",
     "rust-analyzer.cargo.allFeatures": true,
+    "python.formatting.provider": "yapf",
+    "prettier.formatterPriority": -1,
     "markdownlint.config": {
         "MD013": false,
         "MD041": false

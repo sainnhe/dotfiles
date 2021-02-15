@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=neovim-meta
 pkgdesc='Meta package to install some components for neovim'
-pkgver=2021.01.28
+pkgver=2021.02.15
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
@@ -18,17 +18,11 @@ depends=(neovim
          clang
          tidy
          shellcheck
-         astyle
-         prettier
          shfmt
-         uncrustify
          yapf
          zenity
          ruby-neovim
          global
-         stylelint
-         stylelint-config-standard
-         js-beautify
          universal-ctags-git
          julia
          julia-docs)

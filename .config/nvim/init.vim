@@ -503,7 +503,6 @@ Plug 'sodapopcan/vim-twiggy'
 Plug 'rhysd/committia.vim'
 Plug 'samoshkin/vim-mergetool'
 Plug 'liuchengxu/vista.vim'
-Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
@@ -1077,7 +1076,6 @@ let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-emmet',
       \ 'coc-tsserver',
-      \ 'coc-tslint-plugin',
       \ 'coc-rust-analyzer',
       \ 'coc-julia',
       \ 'coc-sh',
@@ -1085,7 +1083,9 @@ let g:coc_global_extensions = [
       \ 'coc-markdownlint',
       \ 'coc-json',
       \ 'coc-yaml',
-      \ 'coc-vimlsp'
+      \ 'coc-vimlsp',
+      \ 'coc-stylelint',
+      \ 'coc-prettier'
       \ ]
 "}}}
 "{{{coc-settings
@@ -1148,6 +1148,8 @@ nmap <silent> <leader><Space>a <Plug>(coc-codeaction-line)
 vmap <silent> <leader><Space>a <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>v <Plug>(coc-range-select)
 vmap <silent> <leader>v <Plug>(coc-range-select)
+nmap <silent> <leader><Tab> <Plug>(coc-format)
+vmap <silent> <leader><Tab> <Plug>(coc-format-selected)
 nmap <silent> <leader>gj <Plug>(coc-git-nextchunk)
 nmap <silent> <leader>gk <Plug>(coc-git-prevchunk)
 nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
@@ -1371,27 +1373,6 @@ augroup VistaCustom
   autocmd FileType vista,vista_kind nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 150m<CR>:call ToggleCocExplorer()<CR>
   autocmd FileType vista,vista_kind nmap <buffer><silent> o <CR>
 augroup END
-"}}}
-"{{{neoformat
-"{{{Neoformat_Default_Filetype_Formatter
-function! Neoformat_Default_Filetype_Formatter()
-  if &filetype ==# 'c'
-    execute 'Neoformat astyle'
-  elseif &filetype ==# 'cpp'
-    execute 'Neoformat astyle'
-  else
-    execute 'Neoformat'
-  endif
-endfunction
-"}}}
-" Enable alignment
-let g:neoformat_basic_format_align = 1
-" Enable tab to spaces conversion
-let g:neoformat_basic_format_retab = 1
-" Enable trimmming of trailing whitespace
-let g:neoformat_basic_format_trim = 1
-nnoremap <silent> <leader><Tab> :<C-u>call Neoformat_Default_Filetype_Formatter()<CR>
-vnoremap <silent> <leader><Tab> :Neoformat! &ft<CR>
 "}}}
 "{{{nerdcommenter
 " Add spaces after comment delimiters by default
