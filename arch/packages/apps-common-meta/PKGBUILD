@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 pkgname=apps-common-meta
 pkgdesc='Meta package to install some common apps'
-pkgver=2020.11.29
+pkgver=2021.02.17
 pkgrel=1
 arch=(any)
 url='https://github.com/sainnhe/dotfiles'
@@ -13,6 +13,7 @@ depends=(pacman-contrib
          iwd
          blueman
          net-tools
+         bash-completion
          mosh
          w3m
          aria2
