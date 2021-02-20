@@ -1,7 +1,0 @@
-post_install() {
-    systemctl enable --now bluetooth.service
-}
-
-pre_remove() {
-    systemctl disable bluetooth.service
-}

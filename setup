@@ -60,8 +60,34 @@ setup_dotfiles() { #{{{
     setup_copy .config/libinput-gestures.conf
     printf "${BBLUE}>> Setup root directory manually.${NC}"
 } #}}}
-setup_archlinuxcn() { #{{{
-    sudo pacman -S archlinuxcn-keyring
+setup_arch_repos() { #{{{
+    sudo cp ~/repo/dotfiles/.root/etc/pacman.conf /etc/pacman.conf
+    sudo pacman-key --init
+
+    # personal repository
+    wget -qO - https://raw.githubusercontent.com/sainnhe/repo/master/public.key \
+        | sudo pacman-key --add -
+    sudo pacman-key --finger 90F961711DC3E4A9
+    sudo pacman-key --lsign-key 90F961711DC3E4A9
+
+    # linux surface
+    wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
+        | sudo pacman-key --add -
+    sudo pacman-key --finger 56C464BAAC421453
+    sudo pacman-key --lsign-key 56C464BAAC421453
+
+    # archstrike
+    sudo dirmngr < /dev/null
+    wget -qO - https://archstrike.org/keyfile.asc \
+        | sudo pacman-key --add -
+    sudo pacman-key --lsign-key 9D5F1C051D146843CDA4858BDE64825E7CBC0D51
+
+    # required packages
+    sudo pacman -Sy
+    sudo pacman -S \
+        archlinuxcn-keyring \
+        archstrike-keyring \
+        archstrike-mirrorlist
 } #}}}
 setup_repos() { #{{{
     ssh-keygen -t rsa -b 4096 -C "sainnhe@gmail.com"
@@ -100,13 +126,6 @@ setup_sddm() { #{{{
 setup_surface() { #{{{
     mkdir -p ~/playground
     cd ~/playground || exit
-    # Add arch linux repository
-    wget https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc
-    sudo pacman-key --add surface.asc
-    sudo pacman-key --finger 56C464BAAC421453
-    sudo pacman-key --lsign-key 56C464BAAC421453
-    sudo cp ~/repo/dotfiles/.root/etc/pacman.conf /etc/pacman.conf
-    sudo pacman -Sy
     # DKMS modules
     sudo pacman -S dkms acpi acpi_call-dkms
     # Install the kernel and firmwares
@@ -174,6 +193,7 @@ setup_tmux() { #{{{
     echo "'prefix I' to install plugins"
 } #}}}
 setup_vim() { #{{{
+    pikaur -S vim-meta neovim-meta
     cp /home/sainnhe/repo/dotfiles/.vimrc ~/
     mkdir -p ~/.config/nvim
     mkdir -p ~/.local/share/nvim
@@ -211,13 +231,18 @@ setup_firefox() { #{{{
 setup_weechat() { #{{{
     proxychains -q curl -L --create-dirs -o ~/.weechat/python/autoload/autojoin.py http://www.weechat.org/files/scripts/autojoin.py
 } #}}}
+setup_wm() { #{{{
+    pikaur -S window-manager-meta dwm-meta
+} #}}}
 setup_plasma() { #{{{
+    pikaur -S kde-meta
     sudo gpasswd -a "$USER" input
     libinput-gestures-setup autostart
     ln -sf /home/sainnhe/repo/dotfiles/.config/kwinrulesrc ~/.config/kwinrulesrc
     printf "\n${BBLUE}>> Blur:\n${BGREEN}System Settings -> Kwin Scripts -> Force Blur\n${BBLUE}Shortcuts:\n${BGREEN}/home/sainnhe/repo/scripts/func/plasma-blur.sh 'rofi -show drun' 'Rofi'${NC}\n"
 } #}}}
 setup_themes() { #{{{
+    pikaur -S themes-meta
     mkdir -p ~/repo
     cd ~/repo || exit
     git clone --depth 1 https://github.com/vinceliuice/McMojave-circle.git
@@ -277,11 +302,14 @@ setup_fonts() { #{{{
     fc-cache
     printf "${BBLUE}>> Install ${BGREEN}ttf-ms-win10-zh_cn${BBLUE} from ${BGREEN}https://github.com/fphoenix88888/ttf-mswin10-arch/raw/master/ttf-ms-win10-zh_cn-10.0.18362.116-1-any.pkg.tar.xz${NC}\n"
 } #}}}
+setup_apps() { #{{{
+    pikaur -S apps-common-meta apps-extra-meta
+} #}}}
 
 if [ "$1" = 'dotfiles' ]; then
     setup_dotfiles
-elif [ "$1" = 'archlinuxcn' ]; then
-    setup_archlinuxcn
+elif [ "$1" = 'arch_repos' ]; then
+    setup_arch_repos
 elif [ "$1" = 'repos' ]; then
     setup_repos
 elif [ "$1" = 'network' ]; then
@@ -304,10 +332,14 @@ elif [ "$1" = 'firefox' ]; then
     setup_firefox
 elif [ "$1" = 'weechat' ]; then
     setup_weechat
+elif [ "$1" = 'wm' ]; then
+    setup_wm
 elif [ "$1" = 'plasma' ]; then
     setup_plasma
 elif [ "$1" = 'themes' ]; then
     setup_themes
 elif [ "$1" = 'fonts' ]; then
     setup_fonts
+elif [ "$1" = 'apps' ]; then
+    setup_apps
 fi
