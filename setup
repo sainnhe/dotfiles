@@ -268,39 +268,7 @@ setup_themes() { #{{{
     printf "${BBLUE}>> Kvantum: ${BGREEN}~/.local/share/themes/THEME_NAME/Kvantum/${NC}\n"
 } #}}}
 setup_fonts() { #{{{
-    pikaur -S \
-        wqy-microhei \
-        wqy-zenhei \
-        noto-fonts \
-        ttf-symbola \
-        nerd-fonts-fira-code \
-        nerd-fonts-code-new-roman \
-        ttf-monaco
-    mkdir -p ~/repo
-    git clone git@github.com:sainnhe/icursive-nerd-font-non-free.git ~/repo/icursive-nerd-font-non-free
-    git clone git@github.com:sainnhe/icursive-nerd-font.git ~/repo/icursive-nerd-font
-    mkdir -p ~/.local/share/fonts
-    cp ~/repo/icursive-nerd-font/Fira\ Code\ iCursive\ S12/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font/Roboto\ Mono\ iCursive\ Pt/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font/InconsolataGo\ iCursive\ Pb/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font/InconsolataLGC\ iCursive\ S12/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font/Meslo\ iCursive\ S12/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font/Hack\ iCursive\ S12/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font/Source\ Code\ Pro\ iCursive\ S12/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/Cartograph\ Mono/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/Ellograph\ Mono/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/Dank\ Mono/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/Operator\ Mono/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/Fira\ Code\ iCursive\ Op/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/InconsolataLGC\ iCursive\ Op/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/Meslo\ iCursive\ Op/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/Hack\ iCursive\ Op/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/Fantasque\ iCursive\ Op/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/Fantasque\ iCursive\ Dk/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/Source\ Code\ Pro\ iCursive\ Op/* ~/.local/share/fonts/
-    cp ~/repo/icursive-nerd-font-non-free/Cascadia\ Code\ iCursive\ Cg/* ~/.local/share/fonts/
-    fc-cache
-    printf "${BBLUE}>> Install ${BGREEN}ttf-ms-win10-zh_cn${BBLUE} from ${BGREEN}https://github.com/fphoenix88888/ttf-mswin10-arch/raw/master/ttf-ms-win10-zh_cn-10.0.18362.116-1-any.pkg.tar.xz${NC}\n"
+    pikaur -S fonts-meta
 } #}}}
 setup_apps() { #{{{
     pikaur -S apps-common-meta apps-extra-meta
