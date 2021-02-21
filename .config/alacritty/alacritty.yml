@@ -640,6 +640,25 @@ font:
 #     x: 0
 #     y: 0
 # # }}}
+# # {{{Agave
+# font:
+#   normal:
+#     family: agave Nerd Font Mono
+#     style: Regular
+#   bold:
+#     family: agave Nerd Font Mono
+#     style: Regular
+#   italic:
+#     family: agave Nerd Font Mono
+#     style: Regular
+#   size: 13.0
+#   offset:
+#     x: 0
+#     y: 4
+#   glyph_offset:
+#     x: 0
+#     y: 0
+# # }}}
 # # {{{Operator Mono Book
 # font:
 #   normal:
