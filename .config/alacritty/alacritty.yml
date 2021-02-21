@@ -545,6 +545,25 @@ font:
 #     x: 0
 #     y: 0
 # # }}}
+# # {{{Lilex iCursive Dk
+# font:
+#   normal:
+#     family: Lilex iCursive Dk
+#     style: Regular
+#   bold:
+#     family: Lilex iCursive Dk
+#     style: Bold
+#   italic:
+#     family: Dank Mono
+#     style: Italic
+#   size: 11.0
+#   offset:
+#     x: 0
+#     y: 0
+#   glyph_offset:
+#     x: 0
+#     y: 0
+# # }}}
 # # {{{Fantasque iCursive Op
 # font:
 #   normal:
