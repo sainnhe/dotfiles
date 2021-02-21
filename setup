@@ -67,8 +67,8 @@ setup_arch_repos() { #{{{
     # personal repository
     wget -qO - https://raw.githubusercontent.com/sainnhe/repo/master/sainnhe.gpg \
         | sudo pacman-key --add -
-    sudo pacman-key --finger 90F961711DC3E4A9
-    sudo pacman-key --lsign-key 90F961711DC3E4A9
+    sudo pacman-key --finger 16F249ED243F596E
+    sudo pacman-key --lsign-key 16F249ED243F596E
 
     # linux surface
     wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
