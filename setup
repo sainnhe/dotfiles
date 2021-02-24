@@ -65,7 +65,7 @@ setup_arch_repos() { #{{{
     sudo pacman-key --init
 
     # personal repository
-    wget -qO - https://raw.githubusercontent.com/sainnhe/repo/master/sainnhe.gpg \
+    curl -L https://repo.sainnhe.dev/sainnhe.gpg \
         | sudo pacman-key --add -
     sudo pacman-key --finger 16F249ED243F596E
     sudo pacman-key --lsign-key 16F249ED243F596E
