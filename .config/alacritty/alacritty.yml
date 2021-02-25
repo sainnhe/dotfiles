@@ -554,8 +554,8 @@ font:
 #     family: Lilex iCursive Dk
 #     style: Bold
 #   italic:
-#     family: Dank Mono
-#     style: Italic
+#     family: Lilex iCursive Dk
+#     style: Regular
 #   size: 11.0
 #   offset:
 #     x: 0
