@@ -493,7 +493,7 @@ else
 endif
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'justinmk/vim-sneak'
-Plug 'mbbill/undotree'
+Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-repeat'
@@ -1304,12 +1304,10 @@ xmap F <Plug>Sneak_F
 omap f <Plug>Sneak_f
 omap F <Plug>Sneak_F
 "}}}
-"{{{undotree
-let g:undotree_WindowLayout = 3
-let g:undotree_SplitWidth = 35
-let g:undotree_DiffpanelHeight = 10
-nnoremap <silent> <leader><space>u :<c-u>UndotreeToggle<cr>
-let g:which_key_map["\<space>"]['u'] = 'undotree'
+"{{{mundo
+let g:mundo_right = 1
+nnoremap <silent> <leader><space>u :<c-u>MundoToggle<cr>
+let g:which_key_map["\<space>"]['u'] = 'undo'
 "}}}
 "{{{vim-fugitive
 "{{{twiggy
