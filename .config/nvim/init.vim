@@ -1241,7 +1241,7 @@ let g:which_key_map["\<space>"]['I'] = 'gitignore'
 "{{{LeaderF
 let g:Lf_ShortcutF = '<A-z>`````ff'
 let g:Lf_ShortcutB = '<A-z>`````ff'
-let g:Lf_WindowHeight = 0.4
+let g:Lf_WindowPosition = 'popup'
 let g:Lf_ShowRelativePath = 0
 let g:Lf_CursorBlink = 1
 let g:Lf_CacheDirectory = stdpath('cache')
