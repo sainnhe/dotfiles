@@ -421,6 +421,7 @@ Plug 'sheerun/vim-polyglot', {'as': 'vim-syntax'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'bfrg/vim-cpp-modern', {'as': 'vim-syntax-c-cpp', 'for': ['c', 'cpp']}
 Plug 'maxmellon/vim-jsx-pretty', {'as': 'vim-syntax-jsx', 'for': ['javascriptreact']}
+Plug 'elzr/vim-json', {'for': 'json'}
 let g:polyglot_disabled = ['c', 'cpp', 'markdown', 'javascriptreact']
 let g:vim_json_syntax_conceal = 0
 let g:markdown_fenced_languages = [
@@ -451,6 +452,10 @@ let g:markdown_fenced_languages = [
       \   'yaml',
       \   'toml'
       \   ]
+augroup VimSyntax
+  autocmd!
+  autocmd BufNewFile,BufRead *.json set foldmethod=syntax
+augroup END
 "}}}
 " User Interface
 "{{{colorschemes
@@ -518,8 +523,6 @@ Plug 'andymass/vim-matchup'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-sleuth'
 Plug 'alvan/vim-closetag'
-Plug 'elzr/vim-json', {'for': 'json'}
-      \| au BufNewFile,BufRead *.json call Func_vim_json()
 Plug 'masukomi/vim-markdown-folding'
 Plug 'yianwillis/vimcdoc'
 Plug 'voldikss/vim-translator'
@@ -1526,12 +1529,6 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<A-z>>'
 " whitelist
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.jsx,*.tsx'
-"}}}
-"{{{vim-json
-function! Func_vim_json()
-  let g:vim_json_syntax_conceal = 0
-  set foldmethod=syntax
-endfunction
 "}}}
 "{{{vCoolor.vim
 if !has('win32')
