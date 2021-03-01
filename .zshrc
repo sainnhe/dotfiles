@@ -11,8 +11,8 @@ export SAVEHIST=$HISTSIZE
 if [[ $(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$))))))) != *"tmux"* ]]; then
     export TERM_Emulator=$(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$)))))))
 fi
-export EDITOR=vim
-export BROWSER="chromium"
+export EDITOR="nvim"
+export BROWSER="firefox-developer-edition"
 export PAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER -"
 export MANPAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER -"
 export FuzzyFinder="fzf"
