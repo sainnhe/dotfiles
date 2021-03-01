@@ -1247,10 +1247,10 @@ let g:Lf_CursorBlink = 1
 let g:Lf_CacheDirectory = stdpath('cache')
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_RootMarkers = ['.git', '.hg', '.svn', '.vscode']
+let g:Lf_DefaultExternalTool = 'rg'
 let g:Lf_ShowHidden = 1
 let g:Lf_ReverseOrder = 1
 let g:Lf_PreviewInPopup = 1
-let g:Lf_PreviewHorizontalPosition = 'center'
 let g:Lf_PreviewResult = {
       \ 'File': 0,
       \ 'Buffer': 0,
