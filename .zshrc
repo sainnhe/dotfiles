@@ -13,8 +13,8 @@ if [[ $(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$))))))) != *"tmu
 fi
 export EDITOR="nvim"
 export BROWSER="firefox-developer-edition"
-export PAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER -"
-export MANPAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER -"
+export PAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
+export MANPAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
 export FuzzyFinder="fzf"
 export NEXTWORD_DATA_PATH="$HOME/.local/share/nextword/nextword-data-large"
 # }}}
@@ -338,7 +338,7 @@ alias cdr='cd $(git rev-parse --show-toplevel)'
 alias job-='fg %-'
 alias job-ls='jobs -l'
 alias nnn='PAGER= nnn'
-alias vimpager="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER -"
+alias vimpager="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
 alias help='bash ~/repo/scripts/func/help.sh'
 alias colorscheme='bash ~/repo/scripts/func/colorscheme.sh'
 alias tmux-start='tmux new-session -s Alpha'
