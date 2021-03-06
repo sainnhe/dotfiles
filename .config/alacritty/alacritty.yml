@@ -526,6 +526,25 @@ font:
 #     x: 0
 #     y: 0
 # # }}}
+# # {{{Recursive Code iCursive Cg
+# font:
+#   normal:
+#     family: Recursive Code iCursive Cg
+#     style: Regular
+#   bold:
+#     family: Recursive Code iCursive Cg
+#     style: Regular
+#   italic:
+#     family: Recursive Code iCursive Cg
+#     style: Italic
+#   size: 11.0
+#   offset:
+#     x: 1
+#     y: 5
+#   glyph_offset:
+#     x: 0
+#     y: 0
+# # }}}
 # # {{{Cascadia Code iCursive Cg
 # font:
 #   normal:
@@ -533,14 +552,33 @@ font:
 #     style: Regular
 #   bold:
 #     family: Cascadia Code iCursive Cg
-#     style: Regular
+#     style: Bold
 #   italic:
 #     family: Cascadia Code iCursive Cg
 #     style: Italic
-#   size: 12.0
+#   size: 11.0
 #   offset:
 #     x: 0
 #     y: 0
+#   glyph_offset:
+#     x: 0
+#     y: 0
+# # }}}
+# # {{{Cascadia Code iCursive Dk
+# font:
+#   normal:
+#     family: Cascadia Code iCursive Dk
+#     style: Regular
+#   bold:
+#     family: Cascadia Code iCursive Dk
+#     style: Regular
+#   italic:
+#     family: Dank Mono
+#     style: Italic
+#   size: 11.0
+#   offset:
+#     x: 0
+#     y: 5
 #   glyph_offset:
 #     x: 0
 #     y: 0
