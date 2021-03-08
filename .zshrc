@@ -362,9 +362,11 @@ alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
 # https://github.com/zdharma/zinit
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview
 # https://github.com/sorin-ionescu/prezto
-source ~/.zinit/bin/zinit.zsh
+[ ! -f "$HOME/.zinit/bin/zinit.zsh" ] && mkdir -p ~/.zinit && git clone --depth 1 https://github.com/zdharma/zinit.git ~/.zinit/bin
+source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
+zinit ice atload"source $HOME/.zsh-theme"
 zinit light romkatv/powerlevel10k
 zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
@@ -376,12 +378,20 @@ zinit ice wait'1' lucid; zinit light hlissner/zsh-autopair
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/extract/extract.plugin.zsh
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
-zinit ice wait'1' lucid; zinit light denysdovhan/gitio-zsh
-zinit ice wait'0' blockf lucid; zinit light sainnhe/zsh-completions
-zinit ice wait'0' lucid; zinit light RobSis/zsh-completion-generator
-zinit ice wait'0' atload"export FPATH=$HOME/.zinit/plugins/RobSis---zsh-completion-generator/completions:$HOME/.zinit/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH; zcomp_init" as"program" atclone"mv run.sh gencomp-manpage; sed -i -e '1i pushd ~/.zinit/plugins/nevesnunes---sh-manpage-completions/' -e '\$a popd' gencomp-manpage" pick"run.sh" lucid; zinit light nevesnunes/sh-manpage-completions
-zinit ice wait'0' pick".zsh-snippets" lucid; zinit light "$HOME"
-source "$HOME/.zsh-theme"
+zinit ice wait'0' lucid; zinit light sainnhe/zsh-completions
+zinit ice wait'0' lucid \
+    atload"export FPATH=$HOME/.zinit/plugins/RobSis---zsh-completion-generator/completions:$FPATH"
+zinit light RobSis/zsh-completion-generator
+zinit ice wait'0' lucid \
+    atload"export FPATH=$HOME/.zinit/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH" \
+    atload"zcomp_init" \
+    atclone"mv run.sh gencomp-manpage" \
+    atclone"sed -i -e '1i pushd ~/.zinit/plugins/nevesnunes---sh-manpage-completions/' gencomp-manpage" \
+    atclone"sed -i -e '\$a popd' gencomp-manpage" \
+    atpull"%atclone" \
+    as"program"
+zinit light nevesnunes/sh-manpage-completions
+zinit ice wait'0' pick'.zsh-snippets' lucid; zinit light "$HOME"
 # {{{fast-syntax-highlighting
 FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
 # }}}
@@ -407,8 +417,10 @@ export FZF_DEFAULT_OPTS="
 # A-f file-widget
 # C-r history search
 # **<Tab> fuzzy matching path
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
+if [ -d /usr/share/fzf ]; then
+    source /usr/share/fzf/completion.zsh
+    source /usr/share/fzf/key-bindings.zsh
+fi
 bindkey '^F'  fzf-select-widget
 bindkey -r "^[c"
 bindkey -r "^T"
