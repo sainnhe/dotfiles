@@ -1,16 +1,18 @@
 # {{{Settings
 # zmodload zsh/zprof
 # {{{env
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/node_modules/.bin:$PATH"
+export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.rustup/toolchains/nightly-$(uname -m)-unknown-linux-gnu/bin:$PATH"
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-export PATH="$HOME/.nimble/bin:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.rustup/toolchains/nightly-$(uname -m)-unknown-linux-gnu/bin:$HOME/.yarn/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/.local/share/bin:$PATH"
 export TERM=xterm-256color
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
-if [[ $(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$))))))) != *"tmux"* ]]; then
-    export TERM_Emulator=$(ps -o comm= -p $(($(ps -o ppid= -p $(($(ps -o sid= -p $$)))))))
-fi
 export EDITOR="nvim"
 export BROWSER="firefox-developer-edition"
 export PAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
