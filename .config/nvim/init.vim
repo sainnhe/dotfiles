@@ -586,33 +586,33 @@ function! TabNum(n) abort "{{{
   return a:n." \ue0bb"
 endfunction "}}}
 function! ArtifyActiveTabNum(n) abort "{{{
-  return Artify(a:n, 'bold')." \ue0bb"
+  return artify#convert(a:n, 'bold')." \ue0bb"
 endfunction "}}}
 function! ArtifyInactiveTabNum(n) abort "{{{
-  return Artify(a:n, 'double_struck')." \ue0bb"
+  return artify#convert(a:n, 'double_struck')." \ue0bb"
 endfunction "}}}
 function! ArtifyLightlineTabFilename(s) abort "{{{
   if g:vim_lightline_artify ==# 2
-    return Artify(lightline#tab#filename(a:s), 'monospace')
+    return artify#convert(lightline#tab#filename(a:s), 'monospace')
   else
     return lightline#tab#filename(a:s)
   endif
 endfunction "}}}
 function! ArtifyLightlineMode() abort "{{{
   if g:vim_lightline_artify ==# 2
-    return Artify(lightline#mode(), 'monospace')
+    return artify#convert(lightline#mode(), 'monospace')
   else
     return lightline#mode()
   endif
 endfunction "}}}
 function! ArtifyLinePercent() abort "{{{
-  return Artify(string((100*line('.'))/line('$')), 'bold')
+  return artify#convert(string((100*line('.'))/line('$')), 'bold')
 endfunction "}}}
 function! ArtifyLineNum() abort "{{{
-  return Artify(string(line('.')), 'bold')
+  return artify#convert(string(line('.')), 'bold')
 endfunction "}}}
 function! ArtifyColNum() abort "{{{
-  return Artify(string(getcurpos()[2]), 'bold')
+  return artify#convert(string(getcurpos()[2]), 'bold')
 endfunction "}}}
 "}}}
 set laststatus=2  " Basic
