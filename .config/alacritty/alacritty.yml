@@ -374,6 +374,63 @@ font:
 #     x: 0
 #     y: 0
 # # }}}
+# # {{{Lilex iCursive S12
+# font:
+#   normal:
+#     family: Lilex iCursive S12
+#     style: Regular
+#   bold:
+#     family: Lilex iCursive S12
+#     style: Bold
+#   italic:
+#     family: Lilex iCursive S12
+#     style: Italic
+#   size: 11.0
+#   offset:
+#     x: 0
+#     y: 0
+#   glyph_offset:
+#     x: 0
+#     y: 0
+# # }}}
+# # {{{Lilex iCursive Op
+# font:
+#   normal:
+#     family: Lilex iCursive Op
+#     style: Regular
+#   bold:
+#     family: Lilex iCursive Op
+#     style: Bold
+#   italic:
+#     family: Lilex iCursive Op
+#     style: Italic
+#   size: 11.0
+#   offset:
+#     x: 0
+#     y: 0
+#   glyph_offset:
+#     x: 0
+#     y: 0
+# # }}}
+# # {{{Lilex iCursive Dk
+# font:
+#   normal:
+#     family: Lilex iCursive Dk
+#     style: Regular
+#   bold:
+#     family: Lilex iCursive Dk
+#     style: Bold
+#   italic:
+#     family: Dank Mono
+#     style: Italic
+#   size: 11.0
+#   offset:
+#     x: 0
+#     y: 0
+#   glyph_offset:
+#     x: 0
+#     y: 0
+# # }}}
 # # {{{Source Code Pro iCursive S12
 # font:
 #   normal:
@@ -579,25 +636,6 @@ font:
 #   offset:
 #     x: 0
 #     y: 5
-#   glyph_offset:
-#     x: 0
-#     y: 0
-# # }}}
-# # {{{Lilex iCursive Dk
-# font:
-#   normal:
-#     family: Lilex iCursive Dk
-#     style: Regular
-#   bold:
-#     family: Lilex iCursive Dk
-#     style: Bold
-#   italic:
-#     family: Lilex iCursive Dk
-#     style: Regular
-#   size: 11.0
-#   offset:
-#     x: 0
-#     y: 0
 #   glyph_offset:
 #     x: 0
 #     y: 0
