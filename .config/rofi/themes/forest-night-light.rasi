@@ -1,10 +1,10 @@
 * {
-    xbs:#3c474d;
-    xfs:#a7c080;
-    xbg:#323d43;
-    xfg:#d8caac;
-    prompt: #e39b7b;
-    entry: #d8caac;
+    xbs:#f3efda;
+    xfs:#8ea201;
+    xbg:#fdf6e3;
+    xfg:#5c6a72;
+    prompt: #f77d25;
+    entry: #5c6a72;
 }
 * {
     columns: 1;

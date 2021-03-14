@@ -130,31 +130,57 @@ schemes:
       cyan: '#5dbbc1'
       white: '#c5cdd9'
 # }}}
-# {{{ Forest Night
-  forest_night: &forest_night
+# {{{ Forest Night Dark
+  forest_night_dark: &forest_night_dark
     primary:
-      background: '#323d43'
-      foreground: '#d8caac'
+      background: '#2f393f'
+      foreground: '#d3c6aa'
 
     normal:
-      black:   '#505a60'
-      red:     '#e68183'
+      black:   '#4b565c'
+      red:     '#e67e80'
       green:   '#a7c080'
-      yellow:  '#d9bb80'
-      blue:    '#83b6af'
-      magenta: '#d39bb6'
-      cyan:    '#87c095'
-      white:   '#d8caac'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
 
     bright:
-      black:   '#505a60'
-      red:     '#e68183'
+      black:   '#4b565c'
+      red:     '#e67e80'
       green:   '#a7c080'
-      yellow:  '#d9bb80'
-      blue:    '#83b6af'
-      magenta: '#d39bb6'
-      cyan:    '#87c095'
-      white:   '#d8caac'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+# }}}
+# {{{ Forest Night Light
+  forest_night_light: &forest_night_light
+    primary:
+      background: '#fdf6e3'
+      foreground: '#5c6a72'
+
+    normal:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8ea201'
+      yellow:  '#e0a100'
+      blue:    '#3d91cd'
+      magenta: '#e16bbc'
+      cyan:    '#36a57b'
+      white:   '#dfddc8'
+
+    bright:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8ea201'
+      yellow:  '#e0a100'
+      blue:    '#3d91cd'
+      magenta: '#e16bbc'
+      cyan:    '#36a57b'
+      white:   '#dfddc8'
 # }}}
 # {{{ Sonokai Default
   sonokai_default: &sonokai_default
@@ -312,7 +338,7 @@ schemes:
       cyan: '#25b7b8'
       white: '#be9898'
 # }}}
-colors: *forest_night
+colors: *forest_night_dark
 background_opacity: 1.0
 draw_bold_text_with_bright_colors: true
 # }}}

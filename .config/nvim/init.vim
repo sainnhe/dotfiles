@@ -777,12 +777,21 @@ let g:gruvbox_material_palette_soft_era = {
       \ }
 " }}}
 let g:color_scheme_list = {}
-let g:color_scheme_list['Forest Night'] = [
+let g:color_scheme_list['Forest Night Dark'] = [
       \   'set background=dark',
       \   'let g:forest_night_disable_italic_comment = 1',
       \   "let g:forest_night_sign_column_background = 'none'",
       \   'let g:forest_night_lightline_disable_bold = 1',
-      \   'let g:forest_night_better_performance = !has("win32")',
+      \   'let g:forest_night_better_performance = 1',
+      \   'colorscheme forest-night',
+      \   'call SwitchLightlineColorScheme("forest_night")'
+      \   ]
+let g:color_scheme_list['Forest Night Light'] = [
+      \   'set background=light',
+      \   'let g:forest_night_disable_italic_comment = 1',
+      \   "let g:forest_night_sign_column_background = 'none'",
+      \   'let g:forest_night_lightline_disable_bold = 1',
+      \   'let g:forest_night_better_performance = 1',
       \   'colorscheme forest-night',
       \   'call SwitchLightlineColorScheme("forest_night")'
       \   ]
@@ -796,7 +805,7 @@ let g:color_scheme_list['Gruvbox Material Dark'] = [
       \   "let g:gruvbox_material_sign_column_background = 'none'",
       \   'let g:gruvbox_material_statusline_style = "default"',
       \   'let g:gruvbox_material_lightline_disable_bold = 1',
-      \   'let g:gruvbox_material_better_performance = !has("win32")',
+      \   'let g:gruvbox_material_better_performance = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -810,7 +819,7 @@ let g:color_scheme_list['Gruvbox Mix Dark'] = [
       \   "let g:gruvbox_material_sign_column_background = 'none'",
       \   'let g:gruvbox_material_statusline_style = "original"',
       \   'let g:gruvbox_material_lightline_disable_bold = 1',
-      \   'let g:gruvbox_material_better_performance = !has("win32")',
+      \   'let g:gruvbox_material_better_performance = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -824,7 +833,7 @@ let g:color_scheme_list['Gruvbox Material Light'] = [
       \   "let g:gruvbox_material_sign_column_background = 'none'",
       \   'let g:gruvbox_material_statusline_style = "default"',
       \   'let g:gruvbox_material_lightline_disable_bold = 1',
-      \   'let g:gruvbox_material_better_performance = !has("win32")',
+      \   'let g:gruvbox_material_better_performance = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
@@ -836,7 +845,7 @@ let g:color_scheme_list['Edge Dark'] = [
       \   "let g:edge_cursor = 'blue'",
       \   'let g:edge_lightline_disable_bold = 1',
       \   "let g:edge_sign_column_background = 'none'",
-      \   'let g:edge_better_performance = !has("win32")',
+      \   'let g:edge_better_performance = 1',
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
@@ -848,7 +857,7 @@ let g:color_scheme_list['Edge Light'] = [
       \   "let g:edge_cursor = 'purple'",
       \   'let g:edge_lightline_disable_bold = 1',
       \   "let g:edge_sign_column_background = 'none'",
-      \   'let g:edge_better_performance = !has("win32")',
+      \   'let g:edge_better_performance = 1',
       \   'colorscheme edge',
       \   'call SwitchLightlineColorScheme("edge")'
       \   ]
@@ -859,7 +868,7 @@ let g:color_scheme_list['Sonokai Default'] = [
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
       \   "let g:sonokai_sign_column_background = 'none'",
-      \   'let g:sonokai_better_performance = !has("win32")',
+      \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -870,7 +879,7 @@ let g:color_scheme_list['Sonokai Shusia'] = [
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
       \   "let g:sonokai_sign_column_background = 'none'",
-      \   'let g:sonokai_better_performance = !has("win32")',
+      \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -881,7 +890,7 @@ let g:color_scheme_list['Sonokai Andromeda'] = [
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
       \   "let g:sonokai_sign_column_background = 'none'",
-      \   'let g:sonokai_better_performance = !has("win32")',
+      \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -892,7 +901,7 @@ let g:color_scheme_list['Sonokai Atlantis'] = [
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
       \   "let g:sonokai_sign_column_background = 'none'",
-      \   'let g:sonokai_better_performance = !has("win32")',
+      \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -903,7 +912,7 @@ let g:color_scheme_list['Sonokai Maia'] = [
       \   "let g:sonokai_cursor = 'blue'",
       \   'let g:sonokai_lightline_disable_bold = 1',
       \   "let g:sonokai_sign_column_background = 'none'",
-      \   'let g:sonokai_better_performance = !has("win32")',
+      \   'let g:sonokai_better_performance = 1',
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
@@ -916,7 +925,7 @@ let g:color_scheme_list['Soft Era'] = [
       \   'let g:gruvbox_material_disable_italic_comment = 1',
       \   "let g:gruvbox_material_sign_column_background = 'none'",
       \   'let g:gruvbox_material_lightline_disable_bold = 1',
-      \   'let g:gruvbox_material_better_performance = !has("win32")',
+      \   'let g:gruvbox_material_better_performance = 1',
       \   'colorscheme gruvbox-material',
       \   'call SwitchLightlineColorScheme("gruvbox_material")'
       \   ]
