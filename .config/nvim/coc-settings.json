@@ -86,7 +86,6 @@
         "javascriptreact": ["javascript"],
         "typescript": ["javascript"]
     },
-    "nextword.filetypes": ["markdown", "text", "help", "gitcommit", "snippets"],
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,
     "coc.source.file.ignoreHidden": false,

@@ -201,12 +201,6 @@ setup_vim() { #{{{
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
     ln -s /home/sainnhe/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim/doc ~/.config/nvim/doc
-    go get -u github.com/high-moctane/nextword
-    mkdir -p ~/.local/share/nextword
-    cd ~/.local/share/nextword || exit
-    proxychains -q wget https://github.com/high-moctane/nextword-data/archive/large.zip
-    unzip large.zip
-    rm large.zip
 } #}}}
 setup_rust() { #{{{
     sudo pacman -S rustup

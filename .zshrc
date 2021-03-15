@@ -18,7 +18,6 @@ export BROWSER="firefox-developer-edition"
 export PAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
 export MANPAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
 export FuzzyFinder="fzf"
-export NEXTWORD_DATA_PATH="$HOME/.local/share/nextword/nextword-data-large"
 # }}}
 # {{{general
 set -o monitor

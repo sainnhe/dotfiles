@@ -1082,7 +1082,6 @@ let g:coc_global_extensions = [
       \ 'coc-tag',
       \ 'coc-emoji',
       \ 'coc-dictionary',
-      \ 'coc-nextword',
       \ 'coc-clangd',
       \ 'coc-html',
       \ 'coc-css',
