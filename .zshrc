@@ -298,7 +298,7 @@ zinit ice atload"source $HOME/.zsh-theme"
 zinit light romkatv/powerlevel10k
 zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
-zinit ice wait'0' lucid; zinit light zsh-users/zsh-history-substring-search
+zinit light zsh-users/zsh-history-substring-search
 zinit ice wait'0' lucid; zinit light skywind3000/z.lua
 zinit ice wait'1' lucid; zinit light ytet5uy4/fzf-widgets
 zinit ice wait'0' lucid; zinit light urbainvaes/fzf-marks
