@@ -188,9 +188,9 @@ endif
 " ; 绑定到 :
 nnoremap ; :
 " q 绑定到:q
-nmap <silent> q :q<CR>
+nmap <silent> q :<C-u>q<CR>
 " <leader>q 关闭 quickfix list
-nnoremap <silent> <leader>q :cclose<CR>
+nnoremap <silent> <leader>q :<C-u>cclose<CR>
 " m 绑定到 q
 nnoremap m q
 " Ctrl+S保存文件
@@ -265,10 +265,10 @@ nmap zn $vbda<Space><CR><Space><CR><Space><ESC>v<up><up>zfa<Backspace><down><rig
 nnoremap zs :<C-u>mkview<CR>
 nnoremap zl :<C-u>loadview<CR>
 " 获取当前光标下的高亮组
-nnoremap <leader><Space>h :call <SID>get_highlight()<CR>
+nnoremap <leader><Space>h :<C-u>call <SID>get_highlight()<CR>
 " gi, gI跳转indent
-nnoremap <silent> gi :<c-u>call <SID>go_indent(v:count1, 1)<cr>
-nnoremap <silent> gI :<c-u>call <SID>go_indent(v:count1, -1)<cr>
+nnoremap <silent> gi :<C-u>call <SID>go_indent(v:count1, 1)<cr>
+nnoremap <silent> gI :<C-u>call <SID>go_indent(v:count1, -1)<cr>
 "}}}
 "{{{InsertMode
 " Alt+X进入普通模式
