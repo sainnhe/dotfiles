@@ -168,7 +168,7 @@ schemes:
       green:   '#8ea201'
       yellow:  '#e0a100'
       blue:    '#3d91cd'
-      magenta: '#e16bbc'
+      magenta: '#df69ba'
       cyan:    '#36a57b'
       white:   '#dfddc8'
 
@@ -178,7 +178,7 @@ schemes:
       green:   '#8ea201'
       yellow:  '#e0a100'
       blue:    '#3d91cd'
-      magenta: '#e16bbc'
+      magenta: '#df69ba'
       cyan:    '#36a57b'
       white:   '#dfddc8'
 # }}}

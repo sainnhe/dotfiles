@@ -4,7 +4,7 @@ fg = #5c6a72
 border_bg = #5c6a72
 border_fg = #3c4c5500
 comment = #999f93
-net = #e16bbc
+net = #df69ba
 temp = #8ea201
 sys = #e0a100
 
