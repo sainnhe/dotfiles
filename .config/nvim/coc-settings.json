@@ -146,7 +146,6 @@
         "<C-p>": "preview",
 
         "?": "help",
-        "q": "quit",
         "<esc>": "esc",
         "e": "systemExecute",
 

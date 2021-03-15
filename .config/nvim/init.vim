@@ -1226,15 +1226,33 @@ let g:which_key_map['d'] = {
 nnoremap <silent> ? :let g:coc_hover_enable = (g:coc_hover_enable == 1 ? 0 : 1)<CR>
 "}}}
 "{{{coc-explorer
-function ToggleCocExplorer()
+function! ToggleCocExplorer() abort
   execute 'CocCommand explorer --toggle --width=35 --sources=buffer+,file+ ' . getcwd()
+endfunction
+function! s:close_startify_explorer() abort
+  if winnr('$') == 1 && &filetype ==# 'coc-explorer'
+    if tabpagenr() == 1
+      set guicursor=a:ver25-Cursor/lCursor
+    endif
+    quit
+  endif
+endfunction
+function! s:close_explorer_startify() abort
+  quit
+  if winnr('$') == 1 && &filetype ==# 'startify'
+    if tabpagenr() == 1
+      set guicursor=a:ver25-Cursor/lCursor
+    endif
+    quit
+  endif
 endfunction
 nnoremap <silent> <C-b> :call ToggleCocExplorer()<CR>
 augroup ExplorerCustom
   autocmd!
   autocmd FileType coc-explorer setlocal signcolumn=no
   autocmd FileType coc-explorer nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 100m<CR>:Vista!!<CR>
-  autocmd BufEnter * if (winnr("$") == 1 && &filetype ==# 'coc-explorer') | set guicursor=a:ver25-Cursor/lCursor | q | endif
+  autocmd FileType coc-explorer nnoremap <buffer><silent> q :<C-u>call <SID>close_explorer_startify()<CR>
+  autocmd BufEnter * call s:close_startify_explorer()
 augroup END
 "}}}
 "{{{coc-project
