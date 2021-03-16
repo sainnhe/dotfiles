@@ -165,21 +165,21 @@ schemes:
     normal:
       black:   '#5c6a72'
       red:     '#f85552'
-      green:   '#8ea201'
+      green:   '#8fa401'
       yellow:  '#dfa000'
-      blue:    '#3d91cd'
+      blue:    '#3a94c5'
       magenta: '#df69ba'
-      cyan:    '#36a57b'
+      cyan:    '#36aa7e'
       white:   '#dfddc8'
 
     bright:
       black:   '#5c6a72'
       red:     '#f85552'
-      green:   '#8ea201'
+      green:   '#8fa401'
       yellow:  '#dfa000'
-      blue:    '#3d91cd'
+      blue:    '#3a94c5'
       magenta: '#df69ba'
-      cyan:    '#36a57b'
+      cyan:    '#36aa7e'
       white:   '#dfddc8'
 # }}}
 # {{{ Sonokai Default
