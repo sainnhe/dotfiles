@@ -462,7 +462,7 @@ augroup END
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/sonokai'
-Plug 'sainnhe/forest-night'
+Plug 'sainnhe/everforest'
 "}}}
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
@@ -777,23 +777,23 @@ let g:gruvbox_material_palette_soft_era = {
       \ }
 " }}}
 let g:color_scheme_list = {}
-let g:color_scheme_list['Forest Night Dark'] = [
+let g:color_scheme_list['Everforest Dark'] = [
       \   'set background=dark',
-      \   'let g:forest_night_disable_italic_comment = 1',
-      \   "let g:forest_night_sign_column_background = 'none'",
-      \   'let g:forest_night_lightline_disable_bold = 1',
-      \   'let g:forest_night_better_performance = 1',
-      \   'colorscheme forest-night',
-      \   'call SwitchLightlineColorScheme("forest_night")'
+      \   'let g:everforest_disable_italic_comment = 1',
+      \   "let g:everforest_sign_column_background = 'none'",
+      \   'let g:everforest_lightline_disable_bold = 1',
+      \   'let g:everforest_better_performance = 1',
+      \   'colorscheme everforest',
+      \   'call SwitchLightlineColorScheme("everforest")'
       \   ]
-let g:color_scheme_list['Forest Night Light'] = [
+let g:color_scheme_list['Everforest Light'] = [
       \   'set background=light',
-      \   'let g:forest_night_disable_italic_comment = 1',
-      \   "let g:forest_night_sign_column_background = 'none'",
-      \   'let g:forest_night_lightline_disable_bold = 1',
-      \   'let g:forest_night_better_performance = 1',
-      \   'colorscheme forest-night',
-      \   'call SwitchLightlineColorScheme("forest_night")'
+      \   'let g:everforest_disable_italic_comment = 1',
+      \   "let g:everforest_sign_column_background = 'none'",
+      \   'let g:everforest_lightline_disable_bold = 1',
+      \   'let g:everforest_better_performance = 1',
+      \   'colorscheme everforest',
+      \   'call SwitchLightlineColorScheme("everforest")'
       \   ]
 let g:color_scheme_list['Gruvbox Material Dark'] = [
       \   'set background=dark',

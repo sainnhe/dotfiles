@@ -1,4 +1,4 @@
-include-file = ~/.config/polybar/themes/forest-night
+include-file = ~/.config/polybar/themes/everforest-dark
 ; {{{mainbar
 [bar/mainbar]
 dpi = 200

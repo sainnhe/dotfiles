@@ -45,7 +45,9 @@ setup_dotfiles() { #{{{
     setup_copy .config/xsettingsd
     setup_copy .config/autostart-scripts
     setup_symlink .config/fontconfig/fonts.conf
-    setup_copy .config/polybar
+    setup_copy .config/polybar/config
+    setup_symlink .config/polybar/themes
+    setup_symlink .config/polybar/scripts
     setup_copy .config/rofi/config.rasi
     setup_symlink .config/rofi/themes
     setup_symlink .config/rtv
@@ -178,7 +180,7 @@ setup_zsh() { #{{{
     chsh -s /usr/bin/zsh
     ln -s /home/sainnhe/repo/dotfiles/.zshrc ~/.zshrc
     ln -s /home/sainnhe/repo/dotfiles/.zsh-snippets ~/.zsh-snippets
-    cp /home/sainnhe/repo/dotfiles/.zsh-theme-forest-night-dark ~/.zsh-theme
+    cp /home/sainnhe/repo/dotfiles/.zsh-theme-everforest-dark ~/.zsh-theme
     printf "${BBLUE}>> Execute ${BYELLOW}'zsh'${BBLUE} to install zsh plugins${NC}\n"
 } #}}}
 setup_tmux() { #{{{
@@ -216,7 +218,7 @@ setup_firefox() { #{{{
     cd ~/.mozilla/firefox/*.dev-edition-default || exit
     git clone https://github.com/sainnhe/minimal-functional-fox.git chrome
     cd chrome || exit
-    git checkout forest-night
+    git checkout everforest-dark
     printf "${BBLUE}>> In ${BGREEN}'about:config'${NC}\n"
     printf "${BBLUE}>> Set ${BGREEN}'toolkit.legacyUserProfileCustomizations.stylesheets'${BBLUE} to ${BGREEN}'true'${NC}\n"
 } #}}}

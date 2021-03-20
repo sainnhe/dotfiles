@@ -76,5 +76,5 @@ configuration {
         kb-accept-entry: "Return,KP_Enter";
         kb-row-tab: "";
         kb-remove-char-back: "BackSpace,Shift+BackSpace";
-        theme: "themes/forest-night";
+        theme: "themes/everforest-dark";
 }

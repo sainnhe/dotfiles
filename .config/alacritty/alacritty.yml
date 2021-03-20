@@ -130,8 +130,8 @@ schemes:
       cyan: '#5dbbc1'
       white: '#c5cdd9'
 # }}}
-# {{{ Forest Night Dark
-  forest_night_dark: &forest_night_dark
+# {{{ Everforest Dark
+  everforest_dark: &everforest_dark
     primary:
       background: '#2f383e'
       foreground: '#d3c6aa'
@@ -156,8 +156,8 @@ schemes:
       cyan:    '#83c092'
       white:   '#d3c6aa'
 # }}}
-# {{{ Forest Night Light
-  forest_night_light: &forest_night_light
+# {{{ Everforest Light
+  everforest_light: &everforest_light
     primary:
       background: '#fdf6e3'
       foreground: '#5c6a72'
@@ -338,7 +338,7 @@ schemes:
       cyan: '#25b7b8'
       white: '#be9898'
 # }}}
-colors: *forest_night_dark
+colors: *everforest_dark
 background_opacity: 1.0
 draw_bold_text_with_bright_colors: true
 # }}}
