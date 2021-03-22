@@ -568,8 +568,21 @@ function! CocStatus() abort "{{{
   return get(g:, 'coc_status', '')
 endfunction "}}}
 function! GitGlobal() abort "{{{
-  let status = get(g:, 'coc_git_status', '')
-  return status ==# '' ? "\ue61b" : status
+  let git_status = get(g:, 'coc_git_status', '')
+  if git_status ==# ''
+    if g:vim_lightline_artify ==# 2
+      let status = ' ' . artify#convert(fnamemodify(getcwd(), ':t'), 'monospace')
+    else
+      let status = ' ' . fnamemodify(getcwd(), ':t')
+    endif
+  else
+    if g:vim_lightline_artify ==# 2
+      let status = artify#convert(git_status, 'monospace')
+    else
+      let status = git_status
+    endif
+  endif
+  return status
 endfunction "}}}
 function! PomodoroStatus() abort "{{{
   if pomo#remaining_time() ==# '0'
