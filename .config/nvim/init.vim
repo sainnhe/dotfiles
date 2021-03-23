@@ -486,7 +486,6 @@ Plug 'sainnhe/artify.vim'
 " Productivity
 if !has('win32')
   Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
-  Plug 'wellle/tmux-complete.vim', {'for': 'tmux'}
   Plug 'tjdevries/coc-zsh'
   Plug 'lambdalisue/suda.vim'
   Plug 'lambdalisue/vim-manpager'
@@ -1122,9 +1121,7 @@ augroup CocCustom
   autocmd CursorHold * CocCommand git.refresh
   autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 augroup END
-hi link BookMarkHI GitGutterAdd
 let g:coc_hover_enable = 0
-let g:tmuxcomplete#trigger = ''
 set hidden
 set completeopt=noinsert,noselect,menuone
 call coc#config('project', {
