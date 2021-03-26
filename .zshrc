@@ -284,6 +284,7 @@ alias gencomp-help='gencomp'
 alias nvistat='nvidia-smi'
 alias proxyenv='export HTTP_PROXY=http://127.0.0.1:1081 && export HTTPS_PROXY=http://127.0.0.1:1081 && export http_proxy=http://127.0.0.1:1081 && export https_proxy=http://127.0.0.1:1081'
 alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
+alias npp='proxychains -q npm --registry https://registry.npmjs.org'
 # }}}
 # {{{Plugins
 # https://github.com/zdharma/zinit
