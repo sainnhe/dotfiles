@@ -1,14 +1,6 @@
 {
-    "config": {
-        "commitizen": {
-            "path": "/usr/lib/node_modules/cz-conventional-changelog"
-        }
-    },
-    "stylelint-comment": "https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules.md",
-    "stylelint": {
-        "extends": "stylelint-config-standard"
-    },
-    "dependencies": {
-        "ovsx": "0.1.0-next.2fec8c4"
-    }
+  "dependencies": {
+    "ovsx": "^0.1.0-next.a9154dc",
+    "vsce": "^1.87.0"
+  }
 }
