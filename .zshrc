@@ -270,7 +270,7 @@ alias nnn='PAGER= nnn'
 alias vimpager="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
 alias help='bash ~/repo/scripts/func/help.sh'
 alias colorscheme='bash ~/repo/scripts/func/colorscheme.sh'
-alias tmux-start='tmux new-session -s Alpha'
+alias tmuxinit='bash ~/repo/scripts/func/tmuxinit.sh'
 alias px='proxychains -q'
 alias hn='proxychains -q hn'
 alias gitproxyon='git config --global http.proxy "socks5://127.0.0.1:1080" && git config --global https.proxy "socks5://127.0.0.1:1080"'
