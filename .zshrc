@@ -303,7 +303,7 @@ zinit ice wait'0' lucid; zinit light skywind3000/z.lua
 zinit ice wait'1' lucid; zinit light ytet5uy4/fzf-widgets
 zinit ice wait'0' lucid; zinit light urbainvaes/fzf-marks
 zinit ice wait'1' lucid; zinit light hlissner/zsh-autopair
-zinit ice wait'1' lucid; zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
+zinit ice wait'1' lucid; zinit light jeffreytse/zsh-vi-mode
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/extract/extract.plugin.zsh
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 zinit ice wait'0' lucid; zinit light sainnhe/zsh-completions
