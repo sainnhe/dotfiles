@@ -1096,6 +1096,7 @@ let g:coc_global_extensions = [
       \ 'coc-dictionary',
       \ 'coc-clangd',
       \ 'coc-html',
+      \ 'coc-htmlhint',
       \ 'coc-css',
       \ 'coc-emmet',
       \ 'coc-tsserver',

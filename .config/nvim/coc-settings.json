@@ -41,7 +41,6 @@
     "diagnostic.infoSign": "ℹ",
     "diagnostic.hintSign": "➤",
     "diagnostic-languageserver.filetypes": {
-        "html": "tidy",
         "sh": "shellcheck",
         "zsh": "shellcheck"
     },
