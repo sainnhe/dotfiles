@@ -1133,6 +1133,11 @@ call coc#config('project', {
 call coc#config('snippets', {
       \ 'userSnippetsDirectory': fnamemodify(stdpath('data'), ':p') . 'snippets',
       \ })
+call coc#config('xml', {
+      \ 'java': {
+      \   'home': has('win32') ? 'C:\Users\gaoti\scoop\apps\openjdk\current' : '/usr/lib/jvm/default'
+      \ }
+      \ })
 "}}}
 "{{{coc-mappings
 inoremap <silent><expr> <C-j>

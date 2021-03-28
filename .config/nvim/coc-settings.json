@@ -166,7 +166,6 @@
     "rust-analyzer.cargo.allFeatures": true,
     "python.formatting.provider": "yapf",
     "prettier.formatterPriority": -1,
-    "xml.java.home": "/usr/lib/jvm/default",
     "markdownlint.config": {
         "MD013": false,
         "MD041": false
