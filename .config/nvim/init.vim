@@ -1244,7 +1244,7 @@ nnoremap <silent> ? :let g:coc_hover_enable = (g:coc_hover_enable == 1 ? 0 : 1)<
 "}}}
 "{{{coc-explorer
 function! ToggleCocExplorer() abort
-  execute 'CocCommand explorer --toggle --width=35 --sources=buffer+,file+ ' . getcwd()
+  execute 'CocCommand explorer --toggle --width=35 ' . getcwd()
 endfunction
 function! s:close_startify_explorer() abort
   if winnr('$') == 1 && &filetype ==# 'coc-explorer'

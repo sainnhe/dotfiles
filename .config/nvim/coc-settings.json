@@ -114,7 +114,6 @@
     },
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappingMode": "none",
-    "explorer.previewAction.onHover": false,
     "explorer.keyMappings.global": {
         "s": "toggleSelection",
         ":": "actionMenu",
