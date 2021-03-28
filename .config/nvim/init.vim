@@ -1110,7 +1110,6 @@ let g:coc_global_extensions = [
       \ 'coc-xml',
       \ 'coc-toml',
       \ 'coc-vimlsp',
-      \ 'coc-stylelint',
       \ 'coc-prettier'
       \ ]
 "}}}
