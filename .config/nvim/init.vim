@@ -1107,6 +1107,8 @@ let g:coc_global_extensions = [
       \ 'coc-markdownlint',
       \ 'coc-json',
       \ 'coc-yaml',
+      \ 'coc-xml',
+      \ 'coc-toml',
       \ 'coc-vimlsp',
       \ 'coc-stylelint',
       \ 'coc-prettier'
