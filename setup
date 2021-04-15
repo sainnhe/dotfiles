@@ -42,6 +42,7 @@ setup_dotfiles() { #{{{
     setup_copy .aria2
     setup_copy .config/alacritty/alacritty.yml
     setup_copy .config/autostart
+    setup_symlink .config/pip
     setup_copy .config/xsettingsd
     setup_copy .config/autostart-scripts
     setup_symlink .config/fontconfig/fonts.conf
@@ -63,7 +64,7 @@ setup_dotfiles() { #{{{
     setup_copy .config/zathura/zathurarc
     setup_symlink .config/zathura/themes
     setup_copy .config/libinput-gestures.conf
-    printf "${BBLUE}>> Setup root directory manually.${NC}"
+    printf "${BBLUE}>> Setup root directory manually.${NC}\n"
 } #}}}
 setup_arch_repos() { #{{{
     sudo cp ~/repo/dotfiles/.root/etc/pacman.conf /etc/pacman.conf
