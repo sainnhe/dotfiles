@@ -493,6 +493,8 @@ if !has('win32')
         \| au InsertEnter * call plug#load('fcitx.vim')
   Plug 'KabbAmine/vCoolor.vim'
 else
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'kyazdani42/nvim-tree.lua'
   Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
 endif
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -1000,7 +1002,12 @@ if g:vim_enable_startify == 1
         \ ]
   function ExplorerStartify()
     execute 'Startify'
-    execute 'call ToggleCocExplorer()'
+    if !has('win32')
+      execute 'call ToggleExplorer()'
+    else
+      sleep 100m
+      execute 'call ToggleExplorer()'
+    endif
   endfunction
   function! s:startify_mappings() abort
     nmap <silent><buffer> o <CR>
@@ -1015,7 +1022,7 @@ if g:vim_enable_startify == 1
           \ | endif
     autocmd FileType startify call s:startify_mappings()
     " on Enter
-    autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):call ToggleCocExplorer()<CR>
+    autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):call ToggleExplorer()<CR>
   augroup END
 endif
 "}}}
@@ -1242,36 +1249,6 @@ let g:which_key_map['d'] = {
       \   }
 nnoremap <silent> ? :let g:coc_hover_enable = (g:coc_hover_enable == 1 ? 0 : 1)<CR>
 "}}}
-"{{{coc-explorer
-function! ToggleCocExplorer() abort
-  execute 'CocCommand explorer --toggle --width=35 ' . getcwd()
-endfunction
-function! s:close_startify_explorer() abort
-  if winnr('$') == 1 && &filetype ==# 'coc-explorer'
-    if tabpagenr() == 1
-      set guicursor=a:ver25-Cursor/lCursor
-    endif
-    quit
-  endif
-endfunction
-function! s:close_explorer_startify() abort
-  quit
-  if winnr('$') == 1 && &filetype ==# 'startify'
-    if tabpagenr() == 1
-      set guicursor=a:ver25-Cursor/lCursor
-    endif
-    quit
-  endif
-endfunction
-nnoremap <silent> <C-b> :call ToggleCocExplorer()<CR>
-augroup ExplorerCustom
-  autocmd!
-  autocmd FileType coc-explorer setlocal signcolumn=no
-  autocmd FileType coc-explorer nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 100m<CR>:Vista!!<CR>
-  autocmd FileType coc-explorer nnoremap <buffer><silent> q :<C-u>call <SID>close_explorer_startify()<CR>
-  autocmd BufEnter * call s:close_startify_explorer()
-augroup END
-"}}}
 "{{{coc-project
 nnoremap <silent> <leader>fM :<c-u>CocList project<cr>
 let g:which_key_map['f']['M'] = 'mru projects'
@@ -1280,6 +1257,82 @@ let g:which_key_map['f']['M'] = 'mru projects'
 nnoremap <silent> <leader><space>I :<c-u>CocList gitignore<cr>
 let g:which_key_map["\<space>"]['I'] = 'gitignore'
 "}}}
+"}}}
+"{{{explorer
+function! ToggleExplorer() abort "{{{
+  if !has('win32')
+    execute 'CocCommand explorer --toggle --width=35 ' . getcwd()
+  else
+    execute 'NvimTreeToggle'
+  endif
+endfunction "}}}
+function! CloseStartifyExplorer() abort "{{{
+  if !has('win32')
+    let filetype = 'coc-explorer'
+  else
+    let filetype = 'NvimTree'
+  endif
+  if winnr('$') == 1 && &filetype ==# filetype
+    if tabpagenr() == 1
+      set guicursor=a:ver25-Cursor/lCursor
+    endif
+    quit
+  endif
+endfunction "}}}
+function! CloseExplorerStartify() abort "{{{
+  quit
+  if winnr('$') == 1 && &filetype ==# 'startify'
+    if tabpagenr() == 1
+      set guicursor=a:ver25-Cursor/lCursor
+    endif
+    quit
+  endif
+endfunction "}}}
+nnoremap <silent> <C-b> :call ToggleExplorer()<CR>
+if !has('win32')
+  augroup ExplorerCustom
+    autocmd!
+    autocmd FileType coc-explorer setlocal signcolumn=no
+    autocmd FileType coc-explorer nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 100m<CR>:Vista!!<CR>
+    autocmd FileType coc-explorer nnoremap <buffer><silent> q :<C-u>call CloseExplorerStartify()<CR>
+    autocmd BufEnter * call CloseStartifyExplorer()
+  augroup END
+else
+  augroup ExplorerCustom
+    autocmd!
+    autocmd BufEnter * call CloseStartifyExplorer()
+  augroup END
+endif
+if has('win32')
+  let g:nvim_tree_width = 35
+  let g:nvim_tree_highlight_opened_files = 1
+  let g:nvim_tree_lsp_diagnostics = 1
+  let g:nvim_tree_hide_dotfiles = 1
+  lua <<EOF
+    local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+    vim.g.nvim_tree_bindings = {
+      ["q"]              = ":<C-u>call CloseExplorerStartify()<CR>",
+      ["<Tab>"]          = ":<C-u>q<CR>:sleep 100m<CR>:Vista!!<CR>",
+      ["o"]              = tree_cb("edit"),
+      ["<2-LeftMouse>"]  = tree_cb("edit"),
+      ["<CR>"]           = tree_cb("cd"),
+      ["<2-RightMouse>"] = tree_cb("cd"),
+      ["t"]              = tree_cb("tabnew"),
+      ["h"]              = tree_cb("parent_node"),
+      ["<C-p>"]          = tree_cb("preview"),
+      ["."]              = tree_cb("toggle_dotfiles"),
+      ["n"]              = tree_cb("create"),
+      ["d"]              = tree_cb("remove"),
+      ["r"]              = tree_cb("rename"),
+      ["x"]              = tree_cb("cut"),
+      ["c"]              = tree_cb("copy"),
+      ["p"]              = tree_cb("paste"),
+      ["gk"]             = tree_cb("prev_git_item"),
+      ["gj"]             = tree_cb("next_git_item"),
+      ["<BS>"]           = tree_cb("dir_up"),
+    }
+EOF
+endif
 "}}}
 "{{{LeaderF
 let g:Lf_ShortcutF = '<A-z>`````ff'
@@ -1414,7 +1467,7 @@ let g:vista_executive_for = {
       \ }
 augroup VistaCustom
   autocmd!
-  autocmd FileType vista,vista_kind nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 150m<CR>:call ToggleCocExplorer()<CR>
+  autocmd FileType vista,vista_kind nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 150m<CR>:call ToggleExplorer()<CR>
   autocmd FileType vista,vista_kind nmap <buffer><silent> o <CR>
 augroup END
 "}}}

@@ -116,9 +116,7 @@
     "explorer.keyMappingMode": "none",
     "explorer.keyMappings.global": {
         "s": "toggleSelection",
-        ":": "actionMenu",
-        ";": "actionMenu",
-        "q": "quit",
+        "<leader>": "actionMenu",
 
         "h": "indentPrev",
         "l": "indentNext",
