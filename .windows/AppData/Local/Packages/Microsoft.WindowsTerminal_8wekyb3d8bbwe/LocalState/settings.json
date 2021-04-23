@@ -3,141 +3,17 @@
     "alwaysShowTabs": true,
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    // Add any keybinding overrides to this array.
-    // To unbind a default keybinding, set the command to "unbound"
-    "keybindings": 
-    [
-        {
-            "command": "closePane",
-            "keys": 
-            [
-                "ctrl+alt+x"
-            ]
-        },
-        {
-            "command": "closeTab",
-            "keys": 
-            [
-                "ctrl+shift+w"
-            ]
-        },
-        {
-            "command": "copy",
-            "keys": 
-            [
-                "ctrl+shift+c"
-            ]
-        },
-        {
-            "command": "moveFocusDown",
-            "keys": 
-            [
-                "ctrl+alt+j"
-            ]
-        },
-        {
-            "command": "moveFocusLeft",
-            "keys": 
-            [
-                "ctrl+alt+h"
-            ]
-        },
-        {
-            "command": "moveFocusRight",
-            "keys": 
-            [
-                "ctrl+alt+l"
-            ]
-        },
-        {
-            "command": "moveFocusUp",
-            "keys": 
-            [
-                "ctrl+alt+k"
-            ]
-        },
-        {
-            "command": "newTab",
-            "keys": 
-            [
-                "ctrl+shift+t"
-            ]
-        },
-        {
-            "command": "nextTab",
-            "keys": 
-            [
-                "ctrl+tab"
-            ]
-        },
-        {
-            "command": "paste",
-            "keys": 
-            [
-                "ctrl+shift+v"
-            ]
-        },
-        {
-            "command": "prevTab",
-            "keys": 
-            [
-                "ctrl+shift+tab"
-            ]
-        },
-        {
-            "command": "resizePaneDown",
-            "keys": 
-            [
-                "ctrl+alt+down"
-            ]
-        },
-        {
-            "command": "resizePaneLeft",
-            "keys": 
-            [
-                "ctrl+alt+left"
-            ]
-        },
-        {
-            "command": "resizePaneRight",
-            "keys": 
-            [
-                "ctrl+alt+right"
-            ]
-        },
-        {
-            "command": "resizePaneUp",
-            "keys": 
-            [
-                "ctrl+alt+up"
-            ]
-        },
-        {
-            "command": "splitHorizontal",
-            "keys": 
-            [
-                "ctrl+alt+s"
-            ]
-        },
-        {
-            "command": "splitVertical",
-            "keys": 
-            [
-                "ctrl+alt+v"
-            ]
-        }
-    ],
     "launchMode": "fullscreen",
-    "profiles": 
-    {
+    "tabSwitcherMode": "mru",
+    "theme": "dark",
+    "profiles": {
         "defaults": {},
-        "list": 
-        [
+        "list": [
             {
                 "acrylicOpacity": 0.69999999999999996,
                 "colorScheme": "GruvboxMaterialMediumDark",
                 "commandline": "powershell.exe -nologo",
-                "cursorColor": "#B05CCC",
+                "cursorColor": "#a9b665",
                 "cursorShape": "bar",
                 "fontFace": "Source Code Pro iCursive Op",
                 "fontSize": 12,
@@ -162,8 +38,81 @@
             {}
         ]
     },
-    "schemes": 
-    [
+    "keybindings": [
+        {
+            "command": "closeTab",
+            "keys": [
+                "ctrl+shift+w"
+            ]
+        },
+        {
+            "command": "copy",
+            "keys": [
+                "ctrl+shift+c"
+            ]
+        },
+        {
+            "command": "paste",
+            "keys": [
+                "ctrl+shift+v"
+            ]
+        },
+        {
+            "command": "toggleFullscreen",
+            "keys": [
+                "ctrl+shift+m"
+            ]
+        },
+        {
+            "command": {
+                "action": "moveFocus",
+                "direction": "up"
+            },
+            "keys": [
+                "ctrl+shift+k"
+            ]
+        },
+        {
+            "command": {
+                "action": "moveFocus",
+                "direction": "down"
+            },
+            "keys": [
+                "ctrl+shift+j"
+            ]
+        },
+        {
+            "command": {
+                "action": "moveFocus",
+                "direction": "left"
+            },
+            "keys": [
+                "ctrl+shift+h"
+            ]
+        },
+        {
+            "command": {
+                "action": "moveFocus",
+                "direction": "right"
+            },
+            "keys": [
+                "ctrl+shift+l"
+            ]
+        },
+        {
+            "command": "closePane",
+            "keys": [
+                "ctrl+shift+x"
+            ]
+        },
+        {
+            "command": "splitPane",
+            "keys": [
+                "ctrl+shift+s"
+            ]
+        }
+    ],
+    "schemes": [
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
@@ -555,7 +504,5 @@
             "white": "#C0C0C0",
             "yellow": "#808000"
         }
-    ],
-    "tabSwitcherMode": "mru",
-    "theme": "dark"
+    ]
 }
