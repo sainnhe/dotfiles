@@ -498,6 +498,7 @@ else
   Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
 endif
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'puremourning/vimspector'
 Plug 'justinmk/vim-sneak'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-fugitive'
@@ -1333,6 +1334,54 @@ if has('win32')
     }
 EOF
 endif
+"}}}
+"{{{vimspector
+" https://puremourning.github.io/vimspector/configuration.html
+" .vimspector.json: docs/schema/vimspector.schema.json
+" .gadgets.json: docs/schema/gadgets.schema.json
+let g:vimspector_install_gadgets = ['debugpy', 'CodeLLDB', 'vscode-bash-debug', 'vscode-node-debug2', 'debugger-for-chrome']
+nmap <silent> <leader>bc :<C-u>call vimspector#Continue()<CR>
+nmap <silent> <leader>bs :<C-u>call vimspector#Stop()<CR>
+nmap <silent> <leader>br :<C-u>call vimspector#Restart()<CR>
+nmap <silent> <leader>bp :<C-u>call vimspector#Pause()<CR>
+nmap <silent> <leader>be <Plug>VimspectorBalloonEval
+nmap <silent> <leader>bg <Plug>VimspectorRunToCursor
+nmap <silent> <leader>bbb <Plug>VimspectorToggleBreakpoint
+nmap <silent> <leader>bbc <Plug>VimspectorToggleConditionalBreakpoint
+nmap <silent> <leader>bbf <Plug>VimspectorAddFunctionBreakpoint
+nmap <silent> <leader>bbC :<C-u>call vimspector#ClearBreakpoints()<CR>
+nmap <silent> <leader>b<Space><Space> <Plug>VimspectorStepOver
+nmap <silent> <leader>b<Space>i <Plug>VimspectorStepInto
+nmap <silent> <leader>b<Space>o <Plug>VimspectorStepOut
+nmap <silent> <leader>bfk <Plug>VimspectorUpFrame
+nmap <silent> <leader>bfj <Plug>VimspectorDownFrame
+let g:which_key_map['b'] = {
+      \ 'name': 'debug',
+      \ 'c': 'continue',
+      \ 's': 'stop',
+      \ 'r': 'restart',
+      \ 'p': 'pause',
+      \ 'e': 'eval',
+      \ 'g': 'run to cursor',
+      \ 'b': {
+        \ 'name': 'breakpoint',
+        \ 'b': 'toggle',
+        \ 'c': 'conditional',
+        \ 'f': 'function',
+        \ 'C': 'clear all',
+      \ },
+      \ "\<Space>": {
+        \ 'name': 'step',
+        \ "\<Space>": 'over',
+        \ 'i': 'in',
+        \ 'o': 'out',
+      \ },
+      \ 'f': {
+        \ 'name': 'frame',
+        \ 'k': 'up',
+        \ 'j': 'down',
+        \ },
+      \ }
 "}}}
 "{{{LeaderF
 let g:Lf_ShortcutF = '<A-z>`````ff'
