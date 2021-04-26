@@ -1149,6 +1149,11 @@ call coc#config('xml', {
       \   'home': has('win32') ? 'C:\Users\gaoti\scoop\apps\openjdk\current' : '/usr/lib/jvm/default'
       \ }
       \ })
+if has('win32')
+  call coc#config('terminal', {
+        \ 'shellPath': 'powershell',
+        \ })
+endif
 "}}}
 "{{{coc-mappings
 inoremap <silent><expr> <C-j>
