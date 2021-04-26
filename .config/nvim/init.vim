@@ -517,7 +517,6 @@ Plug 'liuchengxu/vista.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'skywind3000/vim-terminal-help'
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/inline_edit.vim'
@@ -1098,6 +1097,7 @@ let g:coc_global_extensions = [
       \ 'coc-git',
       \ 'coc-explorer',
       \ 'coc-project',
+      \ 'coc-terminal',
       \ 'coc-gitignore',
       \ 'coc-highlight',
       \ 'coc-yank',
@@ -1175,6 +1175,10 @@ nnoremap <silent><expr> <C-pagedown> coc#float#has_scroll() ? coc#float#scroll(1
 nnoremap <silent><expr> <C-pageup> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-pageup>"
 inoremap <silent><expr> <C-pagedown> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<C-pagedown>"
 inoremap <silent><expr> <C-pageup> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<C-pageup>"
+nnoremap <silent> <A-=> :<C-u>CocCommand terminal.Toggle<CR>
+tnoremap <silent> <A-=> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
+nnoremap <silent> <A--> :<C-u>CocCommand terminal.REPL<CR>
+tnoremap <silent> <A--> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
 nmap <silent> <leader>f<Space> :<C-u>CocList<CR>
 nmap <silent> <leader>fy :<C-u>CocList yank<CR>
 nmap <silent> <leader>fs :<C-u>CocList symbols<CR>
@@ -1570,29 +1574,6 @@ let g:which_key_map['g']['$'] = 'unset proxy'
 let g:which_key_map['g']['c'] = 'commit'
 let g:which_key_map['g']['p'] = 'push'
 let g:which_key_map['g']['f'] = 'fetch'
-"}}}
-"{{{vim-terminal-help
-let g:terminal_default_mapping = 0
-let g:terminal_key = '<A-=>'
-let g:terminal_cwd = 2
-let g:terminal_height = 13
-let g:terminal_kill = 'term'
-let g:terminal_list = 0
-if has('win32')
-  let g:terminal_shell = 'powershell'
-endif
-"{{{
-let s:cmd = 'nnoremap <silent>'.(g:terminal_key). ' '
-exec s:cmd . ':call TerminalToggle()<cr>'
-
-if has('nvim') == 0
-  let s:cmd = 'tnoremap <silent>'.(g:terminal_key). ' '
-  exec s:cmd . '<c-_>:call TerminalToggle()<cr>'
-else
-  let s:cmd = 'tnoremap <silent>'.(g:terminal_key). ' '
-  exec s:cmd . '<c-\><c-n>:call TerminalToggle()<cr>'
-endif
-"}}}
 "}}}
 "{{{vim-visual-multi
 let g:VM_default_mappings = 0
