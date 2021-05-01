@@ -1122,7 +1122,8 @@ let g:coc_global_extensions = [
       \ 'coc-xml',
       \ 'coc-toml',
       \ 'coc-vimlsp',
-      \ 'coc-prettier'
+      \ 'coc-prettier',
+      \ 'coc-pydocstring'
       \ ]
 "}}}
 "{{{coc-settings
