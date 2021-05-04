@@ -121,6 +121,7 @@ set wildmenu                            " 命令框Tab呼出菜单
 set autoread                            " 自动加载变更文件
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
 set signcolumn=yes
+set breakindent
 set updatetime=100
 set history=1000
 set sessionoptions+=globals
