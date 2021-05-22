@@ -111,7 +111,6 @@ set smartindent                         " 智能缩进
 set nohlsearch                          " 禁用高亮搜索
 set undofile                            " 始终保留undo文件
 set timeoutlen=500                      " 超时时间为 0.5 秒
-set foldmethod=marker                   " 折叠方式为按照marker折叠
 set hidden                              " buffer自动隐藏
 set showtabline=2                       " 总是显示标签
 set scrolloff=5                         " 保持5行
@@ -422,6 +421,8 @@ command PU PlugUpdate | PlugUpgrade | CocUpdate
 call plug#begin(fnamemodify(stdpath('data'), ':p') . 'plugins')
 "}}}
 "{{{syntax
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'sheerun/vim-polyglot', {'as': 'vim-syntax'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'bfrg/vim-cpp-modern', {'as': 'vim-syntax-c-cpp', 'for': ['c', 'cpp']}
@@ -457,10 +458,6 @@ let g:markdown_fenced_languages = [
       \   'yaml',
       \   'toml'
       \   ]
-augroup VimSyntax
-  autocmd!
-  autocmd BufNewFile,BufRead *.json set foldmethod=syntax
-augroup END
 "}}}
 " User Interface
 "{{{colorschemes
@@ -551,6 +548,28 @@ call plug#end()
 "}}}
 "}}}
 " User Interface
+"{{{nvim-treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+    disable = {"c"}
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+      }
+    }
+  }
+}
+EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+"}}}
 "{{{lightline.vim
 "{{{functions
 function! CocDiagnosticError() abort "{{{
@@ -860,7 +879,6 @@ let g:color_scheme_list['Edge Dark'] = [
       \   'set background=dark',
       \   "let g:edge_style = 'aura'",
       \   'let g:edge_disable_italic_comment = 1',
-      \   'let g:edge_enable_italic = 1',
       \   "let g:edge_cursor = 'blue'",
       \   'let g:edge_lightline_disable_bold = 1',
       \   "let g:edge_sign_column_background = 'none'",
@@ -872,7 +890,6 @@ let g:color_scheme_list['Edge Light'] = [
       \   'set background=light',
       \   "let g:edge_style = 'aura'",
       \   'let g:edge_disable_italic_comment = 1',
-      \   'let g:edge_enable_italic = 1',
       \   "let g:edge_cursor = 'purple'",
       \   'let g:edge_lightline_disable_bold = 1',
       \   "let g:edge_sign_column_background = 'none'",
