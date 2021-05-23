@@ -162,6 +162,7 @@
     "rust-analyzer.updates.channel": "nightly",
     "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.inlayHints.enable": false,
+    "rust-analyzer.lens.enable": false,
     "python.formatting.provider": "yapf",
     "pydocstring.formatter": "google",
     "prettier.formatterPriority": -1,
