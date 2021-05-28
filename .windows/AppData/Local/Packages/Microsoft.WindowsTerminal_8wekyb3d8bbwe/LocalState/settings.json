@@ -110,6 +110,66 @@
             "keys": [
                 "ctrl+shift+s"
             ]
+        },
+        {
+            "command": "unbound",
+            "keys": [
+                "alt+shift+-"
+            ]
+        },
+        {
+            "command": "unbound",
+            "keys": [
+                "alt+shift+plus"
+            ]
+        },
+        {
+            "command": "unbound",
+            "keys": [
+                "alt+down"
+            ]
+        },
+        {
+            "command": "unbound",
+            "keys": [
+                "alt+left"
+            ]
+        },
+        {
+            "command": "unbound",
+            "keys": [
+                "alt+right"
+            ]
+        },
+        {
+            "command": "unbound",
+            "keys": [
+                "alt+up"
+            ]
+        },
+        {
+            "command": "unbound",
+            "keys": [
+                "alt+shift+down"
+            ]
+        },
+        {
+            "command": "unbound",
+            "keys": [
+                "alt+shift+left"
+            ]
+        },
+        {
+            "command": "unbound",
+            "keys": [
+                "alt+shift+right"
+            ]
+        },
+        {
+            "command": "unbound",
+            "keys": [
+                "alt+shift+up"
+            ]
         }
     ],
     "schemes": [

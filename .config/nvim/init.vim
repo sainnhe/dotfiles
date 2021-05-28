@@ -217,11 +217,7 @@ nnoremap <leader>p "+p
 nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call ExplorerStartify()<CR>
 " Alt+W关闭当前标签
 nnoremap <silent> <A-w> :<C-u>call <SID>close_on_last_tab()<CR>
-" Alt/Ctrl+上下左右可以跳转和移动窗口
-if has('win32') && !has('gui_running')
-  nnoremap <C-left> <Esc>gT
-  nnoremap <C-right> <Esc>gt
-endif
+" Alt+上下左右可以跳转和移动窗口
 nnoremap <A-left> <Esc>gT
 nnoremap <A-right> <Esc>gt
 nnoremap <silent> <A-up> :<C-u>tabm -1<CR>
