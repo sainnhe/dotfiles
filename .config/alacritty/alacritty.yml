@@ -1100,3 +1100,4 @@ selection:
 
 live_config_reload: true
 # }}}
+# vim: fdm=marker fmr={{{,}}}:
