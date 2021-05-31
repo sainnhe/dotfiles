@@ -946,6 +946,17 @@ let g:color_scheme_list['Sonokai Maia'] = [
       \   'colorscheme sonokai',
       \   'call SwitchLightlineColorScheme("sonokai")'
       \   ]
+let g:color_scheme_list['Sonokai Espresso'] = [
+      \   "let g:sonokai_style = 'espresso'",
+      \   'let g:sonokai_disable_italic_comment = 1',
+      \   'let g:sonokai_enable_italic = 1',
+      \   "let g:sonokai_cursor = 'blue'",
+      \   'let g:sonokai_lightline_disable_bold = 1',
+      \   "let g:sonokai_sign_column_background = 'none'",
+      \   'let g:sonokai_better_performance = 1',
+      \   'colorscheme sonokai',
+      \   'call SwitchLightlineColorScheme("sonokai")'
+      \   ]
 let g:color_scheme_list['Soft Era'] = [
       \   'set background=light',
       \   "let g:gruvbox_material_background = 'medium'",

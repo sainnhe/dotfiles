@@ -79,7 +79,7 @@ schemes:
       white:   '#928374'
 # }}}
 # {{{ Edge Light
-  edge_dark: &edge_light
+  edge_light: &edge_light
     primary:
       background: '#fafafa'
       foreground: '#4b505b'
@@ -235,7 +235,7 @@ schemes:
       white: '#e3e1e4'
 # }}}
 # {{{ Sonokai Andromeda
-  sonokai_shusia: &sonokai_andromeda
+  sonokai_andromeda: &sonokai_andromeda
     primary:
       background: '#2b2d3a'
       foreground: '#e1e3e4'
@@ -261,7 +261,7 @@ schemes:
       white: '#e1e3e4'
 # }}}
 # {{{ Sonokai Atlantis
-  sonokai_shusia: &sonokai_atlantis
+  sonokai_atlantis: &sonokai_atlantis
     primary:
       background: '#2a2f38'
       foreground: '#e1e3e4'
@@ -287,7 +287,7 @@ schemes:
       white: '#e1e3e4'
 # }}}
 # {{{ Sonokai Maia
-  sonokai_shusia: &sonokai_maia
+  sonokai_maia: &sonokai_maia
     primary:
       background: '#273136'
       foreground: '#e1e2e3'
@@ -311,6 +311,32 @@ schemes:
       magenta: '#baa0f8'
       cyan: '#f3a96a'
       white: '#e1e2e3'
+# }}}
+# {{{ Sonokai Espresso
+  sonokai_espresso: &sonokai_espresso
+    primary:
+      background: "#312a28"
+      foreground: "#e4e3e1"
+
+    normal:
+      black: "#1f1e1c"
+      red: "#f86882"
+      green: "#a6cd77"
+      yellow: "#f0c66f"
+      blue: "#81d0c9"
+      magenta: "#9fa0e1"
+      cyan: "#f08d71"
+      white: "#e4e3e1"
+
+    bright:
+      black: "#1f1e1c"
+      red: "#f86882"
+      green: "#a6cd77"
+      yellow: "#f0c66f"
+      blue: "#81d0c9"
+      magenta: "#9fa0e1"
+      cyan: "#f08d71"
+      white: "#e4e3e1"
 # }}}
 # {{{ Soft Era
   soft_era: &soft_era
