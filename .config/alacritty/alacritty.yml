@@ -315,7 +315,7 @@ schemes:
 # {{{ Sonokai Espresso
   sonokai_espresso: &sonokai_espresso
     primary:
-      background: "#312a28"
+      background: "#312c2b"
       foreground: "#e4e3e1"
 
     normal:
