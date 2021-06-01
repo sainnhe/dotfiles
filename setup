@@ -165,9 +165,8 @@ setup_nvidia() { #{{{
     sudo sync
     # surface setup
     sudo mkdir -p /etc/modprobe.d
-    sudo cp ~/repo/dotfiles/.root/etc/modprobe.d/dgpu.conf /etc/modprobe.d/
-    sudo cp ~/repo/dotfiles/.root/etc/modprobe.d/blacklist-nouveau.conf /etc/modprobe.d/
-    # nvidia setup
+    sudo cp ~/repo/dotfiles/.root/etc/modprobe.d/surface.conf /etc/modprobe.d/
+    sudo cp ~/repo/dotfiles/.root/etc/modprobe.d/nvidia.conf /etc/modprobe.d/
     sudo mkdir -p /etc/modules-load.d
     sudo cp ~/repo/dotfiles/.root/etc/modules-load.d/nvidia.conf /etc/modules-load.d/
     # X11 setup
