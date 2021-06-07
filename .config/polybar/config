@@ -453,4 +453,4 @@ margin-top = 5
 margin-bottom = 5
 ; }}}
 
-; vim:ft=dosini
+; vim:ft=dosini fdm=marker fmr={{{,}}}:

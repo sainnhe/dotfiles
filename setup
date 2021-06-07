@@ -308,3 +308,4 @@ elif [ "$1" = 'fonts' ]; then
 elif [ "$1" = 'apps' ]; then
     setup_apps
 fi
+# vim: set fdm=marker fmr={{{,}}}:
