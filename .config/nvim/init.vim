@@ -1283,8 +1283,8 @@ let g:which_key_map['d'] = {
 nnoremap <silent> ? :let g:coc_hover_enable = (g:coc_hover_enable == 1 ? 0 : 1)<CR>
 "}}}
 "{{{coc-project
-nnoremap <silent> <leader>fM :<c-u>CocList project<cr>
-let g:which_key_map['f']['M'] = 'mru projects'
+nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
+let g:which_key_map['f']['p'] = 'mru projects'
 "}}}
 "{{{coc-gitignore
 nnoremap <silent> <leader><space>I :<c-u>CocList gitignore<cr>
