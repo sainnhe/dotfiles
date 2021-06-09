@@ -1758,6 +1758,7 @@ xmap iW <Plug>WordMotion_iw
 "}}}
 "{{{zealvim.vim
 let g:zv_disable_mapping = 1
+let g:zv_zeal_executable = 'zeal'
 let g:zv_file_types = {
       \ 'help'                : 'vim',
       \ 'javascript'          : 'javascript,nodejs',
