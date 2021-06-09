@@ -18,6 +18,7 @@ export BROWSER="firefox-developer-edition"
 export PAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
 export MANPAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
 export FuzzyFinder="fzf"
+export QT_SCALE_FACTOR=2
 # }}}
 # {{{general
 set -o monitor

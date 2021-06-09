@@ -537,6 +537,7 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-lastpat'
 Plug 'pechorin/any-jump.vim'
 Plug 'chaoren/vim-wordmotion'
+Plug 'KabbAmine/zeavim.vim'
 "{{{
 call plug#end()
 "}}}
@@ -1754,5 +1755,24 @@ omap aW <Plug>WordMotion_aw
 xmap aW <Plug>WordMotion_aw
 omap iW <Plug>WordMotion_iw
 xmap iW <Plug>WordMotion_iw
+"}}}
+"{{{zealvim.vim
+let g:zv_disable_mapping = 1
+let g:zv_file_types = {
+      \ 'help'                : 'vim',
+      \ 'javascript'          : 'javascript,nodejs',
+      \ 'python'              : 'python_3',
+      \ '\v^(G|g)ulpfile\.js' : 'gulp,javascript,nodejs',
+      \ }
+nmap <leader>zz <Plug>Zeavim
+vmap <leader>z <Plug>ZVVisSelection
+nmap <leader>z<space> <Plug>ZVKeyDocset
+nmap <leader>za <Plug>ZVOperator
+let g:which_key_map['z'] = {
+      \   'name': 'zeal',
+      \   "\<Space>": 'docset',
+      \   'z': 'current location',
+      \   'a': 'text object',
+      \   }
 "}}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
