@@ -117,6 +117,7 @@ TEXTOBJ                                                          *mydoc-textobj*
 
 扩展~
 
+- `.`: Tree-sitter 的节点
 - `f`: 函数
 - `l`: 行
 - `c`: 注释

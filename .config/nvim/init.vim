@@ -419,6 +419,7 @@ call plug#begin(fnamemodify(stdpath('data'), ':p') . 'plugins')
 "{{{syntax
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'RRethy/nvim-treesitter-textsubjects'
 Plug 'sheerun/vim-polyglot', {'as': 'vim-syntax'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'bfrg/vim-cpp-modern', {'as': 'vim-syntax-c-cpp', 'for': ['c', 'cpp']}
@@ -558,6 +559,12 @@ require'nvim-treesitter.configs'.setup {
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
       }
+    }
+  },
+  textsubjects = {
+    enable = true,
+    keymaps = {
+      ["."] = "textsubjects-smart",
     }
   }
 }
