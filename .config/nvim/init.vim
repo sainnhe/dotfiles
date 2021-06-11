@@ -9,58 +9,6 @@
 execute 'source ' . fnamemodify(stdpath('config'), ':p') . 'base.vim'
 execute 'source ' . fnamemodify(stdpath('config'), ':p') . 'envs.vim'
 "{{{Global
-"{{{Function
-function! s:close_on_last_tab() "{{{
-  if tabpagenr('$') == 1
-    execute 'windo bd'
-    execute 'q'
-  elseif tabpagenr('$') > 1
-    execute 'windo bd'
-  endif
-endfunction "}}}
-function! s:indent_len(str) "{{{
-  return type(a:str) == 1 ? len(matchstr(a:str, '^\s*')) : 0
-endfunction "}}}
-function! s:go_indent(times, dir) "{{{
-  for _ in range(a:times)
-    let l = line('.')
-    let x = line('$')
-    let i = s:indent_len(getline(l))
-    let e = empty(getline(l))
-
-    while l >= 1 && l <= x
-      let line = getline(l + a:dir)
-      let l += a:dir
-      if s:indent_len(line) != i || empty(line) != e
-        break
-      endif
-    endwhile
-    let l = min([max([1, l]), x])
-    execute 'normal! '. l .'G^'
-  endfor
-endfunction "}}}
-function! s:get_highlight() "{{{
-  if !exists('*synstack')
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc "}}}
-function! s:escaped_search() range "{{{
-  let l:saved_reg = @"
-  execute 'normal! vgvy'
-  let l:pattern = escape(@", "\\/.*'$^~[]")
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
-  let @/ = l:pattern
-  let @" = l:saved_reg
-endfunction "}}}
-function! s:local_vimrc() "{{{ Apply `.settings.vim`
-  let root_dir = FindRootDirectory()
-  let settings_file = fnamemodify(root_dir, ':p') . '.settings.vim'
-  if filereadable(settings_file)
-    exec 'source ' . settings_file
-  endif
-endfunction "}}}
-"}}}
 "{{{Setting
 set encoding=utf-8 nobomb
 set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
@@ -108,7 +56,6 @@ augroup VimSettings
   autocmd!
   autocmd FileType html,css,scss,typescript set shiftwidth=2
   autocmd VimLeave * set guicursor=a:ver25-Cursor/lCursor
-  autocmd BufEnter * call s:local_vimrc()
 augroup END
 "}}}
 "{{{Mapping
@@ -186,7 +133,7 @@ nnoremap <leader>p "+p
 " Alt+T新建tab
 nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call ExplorerStartify()<CR>
 " Alt+W关闭当前标签
-nnoremap <silent> <A-w> :<C-u>call <SID>close_on_last_tab()<CR>
+nnoremap <silent> <A-w> :<C-u>call custom#utils#close_on_last_tab()<CR>
 " Alt+上下左右可以跳转和移动窗口
 nnoremap <A-left> <Esc>gT
 nnoremap <A-right> <Esc>gt
@@ -235,10 +182,10 @@ nmap zn $vbda<Space><CR><Space><CR><Space><ESC>v<up><up>zfa<Backspace><down><rig
 nnoremap zs :<C-u>mkview<CR>
 nnoremap zl :<C-u>loadview<CR>
 " 获取当前光标下的高亮组
-nnoremap <leader><Space>h :<C-u>call <SID>get_highlight()<CR>
+nnoremap <leader><Space>h :<C-u>call custom#utils#get_highlight()<CR>
 " gi, gI跳转indent
-nnoremap <silent> gi :<C-u>call <SID>go_indent(v:count1, 1)<cr>
-nnoremap <silent> gI :<C-u>call <SID>go_indent(v:count1, -1)<cr>
+nnoremap <silent> gi :<C-u>call custom#utils#go_indent(v:count1, 1)<cr>
+nnoremap <silent> gI :<C-u>call custom#utils#go_indent(v:count1, -1)<cr>
 "}}}
 "{{{InsertMode
 " Alt+X进入普通模式
@@ -305,7 +252,7 @@ vnoremap <leader>y "+y
 " <leader>+P从系统剪切板粘贴
 vnoremap <leader>p "+p
 " * 搜索选中文本
-vnoremap <silent> * :<C-u>call <SID>escaped_search()<CR>/<C-R>=@/<CR><CR>N
+vnoremap <silent> * :<C-u>call custom#utils#escaped_search()<CR>/<C-R>=@/<CR><CR>N
 "}}}
 "{{{CommandMode
 " Alt+X进入普通模式
