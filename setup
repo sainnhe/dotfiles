@@ -197,15 +197,11 @@ setup_tmux() { #{{{
 } #}}}
 setup_vim() { #{{{
     pikaur -S vim-meta neovim-meta
-    cp /home/sainnhe/repo/dotfiles/.vimrc ~/
     mkdir -p ~/.config/nvim
     mkdir -p ~/.local/share/nvim
-    ln -s /home/sainnhe/repo/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
-    ln -s /home/sainnhe/repo/dotfiles/.config/nvim/tasks.ini ~/.config/nvim/tasks.ini
-    cp /home/sainnhe/repo/dotfiles/.config/nvim/env.vim ~/.config/nvim/env.vim
-    ln -s /home/sainnhe/repo/dotfiles/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
+    cp /home/sainnhe/repo/dotfiles/.vimrc ~/
+    ln -s /home/sainnhe/repo/dotfiles/.config/nvim ~/.config/nvim
     ln -s /home/sainnhe/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
-    ln -s /home/sainnhe/repo/dotfiles/.config/nvim/doc ~/.config/nvim/doc
 } #}}}
 setup_rust() { #{{{
     sudo pacman -S rustup

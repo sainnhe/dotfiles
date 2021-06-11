@@ -1,43 +1,13 @@
-"{{{Basic
-"{{{BasicConfig
-if empty(globpath(&runtimepath, '/autoload/plug.vim'))
-  echoerr 'Unable to find autoload/plug.vim. Download it from https://github.com/junegunn/vim-plug'
-  finish
-endif
-if !has('win32')
-  set runtimepath-=/usr/share/vim/vimfiles
-endif
-if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
-  let g:vim_is_in_tmux = 1
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-else
-  let g:vim_is_in_tmux = 0
-endif
-if exists('g:vim_man_pager')
-  let g:vim_enable_startify = 0
-else
-  let g:vim_enable_startify = 1
-endif
-execute 'source ' . fnamemodify(stdpath('config'), ':p') . 'env.vim'
-"}}}
-"FVim{{{
-if exists('g:fvim_loaded')
-  FVimCursorSmoothMove v:true
-  FVimCursorSmoothBlink v:true
-  FVimCustomTitleBar v:true
-  FVimFontLigature v:true
-  FVimFontNoBuiltinSymbols v:true
-  FVimFontAutoSnap v:true
-  FVimUIPopupMenu v:false
-  FVimToggleFullScreen
-endif
-"}}}
-"Neovide{{{
-let g:neovide_cursor_vfx_mode = 'torpedo'
-let g:neovide_fullscreen = v:true
-"}}}
-"}}}
+" =============================================================================
+" URL: https://github.com/sainnhe/dotfiles
+" Filename: .config/nvim/init.vim
+" Author: Sainnhe Park
+" Email: sainnhe@gmail.com
+" License: Anti-996 License
+" =============================================================================
+
+execute 'source ' . fnamemodify(stdpath('config'), ':p') . 'base.vim'
+execute 'source ' . fnamemodify(stdpath('config'), ':p') . 'envs.vim'
 "{{{Global
 "{{{Function
 function! s:close_on_last_tab() "{{{

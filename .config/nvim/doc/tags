@@ -1,5 +1,7 @@
 mydoc-autopairs	mydoc.txt	/*mydoc-autopairs*
 mydoc-closetag	mydoc.txt	/*mydoc-closetag*
+mydoc-commands	mydoc.txt	/*mydoc-commands*
+mydoc-commands-mode	mydoc.txt	/*mydoc-commands-mode*
 mydoc-contents	mydoc.txt	/*mydoc-contents*
 mydoc-manpager	mydoc.txt	/*mydoc-manpager*
 mydoc-matchup	mydoc.txt	/*mydoc-matchup*

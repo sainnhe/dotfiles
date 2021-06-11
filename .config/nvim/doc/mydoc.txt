@@ -2,6 +2,7 @@
 
 CONTENTS                                     *mydoc-contents*
 
+commands                                     |mydoc-commands|
 plug                                         |mydoc-plug|
 sneak                                        |mydoc-sneak|
 autopairs                                    |mydoc-autopairs|
@@ -12,6 +13,19 @@ matchup                                      |mydoc-matchup|
 suda                                         |mydoc-suda|
 manpager                                     |mydoc-manpager|
 textobj                                      |mydoc-textobj|
+
+==============================================================================
+COMMANDS                                                        *mydoc-commands*
+
+------------------------------------------------------------------------------
+                                                           *mydoc-commands-mode*
+:Mode~
+
+`:Mode` 命令通过更新 `envs.vim` 来切换当前的模式，可选的模式有三个：
+
+1. `minimal`:  无插件模式
+2. `light`:    只启用无外部依赖（如 clangd）的插件
+3. `full`:     启用全部插件
 
 ==============================================================================
 PLUG                                                                *mydoc-plug*
