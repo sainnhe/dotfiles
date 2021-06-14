@@ -8,56 +8,8 @@
 
 execute 'source ' . fnamemodify(stdpath('config'), ':p') . 'base.vim'
 execute 'source ' . fnamemodify(stdpath('config'), ':p') . 'envs.vim'
-"{{{Global
-"{{{Setting
-set encoding=utf-8 nobomb
-set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
-set fileformats=unix,dos,mac
-scriptencoding utf-8
-let g:mapleader = "\<Space>"
-let g:maplocalleader = "\<A-z>"
-nnoremap <SPACE> <Nop>
-set number cursorline
-set noshowmode
-set incsearch
-set mouse=a
-filetype plugin indent on
-set t_Co=256
-syntax enable                           " 开启语法支持
-set termguicolors                       " 开启GUI颜色支持
-set smartindent                         " 智能缩进
-set nohlsearch                          " 禁用高亮搜索
-set undofile                            " 始终保留undo文件
-set timeoutlen=500                      " 超时时间为 0.5 秒
-set hidden                              " buffer自动隐藏
-set showtabline=2                       " 总是显示标签
-set scrolloff=5                         " 保持5行
-set viminfo='1000                       " 文件历史个数
-set autoindent                          " 自动对齐
-set wildmenu                            " 命令框Tab呼出菜单
-set autoread                            " 自动加载变更文件
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab     " tab设定，:retab 使文件中的TAB匹配当前设置
-set signcolumn=yes
-set breakindent
-set updatetime=100
-set history=1000
-set sessionoptions+=globals
-execute 'set undodir=' . fnamemodify(stdpath('cache'), ':p') . 'undo'
-if !has('win32')
-  set dictionary+=/usr/share/dict/words
-  set dictionary+=/usr/share/dict/american-english
-endif
-if has('nvim')
-  set inccommand=split
-  set wildoptions=pum
-  filetype plugin indent on
-endif
-augroup VimSettings
-  autocmd!
-  autocmd FileType html,css,scss,typescript set shiftwidth=2
-  autocmd VimLeave * set guicursor=a:ver25-Cursor/lCursor
-augroup END
-"}}}
+execute 'source ' . fnamemodify(stdpath('config'), ':p') . 'settings.vim'
+
 "{{{Mapping
 "{{{VIM-Compatible
 " sed -n l
@@ -273,7 +225,6 @@ if has('nvim')
 endif
 "}}}
 "}}}
-"}}}
 "{{{Plugin
 "{{{init
 "{{{ automatically install missing plugins on startup
@@ -342,7 +293,7 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'bfrg/vim-cpp-modern', {'as': 'vim-syntax-c-cpp', 'for': ['c', 'cpp']}
 Plug 'maxmellon/vim-jsx-pretty', {'as': 'vim-syntax-jsx', 'for': ['javascriptreact']}
 Plug 'elzr/vim-json', {'for': 'json'}
-let g:polyglot_disabled = ['c', 'cpp', 'markdown', 'javascriptreact', 'java']
+let g:polyglot_disabled = ['sensible', 'c', 'cpp', 'markdown', 'javascriptreact', 'java']
 let g:vim_json_syntax_conceal = 0
 let g:markdown_fenced_languages = [
       \   'html',

@@ -49,5 +49,13 @@ function custom#utils#escaped_search() range "{{{
   let @/ = l:pattern
   let @" = l:saved_reg
 endfunction "}}}
+function custom#utils#git_status() abort "{{{
+  let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  if strlen(l:branchname) > 0
+    return ' '.l:branchname.' '
+  else
+    return ' clean '
+  endif
+endfunction "}}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
