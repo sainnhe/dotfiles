@@ -75,6 +75,41 @@ execute "set <M-=>=\e="
 " }}}
 " }}}
 "Mappings{{{
+"{{{VIM-Compatible
+" sed -n l
+if !has('nvim')
+  execute "set <M-a>=\ea"
+  execute "set <M-b>=\eb"
+  execute "set <M-c>=\ec"
+  execute "set <M-d>=\ed"
+  execute "set <M-e>=\ee"
+  execute "set <M-f>=\ef"
+  execute "set <M-g>=\eg"
+  execute "set <M-h>=\eh"
+  execute "set <M-i>=\ei"
+  execute "set <M-j>=\ej"
+  execute "set <M-k>=\ek"
+  execute "set <M-l>=\el"
+  execute "set <M-m>=\em"
+  execute "set <M-n>=\en"
+  execute "set <M-o>=\eo"
+  execute "set <M-p>=\ep"
+  execute "set <M-q>=\eq"
+  execute "set <M-r>=\er"
+  execute "set <M-s>=\es"
+  execute "set <M-t>=\et"
+  execute "set <M-u>=\eu"
+  execute "set <M-v>=\ev"
+  execute "set <M-w>=\ew"
+  execute "set <M-x>=\ex"
+  execute "set <M-y>=\ey"
+  execute "set <M-z>=\ez"
+  execute "set <M-,>=\e,"
+  execute "set <M-.>=\e."
+  execute "set <M-->=\e-"
+  execute "set <M-=>=\e="
+endif
+"}}}
 "{{{NormalMode
 " <leader>e open netrw
 nnoremap <silent> <leader>e :Explore<CR>
@@ -132,11 +167,11 @@ nnoremap <silent> <A-j> :<C-u>wincmd j<CR>
 " Alt+V && Alt+S新建窗口
 nnoremap <silent> <A-v> :<C-u>vsp<CR>
 nnoremap <silent> <A-s> :<C-u>sp<CR>
-" Alt+-<>调整窗口大小
-nnoremap <silent> <A-=> :<C-u>wincmd +<CR>
-nnoremap <silent> <A--> :<C-u>wincmd -<CR>
-nnoremap <silent> <A-,> :<C-u>wincmd <<CR>
-nnoremap <silent> <A-.> :<C-u>wincmd ><CR>
+" Alt+Shift+h/j/k/l调整窗口大小
+nnoremap <silent> <A-J> :<C-u>wincmd +<CR>
+nnoremap <silent> <A-K> :<C-u>wincmd -<CR>
+nnoremap <silent> <A-H> :<C-u>wincmd <<CR>
+nnoremap <silent> <A-L> :<C-u>wincmd ><CR>
 " z+方向键快速跳转
 nnoremap z<left> zk
 nnoremap z<right> zj
