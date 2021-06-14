@@ -38,13 +38,13 @@ Custom mappings for vim-plug:
   - `?`: View diff
   - `J/K`: Scroll diff window
   - `C-J/C-K`: Jump to the diff of next/previous commit
-  - `<tab>`: Open repository url in web browser
+  - `<Tab>`: Open repository url in web browser
   - `h`: Open help doc of the plugin under current cursor position
 - `S`: View plugin status
   - `R`: Retry to update
   - `U`: Retry to update selected plugins
   - `L`: Load plugins
-  - `<tab>`: Open repository url in web browser
+  - `<Tab>`: Open repository url in web browser
   - `h`: Open help doc of the plugin under current cursor position
 - `q`: Close window
 
