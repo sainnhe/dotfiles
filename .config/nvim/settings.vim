@@ -8,7 +8,6 @@
 
 filetype plugin indent on
 syntax enable
-
 set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
 set fileformats=unix,dos,mac
 set autoindent smartindent breakindent
@@ -28,9 +27,6 @@ set scrolloff=5 sidescrolloff=10
 set history=1000
 set updatetime=100
 execute 'set undofile undodir=' . fnamemodify(stdpath('cache'), ':p') . 'undo'
-let g:mapleader = "\<Space>"
-let g:maplocalleader = "\<A-z>"
-nnoremap <SPACE> <Nop>
 
 if !has('win32')
   set dictionary+=/usr/share/dict/words
