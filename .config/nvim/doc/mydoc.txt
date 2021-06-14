@@ -21,106 +21,112 @@ COMMANDS                                                        *mydoc-commands*
                                                            *mydoc-commands-mode*
 :Mode~
 
-`:Mode` 命令通过更新 `envs.vim` 来切换当前的模式，可选的模式有三个：
+`:Mode` command updates current mode via editing `envs.vim`, there are 3
+available modes:
 
-1. `minimal`:  无插件模式
-2. `light`:    只启用无外部依赖（如 clangd）的插件
-3. `full`:     启用全部插件
+1. `Minimal`:  No plugins
+2. `Light`:    Plugins with no extra dependencies
+3. `Full`:     Full featured development environment
 
-==============================================================================
+------------------------------------------------------------------------------
 PLUG                                                                *mydoc-plug*
 
-- `D`: 切换到更新日志窗口
-- `S`: 切换到插件状态窗口
-- `R`: 重试更新（插件状态窗口）
-- `U`: 更新选中范围内的插件（插件状态窗口）
-- `L`: 加载插件（插件状态窗口）
-- `X`: 回退到之前的提交（更新日志窗口）
-- `<tab>`: 在浏览器中打开 GitHub 链接（插件状态窗口/更新日志窗口）
-- `?`: 显示差异（更新日志窗口）
-- `J/K`: 滚动差异窗口（更新日志窗口）
-- `C-J/C-K`: 上/下一个提交的差异（更新日志窗口）
-- `h`: 打开帮助文档（插件状态窗口/更新日志窗口）
-- `q`: 关闭窗口
+Custom mappings for vim-plug:
 
-==============================================================================
+- `D`: View update logs
+  - `X`: Revert commit
+  - `?`: View diff
+  - `J/K`: Scroll diff window
+  - `C-J/C-K`: Jump to the diff of next/previous commit
+  - `<tab>`: Open repository url in web browser
+  - `h`: Open help doc of the plugin under current cursor position
+- `S`: View plugin status
+  - `R`: Retry to update
+  - `U`: Retry to update selected plugins
+  - `L`: Load plugins
+  - `<tab>`: Open repository url in web browser
+  - `h`: Open help doc of the plugin under current cursor position
+- `q`: Close window
+
+------------------------------------------------------------------------------
 SNEAK                                                              *mydoc-sneak*
 
-- `[count]s[char][char]`: 向前搜索或重复上次搜索
-- `[count]S[char][char]`: 向后搜索或重复上次搜索
-- `f/F`: 一个字符的搜索
+- `[count]s[char][char]`: Search forward or repeat previous search operation
+- `[count]S[char][char]`: Search backward or repeat previous search operation
+- `f/F`: One character search
 
-==============================================================================
+------------------------------------------------------------------------------
 AUTOPAIRS                                                      *mydoc-autopairs*
 
-在 Insert 模式下：
+In insert mode:
 
-- `<A-z>p`: 切换是否启用这个插件
-- `<A-n>`: 跳转到下一个关闭配对符，包括`'")]}`
-- `<A-Backspace>`: 只删除左侧的配对符，而不对右侧的配对符进行操作
-- `<A-z>[char]`: 只插入一个配对符，不自动插入关闭配对符
+- `<A-z>p`: Toggle this plugin
+- `<A-n>`: Jump to next closed pair, including `'")]}`
+- `<A-Backspace>`: Delete the left pair without deleting the right pair
+- `<A-z>[char]`: Insert left pair without inserting the right pair
 
-==============================================================================
+------------------------------------------------------------------------------
 NERDCOMMENTER                                              *mydoc-nerdcommenter*
 
-- `[count]<Leader>cc`: 注释行或选中的文本
-- `[count]<Leader>cu`: 取消注释行或选中的文本
-- `[count]<Leader>c<space>`: 切换行或选中文本的注释状态
-- `[count]<Leader>cm`: 最小化注释，如 C 语言中就用 /* */ 来进行注释
-- `<Leader>c$`: 从当前光标的位置注视到行末
-- `<Leader>cA`: 在行末添加注释符并进入 Insert 模式
-- `<Leader>ca`: 切换注释符，如 C 语言中在 /* */ 和 // 之间切换
+- `[count]<Leader>cc`: Comment lines or selected texts
+- `[count]<Leader>cu`: Uncomment lines or selected texts
+- `[count]<Leader>c<space>`: Toggle commenting lines or selected texts
+- `[count]<Leader>cm`: Miminal commenting, for example use `/* */` in C
+- `<Leader>c$`: Comment texts from current cursor position to the end of the
+  line
+- `<Leader>cA`: Insert commenting characters in the end of the line and switch
+  to insert mode
+- `<Leader>ca`: Toggle commenting characters, for example switch between `/* */`
+  and `//` in C
 
-==============================================================================
+------------------------------------------------------------------------------
 CLOSETAG                                                        *mydoc-closetag*
 
-在 html 中，在 Insert 模式下：
+When editing HTML files, in insert mode:
 
-- `>`: 自动添加关闭标签
-- `<A-z>>`: 插入 `>` 字符而不自动关闭标签
+- `>`: Auto close tags
+- `<A-z>>`: Insert `>` without closing tags
 
-==============================================================================
+------------------------------------------------------------------------------
 SURROUND                                                        *mydoc-surround*
 
-- `ds[char]`: 删除环绕字符，其中 `[char]` 可以是 `()[]{}"'<>``
-- `cs[char1][char2]`: 更改环绕字符
-- `ys[motion][char]`: 在当前位置和移动位置之间添加环绕字符，其中 `[motion]`
-  可以是 `w`/`$`/`0` 等
-- `ys[textobj][char]`: 给文本对象添加环绕字符，其中 `[textobj]` 可以是
-  `is`/`ap` 等
+- `ds[char]`: Delete surroundings, in which `[char]` could be `()[]{}"'<>``
+- `cs[char1][char2]`: Change surroundings
+- `ys[motion][char]`: Add surroundings near |{motion}|
+- `ys[textobj][char]`: Add surroundings near |text-objects|
 
-在使用 `ys` 命令时，左括号会在括号间加上空格，右括号不会。
+Note: The `ys` command will add spaces when using left pairs, but it will not
+when using right pairs.
 
-==============================================================================
+------------------------------------------------------------------------------
 MATCHUP                                                          *mydoc-matchup*
 
-- `%`/`g%`: 跳转到上/下一个环绕字符或环绕关键词
-- `[%`/`]%`: 跳转到上/下一个环绕节点（因为很多时候环绕都是嵌套的）
-- `z%`: 跳转到最近的环绕内部
+- `%`/`g%`: Jump to next/previous matchup character or word
+- `[%`/`]%`: Jump to next/previous matchup node
+- `z%`: Jump inside the nearest matchup
 
-==============================================================================
+------------------------------------------------------------------------------
 SUDA                                                                *mydoc-suda*
 
-- `:E`: sudo edit
-- `:W`: sudo write
+- `:E`: Edit file with root permission
+- `:W`: Write file with root permission
 
-==============================================================================
+------------------------------------------------------------------------------
 MANPAGER                                                        *mydoc-manpager*
 
-- `<C-]>`: 打开当前光标位置的手册
-- `<C-o>`: 跳转到之前的位置
-- `<C-j>`/`<C-k>`: 将光标移动到下/上一个关键词处
-- `E`: 将当前 buffer 设置成可修改的
-- `q`: 退出
+- `<C-j>`/`<C-k>`: Jump to next/previous keyword
+- `<C-]>`: Open related pages of current keyword
+- `E`: Set current buffer to modifiable
+- `q`: Quit
 
-==============================================================================
+------------------------------------------------------------------------------
 TEXTOBJ                                                          *mydoc-textobj*
 
-内置~
+Builtin~
 
-- `w`: 单词
-- `s`: 句子
-- `p`: 段落
+- `w`: Word
+- `s`: Sentence
+- `p`: Paragraph
 - `}`/`{`
 - `]`/`[`
 - `)`/`(`
@@ -129,21 +135,21 @@ TEXTOBJ                                                          *mydoc-textobj*
 - `"`
 - ``
 
-扩展~
+Extends~
 
-- `.`: Tree-sitter 的节点
-- `f`: 函数
-- `l`: 行
-- `c`: 注释
-- `C`：注释（包括前导空格）
-- `z`：折叠区域
-- `u`：链接
-- `e`：当前 buffer
-- `,`：函数参数
-- `i`：缩进
-- `I`：当前缩进
-- `/`：上一次搜索
-- `W`：分段单词
+- `.`: Current node parsed by tree-sitter
+- `f`: Function
+- `l`: Line
+- `c`: Comment (excluding spaces at the start of a line)
+- `C`：Comment (including spaces at the start of a line)
+- `z`：Fold
+- `u`：URL
+- `e`：Current buffer
+- `,`：Function parameter
+- `i`：Indents of current level and all next levels
+- `I`：Indents of current level
+- `/`：Previous search
+- `W`：Semantic word
 
 ==============================================================================
 vim:tw=78:nosta:noet:ts=8:sts=0:ft=help:noet:fen:fdm=marker:fmr={{{,}}}:
