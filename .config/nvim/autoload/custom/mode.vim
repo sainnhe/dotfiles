@@ -40,10 +40,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
     echomsg "[dependency] Doesn't have yapf installed."
     let l:result = 0
   endif
-  if !executable('zenity')
-    echomsg "[dependency] Doesn't have zenity installed."
-    let l:result = 0
-  endif
   if !executable('ctags')
     echomsg "[dependency] Doesn't have universal-ctags installed."
     let l:result = 0
@@ -54,6 +50,10 @@ function custom#mode#check_dependencies() abort " Check dependencies
   endif
   if !executable('julia')
     echomsg "[dependency] Doesn't have julia installed."
+    let l:result = 0
+  endif
+  if !executable('zenity') && !has('win32')
+    echomsg "[dependency] Doesn't have zenity installed."
     let l:result = 0
   endif
   return l:result
