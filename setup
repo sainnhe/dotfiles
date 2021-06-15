@@ -196,10 +196,9 @@ setup_tmux() { #{{{
     echo "'prefix I' to install plugins"
 } #}}}
 setup_vim() { #{{{
-    pikaur -S vim-meta neovim-meta
+    pikaur -S neovim-meta
     mkdir -p ~/.config/nvim
     mkdir -p ~/.local/share/nvim
-    cp /home/sainnhe/repo/dotfiles/.vimrc ~/
     ln -s /home/sainnhe/repo/dotfiles/.config/nvim ~/.config/nvim
     ln -s /home/sainnhe/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
 } #}}}

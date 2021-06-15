@@ -83,10 +83,10 @@ endfunction
 
 function custom#mode#update() abort " Update .config/nvim/envs.vim
   let l:vim_mode = custom#mode#get()
-  let l:insert_str = "let g:vim_mode = '" . l:vim_mode . "'"
+  let l:insert_str = "  let g:vim_mode = '" . l:vim_mode . "'"
   let l:envs_path = fnamemodify(stdpath('config'), ':p') . 'envs.vim'
   let l:envs_content = join(readfile(l:envs_path), "\n")
-  let l:envs_content = substitute(l:envs_content, "let g:vim_mode = '[[:alpha:]]\\{}'", l:insert_str, 'g')
+  let l:envs_content = substitute(l:envs_content, "  let g:vim_mode = '[[:alpha:]]\\{}'", l:insert_str, 'g')
   call delete(l:envs_path)
   call writefile(split(l:envs_content, "\n"), l:envs_path, 'a')
 endfunction
