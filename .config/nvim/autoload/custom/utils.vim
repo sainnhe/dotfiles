@@ -57,5 +57,12 @@ function custom#utils#git_status() abort "{{{
     return ' clean '
   endif
 endfunction "}}}
+function custom#utils#switch_lightline_color_scheme(colorscheme) abort "{{{
+  execute join(['source', globpath(&runtimepath, join(['autoload/lightline/colorscheme/', a:colorscheme, '.vim'], ''), 0, 1)[0]], ' ')
+  let g:lightline.colorscheme = a:colorscheme
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfunction "}}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

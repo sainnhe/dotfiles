@@ -20,7 +20,7 @@ set sessionoptions-=options
 set viewoptions-=options
 set wildmenu
 set termguicolors t_Co=256
-set number cursorline signcolumn=yes showtabline=2
+set number cursorline signcolumn=yes showtabline=2 laststatus=2
 set mouse=a
 set hidden
 set scrolloff=5 sidescrolloff=10
@@ -38,9 +38,8 @@ if has('nvim')
   set wildoptions=pum
 endif
 
-if g:vim_mode ==# 'minimal'
+if g:vim_mode !=# 'full'
   set noshowmode
-  set laststatus=2
   set statusline=
   set statusline+=%#TabLineSel#
   set statusline+=%{(mode()=='n')?'\ \ NORMAL\ ':''}
