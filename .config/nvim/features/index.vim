@@ -179,6 +179,8 @@ endif
 " Productivity
 if g:vim_mode ==# 'light'
   Plug 'hrsh7th/nvim-compe'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'kyazdani42/nvim-tree.lua'
 elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'neoclide/coc.nvim', {'branch': 'release'}

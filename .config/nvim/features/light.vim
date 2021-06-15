@@ -333,6 +333,37 @@ if g:vim_mode ==# 'light'
   inoremap <silent><expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
   inoremap <silent><expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
   " }}}
+  " {{{nvim-tree.lua
+  let g:nvim_tree_width = 35
+  let g:nvim_tree_highlight_opened_files = 1
+  let g:nvim_tree_lsp_diagnostics = 1
+  let g:nvim_tree_hide_dotfiles = 1
+  nnoremap <silent> <C-b> :<C-u>NvimTreeToggle<CR>
+  lua <<EOF
+    local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+    vim.g.nvim_tree_bindings = {
+      ["J"]               = "7j",
+      ["K"]               = "7k",
+      ["o"]               = tree_cb("edit"),
+      ["<2-LeftMouse>"]   = tree_cb("edit"),
+      ["<CR>"]            = tree_cb("cd"),
+      ["<2-RightMouse>"]  = tree_cb("cd"),
+      ["t"]               = tree_cb("tabnew"),
+      ["h"]               = tree_cb("parent_node"),
+      ["<C-p>"]           = tree_cb("preview"),
+      ["."]               = tree_cb("toggle_dotfiles"),
+      ["n"]               = tree_cb("create"),
+      ["d"]               = tree_cb("remove"),
+      ["r"]               = tree_cb("rename"),
+      ["x"]               = tree_cb("cut"),
+      ["c"]               = tree_cb("copy"),
+      ["p"]               = tree_cb("paste"),
+      ["gk"]              = tree_cb("prev_git_item"),
+      ["gj"]              = tree_cb("next_git_item"),
+      ["<BS>"]            = tree_cb("dir_up"),
+    }
+EOF
+  " }}}
 endif
 " }}}
 
