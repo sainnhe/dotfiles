@@ -65,9 +65,9 @@ lua require'colorizer'.setup()
 " {{{Text objects
 call textobj#user#plugin('line', {
       \   '-': {
-      \     'select-a-function': 'custom#textobj#a',
+      \     'select-a-function': 'custom#textobj#al',
       \     'select-a': 'al',
-      \     'select-i-function': 'custom#textobj#i',
+      \     'select-i-function': 'custom#textobj#il',
       \     'select-i': 'il',
       \   },
       \ })

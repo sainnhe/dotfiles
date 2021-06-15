@@ -6,7 +6,7 @@
 " License: Anti-996 License
 " =============================================================================
 
-function custom#textobj#a() abort
+function custom#textobj#al() abort
   normal! 0
   let head_pos = getpos('.')
   normal! $
@@ -15,7 +15,7 @@ function custom#textobj#a() abort
   return ['v', head_pos, tail_pos]
 endfunction
 
-function custom#textobj#i() abort
+function custom#textobj#il() abort
   normal! ^
   let head_pos = getpos('.')
   normal! g_
