@@ -17,16 +17,18 @@ let g:which_key_display_names = {' ': '', '<CR>': '↵', '<C-H>': '', '<C-
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 call which_key#register('<Space>', 'g:which_key_map')
-let g:which_key_map = {
-      \   'name': 'Alpha',
-      \   'p': 'paste',
-      \   'q': 'close quickfix',
-      \   'y': 'yank'
-      \   }
-let g:which_key_map["\<space>"] = {
-      \   'name': 'Beta',
-      \   'h': 'highlight'
-      \   }
+if !exists('g:which_key_map')
+  let g:which_key_map = {
+        \ 'name': 'Alpha',
+        \ "\<space>": {
+          \ 'name': 'Beta'
+          \ }
+        \ }
+endif
+let g:which_key_map['p'] = 'paste'
+let g:which_key_map['q'] = 'close quickfix'
+let g:which_key_map['y'] = 'yank'
+let g:which_key_map["\<space>"]['h'] = 'highlight'
 " }}}
 " {{{incsearch.vim
 let g:incsearch#auto_nohlsearch = 1
@@ -99,7 +101,7 @@ call textobj#user#plugin('line', {
       \ })
 " }}}
 " {{{Git Integration
-if g:vim_mode ==# 'light'
+if !exists("g:which_key_map['g']")
   let g:which_key_map['g'] = {'name': 'git'}
 endif
 let g:which_key_map['g']['d'] = 'diff unstaged'

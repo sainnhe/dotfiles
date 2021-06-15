@@ -26,6 +26,7 @@ set hidden
 set scrolloff=5 sidescrolloff=10
 set history=1000
 set updatetime=100
+set completeopt=noinsert,noselect,menuone
 execute 'set undofile undodir=' . fnamemodify(stdpath('cache'), ':p') . 'undo'
 
 if !has('win32')
@@ -60,6 +61,10 @@ if g:vim_mode !=# 'full'
   set statusline+=\ %l:%c\ 
   set statusline+=%#TabLineSel#
   set statusline+=%{custom#utils#git_status()}
+endif
+
+if g:vim_mode ==# 'minimal'
+  colorscheme desert
 endif
 
 augroup VimSettings
