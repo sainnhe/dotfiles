@@ -6,7 +6,6 @@ commands                                     |mydoc-commands|
 plug                                         |mydoc-plug|
 sneak                                        |mydoc-sneak|
 autopairs                                    |mydoc-autopairs|
-nerdcommenter                                |mydoc-nerdcommenter|
 closetag                                     |mydoc-closetag|
 surround                                     |mydoc-surround|
 matchup                                      |mydoc-matchup|
@@ -64,20 +63,6 @@ In insert mode:
 - `<A-n>`: Jump to next closed pair, including `'")]}`
 - `<A-Backspace>`: Delete the left pair without deleting the right pair
 - `<A-z>[char]`: Insert left pair without inserting the right pair
-
-------------------------------------------------------------------------------
-NERDCOMMENTER                                              *mydoc-nerdcommenter*
-
-- `[count]<Leader>cc`: Comment lines or selected texts
-- `[count]<Leader>cu`: Uncomment lines or selected texts
-- `[count]<Leader>c<space>`: Toggle commenting lines or selected texts
-- `[count]<Leader>cm`: Miminal commenting, for example use `/* */` in C
-- `<Leader>c$`: Comment texts from current cursor position to the end of the
-  line
-- `<Leader>cA`: Insert commenting characters in the end of the line and switch
-  to insert mode
-- `<Leader>ca`: Toggle commenting characters, for example switch between `/* */`
-  and `//` in C
 
 ------------------------------------------------------------------------------
 CLOSETAG                                                        *mydoc-closetag*

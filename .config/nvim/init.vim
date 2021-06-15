@@ -719,11 +719,9 @@ nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 call which_key#register('<Space>', 'g:which_key_map')
 let g:which_key_map = {
       \   'name': 'Alpha',
-      \   '<Tab>': 'format',
       \   'p': 'paste',
       \   'q': 'close quickfix',
       \   'y': 'yank',
-      \   'c': { 'name': 'comment' }
       \   }
 let g:which_key_map["\<space>"] = {
       \   'name': 'Beta',
@@ -912,6 +910,7 @@ let g:which_key_map['j'] = {
       \   'r': 'reference',
       \   'm': 'implementation',
       \   }
+let g:which_key_map['<Tab>'] = 'format'
 let g:which_key_map["\<space>"]['r'] = 'rename'
 let g:which_key_map["\<space>"]['a'] = 'code action'
 let g:which_key_map['v'] = 'range select'
@@ -1186,6 +1185,19 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
+let g:NERDCreateDefaultMappings = 0
+nmap <leader>ca <Plug>NERDCommenterComment
+nmap <leader>cu <Plug>NERDCommenterUncomment
+nmap <leader>cc <Plug>NERDCommenterToggle
+xmap <leader>ca <Plug>NERDCommenterComment
+xmap <leader>cu <Plug>NERDCommenterUncomment
+xmap <leader>cc <Plug>NERDCommenterToggle
+let g:which_key_map['c'] = {
+      \   'name': 'comment',
+      \   'a': 'comment',
+      \   'u': 'uncomment',
+      \   'c': 'toggle',
+      \   }
 "}}}
 "{{{asynctasks
 let g:asyncrun_open = 6

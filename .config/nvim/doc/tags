@@ -5,7 +5,6 @@ mydoc-commands-mode	mydoc.txt	/*mydoc-commands-mode*
 mydoc-contents	mydoc.txt	/*mydoc-contents*
 mydoc-manpager	mydoc.txt	/*mydoc-manpager*
 mydoc-matchup	mydoc.txt	/*mydoc-matchup*
-mydoc-nerdcommenter	mydoc.txt	/*mydoc-nerdcommenter*
 mydoc-plug	mydoc.txt	/*mydoc-plug*
 mydoc-sneak	mydoc.txt	/*mydoc-sneak*
 mydoc-suda	mydoc.txt	/*mydoc-suda*
