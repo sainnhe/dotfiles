@@ -64,5 +64,14 @@ function custom#utils#switch_lightline_color_scheme(colorscheme) abort "{{{
   call lightline#colorscheme()
   call lightline#update()
 endfunction "}}}
+function custom#utils#toggle_pomodoro() abort "{{{
+  if g:pomodoro_status == 0
+    let g:pomodoro_status = 1
+    execute 'PomodoroStart'
+  elseif g:pomodoro_status == 1
+    let g:pomodoro_status = 0
+    execute 'PomodoroStop'
+  endif
+endfunction "}}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
