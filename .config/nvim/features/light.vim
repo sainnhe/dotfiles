@@ -300,5 +300,40 @@ if exists('g:vim_man_pager') && !has('win32')
 endif
 " }}}
 " }}}
+" {{{Productivity
+if g:vim_mode ==# 'light'
+  " {{{nvim-compe
+  let g:compe = {}
+  let g:compe.enabled = v:true
+  let g:compe.autocomplete = v:true
+  let g:compe.debug = v:false
+  let g:compe.min_length = 1
+  let g:compe.preselect = 'enable'
+  let g:compe.throttle_time = 80
+  let g:compe.source_timeout = 200
+  let g:compe.resolve_timeout = 800
+  let g:compe.incomplete_delay = 400
+  let g:compe.max_abbr_width = 100
+  let g:compe.max_kind_width = 100
+  let g:compe.max_menu_width = 100
+  let g:compe.documentation = v:true
+  let g:compe.source = {}
+  let g:compe.source.path = v:true
+  let g:compe.source.buffer = v:true
+  let g:compe.source.calc = v:false
+  let g:compe.source.nvim_lsp = v:false
+  let g:compe.source.nvim_lua = v:true
+  let g:compe.source.vsnip = v:false
+  let g:compe.source.ultisnips = v:false
+  inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+  inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+  inoremap <silent><expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
+  inoremap <silent><expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
+  inoremap <silent><expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
+  inoremap <silent><expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
+  inoremap <silent><expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
+  " }}}
+endif
+" }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

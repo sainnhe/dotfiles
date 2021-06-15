@@ -177,7 +177,9 @@ if !has('win32')
 endif
 
 " Productivity
-if g:vim_mode ==# 'full'
+if g:vim_mode ==# 'light'
+  Plug 'hrsh7th/nvim-compe'
+elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'liuchengxu/vista.vim'
