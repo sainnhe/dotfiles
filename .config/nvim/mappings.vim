@@ -45,7 +45,11 @@ nnoremap <leader>y "+y
 " <leader>p to paste from system clipboard
 nnoremap <leader>p "+p
 " Alt+T to create a new tab
-nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call custom#explorer#startify()<CR>
+if g:vim_mode ==# 'full'
+  nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call custom#explorer#startify()<CR>
+else
+  nnoremap <silent> <A-t> :<C-u>tabnew<CR>
+endif
 " Alt+W to close current tab
 nnoremap <silent> <A-w> :<C-u>call custom#utils#close_on_last_tab()<CR>
 " Alt+Left/Right to switch tabs
