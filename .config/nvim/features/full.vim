@@ -244,13 +244,9 @@ inoremap <silent><expr> <C-j>
 inoremap <silent><expr> <C-k>
       \ coc#jumpable() ? "\<C-R>=coc#rpc#request('snippetPrev', [])\<cr>" :
       \ "\<Up>"
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" :
-      \ <SID>check_back_space() ? "\<S-TAB>" :
+      \ custom#utils#check_back_space() ? "\<S-TAB>" :
       \ coc#refresh()
 inoremap <silent><expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
 inoremap <silent><expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"

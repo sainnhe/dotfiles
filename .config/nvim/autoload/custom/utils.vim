@@ -73,5 +73,9 @@ function custom#utils#toggle_pomodoro() abort "{{{
     execute 'PomodoroStop'
   endif
 endfunction "}}}
+function custom#utils#check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction "}}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
