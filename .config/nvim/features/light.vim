@@ -62,34 +62,6 @@ let g:indent_blankline_char = g:indentLine_char
 lua require'colorizer'.setup()
 " }}}
 " }}}
-" {{{Tree-sitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
-  highlight = {
-    enable = true,
-    disable = {"c"}
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-      }
-    }
-  },
-  textsubjects = {
-    enable = true,
-    keymaps = {
-      ["."] = "textsubjects-smart",
-    }
-  }
-}
-EOF
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-" }}}
 " {{{Text objects
 call textobj#user#plugin('line', {
       \   '-': {

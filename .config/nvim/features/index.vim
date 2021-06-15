@@ -123,10 +123,6 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
-" Tree-sitter
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'RRethy/nvim-treesitter-textsubjects'
 " Text objects
 Plug 'kana/vim-textobj-user'
 Plug 'glts/vim-textobj-comment'
@@ -187,6 +183,10 @@ if g:vim_mode ==# 'full'
   Plug 'liuchengxu/vista.vim'
   Plug 'puremourning/vimspector'
   Plug 'KabbAmine/zeavim.vim'
+  " Tree-sitter
+  Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+  Plug 'RRethy/nvim-treesitter-textsubjects'
   " Extended functional components, but with extra dependencies
   Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & npm install'}
   if !has('win32')

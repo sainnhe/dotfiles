@@ -464,6 +464,34 @@ let g:which_key_map['z'] = {
       \   }
 " }}}
 " }}}
+" {{{Tree-sitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+    disable = {"c"}
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+      }
+    }
+  },
+  textsubjects = {
+    enable = true,
+    keymaps = {
+      ["."] = "textsubjects-smart",
+    }
+  }
+}
+EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+" }}}
 " {{{Extended functional components, but with extra dependencies
 " {{{LeaderF
 let g:Lf_ShortcutF = '<A-z>`````ff'
