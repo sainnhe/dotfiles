@@ -190,7 +190,7 @@ if g:vim_mode ==# 'full'
   " Extended functional components, but with extra dependencies
   Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & npm install'}
   if !has('win32')
-  Plug 'tjdevries/coc-zsh'
+    Plug 'tjdevries/coc-zsh'
     Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
     Plug 'KabbAmine/vCoolor.vim'
     Plug 'lilydjwg/fcitx.vim', {'on': []}
