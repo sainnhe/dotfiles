@@ -220,7 +220,7 @@ zcomp-gen () { # {{{
     fi
 } # }}}
 vim () { # {{{
-    nvim --cmd "let g:vim_mode = 'light'"
+    nvim --cmd "let g:vim_mode = 'light'" ${1}
 } # }}}
 # {{{FuzzyFinder
 # fuzzy match dirs and cd
