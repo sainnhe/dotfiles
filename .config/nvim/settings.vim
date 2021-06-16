@@ -26,7 +26,8 @@ set hidden
 set scrolloff=5 sidescrolloff=10
 set history=1000
 set updatetime=100
-set completeopt=noinsert,noselect,menuone
+set completeopt=noinsert,noselect,menuone shortmess+=c
+set nobackup nowritebackup
 execute 'set undofile undodir=' . fnamemodify(stdpath('cache'), ':p') . 'undo'
 
 if !has('win32')
