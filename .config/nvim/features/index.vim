@@ -170,6 +170,7 @@ Plug 'rmolin88/pomodoro.vim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'AndrewRadev/inline_edit.vim'
 Plug 'masukomi/vim-markdown-folding'
+Plug 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffAdd']}
 Plug 'will133/vim-dirdiff', {'on': 'DirDiff'}
 Plug 'mbbill/fencview', {'on': ['FencAutoDetect', 'FencView']}
 Plug 'tweekmonster/startuptime.vim', {'on': 'StartupTime'}

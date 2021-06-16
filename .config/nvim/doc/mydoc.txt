@@ -98,6 +98,29 @@ SUDA                                                                *mydoc-suda*
 - `:W`: Write file with root permission
 
 ------------------------------------------------------------------------------
+DIFF                                                                *mydoc-diff*
+
+:DirDiff~
+
+`:DirDiff dir1 dir2` to compare two directories
+
+:Linediff~
+
+1. `Shift-V` to select some lines.
+2. `:'<,'>Linediff` to mark the first group of lines.
+3. `Shift-V` to select some other lines.
+4. `:'<,'>Linediff` to mark the second group of lines, and show diff.
+
+:LinediffAdd~
+
+1. `Shift-V` to select some lines.
+2. `:'<,'>LinediffAdd` to mark the first group of lines.
+3. `Shift-V` to select some other lines.
+4. `:'<,'>LinediffAdd` to mark the second group of lines.
+5. You can use `:LinediffAdd` to mark more groups of lines.
+6. `:LinediffShow` to show diff.
+
+------------------------------------------------------------------------------
 MANPAGER                                                        *mydoc-manpager*
 
 - `<C-j>`/`<C-k>`: Jump to next/previous keyword
