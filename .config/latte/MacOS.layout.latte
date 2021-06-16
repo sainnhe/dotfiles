@@ -11,6 +11,7 @@ isPreferredForShortcuts=false
 lastScreen=-1
 layoutId=
 location=3
+name=
 onPrimary=true
 plugin=org.kde.latte.containment
 raiseOnActivityChange=false
@@ -115,6 +116,7 @@ isPreferredForShortcuts=false
 lastScreen=-1
 layoutId=
 location=3
+name=
 onPrimary=true
 plugin=org.kde.latte.containment
 raiseOnActivityChange=false
@@ -146,7 +148,7 @@ immutability=1
 plugin=org.kde.plasma.appmenu
 
 [Containments][13][Applets][57][Configuration]
-PreloadWeight=1
+PreloadWeight=0
 
 [Containments][13][Applets][57][Configuration][ConfigDialog]
 DialogHeight=800
@@ -192,13 +194,14 @@ immutability=1
 plugin=org.kde.plasma.kickerdash
 
 [Containments][13][Applets][72][Configuration]
-PreloadWeight=92
+PreloadWeight=89
 
 [Containments][13][Applets][72][Configuration][ConfigDialog]
 DialogHeight=1200
 DialogWidth=1600
 
 [Containments][13][Applets][72][Configuration][General]
+favoriteSystemActions=logout
 favoritesPortedToKAstats=true
 showRecentDocs=false
 useExtraRunners=false
@@ -252,6 +255,7 @@ isPreferredForShortcuts=false
 lastScreen=-1
 layoutId=
 location=4
+name=
 onPrimary=true
 plugin=org.kde.latte.containment
 raiseOnActivityChange=false
@@ -365,6 +369,7 @@ isPreferredForShortcuts=false
 lastScreen=-1
 layoutId=
 location=3
+name=
 onPrimary=true
 plugin=org.kde.latte.containment
 raiseOnActivityChange=false
@@ -381,7 +386,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][16][Applets][61][Configuration]
-PreloadWeight=77
+PreloadWeight=69
 SystrayContainmentId=17
 
 [Containments][16][Applets][62]
@@ -470,19 +475,33 @@ location=3
 plugin=org.kde.plasma.private.systemtray
 wallpaperplugin=org.kde.image
 
+[Containments][17][Applets][121]
+immutability=1
+plugin=org.kde.plasma.keyboardlayout
+
+[Containments][17][Applets][121][Configuration]
+PreloadWeight=42
+
+[Containments][17][Applets][122]
+immutability=1
+plugin=org.kde.plasma.bluetooth
+
+[Containments][17][Applets][122][Configuration]
+PreloadWeight=42
+
 [Containments][17][Applets][40]
 immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][17][Applets][40][Configuration]
-PreloadWeight=36
+PreloadWeight=28
 
 [Containments][17][Applets][41]
 immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][17][Applets][41][Configuration]
-PreloadWeight=36
+PreloadWeight=28
 
 [Containments][17][Applets][41][Configuration][ConfigDialog]
 DialogHeight=591
@@ -493,14 +512,14 @@ immutability=1
 plugin=org.kde.plasma.notifications
 
 [Containments][17][Applets][43][Configuration]
-PreloadWeight=41
+PreloadWeight=33
 
 [Containments][17][Applets][45]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][17][Applets][45][Configuration]
-PreloadWeight=41
+PreloadWeight=33
 
 [Containments][17][Applets][48]
 immutability=1
@@ -514,7 +533,7 @@ immutability=1
 plugin=org.kde.kdeconnect
 
 [Containments][17][Applets][59][Configuration]
-PreloadWeight=1
+PreloadWeight=0
 
 [Containments][17][Applets][67]
 immutability=1
@@ -528,33 +547,37 @@ immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][17][Applets][68][Configuration]
-PreloadWeight=7
+PreloadWeight=0
 
 [Containments][17][Applets][69]
 immutability=1
 plugin=org.kde.plasma.clipboard
 
 [Containments][17][Applets][69][Configuration]
-PreloadWeight=2
+PreloadWeight=0
 
 [Containments][17][ConfigDialog]
 DialogHeight=1166
 DialogWidth=2145
 
 [Containments][17][General]
-extraItems=org.kde.plasma.mediacontroller,org.kde.plasma.networkmanagement,org.kde.plasma.volume,org.kde.plasma.nightcolorcontrol,Notificador de Discover_org.kde.DiscoverNotifier,octopi-notifier,org.kde.plasma.devicenotifier,org.kde.kdeconnect,SimpleScreenRecorder,org.kde.plasma.notifications,org.kde.plasma.vault,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.clipboard
+extraItems=org.kde.plasma.mediacontroller,org.kde.plasma.networkmanagement,org.kde.plasma.volume,org.kde.plasma.nightcolorcontrol,org.kde.plasma.devicenotifier,org.kde.kdeconnect,org.kde.plasma.notifications,org.kde.plasma.vault,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.clipboard,org.kde.plasma.keyboardlayout
 hiddenItems=SimpleScreenRecorder,org.kde.plasma.volume
-knownItems=org.kde.kdeconnect,org.kde.ktp-contactlist,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.mediacontroller,org.kde.plasma.networkmanagement,org.kde.plasma.notifications,org.kde.plasma.printmanager,org.kde.plasma.volume,org.kde.plasma.nightcolorcontrol,org.kde.plasma.vault
+knownItems=org.kde.kdeconnect,org.kde.ktp-contactlist,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.mediacontroller,org.kde.plasma.networkmanagement,org.kde.plasma.notifications,org.kde.plasma.volume,org.kde.plasma.nightcolorcontrol,org.kde.plasma.vault,org.kde.plasma.keyboardlayout
 shownItems=octopi-notifier,org.kde.kdeconnect,audoban.applet.playbar.systray,org.kde.plasma.battery,org.kde.plasma.clipboard,org.kde.plasma.nightcolorcontrol
 
 [LayoutSettings]
+activities=
 background=
 backgroundStyle=0
-color=blue
+color=lightskyblue
 customBackground=
 customTextColor=fcfcfc
+disableBordersForMaximizedWindows=true
+icon=applet_lockkeys
 lastUsedActivity=
 launchers=
+popUpMargin=-1
 preferredForShortcutsTouched=true
 showInMenu=true
 textColor=fcfcfc
