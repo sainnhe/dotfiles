@@ -163,7 +163,7 @@
     "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.inlayHints.enable": false,
     "rust-analyzer.lens.enable": false,
-    "python.formatting.provider": "yapf",
+    "python.analysis.typeCheckingMode": "basic",
     "pydocstring.formatter": "google",
     "prettier.formatterPriority": -1,
     "markdownlint.config": {

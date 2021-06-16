@@ -40,57 +40,40 @@ endfunction
 
 function custom#mode#check_dependencies() abort " Check dependencies
   let l:result = 1
+  let l:dependencies = {
+        \ 'universal': [
+          \ 'node',
+          \ 'npm',
+          \ 'yarn',
+          \ 'clang',
+          \ 'ctags',
+          \ 'gtags',
+          \ 'rg',
+          \ 'julia'
+          \ ],
+        \ 'unix-like': [
+          \ 'shellcheck',
+          \ 'shfmt',
+          \ 'zenity'
+          \ ]
+        \ }
   if !has('pythonx')
     echomsg "[dependency] Doesn't have python support."
     let l:result = 0
   endif
-  if !executable('node')
-    echomsg "[dependency] Doesn't have nodejs installed."
-    let l:result = 0
-  endif
-  if !executable('npm')
-    echomsg "[dependency] Doesn't have npm installed."
-    let l:result = 0
-  endif
-  if !executable('yarn')
-    echomsg "[dependency] Doesn't have yarn installed."
-    let l:result = 0
-  endif
-  if !executable('clang')
-    echomsg "[dependency] Doesn't have clang installed."
-    let l:result = 0
-  endif
-  if !executable('shellcheck')
-    echomsg "[dependency] Doesn't have shellcheck installed."
-    let l:result = 0
-  endif
-  if !executable('shfmt')
-    echomsg "[dependency] Doesn't have shfmt installed."
-    let l:result = 0
-  endif
-  if !executable('yapf')
-    echomsg "[dependency] Doesn't have yapf installed."
-    let l:result = 0
-  endif
-  if !executable('ctags')
-    echomsg "[dependency] Doesn't have universal-ctags installed."
-    let l:result = 0
-  endif
-  if !executable('gtags')
-    echomsg "[dependency] Doesn't have gnu-global installed."
-    let l:result = 0
-  endif
-  if !executable('rg')
-    echomsg "[dependency] Doesn't have ripgrep installed."
-    let l:result = 0
-  endif
-  if !executable('julia')
-    echomsg "[dependency] Doesn't have julia installed."
-    let l:result = 0
-  endif
-  if !executable('zenity') && !has('win32')
-    echomsg "[dependency] Doesn't have zenity installed."
-    let l:result = 0
+  for dependency in l:dependencies['universal']
+    if !executable(dependency)
+      echomsg "[dependency] Doesn't have " . dependency . ' installed.'
+      let l:result = 0
+    endif
+  endfor
+  if !has('win32')
+    for dependency in l:dependencies['unix-like']
+      if !executable(dependency)
+        echomsg "[dependency] Doesn't have " . dependency . ' installed.'
+        let l:result = 0
+      endif
+    endfor
   endif
   return l:result
 endfunction
