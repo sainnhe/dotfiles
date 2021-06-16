@@ -219,7 +219,7 @@ zcomp-gen () { # {{{
         fi
     fi
 } # }}}
-vim () { # {{{
+nvim-light () { # {{{
     nvim --cmd "let g:vim_mode = 'light'" ${1}
 } # }}}
 # {{{FuzzyFinder
