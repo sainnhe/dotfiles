@@ -189,12 +189,13 @@ elseif g:vim_mode ==# 'full'
   Plug 'liuchengxu/vista.vim'
   Plug 'puremourning/vimspector'
   Plug 'KabbAmine/zeavim.vim'
+  Plug 'kkoomen/vim-doge', {'do': 'npm ci && npm run build:binary:unix -- vim-doge'}
   " Tree-sitter
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'RRethy/nvim-treesitter-textsubjects'
   " Extended functional components, but with extra dependencies
-  Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & npm install'}
+  Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & npm ci'}
   if !has('win32')
     Plug 'tjdevries/coc-zsh'
     Plug 'Yggdroot/LeaderF', {'do': './install.sh'}

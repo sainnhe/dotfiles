@@ -204,8 +204,7 @@ let g:coc_global_extensions = [
       \ 'coc-xml',
       \ 'coc-toml',
       \ 'coc-vimlsp',
-      \ 'coc-prettier',
-      \ 'coc-pydocstring'
+      \ 'coc-prettier'
       \ ]
 " }}}
 " {{{coc-settings
@@ -458,6 +457,12 @@ let g:which_key_map['z'] = {
       \   'z': 'current location',
       \   'a': 'text object',
       \   }
+" }}}
+" {{{vim-doge
+let g:doge_enable_mappings = 0
+let g:doge_doc_standard_python = 'google'
+nmap <leader><space>d :<C-u>DogeGenerate<CR>
+let g:which_key_map["\<Space>"]['d'] = 'generate code doc'
 " }}}
 " }}}
 " {{{Tree-sitter

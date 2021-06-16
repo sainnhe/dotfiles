@@ -164,7 +164,6 @@
     "rust-analyzer.inlayHints.enable": false,
     "rust-analyzer.lens.enable": false,
     "python.analysis.typeCheckingMode": "basic",
-    "pydocstring.formatter": "google",
     "prettier.formatterPriority": -1,
     "markdownlint.config": {
         "MD013": false,
