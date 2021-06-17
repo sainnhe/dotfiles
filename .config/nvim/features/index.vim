@@ -191,7 +191,6 @@ elseif g:vim_mode ==# 'full'
   Plug 'liuchengxu/vista.vim'
   Plug 'puremourning/vimspector'
   Plug 'KabbAmine/zeavim.vim'
-  Plug 'kkoomen/vim-doge', {'do': 'npm ci && npm run build:binary:unix -- vim-doge'}
   " Tree-sitter
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -204,8 +203,10 @@ elseif g:vim_mode ==# 'full'
     Plug 'KabbAmine/vCoolor.vim'
     Plug 'lilydjwg/fcitx.vim', {'on': []}
           \| au InsertEnter * call plug#load('fcitx.vim')
+    Plug 'kkoomen/vim-doge', {'do': 'npm ci && npm run build:binary:unix -- vim-doge'}
   else
     Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
+    Plug 'kkoomen/vim-doge', {'do': 'npm ci && npm run build:binary:windows -- vim-doge'}
   endif
   " Status line
   Plug 'itchyny/lightline.vim'
