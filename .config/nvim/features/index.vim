@@ -3,7 +3,7 @@
 " Filename: .config/nvim/features/index.vim
 " Author: Sainnhe Park
 " Email: sainnhe@gmail.com
-" License: Anti-996 License
+" License: Anti-996 && MIT
 " =============================================================================
 
 if g:vim_mode ==# 'minimal'

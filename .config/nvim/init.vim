@@ -3,7 +3,7 @@
 " Filename: .config/nvim/init.vim
 " Author: Sainnhe Park
 " Email: sainnhe@gmail.com
-" License: Anti-996 License
+" License: Anti-996 && MIT
 " =============================================================================
 
 execute 'source ' . fnamemodify(stdpath('config'), ':p') . 'base.vim'

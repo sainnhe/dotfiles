@@ -3,7 +3,7 @@
 " Filename: .config/nvim/autoload/custom/colorscheme.vim
 " Author: Sainnhe Park
 " Email: sainnhe@gmail.com
-" License: Anti-996 License
+" License: Anti-996 && MIT
 " =============================================================================
 
 function custom#colorscheme#everforest_dark() abort "{{{

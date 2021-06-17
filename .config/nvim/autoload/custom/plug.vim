@@ -3,7 +3,7 @@
 " Filename: .config/nvim/autoload/custom/plug.vim
 " Author: Sainnhe Park
 " Email: sainnhe@gmail.com
-" License: Anti-996 License
+" License: Anti-996 && MIT
 " =============================================================================
 
 function custom#plug#check() abort
