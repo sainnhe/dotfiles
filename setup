@@ -233,32 +233,6 @@ setup_plasma() { #{{{
     ln -sf /home/sainnhe/repo/dotfiles/.config/kwinrulesrc ~/.config/kwinrulesrc
     printf "\n${BBLUE}>> Blur:\n${BGREEN}System Settings -> Kwin Scripts -> Force Blur\n${BBLUE}Shortcuts:\n${BGREEN}/home/sainnhe/repo/scripts/func/plasma-blur.sh 'rofi -show drun' 'Rofi'${NC}\n"
 } #}}}
-setup_themes() { #{{{
-    pikaur -S themes-meta
-    mkdir -p ~/repo
-    cd ~/repo || exit
-    git clone --depth 1 https://github.com/vinceliuice/McMojave-circle.git
-    sh ~/repo/McMojave-circle/install.sh
-    git clone --depth 1 https://github.com/vinceliuice/McMojave-kde.git
-    sh ~/repo/McMojave-kde/install.sh
-    git clone --depth 1 https://github.com/vinceliuice/Qogir-kde.git
-    sh ~/repo/Qogir-kde/install.sh
-    git clone --depth 1 https://github.com/vinceliuice/Qogir-icon-theme.git
-    sh ~/repo/Qogir-icon-theme/install.sh
-    git clone --depth 1 https://github.com/vinceliuice/Canta-kde.git
-    sh ~/repo/Canta-kde/install.sh
-    git clone --depth 1 https://github.com/vinceliuice/Canta-theme.git
-    sh ~/repo/Canta-theme/install.sh -i
-    git clone --depth 1 https://github.com/yeyushengfan258/Tencent-icon-theme.git
-    sh ~/repo/Tencent-icon-theme/install.sh
-    printf "${BBLUE}>> Sweet: ${BGREEN}https://github.com/EliverLara/Sweet/tree/nova/kde${NC}\n"
-    printf "${BBLUE}>> Candy Icons: ${BGREEN}https://www.pling.com/p/1305251/${NC}\n"
-    printf "${BBLUE}>> Imagination: ${BGREEN}https://www.reddit.com/r/unixporn/comments/hxqr8u/plasma_dark_plasma_theme_imagination/${NC}\n"
-    printf "${BBLUE}>> Mild Gradient: ${BGREEN}https://www.reddit.com/r/unixporn/comments/i14m4f/plasma_new_dark_plasma_theme_mildgradientplasma/${NC}\n"
-    printf "${BBLUE}>> Cheerful Phantasy: ${BGREEN}https://www.reddit.com/r/unixporn/comments/hchq3w/plasma_5_update_dark_plasma_theme_cheerfulphantasy/${NC}\n"
-    printf "${BBLUE}>> Ambient Blue: ${BGREEN}https://www.reddit.com/r/kde/comments/gk5sll/new_dark_plasma_theme_ambientblue/${NC}\n"
-    printf "${BBLUE}>> Kvantum: ${BGREEN}~/.local/share/themes/THEME_NAME/Kvantum/${NC}\n"
-} #}}}
 setup_fonts() { #{{{
     pikaur -S fonts-meta
 } #}}}
