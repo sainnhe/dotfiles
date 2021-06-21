@@ -207,10 +207,7 @@ setup_rust() { #{{{
     proxychains -q rustup install nightly
     rustup default nightly
     proxychains -q rustup component add \
-        rust-analyzer-preview \
-        rust-analysis \
-        rust-src \
-        rustfmt
+        rust-analyzer-preview
 } #}}}
 setup_firefox() { #{{{
     cd ~/.mozilla/firefox/*.dev-edition-default || exit
