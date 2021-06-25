@@ -198,10 +198,10 @@ setup_tmux() { #{{{
 } #}}}
 setup_vim() { #{{{
     pikaur -S neovim-meta
-    mkdir -p ~/.config/nvim
+    mkdir -p ~/.config
     mkdir -p ~/.local/share/nvim
-    ln -s /home/sainnhe/repo/dotfiles/.config/nvim ~/.config/nvim
-    ln -s /home/sainnhe/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
+    ln -sf /home/sainnhe/repo/dotfiles/.config/nvim ~/.config/nvim
+    ln -sf /home/sainnhe/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
 } #}}}
 setup_rust() { #{{{
     sudo pacman -S rustup
