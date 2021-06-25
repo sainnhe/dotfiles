@@ -188,7 +188,7 @@ setup_zsh() { #{{{
     printf "${BBLUE}>> Execute ${BYELLOW}'zsh'${BBLUE} to install zsh plugins${NC}\n"
 } #}}}
 setup_tmux() { #{{{
-    sudo pacman -S xsel copyq tmux
+    sudo pacman -S xsel copyq tmux python-requests
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     mkdir -p ~/.tmux
     ln -s /home/sainnhe/repo/dotfiles/.tmux.conf ~/.tmux.conf
