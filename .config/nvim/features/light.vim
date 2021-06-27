@@ -180,13 +180,6 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.jsx,*.tsx'
 " {{{vim-peekaboo
 let g:peekaboo_delay = 500
 " }}}
-" {{{diffchar.vim
-highlight! link DiffText DiffDelete
-augroup DiffCharCustom
-  autocmd!
-  autocmd ColorScheme * highlight! link DiffText DiffDelete
-augroup END
-" }}}
 " }}}
 " {{{Extended functional components
 " {{{vim-visual-multi
