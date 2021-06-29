@@ -1,16 +1,17 @@
 {
-    "suggest.timeout": 3000,
+    "suggest.maxPreviewWidth": 50,
+    "suggest.labelMaxLength": 50,
     "suggest.enablePreview": true,
-    "suggest.maxPreviewWidth": 35,
-    "suggest.detailMaxLength": 100,
-    "suggest.detailField": "preview",
-    "suggest.removeDuplicateItems": true,
     "suggest.snippetIndicator": " \ue796",
+    "suggest.timeout": 5000,
+    "suggest.triggerCompletionWait": 30,
+    "suggest.removeDuplicateItems": true,
     "suggest.completionItemKindLabels": {
         "keyword": "\uf1de",
         "variable": "\ue79b",
         "value": "\uf89f",
         "operator": "\u03a8",
+        "constructor": "\uf0ad",
         "function": "\u0192",
         "reference": "\ufa46",
         "constant": "\uf8fe",
@@ -34,12 +35,13 @@
         "default": "\uf29c"
     },
     "diagnostic.level": "hint",
-    "diagnostic.refreshOnInsertMode": false,
     "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": true,
+    "diagnostic.virtualTextPrefix": " ▸ ",
     "diagnostic.errorSign": "\uf65b",
-    "diagnostic.warningSign": "\uf421",
-    "diagnostic.infoSign": "ℹ",
-    "diagnostic.hintSign": "➤",
+    "diagnostic.warningSign": "\uf525",
+    "diagnostic.infoSign": "\uf7fb",
+    "diagnostic.hintSign": "\uf7d6",
     "diagnostic-languageserver.filetypes": {
         "sh": "shellcheck",
         "zsh": "shellcheck"
@@ -48,8 +50,9 @@
         "sh": "shfmt",
         "zsh": "shfmt"
     },
+    "signature.triggerSignatureWait": 300,
     "codeLens.enable": true,
-    "codeLens.separator": "‣",
+    "codeLens.separator": " ▸ ",
     "list.indicator": "➤",
     "list.insertMappings": {
         "<C-c>": "do:exit",
@@ -66,6 +69,7 @@
     "list.normalMappings": {
         "<C-c>": "do:exit"
     },
+    "coc.preferences.enableMessageDialog": true,
     "git.changedSign.text": "▌",
     "git.addedSign.text": "▌",
     "git.removedSign.text": "▁",
@@ -103,8 +107,6 @@
     "coc.source.emoji.shortcut": "E",
     "coc.source.emoji.priority": 8,
     "coc.source.emoji.filetypes": ["markdown", "text"],
-    "coc.preferences.colorSupport": true,
-    "coc.preferences.enableMessageDialog": true,
     "highlight.document.enable": true,
     "highlight.colors.enable": false,
     "highlight.disableLanguages": [],
