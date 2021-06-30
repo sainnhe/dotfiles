@@ -210,6 +210,10 @@ setup_rust() { #{{{
     proxychains -q rustup component add \
         rust-analyzer-preview
 } #}}}
+setup_npm() { #{{{
+    cd ~
+    npm ci
+} #}}}
 setup_firefox() { #{{{
     cd ~/.mozilla/firefox/*.dev-edition-default || exit
     git clone https://github.com/sainnhe/minimal-functional-fox.git chrome
@@ -260,6 +264,8 @@ elif [ "$1" = 'vim' ]; then
     setup_vim
 elif [ "$1" = 'rust' ]; then
     setup_rust
+elif [ "$1" = 'npm' ]; then
+    setup_npm
 elif [ "$1" = 'firefox' ]; then
     setup_firefox
 elif [ "$1" = 'weechat' ]; then
