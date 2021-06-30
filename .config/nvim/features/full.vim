@@ -266,13 +266,18 @@ nmap <silent> <leader>fs :<C-u>CocList symbols<CR>
 nmap <silent> <leader>jd <Plug>(coc-definition)
 nmap <silent> <leader>jD <Plug>(coc-declaration)
 nmap <silent> <leader>jt <Plug>(coc-type-definition)
-nmap <silent> <leader>jr <Plug>(coc-references)
+nmap <silent> <leader>jr <Plug>(coc-references-used)
 nmap <silent> <leader>jm <Plug>(coc-implementation)
-nmap <silent> <leader><Space>r :<C-u>call CocActionAsync('rename')<CR>
-nmap <silent> <leader><Space>a <Plug>(coc-codeaction-line)
-vmap <silent> <leader><Space>a <Plug>(coc-codeaction-selected)
-nmap <silent> <leader>v <Plug>(coc-range-select)
-vmap <silent> <leader>v <Plug>(coc-range-select)
+nmap <silent> <leader><space><space>r <Plug>(coc-rename)
+nmap <silent> <leader><space><space>R <Plug>(coc-refactor)
+nmap <silent> <leader><space><space>ca <Plug>(coc-codeaction)
+nmap <silent> <leader><space><space>cl <Plug>(coc-codeaction-line)
+nmap <silent> <leader><space><space>cc <Plug>(coc-codeaction-cursor)
+vmap <silent> <leader><space><space>c <Plug>(coc-codeaction-selected)
+nmap <silent> <leader><space><space>o <Plug>(coc-openlink)
+nmap <silent> <leader><space><space>l <Plug>(coc-codelens-action)
+nmap <silent> <leader><space><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
+nmap <silent> <leader><space><space>se :<C-u>CocCommand snippets.editSnippets<cr>
 nmap <silent> <leader><Tab> <Plug>(coc-format)
 vmap <silent> <leader><Tab> <Plug>(coc-format-selected)
 nmap <silent> <leader>gj <Plug>(coc-git-nextchunk)
@@ -287,8 +292,6 @@ nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
 nmap <silent> <leader>gla :<C-u>CocList commits<cr>
 nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
 nmap <silent> <leader>gll <Plug>(coc-git-commit)
-nmap <silent> <leader><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
-nmap <silent> <leader><space>se :<C-u>CocCommand snippets.editSnippets<cr>
 nmap <silent> <leader>dj <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>dk <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>df <Plug>(coc-fix-current)
@@ -302,11 +305,6 @@ if !exists('g:which_key_map')
           \ }
         \ }
 endif
-let g:which_key_map["\<space>"]['s'] = {
-      \   'name': 'snippets',
-      \   'e': 'edit snippets for current file type',
-      \   'o': 'open snippet file'
-      \   }
 let g:which_key_map['j'] = {
       \   'name': 'jump',
       \   'd': 'definition',
@@ -316,9 +314,24 @@ let g:which_key_map['j'] = {
       \   'm': 'implementation',
       \   }
 let g:which_key_map['<Tab>'] = 'format'
-let g:which_key_map["\<space>"]['r'] = 'rename'
-let g:which_key_map["\<space>"]['a'] = 'code action'
-let g:which_key_map['v'] = 'range select'
+let g:which_key_map["\<space>"]["\<space>"] = {
+      \ 'name': 'action',
+      \ 'r': 'rename',
+      \ 'R': 'refactor',
+      \ 'c': {
+        \ 'name': 'code action',
+        \ 'a': 'full buffer',
+        \ 'l': 'current line',
+        \ 'c': 'current cursor',
+      \ },
+      \ 'o': 'open link',
+      \ 'l': 'codeLens action',
+      \ 's': {
+        \ 'name': 'snippets',
+        \ 'e': 'edit snippets for current file type',
+        \ 'o': 'open snippet file',
+        \ },
+      \ }
 let g:which_key_map['g'] = {
       \   'name': 'git',
       \   'j': 'chunk next',
@@ -363,8 +376,8 @@ nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
 let g:which_key_map['f']['p'] = 'mru projects'
 " }}}
 " {{{coc-gitignore
-nnoremap <silent> <leader><space>I :<c-u>CocList gitignore<cr>
-let g:which_key_map["\<space>"]['I'] = 'gitignore'
+nnoremap <silent> <leader><space><space>i :<c-u>CocList gitignore<cr>
+let g:which_key_map["\<space>"]["\<space>"]['i'] = 'gitignore'
 " }}}
 " }}}
 " {{{vista.vim
@@ -461,8 +474,8 @@ let g:which_key_map['z'] = {
 " {{{vim-doge
 let g:doge_enable_mappings = 0
 let g:doge_doc_standard_python = 'google'
-nmap <leader><space>d :<C-u>DogeGenerate<CR>
-let g:which_key_map["\<Space>"]['d'] = 'generate code doc'
+nmap <leader><space><space>d :<C-u>DogeGenerate<CR>
+let g:which_key_map["\<space>"]["\<space>"]['d'] = 'generate code doc'
 " }}}
 " }}}
 " {{{Tree-sitter
