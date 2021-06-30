@@ -1,9 +1,8 @@
 {
   "dependencies": {
+    "commitizen": "4.2.4",
+    "cz-conventional-changelog": "3.3.0",
     "ovsx": "0.2.0",
-    "vsce": "1.93.0"
-  },
-  "devDependencies": {
-    "husky": "6.0.0"
+    "vsce": "1.95.0"
   }
 }
