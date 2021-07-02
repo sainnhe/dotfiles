@@ -331,7 +331,7 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
 -m --height=50%
 --layout=reverse
---prompt='➤ '
+--prompt='❯ '
 --ansi
 --tabstop=4
 --color=dark

@@ -53,7 +53,7 @@
     "signature.triggerSignatureWait": 300,
     "codeLens.enable": true,
     "codeLens.separator": "▸",
-    "list.indicator": "➤",
+    "list.indicator": "❯",
     "list.insertMappings": {
         "<C-c>": "do:exit",
         "<C-p>": "action:preview",

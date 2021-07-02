@@ -10,6 +10,6 @@ $MOUSE_SUPPORT = '1'
 $UPDATE_COMPLETIONS_ON_KEYPRESS = '1'
 $XONSH_AUTOPAIR = '1'
 $TITLE = '{current_job:{} | }{cwd}'
-$PROMPT = '{BOLD_GREEN}{cwd} {gitstatus}\n{BOLD_INTENSE_BLUE}➤{NO_COLOR} '
+$PROMPT = '{BOLD_GREEN}{cwd} {gitstatus}\n{BOLD_INTENSE_BLUE}❯{NO_COLOR} '
 xontrib load apt_tabcomplete bashisms coreutils docker_tabcomplete free_cwd fzf-widgets jedi whole_word_jumping z
 # XONSH WIZARD END

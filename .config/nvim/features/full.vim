@@ -386,7 +386,7 @@ let g:vista_sidebar_position = 'vertical topleft'
 let g:vista_sidebar_width = 35
 let g:vista_cursor_delay = 100
 let g:vista_keep_fzf_colors = 1
-let g:vista_fzf_opt = ['--layout=default', '--prompt=➤ ']
+let g:vista_fzf_opt = ['--layout=default', '--prompt=❯ ']
 let g:vista_default_executive = 'ctags'
 let g:vista_executive_for = {
       \ 'markdown': 'toc',
