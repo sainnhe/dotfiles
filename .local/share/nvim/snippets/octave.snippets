@@ -28,3 +28,36 @@ snippet printf "printf() function" b
 printf("\n==> ${1:description}\n\n");
 ${0:}
 endsnippet
+
+snippet if "if statement" b
+if ${1:condition}
+    ${2:statement}
+end${0:}
+endsnippet
+
+snippet switch "switch statement" b
+switch ${1:variable}
+    case ${2:value}
+        ${3:statement}
+    otherwise
+        ${4:statement}
+end${0:}
+endsnippet
+
+snippet for "for loop" b
+for ${1:index} = ${2:1:10}
+    ${3:statement}
+end${0:}
+endsnippet
+
+snippet while "while loop" b
+while ${1:condition}
+    ${2:statement}
+end${0:}
+endsnippet
+
+snippet function "function" b
+function ${3:return_value} = ${1:function_name}(${2:parameters})
+${0:}
+endfunction
+endsnippet
