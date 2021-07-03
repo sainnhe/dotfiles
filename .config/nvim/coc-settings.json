@@ -81,14 +81,14 @@
     "git.conflictedDecorator": "⇡⇣",
     "git.virtualTextPrefix": " \ue729 ",
     "project.rootPatterns": [".git", ".svn", ".root", ".project", ".hg"],
-    "suggest.languageSourcePriority": 99,
     "snippets.shortcut": "S",
-    "snippets.priority": 98,
+    "snippets.priority": 99,
     "snippets.extends": {
         "cpp": ["c"],
         "javascriptreact": ["javascript"],
         "typescript": ["javascript"]
     },
+    "suggest.languageSourcePriority": 98,
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,
     "coc.source.file.ignoreHidden": false,
