@@ -120,7 +120,6 @@ Plug 'sainnhe/everforest'
 " Additional UI components
 Plug 'liuchengxu/vim-which-key'
 Plug 'haya14busa/incsearch.vim'
-Plug 'Yggdroot/indentLine'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 " Text objects

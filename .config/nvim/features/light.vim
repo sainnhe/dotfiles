@@ -45,18 +45,12 @@ augroup IncsearchCustom
   autocmd User IncSearchEnter set hlsearch
 augroup END
 " }}}
-" {{{indentLine
-let g:indentLine_enabled = 1
-let g:indentLine_leadingSpaceEnabled = 0
-let g:indentLine_concealcursor = 'inc'
-let g:indentLine_conceallevel = 2
-let g:indentLine_char = ''  " ¦┆│⎸▏
-let g:indentLine_leadingSpaceChar = '·'
-let g:indentLine_fileTypeExclude = [ 'startify', 'coc-explorer', 'codi', 'help', 'man', 'vtm', 'markdown' ]
-let g:indentLine_setColors = 0  " disable overwrite with grey by default, use colorscheme instead
-" }}}
 " {{{indent-blankline.nvim
-let g:indent_blankline_char = g:indentLine_char
+let g:indent_blankline_char = ''  " ¦┆│⎸▏
+let g:indent_blankline_use_treesitter = 1
+let g:indent_blankline_filetype_exclude = ['startify', 'coc-explorer', 'codi', 'help', 'man', 'vtm', 'markdown']
+let g:indent_blankline_buftype_exclude = ['terminal']
+set colorcolumn=9999 " Fix for cursorline
 " }}}
 " {{{nvim-colorizer.lua
 lua require'colorizer'.setup()
