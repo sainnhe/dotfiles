@@ -32,16 +32,16 @@ snippet else "else statement" b
 else:${0:}
 endsnippet
 
-snippet foritem "for loop (item)" b
-for ${2:item} in ${1:lists}:${0:}
+snippet for "for loop" b
+for ${2:item} in ${1:enum}:${0:}
 endsnippet
 
-snippet forindex "for loop (index)" b
-for ${2:index} in range(len(${1:lists})):${0:}
-endsnippet
-
-snippet for "for loop, access items via `item`, modify items via `index`" b
+snippet forlist "for loop (list)" b
 for ${2:index}, ${3:item} in enumerate(${1:lists}):${0:}
+endsnippet
+
+snippet fordict "for loop (dict)" b
+for ${2:key}, ${3:value} in ${1:dict}.items():${0:}
 endsnippet
 
 snippet def "define a function" b
