@@ -47,3 +47,17 @@ endsnippet
 snippet def "define a function" b
 def ${1:function_name}(${2:parameter = "default value"}):
 endsnippet
+
+snippet __init__ "Template of __init__.py" b
+"""${4:Summary}
+
+${5:Description}
+
+"""
+
+from ${6:my_module} import ${7:*}
+
+__version__ = "${1:0.1.0}"
+__author__ = "${2:Sainnhe Park} ${3:<sainnhe@gmail.com>}"
+__all__ = ["${0:}"]
+endsnippet
