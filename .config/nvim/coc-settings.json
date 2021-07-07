@@ -70,6 +70,7 @@
         "<C-c>": "do:exit"
     },
     "coc.preferences.enableMessageDialog": true,
+    "coc.preferences.semanticTokensHighlights": true,
     "git.changedSign.text": "▌",
     "git.addedSign.text": "▌",
     "git.removedSign.text": "▁",

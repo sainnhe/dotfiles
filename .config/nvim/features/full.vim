@@ -486,7 +486,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
   highlight = {
     enable = true,
-    disable = {"c"}
+    disable = {"c", "rust"}
   },
   textobjects = {
     select = {
