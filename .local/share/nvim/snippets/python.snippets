@@ -48,7 +48,15 @@ snippet def "define a function" b
 def ${1:function_name}(${2:parameter = "default value"}):
 endsnippet
 
-snippet __init__ "Template of __init__.py" b
+snippet class "define a class" b
+class ${1:ClassName(BaseClass1, BaseClass2)}:${0:}
+endsnippet
+
+snippet __init__ "define __init__() in a class" b
+def __init__(self${1:, parameter = "default value"}):${0:}
+endsnippet
+
+snippet __init__.py "Template of __init__.py" b
 """${4:Summary}
 
 ${5:Description}
