@@ -152,8 +152,8 @@ inoremap <A-z><C-V> <Space><Backspace><ESC>"+pa
 " Ctrl+S to save file
 inoremap <silent> <C-S> <Esc>:w<CR>a
 " Shift+ArrowKeys to quickly move cursor
-inoremap <S-up> <up><up><up><up><up>
-inoremap <S-down> <down><down><down><down><down>
+inoremap <silent><expr> <S-up> pumvisible() ? "\<Space>\<Backspace>\<up>\<up>\<up>\<up>\<up>" : "\<up>\<up>\<up>\<up>\<up>"
+inoremap <silent><expr> <S-down> pumvisible() ? "\<Space>\<Backspace>\<down>\<down>\<down>\<down>\<down>" : "\<down>\<down>\<down>\<down>\<down>"
 inoremap <S-left> <ESC>I
 inoremap <S-right> <ESC>A
 " }}}
