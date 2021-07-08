@@ -214,7 +214,6 @@ augroup CocCustom
   autocmd CursorHold * silent if &filetype !=# 'markdown' | call CocActionAsync('highlight') | endif
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   autocmd User CocGitStatusChange call lightline#update()
-  autocmd CursorHold * CocCommand git.refresh
   autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 augroup END
 let g:coc_hover_enable = 0
