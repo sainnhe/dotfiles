@@ -213,8 +213,7 @@ augroup CocCustom
   autocmd CursorHold * silent if g:coc_hover_enable == 1 && !coc#float#has_float() | call CocActionAsync('doHover') | endif
   autocmd CursorHold * silent if &filetype !=# 'markdown' | call CocActionAsync('highlight') | endif
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  autocmd User CocGitStatusChange call lightline#update()
-  autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+  autocmd User CocGitStatusChange,CocStatusChange,CocDiagnosticChange call lightline#update()
 augroup END
 let g:coc_hover_enable = 0
 call coc#config('project', {
