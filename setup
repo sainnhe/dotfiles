@@ -97,9 +97,11 @@ setup_arch_repos() { #{{{
         archstrike-mirrorlist
 } #}}}
 setup_repos() { #{{{
-    ssh-keygen -t rsa -b 4096 -C "sainnhe@gmail.com"
+    ssh-keygen -t rsa -f ~/.ssh/id_rsa -C "sainnhe@gmail.com"
+    ssh-keygen -t ecdsa -f ~/.ssh/id_ecdsa -C "sainnhe@gmail.com"
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_rsa
+    ssh-add ~/.ssh/id_ecdsa
     mkdir ~/repo
     cd ~/repo
     git clone https://github.com/sainnhe/dotfiles.git
