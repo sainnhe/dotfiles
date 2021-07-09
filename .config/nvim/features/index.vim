@@ -204,7 +204,7 @@ elseif g:vim_mode ==# 'full'
     Plug 'kkoomen/vim-doge', {'do': 'npm ci && npm run build:binary:unix -- vim-doge'}
   else
     Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
-    Plug 'kkoomen/vim-doge', {'do': 'npm ci && npm run build:binary:windows -- vim-doge'}
+    Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
   endif
   " Status line
   Plug 'itchyny/lightline.vim'
