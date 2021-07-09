@@ -177,6 +177,7 @@ Extends~
 - `c`: Comment (excluding spaces at the start of a line)
 - `C`：Comment (including spaces at the start of a line)
 - `z`：Fold
+- `g`：Git chunks
 - `u`：URL
 - `e`：Current buffer
 - `,`：Function parameter

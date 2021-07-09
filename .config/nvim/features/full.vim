@@ -212,6 +212,7 @@ augroup CocCustom
   autocmd!
   autocmd CursorHold * silent if g:coc_hover_enable == 1 && !coc#float#has_float() | call CocActionAsync('doHover') | endif
   autocmd CursorHold * silent if &filetype !=# 'markdown' | call CocActionAsync('highlight') | endif
+  autocmd User CocGitStatusChange CocCommand git.refresh
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   autocmd User CocGitStatusChange,CocStatusChange,CocDiagnosticChange call lightline#update()
 augroup END
@@ -281,6 +282,10 @@ vmap <silent> <leader><Tab> <Plug>(coc-format-selected)
 nmap <silent> <leader>gj <Plug>(coc-git-nextchunk)
 nmap <silent> <leader>gk <Plug>(coc-git-prevchunk)
 nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
+omap ig <Plug>(coc-git-chunk-inner)
+xmap ig <Plug>(coc-git-chunk-inner)
+omap ag <Plug>(coc-git-chunk-outer)
+xmap ag <Plug>(coc-git-chunk-outer)
 nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
 nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
 nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
