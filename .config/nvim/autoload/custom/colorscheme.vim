@@ -108,7 +108,6 @@ function custom#colorscheme#sonokai_default() abort "{{{
   let g:sonokai_enable_italic = 1
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
-  let g:sonokai_sign_column_background = 'none'
   let g:sonokai_better_performance = 1
   set background=dark
   colorscheme sonokai
@@ -122,7 +121,6 @@ function custom#colorscheme#sonokai_shusia() abort "{{{
   let g:sonokai_enable_italic = 1
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
-  let g:sonokai_sign_column_background = 'none'
   let g:sonokai_better_performance = 1
   set background=dark
   colorscheme sonokai
@@ -136,7 +134,6 @@ function custom#colorscheme#sonokai_andromeda() abort "{{{
   let g:sonokai_enable_italic = 1
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
-  let g:sonokai_sign_column_background = 'none'
   let g:sonokai_better_performance = 1
   set background=dark
   colorscheme sonokai
@@ -150,7 +147,6 @@ function custom#colorscheme#sonokai_atlantis() abort "{{{
   let g:sonokai_enable_italic = 1
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
-  let g:sonokai_sign_column_background = 'none'
   let g:sonokai_better_performance = 1
   set background=dark
   colorscheme sonokai
@@ -164,7 +160,6 @@ function custom#colorscheme#sonokai_maia() abort "{{{
   let g:sonokai_enable_italic = 1
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
-  let g:sonokai_sign_column_background = 'none'
   let g:sonokai_better_performance = 1
   set background=dark
   colorscheme sonokai
@@ -178,7 +173,6 @@ function custom#colorscheme#sonokai_espresso() abort "{{{
   let g:sonokai_enable_italic = 1
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
-  let g:sonokai_sign_column_background = 'none'
   let g:sonokai_better_performance = 1
   set background=dark
   colorscheme sonokai
