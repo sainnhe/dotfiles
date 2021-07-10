@@ -161,10 +161,7 @@ if g:vim_enable_startify == 1
   endfunction
   augroup StartifyCustom
     autocmd!
-    autocmd VimEnter *
-          \   if !argc()
-          \ |   call custom#explorer#startify()
-          \ | endif
+    autocmd User CocNvimInit if !argc() | call custom#explorer#startify() | endif
     autocmd FileType startify call s:startify_mappings()
     autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):call custom#explorer#toggle()<CR>
   augroup END
