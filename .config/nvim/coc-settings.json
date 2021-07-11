@@ -70,7 +70,7 @@
         "<C-c>": "do:exit"
     },
     "coc.preferences.enableMessageDialog": true,
-    "coc.preferences.semanticTokensHighlights": true,
+    "coc.preferences.semanticTokensHighlights": false,
     "git.changedSign.text": "▌",
     "git.addedSign.text": "▌",
     "git.removedSign.text": "▁",
@@ -160,7 +160,6 @@
     },
     "clangd.enabled": true,
     "clangd.arguments": ["--clang-tidy", "--completion-style=detailed", "--fallback-style=google", "--header-insertion=iwyu", "--suggest-missing-includes"],
-    "clangd.semanticHighlighting": true,
     "rust-analyzer.server.path": "rust-analyzer",
     "rust-analyzer.updates.channel": "nightly",
     "rust-analyzer.cargo.allFeatures": true,
