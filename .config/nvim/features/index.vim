@@ -120,7 +120,6 @@ Plug 'sainnhe/everforest'
 " Additional UI components
 Plug 'liuchengxu/vim-which-key'
 Plug 'haya14busa/incsearch.vim'
-Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 " Text objects
 Plug 'kana/vim-textobj-user'
@@ -218,6 +217,7 @@ elseif g:vim_mode ==# 'full'
   if g:vim_enable_startify == 1
     Plug 'mhinz/vim-startify'
   endif
+  Plug 'lukas-reineke/indent-blankline.nvim'
 endif
 "{{{
 call plug#end()

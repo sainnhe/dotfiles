@@ -45,13 +45,6 @@ augroup IncsearchCustom
   autocmd User IncSearchEnter set hlsearch
 augroup END
 " }}}
-" {{{indent-blankline.nvim
-let g:indent_blankline_char = ''  " ¦┆│⎸▏
-let g:indent_blankline_use_treesitter = 1
-let g:indent_blankline_filetype_exclude = ['startify', 'coc-explorer', 'codi', 'help', 'man', 'vtm', 'markdown']
-let g:indent_blankline_buftype_exclude = ['terminal']
-set colorcolumn=9999 " Fix for cursorline
-" }}}
 " {{{nvim-colorizer.lua
 lua require'colorizer'.setup()
 " }}}

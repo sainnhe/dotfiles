@@ -167,6 +167,14 @@ if g:vim_enable_startify == 1
   augroup END
 endif
 " }}}
+" {{{indent-blankline.nvim
+let g:indent_blankline_char = ''  " ¦┆│⎸▏
+let g:indent_blankline_use_treesitter = 1
+let g:indent_blankline_filetype_exclude = ['startify', 'coc-explorer', 'codi', 'help', 'man', 'vtm', 'markdown']
+let g:indent_blankline_buftype_exclude = ['terminal']
+let g:indent_blankline_show_current_context = 1
+set colorcolumn=9999 " Fix for cursorline
+" }}}
 " }}}
 " {{{Language features
 " {{{coc.nvim
