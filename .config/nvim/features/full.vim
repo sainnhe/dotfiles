@@ -384,7 +384,7 @@ augroup END
 " }}}
 " {{{coc-project
 nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
-let g:which_key_map['f']['p'] = 'mru projects'
+let g:which_key_map['f']['p'] = 'projects'
 " }}}
 " {{{coc-gitignore
 nnoremap <silent> <leader><space><space>i :<c-u>CocList gitignore<cr>
