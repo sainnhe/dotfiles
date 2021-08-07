@@ -182,6 +182,7 @@ set colorcolumn=9999 " Fix for cursorline
 let g:coc_data_home = fnamemodify(stdpath('data'), ':p') . 'coc'
 let g:coc_global_extensions = [
       \ 'coc-clangd',
+      \ 'coc-cmake',
       \ 'coc-css',
       \ 'coc-diagnostic',
       \ 'coc-dictionary',
