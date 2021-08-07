@@ -31,13 +31,13 @@ int main(void) {
 }
 endsnippet
 
-snippet whi "while loop" b
+snippet while "while loop" b
 while (${1:/*condition*/}) {
 	${0:/*statements*/}
 }
 endsnippet
 
-snippet do "do...while loop" b
+snippet do_while "do...while loop" b
 do {
 	${0:/*statements*/}
 } (${1:/*condition*/})
@@ -61,19 +61,19 @@ if (${1:/*condition*/}) {
 }
 endsnippet
 
-snippet elif "else if statement"
+snippet elseif "else if statement"
 else if (${1:/*condition*/}) {
 	${0:/*statements*/}
 }
 endsnippet
 
-snippet el "else statement"
+snippet else "else statement"
 else {
 	${0:/*statements*/}
 }
 endsnippet
 
-snippet ifel "if...else statement" b
+snippet ifelse "if...else statement" b
 if (${1:/*condition*/}) {
 	${2:/*statements*/}
 } else {
@@ -81,7 +81,7 @@ if (${1:/*condition*/}) {
 }
 endsnippet
 
-snippet sw "switch statement" b
+snippet switch "switch statement" b
 switch (${1:/*variable*/}) {
 	case ${2:/*variable case*/}:
 		${3:/*statements*/}
@@ -91,38 +91,29 @@ switch (${1:/*variable*/}) {
 }
 endsnippet
 
-snippet swn "switch statement without default" b
-switch (${1:/*variable*/}) {
-	case ${2:/*variable case*/}:
-		${3:/*statements*/}
-		${4:break;}${5}
-}
-endsnippet
-
-snippet fn "function" b
+snippet function_definition "function definition" b
 ${1:void} ${2:func_name}(${3:void}) {
 	${0:/*statements*/}
 }
 endsnippet
 
-snippet fnde "function declaration" b
+snippet function_declaration "function declaration" b
 ${1:void} ${2:func_name}(${3:void});
 endsnippet
 
-snippet fncm "function with comments" b
-${2:void} ${3:func_name}(${4:void}) { /*${1:comments}*/
-	${0:/*statements*/}
-}
-endsnippet
-
-snippet fndecm "function declaration with comments" b
-${2:void} ${3:func_name}(${4:void}); /*${1:comments}*/
-endsnippet
-
-snippet t "ternary"
+snippet ternary "ternary"
 (${1:/*condition*/}) ? ${2:/*expression true*/} : ${3:/*expression false*/}
 endsnippet
 
-snippet ret "return"
+snippet return "return"
 return ${0:${VISUAL}};
+endsnippet
+
+snippet header "header guards" b
+#ifndef ${1:HEADER_H}
+#define ${1:HEADER_H}
+
+${0:/* contents */}
+
+#endif
 endsnippet
