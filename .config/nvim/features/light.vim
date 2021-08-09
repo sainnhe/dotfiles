@@ -230,7 +230,7 @@ let g:which_key_map['g']['f'] = 'fetch'
 " {{{vim-translator
 let g:translator_target_lang = 'zh'
 let g:translator_source_lang = 'auto'
-let g:translator_default_engines = ['bing', 'youdao']
+let g:translator_default_engines = ['haici']
 nmap <leader><Space>t <Plug>TranslateW
 vmap <leader><Space>t <Plug>TranslateWV
 let g:which_key_map["\<space>"]['t'] = 'translate'
