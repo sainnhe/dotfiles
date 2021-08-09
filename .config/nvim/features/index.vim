@@ -194,16 +194,15 @@ elseif g:vim_mode ==# 'full'
   Plug 'RRethy/nvim-treesitter-textsubjects'
   " Extended functional components, but with extra dependencies
   Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install --frozen-lockfile'}
+  Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
   if !has('win32')
     Plug 'tjdevries/coc-zsh'
     Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
     Plug 'KabbAmine/vCoolor.vim'
     Plug 'lilydjwg/fcitx.vim', {'on': []}
           \| au InsertEnter * call plug#load('fcitx.vim')
-    Plug 'kkoomen/vim-doge', {'do': 'npm ci && npm run build:binary:unix -- vim-doge'}
   else
     Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
-    Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
   endif
   " Status line
   Plug 'itchyny/lightline.vim'

@@ -6,7 +6,9 @@ export PATH="$HOME/node_modules/.bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.rustup/toolchains/nightly-$(uname -m)-unknown-linux-gnu/bin:$PATH"
+if command -v rustup &> /dev/null; then
+    export PATH="$HOME/.rustup/toolchains/$(rustup show active-toolchain | grep default | sed 's/ (.*//')/bin:$PATH"
+fi
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color
