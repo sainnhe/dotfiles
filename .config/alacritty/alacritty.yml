@@ -352,7 +352,7 @@ schemes:
       blue: '#75a9d9'
       magenta: '#aea6e1'
       cyan: '#25b7b8'
-      white: '#be9898'
+      white: '#dfc5c5'
 
     bright:
       black: '#be9898'
@@ -362,7 +362,7 @@ schemes:
       blue: '#75a9d9'
       magenta: '#aea6e1'
       cyan: '#25b7b8'
-      white: '#be9898'
+      white: '#dfc5c5'
 # }}}
 colors: *everforest_dark
 background_opacity: 1.0
