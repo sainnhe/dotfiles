@@ -196,7 +196,6 @@ elseif g:vim_mode ==# 'full'
   Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install --frozen-lockfile'}
   Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
   if !has('win32')
-    Plug 'tjdevries/coc-zsh'
     Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
     Plug 'KabbAmine/vCoolor.vim'
     Plug 'lilydjwg/fcitx.vim', {'on': []}
