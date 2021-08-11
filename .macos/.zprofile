@@ -1,4 +1,5 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
+source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 brew_home="/opt/homebrew"
 export PATH="${brew_home}/opt/llvm/bin:$PATH"
 export MANPATH="${brew_home}/opt/llvm/share/man:$MANPATH"
@@ -7,4 +8,5 @@ export MANPATH="${brew_home}/opt/openjdk/share/man:$MANPATH"
 export CPPFLAGS="-I${brew_home}/opt/openjdk/include"
 export PATH="${brew_home}/opt/python/libexec/bin:$PATH"
 export FPATH="${brew_home}/share/zsh/site-functions:$FPATH"
+export FPATH="${HOME}/.nix-profile/share/zsh/site-functions:$FPATH"
 unset brew_home
