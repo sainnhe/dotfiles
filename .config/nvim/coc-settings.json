@@ -115,6 +115,7 @@
         "vue-html": "html",
         "javascript": "javascriptreact"
     },
+    "imselect.defaultInput": "com.apple.keylayout.ABC",
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappingMode": "none",
     "explorer.keyMappings.global": {
