@@ -156,6 +156,7 @@ inoremap <A-Backspace> <Space><Esc><left>"_xa<Backspace>
 let g:matchup_matchparen_deferred = 1
 let g:matchup_matchparen_hi_surround_always = 1
 let g:matchup_delim_noskips = 2
+let g:matchup_mouse_enabled = 0
 " }}}
 " {{{vim-closetag
 let g:closetag_shortcut = '>'

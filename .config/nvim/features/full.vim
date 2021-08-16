@@ -500,6 +500,12 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true
   },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<2-LeftMouse>"
+    },
+  },
   textobjects = {
     select = {
       enable = true,
