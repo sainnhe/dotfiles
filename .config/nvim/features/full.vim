@@ -379,7 +379,6 @@ nnoremap <silent> <C-b> :call custom#explorer#toggle()<CR>
 augroup ExplorerCustom
   autocmd!
   autocmd FileType coc-explorer setlocal signcolumn=no
-  autocmd FileType coc-explorer nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 100m<CR>:Vista!!<CR>
   autocmd FileType coc-explorer nnoremap <buffer><silent> q :<C-u>call custom#explorer#close_startify()<CR>
   autocmd BufEnter * call custom#explorer#close_last()
 augroup END
@@ -395,7 +394,6 @@ let g:which_key_map["\<space>"]["\<space>"]['i'] = 'gitignore'
 " }}}
 " {{{vista.vim
 nnoremap <silent> <A-b> :<C-u>Vista!!<CR>
-let g:vista_sidebar_position = 'vertical topleft'
 let g:vista_sidebar_width = 35
 let g:vista_cursor_delay = 100
 let g:vista_keep_fzf_colors = 1
@@ -412,7 +410,6 @@ let g:vista_executive_for = {
       \ }
 augroup VistaCustom
   autocmd!
-  autocmd FileType vista,vista_kind nnoremap <buffer><silent> <Tab> :<C-u>q<CR>:sleep 150m<CR>:call custom#explorer#toggle()<CR>
   autocmd FileType vista,vista_kind nmap <buffer><silent> o <CR>
 augroup END
 " }}}
