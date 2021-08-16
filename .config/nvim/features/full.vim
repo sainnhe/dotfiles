@@ -381,6 +381,7 @@ augroup ExplorerCustom
   autocmd FileType coc-explorer setlocal signcolumn=no
   autocmd FileType coc-explorer nnoremap <buffer><silent> q :<C-u>call custom#explorer#close_startify()<CR>
   autocmd BufEnter * call custom#explorer#close_last()
+  autocmd BufEnter * if stridx(@%, 'term:') != -1 | setlocal nocursorline | endif
 augroup END
 " }}}
 " {{{coc-project

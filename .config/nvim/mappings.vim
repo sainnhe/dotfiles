@@ -198,6 +198,11 @@ cmap <C-S> :<C-u>w<CR>
 if has('nvim')
   " Alt+X to enter normal mode
   tnoremap <A-x> <C-\><C-n>
+  " Alt+HJKL to jump between windows
+  tnoremap <silent> <A-h> <C-\><C-n>:<C-u>wincmd h<CR>
+  tnoremap <silent> <A-j> <C-\><C-n>:<C-u>wincmd j<CR>
+  tnoremap <silent> <A-k> <C-\><C-n>:<C-u>wincmd k<CR>
+  tnoremap <silent> <A-l> <C-\><C-n>:<C-u>wincmd l<CR>
   " Shift+ArrowKeys to quickly move cursor
   tnoremap <S-left> <C-a>
   tnoremap <S-right> <C-e>
