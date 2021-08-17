@@ -496,7 +496,8 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
   highlight = {
-    enable = true
+    enable = true,
+    disable = { "vim" },
   },
   incremental_selection = {
     enable = true,
