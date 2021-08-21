@@ -487,7 +487,7 @@ let g:doge_enable_mappings = 0
 let g:doge_mapping_comment_jump_forward = '<C-j>'
 let g:doge_mapping_comment_jump_backward = '<C-k>'
 let g:doge_doc_standard_python = 'google'
-nmap <leader><space><space>d :<C-u>DogeGenerate<CR>
+nnoremap <silent> <leader><space><space>d :<C-u>DogeGenerate<CR>
 let g:which_key_map["\<space>"]["\<space>"]['d'] = 'generate code doc'
 " }}}
 " }}}
