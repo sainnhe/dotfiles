@@ -1,6 +1,6 @@
 ##
 ## Arch Linux repository mirrorlist
-## Generated on 2021-08-08
+## Generated on 2021-08-22
 ##
 
 ##Archive
@@ -9,7 +9,6 @@ Server=https://archive.archlinux.org/repos/last/$repo/os/$arch
 # Server=https://arch-archive.tuna.tsinghua.edu.cn/2020/08/20/$repo/os/$arch
 
 ## Worldwide
-#Server = http://mirrors.evowise.com/archlinux/$repo/os/$arch
 #Server = http://mirror.rackspace.com/archlinux/$repo/os/$arch
 #Server = https://mirror.rackspace.com/archlinux/$repo/os/$arch
 
@@ -116,6 +115,8 @@ Server=https://archive.archlinux.org/repos/last/$repo/os/$arch
 #Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.wsyu.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.wsyu.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
 #Server = http://mirrors.zju.edu.cn/archlinux/$repo/os/$arch
 
@@ -550,6 +551,8 @@ Server=https://archive.archlinux.org/repos/last/$repo/os/$arch
 #Server = https://download.nus.edu.sg/mirror/archlinux/$repo/os/$arch
 #Server = http://mirror.guillaumea.fr/archlinux/$repo/os/$arch
 #Server = https://mirror.guillaumea.fr/archlinux/$repo/os/$arch
+#Server = http://mirror.jingk.ai/archlinux/$repo/os/$arch
+#Server = https://mirror.jingk.ai/archlinux/$repo/os/$arch
 #Server = http://mirror.nus.edu.sg/archlinux/$repo/os/$arch
 
 ## Slovakia
