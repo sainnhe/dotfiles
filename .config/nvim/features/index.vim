@@ -190,7 +190,6 @@ elseif g:vim_mode ==# 'full'
   " Tree-sitter
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-  Plug 'RRethy/nvim-treesitter-textsubjects'
   " Extended functional components, but with extra dependencies
   Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install --frozen-lockfile'}
   Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}

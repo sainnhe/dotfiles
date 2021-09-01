@@ -171,7 +171,6 @@ Builtin~
 
 Extends~
 
-- `.`: Current node parsed by tree-sitter
 - `f`: Function
 - `l`: Line
 - `c`: Comment (excluding spaces at the start of a line)

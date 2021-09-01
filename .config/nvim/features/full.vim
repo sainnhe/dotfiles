@@ -513,12 +513,6 @@ require'nvim-treesitter.configs'.setup {
         ["if"] = "@function.inner",
       }
     }
-  },
-  textsubjects = {
-    enable = true,
-    keymaps = {
-      ["."] = "textsubjects-smart",
-    }
   }
 }
 EOF
