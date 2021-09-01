@@ -1,9 +1,8 @@
-{
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "alwaysShowTabs": true,
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "launchMode": "fullscreen",
+    "launchMode": "maximized",
     "tabSwitcherMode": "mru",
     "theme": "dark",
     "profiles": {
@@ -15,8 +14,8 @@
                 "commandline": "powershell.exe -nologo",
                 "cursorColor": "#a9b665",
                 "cursorShape": "bar",
-                "fontFace": "Source Code Pro iCursive Op",
-                "fontSize": 12,
+                "fontFace": "Lilex iCursive Op",
+                "fontSize": 11,
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "PowerShell",
