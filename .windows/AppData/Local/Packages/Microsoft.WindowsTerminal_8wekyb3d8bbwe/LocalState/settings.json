@@ -1,3 +1,4 @@
+{
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "alwaysShowTabs": true,
     "copyOnSelect": false,
