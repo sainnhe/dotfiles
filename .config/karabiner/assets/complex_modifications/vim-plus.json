@@ -7,12 +7,12 @@
   "import_url": "https://github.com/sainnhe/dotfiles/raw/master/.config/karabiner/assets/complex_modifications/vim-plus.json",
   "rules": [
     {
-      "description": "(Vim 1/11) caps_lock hold -> on, caps_lock release -> off",
+      "description": "(Vim 1/11) escape hold -> on",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "caps_lock"
+            "key_code": "escape"
           },
           "to_if_held_down": [
             {
@@ -22,15 +22,7 @@
               }
             },
             {
-              "shell_command": "osascript -e 'display notification \"Release [caps lock] to leave\" with title \"-- NORMAL --\"'"
-            }
-          ],
-          "to_after_key_up": [
-            {
-              "set_variable": {
-                "name": "vim_mode",
-                "value": 0
-              }
+              "shell_command": "osascript -e 'display notification with title \"-- NORMAL --\"'"
             }
           ],
           "conditions": [
@@ -50,112 +42,8 @@
             }
           ],
           "parameters": {
-            "basic.to_if_held_down_threshold_milliseconds": 100
+            "basic.to_if_held_down_threshold_milliseconds": 300
           }
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "caps_lock"
-          },
-          "to": [
-            {
-              "set_variable": {
-                "name": "vim_mode",
-                "value": 0
-              }
-            },
-            {
-              "shell_command": "osascript -e 'display notification with title \"-- INSERT --\"'"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": [
-                "com.googlecode.iterm2",
-                "com.github.atom",
-                "com.jetbrains.pycharm",
-                "com.visualstudio.code.oss"
-              ]
-            },
-            {
-              "name": "vim_mode",
-              "type": "variable_if",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "escape"
-          },
-          "to": [
-            {
-              "set_variable": {
-                "name": "vim_mode",
-                "value": 0
-              }
-            },
-            {
-              "shell_command": "osascript -e 'display notification with title \"-- INSERT --\"'"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": [
-                "com.googlecode.iterm2",
-                "com.github.atom",
-                "com.jetbrains.pycharm",
-                "com.visualstudio.code.oss"
-              ]
-            },
-            {
-              "name": "vim_mode",
-              "type": "variable_if",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "open_bracket",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "set_variable": {
-                "name": "vim_mode",
-                "value": 0
-              }
-            },
-            {
-              "shell_command": "osascript -e 'display notification with title \"-- INSERT --\"'"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": [
-                "com.googlecode.iterm2",
-                "com.github.atom",
-                "com.jetbrains.pycharm",
-                "com.visualstudio.code.oss"
-              ]
-            },
-            {
-              "name": "vim_mode",
-              "type": "variable_if",
-              "value": 1
-            }
-          ]
         },
         {
           "type": "basic",
