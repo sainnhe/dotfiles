@@ -168,6 +168,9 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.jsx,*.tsx'
 " {{{vim-peekaboo
 let g:peekaboo_delay = 500
 " }}}
+" {{{filetype.nvim
+let g:did_load_filetypes = 1
+" }}}
 " }}}
 " {{{Extended functional components
 " {{{vim-visual-multi

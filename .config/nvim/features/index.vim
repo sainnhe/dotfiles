@@ -154,6 +154,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-repeat'
 Plug 'airblade/vim-rooter'
 Plug 'jamessan/vim-gnupg'
+Plug 'nathom/filetype.nvim'
 " Extended functional components
 Plug 'mg979/vim-visual-multi'
 Plug 'scrooloose/nerdcommenter'
