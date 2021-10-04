@@ -172,6 +172,7 @@ Plug 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffAdd']}
 Plug 'will133/vim-dirdiff', {'on': 'DirDiff'}
 Plug 'mbbill/fencview', {'on': ['FencAutoDetect', 'FencView']}
 Plug 'tweekmonster/startuptime.vim', {'on': 'StartupTime'}
+Plug 'sainnhe/vim-paste-rs'
 " Unix-like OS specific
 if !has('win32')
   Plug 'lambdalisue/suda.vim'

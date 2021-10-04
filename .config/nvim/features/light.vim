@@ -290,6 +290,11 @@ if exists('g:vim_man_pager') && !has('win32')
   augroup END
 endif
 " }}}
+" {{{vim-paste-rs
+nmap <leader>P <Plug>(paste-rs)
+xmap <leader>P <Plug>(paste-rs)
+let g:which_key_map['P'] = 'paste.rs'
+" }}}
 " }}}
 " {{{Productivity
 if g:vim_mode ==# 'light'
