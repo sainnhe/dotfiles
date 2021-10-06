@@ -198,8 +198,10 @@ elseif g:vim_mode ==# 'full'
   if !has('win32')
     Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
     Plug 'KabbAmine/vCoolor.vim'
-    Plug 'lilydjwg/fcitx.vim', {'on': []}
-          \| au InsertEnter * call plug#load('fcitx.vim')
+    if executable('fcitx')
+      Plug 'lilydjwg/fcitx.vim', {'on': []}
+            \| au InsertEnter * call plug#load('fcitx.vim')
+    endif
   else
     Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
   endif
