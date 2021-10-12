@@ -193,7 +193,6 @@ elseif g:vim_mode ==# 'full'
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   " Extended functional components, but with extra dependencies
-  Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install --frozen-lockfile'}
   Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
   if !has('win32')
     Plug 'Yggdroot/LeaderF', {'do': './install.sh'}

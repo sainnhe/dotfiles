@@ -198,6 +198,7 @@ let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-julia',
       \ 'coc-lists',
+      \ 'coc-markdown-preview-enhanced',
       \ 'coc-markdownlint',
       \ 'coc-marketplace',
       \ 'coc-prettier',
@@ -213,6 +214,7 @@ let g:coc_global_extensions = [
       \ 'coc-toml',
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
+      \ 'coc-webview',
       \ 'coc-xml',
       \ 'coc-yaml',
       \ 'coc-yank',
@@ -288,6 +290,12 @@ nmap <silent> <leader><space><space>o <Plug>(coc-openlink)
 nmap <silent> <leader><space><space>l <Plug>(coc-codelens-action)
 nmap <silent> <leader><space><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
 nmap <silent> <leader><space><space>se :<C-u>CocCommand snippets.editSnippets<cr>
+nmap <silent> <leader><space><space>mf :<C-u>CocCommand prettier.formatFile<cr>
+nmap <silent> <leader><space><space>mp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
+nmap <silent> <leader><space><space>mi :<C-u>CocCommand markdown-preview-enhanced.openImageHelper<cr>
+nmap <silent> <leader><space><space>mI :<C-u>CocCommand markdown-preview-enhanced.showUploadedImages<cr>
+nmap <silent> <leader><space><space>mr :<C-u>CocCommand markdown-preview-enhanced.runCodeChunk<cr>
+nmap <silent> <leader><space><space>mR :<C-u>CocCommand markdown-preview-enhanced.runAllCodeChunks<cr>
 nmap <silent> <leader><Tab> <Plug>(coc-format)
 vmap <silent> <leader><Tab> <Plug>(coc-format-selected)
 nmap <silent> <leader>gj <Plug>(coc-git-nextchunk)
@@ -332,14 +340,23 @@ let g:which_key_map["\<space>"]["\<space>"] = {
       \ 'name': 'action',
       \ 'r': 'rename',
       \ 'R': 'refactor',
+      \ 'o': 'open link',
+      \ 'l': 'codeLens action',
       \ 'c': {
         \ 'name': 'code action',
         \ 'a': 'full buffer',
         \ 'l': 'current line',
         \ 'c': 'current cursor',
       \ },
-      \ 'o': 'open link',
-      \ 'l': 'codeLens action',
+      \ 'm': {
+        \ 'name': 'markdown',
+        \ 'f': 'format',
+        \ 'p': 'preview',
+        \ 'i': 'image helper',
+        \ 'I': 'image uploaded',
+        \ 'r': 'run code chunk',
+        \ 'R': 'run all code chunks',
+      \ },
       \ 's': {
         \ 'name': 'snippets',
         \ 'e': 'edit snippets for current file type',
@@ -592,12 +609,6 @@ if !has('win32')
         \   'R': 'insert rgba'
         \   }
 endif
-" }}}
-" {{{markdown-preview.nvim
-let g:mkdp_browser = 'firefox-developer-edition'
-let g:mkdp_echo_preview_url = 1
-nmap <silent> <leader><space>p <Plug>MarkdownPreviewToggle
-let g:which_key_map["\<space>"]['p'] = 'preview markdown'
 " }}}
 " }}}
 

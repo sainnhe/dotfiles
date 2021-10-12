@@ -1,5 +1,4 @@
 {
-    "suggest.maxPreviewWidth": 50,
     "suggest.labelMaxLength": 50,
     "suggest.enablePreview": true,
     "suggest.snippetIndicator": " \ue796",
@@ -170,6 +169,8 @@
     "python.analysis.typeCheckingMode": "basic",
     "prettier.formatterPriority": -1,
     "sql.database": "mysql",
+    "markdown-preview-enhanced.previewTheme": "medium.css",
+    "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {
         "MD013": false,
         "MD041": false
