@@ -21,7 +21,10 @@ if !exists('g:which_key_map')
   let g:which_key_map = {
         \ 'name': 'Alpha',
         \ "\<space>": {
-          \ 'name': 'Beta'
+          \ 'name': 'Beta',
+          \ "\<space>": {
+            \ 'name': 'Omega'
+            \ }
           \ }
         \ }
 endif
@@ -250,17 +253,17 @@ augroup GoyoCustom
   autocmd! User GoyoEnter Limelight
   autocmd! User GoyoLeave Limelight!
 augroup END
-nnoremap <silent> <leader><space>F :<C-u>Limelight!!<CR>
-nnoremap <silent> <leader><space>R :<C-u>Goyo<CR>
-let g:which_key_map["\<space>"]['F'] = 'focus mode'
-let g:which_key_map["\<space>"]['R'] = 'reading mode'
+nnoremap <silent> <leader><space>f :<C-u>Limelight!!<CR>
+nnoremap <silent> <leader><space>r :<C-u>Goyo<CR>
+let g:which_key_map["\<space>"]['f'] = 'focus mode'
+let g:which_key_map["\<space>"]['r'] = 'reading mode'
 " }}}
 " {{{pomodoro.vim
 let g:pomodoro_time_work = 25
 let g:pomodoro_time_slack = 5
 let g:pomodoro_status = 0
-nnoremap <silent> <leader><space>P :<c-u>call custom#utils#toggle_pomodoro()<cr>
-let g:which_key_map["\<space>"]['P'] = 'pomodoro toggle'
+nnoremap <silent> <leader><space>p :<c-u>call custom#utils#toggle_pomodoro()<cr>
+let g:which_key_map["\<space>"]['p'] = 'pomodoro toggle'
 " }}}
 " {{{mundo
 let g:mundo_right = 1
@@ -268,9 +271,9 @@ nnoremap <silent> <leader><space>u :<c-u>MundoToggle<cr>
 let g:which_key_map["\<space>"]['u'] = 'undo'
 " }}}
 " {{{inline_edit.vim
-nnoremap <silent> <leader><space>e :<C-u>InlineEdit<CR>
-vnoremap <silent> <leader><space>e :InlineEdit<CR>
-let g:which_key_map["\<space>"]['e'] = 'inline edit'
+nnoremap <silent> <leader><space><space>e :<C-u>InlineEdit<CR>
+vnoremap <silent> <leader><space><space>e :InlineEdit<CR>
+let g:which_key_map["\<space>"]["\<space>"]['e'] = 'inline edit'
 " }}}
 " {{{suda.vim
 command! -nargs=1 E  edit  suda://<args>

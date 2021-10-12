@@ -323,7 +323,10 @@ if !exists('g:which_key_map')
   let g:which_key_map = {
         \ 'name': 'Alpha',
         \ "\<space>": {
-          \ 'name': 'Beta'
+          \ 'name': 'Beta',
+          \ "\<space>": {
+            \ 'name': 'Omega'
+            \ }
           \ }
         \ }
 endif
@@ -336,32 +339,29 @@ let g:which_key_map['j'] = {
       \   'm': 'implementation',
       \   }
 let g:which_key_map['<Tab>'] = 'format'
-let g:which_key_map["\<space>"]["\<space>"] = {
-      \ 'name': 'action',
-      \ 'r': 'rename',
-      \ 'R': 'refactor',
-      \ 'o': 'open link',
-      \ 'l': 'codeLens action',
-      \ 'c': {
-        \ 'name': 'code action',
-        \ 'a': 'full buffer',
-        \ 'l': 'current line',
-        \ 'c': 'current cursor',
-      \ },
-      \ 'm': {
-        \ 'name': 'markdown',
-        \ 'f': 'format',
-        \ 'p': 'preview',
-        \ 'i': 'image helper',
-        \ 'I': 'image uploaded',
-        \ 'r': 'run code chunk',
-        \ 'R': 'run all code chunks',
-      \ },
-      \ 's': {
+let g:which_key_map["\<space>"]["\<space>"]['r'] = 'rename'
+let g:which_key_map["\<space>"]["\<space>"]['R'] = 'refactor'
+let g:which_key_map["\<space>"]["\<space>"]['o'] = 'open link'
+let g:which_key_map["\<space>"]["\<space>"]['l'] = 'codeLens action'
+let g:which_key_map["\<space>"]["\<space>"]['c'] = {
+      \ 'name': 'code action',
+      \ 'a': 'full buffer',
+      \ 'l': 'current line',
+      \ 'c': 'current cursor',
+      \ }
+let g:which_key_map["\<space>"]["\<space>"]['m'] = {
+      \ 'name': 'markdown',
+      \ 'f': 'format',
+      \ 'p': 'preview',
+      \ 'i': 'image helper',
+      \ 'I': 'image uploaded',
+      \ 'r': 'run code chunk',
+      \ 'R': 'run all code chunks',
+      \ }
+let g:which_key_map["\<space>"]["\<space>"]['s'] = {
         \ 'name': 'snippets',
         \ 'e': 'edit snippets for current file type',
         \ 'o': 'open snippet file',
-        \ },
       \ }
 let g:which_key_map['g'] = {
       \   'name': 'git',
