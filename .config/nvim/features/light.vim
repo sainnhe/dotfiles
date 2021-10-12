@@ -238,9 +238,9 @@ let g:which_key_map['g']['f'] = 'fetch'
 let g:translator_target_lang = 'zh'
 let g:translator_source_lang = 'auto'
 let g:translator_default_engines = ['haici']
-nmap <leader><space><space>t <Plug>TranslateW
-vmap <leader><space><space>t <Plug>TranslateWV
-let g:which_key_map["\<space>"]["\<space>"]['t'] = 'translate'
+nmap <leader><space>t <Plug>TranslateW
+vmap <leader><space>t <Plug>TranslateWV
+let g:which_key_map["\<space>"]['t'] = 'translate'
 " }}}
 " {{{limelight.vim
 let g:limelight_default_coefficient = 0.7
@@ -294,9 +294,9 @@ if exists('g:vim_man_pager') && !has('win32')
 endif
 " }}}
 " {{{vim-paste-rs
-nmap <leader>P <Plug>(paste-rs)
-xmap <leader>P <Plug>(paste-rs)
-let g:which_key_map['P'] = 'paste.rs'
+nmap <leader><space>p <Plug>(paste-rs)
+xmap <leader><space>p <Plug>(paste-rs)
+let g:which_key_map["\<space>"]['p'] = 'paste.rs'
 " }}}
 " }}}
 " {{{Productivity

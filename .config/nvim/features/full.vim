@@ -407,8 +407,8 @@ nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
 let g:which_key_map['f']['p'] = 'projects'
 " }}}
 " {{{coc-gitignore
-nnoremap <silent> <leader><space>i :<c-u>CocList gitignore<cr>
-let g:which_key_map["\<space>"]['i'] = 'gitignore'
+nnoremap <silent> <leader><space>g :<c-u>CocList gitignore<cr>
+let g:which_key_map["\<space>"]['g'] = 'gitignore'
 " }}}
 " }}}
 " {{{vista.vim
@@ -489,11 +489,11 @@ let g:zv_file_types = {
       \ 'python'              : 'python_3',
       \ '\v^(G|g)ulpfile\.js' : 'gulp,javascript,nodejs',
       \ }
-nmap <leader>zz <Plug>Zeavim
-vmap <leader>z <Plug>ZVVisSelection
-nmap <leader>z<space> <Plug>ZVKeyDocset
-nmap <leader>za <Plug>ZVOperator
-let g:which_key_map['z'] = {
+nmap <leader><space>zz <Plug>Zeavim
+vmap <leader><space>z <Plug>ZVVisSelection
+nmap <leader><space>z<space> <Plug>ZVKeyDocset
+nmap <leader><space>za <Plug>ZVOperator
+let g:which_key_map["\<space>"]['z'] = {
       \   'name': 'zeal',
       \   "\<Space>": 'docset',
       \   'z': 'current location',
