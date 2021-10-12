@@ -2,7 +2,7 @@
   "dependencies": {
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "ovsx": "0.2.0",
-    "vsce": "1.95.0"
+    "ovsx": "0.2.1",
+    "vsce": "1.100.1"
   }
 }
