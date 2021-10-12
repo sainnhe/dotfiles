@@ -134,7 +134,7 @@ nnoremap zd zd
 nnoremap zs :<C-u>mkview<CR>
 nnoremap zl :<C-u>loadview<CR>
 " Get the hi groups under current cursor
-nnoremap <leader><Space>h :<C-u>call custom#utils#get_highlight()<CR>
+nnoremap <leader><space><space>h :<C-u>call custom#utils#get_highlight()<CR>
 " gi/gI to jump between indents
 nnoremap <silent> gi :<C-u>call custom#utils#go_indent(v:count1, 1)<cr>
 nnoremap <silent> gI :<C-u>call custom#utils#go_indent(v:count1, -1)<cr>

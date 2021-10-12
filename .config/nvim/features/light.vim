@@ -31,7 +31,7 @@ endif
 let g:which_key_map['p'] = 'paste'
 let g:which_key_map['q'] = 'close quickfix'
 let g:which_key_map['y'] = 'yank'
-let g:which_key_map["\<space>"]['h'] = 'highlight'
+let g:which_key_map["\<space>"]["\<space>"]['h'] = 'highlight'
 " }}}
 " {{{incsearch.vim
 let g:incsearch#auto_nohlsearch = 1
@@ -238,9 +238,9 @@ let g:which_key_map['g']['f'] = 'fetch'
 let g:translator_target_lang = 'zh'
 let g:translator_source_lang = 'auto'
 let g:translator_default_engines = ['haici']
-nmap <leader><Space>t <Plug>TranslateW
-vmap <leader><Space>t <Plug>TranslateWV
-let g:which_key_map["\<space>"]['t'] = 'translate'
+nmap <leader><space><space>t <Plug>TranslateW
+vmap <leader><space><space>t <Plug>TranslateWV
+let g:which_key_map["\<space>"]["\<space>"]['t'] = 'translate'
 " }}}
 " {{{limelight.vim
 let g:limelight_default_coefficient = 0.7
@@ -253,27 +253,27 @@ augroup GoyoCustom
   autocmd! User GoyoEnter Limelight
   autocmd! User GoyoLeave Limelight!
 augroup END
-nnoremap <silent> <leader><space>f :<C-u>Limelight!!<CR>
-nnoremap <silent> <leader><space>r :<C-u>Goyo<CR>
-let g:which_key_map["\<space>"]['f'] = 'focus mode'
-let g:which_key_map["\<space>"]['r'] = 'reading mode'
+nnoremap <silent> <leader><space><space>f :<C-u>Limelight!!<CR>
+nnoremap <silent> <leader><space><space>r :<C-u>Goyo<CR>
+let g:which_key_map["\<space>"]["\<space>"]['f'] = 'focus mode'
+let g:which_key_map["\<space>"]["\<space>"]['r'] = 'reading mode'
 " }}}
 " {{{pomodoro.vim
 let g:pomodoro_time_work = 25
 let g:pomodoro_time_slack = 5
 let g:pomodoro_status = 0
-nnoremap <silent> <leader><space>p :<c-u>call custom#utils#toggle_pomodoro()<cr>
-let g:which_key_map["\<space>"]['p'] = 'pomodoro toggle'
+nnoremap <silent> <leader><space><space>p :<c-u>call custom#utils#toggle_pomodoro()<cr>
+let g:which_key_map["\<space>"]["\<space>"]['p'] = 'pomodoro toggle'
 " }}}
 " {{{mundo
 let g:mundo_right = 1
-nnoremap <silent> <leader><space>u :<c-u>MundoToggle<cr>
-let g:which_key_map["\<space>"]['u'] = 'undo'
+nnoremap <silent> <leader><space><space>u :<c-u>MundoToggle<cr>
+let g:which_key_map["\<space>"]["\<space>"]['u'] = 'undo'
 " }}}
 " {{{inline_edit.vim
-nnoremap <silent> <leader><space><space>e :<C-u>InlineEdit<CR>
-vnoremap <silent> <leader><space><space>e :InlineEdit<CR>
-let g:which_key_map["\<space>"]["\<space>"]['e'] = 'inline edit'
+nnoremap <silent> <leader><space>e :<C-u>InlineEdit<CR>
+vnoremap <silent> <leader><space>e :InlineEdit<CR>
+let g:which_key_map["\<space>"]['e'] = 'inline edit'
 " }}}
 " {{{suda.vim
 command! -nargs=1 E  edit  suda://<args>

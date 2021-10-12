@@ -280,22 +280,22 @@ nmap <silent> <leader>jD <Plug>(coc-declaration)
 nmap <silent> <leader>jt <Plug>(coc-type-definition)
 nmap <silent> <leader>jr <Plug>(coc-references-used)
 nmap <silent> <leader>jm <Plug>(coc-implementation)
-nmap <silent> <leader><space><space>r <Plug>(coc-rename)
-nmap <silent> <leader><space><space>R <Plug>(coc-refactor)
-nmap <silent> <leader><space><space>ca <Plug>(coc-codeaction)
-nmap <silent> <leader><space><space>cl <Plug>(coc-codeaction-line)
-nmap <silent> <leader><space><space>cc <Plug>(coc-codeaction-cursor)
-vmap <silent> <leader><space><space>c <Plug>(coc-codeaction-selected)
-nmap <silent> <leader><space><space>o <Plug>(coc-openlink)
-nmap <silent> <leader><space><space>l <Plug>(coc-codelens-action)
-nmap <silent> <leader><space><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
-nmap <silent> <leader><space><space>se :<C-u>CocCommand snippets.editSnippets<cr>
-nmap <silent> <leader><space><space>mf :<C-u>CocCommand prettier.formatFile<cr>
-nmap <silent> <leader><space><space>mp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
-nmap <silent> <leader><space><space>mi :<C-u>CocCommand markdown-preview-enhanced.openImageHelper<cr>
-nmap <silent> <leader><space><space>mI :<C-u>CocCommand markdown-preview-enhanced.showUploadedImages<cr>
-nmap <silent> <leader><space><space>mr :<C-u>CocCommand markdown-preview-enhanced.runCodeChunk<cr>
-nmap <silent> <leader><space><space>mR :<C-u>CocCommand markdown-preview-enhanced.runAllCodeChunks<cr>
+nmap <silent> <leader><space>r <Plug>(coc-rename)
+nmap <silent> <leader><space>R <Plug>(coc-refactor)
+nmap <silent> <leader><space>ca <Plug>(coc-codeaction)
+nmap <silent> <leader><space>cl <Plug>(coc-codeaction-line)
+nmap <silent> <leader><space>cc <Plug>(coc-codeaction-cursor)
+vmap <silent> <leader><space>c <Plug>(coc-codeaction-selected)
+nmap <silent> <leader><space>o <Plug>(coc-openlink)
+nmap <silent> <leader><space>l <Plug>(coc-codelens-action)
+nmap <silent> <leader><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
+nmap <silent> <leader><space>se :<C-u>CocCommand snippets.editSnippets<cr>
+nmap <silent> <leader><space>mf :<C-u>CocCommand prettier.formatFile<cr>
+nmap <silent> <leader><space>mp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
+nmap <silent> <leader><space>mi :<C-u>CocCommand markdown-preview-enhanced.openImageHelper<cr>
+nmap <silent> <leader><space>mI :<C-u>CocCommand markdown-preview-enhanced.showUploadedImages<cr>
+nmap <silent> <leader><space>mr :<C-u>CocCommand markdown-preview-enhanced.runCodeChunk<cr>
+nmap <silent> <leader><space>mR :<C-u>CocCommand markdown-preview-enhanced.runAllCodeChunks<cr>
 nmap <silent> <leader><Tab> <Plug>(coc-format)
 vmap <silent> <leader><Tab> <Plug>(coc-format-selected)
 nmap <silent> <leader>gj <Plug>(coc-git-nextchunk)
@@ -339,17 +339,17 @@ let g:which_key_map['j'] = {
       \   'm': 'implementation',
       \   }
 let g:which_key_map['<Tab>'] = 'format'
-let g:which_key_map["\<space>"]["\<space>"]['r'] = 'rename'
-let g:which_key_map["\<space>"]["\<space>"]['R'] = 'refactor'
-let g:which_key_map["\<space>"]["\<space>"]['o'] = 'open link'
-let g:which_key_map["\<space>"]["\<space>"]['l'] = 'codeLens action'
-let g:which_key_map["\<space>"]["\<space>"]['c'] = {
+let g:which_key_map["\<space>"]['r'] = 'rename'
+let g:which_key_map["\<space>"]['R'] = 'refactor'
+let g:which_key_map["\<space>"]['o'] = 'open link'
+let g:which_key_map["\<space>"]['l'] = 'codeLens action'
+let g:which_key_map["\<space>"]['c'] = {
       \ 'name': 'code action',
       \ 'a': 'full buffer',
       \ 'l': 'current line',
       \ 'c': 'current cursor',
       \ }
-let g:which_key_map["\<space>"]["\<space>"]['m'] = {
+let g:which_key_map["\<space>"]['m'] = {
       \ 'name': 'markdown',
       \ 'f': 'format',
       \ 'p': 'preview',
@@ -358,7 +358,7 @@ let g:which_key_map["\<space>"]["\<space>"]['m'] = {
       \ 'r': 'run code chunk',
       \ 'R': 'run all code chunks',
       \ }
-let g:which_key_map["\<space>"]["\<space>"]['s'] = {
+let g:which_key_map["\<space>"]['s'] = {
         \ 'name': 'snippets',
         \ 'e': 'edit snippets for current file type',
         \ 'o': 'open snippet file',
@@ -407,8 +407,8 @@ nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
 let g:which_key_map['f']['p'] = 'projects'
 " }}}
 " {{{coc-gitignore
-nnoremap <silent> <leader><space><space>i :<c-u>CocList gitignore<cr>
-let g:which_key_map["\<space>"]["\<space>"]['i'] = 'gitignore'
+nnoremap <silent> <leader><space>i :<c-u>CocList gitignore<cr>
+let g:which_key_map["\<space>"]['i'] = 'gitignore'
 " }}}
 " }}}
 " {{{vista.vim
@@ -505,8 +505,8 @@ let g:doge_enable_mappings = 0
 let g:doge_mapping_comment_jump_forward = '<C-j>'
 let g:doge_mapping_comment_jump_backward = '<C-k>'
 let g:doge_doc_standard_python = 'google'
-nnoremap <silent> <leader><space><space>d :<C-u>DogeGenerate<CR>
-let g:which_key_map["\<space>"]["\<space>"]['d'] = 'generate code doc'
+nnoremap <silent> <leader><space>d :<C-u>DogeGenerate<CR>
+let g:which_key_map["\<space>"]['d'] = 'generate code doc'
 " }}}
 " }}}
 " {{{Tree-sitter
@@ -597,11 +597,11 @@ if !has('win32')
   let g:vcoolor_disable_mappings = 1
   let g:vcoolor_lowercase = 1
   let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --color '
-  nnoremap <silent> <leader><space>cc :<c-u>VCoolor<cr>
-  nnoremap <silent> <leader><space>cr :<c-u>VCoolor r<cr>
-  nnoremap <silent> <leader><space>cH :<c-u>VCoolor h<cr>
-  nnoremap <silent> <leader><space>cR :<c-u>VCoolor ra<cr>
-  let g:which_key_map["\<space>"]['c'] = {
+  nnoremap <silent> <leader><space><space>cc :<c-u>VCoolor<cr>
+  nnoremap <silent> <leader><space><space>cr :<c-u>VCoolor r<cr>
+  nnoremap <silent> <leader><space><space>cH :<c-u>VCoolor h<cr>
+  nnoremap <silent> <leader><space><space>cR :<c-u>VCoolor ra<cr>
+  let g:which_key_map["\<space>"]["\<space>"]['c'] = {
         \   'name': 'color picker',
         \   'c': 'insert hex',
         \   'r': 'insert rgb',
