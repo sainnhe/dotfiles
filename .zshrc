@@ -29,6 +29,7 @@ umask 077
 setopt hist_save_no_dups hist_ignore_dups       # eliminate duplicate entries in history
 setopt correctall                               # enable auto correction
 setopt autopushd pushdignoredups                # auto push dir into stack and and don’t duplicate them
+bindkey -e                                      # emacs mode
 # }}}
 # {{{prompt
 autoload -U promptinit
@@ -343,7 +344,6 @@ export FZF_DEFAULT_OPTS="
 "
 
 # C-f fzf-widgets
-# A-f file-widget
 # C-r history search
 # **<Tab> fuzzy matching path
 if [ -d /usr/share/fzf ]; then
@@ -353,7 +353,6 @@ fi
 bindkey '^F'  fzf-select-widget
 bindkey -r "^[c"
 bindkey -r "^T"
-bindkey '\ef' fzf-file-widget
 # }}}
 # {{{fzf-marks
 # Usage:
