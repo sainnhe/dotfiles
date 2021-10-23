@@ -305,7 +305,6 @@ zinit ice wait'0' lucid depth=1; zinit light skywind3000/z.lua
 zinit ice wait'1' lucid depth=1; zinit light ytet5uy4/fzf-widgets
 zinit ice wait'0' lucid depth=1; zinit light urbainvaes/fzf-marks
 zinit ice wait'1' lucid depth=1; zinit light hlissner/zsh-autopair
-zinit ice wait'1' lucid depth=1; zinit light jeffreytse/zsh-vi-mode
 zinit ice wait'0' lucid depth=1; zinit light sainnhe/zsh-completions
 zinit ice wait'0' lucid depth=1 \
     atload"export FPATH=$HOME/.zinit/plugins/RobSis---zsh-completion-generator/completions:$FPATH"
