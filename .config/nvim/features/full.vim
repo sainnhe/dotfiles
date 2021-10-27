@@ -264,10 +264,10 @@ inoremap <silent><expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>
 inoremap <silent><expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
 inoremap <silent><expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
 inoremap <silent><expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
-nnoremap <silent><expr> <C-pagedown> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-pagedown>"
-nnoremap <silent><expr> <C-pageup> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-pageup>"
-inoremap <silent><expr> <C-pagedown> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<C-pagedown>"
-inoremap <silent><expr> <C-pageup> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<C-pageup>"
+nnoremap <silent><expr> <A-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<A-d>"
+nnoremap <silent><expr> <A-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<A-u>"
+inoremap <silent><expr> <A-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<A-d>"
+inoremap <silent><expr> <A-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<A-u>"
 nnoremap <silent> <A-=> :<C-u>CocCommand terminal.Toggle<CR>
 tnoremap <silent> <A-=> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
 nnoremap <silent> <A--> :<C-u>CocCommand terminal.REPL<CR>
