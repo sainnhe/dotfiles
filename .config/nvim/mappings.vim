@@ -203,6 +203,12 @@ if has('nvim')
   tnoremap <silent> <A-j> <C-\><C-n>:<C-u>wincmd j<CR>
   tnoremap <silent> <A-k> <C-\><C-n>:<C-u>wincmd k<CR>
   tnoremap <silent> <A-l> <C-\><C-n>:<C-u>wincmd l<CR>
+  " Alt+Left/Right to switch tabs
+  tnoremap <A-left> <C-\><C-n>gT
+  tnoremap <A-right> <C-\><C-n>gt
+  " Alt+Up/Down to move tabs
+  tnoremap <silent> <A-up> <C-\><C-n>:<C-u>tabm -1<CR>
+  tnoremap <silent> <A-down> <C-\><C-n>:<C-u>tabm +1<CR>
   " Shift+ArrowKeys to quickly move cursor
   tnoremap <S-left> <C-a>
   tnoremap <S-right> <C-e>
