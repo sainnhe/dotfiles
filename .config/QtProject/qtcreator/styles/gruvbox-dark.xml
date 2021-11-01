@@ -4,7 +4,9 @@
   <style name="Link" foreground="#a89984"/>
   <style name="Selection" foreground="#665c54" background="#ebdbb2"/>
   <style name="LineNumber" foreground="#7c6f64"/>
-  <style name="SearchResult" foreground="#282828" background="#fabd2f"/>
+  <style name="SearchResult" foreground="#282828" background="#b8bb26"/>
+  <style name="SearchResultAlt1" foreground="#282828" background="#fabd2f"/>
+  <style name="SearchResultAlt2" foreground="#282828" background="#83a598"/>
   <style name="SearchScope" foreground="#ebdbb2"/>
   <style name="Parentheses" foreground="#ebdbb2" background="#665c54" bold="true"/>
   <style name="CurrentLine" foreground="#ebdbb2" background="#3c3836"/>
@@ -16,6 +18,7 @@
   <style name="String" foreground="#b8bb26"/>
   <style name="Type" foreground="#fabd2f"/>
   <style name="Local" foreground="#ebdbb2"/>
+  <style name="Parameter" foreground="#83a598"/>
   <style name="Field" foreground="#83a598"/>
   <style name="Static" foreground="#d3869b"/>
   <style name="VirtualMethod" foreground="#b8bb26" bold="true" italic="true"/>
