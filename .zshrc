@@ -290,21 +290,21 @@ alias npp='proxychains -q npm --registry https://registry.npmjs.org'
 alias scanip='bash ~/repo/scripts/func/scanip.sh'
 # }}}
 # {{{Plugins
-# https://github.com/zdharma/zinit
+# https://github.com/zdharma-continuum/zinit
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview
 # https://github.com/sorin-ionescu/prezto
-[ ! -f "$HOME/.zinit/bin/zinit.zsh" ] && mkdir -p ~/.zinit && git clone --depth 1 https://github.com/zdharma/zinit.git ~/.zinit/bin
+[ ! -f "$HOME/.zinit/bin/zinit.zsh" ] && mkdir -p ~/.zinit && git clone --depth 1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
 source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 zinit ice atload"source $HOME/.zsh-theme"
 zinit light romkatv/powerlevel10k
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit ice wait'0' lucid depth=1; zinit light zsh-users/zsh-history-substring-search
-zinit ice wait'0' lucid depth=1; zinit light skywind3000/z.lua
 zinit ice wait'1' lucid depth=1; zinit light ytet5uy4/fzf-widgets
 zinit ice wait'0' lucid depth=1; zinit light urbainvaes/fzf-marks
+zinit ice wait'0' lucid depth=1; zinit light skywind3000/z.lua
 zinit ice wait'1' lucid depth=1; zinit light hlissner/zsh-autopair
 zinit ice wait'0' lucid depth=1; zinit light sainnhe/zsh-completions
 zinit ice wait'0' lucid depth=1 \
@@ -351,6 +351,7 @@ if [ -d /usr/share/fzf ]; then
     source /usr/share/fzf/key-bindings.zsh
 fi
 bindkey '^F'  fzf-select-widget
+bindkey '^R'  fzf-insert-history
 bindkey -r "^[c"
 bindkey -r "^T"
 # }}}
