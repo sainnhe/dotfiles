@@ -85,18 +85,9 @@ setup_arch_repos() { #{{{
     sudo pacman-key --finger 56C464BAAC421453
     sudo pacman-key --lsign-key 56C464BAAC421453
 
-    # archstrike
-    sudo dirmngr < /dev/null
-    wget -qO - https://archstrike.org/keyfile.asc \
-        | sudo pacman-key --add -
-    sudo pacman-key --lsign-key 9D5F1C051D146843CDA4858BDE64825E7CBC0D51
-
     # required packages
     sudo pacman -Sy
-    sudo pacman -S \
-        archlinuxcn-keyring \
-        archstrike-keyring \
-        archstrike-mirrorlist
+    sudo pacman -S archlinuxcn-keyring
 } #}}}
 setup_repos() { #{{{
     ssh-keygen -t rsa -f ~/.ssh/id_rsa -C "sainnhe@gmail.com"
