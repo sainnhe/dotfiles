@@ -27,3 +27,4 @@ wmclassmatch=3
 
 [General]
 count=3
+rules=1,2,3
