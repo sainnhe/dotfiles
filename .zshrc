@@ -16,7 +16,6 @@ export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
 export EDITOR="nvim"
-export BROWSER="firefox-developer-edition"
 export PAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
 export MANPAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
 export FuzzyFinder="fzf"
