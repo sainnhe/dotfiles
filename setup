@@ -209,14 +209,6 @@ setup_npm() { #{{{
     cd ~
     npm ci
 } #}}}
-setup_firefox() { #{{{
-    cd ~/.mozilla/firefox/*.dev-edition-default || exit
-    git clone https://github.com/sainnhe/minimal-functional-fox.git chrome
-    cd chrome || exit
-    git checkout everforest-dark
-    printf "${BBLUE}>> In ${BGREEN}'about:config'${NC}\n"
-    printf "${BBLUE}>> Set ${BGREEN}'toolkit.legacyUserProfileCustomizations.stylesheets'${BBLUE} to ${BGREEN}'true'${NC}\n"
-} #}}}
 setup_weechat() { #{{{
     proxychains -q curl -L --create-dirs -o ~/.weechat/python/autoload/autojoin.py http://www.weechat.org/files/scripts/autojoin.py
 } #}}}
