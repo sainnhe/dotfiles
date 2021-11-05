@@ -198,6 +198,7 @@ let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-julia',
       \ 'coc-lists',
+      \ 'coc-lua',
       \ 'coc-markdown-preview-enhanced',
       \ 'coc-markdownlint',
       \ 'coc-marketplace',

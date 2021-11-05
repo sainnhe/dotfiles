@@ -169,6 +169,7 @@
     "python.analysis.typeCheckingMode": "basic",
     "prettier.formatterPriority": -1,
     "sql.database": "mysql",
+    "lua.installPreReleases": true,
     "markdown-preview-enhanced.previewTheme": "one-dark.css",
     "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {
