@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-xrandr --dpi 200 &
+xrandr --dpi 192 &
+xrdb ~/.wm/Xresources &
 ~/.wm/picom &
 ~/.wm/polybar &
 fcitx &
