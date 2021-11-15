@@ -28,8 +28,6 @@ setup_copy() {
 }
 #}}}
 setup_dotfiles() { #{{{
-    setup_symlink .Xresources
-    setup_symlink .xinitrc
     setup_copy .wmrc
     setup_symlink .wm
     setup_copy .redshiftgrc
@@ -183,7 +181,7 @@ setup_zsh() { #{{{
     printf "${BBLUE}>> Execute ${BYELLOW}'zsh'${BBLUE} to install zsh plugins${NC}\n"
 } #}}}
 setup_tmux() { #{{{
-    sudo pacman -S xsel copyq tmux python-requests
+    sudo pacman -S xsel tmux python-requests
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     mkdir -p ~/.tmux
     cp /home/sainnhe/repo/dotfiles/.tmux.conf ~/.tmux.conf

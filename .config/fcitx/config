@@ -1,11 +1,11 @@
 [Hotkey]
-# Trigger Input Method
+# 切换激活/非激活输入法
 TriggerKey=SHIFT_LSHIFT
-# Use extra trigger key only after using it to inactivate
+# 只在用额外切换键取消激活后才使用它进行切换
 # Available Value:
 # True False
 #UseExtraTriggerKeyOnlyWhenUseItToInactivate=True
-# Extra key for trigger input method
+# 额外的激活输入法快捷键
 # Available Value:
 # R_CTRL
 # R_SHIFT
@@ -28,119 +28,119 @@ TriggerKey=SHIFT_LSHIFT
 # Disabled
 # Custom
 SwitchKey=Custom
-# Custom switch key
+# 自定义切换键
 CustomSwitchKey=SHIFT_LSHIFT
-# Activate input method
+# 激活输入法
 #ActivateKey=
-# Inactivate Input Method
+# 取消激活输入法
 #InactivateKey=
-# Enable Hotkey to scroll Between Input Method
+# 启用输入法间切换
 # Available Value:
 # True False
 #IMSwitchKey=True
-# Include Inactivate when scrolling between Input Method
+# 输入法间切换时包含未激活状态
 # Available Value:
 # True False
 #IMSwitchIncludeInactive=False
-# Scroll between Input Method
+# 输入法切换键
 # Available Value:
 # CTRL_SHIFT
 # ALT_SHIFT
 # CTRL_SUPER
 # ALT_SUPER
 #IMSwitchHotkey=CTRL_SHIFT
-# Reload configuration
+# 重新载入配置
 #ReloadConfig=CTRL_5
-# Interval of Two Key Input
+# 输入间隔
 #TimeInterval=250
-# Switching Virtual Keyboard
+# 切换虚拟键盘
 #VKSwitchKey=CTRL_ALT_B
-# Switching Remind Mode
+# 切换联想模式
 #RemindSwitchKey=
-# Switching Full Width Character Mode
+# 切换全角
 FullWidthSwitchKey=SHIFT_SPACE
-# Switch Full Width Punc Mode
+# 切换全角标点
 #PuncSwitchKey=CTRL_.
-# Prev Page
-PrevPageKey=LEFT -
-# Next Page
-NextPageKey=RIGHT =
-# Choose Second and Third Candidate Word
+# 上一页
+PrevPageKey=UP
+# 下一页
+NextPageKey=DOWN
+# 选择第二第三候选词
 #SecondThirdCandWordKey=
-# Saving All Config and Input History
+# 保存配置及输入历史
 #SaveAllKey=CTRL_ALT_S
-# Switch Embedded Preedit
+# 切换嵌入预编辑字符串
 #SwitchPreedit=CTRL_ALT_P
-# Previous Candidate Word
+# 上一个候选词
 #PrevWord=SHIFT_TAB
-# Next Candidate Word
+# 下一个候选词
 #NextWord=TAB
 
 [Program]
-# Seconds sleep before fcitx really start
+# Fcitx 真正启动前延迟的秒数
 #DelayStart=0
-# Share State Among Window
+# 在窗口间共享状态
 # Available Value:
 # No
 # All
 # PerProgram
 ShareStateAmongWindow=All
-# Default Input Method State
+# 默认输入法状态
 # Available Value:
 # Inactive
 # Active
 DefaultInputMethodState=Active
 
 [Output]
-# Type half width Punc After a Number
+# 数字后跟半角符号
 # Available Value:
 # True False
 #HalfPuncAfterNumber=True
-# Disable Paging in Remind Mode
+# 联想模式禁用翻页
 # Available Value:
 # True False
 #RemindModeDisablePaging=True
-# Commit when toggle state
+# 切换状态时提交
 # Available Value:
 # True False
 #SendTextWhenSwitchEng=True
-# Candidate Word Number
+# 候选词个数
 CandidateWordNumber=7
-# Give the tips of Phrase
+# 提示词库中词组
 # Available Value:
 # True False
 #PhraseTips=True
-# Do not commit preedit text when unfocus a window
+# 窗口失去焦点时不提交预编辑文本
 # Available Value:
 # True False
 #DontCommitPreeditWhenUnfocus=False
 
 [Appearance]
-# Show Input Method Hint After Input method changed
+# 切换输入法时显示输入法提示
 # Available Value:
 # True False
 #ShowInputWindowAfterTriggering=True
-# Show Input Method Hint After Input method changed and Focus in
+# 获得输入焦点并且输入法变化时显示输入法提示
 # Available Value:
 # True False
 #ShowInputWindowWhenFocusIn=False
-# Input Method Hint will be only shown when state is active
+# 输入法提示只在激活状态显示
 # Available Value:
 # True False
 #ShowInputWindowOnlyWhenActive=True
-# Show Input Speed
+# 显示输入速度
 # Available Value:
 # True False
 #ShowInputSpeed=False
-# Show Version
+# 显示版本
 # Available Value:
 # True False
 #ShowVersion=False
-# Do not show input window if there is only preedit string
+# 只有预编辑字符串时不显示输入窗口
 # Available Value:
 # True False
 #HideInputWindowWhenOnlyPreeditString=False
-# Do not show input window if there is only one candidate and preedit
+# 只有一个候选词和预编辑字符串时不显示输入窗口
 # Available Value:
 # True False
 #HideInputWindowWhenOnlyOneCandidate=False
