@@ -181,8 +181,6 @@
     "Lua.diagnostics.globals": ["vim"],
     "texlab.path": "texlab",
     "texlab.build.onSave": true,
-    "texlab.chktex.onEdit": true,
-    "texlab.chktex.onOpenAndSave": true,
     "markdown-preview-enhanced.previewTheme": "one-dark.css",
     "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {

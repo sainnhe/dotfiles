@@ -50,7 +50,9 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'ctags',
           \ 'gtags',
           \ 'rg',
-          \ 'julia'
+          \ 'julia',
+          \ 'tex',
+          \ 'texlab'
           \ ],
         \ 'unix-like': [
           \ 'shellcheck',
