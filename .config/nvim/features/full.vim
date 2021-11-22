@@ -212,6 +212,7 @@ let g:coc_global_extensions = [
       \ 'coc-syntax',
       \ 'coc-tag',
       \ 'coc-terminal',
+      \ 'coc-texlab',
       \ 'coc-toml',
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
