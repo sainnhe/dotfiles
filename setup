@@ -88,6 +88,8 @@ setup_arch_repos() { #{{{
     sudo pacman -S archlinuxcn-keyring
 } #}}}
 setup_repos() { #{{{
+    mkdir -p ~/.ssh
+    cp ~/repo/dotfiles/.ssh/config ~/.ssh/
     ssh-keygen -t rsa -f ~/.ssh/id_rsa -C "sainnhe@gmail.com"
     ssh-keygen -t ecdsa -f ~/.ssh/id_ecdsa -C "sainnhe@gmail.com"
     eval "$(ssh-agent -s)"
