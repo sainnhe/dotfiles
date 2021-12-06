@@ -1,3 +1,4 @@
 arch/packages
 .config/nvim/envs.vim
 .config/nvim/autoload/plug.vim
+.config/nvim/autoload/plug.vim.old
