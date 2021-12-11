@@ -3,6 +3,7 @@
     email = sainnhe@gmail.com
 [core]
     editor = nvim
+    excludesfile = ~/.gitignore_global
 [diff]
     tool = nvim_diff
 [difftool]
