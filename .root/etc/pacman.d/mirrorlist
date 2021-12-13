@@ -1,6 +1,6 @@
 ##
 ## Arch Linux repository mirrorlist
-## Generated on 2021-11-14
+## Generated on 2021-12-12
 ##
 
 ##Archive
@@ -47,6 +47,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://archlinux.mirror.ba/$repo/os/$arch
 
 ## Brazil
+#Server = http://archlinux-br.com.br/archlinux/$repo/os/$arch
+#Server = https://archlinux-br.com.br/archlinux/$repo/os/$arch
 #Server = http://br.mirror.archlinux-br.org/$repo/os/$arch
 #Server = http://archlinux.c3sl.ufpr.br/$repo/os/$arch
 #Server = http://www.caco.ic.unicamp.br/archlinux/$repo/os/$arch
@@ -99,6 +101,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 
 ## China
 #Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+#Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
+#Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch
 #Server = http://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
 #Server = http://mirrors.cqu.edu.cn/archlinux/$repo/os/$arch
@@ -176,6 +180,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://archlinux.de-labrusse.fr/$repo/os/$arch
 #Server = http://mirror.archlinux.ikoula.com/archlinux/$repo/os/$arch
 #Server = https://archlinux.vi-di.fr/$repo/os/$arch
+#Server = https://mirror.bakerserver.space/Arch/$repo/os/$arch
 #Server = http://archlinux.mirrors.benatherton.com/$repo/os/$arch
 #Server = http://mirror.cyberbits.eu/archlinux/$repo/os/$arch
 #Server = https://mirror.cyberbits.eu/archlinux/$repo/os/$arch
@@ -413,7 +418,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://archlinux.mirror.root.lu/$repo/os/$arch
 
 ## Mexico
-#Server = https://arch.mirror.jsc.mx/$repo/os/$arch
+#Server = https://arch.jsc.mx/$repo/os/$arch
 
 ## Moldova
 #Server = http://mirror.ihost.md/archlinux/$repo/os/$arch
@@ -528,6 +533,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirrors.chroot.ro/archlinux/$repo/os/$arch
 #Server = http://mirror.efect.ro/archlinux/$repo/os/$arch
 #Server = https://mirror.efect.ro/archlinux/$repo/os/$arch
+#Server = http://mirror.flokinet.net/archlinux/$repo/os/$arch
+#Server = https://mirror.flokinet.net/archlinux/$repo/os/$arch
 #Server = http://mirrors.go.ro/archlinux/$repo/os/$arch
 #Server = https://mirrors.go.ro/archlinux/$repo/os/$arch
 #Server = http://mirrors.hostico.ro/archlinux/$repo/os/$arch
@@ -571,7 +578,6 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirror.guillaumea.fr/archlinux/$repo/os/$arch
 #Server = http://mirror.jingk.ai/archlinux/$repo/os/$arch
 #Server = https://mirror.jingk.ai/archlinux/$repo/os/$arch
-#Server = http://mirror.nus.edu.sg/archlinux/$repo/os/$arch
 #Server = http://ossmirror.mycloud.services/os/linux/archlinux/$repo/os/$arch
 
 ## Slovakia
@@ -596,6 +602,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 ## South Korea
 #Server = http://mirror.anigil.com/archlinux/$repo/os/$arch
 #Server = https://mirror.anigil.com/archlinux/$repo/os/$arch
+#Server = http://mirror.funami.tech/arch/$repo/os/$arch
+#Server = https://mirror.funami.tech/arch/$repo/os/$arch
 #Server = http://ftp.harukasan.org/archlinux/$repo/os/$arch
 #Server = https://ftp.harukasan.org/archlinux/$repo/os/$arch
 #Server = http://ftp.lanet.kr/pub/archlinux/$repo/os/$arch
@@ -783,6 +791,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://mirror.pit.teraswitch.com/archlinux/$repo/os/$arch
 #Server = https://mirror.pit.teraswitch.com/archlinux/$repo/os/$arch
 #Server = https://mirror.theash.xyz/arch/$repo/os/$arch
+#Server = http://tick-tack.mynetgear.com/archlinux/$repo/os/$arch
 #Server = https://tick-tack.mynetgear.com/archlinux/$repo/os/$arch
 #Server = http://mirror.umd.edu/archlinux/$repo/os/$arch
 #Server = https://mirror.umd.edu/archlinux/$repo/os/$arch
