@@ -415,6 +415,10 @@ nnoremap <silent> <leader><space>g :<c-u>CocList gitignore<cr>
 let g:which_key_map["\<space>"]['g'] = 'gitignore'
 " }}}
 " }}}
+" {{{copilot.vim
+let g:copilot_no_tab_map = 1
+imap <silent><script><expr> <A-z> copilot#Accept("\<CR>")
+" }}}
 " {{{vista.vim
 nnoremap <silent> <A-b> :<C-u>Vista!!<CR>
 let g:vista_sidebar_width = 35
@@ -543,8 +547,8 @@ set foldexpr=nvim_treesitter#foldexpr()
 " }}}
 " {{{Extended functional components, but with extra dependencies
 " {{{LeaderF
-let g:Lf_ShortcutF = '<A-z>`````ff'
-let g:Lf_ShortcutB = '<A-z>`````ff'
+let g:Lf_ShortcutF = '<A-c>`````ff'
+let g:Lf_ShortcutB = '<A-c>`````ff'
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_ShowRelativePath = 0
 let g:Lf_CursorBlink = 1

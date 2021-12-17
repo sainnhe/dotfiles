@@ -15,7 +15,6 @@ let g:which_key_sort_horizontal = 1
 let g:which_key_sep = ''
 let g:which_key_display_names = {' ': '', '<CR>': '↵', '<C-H>': '', '<C-I>': 'ﲑ', '<TAB>': '⇆'}
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 call which_key#register('<Space>', 'g:which_key_map')
 if !exists('g:which_key_map')
   let g:which_key_map = {
@@ -137,22 +136,22 @@ xmap iW <Plug>WordMotion_iw
 " }}}
 " {{{Pairs
 " {{{auto-pairs
-let g:AutoPairsShortcutToggle = '<A-z>p'
-let g:AutoPairsShortcutFastWrap = '<A-z>`sadsfvf'
+let g:AutoPairsShortcutToggle = '<A-c>p'
+let g:AutoPairsShortcutFastWrap = '<A-c>`sadsfvf'
 let g:AutoPairsShortcutJump = '<A-n>'
 let g:AutoPairsWildClosedPair = ''
 let g:AutoPairsMultilineClose = 0
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsMapCh = 0
-inoremap <A-z>' '
-inoremap <A-z>" "
-inoremap <A-z>` `
-inoremap <A-z>( (
-inoremap <A-z>[ [
-inoremap <A-z>{ {
-inoremap <A-z>) )
-inoremap <A-z>] ]
-inoremap <A-z>} }
+inoremap <A-c>' '
+inoremap <A-c>" "
+inoremap <A-c>` `
+inoremap <A-c>( (
+inoremap <A-c>[ [
+inoremap <A-c>{ {
+inoremap <A-c>) )
+inoremap <A-c>] ]
+inoremap <A-c>} }
 inoremap <A-Backspace> <Space><Esc><left>"_xa<Backspace>
 " }}}
 " {{{vim-matchup
@@ -163,7 +162,7 @@ let g:matchup_mouse_enabled = 0
 " }}}
 " {{{vim-closetag
 let g:closetag_shortcut = '>'
-let g:closetag_close_shortcut = '<A-z>>'
+let g:closetag_close_shortcut = '<A-c>>'
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.jsx,*.tsx'
 " }}}
 " }}}

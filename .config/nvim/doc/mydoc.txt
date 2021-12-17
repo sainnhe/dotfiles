@@ -60,10 +60,10 @@ AUTOPAIRS                                                      *mydoc-autopairs*
 
 In insert mode:
 
-- `<A-z>p`: Toggle this plugin
+- `<A-c>p`: Toggle this plugin
 - `<A-n>`: Jump to next closed pair, including `'")]}`
 - `<A-Backspace>`: Delete the left pair without deleting the right pair
-- `<A-z>[char]`: Insert left pair without inserting the right pair
+- `<A-c>[char]`: Insert left pair without inserting the right pair
 
 ------------------------------------------------------------------------------
 CLOSETAG                                                        *mydoc-closetag*
@@ -71,7 +71,7 @@ CLOSETAG                                                        *mydoc-closetag*
 When editing HTML files, in insert mode:
 
 - `>`: Auto close tags
-- `<A-z>>`: Insert `>` without closing tags
+- `<A-c>>`: Insert `>` without closing tags
 
 ------------------------------------------------------------------------------
 SURROUND                                                        *mydoc-surround*

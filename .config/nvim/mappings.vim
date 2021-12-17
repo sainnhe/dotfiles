@@ -44,7 +44,6 @@ endif
 " {{{Normal Mode
 " Leader key
 let g:mapleader = "\<Space>"
-let g:maplocalleader = "\<A-z>"
 nnoremap <SPACE> <Nop>
 " Alt+X to enter normal mode
 nnoremap <A-x> <ESC>
@@ -147,8 +146,8 @@ if !has('nvim')
 endif
 " Ctrl+V to paste from buffer
 inoremap <C-V> <Space><Backspace><ESC>pa
-" <A-z><C-v> to paste from system clipboard
-inoremap <A-z><C-V> <Space><Backspace><ESC>"+pa
+" <A-c><C-v> to paste from system clipboard
+inoremap <A-c><C-V> <Space><Backspace><ESC>"+pa
 " Ctrl+S to save file
 inoremap <silent> <C-S> <Esc>:w<CR>a
 " Shift+ArrowKeys to quickly move cursor
