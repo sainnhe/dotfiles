@@ -2,7 +2,11 @@
   "dependencies": {
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
+    "generator-code": "^1.6.5",
+    "localtunnel": "2.0.2",
     "ovsx": "0.2.1",
-    "vsce": "1.100.1"
+    "serve": "13.0.2",
+    "vsce": "1.100.1",
+    "yo": "^4.3.0"
   }
 }
