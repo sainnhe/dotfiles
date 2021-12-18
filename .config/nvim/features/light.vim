@@ -80,8 +80,8 @@ let g:twiggy_remote_branch_sort = 'date'
 let g:twiggy_show_full_ui = 0
 " }}}
 " {{{mergetool
-let g:mergetool_layout = 'br,m'  " `l`, `b`, `r`, `m`
-let g:mergetool_prefer_revision = 'local'  " `local`, `base`, `remote`
+let g:mergetool_layout = 'lr,m'  " `l`, `b`, `r`, `m`
+let g:mergetool_prefer_revision = 'base'  " `local`, `base`, `remote`
 nmap <leader>gm <plug>(MergetoolToggle)
 let g:which_key_map['g']['m'] = 'merge'
 " }}}
