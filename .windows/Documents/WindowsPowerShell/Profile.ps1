@@ -1,6 +1,5 @@
 Import-Module posh-git
-Import-Module oh-my-posh
-Set-PoshPrompt Avit
+Invoke-Expression (&starship init powershell)
 Import-Module PSReadLine
 Import-Module PSFzf -ArgumentList 'Ctrl+t','Ctrl+r'
 Set-PSReadLineOption -EditMode Emacs
