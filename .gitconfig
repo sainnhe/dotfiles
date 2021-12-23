@@ -3,7 +3,6 @@
     email = sainnhe@gmail.com
 [core]
     editor = nvim
-    excludesfile = ~/.gitignore_global
 [diff]
     tool = nvim_diff
 [difftool]
@@ -17,7 +16,7 @@
     cmd = nvim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
     trustExitCode = true
 [pull]
-    rebase = true
+    rebase = false
 [alias]
     cl = clone --depth 1
     ps = push
@@ -56,3 +55,5 @@
     proxy = socks5://127.0.0.1:1080
 [https]
     proxy = socks5://127.0.0.1:1080
+[url "https://hub.fastgit.org/"]
+    insteadOf = https://github.com/
