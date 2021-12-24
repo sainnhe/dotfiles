@@ -51,9 +51,11 @@
     rg-all = !rg $(git rev-parse --show-toplevel) --column --smart-case --no-ignore --hidden -g '!.git' -e
     rg-all-ls = !rg $(git rev-parse --show-toplevel) --no-ignore --hidden -g '!.git' --files
     ls-committed = ls-tree --full-tree -r --name-only HEAD
-[http]
-    proxy = socks5://127.0.0.1:1080
-[https]
-    proxy = socks5://127.0.0.1:1080
-[url "https://hub.fastgit.org/"]
-    insteadOf = https://github.com/
+; [http]
+;     proxy = socks5://127.0.0.1:1080
+; [https]
+;     proxy = socks5://127.0.0.1:1080
+; [url "https://github.com.cnpmjs.org/"]
+;     insteadOf = https://github.com/
+; [url "https://hub.fastgit.org/"]
+;     insteadOf = https://github.com/
