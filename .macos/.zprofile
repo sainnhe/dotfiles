@@ -9,4 +9,5 @@ export MANPATH="${brew_home}/opt/openjdk/share/man:$MANPATH"
 # export CPPFLAGS="-I${brew_home}/opt/openjdk/include"
 export PATH="${brew_home}/opt/python/libexec/bin:$PATH"
 export FPATH="${brew_home}/share/zsh/site-functions:$FPATH"
+export OPENSSL_ROOT_DIR="${brew_home}/opt/openssl"
 unset brew_home
