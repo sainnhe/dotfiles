@@ -60,6 +60,7 @@ setup_dotfiles() { #{{{
     setup_symlink package-lock.json
     setup_symlink .npmrc
     setup_copy .yarnrc
+    setup_symlink .cargo/config.toml
     setup_copy .config/zathura/zathurarc
     setup_symlink .config/zathura/themes
     setup_copy .config/libinput-gestures.conf
