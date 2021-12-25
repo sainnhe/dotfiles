@@ -415,10 +415,6 @@ nnoremap <silent> <leader><space>g :<c-u>CocList gitignore<cr>
 let g:which_key_map["\<space>"]['g'] = 'gitignore'
 " }}}
 " }}}
-" {{{copilot.vim
-let g:copilot_no_tab_map = 1
-imap <silent><script><expr> <A-z> copilot#Accept("\<CR>")
-" }}}
 " {{{vista.vim
 nnoremap <silent> <A-b> :<C-u>Vista!!<CR>
 let g:vista_sidebar_width = 35
