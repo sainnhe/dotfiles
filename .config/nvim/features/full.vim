@@ -241,7 +241,7 @@ call coc#config('snippets', {
 call coc#config('xml', {
       \ 'java': {
       \   'home': has('win32') ? 'C:\Users\gaoti\scoop\apps\openjdk\current' :
-        \ has('macunix') ? '/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home' :
+        \ has('macunix') ? '/Library/Java/JavaVirtualMachines/openjdk17-temurin/Contents/Home' :
         \ '/usr/lib/jvm/default'
       \ }
       \ })

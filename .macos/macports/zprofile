@@ -1,0 +1,8 @@
+port_prefix="/opt/local"
+export PATH="$port_prefix/bin:$PATH"
+export PATH="$port_prefix/sbin:$PATH"
+export MANPATH="$port_prefix/share/man:$MANPATH"
+export OPENSSL_ROOT_DIR="$port_prefix"
+export PATH="$PATH:$port_prefix/libexec/llvm-13/bin"
+export PATH="$HOME/Library/Python/3.10/bin:$PATH"
+unset port_prefix

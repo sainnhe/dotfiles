@@ -9,6 +9,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 if command -v rustup &> /dev/null; then
     export PATH="$HOME/.rustup/toolchains/$(rustup show active-toolchain | grep default | sed 's/ (.*//')/bin:$PATH"
 fi
+export MANPATH="$HOME/.local/share/man:$MANPATH"
+export MANPATH="/usr/local/share/man:$MANPATH"
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color
