@@ -322,6 +322,10 @@ zinit light nevesnunes/sh-manpage-completions
 zinit ice wait'0' pick'.zsh-snippets' lucid; zinit light "$HOME"
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/extract/extract.plugin.zsh
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zinit ice wait'0' lucid depth=1 \
+    as"program" \
+    pick"pfetch"
+zinit light dylanaraps/pfetch
 # {{{fast-syntax-highlighting
 FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
 # }}}
@@ -383,6 +387,10 @@ export _ZL_MATCH_MODE=1
 alias zc='z -c' # 严格匹配当前路径的子路径
 alias zz='z -i' # 使用交互式选择模式
 alias zf='z -I' # 使用 fzf 对多个结果进行选择
+# }}}
+# {{{pfetch
+export PF_COL1=2
+export PF_COL3=3
 # }}}
 # }}}
 # {{{Startup
