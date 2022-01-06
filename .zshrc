@@ -259,7 +259,7 @@ job-kill() {
 # }}}
 # {{{Alias
 alias ls='lsd'
-alias tree='lsd --tree -A'
+alias tree='lsd --tree'
 alias du='du -sh'
 alias df='df -h'
 alias cp='cp -ip'
