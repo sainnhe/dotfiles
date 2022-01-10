@@ -2,11 +2,14 @@
   "dependencies": {
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "generator-code": "^1.6.5",
+    "generator-code": "1.6.5",
     "localtunnel": "2.0.2",
+    "npm-check-updates": "12.1.0",
     "ovsx": "0.2.1",
+    "pyright": "1.1.206",
     "serve": "13.0.2",
-    "vsce": "1.100.1",
-    "yo": "^4.3.0"
+    "typescript-language-server": "0.9.1",
+    "vsce": "2.6.3",
+    "yo": "4.3.0"
   }
 }
