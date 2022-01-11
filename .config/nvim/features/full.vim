@@ -132,7 +132,6 @@ if g:vim_enable_startify == 1
   if has('nvim')
     let g:startify_commands = [
           \ {'1': 'CocList'},
-          \ {'2': 'terminal'},
           \ ]
   endif
   let g:startify_custom_header = [
@@ -145,10 +144,10 @@ if g:vim_enable_startify == 1
         \ '                                                                                    ',
         \ ]
   let g:startify_lists = [
-        \ { 'type': 'sessions',  'header': [" \ue62e Sessions"]       },
-        \ { 'type': 'bookmarks', 'header': [" \uf5c2 Bookmarks"]      },
-        \ { 'type': 'files',     'header': [" \ufa1eMRU Files"]            },
         \ { 'type': 'dir',       'header': [" \ufa1eMRU Files in ". getcwd()] },
+        \ { 'type': 'files',     'header': [" \ufa1eMRU Files"]            },
+        \ { 'type': 'bookmarks', 'header': [" \uf5c2 Bookmarks"]      },
+        \ { 'type': 'sessions',  'header': [" \ue62e Sessions"]       },
         \ { 'type': 'commands',  'header': [" \ufb32 Commands"]       },
         \ ]
   let g:startify_skiplist = [
