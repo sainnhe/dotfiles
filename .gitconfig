@@ -16,7 +16,9 @@
     cmd = nvim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
     trustExitCode = true
 [pull]
-    rebase = false
+    rebase = true
+[init]
+    defaultBranch = master
 [alias]
     cl = clone --depth 1
     ps = push
