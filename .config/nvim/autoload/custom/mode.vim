@@ -52,7 +52,11 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'tex',
           \ 'texlab'
           \ ],
-        \ 'unix-like': [
+        \ 'darwin': [
+          \ 'shellcheck',
+          \ 'shfmt'
+          \ ],
+        \ 'linux': [
           \ 'shellcheck',
           \ 'shfmt',
           \ 'zenity'
@@ -68,8 +72,16 @@ function custom#mode#check_dependencies() abort " Check dependencies
       let l:result = 0
     endif
   endfor
-  if !has('win32')
-    for dependency in l:dependencies['unix-like']
+  if has('osxdarwin')
+    for dependency in l:dependencies['darwin']
+      if !executable(dependency)
+        echomsg "[dependency] Doesn't have " . dependency . ' installed.'
+        let l:result = 0
+      endif
+    endfor
+  endif
+  if has('linux')
+    for dependency in l:dependencies['linux']
       if !executable(dependency)
         echomsg "[dependency] Doesn't have " . dependency . ' installed.'
         let l:result = 0

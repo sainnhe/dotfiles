@@ -194,9 +194,9 @@ elseif g:vim_mode ==# 'full'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   " Extended functional components, but with extra dependencies
   Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
+  Plug 'KabbAmine/vCoolor.vim'
   if !has('win32')
     Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
-    Plug 'KabbAmine/vCoolor.vim'
     if executable('fcitx')
       Plug 'lilydjwg/fcitx.vim', {'on': []}
             \| au InsertEnter * call plug#load('fcitx.vim')

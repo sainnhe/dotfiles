@@ -573,22 +573,22 @@ let g:which_key_map['f']['m'] = 'mru files'
 let g:which_key_map['f']['g'] = 'grep'
 " }}}
 " {{{vCoolor.vim
-if !has('win32')
-  let g:vcoolor_disable_mappings = 1
-  let g:vcoolor_lowercase = 1
+if has('linux')
   let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --color '
-  nnoremap <silent> <leader><space><space>cc :<c-u>VCoolor<cr>
-  nnoremap <silent> <leader><space><space>cr :<c-u>VCoolor r<cr>
-  nnoremap <silent> <leader><space><space>cH :<c-u>VCoolor h<cr>
-  nnoremap <silent> <leader><space><space>cR :<c-u>VCoolor ra<cr>
-  let g:which_key_map["\<space>"]["\<space>"]['c'] = {
-        \   'name': 'color picker',
-        \   'c': 'insert hex',
-        \   'r': 'insert rgb',
-        \   'H': 'insert hsl',
-        \   'R': 'insert rgba'
-        \   }
 endif
+let g:vcoolor_disable_mappings = 1
+let g:vcoolor_lowercase = 1
+nnoremap <silent> <leader><space><space>cc :<c-u>VCoolor<cr>
+nnoremap <silent> <leader><space><space>cr :<c-u>VCoolor r<cr>
+nnoremap <silent> <leader><space><space>cH :<c-u>VCoolor h<cr>
+nnoremap <silent> <leader><space><space>cR :<c-u>VCoolor ra<cr>
+let g:which_key_map["\<space>"]["\<space>"]['c'] = {
+      \   'name': 'color picker',
+      \   'c': 'insert hex',
+      \   'r': 'insert rgb',
+      \   'H': 'insert hsl',
+      \   'R': 'insert rgba'
+      \   }
 " }}}
 " }}}
 
