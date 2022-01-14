@@ -47,9 +47,6 @@ augroup IncsearchCustom
   autocmd User IncSearchEnter set hlsearch
 augroup END
 " }}}
-" {{{nvim-colorizer.lua
-lua require'colorizer'.setup()
-" }}}
 " }}}
 " {{{Text objects
 call textobj#user#plugin('line', {

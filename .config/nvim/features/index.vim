@@ -120,7 +120,6 @@ Plug 'sainnhe/everforest'
 " Additional UI components
 Plug 'liuchengxu/vim-which-key'
 Plug 'haya14busa/incsearch.vim'
-Plug 'norcalli/nvim-colorizer.lua'
 " Text objects
 Plug 'kana/vim-textobj-user'
 Plug 'glts/vim-textobj-comment'
