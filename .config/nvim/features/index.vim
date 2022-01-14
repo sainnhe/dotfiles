@@ -185,7 +185,6 @@ if g:vim_mode ==# 'light'
 elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-  Plug 'liuchengxu/vista.vim'
   Plug 'puremourning/vimspector'
   Plug 'sunaku/vim-dasht'
   " Tree-sitter

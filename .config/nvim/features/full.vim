@@ -271,6 +271,7 @@ nnoremap <silent><expr> <A-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<
 nnoremap <silent><expr> <A-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<A-u>"
 inoremap <silent><expr> <A-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<A-d>"
 inoremap <silent><expr> <A-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<A-u>"
+nnoremap <silent> <A-b> :<C-u>CocOutline<CR>
 nnoremap <silent> <A-=> :<C-u>CocCommand terminal.Toggle<CR>
 tnoremap <silent> <A-=> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
 nnoremap <silent> <A--> :<C-u>CocCommand terminal.REPL<CR>
@@ -413,27 +414,6 @@ let g:which_key_map['f']['p'] = 'projects'
 nnoremap <silent> <leader><space>g :<c-u>CocList gitignore<cr>
 let g:which_key_map["\<space>"]['g'] = 'gitignore'
 " }}}
-" }}}
-" {{{vista.vim
-nnoremap <silent> <A-b> :<C-u>Vista!!<CR>
-let g:vista_sidebar_width = 35
-let g:vista_cursor_delay = 100
-let g:vista_keep_fzf_colors = 1
-let g:vista_fzf_opt = ['--layout=default', '--prompt=❯ ']
-let g:vista_default_executive = 'ctags'
-let g:vista_executive_for = {
-      \ 'markdown': 'toc',
-      \ 'javascript': 'coc',
-      \ 'javascriptreact': 'coc',
-      \ 'typescript': 'coc',
-      \ 'typescriptreact': 'coc',
-      \ 'python': 'coc',
-      \ 'rust': 'coc',
-      \ }
-augroup VistaCustom
-  autocmd!
-  autocmd FileType vista,vista_kind nmap <buffer><silent> o <CR>
-augroup END
 " }}}
 " {{{vimspector
 " https://puremourning.github.io/vimspector/configuration.html
