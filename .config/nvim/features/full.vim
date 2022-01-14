@@ -464,19 +464,21 @@ let g:which_key_map['b'] = {
       \ }
 " }}}
 " {{{vim-dasht
-" Search related docsets
-let g:dasht_filetype_docsets = {} " filetype => list of docset name regexp
-" When in Elixir, also search Erlang:
-let g:dasht_filetype_docsets['elixir'] = ['erlang']
-" When in C++, also search C, Boost, and OpenGL:
-let g:dasht_filetype_docsets['cpp'] = ['^c$', 'boost', 'OpenGL']
-" When in Python, also search NumPy, SciPy, and Pandas:
-let g:dasht_filetype_docsets['python'] = ['(num|sci)py', 'pandas']
-" When in HTML, also search CSS, JavaScript, Bootstrap, and jQuery:
-let g:dasht_filetype_docsets['html'] = ['css', 'js', 'bootstrap']
-nnoremap <silent> <leader><space>D :call Dasht(dasht#cursor_search_terms())<Return>
-vnoremap <silent> <leader><space>D y:<C-U>call Dasht(getreg(0))<Return>
-let g:which_key_map["\<space>"]['D'] = 'dasht'
+if !has('win32')
+  " Search related docsets
+  let g:dasht_filetype_docsets = {} " filetype => list of docset name regexp
+  " When in Elixir, also search Erlang:
+  let g:dasht_filetype_docsets['elixir'] = ['erlang']
+  " When in C++, also search C, Boost, and OpenGL:
+  let g:dasht_filetype_docsets['cpp'] = ['^c$', 'boost', 'OpenGL']
+  " When in Python, also search NumPy, SciPy, and Pandas:
+  let g:dasht_filetype_docsets['python'] = ['(num|sci)py', 'pandas']
+  " When in HTML, also search CSS, JavaScript, Bootstrap, and jQuery:
+  let g:dasht_filetype_docsets['html'] = ['css', 'js', 'bootstrap']
+  nnoremap <silent> <leader><space>D :call Dasht(dasht#cursor_search_terms())<Return>
+  vnoremap <silent> <leader><space>D y:<C-U>call Dasht(getreg(0))<Return>
+  let g:which_key_map["\<space>"]['D'] = 'dasht'
+endif
 " }}}
 " {{{vim-doge
 let g:doge_enable_mappings = 0

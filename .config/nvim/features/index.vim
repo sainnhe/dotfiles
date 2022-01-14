@@ -186,7 +186,9 @@ elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
   Plug 'puremourning/vimspector'
-  Plug 'sunaku/vim-dasht'
+  if !has('win32')
+    Plug 'sunaku/vim-dasht'
+  endif
   " Tree-sitter
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
