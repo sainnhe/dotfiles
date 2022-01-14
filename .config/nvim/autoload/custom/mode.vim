@@ -47,8 +47,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'yarn',
           \ 'clang',
           \ 'cmake-language-server',
-          \ 'ctags',
-          \ 'gtags',
           \ 'rg',
           \ 'julia',
           \ 'tex',

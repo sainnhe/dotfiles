@@ -33,7 +33,6 @@ setup_dotfiles() { #{{{
     setup_copy .redshiftgrc
     setup_copy .gitconfig
     setup_copy .gitignore_global
-    setup_copy .ctags
     setup_symlink .conkyrc
     setup_symlink .bashrc
     setup_symlink .w3m/config
