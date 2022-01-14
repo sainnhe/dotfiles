@@ -188,7 +188,7 @@ elseif g:vim_mode ==# 'full'
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
   Plug 'liuchengxu/vista.vim'
   Plug 'puremourning/vimspector'
-  Plug 'KabbAmine/zeavim.vim'
+  Plug 'sunaku/vim-dasht'
   " Tree-sitter
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
