@@ -326,6 +326,11 @@ zinit ice wait'0' lucid depth=1 \
     as"program" \
     pick"pfetch"
 zinit light dylanaraps/pfetch
+zinit ice wait'1' lucid depth=1 \
+    as"program" \
+    pick"bin/*" \
+    atload"export MANPATH=$HOME/.zinit/plugins/sunaku---dasht/man:$MANPATH"
+zinit light sunaku/dasht
 # {{{fast-syntax-highlighting
 FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
 # }}}
