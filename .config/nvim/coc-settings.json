@@ -49,6 +49,9 @@
         "sh": "shfmt",
         "zsh": "shfmt"
     },
+    "tree.key.toggle": "o",
+    "tree.key.collapseAll": "O",
+    "tree.key.actions": "<tab>",
     "signature.triggerSignatureWait": 300,
     "codeLens.enable": true,
     "codeLens.separator": "▸",
