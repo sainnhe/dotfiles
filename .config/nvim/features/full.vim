@@ -292,8 +292,8 @@ nmap <silent> <leader><space>cc <Plug>(coc-codeaction-cursor)
 vmap <silent> <leader><space>c <Plug>(coc-codeaction-selected)
 nmap <silent> <leader><space>o <Plug>(coc-openlink)
 nmap <silent> <leader><space>l <Plug>(coc-codelens-action)
-nmap <silent> <leader><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
-nmap <silent> <leader><space>se :<C-u>CocCommand snippets.editSnippets<cr>
+nmap <silent> <leader><space><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
+nmap <silent> <leader><space><space>se :<C-u>CocCommand snippets.editSnippets<cr>
 nmap <silent> <leader><space>mf :<C-u>CocCommand prettier.formatFile<cr>
 nmap <silent> <leader><space>mp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
 nmap <silent> <leader><space>mi :<C-u>CocCommand markdown-preview-enhanced.openImageHelper<cr>
@@ -362,7 +362,7 @@ let g:which_key_map["\<space>"]['m'] = {
       \ 'r': 'run code chunk',
       \ 'R': 'run all code chunks',
       \ }
-let g:which_key_map["\<space>"]['s'] = {
+let g:which_key_map["\<space>"]["\<space>"]['s'] = {
         \ 'name': 'snippets',
         \ 'e': 'edit snippets for current file type',
         \ 'o': 'open snippet file',
@@ -411,8 +411,8 @@ nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
 let g:which_key_map['f']['p'] = 'projects'
 " }}}
 " {{{coc-gitignore
-nnoremap <silent> <leader><space>g :<c-u>CocList gitignore<cr>
-let g:which_key_map["\<space>"]['g'] = 'gitignore'
+nnoremap <silent> <leader>gI :<c-u>CocList gitignore<cr>
+let g:which_key_map['g']['I'] = 'gitignore'
 " }}}
 " }}}
 " {{{vimspector

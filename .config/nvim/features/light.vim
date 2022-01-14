@@ -258,8 +258,8 @@ let g:which_key_map["\<space>"]["\<space>"]['r'] = 'reading mode'
 let g:pomodoro_time_work = 25
 let g:pomodoro_time_slack = 5
 let g:pomodoro_status = 0
-nnoremap <silent> <leader><space><space>p :<c-u>call custom#utils#toggle_pomodoro()<cr>
-let g:which_key_map["\<space>"]["\<space>"]['p'] = 'pomodoro toggle'
+nnoremap <silent> <leader><space><space>P :<c-u>call custom#utils#toggle_pomodoro()<cr>
+let g:which_key_map["\<space>"]["\<space>"]['P'] = 'pomodoro toggle'
 " }}}
 " {{{mundo
 let g:mundo_right = 1
@@ -290,9 +290,9 @@ if exists('g:vim_man_pager') && !has('win32')
 endif
 " }}}
 " {{{vim-paste-rs
-nmap <leader><space>p <Plug>(paste-rs)
-xmap <leader><space>p <Plug>(paste-rs)
-let g:which_key_map["\<space>"]['p'] = 'paste.rs'
+nmap <leader><space><space>p <Plug>(paste-rs)
+xmap <leader><space><space>p <Plug>(paste-rs)
+let g:which_key_map["\<space>"]["\<space>"]['p'] = 'paste.rs'
 " }}}
 " }}}
 " {{{Productivity
