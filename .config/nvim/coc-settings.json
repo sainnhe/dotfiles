@@ -52,12 +52,12 @@
     "tree.key.toggle": "o",
     "tree.key.collapseAll": "O",
     "tree.key.actions": "<tab>",
+    "tree.key.toggleSelection": "s",
     "signature.triggerSignatureWait": 300,
     "codeLens.enable": true,
     "codeLens.separator": "▸",
     "list.indicator": "❯",
     "list.insertMappings": {
-        "<C-c>": "do:exit",
         "<C-p>": "action:preview",
         "<C-j>": "do:next",
         "<C-k>": "do:previous",
@@ -67,9 +67,6 @@
         "<Down>": "prompt:next",
         "<Up>": "prompt:previous",
         "<C-v>": "prompt:paste"
-    },
-    "list.normalMappings": {
-        "<C-c>": "do:exit"
     },
     "coc.preferences.enableMessageDialog": true,
     "coc.preferences.semanticTokensHighlights": false,
@@ -126,7 +123,7 @@
     "explorer.keyMappingMode": "none",
     "explorer.keyMappings.global": {
         "s": "toggleSelection",
-        "<leader>": "actionMenu",
+        "<tab>": "actionMenu",
 
         "h": "indentPrev",
         "l": "indentNext",
