@@ -120,6 +120,7 @@
     "imselect.defaultInput": "com.apple.keylayout.ABC",
     "prettier.formatterPriority": -1,
     "explorer.icon.enableNerdfont": true,
+    "explorer.width": 30,
     "explorer.keyMappingMode": "none",
     "explorer.keyMappings.global": {
         "s": "toggleSelection",

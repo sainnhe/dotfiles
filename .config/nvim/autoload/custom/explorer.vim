@@ -7,7 +7,7 @@
 " =============================================================================
 
 function custom#explorer#toggle() abort
-  execute 'CocCommand explorer --toggle --width=35 ' . getcwd()
+  execute 'CocCommand explorer ' . getcwd()
 endfunction
 
 function custom#explorer#startify() abort
