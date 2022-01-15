@@ -40,8 +40,9 @@ if exists('g:fvim_loaded')
 endif
 
 " Neovide
-let g:neovide_cursor_vfx_mode = 'torpedo'
-let g:neovide_fullscreen = v:true
+let g:neovide_cursor_vfx_mode = 'sonicboom'
+let g:neovide_cursor_vfx_opacity = 50
+let g:neovide_remember_window_size = v:true
 
 " Initialize environment variables
 let s:envs_path = fnamemodify(stdpath('config'), ':p') . 'envs.vim'
