@@ -247,6 +247,7 @@ call coc#config('xml', {
 if has('win32')
   call coc#config('terminal', {
         \ 'shellPath': 'powershell',
+        \ 'shellArgs': ['-nologo'],
         \ })
 endif
 " }}}
