@@ -68,7 +68,7 @@ if !filereadable(s:envs_path) " Create envs.vim if it doesn't exist
         \ '        \ ]',
         \ 'endif',
         \ "if exists('g:fvim_loaded') || exists('g:neovide')",
-        \ '  set guifont=Operator\ Mono\ Light:h15',
+        \ '  set guifont=Lilex\ iCursive\ Op:h12',
         \ 'endif'
         \ ], s:envs_path, 'a')
   call custom#mode#update()
