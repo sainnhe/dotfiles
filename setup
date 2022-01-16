@@ -87,12 +87,9 @@ setup_repos() { #{{{
     mkdir ~/repo
     cd ~/repo
     git clone https://github.com/sainnhe/dotfiles.git
-    git clone https://github.com/sainnhe/scripts.git
     git clone https://github.com/sainnhe/notes.git
     cd dotfiles
     git remote set-url origin git@github.com:sainnhe/dotfiles.git
-    cd ../scripts
-    git remote set-url origin git@github.com:sainnhe/scripts.git
     cd ../notes
     git remote set-url origin git@github.com:sainnhe/notes.git
     cd ../
@@ -207,7 +204,6 @@ setup_plasma() { #{{{
     sudo gpasswd -a "$USER" input
     libinput-gestures-setup autostart
     ln -sf /home/sainnhe/repo/dotfiles/.config/kwinrulesrc ~/.config/kwinrulesrc
-    printf "\n${BBLUE}>> Blur:\n${BGREEN}System Settings -> Kwin Scripts -> Force Blur\n${BBLUE}Shortcuts:\n${BGREEN}/home/sainnhe/repo/scripts/func/plasma-blur.sh 'rofi -show drun' 'Rofi'${NC}\n"
 } #}}}
 setup_fonts() { #{{{
     pikaur -S fonts-meta
