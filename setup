@@ -28,29 +28,17 @@ setup_copy() {
 }
 #}}}
 setup_dotfiles() { #{{{
-    setup_copy .wmrc
-    setup_symlink .wm
-    setup_copy .redshiftgrc
     setup_copy .gitconfig
     setup_copy .gitignore_global
-    setup_symlink .conkyrc
     setup_symlink .bashrc
     setup_symlink .w3m/config
     setup_symlink .weechat/weechat.conf
     setup_copy .aria2
-    setup_copy .config/alacritty/alacritty.yml
     setup_copy .config/autostart
     setup_symlink .config/pip
     setup_copy .config/xsettingsd
     setup_copy .config/autostart-scripts
     setup_symlink .config/fontconfig/fonts.conf
-    setup_copy .config/polybar/config
-    setup_symlink .config/polybar/themes
-    setup_symlink .config/polybar/scripts
-    setup_copy .config/rofi/config.rasi
-    setup_symlink .config/rofi/themes
-    setup_symlink .config/rtv
-    setup_symlink .config/picom.conf
     setup_copy .config/pikaur.conf
     setup_symlink .config/fcitx/conf
     setup_symlink .config/fcitx/config
@@ -213,9 +201,6 @@ setup_npm() { #{{{
 } #}}}
 setup_weechat() { #{{{
     proxychains -q curl -L --create-dirs -o ~/.weechat/python/autoload/autojoin.py http://www.weechat.org/files/scripts/autojoin.py
-} #}}}
-setup_wm() { #{{{
-    pikaur -S window-manager-meta dwm-meta
 } #}}}
 setup_plasma() { #{{{
     pikaur -S kde-meta
