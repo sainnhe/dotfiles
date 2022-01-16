@@ -17,16 +17,7 @@ fi
 if [ "$var"x == "n"x ]; then
     cd ~/repo/notes
     filename=$(find . -name "*.md" | sed 's/^..//' | fzf )
-    printf "${BYELLOW}[v]${BGREEN} Vim (default)     ${BYELLOW}[t]${BGREEN} Typora${NC}\n"
-    read -r var
-    if [ "$var"x == ""x ]; then
-        var="v"
-    fi
-    if [ "$var"x == "v"x ]; then
-        nvim "$HOME/repo/notes/$filename"
-    elif [ "$var"x == "t"x ]; then
-        typora "$HOME/repo/notes/$filename"
-    fi
+    nvim "$HOME/repo/notes/$filename"
 elif [ "$var"x == "m"x ]; then
     wikiman -l zh,en -s man
 elif [ "$var"x == "a"x ]; then
