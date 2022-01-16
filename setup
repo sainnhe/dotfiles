@@ -194,7 +194,7 @@ setup_rust() { #{{{
 } #}}}
 setup_npm() { #{{{
     cd ~
-    npm ci
+    npm install
 } #}}}
 setup_weechat() { #{{{
     proxychains -q curl -L --create-dirs -o ~/.weechat/python/autoload/autojoin.py http://www.weechat.org/files/scripts/autojoin.py
@@ -236,16 +236,10 @@ elif [ "$1" = 'rust' ]; then
     setup_rust
 elif [ "$1" = 'npm' ]; then
     setup_npm
-elif [ "$1" = 'firefox' ]; then
-    setup_firefox
 elif [ "$1" = 'weechat' ]; then
     setup_weechat
-elif [ "$1" = 'wm' ]; then
-    setup_wm
 elif [ "$1" = 'plasma' ]; then
     setup_plasma
-elif [ "$1" = 'themes' ]; then
-    setup_themes
 elif [ "$1" = 'fonts' ]; then
     setup_fonts
 elif [ "$1" = 'apps' ]; then
