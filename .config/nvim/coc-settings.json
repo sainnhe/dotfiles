@@ -49,6 +49,8 @@
         "sh": "shfmt",
         "zsh": "shfmt"
     },
+    "tree.closedIcon": "",
+    "tree.openedIcon": "",
     "tree.key.toggle": "o",
     "tree.key.collapseAll": "O",
     "tree.key.actions": "<tab>",
