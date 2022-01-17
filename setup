@@ -190,7 +190,8 @@ setup_rust() { #{{{
     proxychains -q rustup install nightly
     rustup default nightly
     proxychains -q rustup component add \
-        rust-analyzer-preview
+        rust-analyzer-preview \
+        rust-docs
 } #}}}
 setup_npm() { #{{{
     cd ~
