@@ -80,7 +80,7 @@ if [ "$num" == "1" ] || [ "$num" == "5" ]; then
         ls /home/sainnhe/.local/share/Trash/info
         readjudge
         if [ "$judge" == "Y" ]; then
-                ktrash5 --empty
+                ktrash5 --empty 2> /dev/null
         fi
 fi
 
