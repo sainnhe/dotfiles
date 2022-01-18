@@ -68,9 +68,9 @@ fi
     typeset -g POWERLEVEL9K_RULER_CHAR=$(_pp_s '-' '─')
     typeset -g POWERLEVEL9K_RULER_BACKGROUND=none
     if [[ "$DESERT_NIGHT_PURE_POWER_TRUE_COLOR" == "true" ]]; then
-      typeset -g POWERLEVEL9K_RULER_FOREGROUND='#859289'
+      typeset -g POWERLEVEL9K_RULER_FOREGROUND='#596763'
     else
-      typeset -g POWERLEVEL9K_RULER_FOREGROUND=$(_pp_c 7 241)
+      typeset -g POWERLEVEL9K_RULER_FOREGROUND=$(_pp_c 7 240)
     fi
   else
     typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
