@@ -40,9 +40,19 @@ if exists('g:fvim_loaded')
 endif
 
 " Neovide
-let g:neovide_cursor_vfx_mode = 'sonicboom'
-let g:neovide_cursor_vfx_opacity = 50
-let g:neovide_remember_window_size = v:true
+if exists('g:neovide')
+  let g:neovide_cursor_vfx_mode = 'sonicboom'
+  let g:neovide_cursor_vfx_opacity = 50
+  let g:neovide_remember_window_size = v:true
+endif
+
+" Nvui
+if exists('g:nvui')
+  NvuiCursorHideWhileTyping v:true
+  NvuiFrameless v:true
+  NvuiAnimationsEnabled v:true
+  NvuiFullscreen v:true
+endif
 
 " Initialize environment variables
 let s:envs_path = fnamemodify(stdpath('config'), ':p') . 'envs.vim'
@@ -68,7 +78,7 @@ if !filereadable(s:envs_path) " Create envs.vim if it doesn't exist
         \ "        \\ {'P': '~/playground/'},",
         \ '        \ ]',
         \ 'endif',
-        \ "if exists('g:fvim_loaded') || exists('g:neovide')",
+        \ "if exists('g:fvim_loaded') || exists('g:neovide') || exists('g:nvui')",
         \ '  set guifont=Lilex\ iCursive\ Op:h12',
         \ 'endif'
         \ ], s:envs_path, 'a')
