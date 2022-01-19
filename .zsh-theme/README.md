@@ -35,7 +35,7 @@ Where `<color-scheme>` is one of the following:
 - `sonokai-shusia`
 - `soft-era`
 
-Alternatively, if you are using [zinit](https://github.com/zdharma-continuum/zinit)(formerly known as zplugin, [highly recommended](https://gist.github.com/laggardkernel/4a4c4986ccdcaf47b91e8227f9868ded)), you can install the theme like this:
+Alternatively, if you are using [zinit](https://github.com/zdharma-continuum/zinit) (formerly known as zplugin, [highly recommended](https://gist.github.com/laggardkernel/4a4c4986ccdcaf47b91e8227f9868ded)), you can install the theme like this:
 
 ```zsh
 zinit light romkatv/powerlevel10k
