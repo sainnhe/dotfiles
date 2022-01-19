@@ -100,7 +100,7 @@ function custom#colorscheme#edge_light() abort "{{{
     call custom#utils#switch_lightline_color_scheme('edge')
   endif
 endfunction "}}}
-function custom#colorscheme#sonokai_default() abort "{{{
+function custom#colorscheme#sonokai() abort "{{{
   let g:sonokai_style = 'default'
   let g:sonokai_disable_italic_comment = 1
   let g:sonokai_enable_italic = 1

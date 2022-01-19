@@ -80,8 +80,8 @@ elif [ "$THEME" == "7" ]; then
         ~/repo/dotfiles/.zsh-theme/everforest-light
 elif [ "$THEME" == "8" ]; then
     _switch_color_scheme \
-        sonokai-default \
-        sonokai_default \
+        sonokai \
+        sonokai \
         ~/repo/dotfiles/.zsh-theme/sonokai
     sed -E -i.bak \
         "s/^include themes.*/include themes\/edge-dark/" \
