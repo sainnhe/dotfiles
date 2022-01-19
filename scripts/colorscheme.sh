@@ -8,7 +8,7 @@ echo "[4]  Edge Dark"
 echo "[5]  Edge Light"
 echo "[6]  Everforest Dark"
 echo "[7]  Everforest Light"
-echo "[8]  Sonokai Default"
+echo "[8]  Sonokai"
 echo "[9]  Sonokai Shusia"
 echo "[10] Sonokai Andromeda"
 echo "[11] Sonokai Atlantis"
@@ -47,42 +47,42 @@ if [ "$THEME" == "1" ]; then
     _switch_color_scheme \
         gruvbox-material-dark \
         gruvbox_material_dark \
-        ~/repo/dotfiles/.zsh-theme-gruvbox-material-dark
+        ~/repo/dotfiles/.zsh-theme/gruvbox-material-dark
 elif [ "$THEME" == "2" ]; then
     _switch_color_scheme \
         gruvbox-mix-dark \
         gruvbox_mix_dark \
-        ~/repo/dotfiles/.zsh-theme-gruvbox-mix-dark
+        ~/repo/dotfiles/.zsh-theme/gruvbox-mix-dark
 elif [ "$THEME" == "3" ]; then
     _switch_color_scheme \
         gruvbox-material-light \
         gruvbox_material_light \
-        ~/repo/dotfiles/.zsh-theme-gruvbox-material-light
+        ~/repo/dotfiles/.zsh-theme/gruvbox-material-light
 elif [ "$THEME" == "4" ]; then
     _switch_color_scheme \
         edge-dark \
         edge_dark \
-        ~/.local/share/nvim/plugins/edge/zsh/.zsh-theme-edge-dark
+        ~/repo/dotfiles/.zsh-theme/edge-dark
 elif [ "$THEME" == "5" ]; then
     _switch_color_scheme \
         edge-light \
         edge_light \
-        ~/.local/share/nvim/plugins/edge/zsh/.zsh-theme-edge-light
+        ~/repo/dotfiles/.zsh-theme/edge-light
 elif [ "$THEME" == "6" ]; then
     _switch_color_scheme \
         everforest-dark \
         everforest_dark \
-        ~/repo/dotfiles/.zsh-theme-everforest-dark
+        ~/repo/dotfiles/.zsh-theme/everforest-dark
 elif [ "$THEME" == "7" ]; then
     _switch_color_scheme \
         everforest-light \
         everforest_light \
-        ~/repo/dotfiles/.zsh-theme-everforest-light
+        ~/repo/dotfiles/.zsh-theme/everforest-light
 elif [ "$THEME" == "8" ]; then
     _switch_color_scheme \
         sonokai-default \
         sonokai_default \
-        ~/.local/share/nvim/plugins/sonokai/zsh/.zsh-theme-sonokai-default
+        ~/repo/dotfiles/.zsh-theme/sonokai
     sed -E -i.bak \
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
@@ -91,7 +91,7 @@ elif [ "$THEME" == "9" ]; then
     _switch_color_scheme \
         sonokai-shusia \
         sonokai_shusia \
-        ~/.local/share/nvim/plugins/sonokai/zsh/.zsh-theme-sonokai-shusia
+        ~/repo/dotfiles/.zsh-theme/sonokai-shusia
     sed -E -i.bak \
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
@@ -100,7 +100,7 @@ elif [ "$THEME" == "10" ]; then
     _switch_color_scheme \
         sonokai-andromeda \
         sonokai_andromeda \
-        ~/.local/share/nvim/plugins/sonokai/zsh/.zsh-theme-sonokai-andromeda
+        ~/repo/dotfiles/.zsh-theme/sonokai-andromeda
     sed -E -i.bak \
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
@@ -109,7 +109,7 @@ elif [ "$THEME" == "11" ]; then
     _switch_color_scheme \
         sonokai-atlantis \
         sonokai_atlantis \
-        ~/.local/share/nvim/plugins/sonokai/zsh/.zsh-theme-sonokai-atlantis
+        ~/repo/dotfiles/.zsh-theme/sonokai-atlantis
     sed -E -i.bak \
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
@@ -118,7 +118,7 @@ elif [ "$THEME" == "12" ]; then
     _switch_color_scheme \
         sonokai-maia \
         sonokai_maia \
-        ~/.local/share/nvim/plugins/sonokai/zsh/.zsh-theme-sonokai-maia
+        ~/repo/dotfiles/.zsh-theme/sonokai-maia
     sed -E -i.bak \
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
@@ -127,7 +127,7 @@ elif [ "$THEME" == "13" ]; then
     _switch_color_scheme \
         sonokai-espresso \
         sonokai_espresso \
-        ~/.local/share/nvim/plugins/sonokai/zsh/.zsh-theme-sonokai-espresso
+        ~/repo/dotfiles/.zsh-theme/sonokai-espresso
     sed -E -i.bak \
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
@@ -136,7 +136,7 @@ elif [ "$THEME" == "14" ]; then
     _switch_color_scheme \
         soft-era \
         soft_era \
-        ~/repo/dotfiles/.zsh-theme-soft-era
+        ~/repo/dotfiles/.zsh-theme/soft-era
     sed -E -i.bak \
         "s/^include themes.*/include themes\/edge-light/" \
         ~/.config/zathura/zathurarc && \
