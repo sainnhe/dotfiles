@@ -10,7 +10,7 @@ The `default` theme in fast-syntax-highlighting will use the colors of your term
 
 ## Prompt
 
-The prompt theme is inspired by [pure](https://github.com/sindresorhus/pure), it depends on [romkatv/powerlevel10k](https://github.com/romkatv/powerlevel10k).
+The prompt theme is based on [pure-power](https://github.com/romkatv/dotfiles-public/blob/master/.purepower) which is inspired by [pure](https://github.com/sindresorhus/pure), it depends on [romkatv/powerlevel10k](https://github.com/romkatv/powerlevel10k).
 
 To use it, simply source this file in your zshrc after powerlevel10k has been load:
 
@@ -48,11 +48,11 @@ There are 3 modes of the prompt themes:
 
 ```zsh
 PURE_POWER_MODE=modern    # use nerdfont characters in the prompt
-PURE_POWER_MODE=fancy     # use unicode characters in the prompt(default)
+PURE_POWER_MODE=fancy     # use unicode characters in the prompt (default)
 PURE_POWER_MODE=portable  # use only ascii characters in the prompt
 ```
 
-To switch between them, edit `/path/to/dotfiles/.zsh-theme/<color-scheme>`, and change the value of `PURE_POWER_MODE`.
+To switch between them, set this variable **Before** sourcing the color scheme file in your zshrc.
 
 ## License
 

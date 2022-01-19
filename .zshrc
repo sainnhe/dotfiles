@@ -294,6 +294,7 @@ alias scanip='~/repo/dotfiles/scripts/scanip.sh'
 source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
+PURE_POWER_MODE=modern
 zinit ice atload"source $HOME/.zsh-theme"
 zinit light romkatv/powerlevel10k
 zinit light zdharma-continuum/fast-syntax-highlighting

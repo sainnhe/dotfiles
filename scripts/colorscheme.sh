@@ -37,10 +37,6 @@ _switch_color_scheme() {
         rm ~/.config/zathura/zathurarc.bak
     rm ~/.zsh-theme
     cp -f "$3" ~/.zsh-theme
-    sed -E -i.bak \
-        "s/^PURE_POWER_MODE=.*/PURE_POWER_MODE=modern/" \
-        ~/.zsh-theme && \
-        rm ~/.zsh-theme.bak
 }
 
 if [ "$THEME" == "1" ]; then

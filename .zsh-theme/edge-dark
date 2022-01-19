@@ -1,10 +1,6 @@
-# This theme is edge-dark version of purepower(powerlevel10k)
-# Upstream: https://github.com/romkatv/dotfiles-public/blob/master/.purepower
-
-# PURE_POWER_MODE=modern    use nerdfont characters in the prompt
-# PURE_POWER_MODE=fancy     use unicode characters in the prompt
-# PURE_POWER_MODE=portable  use only ascii characters in the prompt
-PURE_POWER_MODE=fancy
+if [ -z "${PURE_POWER_MODE}" ]; then
+  PURE_POWER_MODE=fancy
+fi
 
 if autoload -U is-at-least && is-at-least 5.7 && [[ $COLORTERM == (24bit|truecolor) || ${terminfo[colors]} -eq 16777216 ]]; then
     ICE_AGE_PURE_POWER_TRUE_COLOR=true
