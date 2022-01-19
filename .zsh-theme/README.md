@@ -56,4 +56,4 @@ To switch between them, set this variable **Before** sourcing the color scheme f
 
 ## License
 
-[Anti-996](../LICENSE) && [MIT](./LICENSE) © sainnhe
+[Anti-996](../LICENSE-Anti-996) && [MIT](../LICENSE-MIT) © sainnhe
