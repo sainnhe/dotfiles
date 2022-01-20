@@ -203,7 +203,7 @@ elseif g:vim_mode ==# 'full'
   if !has('win32')
     Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
     if executable('fcitx')
-      Plug 'lilydjwg/fcitx.vim', {'on': []}
+      Plug 'lilydjwg/fcitx.vim', {'branch': 'fcitx4', 'on': []}
             \| au InsertEnter * call plug#load('fcitx.vim')
     endif
   else
