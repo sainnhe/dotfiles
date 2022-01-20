@@ -15,7 +15,7 @@ The prompt theme is based on [pure-power](https://github.com/romkatv/dotfiles-pu
 To use it, simply source this file in your zshrc after powerlevel10k has been load:
 
 ```zsh
-source /path/to/dotfiles/.zsh-theme/<color-scheme>
+source /path/to/dotfiles/.zsh-theme/<color-scheme>.zsh
 ```
 
 Where `<color-scheme>` is one of the following:
@@ -39,7 +39,7 @@ Alternatively, if you are using [zinit](https://github.com/zdharma-continuum/zin
 
 ```zsh
 zinit light romkatv/powerlevel10k
-zinit snippet https://github.com/sainnhe/dotfiles/raw/master/.zsh-theme/<color-scheme>
+zinit snippet https://github.com/sainnhe/dotfiles/raw/master/.zsh-theme/<color-scheme>.zsh
 ```
 
 ## Customization

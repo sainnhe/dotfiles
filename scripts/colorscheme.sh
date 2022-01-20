@@ -36,7 +36,7 @@ _switch_color_scheme() {
         ~/.config/zathura/zathurarc && \
         rm ~/.config/zathura/zathurarc.bak
     rm ~/.zsh-theme
-    cp -f "$3" ~/.zsh-theme
+    cp -f "${3}.zsh" ~/.zsh-theme
 }
 
 if [ "$THEME" == "1" ]; then
