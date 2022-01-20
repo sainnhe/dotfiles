@@ -11,8 +11,8 @@ if command -v rustup &> /dev/null; then
 fi
 export MANPATH="$HOME/.local/share/man:$MANPATH"
 export MANPATH="/usr/local/share/man:$MANPATH"
-export LANG=zh_CN.UTF-8
-export LC_CTYPE=zh_CN.UTF-8
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
@@ -285,6 +285,7 @@ alias proxyenv='export HTTP_PROXY=http://127.0.0.1:1081 && export HTTPS_PROXY=ht
 alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
 alias npp='proxychains -q npm --registry https://registry.npmjs.org'
 alias scanip='~/repo/dotfiles/scripts/scanip.sh'
+alias manzh='man -L zh_CN.UTF-8'
 # }}}
 # {{{Plugins
 # https://github.com/zdharma-continuum/zinit
