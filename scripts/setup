@@ -192,6 +192,7 @@ setup_rust() { #{{{
     proxychains -q rustup component add \
         rust-analyzer-preview \
         rust-docs
+    xdg-mime default firefox-developer-edition.desktop text/html
 } #}}}
 setup_npm() { #{{{
     cd ~
