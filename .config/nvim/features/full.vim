@@ -119,7 +119,7 @@ endif
 " {{{Additional UI components
 " {{{vim-startify
 if g:vim_enable_startify == 1
-  let g:startify_session_dir = fnamemodify(stdpath('data'), ':p') . 'sessions'
+  let g:startify_session_dir = fnamemodify(custom#utils#stdpath('data'), ':p') . 'sessions'
   let g:startify_files_number = 5
   let g:startify_update_oldfiles = 1
   let g:startify_session_delete_buffers = 1
@@ -166,6 +166,7 @@ if g:vim_enable_startify == 1
   augroup END
 endif
 " }}}
+if has('nvim')
 " {{{indent-blankline.nvim
 let g:indent_blankline_char = ''  " ¦┆│⎸▏
 let g:indent_blankline_use_treesitter = 1
@@ -174,11 +175,12 @@ let g:indent_blankline_buftype_exclude = ['terminal']
 let g:indent_blankline_show_current_context = 1
 set colorcolumn=9999 " Fix for cursorline
 " }}}
+endif
 " }}}
 " {{{Language features
 " {{{coc.nvim
 " {{{coc-init
-let g:coc_data_home = fnamemodify(stdpath('data'), ':p') . 'coc'
+let g:coc_data_home = fnamemodify(custom#utils#stdpath('data'), ':p') . 'coc'
 let g:coc_global_extensions = [
       \ 'coc-clangd',
       \ 'coc-cmake',
@@ -235,7 +237,7 @@ call coc#config('project', {
       \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
       \ })
 call coc#config('snippets', {
-      \ 'userSnippetsDirectory': fnamemodify(stdpath('data'), ':p') . 'snippets',
+      \ 'userSnippetsDirectory': fnamemodify(custom#utils#stdpath('data'), ':p') . 'snippets',
       \ })
 call coc#config('xml', {
       \ 'java': {
@@ -491,6 +493,7 @@ let g:which_key_map["\<space>"]['d'] = 'generate code doc'
 " }}}
 " }}}
 " {{{Tree-sitter
+if has('nvim')
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
@@ -523,6 +526,7 @@ require'nvim-treesitter.configs'.setup {
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+endif
 " }}}
 " {{{Extended functional components, but with extra dependencies
 " {{{LeaderF
@@ -531,7 +535,7 @@ let g:Lf_ShortcutB = '<A-c>`````ff'
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_ShowRelativePath = 0
 let g:Lf_CursorBlink = 1
-let g:Lf_CacheDirectory = stdpath('cache')
+let g:Lf_CacheDirectory = custom#utils#stdpath('cache')
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_RootMarkers = ['.git', '.hg', '.svn', '.vscode']
 let g:Lf_DefaultExternalTool = 'rg'

@@ -77,5 +77,35 @@ function custom#utils#check_back_space() abort "{{{
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction "}}}
+function custom#utils#stdpath(type) abort "{{{
+  if has('nvim')
+    return stdpath(a:type)
+  else
+    if !has('win32')
+      if a:type ==# 'cache'
+        return expand('~') . '/.cache/nvim'
+      elseif a:type ==# 'config'
+        return expand('~') . '/.config/nvim'
+      elseif a:type ==# 'data'
+        return expand('~') . '/.local/share/nvim'
+      endif
+    else
+      if a:type ==# 'cache'
+        return expand('~') . '\AppData\Local\Temp\nvim'
+      elseif a:type ==# 'config'
+        return expand('~') . '\AppData\Local\nvim'
+      elseif a:type ==# 'data'
+        return expand('~') . '\AppData\Local\nvim-data'
+      endif
+    endif
+  endif
+endfunction "}}}
+function custom#utils#set_cursor_shape() abort "{{{
+  if has('nvim')
+    set guicursor=a:ver25-Cursor/lCursor
+  else
+    let &t_te.="\e[5 q"
+  endif
+endfunction "}}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

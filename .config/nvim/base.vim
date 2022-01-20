@@ -55,7 +55,7 @@ if exists('g:nvui')
 endif
 
 " Initialize environment variables
-let s:envs_path = fnamemodify(stdpath('config'), ':p') . 'envs.vim'
+let s:envs_path = fnamemodify(custom#utils#stdpath('config'), ':p') . 'envs.vim'
 if !filereadable(s:envs_path) " Create envs.vim if it doesn't exist
   call writefile([
         \ "if !exists('g:vim_mode')",
@@ -78,13 +78,17 @@ if !filereadable(s:envs_path) " Create envs.vim if it doesn't exist
         \ "        \\ {'P': '~/playground/'},",
         \ '        \ ]',
         \ 'endif',
-        \ "if exists('g:fvim_loaded') || exists('g:neovide') || exists('g:nvui')",
-        \ '  set guifont=Lilex\ iCursive\ Op:h12',
+        \ "if has('gui_running') || exists('g:fvim_loaded') || exists('g:neovide') || exists('g:nvui')",
+        \ "  if has('nvim')",
+        \ '    set guifont=Lilex\ iCursive\ Op:h12',
+        \ '  else',
+        \ '    set guifont=Lilex\ iCursive\ Op\ 12',
+        \ '  endif',
         \ 'endif'
         \ ], s:envs_path, 'a')
   call custom#mode#update()
 endif
-execute 'source ' . fnamemodify(stdpath('config'), ':p') . 'envs.vim'
+execute 'source ' . fnamemodify(custom#utils#stdpath('config'), ':p') . 'envs.vim'
 
 command! Mode call custom#mode#update()
 

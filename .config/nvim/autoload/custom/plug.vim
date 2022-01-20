@@ -7,7 +7,7 @@
 " =============================================================================
 
 function custom#plug#check() abort
-  let l:root_dir = fnamemodify(stdpath('config'), ':p')
+  let l:root_dir = fnamemodify(custom#utils#stdpath('config'), ':p')
   let l:plug_dir = fnamemodify(l:root_dir . 'autoload', ':p')
   let l:plug_path = l:plug_dir . 'plug.vim'
   return filereadable(l:plug_path)
@@ -15,7 +15,7 @@ endfunction
 
 function custom#plug#install() abort
   echomsg 'Installing vim-plug ...'
-  let l:root_dir = fnamemodify(stdpath('config'), ':p')
+  let l:root_dir = fnamemodify(custom#utils#stdpath('config'), ':p')
   call mkdir(l:root_dir . '_temp_')
   let l:plug_temp_dir = fnamemodify(l:root_dir . '_temp_', ':p')
   call delete(l:root_dir . '_temp_')

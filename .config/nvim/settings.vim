@@ -28,7 +28,6 @@ set history=1000
 set updatetime=100
 set completeopt=noinsert,noselect,menuone shortmess+=c
 set nobackup nowritebackup
-execute 'set undofile undodir=' . fnamemodify(stdpath('cache'), ':p') . 'undo'
 
 if !has('win32')
   set dictionary+=/usr/share/dict/words
@@ -38,6 +37,9 @@ endif
 if has('nvim')
   set inccommand=split
   set wildoptions=pum
+  execute 'set undofile undodir=' . fnamemodify(custom#utils#stdpath('cache'), ':p') . 'undo'
+else
+  execute 'set undofile undodir=' . fnamemodify(custom#utils#stdpath('cache'), ':p') . 'undo-vim'
 endif
 
 if g:vim_mode !=# 'full'
@@ -71,7 +73,14 @@ endif
 augroup VimSettings
   autocmd!
   autocmd FileType html,css,scss,typescript,vim set shiftwidth=2
-  autocmd VimLeave * set guicursor=a:ver25-Cursor/lCursor
+  autocmd VimLeave * call custom#utils#set_cursor_shape()
 augroup END
+
+if !has('nvim')
+  let &t_ti.="\e[1 q"
+  let &t_SI.="\e[5 q"
+  let &t_EI.="\e[1 q"
+  let &t_te.="\e[0 q"
+endif
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

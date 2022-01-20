@@ -72,7 +72,7 @@ augroup VimPlug
 augroup END
 command PU PlugUpdate | PlugUpgrade | CocUpdate
 " }}}
-call plug#begin(fnamemodify(stdpath('data'), ':p') . 'plugins')
+call plug#begin(fnamemodify(custom#utils#stdpath('data'), ':p') . 'plugins')
 " }}}
 
 " Plugin lists
@@ -153,7 +153,9 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-repeat'
 Plug 'airblade/vim-rooter'
 Plug 'jamessan/vim-gnupg'
-Plug 'nathom/filetype.nvim'
+if has('nvim')
+  Plug 'nathom/filetype.nvim'
+endif
 " Extended functional components
 Plug 'mg979/vim-visual-multi'
 Plug 'scrooloose/nerdcommenter'
@@ -190,9 +192,11 @@ elseif g:vim_mode ==# 'full'
     Plug 'sunaku/vim-dasht'
   endif
   " Tree-sitter
-  Plug 'nvim-treesitter/nvim-treesitter'
-  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-  Plug 'RRethy/nvim-treesitter-textsubjects'
+  if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter'
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+    Plug 'RRethy/nvim-treesitter-textsubjects'
+  endif
   " Extended functional components, but with extra dependencies
   Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
   Plug 'KabbAmine/vCoolor.vim'
@@ -217,15 +221,17 @@ elseif g:vim_mode ==# 'full'
   if g:vim_enable_startify == 1
     Plug 'mhinz/vim-startify'
   endif
-  Plug 'lukas-reineke/indent-blankline.nvim'
+  if has('nvim')
+    Plug 'lukas-reineke/indent-blankline.nvim'
+  endif
 endif
 "{{{
 call plug#end()
 "}}}
 
 if g:vim_mode ==# 'full'
-  execute 'source ' . fnamemodify(fnamemodify(stdpath('config'), ':p') . 'features', ':p') . 'full.vim'
+  execute 'source ' . fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'features', ':p') . 'full.vim'
 endif
-execute 'source ' . fnamemodify(fnamemodify(stdpath('config'), ':p') . 'features', ':p') . 'light.vim'
+execute 'source ' . fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'features', ':p') . 'light.vim'
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
