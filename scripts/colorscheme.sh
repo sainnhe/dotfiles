@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
-echo ""
-echo "[1]  Gruvbox Material Dark"
-echo "[2]  Gruvbox Mix Dark"
-echo "[3]  Gruvbox Material Light"
-echo "[4]  Edge Dark"
-echo "[5]  Edge Light"
-echo "[6]  Everforest Dark"
-echo "[7]  Everforest Light"
-echo "[8]  Sonokai"
-echo "[9]  Sonokai Shusia"
-echo "[10] Sonokai Andromeda"
-echo "[11] Sonokai Atlantis"
-echo "[12] Sonokai Maia"
-echo "[13] Sonokai Espresso"
-echo "[14] Soft Era"
-echo ""
+THEME=$(printf "\
+[1]  Gruvbox Material Dark\n\
+[2]  Gruvbox Mix Dark\n\
+[3]  Gruvbox Material Light\n\
+[4]  Edge Dark\n\
+[5]  Edge Light\n\
+[6]  Everforest Dark\n\
+[7]  Everforest Light\n\
+[8]  Sonokai\n\
+[9]  Sonokai Shusia\n\
+[10] Sonokai Andromeda\n\
+[11] Sonokai Atlantis\n\
+[12] Sonokai Maia\n\
+[13] Sonokai Espresso\n\
+[14] Soft Era\n" |\
+fzf |\
+sed -E -e 's/^\[//' -e 's/].*//')
 
-read -r THEME
 if [ "$THEME"x == ""x ]; then
     exit
 fi
@@ -138,5 +138,7 @@ elif [ "$THEME" == "14" ]; then
         ~/.config/zathura/zathurarc && \
         rm ~/.config/zathura/zathurarc.bak
 fi
-tmux source-file ~/.tmux.conf
-unset _switch_color_scheme
+
+if [ -n "${TMUX}" ]; then
+    tmux source-file ~/.tmux.conf
+fi
