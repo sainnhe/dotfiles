@@ -4,3 +4,4 @@ arch/packages
 .config/nvim/autoload/plug.vim.old
 .config/nvim/sessions
 *.swp
+*.netrwhist
