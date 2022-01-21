@@ -86,6 +86,8 @@
     "git.addGBlameToVirtualText": false,
     "git.blameUseRealTime": false,
     "project.rootPatterns": [".git", ".svn", ".root", ".project", ".hg"],
+    "snippets.ultisnips.enable": false,
+    "snippets.snipmate.enable": false,
     "snippets.shortcut": "S",
     "snippets.priority": 99,
     "snippets.extends": {
