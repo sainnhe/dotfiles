@@ -61,7 +61,7 @@ if !filereadable(s:envs_path) " Create envs.vim if it doesn't exist
         \ "if !exists('g:vim_mode')",
         \ "  let g:vim_mode = 'minimal'",
         \ 'endif',
-        \ 'let g:vim_plug_auto_install = 1',
+        \ 'let g:vim_plug_auto_install = 0',
         \ 'let g:vim_lightline_artify = 0',
         \ "let g:vim_color_scheme = 'everforest_dark'",
         \ "if !has('win32')",
