@@ -174,6 +174,15 @@ let g:did_load_filetypes = 1
 endif
 " }}}
 " {{{Extended functional components
+" {{{vim-fixkey
+" sed -n l
+if !has('nvim')
+  execute "set <M-,>=\e,"
+  execute "set <M-.>=\e."
+  execute "set <M-->=\e-"
+  execute "set <M-=>=\e="
+endif
+" }}}
 " {{{vim-visual-multi
 let g:VM_default_mappings = 0
 let g:VM_maps = {}
