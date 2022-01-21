@@ -59,6 +59,10 @@
     "codeLens.enable": true,
     "codeLens.separator": "▸",
     "list.indicator": "❯",
+    "list.source.grep.args": [
+        "--hidden",
+        "--no-ignore"
+    ],
     "list.insertMappings": {
         "<C-p>": "action:preview",
         "<C-j>": "do:next",
