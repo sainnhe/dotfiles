@@ -159,24 +159,22 @@ endif
 cmap <C-S> :<C-u>w<CR>
 " }}}
 " {{{Terminal Mode
-if has('nvim')
-  " Alt+X to enter normal mode
-  tnoremap <A-x> <C-\><C-n>
-  " Alt+HJKL to jump between windows
-  tnoremap <silent> <A-h> <C-\><C-n>:<C-u>wincmd h<CR>
-  tnoremap <silent> <A-j> <C-\><C-n>:<C-u>wincmd j<CR>
-  tnoremap <silent> <A-k> <C-\><C-n>:<C-u>wincmd k<CR>
-  tnoremap <silent> <A-l> <C-\><C-n>:<C-u>wincmd l<CR>
-  " Alt+Left/Right to switch tabs
-  tnoremap <A-left> <C-\><C-n>gT
-  tnoremap <A-right> <C-\><C-n>gt
-  " Alt+Up/Down to move tabs
-  tnoremap <silent> <A-up> <C-\><C-n>:<C-u>tabm -1<CR>
-  tnoremap <silent> <A-down> <C-\><C-n>:<C-u>tabm +1<CR>
-  " Shift+ArrowKeys to quickly move cursor
-  tnoremap <S-left> <C-a>
-  tnoremap <S-right> <C-e>
-endif
+" Alt+X to enter normal mode
+tnoremap <A-x> <C-\><C-n>
+" Alt+HJKL to jump between windows
+tnoremap <silent> <A-h> <C-\><C-n>:<C-u>wincmd h<CR>
+tnoremap <silent> <A-j> <C-\><C-n>:<C-u>wincmd j<CR>
+tnoremap <silent> <A-k> <C-\><C-n>:<C-u>wincmd k<CR>
+tnoremap <silent> <A-l> <C-\><C-n>:<C-u>wincmd l<CR>
+" Alt+Left/Right to switch tabs
+tnoremap <A-left> <C-\><C-n>gT
+tnoremap <A-right> <C-\><C-n>gt
+" Alt+Up/Down to move tabs
+tnoremap <silent> <A-up> <C-\><C-n>:<C-u>tabm -1<CR>
+tnoremap <silent> <A-down> <C-\><C-n>:<C-u>tabm +1<CR>
+" Shift+ArrowKeys to quickly move cursor
+tnoremap <S-left> <C-a>
+tnoremap <S-right> <C-e>
 " }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
