@@ -224,6 +224,8 @@ elseif g:vim_mode ==# 'full'
   endif
   if has('nvim')
     Plug 'lukas-reineke/indent-blankline.nvim'
+  else
+    Plug 'Yggdroot/indentLine'
   endif
 endif
 "{{{
