@@ -266,7 +266,7 @@ call coc#config('snippets', {
 call coc#config('xml', {
       \ 'java': {
       \   'home': has('win32') ? 'C:\Users\gaoti\scoop\apps\openjdk\current' :
-        \ has('macunix') ? '/Library/Java/JavaVirtualMachines/openjdk17-temurin/Contents/Home' :
+        \ has('osxdarwin') ? '/Library/Java/JavaVirtualMachines/openjdk17-temurin/Contents/Home' :
         \ '/usr/lib/jvm/default'
       \ }
       \ })
@@ -524,7 +524,7 @@ let g:which_key_map['f']['b'] = 'buffers'
 let g:which_key_map['f']['h'] = 'help'
 " }}}
 " {{{vCoolor.vim
-if has('linux')
+if !has('win32') && !has('osxdarwin')
   let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --color '
 endif
 let g:vcoolor_disable_mappings = 1

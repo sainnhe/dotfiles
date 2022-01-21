@@ -201,7 +201,7 @@ elseif g:vim_mode ==# 'full'
   Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
   Plug 'liuchengxu/vim-clap', {'do': ':Clap install-binary'}
   Plug 'KabbAmine/vCoolor.vim'
-  if has('linux') && executable('fcitx')
+  if executable('fcitx')
     Plug 'lilydjwg/fcitx.vim', {'branch': 'fcitx4', 'on': []}
           \| au InsertEnter * call plug#load('fcitx.vim')
   endif

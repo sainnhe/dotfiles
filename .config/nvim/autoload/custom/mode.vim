@@ -57,7 +57,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'shellcheck',
           \ 'shfmt'
           \ ],
-        \ 'linux': [
+        \ 'unix-like': [
           \ 'shellcheck',
           \ 'shfmt',
           \ 'zenity'
@@ -77,8 +77,8 @@ function custom#mode#check_dependencies() abort " Check dependencies
       endif
     endfor
   endif
-  if has('linux')
-    for dependency in l:dependencies['linux']
+  if !has('win32') && !has('osxdarwin')
+    for dependency in l:dependencies['unix-like']
       if !executable(dependency)
         echomsg "[dependency] Doesn't have " . dependency . ' installed.'
         let l:result = 0
