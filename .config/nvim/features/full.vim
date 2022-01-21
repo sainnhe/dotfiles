@@ -505,59 +505,23 @@ set foldexpr=nvim_treesitter#foldexpr()
 endif
 " }}}
 " {{{Extended functional components, but with extra dependencies
-" {{{LeaderF
-let g:Lf_ShortcutF = '<A-c>`````ff'
-let g:Lf_ShortcutB = '<A-c>`````ff'
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_ShowRelativePath = 0
-let g:Lf_CursorBlink = 1
-let g:Lf_CacheDirectory = custom#utils#stdpath('cache')
-let g:Lf_StlSeparator = { 'left': '', 'right': '' }
-let g:Lf_RootMarkers = ['.git', '.hg', '.svn', '.vscode']
-let g:Lf_DefaultExternalTool = 'rg'
-let g:Lf_ShowHidden = 1
-let g:Lf_ReverseOrder = 1
-let g:Lf_PreviewInPopup = 1
-let g:Lf_PreviewResult = {
-      \ 'File': 0,
-      \ 'Buffer': 0,
-      \ 'Mru': 0,
-      \ 'Tag': 0,
-      \ 'BufTag': 0,
-      \ 'Function': 0,
-      \ 'Line': 0,
-      \ 'Colorscheme': 0,
-      \ 'Rg': 0,
-      \ 'Gtags': 0
-      \}
-let g:Lf_WildIgnore = {
-      \ 'dir': ['.svn','.git','.hg', '.vscode'],
-      \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-      \}
-let g:Lf_RgConfig = [
-      \ '--glob=!\.git/*',
-      \ '--glob=!\.vscode/*',
-      \ '--glob=!\.svn/*',
-      \ '--glob=!\.hg/*',
-      \ '--case-sensitive',
-      \ has('win32') ? '--crlf' : '--no-crlf',
-      \ '--multiline',
-      \ '--hidden'
-      \ ]
-nnoremap <silent> <leader>ft :<C-u>LeaderfBufTagAll<CR>
-nnoremap <silent> <leader>fb :<C-u>LeaderfBufferAll<CR>
-nnoremap <silent> <leader>ff :<C-u>LeaderfFile<CR>
-nnoremap <silent> <leader>fh :<C-u>LeaderfHelp<CR>
-nnoremap <silent> <leader>fl :<C-u>LeaderfLine<CR>
-nnoremap <silent> <leader>fm :<C-u>LeaderfMruCwd<CR>
-nnoremap <silent> <leader>fg :<C-u>Leaderf rg<CR>
-let g:which_key_map['f']['t'] = 'tags'
-let g:which_key_map['f']['b'] = 'buffers'
-let g:which_key_map['f']['f'] = 'files'
-let g:which_key_map['f']['h'] = 'helps'
+" {{{vim-clap
+let g:clap_cache_directory = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'clap'
+let g:clap_layout = { 'relative': 'editor' }
+let g:clap_search_box_border_style = 'nil'
+let g:clap_provider_grep_opts = '-H --no-heading --vimgrep --smart-case --hidden --no-ignore -g "!.git/"'
+nnoremap <silent> <leader>fl :<C-u>Clap blines<CR>
+nnoremap <silent> <leader>fL :<C-u>Clap lines<CR>
+nnoremap <silent> <leader>ff :<C-u>Clap files ++finder=rg --files --follow<CR>
+nnoremap <silent> <leader>fF :<C-u>Clap files ++finder=rg --files --follow --hidden --no-ignore<CR>
+nnoremap <silent> <leader>fb :<C-u>Clap buffers<CR>
+nnoremap <silent> <leader>fh :<C-u>Clap help_tags<CR>
 let g:which_key_map['f']['l'] = 'lines'
-let g:which_key_map['f']['m'] = 'mru files'
-let g:which_key_map['f']['g'] = 'grep'
+let g:which_key_map['f']['L'] = 'lines all'
+let g:which_key_map['f']['f'] = 'files'
+let g:which_key_map['f']['F'] = 'files all'
+let g:which_key_map['f']['b'] = 'buffers'
+let g:which_key_map['f']['h'] = 'help'
 " }}}
 " {{{vCoolor.vim
 if has('linux')

@@ -45,6 +45,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'node',
           \ 'npm',
           \ 'yarn',
+          \ 'cargo',
           \ 'clang',
           \ 'cmake-language-server',
           \ 'rg',
@@ -62,10 +63,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'zenity'
           \ ]
         \ }
-  if !has('pythonx')
-    echomsg "[dependency] Doesn't have python support."
-    let l:result = 0
-  endif
   for dependency in l:dependencies['universal']
     if !executable(dependency)
       echomsg "[dependency] Doesn't have " . dependency . ' installed.'

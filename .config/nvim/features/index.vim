@@ -199,15 +199,11 @@ elseif g:vim_mode ==# 'full'
   endif
   " Extended functional components, but with extra dependencies
   Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
+  Plug 'liuchengxu/vim-clap', {'do': ':Clap install-binary'}
   Plug 'KabbAmine/vCoolor.vim'
-  if !has('win32')
-    Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
-    if executable('fcitx')
-      Plug 'lilydjwg/fcitx.vim', {'branch': 'fcitx4', 'on': []}
-            \| au InsertEnter * call plug#load('fcitx.vim')
-    endif
-  else
-    Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
+  if has('linux') && executable('fcitx')
+    Plug 'lilydjwg/fcitx.vim', {'branch': 'fcitx4', 'on': []}
+          \| au InsertEnter * call plug#load('fcitx.vim')
   endif
   " Status line
   Plug 'itchyny/lightline.vim'
