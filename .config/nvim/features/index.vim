@@ -157,6 +157,7 @@ if has('nvim')
   Plug 'nathom/filetype.nvim'
 endif
 " Extended functional components
+Plug 'drmikehenry/vim-fixkey'
 Plug 'mg979/vim-visual-multi'
 Plug 'scrooloose/nerdcommenter'
 Plug 'skywind3000/asynctasks.vim'

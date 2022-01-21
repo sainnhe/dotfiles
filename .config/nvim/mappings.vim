@@ -6,41 +6,6 @@
 " License: Anti-996 && MIT
 " =============================================================================
 
-" {{{Vim Compatible
-" sed -n l
-if !has('nvim')
-  execute "set <M-a>=\ea"
-  execute "set <M-b>=\eb"
-  execute "set <M-c>=\ec"
-  execute "set <M-d>=\ed"
-  execute "set <M-e>=\ee"
-  execute "set <M-f>=\ef"
-  execute "set <M-g>=\eg"
-  execute "set <M-h>=\eh"
-  execute "set <M-i>=\ei"
-  execute "set <M-j>=\ej"
-  execute "set <M-k>=\ek"
-  execute "set <M-l>=\el"
-  execute "set <M-m>=\em"
-  execute "set <M-n>=\en"
-  execute "set <M-o>=\eo"
-  execute "set <M-p>=\ep"
-  execute "set <M-q>=\eq"
-  execute "set <M-r>=\er"
-  execute "set <M-s>=\es"
-  execute "set <M-t>=\et"
-  execute "set <M-u>=\eu"
-  execute "set <M-v>=\ev"
-  execute "set <M-w>=\ew"
-  execute "set <M-x>=\ex"
-  execute "set <M-y>=\ey"
-  execute "set <M-z>=\ez"
-  execute "set <M-,>=\e,"
-  execute "set <M-.>=\e."
-  execute "set <M-->=\e-"
-  execute "set <M-=>=\e="
-endif
-" }}}
 " {{{Normal Mode
 " Leader key
 let g:mapleader = "\<Space>"
