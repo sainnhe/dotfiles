@@ -82,18 +82,18 @@ function custom#utils#stdpath(type) abort "{{{
     return stdpath(a:type)
   else
     if !has('win32')
-      if a:type ==# 'cache'
+      if a:type ==# 'config'
+        return expand('~') . '/.vim'
+      elseif a:type ==# 'cache'
         return expand('~') . '/.cache/nvim'
-      elseif a:type ==# 'config'
-        return expand('~') . '/.config/nvim'
       elseif a:type ==# 'data'
         return expand('~') . '/.local/share/nvim'
       endif
     else
-      if a:type ==# 'cache'
+      if a:type ==# 'config'
+        return expand('~') . '\vimfiles'
+      elseif a:type ==# 'cache'
         return expand('~') . '\AppData\Local\Temp\nvim'
-      elseif a:type ==# 'config'
-        return expand('~') . '\AppData\Local\nvim'
       elseif a:type ==# 'data'
         return expand('~') . '\AppData\Local\nvim-data'
       endif
