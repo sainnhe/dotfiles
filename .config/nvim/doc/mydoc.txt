@@ -11,7 +11,6 @@ surround                                     |mydoc-surround|
 matchup                                      |mydoc-matchup|
 suda                                         |mydoc-suda|
 manpager                                     |mydoc-manpager|
-vimspector                                   |mydoc-vimspector|
 textobj                                      |mydoc-textobj|
 
 ==============================================================================
@@ -128,31 +127,6 @@ MANPAGER                                                        *mydoc-manpager*
 - `E`: Set current buffer to modifiable
 - `q`: Quit
 
-------------------------------------------------------------------------------
-VIMSPECTOR                                                    *mydoc-vimspector*
-
-Example `.vimspector.json`:
->
-  {
-    "$schema": "/home/sainnhe/.local/share/nvim/plugins/vimspector/docs/schema/vimspector.schema.json",
-    "configurations": {
-      "Python: Launch": {
-        "adapter": "debugpy",
-        "configuration": {
-          "name": "Python: Launch",
-          "type": "python",
-          "request": "launch",
-          "cwd": "${workspaceRoot}",
-          "python": "/usr/bin/python",
-          "stopOnEntry": true,
-          "console": "externalTerminal",
-          "debugOptions": [],
-          "program": "${file}"
-        }
-      }
-    }
-  }
-<
 ------------------------------------------------------------------------------
 TEXTOBJ                                                          *mydoc-textobj*
 
