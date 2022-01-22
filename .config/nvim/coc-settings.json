@@ -55,6 +55,7 @@
     "tree.key.collapseAll": "O",
     "tree.key.actions": "<tab>",
     "tree.key.toggleSelection": "s",
+    "outline.keepWindow": true,
     "signature.triggerSignatureWait": 300,
     "codeLens.enable": true,
     "codeLens.separator": "▸",
@@ -75,7 +76,6 @@
         "<C-v>": "prompt:paste"
     },
     "coc.preferences.enableMessageDialog": true,
-    "coc.preferences.semanticTokensHighlights": false,
     "coc.preferences.formatOnType": true,
     "git.changedSign.text": "▌",
     "git.addedSign.text": "▌",
@@ -129,6 +129,7 @@
     "prettier.formatterPriority": -1,
     "explorer.icon.enableNerdfont": true,
     "explorer.width": 30,
+    "explorer.focus": false,
     "explorer.keyMappingMode": "none",
     "explorer.keyMappings.global": {
         "s": "toggleSelection",

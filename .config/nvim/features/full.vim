@@ -424,7 +424,7 @@ let g:which_key_map['d'] = {
 nnoremap <silent> ? :let g:coc_hover_enable = (g:coc_hover_enable == 1 ? 0 : 1)<CR>
 " }}}
 " {{{coc-explorer
-nnoremap <silent> <C-b> :call custom#explorer#toggle()<CR>
+nnoremap <silent> <C-b> :<C-u>execute 'CocCommand explorer --focus ' . getcwd()<CR>
 augroup ExplorerCustom
   autocmd!
   autocmd FileType coc-explorer setlocal signcolumn=no
