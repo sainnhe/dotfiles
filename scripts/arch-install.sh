@@ -83,7 +83,7 @@ setup_live() { #{{{
     #}}}
     (exit 1)
     while [ $? -ne 0 ]; do
-        pacstrap /mnt base base-devel linux linux-firmware linux-headers
+        pacstrap /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell
     done
     genfstab -L /mnt >>/mnt/etc/fstab
     printf "${BBLUE}>> Execute ${BYELLOW}'arch-chroot /mnt'${NC}\n"
