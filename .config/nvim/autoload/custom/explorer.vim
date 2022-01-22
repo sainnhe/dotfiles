@@ -19,7 +19,7 @@ function custom#explorer#close_last() abort
   let filetype = 'coc-explorer'
   if winnr('$') == 1 && &filetype ==# filetype
     if tabpagenr() == 1
-      set guicursor=a:ver25-Cursor/lCursor
+      call custom#utils#set_cursor_shape()
     endif
     quit
   endif
@@ -29,7 +29,7 @@ function custom#explorer#close_startify() abort
   quit
   if winnr('$') == 1 && &filetype ==# 'startify'
     if tabpagenr() == 1
-      set guicursor=a:ver25-Cursor/lCursor
+      call custom#utils#set_cursor_shape()
     endif
     quit
   endif
