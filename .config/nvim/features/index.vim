@@ -120,6 +120,11 @@ Plug 'sainnhe/everforest'
 " Additional UI components
 Plug 'liuchengxu/vim-which-key'
 Plug 'haya14busa/incsearch.vim'
+if has('nvim')
+  Plug 'lukas-reineke/indent-blankline.nvim'
+else
+  Plug 'Yggdroot/indentLine'
+endif
 " Text objects
 Plug 'kana/vim-textobj-user'
 Plug 'glts/vim-textobj-comment'
@@ -216,11 +221,6 @@ elseif g:vim_mode ==# 'full'
   " Additional UI components
   if g:vim_enable_startify == 1
     Plug 'mhinz/vim-startify'
-  endif
-  if has('nvim')
-    Plug 'lukas-reineke/indent-blankline.nvim'
-  else
-    Plug 'Yggdroot/indentLine'
   endif
 endif
 "{{{
