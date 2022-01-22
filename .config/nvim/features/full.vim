@@ -270,6 +270,9 @@ call coc#config('xml', {
         \ '/usr/lib/jvm/default'
       \ }
       \ })
+call coc#config('semanticTokens', {
+      \ 'filetypes': has('nvim') ? [''] : ['*']
+      \ })
 if has('win32')
   call coc#config('terminal', {
         \ 'shellPath': 'powershell',
