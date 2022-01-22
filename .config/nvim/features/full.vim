@@ -132,6 +132,7 @@ if g:vim_enable_startify == 1
   let g:startify_commands = [
         \ {'l': 'CocList'},
         \ {'f': 'Clap'},
+        \ {'g': 'Clap grep'},
         \ ]
   " figlet -f slant <words>
   if has('nvim')
