@@ -38,9 +38,19 @@ endif
 if has('nvim')
   set inccommand=split
   set wildoptions=pum
-  execute 'set undofile undodir=' . fnamemodify(custom#utils#stdpath('cache'), ':p') . 'undo'
-else
-  execute 'set undofile undodir=' . fnamemodify(custom#utils#stdpath('cache'), ':p') . 'undo-vim'
+endif
+
+execute 'set backupdir=' . fnamemodify(custom#utils#stdpath('data'), ':p') . 'backup'
+execute 'set directory=' . fnamemodify(custom#utils#stdpath('data'), ':p') . 'swap'
+execute 'set undofile undodir=' . fnamemodify(custom#utils#stdpath('cache'), ':p') . 'undo' . (has('nvim') ? '-nvim' : '-vim')
+if !isdirectory(expand(&g:directory))
+  silent! call mkdir(expand(&g:directory), 'p')
+endif
+if !isdirectory(expand(&g:backupdir))
+  silent! call mkdir(expand(&g:backupdir), 'p')
+endif
+if !isdirectory(expand(&g:undodir))
+  silent! call mkdir(expand(&g:undodir), 'p')
 endif
 
 if g:vim_mode !=# 'full'
