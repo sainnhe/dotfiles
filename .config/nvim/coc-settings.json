@@ -204,5 +204,20 @@
         "MD036": false,
         "MD041": false,
         "MD014": false
-    }
+    },
+    "cSpell.enabledLanguageIds": [
+        "asciidoc",
+        "git-commit",
+        "latex",
+        "markdown",
+        "plaintext",
+        "restructuredtext",
+        "text"
+    ],
+    "cSpell.userWords": [
+      "Sainnhe",
+      "Everforest",
+      "Sonokai",
+      "Gruvbox"
+    ]
 }

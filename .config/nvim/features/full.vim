@@ -233,6 +233,7 @@ let g:coc_global_extensions = [
       \ 'coc-rust-analyzer',
       \ 'coc-sh',
       \ 'coc-snippets',
+      \ 'coc-spell-checker',
       \ 'coc-sql',
       \ 'coc-syntax',
       \ 'coc-tag',
