@@ -157,11 +157,11 @@ if g:vim_enable_startify == 1
           \ ]
   endif
   let g:startify_lists = [
-        \ { 'type': 'dir',       'header': [" \ufa1eMRU Files in ". getcwd()] },
-        \ { 'type': 'files',     'header': [" \ufa1eMRU Files"]            },
-        \ { 'type': 'bookmarks', 'header': [" \uf5c2 Bookmarks"]      },
-        \ { 'type': 'sessions',  'header': [" \ue62e Sessions"]       },
-        \ { 'type': 'commands',  'header': [" \ufb32 Commands"]       },
+        \ { 'type': 'dir',       'header': ["   \ufa1eMRU Files in ". getcwd()] },
+        \ { 'type': 'files',     'header': ["   \ufa1eMRU Files"]            },
+        \ { 'type': 'bookmarks', 'header': ["   \uf5c2 Bookmarks"]      },
+        \ { 'type': 'sessions',  'header': ["   \ue62e Sessions"]       },
+        \ { 'type': 'commands',  'header': ["   \ufb32 Commands"]       },
         \ ]
   let g:startify_skiplist = [
         \ '/mnt/*',
