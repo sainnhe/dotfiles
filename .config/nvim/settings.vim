@@ -28,6 +28,7 @@ set history=1000
 set updatetime=100
 set completeopt=noinsert,noselect,menuone shortmess+=c
 set nobackup nowritebackup
+set backspace=indent,eol,start
 
 if !has('win32')
   set dictionary+=/usr/share/dict/words
