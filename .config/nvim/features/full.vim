@@ -129,11 +129,9 @@ if g:vim_enable_startify == 1
   let g:startify_session_remove_lines = ['setlocal', 'winheight']
   let g:startify_session_sort = 1
   let g:startify_custom_indices = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5']
-  if has('nvim')
-    let g:startify_commands = [
-          \ {'1': 'CocList'},
-          \ ]
-  endif
+  let g:startify_commands = [
+        \ {'1': 'CocList'},
+        \ ]
   " figlet -f slant <words>
   if has('nvim')
     let g:startify_custom_header = [
