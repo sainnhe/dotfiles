@@ -53,6 +53,8 @@ if !isdirectory(expand(&g:undodir))
   silent! call mkdir(expand(&g:undodir), 'p')
 endif
 
+let g:netrw_home = custom#utils#stdpath('cache')
+
 if g:vim_mode !=# 'full'
   set noshowmode
   set statusline=
