@@ -130,7 +130,8 @@ if g:vim_enable_startify == 1
   let g:startify_session_sort = 1
   let g:startify_custom_indices = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5']
   let g:startify_commands = [
-        \ {'f': 'CocList'},
+        \ {'l': 'CocList'},
+        \ {'f': 'Clap'},
         \ ]
   " figlet -f slant <words>
   if has('nvim')
