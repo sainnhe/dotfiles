@@ -54,9 +54,15 @@ nnoremap <silent> <A-w> :<C-u>call custom#utils#close_on_last_tab()<CR>
 " Alt+Left/Right to switch tabs
 nnoremap <A-left> <Esc>gT
 nnoremap <A-right> <Esc>gt
+" Alt+</> to switch tabs
+nnoremap <A-,> <Esc>gT
+nnoremap <A-.> <Esc>gt
 " Alt+Up/Down to move tabs
 nnoremap <silent> <A-up> :<C-u>tabm -1<CR>
 nnoremap <silent> <A-down> :<C-u>tabm +1<CR>
+" Leader Alt+</> to move tabs
+nnoremap <silent> <leader><A-,> :<C-u>tabm -1<CR>
+nnoremap <silent> <leader><A-.> :<C-u>tabm +1<CR>
 " Alt+HJKL to jump between windows
 nnoremap <silent> <A-h> :<C-u>wincmd h<CR>
 nnoremap <silent> <A-l> :<C-u>wincmd l<CR>
@@ -111,8 +117,8 @@ if !has('nvim')
 endif
 " Ctrl+V to paste from buffer
 inoremap <C-V> <Space><Backspace><ESC>pa
-" <A-c><C-v> to paste from system clipboard
-inoremap <A-c><C-V> <Space><Backspace><ESC>"+pa
+" <A-z><C-v> to paste from system clipboard
+inoremap <A-z><C-V> <Space><Backspace><ESC>"+pa
 " Ctrl+S to save file
 inoremap <silent> <C-S> <Esc>:w<CR>a
 " Shift+ArrowKeys to quickly move cursor
