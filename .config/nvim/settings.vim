@@ -14,7 +14,7 @@ set autoindent smartindent breakindent
 set list listchars=tab:>-,trail:~,extends:>,precedes:<
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set timeout timeoutlen=500
-set incsearch nohlsearch
+set incsearch hlsearch
 set autoread
 set sessionoptions-=options
 set viewoptions-=options

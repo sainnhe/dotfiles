@@ -205,27 +205,11 @@ if !has('nvim')
   execute "set <M-=>=\e="
 endif
 " }}}
-" {{{incsearch.vim
-let g:incsearch#auto_nohlsearch = 1
-map /  <Plug>(incsearch-forward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-augroup IncsearchCustom
-  autocmd!
-  autocmd User IncSearchEnter set hlsearch
-augroup END
-" }}}
 " {{{vim-asterisk
-let g:incsearch#auto_nohlsearch = 1
-map *   <Plug>(asterisk-*)
-map #   <Plug>(asterisk-#)
-map g*  <Plug>(asterisk-g*)
-map g#  <Plug>(asterisk-g#)
+map *   <Plug>(asterisk-z*)<Plug>(is-nohl-1)
+map #   <Plug>(asterisk-z#)<Plug>(is-nohl-1)
+map g*  <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
+map g#  <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 map z*  <Plug>(asterisk-z*)
 map gz* <Plug>(asterisk-gz*)
 map z#  <Plug>(asterisk-z#)
