@@ -3,8 +3,4 @@
 " ln -s /path/to/dotfiles/.config/nvim ~/.vim
 " On Windows:
 " mklink /D C:\Users\username\vimfiles \path\to\dotfiles\.config\nvim
-if has('win32')
-  source ~/vimfiles/init.vim
-else
-  source ~/.vim/init.vim
-endif
+execute 'source ' . fnamemodify(custom#utils#stdpath('config'), ':p') . 'init.vim'
