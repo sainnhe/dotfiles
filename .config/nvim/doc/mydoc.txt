@@ -52,7 +52,8 @@ SNEAK                                                              *mydoc-sneak*
 
 - `[count]s[char][char]`: Search forward or repeat previous search operation
 - `[count]S[char][char]`: Search backward or repeat previous search operation
-- `f/F`: One character search
+- `f/F`: Enhanced version of |f|/|F|
+- `t/T`: Enhanced version of |t|/|T|
 
 ------------------------------------------------------------------------------
 AUTOPAIRS                                                      *mydoc-autopairs*
