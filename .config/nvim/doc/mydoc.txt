@@ -61,7 +61,7 @@ In insert mode:
 
 - `<A-z>p`: Toggle this plugin
 - `<A-n>`: Jump to next closed pair, including `'")]}`
-- `<A-Backspace>`: Delete the left pair without deleting the right pair
+- `<A-z><Backspace>`: Delete the left pair without deleting the right pair
 - `<A-z>[char]`: Insert left pair without inserting the right pair
 
 ------------------------------------------------------------------------------

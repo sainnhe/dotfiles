@@ -190,7 +190,7 @@ inoremap <A-z>{ {
 inoremap <A-z>) )
 inoremap <A-z>] ]
 inoremap <A-z>} }
-inoremap <A-Backspace> <Space><Esc><left>"_xa<Backspace>
+inoremap <A-z><Backspace> <Space><Esc><left>"_xa<Backspace>
 " }}}
 " {{{vim-matchup
 let g:matchup_matchparen_deferred = 1
