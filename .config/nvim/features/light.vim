@@ -91,7 +91,7 @@ noremap <silent> <leader>gd :Gdiffsplit<cr>
 noremap <silent> <leader>gw :Gwrite<cr>
 " {{{twiggy
 command Gbranch Twiggy
-nnoremap <silent> <leader>gb :<C-u>Twiggy<CR>
+nnoremap <silent> <leader>gb :<C-u>call FugitiveDetect(getcwd())<CR>:Twiggy<CR>
 let g:which_key_map['g']['b'] = 'branch'
 let g:twiggy_local_branch_sort = 'mru'
 let g:twiggy_num_columns = 35
