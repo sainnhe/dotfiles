@@ -127,7 +127,14 @@
         "javascript": "javascriptreact"
     },
     "imselect.defaultInput": "com.apple.keylayout.ABC",
-    "prettier.formatterPriority": -1,
+    "prettier.disableLanguages": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "json"
+    ],
     "explorer.icon.enableNerdfont": true,
     "explorer.width": 30,
     "explorer.focus": false,
