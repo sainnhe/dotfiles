@@ -251,6 +251,26 @@ let g:pomodoro_status = 0
 nnoremap <silent> <leader><space><space>P :<c-u>call custom#utils#toggle_pomodoro()<cr>
 let g:which_key_map["\<space>"]["\<space>"]['P'] = 'pomodoro toggle'
 " }}}
+" {{{asynctasks
+let g:asyncrun_open = 6
+let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
+let g:asynctasks_term_pos = 'bottom' " tab
+let g:asynctasks_term_rows = 10
+let g:asynctasks_config_name = '.git/tasks.ini'
+noremap <silent> <leader>trf :<C-u>AsyncTask file-run<cr>
+noremap <silent> <leader>trp :<C-u>AsyncTask project-run<cr>
+noremap <silent> <leader>tbf :<C-u>AsyncTask file-build<cr>
+noremap <silent> <leader>tbp :<C-u>AsyncTask project-build<cr>
+noremap <silent> <leader>te :<C-u>AsyncTaskEdit<cr>
+noremap <silent> <leader>gp :<C-u>AsyncRun git push origin HEAD<cr>
+let g:which_key_map['t'] = {
+      \ 'name': 'task',
+      \ 'r': {'name': 'run task', 'f': 'file', 'p': 'project'},
+      \ 'b': {'name': 'build task', 'f': 'file', 'p': 'project'},
+      \ 'e': 'edit config'
+      \ }
+let g:which_key_map['g']['p'] = 'push'
+" }}}
 " {{{vim-visual-multi
 let g:VM_default_mappings = 0
 let g:VM_maps = {}
@@ -277,31 +297,11 @@ xmap <leader>ca <Plug>NERDCommenterComment
 xmap <leader>cu <Plug>NERDCommenterUncomment
 xmap <leader>cc <Plug>NERDCommenterToggle
 let g:which_key_map['c'] = {
-      \   'name': 'comment',
-      \   'a': 'comment',
-      \   'u': 'uncomment',
-      \   'c': 'toggle',
-      \   }
-" }}}
-" {{{asynctasks
-let g:asyncrun_open = 6
-let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
-let g:asynctasks_term_pos = 'bottom' " tab
-let g:asynctasks_term_rows = 10
-let g:asynctasks_config_name = '.git/tasks.ini'
-noremap <silent> <leader>trf :<C-u>AsyncTask file-run<cr>
-noremap <silent> <leader>trp :<C-u>AsyncTask project-run<cr>
-noremap <silent> <leader>tbf :<C-u>AsyncTask file-build<cr>
-noremap <silent> <leader>tbp :<C-u>AsyncTask project-build<cr>
-noremap <silent> <leader>te :<C-u>AsyncTaskEdit<cr>
-noremap <silent> <leader>gp :<C-u>AsyncRun git push origin HEAD<cr>
-let g:which_key_map['t'] = {
-      \ 'name': 'task',
-      \ 'r': {'name': 'run task', 'f': 'file', 'p': 'project'},
-      \ 'b': {'name': 'build task', 'f': 'file', 'p': 'project'},
-      \ 'e': 'edit config'
+      \ 'name': 'comment',
+      \ 'a': 'comment',
+      \ 'u': 'uncomment',
+      \ 'c': 'toggle',
       \ }
-let g:which_key_map['g']['p'] = 'push'
 " }}}
 " {{{vim-translator
 let g:translator_target_lang = 'zh'
