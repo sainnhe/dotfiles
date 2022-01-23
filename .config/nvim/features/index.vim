@@ -145,9 +145,10 @@ Plug 'sodapopcan/vim-twiggy', { 'on': 'Twiggy' }
 Plug 'samoshkin/vim-mergetool', { 'on': ['MergetoolStart', '<plug>(MergetoolToggle)'] }
 Plug 'rhysd/committia.vim'
 " Movement
+Plug 'bkad/CamelCaseMotion'
+Plug 'kana/vim-smartword'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'justinmk/vim-sneak'
-Plug 'chaoren/vim-wordmotion'
 " Pairs
 Plug 'jiangmiao/auto-pairs'
 Plug 'andymass/vim-matchup'

@@ -123,7 +123,6 @@ TEXTOBJ-USER                                                *mydoc-textobj-user*
 - `.`: Current Tree-Sitter Node
 - `C`：Comment (including spaces at the start of a line)
 - `I`：Indents of current level
-- `W`：Semantic word
 - `b`: Block
 - `c`: Comment (excluding spaces at the start of a line)
 - `e`：Current buffer

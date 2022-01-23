@@ -127,6 +127,28 @@ let g:which_key_map['g']['m'] = 'merge'
 " }}}
 " }}}
 " {{{Movement
+" {{{CamelCaseMotion
+omap <silent> iw <Plug>CamelCaseMotion_iw
+xmap <silent> iw <Plug>CamelCaseMotion_iw
+omap <silent> ib <Plug>CamelCaseMotion_ib
+xmap <silent> ib <Plug>CamelCaseMotion_ib
+omap <silent> ie <Plug>CamelCaseMotion_ie
+xmap <silent> ie <Plug>CamelCaseMotion_ie
+" }}}
+" {{{vim-smartword
+map w <Plug>(smartword-w)
+map b <Plug>(smartword-b)
+map e <Plug>(smartword-e)
+function s:smartword_mappings() abort
+  map <Plug>(smartword-basic-w) <Plug>CamelCaseMotion_w
+  map <Plug>(smartword-basic-b) <Plug>CamelCaseMotion_b
+  map <Plug>(smartword-basic-e) <Plug>CamelCaseMotion_e
+endfunction
+augroup SmartWordCustom
+  autocmd!
+  autocmd VimEnter * call <SID>smartword_mappings()
+augroup END
+" }}}
 " {{{comfortable-motion.vim
 let g:comfortable_motion_no_default_key_mappings = 1
 let g:comfortable_motion_friction = 80.0
@@ -148,25 +170,6 @@ xmap f <Plug>Sneak_f
 xmap F <Plug>Sneak_F
 omap f <Plug>Sneak_f
 omap F <Plug>Sneak_F
-" }}}
-" {{{vim-wordmotion
-let g:wordmotion_disable_default_mappings = v:true
-nmap W <Plug>WordMotion_w
-omap W <Plug>WordMotion_w
-xmap W <Plug>WordMotion_w
-nmap B <Plug>WordMotion_b
-omap B <Plug>WordMotion_b
-xmap B <Plug>WordMotion_b
-nmap E <Plug>WordMotion_e
-omap E <Plug>WordMotion_e
-xmap E <Plug>WordMotion_e
-nmap gE <Plug>WordMotion_ge
-omap gE <Plug>WordMotion_ge
-xmap gE <Plug>WordMotion_ge
-omap aW <Plug>WordMotion_aw
-xmap aW <Plug>WordMotion_aw
-omap iW <Plug>WordMotion_iw
-xmap iW <Plug>WordMotion_iw
 " }}}
 " }}}
 " {{{Pairs
