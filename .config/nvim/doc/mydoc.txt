@@ -7,11 +7,11 @@ plug                                         |mydoc-plug|
 sneak                                        |mydoc-sneak|
 autopairs                                    |mydoc-autopairs|
 closetag                                     |mydoc-closetag|
-surround                                     |mydoc-surround|
 matchup                                      |mydoc-matchup|
 suda                                         |mydoc-suda|
 manpager                                     |mydoc-manpager|
-textobj                                      |mydoc-textobj|
+textobj-user                                 |mydoc-textobj-user|
+operator-user                                |mydoc-operator-user|
 
 ==============================================================================
 COMMANDS                                                        *mydoc-commands*
@@ -73,17 +73,6 @@ When editing HTML files, in insert mode:
 - `<A-z>>`: Insert `>` without closing tags
 
 ------------------------------------------------------------------------------
-SURROUND                                                        *mydoc-surround*
-
-- `ds[char]`: Delete surroundings, in which `[char]` could be `()[]{}"'<>``
-- `cs[char1][char2]`: Change surroundings
-- `ys[motion][char]`: Add surroundings near |{motion}|
-- `ys[textobj][char]`: Add surroundings near |text-objects|
-
-Note: The `ys` command will add spaces when using left pairs, but it will not
-when using right pairs.
-
-------------------------------------------------------------------------------
 MATCHUP                                                          *mydoc-matchup*
 
 - `%`/`g%`: Jump to next/previous matchup character or word
@@ -128,22 +117,7 @@ MANPAGER                                                        *mydoc-manpager*
 - `q`: Quit
 
 ------------------------------------------------------------------------------
-TEXTOBJ                                                          *mydoc-textobj*
-
-Builtin~
-
-- `w`: Word
-- `s`: Sentence
-- `p`: Paragraph
-- `}`/`{`
-- `]`/`[`
-- `)`/`(`
-- `>`/`<`
-- `'`
-- `"`
-- ``
-
-Extends~
+TEXTOBJ-USER                                                *mydoc-textobj-user*
 
 - `,`：Function parameter
 - `.`: Current Tree-Sitter Node
@@ -159,6 +133,14 @@ Extends~
 - `l`: Line
 - `u`：URL
 - `z`：Fold
+
+------------------------------------------------------------------------------
+OPERATOR-USER                                              *mydoc-operator-user*
+
+- `<leader>sa`：Append surround
+- `<leader>sd`：Delete surround
+- `<leader>sr`：Replace surround
+- `<leader>r`： Replace text with register content
 
 ==============================================================================
 vim:tw=78:nosta:noet:ts=8:sts=0:ft=help:noet:fen:fdm=marker:fmr={{{,}}}:

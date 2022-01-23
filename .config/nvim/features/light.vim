@@ -71,6 +71,23 @@ let g:indentLine_setColors = 0  " disable overwrite with grey by default, use co
 " }}}
 endif
 " }}}
+" {{{Operators
+" {{{vim-operator-replace
+map <silent> <leader>r <Plug>(operator-replace)
+let g:which_key_map['r'] = 'replace'
+" }}}
+" {{{vim-operator-surround
+map <silent> <leader>sa <Plug>(operator-surround-append)
+map <silent> <leader>sd <Plug>(operator-surround-delete)
+map <silent> <leader>sr <Plug>(operator-surround-replace)
+let g:which_key_map['s'] = {
+      \ 'name': 'surround',
+      \ 'a': 'append',
+      \ 'd': 'delete',
+      \ 'r': 'replace'
+      \ }
+" }}}
+" }}}
 " {{{Git Integration
 " {{{vim-fugitive
 if !exists("g:which_key_map['g']")

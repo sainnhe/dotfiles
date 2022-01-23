@@ -6,9 +6,9 @@ mydoc-contents	mydoc.txt	/*mydoc-contents*
 mydoc-diff	mydoc.txt	/*mydoc-diff*
 mydoc-manpager	mydoc.txt	/*mydoc-manpager*
 mydoc-matchup	mydoc.txt	/*mydoc-matchup*
+mydoc-operator-user	mydoc.txt	/*mydoc-operator-user*
 mydoc-plug	mydoc.txt	/*mydoc-plug*
 mydoc-sneak	mydoc.txt	/*mydoc-sneak*
 mydoc-suda	mydoc.txt	/*mydoc-suda*
-mydoc-surround	mydoc.txt	/*mydoc-surround*
-mydoc-textobj	mydoc.txt	/*mydoc-textobj*
+mydoc-textobj-user	mydoc.txt	/*mydoc-textobj-user*
 mydoc.txt	mydoc.txt	/*mydoc.txt*

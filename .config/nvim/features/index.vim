@@ -135,6 +135,10 @@ Plug 'glts/vim-textobj-comment'
 Plug 'somini/vim-textobj-fold'
 Plug 'mattn/vim-textobj-url'
 Plug 'sgur/vim-textobj-parameter'
+" Operators
+Plug 'kana/vim-operator-user', { 'on': ['<Plug>(operator-replace)', '<Plug>(operator-surround-append)', '<Plug>(operator-surround-delete)', '<Plug>(operator-surround-replace)'] }
+Plug 'kana/vim-operator-replace', { 'on': '<Plug>(operator-replace)' }
+Plug 'rhysd/vim-operator-surround', { 'on': ['<Plug>(operator-surround-append)', '<Plug>(operator-surround-delete)', '<Plug>(operator-surround-replace)'] }
 " Git Integration
 Plug 'tpope/vim-fugitive', { 'on': ['Git', 'Gdiffsplit', 'Gwrite'] }
 Plug 'sodapopcan/vim-twiggy', { 'on': 'Twiggy' }
@@ -161,7 +165,6 @@ if has('nvim')
 endif
 " Extended functional components
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
 Plug 'rmolin88/pomodoro.vim'
 Plug 'mg979/vim-visual-multi', { 'on': ['<Plug>(VM-Add-Cursor-At-Pos)', '<Plug>(VM-Visual-Cursors)'] }
 Plug 'scrooloose/nerdcommenter', { 'on': ['<Plug>NERDCommenterComment', '<Plug>NERDCommenterUncomment', '<Plug>NERDCommenterToggle'] }
