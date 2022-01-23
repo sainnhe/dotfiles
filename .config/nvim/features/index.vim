@@ -119,7 +119,6 @@ Plug 'sainnhe/sonokai'
 Plug 'sainnhe/everforest'
 " Additional UI components
 Plug 'liuchengxu/vim-which-key'
-Plug 'haya14busa/incsearch.vim'
 if has('nvim')
   Plug 'lukas-reineke/indent-blankline.nvim'
 else
@@ -156,6 +155,8 @@ Plug 'alvan/vim-closetag'
 " Other basic features
 Plug 'yianwillis/vimcdoc'
 Plug 'drmikehenry/vim-fixkey'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/vim-asterisk'
 Plug 'tpope/vim-sleuth'
 Plug 'junegunn/vim-peekaboo'
 Plug 'airblade/vim-rooter'

@@ -41,14 +41,6 @@ function custom#utils#get_highlight() abort "{{{
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc "}}}
-function custom#utils#escaped_search() range "{{{
-  let l:saved_reg = @"
-  execute 'normal! vgvy'
-  let l:pattern = escape(@", "\\/.*'$^~[]")
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
-  let @/ = l:pattern
-  let @" = l:saved_reg
-endfunction "}}}
 function custom#utils#git_status() abort "{{{
   let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
   if strlen(l:branchname) > 0

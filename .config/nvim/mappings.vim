@@ -154,8 +154,6 @@ vnoremap L $h
 vnoremap <leader>y "+y
 " <leader>p to paste from system clipboard
 vnoremap <leader>p "+p
-" * to search for selected text
-vnoremap <silent> * :<C-u>call custom#utils#escaped_search()<CR>/<C-R>=@/<CR><CR>N
 " }}}
 " {{{Command Mode
 " Alt+X to enter normal mode

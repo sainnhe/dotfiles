@@ -34,21 +34,6 @@ let g:which_key_map["\<space>"]["\<space>"]['h'] = 'highlight'
 let g:which_key_map['<M-,>'] = 'which_key_ignore'
 let g:which_key_map['<M-.>'] = 'which_key_ignore'
 " }}}
-" {{{incsearch.vim
-let g:incsearch#auto_nohlsearch = 1
-map /  <Plug>(incsearch-forward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-augroup IncsearchCustom
-  autocmd!
-  autocmd User IncSearchEnter set hlsearch
-augroup END
-" }}}
 if has('nvim')
 " {{{indent-blankline.nvim
 let g:indent_blankline_char = ''  " ¦┆│⎸▏
@@ -219,6 +204,32 @@ if !has('nvim')
   execute "set <M-->=\e-"
   execute "set <M-=>=\e="
 endif
+" }}}
+" {{{incsearch.vim
+let g:incsearch#auto_nohlsearch = 1
+map /  <Plug>(incsearch-forward)
+map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+augroup IncsearchCustom
+  autocmd!
+  autocmd User IncSearchEnter set hlsearch
+augroup END
+" }}}
+" {{{vim-asterisk
+let g:incsearch#auto_nohlsearch = 1
+map *   <Plug>(asterisk-*)
+map #   <Plug>(asterisk-#)
+map g*  <Plug>(asterisk-g*)
+map g#  <Plug>(asterisk-g#)
+map z*  <Plug>(asterisk-z*)
+map gz* <Plug>(asterisk-gz*)
+map z#  <Plug>(asterisk-z#)
+map gz# <Plug>(asterisk-gz#)
 " }}}
 " {{{vim-peekaboo
 let g:peekaboo_delay = 500
