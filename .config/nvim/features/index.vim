@@ -77,10 +77,10 @@ call plug#begin(fnamemodify(custom#utils#stdpath('data'), ':p') . 'plugins')
 
 " Plugin lists
 " {{{ Syntax
-Plug 'sheerun/vim-polyglot', {'as': 'vim-syntax'}
-Plug 'bfrg/vim-cpp-modern', {'as': 'vim-syntax-c-cpp', 'for': ['c', 'cpp']}
-Plug 'maxmellon/vim-jsx-pretty', {'as': 'vim-syntax-jsx', 'for': ['javascriptreact']}
-Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax' }
+Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-syntax-c-cpp', 'for': ['c', 'cpp'] }
+Plug 'maxmellon/vim-jsx-pretty', { 'as': 'vim-syntax-jsx', 'for': ['javascriptreact'] }
+Plug 'elzr/vim-json', { 'for': 'json' }
 let g:polyglot_disabled = ['sensible', 'c', 'cpp', 'markdown', 'javascriptreact', 'java']
 let g:vim_json_syntax_conceal = 0
 let g:markdown_fenced_languages = [
@@ -169,16 +169,16 @@ Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'voldikss/vim-translator'
 Plug 'tpope/vim-surround'
-Plug 'junegunn/limelight.vim', {'on': 'Limelight!!'}
-Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'rmolin88/pomodoro.vim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'AndrewRadev/inline_edit.vim'
 Plug 'masukomi/vim-markdown-folding'
-Plug 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffAdd']}
-Plug 'will133/vim-dirdiff', {'on': 'DirDiff'}
-Plug 'mbbill/fencview', {'on': ['FencAutoDetect', 'FencView']}
-Plug 'tweekmonster/startuptime.vim', {'on': 'StartupTime'}
+Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffAdd'] }
+Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
+Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencView'] }
+Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'sainnhe/vim-paste-rs'
 " Unix-like OS specific
 if !has('win32')
@@ -192,7 +192,7 @@ if g:vim_mode ==# 'light'
   Plug 'lifepillar/vim-mucomplete'
 elseif g:vim_mode ==# 'full'
   " Language features
-  Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
   if !has('win32')
     Plug 'sunaku/vim-dasht'
   endif
@@ -203,11 +203,11 @@ elseif g:vim_mode ==# 'full'
     Plug 'RRethy/nvim-treesitter-textsubjects'
   endif
   " Extended functional components, but with extra dependencies
-  Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
-  Plug 'liuchengxu/vim-clap', {'do': ':Clap install-binary'}
+  Plug 'kkoomen/vim-doge', { 'do': {-> doge#install()} }
+  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
   Plug 'KabbAmine/vCoolor.vim'
   if executable('fcitx')
-    Plug 'lilydjwg/fcitx.vim', {'branch': 'fcitx4', 'on': []}
+    Plug 'lilydjwg/fcitx.vim', { 'branch': 'fcitx4', 'on': [] }
           \| au InsertEnter * call plug#load('fcitx.vim')
   endif
   " Status line
@@ -216,7 +216,7 @@ elseif g:vim_mode ==# 'full'
   Plug 'ryanoasis/vim-devicons'
   Plug 'sainnhe/artify.vim'
   if g:vim_is_in_tmux == 1 && !has('win32')
-    Plug 'sainnhe/tmuxline.vim', {'on': ['Tmuxline', 'TmuxlineSnapshot']}
+    Plug 'sainnhe/tmuxline.vim', { 'on': ['Tmuxline', 'TmuxlineSnapshot'] }
   endif
   " Additional UI components
   if g:vim_enable_startify == 1
