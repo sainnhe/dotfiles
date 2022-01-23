@@ -133,7 +133,6 @@ Plug 'mattn/vim-textobj-url'
 Plug 'kana/vim-textobj-entire'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-lastpat'
 " Git Integration
 Plug 'tpope/vim-fugitive', { 'on': ['Git', 'Gdiffsplit', 'Gwrite'] }
 Plug 'sodapopcan/vim-twiggy', { 'on': 'Twiggy' }

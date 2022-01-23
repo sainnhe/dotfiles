@@ -157,7 +157,6 @@ Extends~
 - `,`：Function parameter
 - `i`：Indents of current level and all next levels
 - `I`：Indents of current level
-- `/`：Previous search
 - `W`：Semantic word
 
 ==============================================================================
