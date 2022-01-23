@@ -151,6 +151,7 @@ Plug 'justinmk/vim-sneak'
 " Search
 Plug 'haya14busa/is.vim'
 Plug 'haya14busa/vim-asterisk'
+Plug 'osyo-manga/vim-anzu'
 " Pairs
 Plug 'jiangmiao/auto-pairs'
 Plug 'andymass/vim-matchup'

@@ -174,6 +174,10 @@ map gz* <Plug>(asterisk-gz*)
 map z#  <Plug>(asterisk-z#)
 map gz# <Plug>(asterisk-gz#)
 " }}}
+" {{{vim-anzu
+map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
+map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
+" }}}
 " }}}
 " {{{Pairs
 " {{{auto-pairs
