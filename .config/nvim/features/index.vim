@@ -153,6 +153,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'junegunn/vim-peekaboo'
 Plug 'airblade/vim-rooter'
 Plug 'jamessan/vim-gnupg'
+Plug 'editorconfig/editorconfig-vim'
 if has('nvim')
   Plug 'nathom/filetype.nvim'
 endif

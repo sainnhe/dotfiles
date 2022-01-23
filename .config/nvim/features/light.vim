@@ -207,6 +207,9 @@ endif
 " {{{vim-peekaboo
 let g:peekaboo_delay = 500
 " }}}
+" {{{editorconfig-vim
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+" }}}
 if has('nvim')
 " {{{filetype.nvim
 let g:did_load_filetypes = 1
