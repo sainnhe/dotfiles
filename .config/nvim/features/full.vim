@@ -421,6 +421,20 @@ nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
 let g:which_key_map['f']['p'] = 'projects'
 " }}}
 " }}}
+" {{{vim-doge
+let g:doge_enable_mappings = 0
+let g:doge_mapping_comment_jump_forward = '<C-j>'
+let g:doge_mapping_comment_jump_backward = '<C-k>'
+let g:doge_doc_standard_python = 'google'
+nnoremap <silent> <leader><space>d :<C-u>DogeGenerate<CR>
+let g:which_key_map["\<space>"]['d'] = 'generate code doc'
+" }}}
+" {{{any-jump.vim
+let g:any_jump_disable_default_keybindings = 1
+nnoremap <silent> <leader>jj :<C-u>AnyJump<CR>
+xnoremap <silent> <leader>jj :AnyJumpVisual<CR>
+let g:which_key_map['j']['j'] = 'any jump'
+" }}}
 " {{{vim-dasht
 if !has('win32')
   " Search related docsets
@@ -437,14 +451,6 @@ if !has('win32')
   vnoremap <silent> <leader><space>D y:<C-U>call Dasht(getreg(0))<Return>
   let g:which_key_map["\<space>"]['D'] = 'dasht'
 endif
-" }}}
-" {{{vim-doge
-let g:doge_enable_mappings = 0
-let g:doge_mapping_comment_jump_forward = '<C-j>'
-let g:doge_mapping_comment_jump_backward = '<C-k>'
-let g:doge_doc_standard_python = 'google'
-nnoremap <silent> <leader><space>d :<C-u>DogeGenerate<CR>
-let g:which_key_map["\<space>"]['d'] = 'generate code doc'
 " }}}
 " }}}
 " {{{Tree-sitter

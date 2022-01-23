@@ -135,17 +135,13 @@ Plug 'sgur/vim-textobj-parameter'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-lastpat'
 " Git Integration
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'tommcdo/vim-fubitive'
-Plug 'sodapopcan/vim-twiggy'
+Plug 'tpope/vim-fugitive', { 'on': ['Git', 'Gdiffsplit', 'Gwrite'] }
+Plug 'sodapopcan/vim-twiggy', { 'on': 'Twiggy' }
+Plug 'samoshkin/vim-mergetool', { 'on': ['MergetoolStart', '<plug>(MergetoolToggle)'] }
 Plug 'rhysd/committia.vim'
-Plug 'samoshkin/vim-mergetool'
 " Movement
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'justinmk/vim-sneak'
-Plug 'pechorin/any-jump.vim'
 Plug 'chaoren/vim-wordmotion'
 " Pairs
 Plug 'jiangmiao/auto-pairs'
@@ -153,46 +149,48 @@ Plug 'andymass/vim-matchup'
 Plug 'alvan/vim-closetag'
 " Other basic features
 Plug 'yianwillis/vimcdoc'
+Plug 'drmikehenry/vim-fixkey'
 Plug 'tpope/vim-sleuth'
 Plug 'junegunn/vim-peekaboo'
-Plug 'tpope/vim-repeat'
 Plug 'airblade/vim-rooter'
 Plug 'jamessan/vim-gnupg'
 if has('nvim')
   Plug 'nathom/filetype.nvim'
 endif
 " Extended functional components
-Plug 'drmikehenry/vim-fixkey'
-Plug 'mg979/vim-visual-multi'
-Plug 'scrooloose/nerdcommenter'
-Plug 'skywind3000/asynctasks.vim'
-Plug 'skywind3000/asyncrun.vim'
-Plug 'voldikss/vim-translator'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'rmolin88/pomodoro.vim'
-Plug 'simnalamburt/vim-mundo'
-Plug 'AndrewRadev/inline_edit.vim'
-Plug 'masukomi/vim-markdown-folding'
+Plug 'mg979/vim-visual-multi', { 'on': ['<Plug>(VM-Add-Cursor-At-Pos)', '<Plug>(VM-Visual-Cursors)'] }
+Plug 'scrooloose/nerdcommenter', { 'on': ['<Plug>NERDCommenterComment', '<Plug>NERDCommenterUncomment', '<Plug>NERDCommenterToggle'] }
+Plug 'skywind3000/asyncrun.vim', { 'on': ['AsyncRun', 'AsyncTask', 'AsyncTaskEdit'] }
+Plug 'skywind3000/asynctasks.vim', { 'on': ['AsyncTask', 'AsyncTaskEdit'] }
+Plug 'voldikss/vim-translator', { 'on': ['<Plug>TranslateW', '<Plug>TranslateWV'] }
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
+Plug 'AndrewRadev/inline_edit.vim', { 'on': 'InlineEdit' }
+Plug 'masukomi/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffAdd'] }
 Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
 Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencView'] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
-Plug 'sainnhe/vim-paste-rs'
+Plug 'sainnhe/vim-paste-rs', { 'on': '<Plug>(paste-rs)' }
 " Unix-like OS specific
 if !has('win32')
   Plug 'lambdalisue/suda.vim'
-  Plug 'lambdalisue/vim-manpager'
+  Plug 'lambdalisue/vim-manpager', { 'on': 'MANPAGER' }
 endif
 
 " Productivity
 if g:vim_mode ==# 'light'
-  Plug 'preservim/nerdtree'
+  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'lifepillar/vim-mucomplete'
 elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
+  Plug 'kkoomen/vim-doge', { 'do': {-> doge#install()}, 'on': 'DogeGenerate' }
+  Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
   if !has('win32')
     Plug 'sunaku/vim-dasht'
   endif
@@ -203,9 +201,8 @@ elseif g:vim_mode ==# 'full'
     Plug 'RRethy/nvim-treesitter-textsubjects'
   endif
   " Extended functional components, but with extra dependencies
-  Plug 'kkoomen/vim-doge', { 'do': {-> doge#install()} }
-  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
-  Plug 'KabbAmine/vCoolor.vim'
+  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary', 'on': 'Clap' }
+  Plug 'KabbAmine/vCoolor.vim', { 'on': 'VCoolor' }
   if executable('fcitx')
     Plug 'lilydjwg/fcitx.vim', { 'branch': 'fcitx4', 'on': [] }
           \| au InsertEnter * call plug#load('fcitx.vim')

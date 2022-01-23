@@ -82,22 +82,35 @@ call textobj#user#plugin('line', {
       \ })
 " }}}
 " {{{Git Integration
+" {{{vim-fugitive
 if !exists("g:which_key_map['g']")
   let g:which_key_map['g'] = {'name': 'git'}
 endif
+noremap <silent> <leader>gc :<C-u>Git commit<cr>
+noremap <silent> <leader>gd :<C-u>Gdiffsplit<cr>
+noremap <silent> <leader>gw :<C-u>Gwrite<cr>
+let g:which_key_map['g']['c'] = 'commit'
 let g:which_key_map['g']['d'] = 'diff unstaged'
 let g:which_key_map['g']['w'] = 'write and stage'
-noremap <silent> <leader>gd :Gdiffsplit<cr>
-noremap <silent> <leader>gw :Gwrite<cr>
 " {{{twiggy
+function s:twiggy_toggle() abort
+  if g:twiggy_loaded == 0
+    call plug#load('vim-fugitive')
+    call FugitiveDetect(getcwd())
+    let g:twiggy_loaded = 1
+  endif
+  Twiggy
+endfunction
+let g:twiggy_loaded = 0
 command Gbranch Twiggy
-nnoremap <silent> <leader>gb :<C-u>call FugitiveDetect(getcwd())<CR>:Twiggy<CR>
+nnoremap <silent> <leader>gb :<C-u>call <SID>twiggy_toggle()<CR>
 let g:which_key_map['g']['b'] = 'branch'
 let g:twiggy_local_branch_sort = 'mru'
 let g:twiggy_num_columns = 35
 let g:twiggy_close_on_fugitive_command = 1
 let g:twiggy_remote_branch_sort = 'date'
 let g:twiggy_show_full_ui = 0
+" }}}
 " }}}
 " {{{mergetool
 let g:mergetool_layout = 'lr,m'  " `l`, `b`, `r`, `m`
@@ -128,11 +141,6 @@ xmap f <Plug>Sneak_f
 xmap F <Plug>Sneak_F
 omap f <Plug>Sneak_f
 omap F <Plug>Sneak_F
-" }}}
-" {{{any-jump.vim
-let g:any_jump_disable_default_keybindings = 1
-nnoremap gd :AnyJump<CR>
-xnoremap gd :AnyJumpVisual<CR>
 " }}}
 " {{{vim-wordmotion
 let g:wordmotion_disable_default_mappings = v:true
@@ -187,6 +195,15 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.jsx,*.tsx'
 " }}}
 " }}}
 " {{{Other basic features
+" {{{vim-fixkey
+" sed -n l
+if !has('nvim')
+  execute "set <M-,>=\e,"
+  execute "set <M-.>=\e."
+  execute "set <M-->=\e-"
+  execute "set <M-=>=\e="
+endif
+" }}}
 " {{{vim-peekaboo
 let g:peekaboo_delay = 500
 " }}}
@@ -197,21 +214,22 @@ let g:did_load_filetypes = 1
 endif
 " }}}
 " {{{Extended functional components
-" {{{vim-fixkey
-" sed -n l
-if !has('nvim')
-  execute "set <M-,>=\e,"
-  execute "set <M-.>=\e."
-  execute "set <M-->=\e-"
-  execute "set <M-=>=\e="
-endif
+" {{{pomodoro.vim
+let g:pomodoro_time_work = 25
+let g:pomodoro_time_slack = 5
+let g:pomodoro_status = 0
+nnoremap <silent> <leader><space><space>P :<c-u>call custom#utils#toggle_pomodoro()<cr>
+let g:which_key_map["\<space>"]["\<space>"]['P'] = 'pomodoro toggle'
 " }}}
 " {{{vim-visual-multi
 let g:VM_default_mappings = 0
 let g:VM_maps = {}
-let g:VM_maps['Switch Mode']                 = 'v'
-let g:VM_maps['Add Cursor At Pos']           = '`'
-let g:VM_maps['Visual Cursors']              = '`'
+let g:VM_maps['Add Cursor At Pos'] = '`'
+let g:VM_maps['Visual Cursors'] = '`'
+let g:VM_maps['Switch Mode'] = 'v'
+nmap ` <Plug>(VM-Add-Cursor-At-Pos)
+vmap ` <Plug>(VM-Visual-Cursors)
+xmap ` <Plug>(VM-Visual-Cursors)
 " }}}
 " {{{nerdcommenter
 let g:NERDSpaceDelims = 1
@@ -241,20 +259,18 @@ let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 let g:asynctasks_term_pos = 'bottom' " tab
 let g:asynctasks_term_rows = 10
 let g:asynctasks_config_name = '.git/tasks.ini'
-noremap <silent> <leader>trf :AsyncTask file-run<cr>
-noremap <silent> <leader>trp :AsyncTask project-run<cr>
-noremap <silent> <leader>tbf :AsyncTask file-build<cr>
-noremap <silent> <leader>tbp :AsyncTask project-build<cr>
-noremap <silent> <leader>te :AsyncTaskEdit<cr>
-noremap <silent> <leader>gp :AsyncRun git push origin HEAD<cr>
-noremap <silent> <leader>gc :Git commit<cr>
+noremap <silent> <leader>trf :<C-u>AsyncTask file-run<cr>
+noremap <silent> <leader>trp :<C-u>AsyncTask project-run<cr>
+noremap <silent> <leader>tbf :<C-u>AsyncTask file-build<cr>
+noremap <silent> <leader>tbp :<C-u>AsyncTask project-build<cr>
+noremap <silent> <leader>te :<C-u>AsyncTaskEdit<cr>
+noremap <silent> <leader>gp :<C-u>AsyncRun git push origin HEAD<cr>
 let g:which_key_map['t'] = {
       \ 'name': 'task',
       \ 'r': {'name': 'run task', 'f': 'file', 'p': 'project'},
       \ 'b': {'name': 'build task', 'f': 'file', 'p': 'project'},
       \ 'e': 'edit config'
       \ }
-let g:which_key_map['g']['c'] = 'commit'
 let g:which_key_map['g']['p'] = 'push'
 " }}}
 " {{{vim-translator
@@ -267,6 +283,8 @@ let g:which_key_map["\<space>"]['t'] = 'translate'
 " }}}
 " {{{limelight.vim
 let g:limelight_default_coefficient = 0.7
+nnoremap <silent> <leader><space><space>f :<C-u>Limelight!!<CR>
+let g:which_key_map["\<space>"]["\<space>"]['f'] = 'focus mode'
 " }}}
 " {{{goyo.vim
 let g:goyo_width = 95
@@ -276,17 +294,8 @@ augroup GoyoCustom
   autocmd! User GoyoEnter Limelight
   autocmd! User GoyoLeave Limelight!
 augroup END
-nnoremap <silent> <leader><space><space>f :<C-u>Limelight!!<CR>
 nnoremap <silent> <leader><space><space>r :<C-u>Goyo<CR>
-let g:which_key_map["\<space>"]["\<space>"]['f'] = 'focus mode'
 let g:which_key_map["\<space>"]["\<space>"]['r'] = 'reading mode'
-" }}}
-" {{{pomodoro.vim
-let g:pomodoro_time_work = 25
-let g:pomodoro_time_slack = 5
-let g:pomodoro_status = 0
-nnoremap <silent> <leader><space><space>P :<c-u>call custom#utils#toggle_pomodoro()<cr>
-let g:which_key_map["\<space>"]["\<space>"]['P'] = 'pomodoro toggle'
 " }}}
 " {{{mundo
 let g:mundo_right = 1
