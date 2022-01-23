@@ -21,6 +21,8 @@ endif
 nnoremap ; :
 " q to quit
 nmap <silent> q :<C-u>q<CR>
+" Q to force quit
+nmap <silent> Q :<C-u>q!<CR>
 " <leader>q to close quickfix list
 nnoremap <silent> <leader>q :<C-u>cclose<CR>
 " m to record macro
