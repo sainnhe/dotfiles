@@ -148,6 +148,9 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'kana/vim-smartword'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'justinmk/vim-sneak'
+" Search
+Plug 'haya14busa/is.vim'
+Plug 'haya14busa/vim-asterisk'
 " Pairs
 Plug 'jiangmiao/auto-pairs'
 Plug 'andymass/vim-matchup'
@@ -155,13 +158,11 @@ Plug 'alvan/vim-closetag'
 " Other basic features
 Plug 'yianwillis/vimcdoc'
 Plug 'drmikehenry/vim-fixkey'
-Plug 'haya14busa/is.vim'
-Plug 'haya14busa/vim-asterisk'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-sleuth'
 Plug 'junegunn/vim-peekaboo'
 Plug 'airblade/vim-rooter'
 Plug 'jamessan/vim-gnupg'
-Plug 'editorconfig/editorconfig-vim'
 if has('nvim')
   Plug 'nathom/filetype.nvim'
 endif

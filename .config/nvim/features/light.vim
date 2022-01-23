@@ -163,6 +163,18 @@ omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 " }}}
 " }}}
+" {{{Search
+" {{{vim-asterisk
+map *   <Plug>(asterisk-z*)<Plug>(is-nohl-1)
+map #   <Plug>(asterisk-z#)<Plug>(is-nohl-1)
+map g*  <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
+map g#  <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
+map z*  <Plug>(asterisk-z*)
+map gz* <Plug>(asterisk-gz*)
+map z#  <Plug>(asterisk-z#)
+map gz# <Plug>(asterisk-gz#)
+" }}}
+" }}}
 " {{{Pairs
 " {{{auto-pairs
 let g:AutoPairsShortcutToggle = '<A-z>p'
@@ -205,21 +217,11 @@ if !has('nvim')
   execute "set <M-=>=\e="
 endif
 " }}}
-" {{{vim-asterisk
-map *   <Plug>(asterisk-z*)<Plug>(is-nohl-1)
-map #   <Plug>(asterisk-z#)<Plug>(is-nohl-1)
-map g*  <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
-map g#  <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
-map z*  <Plug>(asterisk-z*)
-map gz* <Plug>(asterisk-gz*)
-map z#  <Plug>(asterisk-z#)
-map gz# <Plug>(asterisk-gz#)
+" {{{editorconfig-vim
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " }}}
 " {{{vim-peekaboo
 let g:peekaboo_delay = 500
-" }}}
-" {{{editorconfig-vim
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " }}}
 if has('nvim')
 " {{{filetype.nvim
