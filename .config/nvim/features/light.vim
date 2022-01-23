@@ -91,8 +91,8 @@ noremap <silent> <leader>gd :Gdiffsplit<cr>
 noremap <silent> <leader>gw :Gwrite<cr>
 " {{{twiggy
 command Gbranch Twiggy
-nnoremap <silent> <leader>gB :<C-u>Twiggy<CR>
-let g:which_key_map['g']['B'] = 'branch'
+nnoremap <silent> <leader>gb :<C-u>Twiggy<CR>
+let g:which_key_map['g']['b'] = 'branch'
 let g:twiggy_local_branch_sort = 'mru'
 let g:twiggy_num_columns = 35
 let g:twiggy_close_on_fugitive_command = 1
@@ -246,11 +246,7 @@ noremap <silent> <leader>trp :AsyncTask project-run<cr>
 noremap <silent> <leader>tbf :AsyncTask file-build<cr>
 noremap <silent> <leader>tbp :AsyncTask project-build<cr>
 noremap <silent> <leader>te :AsyncTaskEdit<cr>
-noremap <silent> <leader>g^s :AsyncRun git config --global http.proxy "socks5://127.0.0.1:1080"<cr>
-noremap <silent> <leader>g^h :AsyncRun git config --global http.proxy "http://127.0.0.1:1081"<cr>
-noremap <silent> <leader>g$ :AsyncRun git config --global --unset http.proxy<cr>
 noremap <silent> <leader>gp :AsyncRun git push origin HEAD<cr>
-noremap <silent> <leader>gf :AsyncRun git fetch origin<cr>
 noremap <silent> <leader>gc :Git commit<cr>
 let g:which_key_map['t'] = {
       \ 'name': 'task',
@@ -258,11 +254,8 @@ let g:which_key_map['t'] = {
       \ 'b': {'name': 'build task', 'f': 'file', 'p': 'project'},
       \ 'e': 'edit config'
       \ }
-let g:which_key_map['g']['^'] = {'name': 'set proxy', 's': 'socks5', 'h': 'http'}
-let g:which_key_map['g']['$'] = 'unset proxy'
 let g:which_key_map['g']['c'] = 'commit'
 let g:which_key_map['g']['p'] = 'push'
-let g:which_key_map['g']['f'] = 'fetch'
 " }}}
 " {{{vim-translator
 let g:translator_target_lang = 'zh'

@@ -322,7 +322,7 @@ xmap ag <Plug>(coc-git-chunk-outer)
 nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
 nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
 nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
-nmap <silent> <leader>gF :<C-u>CocCommand git.foldUnchanged<CR>
+nmap <silent> <leader>gf :<C-u>CocCommand git.foldUnchanged<CR>
 nmap <silent> <leader>go :<C-u>CocCommand git.browserOpen<CR>
 nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
 nmap <silent> <leader>gla :<C-u>CocList commits<cr>
@@ -387,7 +387,7 @@ let g:which_key_map['g'] = {
       \   'a': 'chunk stage',
       \   's': 'status',
       \   'l': {'name': 'logs', 'a': 'log (all)', 'c': 'log (cur buf)', 'l': 'log (cur line)'},
-      \   'F': 'toggle fold unchanged',
+      \   'f': 'toggle fold unchanged',
       \   'o': 'open remote url in the browser',
       \   }
 let g:which_key_map['f'] = {
@@ -419,10 +419,6 @@ augroup END
 " {{{coc-project
 nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
 let g:which_key_map['f']['p'] = 'projects'
-" }}}
-" {{{coc-gitignore
-nnoremap <silent> <leader>gI :<c-u>CocList gitignore<cr>
-let g:which_key_map['g']['I'] = 'gitignore'
 " }}}
 " }}}
 " {{{vim-dasht
