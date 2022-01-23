@@ -71,16 +71,6 @@ let g:indentLine_setColors = 0  " disable overwrite with grey by default, use co
 " }}}
 endif
 " }}}
-" {{{Text objects
-call textobj#user#plugin('line', {
-      \   '-': {
-      \     'select-a-function': 'custom#textobj#al',
-      \     'select-a': 'al',
-      \     'select-i-function': 'custom#textobj#il',
-      \     'select-i': 'il',
-      \   },
-      \ })
-" }}}
 " {{{Git Integration
 " {{{vim-fugitive
 if !exists("g:which_key_map['g']")

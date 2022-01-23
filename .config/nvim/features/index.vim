@@ -127,12 +127,14 @@ else
 endif
 " Text objects
 Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-indent'
+Plug 'rhysd/vim-textobj-anyblock'
 Plug 'glts/vim-textobj-comment'
 Plug 'somini/vim-textobj-fold'
 Plug 'mattn/vim-textobj-url'
-Plug 'kana/vim-textobj-entire'
 Plug 'sgur/vim-textobj-parameter'
-Plug 'kana/vim-textobj-indent'
 " Git Integration
 Plug 'tpope/vim-fugitive', { 'on': ['Git', 'Gdiffsplit', 'Gwrite'] }
 Plug 'sodapopcan/vim-twiggy', { 'on': 'Twiggy' }

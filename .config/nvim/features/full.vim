@@ -333,6 +333,12 @@ nmap <silent> <leader>dk <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>df <Plug>(coc-fix-current)
 nmap <silent> <leader>dd :<C-u>CocDiagnostics<cr>
 nmap <silent> <leader>d<space> :<C-u>CocList diagnostics<cr>
+if !has('nvim')
+  xmap if <Plug>(coc-funcobj-i)
+  omap if <Plug>(coc-funcobj-i)
+  xmap af <Plug>(coc-funcobj-a)
+  omap af <Plug>(coc-funcobj-a)
+endif
 if !exists('g:which_key_map')
   let g:which_key_map = {
         \ 'name': 'Alpha',

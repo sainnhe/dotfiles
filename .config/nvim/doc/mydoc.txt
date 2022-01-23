@@ -145,19 +145,20 @@ Builtin~
 
 Extends~
 
-- `.`: Current Tree-Sitter Node
-- `f`: Function
-- `l`: Line
-- `c`: Comment (excluding spaces at the start of a line)
-- `C`：Comment (including spaces at the start of a line)
-- `z`：Fold
-- `g`：Git chunks
-- `u`：URL
-- `e`：Current buffer
 - `,`：Function parameter
-- `i`：Indents of current level and all next levels
+- `.`: Current Tree-Sitter Node
+- `C`：Comment (including spaces at the start of a line)
 - `I`：Indents of current level
 - `W`：Semantic word
+- `b`: Block
+- `c`: Comment (excluding spaces at the start of a line)
+- `e`：Current buffer
+- `f`: Function
+- `g`：Git chunks
+- `i`：Indents of current level and all next levels
+- `l`: Line
+- `u`：URL
+- `z`：Fold
 
 ==============================================================================
 vim:tw=78:nosta:noet:ts=8:sts=0:ft=help:noet:fen:fdm=marker:fmr={{{,}}}:
