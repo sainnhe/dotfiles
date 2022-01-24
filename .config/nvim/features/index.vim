@@ -185,6 +185,9 @@ Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
 Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencView'] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'sainnhe/vim-paste-rs', { 'on': '<Plug>(paste-rs)' }
+if has('nvim')
+  Plug 'jbyuki/nabla.nvim'
+endif
 " Unix-like OS specific
 if !has('win32')
   Plug 'lambdalisue/suda.vim'

@@ -350,6 +350,12 @@ nmap <leader><space><space>p <Plug>(paste-rs)
 xmap <leader><space><space>p <Plug>(paste-rs)
 let g:which_key_map["\<space>"]["\<space>"]['p'] = 'paste.rs'
 " }}}
+if has('nvim')
+" {{{nabla.nvim
+nnoremap <silent> <leader><space><space>m :<C-u>lua require("nabla").popup()<CR>
+let g:which_key_map["\<space>"]["\<space>"]['m'] = 'formula preview'
+" }}}
+endif
 " }}}
 " {{{Productivity
 if g:vim_mode ==# 'light'
