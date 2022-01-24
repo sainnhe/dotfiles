@@ -185,6 +185,7 @@ endif
 " {{{coc-init
 let g:coc_data_home = fnamemodify(custom#utils#stdpath('data'), ':p') . 'coc'
 let g:coc_global_extensions = [
+      \ 'coc-calc',
       \ 'coc-clangd',
       \ 'coc-cmake',
       \ 'coc-css',
