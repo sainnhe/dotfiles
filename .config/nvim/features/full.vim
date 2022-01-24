@@ -514,6 +514,34 @@ let g:which_key_map['f']['f'] = 'files'
 let g:which_key_map['f']['F'] = 'files all'
 let g:which_key_map['f']['b'] = 'buffers'
 let g:which_key_map['f']['h'] = 'help'
+" {{{providers
+function s:clap_provider_color_schemes_sink(selected) abort
+  execute 'call custom#colorscheme#' . a:selected . '()'
+endfunction
+function s:clap_provider_color_schemes_source() abort
+  return [
+        \ 'everforest_dark',
+        \ 'everforest_light',
+        \ 'gruvbox_material_dark',
+        \ 'gruvbox_mix_dark',
+        \ 'gruvbox_material_light',
+        \ 'edge_dark',
+        \ 'edge_light',
+        \ 'sonokai',
+        \ 'sonokai_shusia',
+        \ 'sonokai_andromeda',
+        \ 'sonokai_atlantis',
+        \ 'sonokai_maia',
+        \ 'sonokai_espresso',
+        \ 'soft_era'
+        \ ]
+endfunction
+let g:clap_provider_color_schemes = {}
+let g:clap_provider_color_schemes.source = function('s:clap_provider_color_schemes_source')
+let g:clap_provider_color_schemes.sink = function('s:clap_provider_color_schemes_sink')
+nnoremap <silent> <leader><space><space>C :<C-u>Clap color_schemes<CR>
+let g:which_key_map["\<space>"]["\<space>"]['C'] = 'color schemes'
+" }}}
 " }}}
 " {{{vCoolor.vim
 if !has('win32') && !has('osxdarwin')
