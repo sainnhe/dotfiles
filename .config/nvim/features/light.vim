@@ -333,16 +333,18 @@ command W w suda://%
 " }}}
 " {{{vim-manpager
 if exists('g:vim_man_pager') && !has('win32')
-  function! s:vim_manpager_mappings() abort
-    nmap <C-]> <Plug>(manpager-open)
-    nmap <silent><buffer> <C-j> ]t
-    nmap <silent><buffer> <C-k> [t
-    nnoremap <silent><buffer> E :<C-u>set modifiable<CR>
-  endfunction
-  augroup ManPagerCustom
-    autocmd!
-    autocmd FileType man call s:vim_manpager_mappings()
-  augroup END
+  let g:manpager_default_keymaps = 0
+  nmap <buffer><nowait> <CR>          <Plug>(manpager-open)
+  nmap <buffer><nowait> <C-]>         <Plug>(manpager-open)
+  nmap <buffer><nowait> <2-LeftMouse> <Plug>(manpager-open)
+  xmap <buffer><nowait> <CR>          <Plug>(manpager-open)
+  xmap <buffer><nowait> <C-]>         <Plug>(manpager-open)
+  xmap <buffer><nowait> <2-LeftMouse> <Plug>(manpager-open)
+  nmap <buffer><nowait> <Tab>         <Plug>(manpager-open-next)
+  nmap <buffer><nowait> <S-Tab>       <Plug>(manpager-open-previous)
+  nmap <buffer><nowait> <C-j>         <Plug>(manpager-next-keyword)
+  nmap <buffer><nowait> <C-k>         <Plug>(manpager-previous-keyword)
+  nmap <buffer><nowait> q             <Plug>(manpager-close)
 endif
 " }}}
 " {{{vim-paste-rs
