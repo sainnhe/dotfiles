@@ -218,15 +218,7 @@
         "asciidoc",
         "git-commit",
         "latex",
-        "markdown",
         "plaintext",
-        "restructuredtext",
         "text"
-    ],
-    "cSpell.userWords": [
-      "Sainnhe",
-      "Everforest",
-      "Sonokai",
-      "Gruvbox"
     ]
 }
