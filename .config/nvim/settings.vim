@@ -53,7 +53,9 @@ if !isdirectory(expand(&g:undodir))
   silent! call mkdir(expand(&g:undodir), 'p')
 endif
 
-let g:netrw_home = custom#utils#stdpath('cache')
+if g:vim_mode ==# 'minimal'
+  colorscheme desert
+endif
 
 if g:vim_mode !=# 'full'
   set noshowmode
@@ -79,16 +81,13 @@ if g:vim_mode !=# 'full'
   set statusline+=%{custom#utils#git_status()}
 endif
 
-if g:vim_mode ==# 'minimal'
-  colorscheme desert
-endif
-
 augroup VimSettings
   autocmd!
   autocmd FileType html,css,scss,typescript,vim set shiftwidth=2
   autocmd VimLeave * call custom#utils#set_cursor_shape()
 augroup END
 
+" Cursor Shape in Vim
 if !has('nvim')
   let &t_ti.="\e[1 q"
   let &t_SI.="\e[5 q"

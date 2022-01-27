@@ -20,13 +20,6 @@ else
   let g:vim_is_in_tmux = 0
 endif
 
-" Settings in manpager mode
-if exists('g:vim_man_pager')
-  let g:vim_enable_startify = 0
-else
-  let g:vim_enable_startify = 1
-endif
-
 " FVim
 if exists('g:fvim_loaded')
   FVimCursorSmoothMove v:true

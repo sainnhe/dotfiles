@@ -179,7 +179,6 @@ Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
 Plug 'AndrewRadev/inline_edit.vim', { 'on': 'InlineEdit' }
-Plug 'masukomi/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffAdd'] }
 Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
 Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencView'] }
@@ -228,7 +227,7 @@ elseif g:vim_mode ==# 'full'
     Plug 'sainnhe/tmuxline.vim', { 'on': ['Tmuxline', 'TmuxlineSnapshot'] }
   endif
   " Additional UI components
-  if g:vim_enable_startify == 1
+  if !exists('g:vim_man_pager')
     Plug 'mhinz/vim-startify'
   endif
 endif
@@ -240,5 +239,6 @@ if g:vim_mode ==# 'full'
   execute 'source ' . fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'features', ':p') . 'full.vim'
 endif
 execute 'source ' . fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'features', ':p') . 'light.vim'
+execute 'source ' . fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'features', ':p') . 'builtins.vim'
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

@@ -118,7 +118,7 @@ endif
 " }}}
 " {{{Additional UI components
 " {{{vim-startify
-if g:vim_enable_startify == 1
+if !exists('g:vim_man_pager')
   let g:startify_session_dir = fnamemodify(custom#utils#stdpath('data'), ':p') . 'sessions'
   let g:startify_files_number = 5
   let g:startify_update_oldfiles = 1
