@@ -6,11 +6,6 @@
 " License: Anti-996 && MIT
 " =============================================================================
 
-" Initialize &runtimepath
-if !has('win32')
-  set runtimepath-=/usr/share/vim/vimfiles
-endif
-
 " Settings in tmux
 if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
   let g:vim_is_in_tmux = 1
