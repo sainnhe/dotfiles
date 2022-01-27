@@ -105,6 +105,8 @@ setup_network() { #{{{
     sudo pacman -S proxychains
     sudo systemctl enable --now NetworkManager
     sudo cp ~/repo/dotfiles/.root/etc/proxychains.conf /etc/proxychains.conf
+    sudo systemctl enable --now iptables
+    sudo systemctl enable --now firewalld
 } #}}}
 setup_sddm() { #{{{
     sudo pacman -S sddm
