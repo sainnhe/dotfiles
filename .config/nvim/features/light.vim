@@ -336,6 +336,13 @@ nmap <leader><space><space>p <Plug>(paste-rs)
 xmap <leader><space><space>p <Plug>(paste-rs)
 let g:which_key_map["\<space>"]["\<space>"]['p'] = 'paste.rs'
 " }}}
+" {{{vim-carbon-now-sh
+vnoremap <silent> <leader><space><space>P :CarbonNowSh<CR>
+let g:carbon_now_sh_options = {
+      \ 'ln': 'true',
+      \ 'fm': 'Source Code Pro'
+      \ }
+" }}}
 if has('nvim')
 " {{{nabla.nvim
 nnoremap <silent> <leader><space><space>m :<C-u>lua require("nabla").popup()<CR>
