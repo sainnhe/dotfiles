@@ -18,8 +18,7 @@ export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
 export EDITOR="nvim"
-export PAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
-export MANPAGER="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
+export PAGER="nvim --cmd 'let g:vim_man_pager = 1' +Man!"
 export FuzzyFinder="fzf"
 # }}}
 # {{{general
@@ -272,7 +271,7 @@ alias cdr='cd $(git rev-parse --show-toplevel)'
 alias job-='fg %-'
 alias job-ls='jobs -l'
 alias nnn='PAGER= nnn'
-alias vimpager="nvim --cmd 'let g:vim_man_pager = 1' -c MANPAGER - -c 'filetype detect'"
+alias pager="${PAGER}"
 alias help='~/repo/dotfiles/scripts/help.sh'
 alias colorscheme='~/repo/dotfiles/scripts/colorscheme.sh'
 alias tmuxinit='~/repo/dotfiles/scripts/tmuxinit.sh'

@@ -9,7 +9,6 @@ autopairs                                    |mydoc-autopairs|
 closetag                                     |mydoc-closetag|
 matchup                                      |mydoc-matchup|
 suda                                         |mydoc-suda|
-manpager                                     |mydoc-manpager|
 textobj-user                                 |mydoc-textobj-user|
 operator-user                                |mydoc-operator-user|
 
@@ -108,14 +107,6 @@ DIFF                                                                *mydoc-diff*
 4. `:'<,'>LinediffAdd` to mark the second group of lines.
 5. You can use `:LinediffAdd` to mark more groups of lines.
 6. `:LinediffShow` to show diff.
-
-------------------------------------------------------------------------------
-MANPAGER                                                        *mydoc-manpager*
-
-- `<C-j>`/`<C-k>`: Jump to next/previous keyword
-- `<C-]>`: Open related pages of current keyword
-- `E`: Set current buffer to modifiable
-- `q`: Quit
 
 ------------------------------------------------------------------------------
 TEXTOBJ-USER                                                *mydoc-textobj-user*

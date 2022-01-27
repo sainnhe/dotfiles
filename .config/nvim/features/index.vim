@@ -190,7 +190,6 @@ endif
 " Unix-like OS specific
 if !has('win32')
   Plug 'lambdalisue/suda.vim'
-  Plug 'sainnhe/vim-manpager', { 'on': 'MANPAGER', 'branch': 'default-mappings' }
 endif
 
 " Productivity

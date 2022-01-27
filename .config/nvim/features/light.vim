@@ -331,22 +331,6 @@ let g:which_key_map["\<space>"]['e'] = 'inline edit'
 command! -nargs=1 E  edit  suda://<args>
 command W w suda://%
 " }}}
-" {{{vim-manpager
-if exists('g:vim_man_pager') && !has('win32')
-  let g:manpager_default_keymaps = 0
-  nmap <buffer><nowait> <CR>          <Plug>(manpager-open)
-  nmap <buffer><nowait> <C-]>         <Plug>(manpager-open)
-  nmap <buffer><nowait> <2-LeftMouse> <Plug>(manpager-open)
-  xmap <buffer><nowait> <CR>          <Plug>(manpager-open)
-  xmap <buffer><nowait> <C-]>         <Plug>(manpager-open)
-  xmap <buffer><nowait> <2-LeftMouse> <Plug>(manpager-open)
-  nmap <buffer><nowait> <Tab>         <Plug>(manpager-open-next)
-  nmap <buffer><nowait> <S-Tab>       <Plug>(manpager-open-previous)
-  nmap <buffer><nowait> <C-j>         <Plug>(manpager-next-keyword)
-  nmap <buffer><nowait> <C-k>         <Plug>(manpager-previous-keyword)
-  nmap <buffer><nowait> q             <Plug>(manpager-close)
-endif
-" }}}
 " {{{vim-paste-rs
 nmap <leader><space><space>p <Plug>(paste-rs)
 xmap <leader><space><space>p <Plug>(paste-rs)
