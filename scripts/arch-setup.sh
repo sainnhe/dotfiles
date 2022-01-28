@@ -122,8 +122,8 @@ setup_surface() { #{{{
     # Install the kernel and firmwares
     sudo pacman -S linux-surface-headers linux-surface surface-ipts-firmware
     # Post-Installation
-    pikaur -S update-grub aic94xx-firmware wd719x-firmware upd72020x-fw libwacom-surface surface-control surface-dtx-daemon iptsd power-profiles-daemon
-    sudo update-grub
+    pikaur -S aic94xx-firmware wd719x-firmware upd72020x-fw libwacom-surface surface-control surface-dtx-daemon iptsd power-profiles-daemon
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
     sudo systemctl enable --now surface-dtx-daemon.service
     sudo systemctl enable --now iptsd.service
     sudo pacman -Rs linux linux-headers
