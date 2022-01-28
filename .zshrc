@@ -341,16 +341,18 @@ FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
 # Tab/Down/S-Tab/Up     # navigate
 # C-s                   # Select items
 # C-p                   # Toggle preview
-export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_COMMAND='fd . --type=file --hidden'
 export FZF_DEFAULT_OPTS="
--m --height=50%
+--multi
+--height=50%
 --layout=reverse
 --prompt='❯ '
+--pointer='-'
+--marker='*'
 --ansi
 --tabstop=4
 --color=dark
---color=bg:-1,hl:2,fg+:4,bg+:-1,hl+:2
---color=info:1,prompt:2,pointer:5,marker:1,spinner:3,header:11
+--color=hl:2:bold,fg+:4:bold,bg+:-1,hl+:2:bold,info:3:bold,border:8,prompt:2,pointer:5,marker:1,header:6
 --bind=tab:down,btab:up,ctrl-s:toggle,ctrl-p:toggle-preview
 "
 
