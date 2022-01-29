@@ -319,7 +319,6 @@ zinit ice wait'0' lucid depth=1 \
 zinit light nevesnunes/sh-manpage-completions
 zinit ice wait'0' pick'.zsh-snippets' lucid; zinit light "$HOME"
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/extract/extract.plugin.zsh
-zinit ice wait'1' lucid; zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 zinit ice wait'0' lucid depth=1 \
     as"program" \
     pick"pfetch"
