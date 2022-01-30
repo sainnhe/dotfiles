@@ -133,7 +133,7 @@ if !exists('g:vim_man_pager')
         \ {'l': 'CocList'},
         \ {'f': 'Clap'},
         \ {'g': 'Clap grep'},
-        \ {'p': 'PlugStatus'}
+        \ {'u': 'Update'},
         \ ]
   " figlet -f slant <words>
   if has('nvim')

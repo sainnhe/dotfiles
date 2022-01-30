@@ -70,7 +70,6 @@ augroup VimPlug
   autocmd FileType vim-plug nnoremap <buffer> <silent> <Tab> :call <sid>plug_gx()<cr>
   autocmd FileType vim-plug call s:setup_extra_keys()
 augroup END
-command PU PlugUpdate | PlugUpgrade | CocUpdate
 " }}}
 call plug#begin(fnamemodify(custom#utils#stdpath('data'), ':p') . 'plugins')
 " }}}
@@ -240,5 +239,7 @@ if g:vim_mode ==# 'full'
 endif
 execute 'source ' . fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'features', ':p') . 'light.vim'
 execute 'source ' . fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'features', ':p') . 'builtins.vim'
+
+command Update PlugUpdate | PlugUpgrade | CocUpdate
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
