@@ -99,5 +99,13 @@ function custom#utils#set_cursor_shape() abort "{{{
     let &t_te.="\e[5 q"
   endif
 endfunction "}}}
+function custom#utils#update() abort "{{{
+  PlugUpdate
+  PlugUpgrade
+  CocUpdate
+  if has('nvim')
+    TSUpdate
+  endif
+endfunction "}}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
