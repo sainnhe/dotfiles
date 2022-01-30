@@ -248,7 +248,7 @@ call coc#config('snippets', {
 call coc#config('xml', {
       \ 'java': {
       \   'home': has('win32') ? 'C:\Users\gaoti\scoop\apps\openjdk\current' :
-        \ has('osxdarwin') ? '/Library/Java/JavaVirtualMachines/openjdk17-temurin/Contents/Home' :
+        \ has('osxdarwin') ? '/Library/Java/JavaVirtualMachines/openjdk17-oracle/Contents/Home' :
         \ '/usr/lib/jvm/default'
       \ }
       \ })
