@@ -64,7 +64,6 @@ setup_arch_repos() { #{{{
         | sudo pacman-key --add -
     sudo pacman-key --finger 16F249ED243F596E
     sudo pacman-key --lsign-key 16F249ED243F596E
-    git clone git@github.com:sainnhe/gnupg ~/.gnupg
 
     # linux surface
     wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
@@ -99,7 +98,6 @@ setup_repos() { #{{{
     sudo pacman -S python-pysocks asp
     printf "${BYELLOW}>> cat ~/.ssh/id_rsa.pub${NC}"
     cat ~/.ssh/id_rsa.pub
-    git clone git@github.com:sainnhe/gnupg.git ~/.gnupg
 } #}}}
 setup_network() { #{{{
     sudo pacman -S proxychains
