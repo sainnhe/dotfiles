@@ -5,4 +5,5 @@ export MANPATH="$port_prefix/share/man:$MANPATH"
 export OPENSSL_ROOT_DIR="$port_prefix"
 export PATH="$PATH:$port_prefix/libexec/llvm-13/bin"
 export PATH="$HOME/Library/Python/3.10/bin:$PATH"
+export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
 unset port_prefix
