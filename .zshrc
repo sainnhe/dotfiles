@@ -192,37 +192,8 @@ test_cmd_pre() { # {{{
 test_cmd() { # {{{
     test_cmd_pre "$1" && echo 'yes' || echo 'no'
 } # }}}
-zcomp-gen () { # {{{
-    echo "[1] manpage  [2] help"
-    read -r var
-    if [[ "$var"x == ""x ]]; then
-        var=1
-    fi
-    if [[ "$var"x == "1"x ]]; then
-        TARGET=$(find -L /usr/share/man -type f -print -o -type l \
-            -print -o  \( -path '*/\.*' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \) \
-            -prune 2> /dev/null |\
-            sed 's|\./||g' |\
-            sed '1i [cancel]' |\
-            fzf)
-        if [[ "$TARGET"x == "[cancel]"x ]]; then
-            echo ""
-        else
-            echo "$TARGET" | xargs -i sh ~/.zinit/plugins/nevesnunes---sh-manpage-completions/gencomp-manpage {}
-            zpcompinit
-        fi
-    elif [[ "$var"x == "2"x ]]; then
-        TARGET=$(compgen -cb | sed '1i [cancel]' | fzf)
-        if [[ "$TARGET"x == "[cancel]"x ]]; then
-            echo ""
-        else
-            gencomp "$TARGET"
-            zpcompinit
-        fi
-    fi
-} # }}}
 nvim-light () { # {{{
-    nvim --cmd "let g:vim_mode = 'light'" ${1}
+    nvim --cmd "let g:vim_mode = 'light'" "$@"
 } # }}}
 # {{{FuzzyFinder
 # fuzzy match dirs and cd
@@ -304,19 +275,7 @@ zinit ice wait'1' lucid depth=1; zinit light ytet5uy4/fzf-widgets
 zinit ice wait'0' lucid depth=1; zinit light urbainvaes/fzf-marks
 zinit ice wait'0' lucid depth=1; zinit light skywind3000/z.lua
 zinit ice wait'1' lucid depth=1; zinit light hlissner/zsh-autopair
-zinit ice wait'0' lucid depth=1; zinit light sainnhe/zsh-completions
-zinit ice wait'0' lucid depth=1 \
-    atload"export FPATH=$HOME/.zinit/plugins/RobSis---zsh-completion-generator/completions:$FPATH"
-zinit light RobSis/zsh-completion-generator
-zinit ice wait'0' lucid depth=1 \
-    atload"export FPATH=$HOME/.zinit/plugins/nevesnunes---sh-manpage-completions/completions/zsh:$FPATH" \
-    atload"zcomp_init" \
-    atclone"mv run.sh gencomp-manpage" \
-    atclone"sed -i -e '1i pushd ~/.zinit/plugins/nevesnunes---sh-manpage-completions/' gencomp-manpage" \
-    atclone"sed -i -e '\$a popd' gencomp-manpage" \
-    atpull"%atclone" \
-    as"program"
-zinit light nevesnunes/sh-manpage-completions
+zinit ice wait'0' lucid depth=1 atload"zcomp_init"; zinit light sainnhe/zsh-completions
 zinit ice wait'0' pick'.zsh-snippets' lucid; zinit light "$HOME"
 zinit ice wait'1' lucid; zinit snippet OMZ::plugins/extract/extract.plugin.zsh
 zinit ice wait'0' lucid depth=1 \
