@@ -192,6 +192,7 @@ let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-diagnostic',
       \ 'coc-dictionary',
+      \ 'coc-docker',
       \ 'coc-emmet',
       \ 'coc-emoji',
       \ 'coc-explorer',
