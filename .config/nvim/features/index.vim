@@ -199,10 +199,12 @@ if g:vim_mode ==# 'light'
 elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
-  Plug 'kkoomen/vim-doge', { 'do': {-> doge#install()}, 'on': 'DogeGenerate' }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
   if !has('win32')
     Plug 'sunaku/vim-dasht'
+    Plug 'kkoomen/vim-doge', { 'do': 'CXXFLAGS=--std=c++17 npm ci --no-save && npx ncc build ./src/index.ts -m -o build && mkdir ./bin && ln -sf $(pwd)/build/index.js ./bin/vim-doge && chmod +x ./bin/vim-doge', 'on': 'DogeGenerate' }
+  else
+    Plug 'kkoomen/vim-doge', {'do': { -> doge#install({ 'headless': 1 }) }}
   endif
   " Tree-sitter
   if has('nvim')
@@ -211,7 +213,7 @@ elseif g:vim_mode ==# 'full'
     Plug 'RRethy/nvim-treesitter-textsubjects'
   endif
   " Extended functional components, but with extra dependencies
-  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary', 'on': 'Clap' }
+  Plug 'liuchengxu/vim-clap', { 'do': 'cargo build --release', 'on': 'Clap' }
   Plug 'KabbAmine/vCoolor.vim', { 'on': 'VCoolor' }
   if executable('fcitx')
     Plug 'lilydjwg/fcitx.vim', { 'branch': 'fcitx4', 'on': [] }

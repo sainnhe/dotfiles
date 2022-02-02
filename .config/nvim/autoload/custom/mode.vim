@@ -42,6 +42,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
   let l:result = 1
   let l:dependencies = {
         \ 'universal': [
+          \ 'gcc',
           \ 'node',
           \ 'npm',
           \ 'yarn',
