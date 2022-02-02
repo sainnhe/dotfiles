@@ -22,7 +22,6 @@ export PAGER="nvim --cmd 'let g:vim_man_pager = 1' +Man!"
 export FuzzyFinder="fzf"
 # }}}
 # {{{general
-set -o monitor
 set +o nonotify
 umask 077
 setopt hist_save_no_dups hist_ignore_dups       # eliminate duplicate entries in history
