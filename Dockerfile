@@ -23,7 +23,8 @@ RUN apt install -y \
         ripgrep \
         julia \
         texlive \
-        shellcheck
+        shellcheck \
+        fzf
 
 RUN \
         git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles && \
@@ -33,9 +34,9 @@ RUN \
 # Zsh
 RUN \
         chsh -s /usr/bin/zsh && \
-        cp ~/repo/dotfiles/.zshrc ~ && \
-        cp ~/repo/dotfiles/.zsh-snippets ~ && \
-        cp ~/repo/dotfiles/.zsh-theme/everforest-dark.zsh ~/.zsh-theme
+        ln -s /root/repo/dotfiles/.zshrc ~/.zshrc && \
+        ln -s /root/repo/dotfiles/.zsh-snippets ~/.zsh-snippets && \
+        cp ~/repo/dotfiles/.zsh-theme/edge-dark.zsh ~/.zsh-theme
 RUN git clone --depth 1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
 SHELL ["/usr/bin/zsh", "-c"]
 RUN source ~/.zshrc
@@ -45,7 +46,7 @@ RUN zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true '
 RUN \
         git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm && \
         cp ~/repo/dotfiles/.tmux.conf ~ && \
-        cp -r ~/repo/dotfiles/.tmux/tmuxline ~/.tmux/tmuxline
+        ln -s /root/repo/dotfiles/.tmux/tmuxline ~/.tmux/tmuxline
 RUN \
         tmux start-server && \
         tmux new-session -d && \
@@ -54,16 +55,20 @@ RUN \
         tmux kill-server
 
 # Rust
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init
-RUN sh rustup-init --default-toolchain nightly --component rust-analyzer-preview rust-docs -y
-RUN cp -r ~/repo/dotfiles/.cargo ~
-RUN zsh -c "cargo install lsd"
+RUN \
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init && \
+        sh rustup-init --default-toolchain nightly --component rust-analyzer-preview rust-docs -y && \
+        rm rustup-init && \
+        cp -r ~/repo/dotfiles/.cargo ~ && \
+        zsh -c "cargo install lsd"
 
 # Vim/Neovim
-RUN mkdir -p ~/.config ~/.local/share/nvim
-RUN cp -r ~/repo/dotfiles/.config/nvim ~/.config/nvim
-RUN ln -s /root/.config/nvim ~/.vim
-RUN cp -r ~/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
+RUN \
+        mkdir -p ~/.config ~/.local/share/nvim && \
+        ln -s /root/repo/dotfiles/.config/nvim ~/.vim && \
+        ln -s /root/repo/dotfiles/.config/nvim ~/.config/nvim && \
+        ln -s /root/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets && \
+        cp ~/.vim/envs.example.vim ~/.vim/envs.vim
 # TODO: Install plugins
 # https://github.com/junegunn/vim-plug/issues/225
 # https://github.com/neoclide/coc.nvim/issues/118
@@ -71,6 +76,4 @@ RUN cp -r ~/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippet
 # RUN timeout 1m nvim --headless +CocInstall; exit 0
 # nvim --headless +"CocInstall -sync $extensions|qa"
 
-RUN \
-        rm rustup-init && \
-        mkdir ~/work
+RUN mkdir ~/work
