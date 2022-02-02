@@ -36,16 +36,17 @@ RUN \
         cp ~/repo/dotfiles/.zshrc ~ && \
         cp ~/repo/dotfiles/.zsh-snippets ~ && \
         cp ~/repo/dotfiles/.zsh-theme/everforest-dark.zsh ~/.zsh-theme
-RUN SHELL=/usr/bin/zsh zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true '
-# TODO: Install plugins
-# https://github.com/zdharma-continuum/zinit-configs/blob/master/Dockerfile
-# Possible solution: RUN SHELL=/bin/zsh zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true '
+RUN git clone --depth 1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
+SHELL ["/usr/bin/zsh", "-c"]
+RUN source ~/.zshrc
+RUN zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true '
 
 # Tmux
 RUN \
         git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm && \
         cp ~/repo/dotfiles/.tmux.conf ~ && \
-        cp -r ~/repo/dotfiles/.tmux/tmuxline ~/.tmux/tmuxline && \
+        cp -r ~/repo/dotfiles/.tmux/tmuxline ~/.tmux/tmuxline
+RUN \
         tmux start-server && \
         tmux new-session -d && \
         sleep 1 && \
@@ -56,7 +57,7 @@ RUN \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init
 RUN sh rustup-init --default-toolchain nightly --component rust-analyzer-preview rust-docs -y
 RUN cp -r ~/repo/dotfiles/.cargo ~
-RUN zsh -c "cargo install cargo-cache lsd && cargo install --all-features --git=https://github.com/latex-lsp/texlab --locked && cargo cache -a"
+RUN zsh -c "cargo install lsd"
 
 # Vim/Neovim
 RUN mkdir -p ~/.config ~/.local/share/nvim
