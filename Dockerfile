@@ -25,35 +25,51 @@ RUN apt install -y \
         texlive \
         shellcheck
 
-RUN git clone --depth=1 https://github.com/sainnhe/dotfiles
+RUN \
+        git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles && \
+        cp ~/repo/dotfiles/.gitconfig ~ && \
+        cp ~/repo/dotfiles/.gitignore_global ~
 
-RUN chsh -s /usr/bin/zsh
-RUN cp dotfiles/.zshrc ~
-RUN cp dotfiles/.zsh-snippets ~
-RUN cp dotfiles/.zsh-theme/everforest-dark.zsh ~/.zsh-theme
-
-RUN git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
-RUN cp dotfiles/.tmux.conf ~
-RUN cp -r dotfiles/.tmux/tmuxline ~/.tmux/tmuxline
-# TODO: Install plugins
-
-RUN mkdir -p ~/.config ~/.local/share/nvim
-RUN cp -r dotfiles/.config/nvim ~/.config/nvim
-RUN ln -s /root/.config/nvim ~/.vim
-RUN cp -r dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
-# TODO: Install plugins
-# https://github.com/junegunn/vim-plug/issues/225
-# Possible solution: nvim --headless +PlugInstall +qall
-
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init
-RUN sh rustup-init --default-toolchain nightly --component rust-analyzer-preview rust-docs -y
-RUN cp -r dotfiles/.cargo ~
-RUN zsh -c "cargo install cargo-cache lsd && cargo install --all-features --git=https://github.com/latex-lsp/texlab --locked && cargo cache -a"
+# Zsh
+RUN \
+        chsh -s /usr/bin/zsh && \
+        cp ~/repo/dotfiles/.zshrc ~ && \
+        cp ~/repo/dotfiles/.zsh-snippets ~ && \
+        cp ~/repo/dotfiles/.zsh-theme/everforest-dark.zsh ~/.zsh-theme
+RUN SHELL=/usr/bin/zsh zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true '
 # TODO: Install plugins
 # https://github.com/zdharma-continuum/zinit-configs/blob/master/Dockerfile
 # Possible solution: RUN SHELL=/bin/zsh zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true '
 
-RUN rm -rf dotfiles
-RUN rm rustup-init
+# Tmux
+RUN \
+        git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm && \
+        cp ~/repo/dotfiles/.tmux.conf ~ && \
+        cp -r ~/repo/dotfiles/.tmux/tmuxline ~/.tmux/tmuxline && \
+        tmux start-server && \
+        tmux new-session -d && \
+        sleep 1 && \
+        ~/.tmux/plugins/tpm/scripts/install_plugins.sh && \
+        tmux kill-server
 
-RUN mkdir ~/work
+# Rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init
+RUN sh rustup-init --default-toolchain nightly --component rust-analyzer-preview rust-docs -y
+RUN cp -r ~/repo/dotfiles/.cargo ~
+RUN zsh -c "cargo install cargo-cache lsd && cargo install --all-features --git=https://github.com/latex-lsp/texlab --locked && cargo cache -a"
+
+# Vim/Neovim
+RUN mkdir -p ~/.config ~/.local/share/nvim
+RUN cp -r ~/repo/dotfiles/.config/nvim ~/.config/nvim
+RUN ln -s /root/.config/nvim ~/.vim
+RUN cp -r ~/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
+# TODO: Install plugins
+# https://github.com/junegunn/vim-plug/issues/225
+# https://github.com/neoclide/coc.nvim/issues/118
+# Possible solution: nvim --headless +PlugInstall +qall
+# RUN timeout 1m nvim --headless +CocInstall; exit 0
+# nvim --headless +"CocInstall -sync $extensions|qa"
+
+RUN \
+        rm rustup-init && \
+        mkdir ~/work
