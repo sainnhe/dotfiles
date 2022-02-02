@@ -1,4 +1,4 @@
-include themes/everforest-dark
+include themes/edge-dark
 
 map j feedkeys 5<Down>
 map k feedkeys 5<Up>
