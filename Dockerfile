@@ -3,8 +3,8 @@
 # Build: docker build -t sainnhe/dotfiles .
 # Run:   docker run -v <workdir-on-local-machine>:/root/work -it sainnhe/dotfiles zsh
 
-FROM debian:latest
-RUN apt update && apt upgrade
+FROM debian:testing
+RUN apt update && apt upgrade -y
 RUN apt install -y \
         git \
         gcc \
@@ -23,9 +23,9 @@ RUN apt install -y \
         yarnpkg \
         clangd \
         ripgrep \
-        julia \
         texlive \
         shellcheck
+# TODO: julia, texlab
 
 RUN \
         git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles && \
@@ -70,11 +70,32 @@ RUN \
         ln -s /root/repo/dotfiles/.config/nvim ~/.config/nvim && \
         ln -s /root/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets && \
         cp ~/.vim/envs.example.vim ~/.vim/envs.vim
-# TODO: Install plugins
+RUN \
+        cp ~/repo/dotfiles/.yarnrc ~ && \
+        cp ~/repo/dotfiles/.npmrc ~ && \
+        git clone --depth=1 https://github.com/neoclide/coc.nvim.git ~/.local/share/nvim/plugins/coc.nvim && \
+        cd ~/.local/share/nvim/plugins/coc.nvim && \
+        yarnpkg install --frozen-lockfile && \
+        mkdir -p ~/.local/share/nvim/coc/extensions && \
+        cd ~/.local/share/nvim/coc/extensions && \
+        cat ~/.config/nvim/features/full.vim |\
+        grep "\\\ 'coc-" |\
+        sed -E -e 's/^.*coc//' -e "s/',//" -e 's/^/coc/' |\
+        xargs -I{} yarnpkg add {}; exit 0
+RUN \
+        nvim -es --cmd 'call custom#plug#install()' --cmd 'qa' && \
+        DOCKER_INIT=1 nvim --headless +PlugInstall +qall && \
+        DOCKER_INIT=1 vim +PlugInstall +qall > /dev/null
+RUN \
+        nvim --headless +"TSInstallSync maintained" +qall
 # https://github.com/junegunn/vim-plug/issues/225
 # https://github.com/neoclide/coc.nvim/issues/118
 # Possible solution: nvim --headless +PlugInstall +qall
 # RUN timeout 1m nvim --headless +CocInstall; exit 0
 # nvim --headless +"CocInstall -sync $extensions|qa"
 
-RUN mkdir ~/work
+RUN \
+        yarnpkg cache clean && \
+        npm cache clean --force && \
+        rm -rf ~/.cargo/git ~/.cargo/registry && \
+        mkdir ~/work
