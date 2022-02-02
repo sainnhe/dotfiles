@@ -9,11 +9,13 @@ RUN apt install -y \
         git \
         gcc \
         gdb \
+        pkg-config \
         curl \
         lua5.4 \
         zsh \
         tmux \
         python3-requests \
+        fzf \
         vim \
         neovim \
         nodejs \
@@ -23,8 +25,7 @@ RUN apt install -y \
         ripgrep \
         julia \
         texlive \
-        shellcheck \
-        fzf
+        shellcheck
 
 RUN \
         git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles && \
