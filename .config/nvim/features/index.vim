@@ -236,6 +236,10 @@ endif
 call plug#end()
 "}}}
 
+if $DOCKER_INIT ==# '1'
+  finish
+endif
+
 if g:vim_mode ==# 'full'
   execute 'source ' . fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'features', ':p') . 'full.vim'
 endif
