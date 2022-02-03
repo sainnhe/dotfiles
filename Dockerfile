@@ -103,7 +103,9 @@ RUN \
 # Post-install
 RUN \
         zypper clean --all && \
+        zypper ref && \
         yarn cache clean && \
         npm cache clean --force && \
         rm -rf ~/.cargo/git ~/.cargo/registry && \
+        rm -rf ~/bin && \
         mkdir ~/work
