@@ -3,29 +3,43 @@
 # Build: docker build -t sainnhe/dotfiles .
 # Run:   docker run -v <workdir-on-local-machine>:/root/work -it sainnhe/dotfiles zsh
 
-FROM debian:testing
-RUN apt update && apt upgrade -y
-RUN apt install -y \
+FROM opensuse/tumbleweed:latest
+RUN zypper ref && zypper up -y
+RUN zypper in -y \
         git \
         gcc \
+        gcc-c++ \
         gdb \
-        pkg-config \
+        make \
+        pkgconf-pkg-config \
+        libstdc++6 \
+        libopenssl-devel \
         curl \
-        lua5.4 \
+        lua54 \
         zsh \
+        tar \
+        gzip \
         tmux \
-        python3-requests \
+        terminfo \
         fzf \
         vim \
         neovim \
-        nodejs \
-        npm \
-        yarnpkg \
-        clangd \
+        nodejs16 \
+        nodejs16-devel \
+        nodejs16-docs \
+        npm16 \
+        yarn \
+        clang \
         ripgrep \
         texlive \
-        shellcheck
-# TODO: julia, texlab
+        ShellCheck \
+        julia \
+        python310 \
+        python310-pip
+RUN pip install \
+        requests \
+        cmake-language-server
+# TODO: texlab
 
 RUN \
         git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles && \
@@ -60,7 +74,6 @@ RUN \
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init && \
         sh rustup-init --default-toolchain nightly --component rust-analyzer-preview rust-docs -y && \
         rm rustup-init && \
-        cp -r ~/repo/dotfiles/.cargo ~ && \
         zsh -c "cargo install lsd"
 
 # Vim/Neovim
@@ -71,31 +84,26 @@ RUN \
         ln -s /root/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets && \
         cp ~/.vim/envs.example.vim ~/.vim/envs.vim
 RUN \
-        cp ~/repo/dotfiles/.yarnrc ~ && \
-        cp ~/repo/dotfiles/.npmrc ~ && \
         git clone --depth=1 https://github.com/neoclide/coc.nvim.git ~/.local/share/nvim/plugins/coc.nvim && \
         cd ~/.local/share/nvim/plugins/coc.nvim && \
-        yarnpkg install --frozen-lockfile && \
+        yarn install --frozen-lockfile && \
         mkdir -p ~/.local/share/nvim/coc/extensions && \
         cd ~/.local/share/nvim/coc/extensions && \
         cat ~/.config/nvim/features/full.vim |\
         grep "\\\ 'coc-" |\
         sed -E -e 's/^.*coc//' -e "s/',//" -e 's/^/coc/' |\
-        xargs -I{} yarnpkg add {}; exit 0
+        xargs -I{} yarn add {}; exit 0
 RUN \
         nvim -es --cmd 'call custom#plug#install()' --cmd 'qa' && \
         DOCKER_INIT=1 nvim --headless +PlugInstall +qall && \
         DOCKER_INIT=1 vim +PlugInstall +qall > /dev/null
 RUN \
         nvim --headless +"TSInstallSync maintained" +qall
-# https://github.com/junegunn/vim-plug/issues/225
-# https://github.com/neoclide/coc.nvim/issues/118
-# Possible solution: nvim --headless +PlugInstall +qall
-# RUN timeout 1m nvim --headless +CocInstall; exit 0
-# nvim --headless +"CocInstall -sync $extensions|qa"
 
+# Post-install
 RUN \
-        yarnpkg cache clean && \
+        zypper clean --all && \
+        yarn cache clean && \
         npm cache clean --force && \
         rm -rf ~/.cargo/git ~/.cargo/registry && \
         mkdir ~/work
