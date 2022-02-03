@@ -39,7 +39,6 @@ RUN zypper in -y \
 RUN pip install \
         requests \
         cmake-language-server
-# TODO: texlab
 
 RUN \
         git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles && \
@@ -74,7 +73,8 @@ RUN \
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init && \
         sh rustup-init --default-toolchain nightly --component rust-analyzer-preview rust-docs -y && \
         rm rustup-init && \
-        zsh -c "cargo install lsd"
+        zsh -c "cargo install lsd" && \
+        zsh -c "cargo install --all-features --git=https://github.com/latex-lsp/texlab --locked"
 
 # Vim/Neovim
 RUN \
@@ -92,7 +92,7 @@ RUN \
         cat ~/.config/nvim/features/full.vim |\
         grep "\\\ 'coc-" |\
         sed -E -e 's/^.*coc//' -e "s/',//" -e 's/^/coc/' |\
-        xargs -I{} yarn add {}; exit 0
+        xargs -I{} yarn add --ignore-scripts --no-lockfile --production --no-global --ignore-engines {}; exit 0
 RUN \
         nvim -es --cmd 'call custom#plug#install()' --cmd 'qa' && \
         DOCKER_INIT=1 nvim --headless +PlugInstall +qall && \
