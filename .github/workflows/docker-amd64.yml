@@ -5,7 +5,7 @@ on:
     paths:
       - 'Dockerfile'
   schedule:
-    - cron: "* * */3 * *"
+    - cron: "0 0 */3 * *"
 
 jobs:
   docker:
