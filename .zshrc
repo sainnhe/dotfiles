@@ -227,8 +227,6 @@ job-kill() {
 # }}}
 # }}}
 # {{{Alias
-alias ls='lsd'
-alias tree='lsd --tree'
 alias du='du -sh'
 alias df='df -h'
 alias cp='cp -ip'
@@ -255,6 +253,13 @@ alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
 alias npp='proxychains -q npm --registry https://registry.npmjs.org'
 alias scanip='~/repo/dotfiles/scripts/scanip.sh'
 alias manzh='man -L zh_CN.UTF-8'
+if [ -x "$(command -v lsd)" ]; then
+    alias ls='lsd'
+    alias tree='lsd --tree'
+elif [ -x "$(command -v exa)" ]; then
+    alias ls='exa'
+    alias tree='exa --tree'
+fi
 # }}}
 # {{{Plugins
 # https://github.com/zdharma-continuum/zinit
