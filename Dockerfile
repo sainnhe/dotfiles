@@ -10,7 +10,26 @@ RUN zypper in -y \
         gcc \
         gcc-c++ \
         gdb \
+        ntfs-3g \
+        wget \
+        net-tools \
+        traceroute \
+        mosh \
+        nmap \
+        w3m \
+        aria2 \
+        zip \
+        unzip \
+        unrar \
+        fd \
+        tealdeer \
         make \
+        cmake \
+        autoconf \
+        automake \
+        neofetch \
+        bottom \
+        nnn \
         pkgconf-pkg-config \
         libstdc++6 \
         libopenssl-devel \
@@ -35,7 +54,8 @@ RUN zypper in -y \
         ShellCheck \
         julia \
         python310 \
-        python310-pip
+        python310-pip && \
+        sync
 RUN pip install \
         requests \
         cmake-language-server
@@ -43,7 +63,9 @@ RUN pip install \
 RUN \
         git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles && \
         cp ~/repo/dotfiles/.gitconfig ~ && \
-        cp ~/repo/dotfiles/.gitignore_global ~
+        cp ~/repo/dotfiles/.gitignore_global ~ && \
+        cp -r ~/repo/dotfiles/.w3m ~ && \
+        cp -r ~/repo/dotfiles/.aria2 ~
 
 # Zsh
 RUN \
@@ -73,7 +95,7 @@ RUN \
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init && \
         sh rustup-init --default-toolchain nightly --component rust-analyzer-preview rust-docs -y && \
         rm rustup-init && \
-        zsh -c "cargo install lsd" && \
+        zsh -c "cargo install lsd du-dust" && \
         zsh -c "cargo install --all-features --git=https://github.com/latex-lsp/texlab --locked"
 
 # Vim/Neovim
@@ -102,6 +124,7 @@ RUN \
 
 # Post-install
 RUN \
+        tldr --update && \
         zypper clean --all && \
         zypper ref && \
         yarn cache clean && \
