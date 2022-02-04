@@ -23,15 +23,18 @@ if [ "$THEME"x == ""x ]; then
 fi
 
 _switch_color_scheme() {
-    sed -E -i.bak \
+    [ -f ~/.config/nvim/envs.vim ] && \
+        sed -E -i.bak \
         "s/let g:vim_color_scheme = '.*'/let g:vim_color_scheme = '$2'/" \
         ~/.config/nvim/envs.vim && \
         rm ~/.config/nvim/envs.vim.bak
-    sed -E -i.bak \
+    [ -f ~/.tmux.conf ] && \
+        sed -E -i.bak \
         "s/^source.*/source ~\/\.tmux\/tmuxline\/$1\.tmux\.conf/" \
         ~/.tmux.conf && \
         rm ~/.tmux.conf.bak
-    sed -E -i.bak \
+    [ -f ~/.config/zathura/zathurarc ] && \
+        sed -E -i.bak \
         "s/^include themes.*/include themes\/$1/" \
         ~/.config/zathura/zathurarc && \
         rm ~/.config/zathura/zathurarc.bak
