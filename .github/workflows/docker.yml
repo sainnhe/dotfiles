@@ -1,4 +1,4 @@
-name: Build and Push Docker Image (aarch64)
+name: Build and Push Docker Image
 
 on:
   push:
@@ -23,6 +23,5 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          platforms: linux/arm64
           push: true
           tags: sainnhe/dotfiles:latest
