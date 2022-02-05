@@ -110,13 +110,19 @@ RUN \
 RUN \
         git clone --depth=1 https://github.com/neoclide/coc.nvim.git ~/.local/share/nvim/plugins/coc.nvim && \
         cd ~/.local/share/nvim/plugins/coc.nvim && \
-        yarn install --frozen-lockfile && \
+        yarn install --frozen-lockfile
+RUN \
         mkdir -p ~/.local/share/nvim/coc/extensions && \
+        cd ~/.local/share/nvim/coc/extensions && \
         cat ~/.config/nvim/features/full.vim |\
         grep "\\\ 'coc-" |\
         sed -E -e 's/^.*coc//' -e "s/',//" -e 's/^/coc/' |\
-        xargs -I{} sh -c 'cd ~/.local/share/nvim/coc/extensions && npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps {}; cd ~/.local/share/nvim/coc/extensions/node_modules/{}; npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps' ; \
-        exit 0
+        xargs -I{} npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps {}; exit 0
+RUN \
+        cat ~/.config/nvim/features/full.vim |\
+        grep "\\\ 'coc-" |\
+        sed -E -e 's/^.*coc//' -e "s/',//" -e 's/^/coc/' |\
+        xargs -I{} sh -c "cd ~/.local/share/nvim/coc/extensions/node_modules/{}; npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps"; exit 0
 RUN \
         nvim -es --cmd 'call custom#plug#install()' --cmd 'qa' && \
         DOCKER_INIT=1 nvim --headless +PlugInstall +qall && \
