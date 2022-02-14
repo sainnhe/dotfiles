@@ -20,6 +20,8 @@ export SAVEHIST=$HISTSIZE
 export EDITOR="nvim"
 export PAGER="nvim --cmd 'let g:vim_man_pager = 1' +Man!"
 export FuzzyFinder="fzf"
+export GO111MODULE=on
+export GOPROXY=https://mirrors.aliyun.com/goproxy/
 # }}}
 # {{{general
 set +o nonotify
