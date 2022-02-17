@@ -61,3 +61,5 @@
 ;     insteadOf = https://github.com/
 ; [url "https://hub.fastgit.org/"]
 ;     insteadOf = https://github.com/
+; [url "https://ghproxy.com/https://github.com/"]
+;     insteadOf = https://github.com/
