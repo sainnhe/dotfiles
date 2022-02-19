@@ -343,6 +343,12 @@ let g:carbon_now_sh_options = {
       \ 'fm': 'Source Code Pro'
       \ }
 " }}}
+" {{{vim-header
+let g:header_field_author = 'Sainnhe Park'
+let g:header_field_author_email = 'sainnhe@gmail.com'
+nnoremap <silent> <leader><space><space>H :<C-u>AddHeader<CR>
+let g:which_key_map["\<space>"]["\<space>"]['H'] = 'add header'
+" }}}
 if has('nvim')
 " {{{nabla.nvim
 nnoremap <silent> <leader><space><space>m :<C-u>lua require("nabla").popup()<CR>

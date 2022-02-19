@@ -184,6 +184,7 @@ Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencView'] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'sainnhe/vim-paste-rs', { 'on': '<Plug>(paste-rs)' }
 Plug 'kristijanhusak/vim-carbon-now-sh', { 'on': 'CarbonNowSh' }
+Plug 'alpertuna/vim-header', { 'on': ['AddHeader', 'AddMinHeader'] }
 if has('nvim')
   Plug 'jbyuki/nabla.nvim'
 endif
