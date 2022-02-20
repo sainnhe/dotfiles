@@ -311,7 +311,7 @@ export FZF_DEFAULT_OPTS="
 --layout=reverse
 --prompt='❯ '
 --pointer='-'
---marker='*'
+--marker='+'
 --ansi
 --tabstop=4
 --color=dark
