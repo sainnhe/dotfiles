@@ -125,7 +125,8 @@ RUN \
         xargs -I{} sh -c "cd ~/.local/share/nvim/coc/extensions/node_modules/{}; npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps"; exit 0
 RUN \
         nvim -es --cmd 'call custom#plug#install()' --cmd 'qa' && \
-        DOCKER_INIT=1 nvim --headless +PlugInstall +qall
+        DOCKER_INIT=1 nvim --headless +PlugInstall +qall && \
+        DOCKER_INIT=1 nvim --headless +"helptags ALL" +qall
 RUN \
         nvim --headless +"TSInstallSync maintained" +qall
 
