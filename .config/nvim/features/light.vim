@@ -45,6 +45,7 @@ set colorcolumn=9999 " Fix for cursorline
 " }}}
 else
 " {{{indentLine
+call plug#load('indentLine')
 let g:indentLine_enabled = 1
 let g:indentLine_leadingSpaceEnabled = 0
 let g:indentLine_concealcursor = 'inc'

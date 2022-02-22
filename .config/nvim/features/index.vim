@@ -118,11 +118,8 @@ Plug 'sainnhe/sonokai'
 Plug 'sainnhe/everforest'
 " Additional UI components
 Plug 'liuchengxu/vim-which-key'
-if has('nvim')
-  Plug 'lukas-reineke/indent-blankline.nvim'
-else
-  Plug 'Yggdroot/indentLine'
-endif
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'Yggdroot/indentLine', { 'on': [] }
 " Text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
