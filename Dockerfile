@@ -44,6 +44,7 @@ RUN zypper in -y \
         terminfo \
         fzf \
         vim \
+        vim-data \
         neovim \
         nodejs16 \
         nodejs16-devel \
