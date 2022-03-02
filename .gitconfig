@@ -63,3 +63,5 @@
 ;     insteadOf = https://github.com/
 ; [url "https://ghproxy.com/https://github.com/"]
 ;     insteadOf = https://github.com/
+; [url "https://gh.gcdn.mirr.one/"]
+;     insteadOf = https://github.com/
