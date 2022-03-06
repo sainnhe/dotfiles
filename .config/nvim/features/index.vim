@@ -185,6 +185,10 @@ Plug 'alpertuna/vim-header', { 'on': ['AddHeader', 'AddMinHeader'] }
 if has('nvim')
   Plug 'jbyuki/nabla.nvim'
 endif
+" Games
+Plug 'johngrib/vim-game-code-break', { 'on': 'VimGameCodeBreak' }
+Plug 'johngrib/vim-game-snake', { 'on': 'VimGameSnake' }
+Plug 'mattn/vim-starwars', { 'on': 'StarWars' }
 " Unix-like OS specific
 if !has('win32')
   Plug 'lambdalisue/suda.vim'
