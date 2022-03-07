@@ -1,0 +1,50 @@
+snippet let declare an immutable variable
+	let ${1:my_var}: ${2:i32} = ${0:0};
+
+snippet letm declare a mutable variable
+	let mut ${1:my_var}: ${2:i32} = ${0:0};
+
+snippet const declare a constant
+	const ${1:my_const}: ${2:i32} = ${0:0};
+
+snippet fn function declaration
+	fn ${1:my_fn}(${2:para1: i32, para2: f64}) ${3:-> i32 }{
+		${0:/*statements*/}
+	}
+
+snippet fnc function declaration with comments
+	fn ${2:my_fn}(${3:para1: i32, para2: f64}) ${4:-> i32 }{ // ${1:comments}
+		${0:/*statements*/}
+	}
+
+snippet if if statement
+	if ${1:/*condition*/} {
+		${0:/*statements*/}
+	}
+
+snippet elif else if statement
+	else if ${1:/*condition*/} {
+		${0:/*statements*/}
+	}
+
+snippet el else statement
+	else {
+		${0:/*statements*/}
+	}
+
+snippet ifel if...else statement
+	if ${1:/*condition*/} {
+		${2:/*statements*/}
+	} else {
+		${3:/*statements*/}
+	}
+
+snippet loop loop statement
+	loop {
+		${0:/*statements*/}
+	}
+
+snippet whi while loop
+	while ${1:/*condition*/} {
+		${0:/*statements*/}
+	}

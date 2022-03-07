@@ -184,7 +184,6 @@ setup_vim() { #{{{
     mkdir -p ~/.local/share/nvim
     ln -sf /home/sainnhe/repo/dotfiles/.config/nvim ~/.vim
     ln -sf /home/sainnhe/repo/dotfiles/.config/nvim ~/.config/nvim
-    ln -sf /home/sainnhe/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets
 } #}}}
 setup_rust() { #{{{
     sudo pacman -S rustup

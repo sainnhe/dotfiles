@@ -243,9 +243,6 @@ let g:coc_hover_enable = 0
 call coc#config('project', {
       \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
       \ })
-call coc#config('snippets', {
-      \ 'userSnippetsDirectory': fnamemodify(custom#utils#stdpath('data'), ':p') . 'snippets',
-      \ })
 call coc#config('xml', {
       \ 'java': {
       \   'home': has('win32') ? 'C:\Users\gaoti\scoop\apps\openjdk\current' :
@@ -305,8 +302,6 @@ nmap <silent> <leader><space>cc <Plug>(coc-codeaction-cursor)
 vmap <silent> <leader><space>c <Plug>(coc-codeaction-selected)
 nmap <silent> <leader><space>o <Plug>(coc-openlink)
 nmap <silent> <leader><space>l <Plug>(coc-codelens-action)
-nmap <silent> <leader><space><space>so :<C-u>CocCommand snippets.openSnippetFiles<cr>
-nmap <silent> <leader><space><space>se :<C-u>CocCommand snippets.editSnippets<cr>
 nmap <silent> <leader><space>mf :<C-u>CocCommand prettier.formatFile<cr>
 nmap <silent> <leader><space>mp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
 nmap <silent> <leader><space>mi :<C-u>CocCommand markdown-preview-enhanced.openImageHelper<cr>
@@ -380,11 +375,6 @@ let g:which_key_map["\<space>"]['m'] = {
       \ 'I': 'image uploaded',
       \ 'r': 'run code chunk',
       \ 'R': 'run all code chunks',
-      \ }
-let g:which_key_map["\<space>"]["\<space>"]['s'] = {
-        \ 'name': 'snippets',
-        \ 'e': 'edit snippets for current file type',
-        \ 'o': 'open snippet file',
       \ }
 let g:which_key_map['g'] = {
       \   'name': 'git',

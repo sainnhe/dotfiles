@@ -1,0 +1,36 @@
+snippet if if statement
+	if ${1:condition}:${0:}
+
+snippet else else statement
+	else:${0:}
+
+snippet for for loop
+	for ${2:item} in ${1:enum}:${0:}
+
+snippet forlist for loop (list)
+	for ${2:index}, ${3:item} in enumerate(${1:lists}):${0:}
+
+snippet fordict for loop (dict)
+	for ${2:key}, ${3:value} in ${1:dict}.items():${0:}
+
+snippet def define a function
+	def ${1:function_name}(${2:parameter = "default value"}):
+
+snippet class define a class
+	class ${1:ClassName(BaseClass1, BaseClass2)}:${0:}
+
+snippet __init__ define __init__() in a class
+	def __init__(self${1:, parameter = "default value"}):${0:}
+
+snippet __init__.py Template of __init__.py
+	"""${4:Summary}
+	
+	${5:Description}
+	
+	"""
+	
+	from ${6:my_module} import ${7:*}
+	
+	__version__ = "${1:0.1.0}"
+	__author__ = "${2:Sainnhe Park} ${3:<sainnhe@gmail.com>}"
+	__all__ = ["${0:}"]

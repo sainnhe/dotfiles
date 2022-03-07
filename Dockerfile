@@ -106,7 +106,6 @@ RUN \
         mkdir -p ~/.config ~/.local/share/nvim && \
         ln -s /root/repo/dotfiles/.config/nvim ~/.vim && \
         ln -s /root/repo/dotfiles/.config/nvim ~/.config/nvim && \
-        ln -s /root/repo/dotfiles/.local/share/nvim/snippets ~/.local/share/nvim/snippets && \
         cp ~/.vim/envs.example.vim ~/.vim/envs.vim
 RUN \
         git clone --depth=1 https://github.com/neoclide/coc.nvim.git ~/.local/share/nvim/plugins/coc.nvim && \
