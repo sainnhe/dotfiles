@@ -320,6 +320,7 @@ let g:which_key_map["\<space>"]["\<space>"]['r'] = 'reading mode'
 " }}}
 " {{{mundo
 let g:mundo_right = 1
+let g:mundo_width = 30
 nnoremap <silent> <leader><space><space>u :<c-u>MundoToggle<cr>
 let g:which_key_map["\<space>"]["\<space>"]['u'] = 'undo'
 " }}}
