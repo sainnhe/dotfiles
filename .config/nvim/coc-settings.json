@@ -70,7 +70,7 @@
         "<C-k>": "do:previous",
         "<C-s>": "do:toggle",
         "<C-f>": "do:switch",
-        "<A-x>": "do:toggleMode",
+        "<A-x>": "do:togglemode",
         "<Down>": "prompt:next",
         "<Up>": "prompt:previous",
         "<C-v>": "prompt:paste"
