@@ -170,6 +170,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/asynctasks.vim', { 'on': ['AsyncTask', 'AsyncTaskEdit'] }
 Plug 'mg979/vim-visual-multi', { 'on': ['<Plug>(VM-Add-Cursor-At-Pos)', '<Plug>(VM-Visual-Cursors)'] }
 Plug 'scrooloose/nerdcommenter', { 'on': ['<Plug>NERDCommenterComment', '<Plug>NERDCommenterUncomment', '<Plug>NERDCommenterToggle'] }
+Plug 'vim-test/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
 Plug 'voldikss/vim-translator', { 'on': ['<Plug>TranslateW', '<Plug>TranslateWV'] }
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
