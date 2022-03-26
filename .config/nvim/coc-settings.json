@@ -182,6 +182,7 @@
         "gu": "gitUnstage"
     },
     "clangd.enabled": true,
+    "clangd.path": "clangd",
     "clangd.arguments": ["--clang-tidy", "--completion-style=detailed", "--fallback-style=google", "--header-insertion=iwyu", "--suggest-missing-includes"],
     "cmake.lsp.enable": true,
     "rust-analyzer.server.path": "rust-analyzer",
