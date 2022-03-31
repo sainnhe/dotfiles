@@ -180,7 +180,7 @@ Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffAdd'] }
 Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
 Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencView'] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
-Plug 'sainnhe/vim-paste-rs', { 'on': '<Plug>(paste-rs)' }
+Plug 'sainnhe/vim-paste-rs', { 'on': ['<Plug>(paste-rs)', 'PasteRsAddBuffer', 'PasteRsAddSelection', 'PasteRsDelete'] }
 Plug 'kristijanhusak/vim-carbon-now-sh', { 'on': 'CarbonNowSh' }
 Plug 'alpertuna/vim-header', { 'on': ['AddHeader', 'AddMinHeader'] }
 if has('nvim')
