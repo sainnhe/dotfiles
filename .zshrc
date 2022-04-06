@@ -263,6 +263,9 @@ elif [ -x "$(command -v exa)" ]; then
     alias ls='exa'
     alias tree='exa --tree'
 fi
+if [[ "$(uname)" == "Linux" ]]; then
+    alias open="xdg-open"
+fi
 # }}}
 # {{{Plugins
 # https://github.com/zdharma-continuum/zinit
