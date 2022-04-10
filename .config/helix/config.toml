@@ -1,0 +1,28 @@
+theme = "everforest_dark"
+
+[editor]
+completion-trigger-len = 1
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "block"
+
+[editor.file-picker]
+hidden = false
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
+[keys.normal]
+C-s = ":w"
+g = { a = "code_action" }
+
+[keys.insert]
+"A-x" = "normal_mode"
+

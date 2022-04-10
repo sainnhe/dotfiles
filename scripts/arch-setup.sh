@@ -39,6 +39,7 @@ setup_dotfiles() { #{{{
     setup_copy .config/xsettingsd
     setup_copy .config/autostart-scripts
     setup_symlink .config/fontconfig/fonts.conf
+    setup_symlink .config/helix/config.toml
     setup_copy .config/pikaur.conf
     setup_symlink .config/fcitx/conf
     setup_symlink .config/fcitx/config
