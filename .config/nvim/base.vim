@@ -68,9 +68,9 @@ if !filereadable(s:envs_path) " Create envs.vim if it doesn't exist
         \ 'endif',
         \ "if has('gui_running') || exists('g:fvim_loaded') || exists('g:neovide') || exists('g:nvui')",
         \ "  if !has('nvim') && !has('win32') && !has('osxdarwin')",
-        \ '    set guifont=Lilex\ iCursive\ Op\ 12',
+        \ '    set guifont=MonoLisa\ 12',
         \ '  else',
-        \ '    set guifont=Lilex\ iCursive\ Op:h12',
+        \ '    set guifont=MonoLisa:h12',
         \ '  endif',
         \ 'endif'
         \ ], s:envs_path, 'a')
