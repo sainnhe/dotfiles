@@ -34,7 +34,7 @@ _switch_color_scheme() {
             ~/.config/nvim/envs.vim && \
             rm ~/.config/nvim/envs.vim.bak
         sed -E -i.bak \
-            "s/let g:vim_italicize_keywords = .*/let g:vim_italicize_keywords = '${ITALICIZE}'/" \
+            "s/let g:vim_italicize_keywords = .*/let g:vim_italicize_keywords = ${ITALICIZE}/" \
             ~/.config/nvim/envs.vim && \
             rm ~/.config/nvim/envs.vim.bak
     fi
