@@ -18,6 +18,11 @@ THEME=$(printf "\
 fzf |\
 sed -E -e 's/^\[//' -e 's/].*//')
 
+ITALICIZE=$(printf "\
+0\n\
+1\n" |\
+fzf --header="Italicize or not")
+
 if [ "$THEME"x == ""x ]; then
     exit
 fi
@@ -25,19 +30,23 @@ fi
 _switch_color_scheme() {
     if [ -f ~/.config/nvim/envs.vim ]; then
         sed -E -i.bak \
-            "s/let g:vim_color_scheme = '.*'/let g:vim_color_scheme = '$2'/" \
+            "s/let g:vim_color_scheme = '.*'/let g:vim_color_scheme = '${2}'/" \
+            ~/.config/nvim/envs.vim && \
+            rm ~/.config/nvim/envs.vim.bak
+        sed -E -i.bak \
+            "s/let g:vim_italicize_keywords = .*/let g:vim_italicize_keywords = '${ITALICIZE}'/" \
             ~/.config/nvim/envs.vim && \
             rm ~/.config/nvim/envs.vim.bak
     fi
     if [ -f ~/.tmux.conf ]; then
         sed -E -i.bak \
-            "s/^source.*/source ~\/\.tmux\/tmuxline\/$1\.tmux\.conf/" \
+            "s/^source.*/source ~\/\.tmux\/tmuxline\/${1}\.tmux\.conf/" \
             ~/.tmux.conf && \
             rm ~/.tmux.conf.bak
     fi
     if [ -f ~/.config/zathura/zathurarc ]; then
         sed -E -i.bak \
-            "s/^include themes.*/include themes\/$1/" \
+            "s/^include themes.*/include themes\/${1}/" \
             ~/.config/zathura/zathurarc && \
             rm ~/.config/zathura/zathurarc.bak
     fi

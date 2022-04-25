@@ -4,6 +4,7 @@ endif
 let g:vim_plug_auto_install = 0
 let g:vim_lightline_artify = 0
 let g:vim_color_scheme = 'edge_dark'
+let g:vim_italicize_keywords = 0
 if !has('win32')
   let g:startify_bookmarks = [
         \ {'z': '~/.zshrc'},

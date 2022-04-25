@@ -8,6 +8,7 @@
 
 function custom#colorscheme#everforest_dark() abort "{{{
   let g:everforest_disable_italic_comment = 1
+  let g:everforest_enable_italic = g:vim_italicize_keywords
   let g:everforest_sign_column_background = 'none'
   let g:everforest_lightline_disable_bold = 1
   let g:everforest_better_performance = 1
@@ -19,6 +20,7 @@ function custom#colorscheme#everforest_dark() abort "{{{
 endfunction "}}}
 function custom#colorscheme#everforest_light() abort "{{{
   let g:everforest_disable_italic_comment = 1
+  let g:everforest_enable_italic = g:vim_italicize_keywords
   let g:everforest_sign_column_background = 'none'
   let g:everforest_lightline_disable_bold = 1
   let g:everforest_better_performance = 1
@@ -34,6 +36,7 @@ function custom#colorscheme#gruvbox_material_dark() abort "{{{
   let g:gruvbox_material_visual = 'grey background'
   let g:gruvbox_material_cursor = 'green'
   let g:gruvbox_material_disable_italic_comment = 1
+  let g:gruvbox_material_enable_italic = g:vim_italicize_keywords
   let g:gruvbox_material_sign_column_background = 'none'
   let g:gruvbox_material_statusline_style = 'mix'
   let g:gruvbox_material_lightline_disable_bold = 1
@@ -50,6 +53,7 @@ function custom#colorscheme#gruvbox_mix_dark() abort "{{{
   let g:gruvbox_material_visual = 'grey background'
   let g:gruvbox_material_cursor = 'green'
   let g:gruvbox_material_disable_italic_comment = 1
+  let g:gruvbox_material_enable_italic = g:vim_italicize_keywords
   let g:gruvbox_material_sign_column_background = 'none'
   let g:gruvbox_material_statusline_style = 'mix'
   let g:gruvbox_material_lightline_disable_bold = 1
@@ -66,6 +70,7 @@ function custom#colorscheme#gruvbox_material_light() abort "{{{
   let g:gruvbox_material_visual = 'green background'
   let g:gruvbox_material_cursor = 'auto'
   let g:gruvbox_material_disable_italic_comment = 1
+  let g:gruvbox_material_enable_italic = g:vim_italicize_keywords
   let g:gruvbox_material_sign_column_background = 'none'
   let g:gruvbox_material_statusline_style = 'mix'
   let g:gruvbox_material_lightline_disable_bold = 1
@@ -79,6 +84,7 @@ endfunction "}}}
 function custom#colorscheme#edge_dark() abort "{{{
   let g:edge_style = 'aura'
   let g:edge_disable_italic_comment = 1
+  let g:edge_enable_italic = g:vim_italicize_keywords
   let g:edge_cursor = 'blue'
   let g:edge_lightline_disable_bold = 1
   let g:edge_better_performance = 1
@@ -91,6 +97,7 @@ endfunction "}}}
 function custom#colorscheme#edge_light() abort "{{{
   let g:edge_style = 'aura'
   let g:edge_disable_italic_comment = 1
+  let g:edge_enable_italic = g:vim_italicize_keywords
   let g:edge_cursor = 'purple'
   let g:edge_lightline_disable_bold = 1
   let g:edge_better_performance = 1
@@ -103,7 +110,7 @@ endfunction "}}}
 function custom#colorscheme#sonokai() abort "{{{
   let g:sonokai_style = 'default'
   let g:sonokai_disable_italic_comment = 1
-  let g:sonokai_enable_italic = 1
+  let g:sonokai_enable_italic = g:vim_italicize_keywords
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
   let g:sonokai_better_performance = 1
@@ -116,7 +123,7 @@ endfunction "}}}
 function custom#colorscheme#sonokai_shusia() abort "{{{
   let g:sonokai_style = 'shusia'
   let g:sonokai_disable_italic_comment = 1
-  let g:sonokai_enable_italic = 1
+  let g:sonokai_enable_italic = g:vim_italicize_keywords
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
   let g:sonokai_better_performance = 1
@@ -129,7 +136,7 @@ endfunction "}}}
 function custom#colorscheme#sonokai_andromeda() abort "{{{
   let g:sonokai_style = 'andromeda'
   let g:sonokai_disable_italic_comment = 1
-  let g:sonokai_enable_italic = 1
+  let g:sonokai_enable_italic = g:vim_italicize_keywords
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
   let g:sonokai_better_performance = 1
@@ -142,7 +149,7 @@ endfunction "}}}
 function custom#colorscheme#sonokai_atlantis() abort "{{{
   let g:sonokai_style = 'atlantis'
   let g:sonokai_disable_italic_comment = 1
-  let g:sonokai_enable_italic = 1
+  let g:sonokai_enable_italic = g:vim_italicize_keywords
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
   let g:sonokai_better_performance = 1
@@ -155,7 +162,7 @@ endfunction "}}}
 function custom#colorscheme#sonokai_maia() abort "{{{
   let g:sonokai_style = 'maia'
   let g:sonokai_disable_italic_comment = 1
-  let g:sonokai_enable_italic = 1
+  let g:sonokai_enable_italic = g:vim_italicize_keywords
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
   let g:sonokai_better_performance = 1
@@ -168,7 +175,7 @@ endfunction "}}}
 function custom#colorscheme#sonokai_espresso() abort "{{{
   let g:sonokai_style = 'espresso'
   let g:sonokai_disable_italic_comment = 1
-  let g:sonokai_enable_italic = 1
+  let g:sonokai_enable_italic = g:vim_italicize_keywords
   let g:sonokai_cursor = 'blue'
   let g:sonokai_lightline_disable_bold = 1
   let g:sonokai_better_performance = 1
@@ -220,6 +227,7 @@ function custom#colorscheme#soft_era() abort "{{{
   let g:gruvbox_material_visual = 'grey background'
   let g:gruvbox_material_cursor = 'auto'
   let g:gruvbox_material_disable_italic_comment = 1
+  let g:gruvbox_material_enable_italic = g:vim_italicize_keywords
   let g:gruvbox_material_sign_column_background = 'none'
   let g:gruvbox_material_lightline_disable_bold = 1
   let g:gruvbox_material_better_performance = 1
