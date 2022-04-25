@@ -13,7 +13,6 @@ export MANPATH="$HOME/.local/share/man:$MANPATH"
 export MANPATH="/usr/local/share/man:$MANPATH"
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-export TERM=xterm-256color
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
