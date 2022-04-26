@@ -75,8 +75,10 @@
         "<Up>": "prompt:previous",
         "<C-v>": "prompt:paste"
     },
+    "coc.preferences.enableLinkedEditing": true,
     "coc.preferences.enableMessageDialog": true,
     "coc.preferences.formatOnType": true,
+    "links.tooltip": true,
     "git.changedSign.text": "▌",
     "git.addedSign.text": "▌",
     "git.removedSign.text": "▁",
