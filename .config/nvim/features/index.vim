@@ -215,6 +215,7 @@ elseif g:vim_mode ==# 'full'
     Plug 'nvim-treesitter/nvim-treesitter'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'RRethy/nvim-treesitter-textsubjects'
+    Plug 'lewis6991/spellsitter.nvim'
   endif
   " Extended functional components, but with extra dependencies
   Plug 'liuchengxu/vim-clap', { 'do': 'cargo build --release', 'on': 'Clap' }

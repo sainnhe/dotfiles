@@ -487,6 +487,10 @@ require'nvim-treesitter.configs'.setup {
     }
   }
 }
+
+require('spellsitter').setup {
+  enable = true,
+}
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
