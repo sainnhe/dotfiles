@@ -9,6 +9,7 @@
     "pyright": "1.1.206",
     "serve": "13.0.2",
     "typescript-language-server": "0.9.1",
+    "vercel": "^24.2.0",
     "vsce": "2.6.3",
     "yo": "4.3.0"
   }
