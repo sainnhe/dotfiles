@@ -206,7 +206,7 @@ elseif g:vim_mode ==# 'full'
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
   if !has('win32')
     Plug 'sunaku/vim-dasht'
-    Plug 'kkoomen/vim-doge', { 'do': 'CXXFLAGS=--std=c++17 npm ci --no-save && npx ncc build ./src/index.ts -m -o build && mkdir ./bin && ln -sf $(pwd)/build/index.js ./bin/vim-doge && chmod +x ./bin/vim-doge', 'on': 'DogeGenerate' }
+    Plug 'kkoomen/vim-doge', { 'do': 'CXXFLAGS=--std=c++17 npm ci --no-save && npx ncc build ./src/index.ts -m -o build && mkdir -p ./bin && ln -sf $(pwd)/build/index.js ./bin/vim-doge && chmod +x ./bin/vim-doge', 'on': 'DogeGenerate' }
   else
     Plug 'kkoomen/vim-doge', {'do': { -> doge#install({ 'headless': 1 }) }}
   endif
