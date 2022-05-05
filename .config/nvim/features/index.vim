@@ -161,6 +161,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'airblade/vim-rooter'
 Plug 'jamessan/vim-gnupg'
 if has('nvim')
+  Plug 'lewis6991/impatient.nvim'
   Plug 'nathom/filetype.nvim'
 endif
 " Extended functional components

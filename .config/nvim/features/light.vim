@@ -229,6 +229,9 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:peekaboo_delay = 500
 " }}}
 if has('nvim')
+" {{{impatient.nvim
+lua require('impatient')
+" }}}
 " {{{filetype.nvim
 let g:did_load_filetypes = 1
 " }}}
