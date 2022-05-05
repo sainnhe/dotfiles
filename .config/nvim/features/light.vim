@@ -301,9 +301,9 @@ let g:which_key_map['c'] = {
 let g:translator_target_lang = 'zh'
 let g:translator_source_lang = 'auto'
 let g:translator_default_engines = ['haici']
-nmap <leader><space>t <Plug>TranslateW
-vmap <leader><space>t <Plug>TranslateWV
-let g:which_key_map["\<space>"]['t'] = 'translate'
+nmap <leader><space><space>t <Plug>TranslateW
+vmap <leader><space><space>t <Plug>TranslateWV
+let g:which_key_map["\<space>"]["\<space>"]['t'] = 'translate'
 " }}}
 " {{{limelight.vim
 let g:limelight_default_coefficient = 0.7

@@ -98,7 +98,7 @@ RUN \
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init && \
         sh rustup-init --default-toolchain nightly --component rust-analyzer-preview rust-docs -y && \
         rm rustup-init && \
-        zsh -c "cargo install lsd du-dust rm-improved" && \
+        zsh -c "cargo install lsd du-dust rm-improved typos-cli" && \
         zsh -c "cargo install --all-features --git=https://github.com/latex-lsp/texlab --locked"
 
 # Vim/Neovim
