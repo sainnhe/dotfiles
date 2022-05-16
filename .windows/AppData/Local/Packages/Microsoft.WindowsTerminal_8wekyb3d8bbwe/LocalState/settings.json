@@ -118,14 +118,13 @@
         "list":
         [
             {
-                "acrylicOpacity": 0.69999999999999996,
-                "colorScheme": "GruvboxMaterialMediumDark",
+                "colorScheme": "EdgeDark",
                 "commandline": "powershell.exe -nologo",
-                "cursorColor": "#A9B665",
+                "cursorColor": "#6CB6EB",
                 "cursorShape": "bar",
                 "font":
                 {
-                    "face": "Lilex iCursive Op",
+                    "face": "MonoLisa",
                     "size": 11
                 },
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -134,14 +133,13 @@
                 "useAcrylic": false
             },
             {
-                "acrylicOpacity": 0.69999999999999996,
-                "colorScheme": "GruvboxMaterialMediumDark",
+                "colorScheme": "EdgeDark",
                 "commandline": "nu",
-                "cursorColor": "#A9B665",
+                "cursorColor": "#6CB6EB",
                 "cursorShape": "bar",
                 "font":
                 {
-                    "face": "Lilex iCursive Op",
+                    "face": "MonoLisa",
                     "size": 11
                 },
                 "hidden": false,
