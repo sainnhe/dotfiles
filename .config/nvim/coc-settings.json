@@ -78,6 +78,7 @@
     "coc.preferences.enableLinkedEditing": true,
     "coc.preferences.enableMessageDialog": true,
     "coc.preferences.formatOnType": true,
+    "coc.preferences.snippetHighlight": true,
     "links.tooltip": true,
     "git.changedSign.text": "▌",
     "git.addedSign.text": "▌",
