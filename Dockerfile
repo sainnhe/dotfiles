@@ -4,7 +4,7 @@
 # Run:   docker run -v <workdir-on-local-machine>:/root/work -it sainnhe/dotfiles zsh
 
 FROM opensuse/tumbleweed:latest
-RUN zypper ref && zypper up -y
+RUN zypper ref && zypper up -y && zypper rm -y busybox-findutils
 RUN zypper in -y \
         git \
         gcc \
