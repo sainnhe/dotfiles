@@ -6,6 +6,7 @@
 FROM opensuse/tumbleweed:latest
 RUN zypper ref && zypper up -y && zypper rm -y busybox-findutils
 RUN zypper in -y \
+        shadow \
         git \
         gcc \
         gcc-c++ \
