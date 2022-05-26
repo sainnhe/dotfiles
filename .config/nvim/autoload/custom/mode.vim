@@ -53,7 +53,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'julia',
           \ 'tex',
           \ 'texlab',
-          \ 'typos'
           \ ],
         \ 'darwin': [
           \ 'shellcheck',

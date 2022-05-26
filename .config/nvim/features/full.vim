@@ -223,7 +223,6 @@ let g:coc_global_extensions = [
       \ 'coc-texlab',
       \ 'coc-toml',
       \ 'coc-tsserver',
-      \ 'coc-typos',
       \ 'coc-vimlsp',
       \ 'coc-webview',
       \ 'coc-xml',
@@ -331,10 +330,6 @@ nmap <silent> <leader>dj <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>dk <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>df <Plug>(coc-fix-current)
 nmap <silent> <leader>dd :<C-u>CocDiagnostics<cr>
-nmap <silent> <leader><space>tj <Plug>(coc-typos-next)
-nmap <silent> <leader><space>tk <Plug>(coc-typos-prev)
-nmap <silent> <leader><space>tf <Plug>(coc-typos-fix)
-nmap <silent> <leader><space>tt :<C-u>CocList typos<cr>
 nmap <silent> <leader>d<space> :<C-u>CocList diagnostics<cr>
 if !has('nvim')
   xmap if <Plug>(coc-funcobj-i)
@@ -407,13 +402,6 @@ let g:which_key_map['d'] = {
       \   'f': 'fix',
       \   'j': 'next',
       \   'k': 'prev',
-      \   }
-let g:which_key_map["\<space>"]['t'] = {
-      \   'name': 'typos',
-      \   'j': 'next',
-      \   'k': 'prev',
-      \   'f': 'fix',
-      \   't': 'list',
       \   }
 nnoremap <silent> ? :let g:coc_hover_enable = (g:coc_hover_enable == 1 ? 0 : 1)<CR>
 " }}}
