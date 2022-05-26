@@ -32,7 +32,7 @@ function custom#colorscheme#everforest_light() abort "{{{
 endfunction "}}}
 function custom#colorscheme#gruvbox_material_dark() abort "{{{
   let g:gruvbox_material_background = 'medium'
-  let g:gruvbox_material_palette = 'material'
+  let g:gruvbox_material_foreground = 'material'
   let g:gruvbox_material_visual = 'grey background'
   let g:gruvbox_material_cursor = 'green'
   let g:gruvbox_material_disable_italic_comment = 1
@@ -49,7 +49,7 @@ function custom#colorscheme#gruvbox_material_dark() abort "{{{
 endfunction "}}}
 function custom#colorscheme#gruvbox_mix_dark() abort "{{{
   let g:gruvbox_material_background = 'medium'
-  let g:gruvbox_material_palette = 'mix'
+  let g:gruvbox_material_foreground = 'mix'
   let g:gruvbox_material_visual = 'grey background'
   let g:gruvbox_material_cursor = 'green'
   let g:gruvbox_material_disable_italic_comment = 1
@@ -66,7 +66,7 @@ function custom#colorscheme#gruvbox_mix_dark() abort "{{{
 endfunction "}}}
 function custom#colorscheme#gruvbox_material_light() abort "{{{
   let g:gruvbox_material_background = 'soft'
-  let g:gruvbox_material_palette = 'material'
+  let g:gruvbox_material_foreground = 'material'
   let g:gruvbox_material_visual = 'green background'
   let g:gruvbox_material_cursor = 'auto'
   let g:gruvbox_material_disable_italic_comment = 1
@@ -187,7 +187,7 @@ function custom#colorscheme#sonokai_espresso() abort "{{{
 endfunction "}}}
 function custom#colorscheme#soft_era() abort "{{{
   " {{{Palette
-  let g:gruvbox_material_palette = {
+  let g:gruvbox_material_colors_override = {
         \ 'bg0':              ['#f9f5f5',   '229'],
         \ 'bg1':              ['#f4f0f0',   '228'],
         \ 'bg2':              ['#f4f0f0',   '228'],
