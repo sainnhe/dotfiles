@@ -208,11 +208,11 @@ elseif g:vim_mode ==# 'full'
     Plug 'sunaku/vim-dasht'
     Plug 'kkoomen/vim-doge', { 'do': 'CXXFLAGS=--std=c++17 npm ci --no-save && npx ncc build ./src/index.ts -m -o build && mkdir -p ./bin && ln -sf $(pwd)/build/index.js ./bin/vim-doge && chmod +x ./bin/vim-doge', 'on': 'DogeGenerate' }
   else
-    Plug 'kkoomen/vim-doge', {'do': { -> doge#install({ 'headless': 1 }) }}
+    Plug 'kkoomen/vim-doge', { 'do': { -> doge#install({ 'headless': 1 }) } }
   endif
   " Tree-sitter
   if has('nvim')
-    Plug 'nvim-treesitter/nvim-treesitter'
+    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'RRethy/nvim-treesitter-textsubjects'
     Plug 'lewis6991/spellsitter.nvim'
