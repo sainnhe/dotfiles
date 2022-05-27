@@ -204,11 +204,9 @@ elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
+  Plug 'kkoomen/vim-doge', { 'do': { -> doge#install({ 'headless': 1 }) } }
   if !has('win32')
     Plug 'sunaku/vim-dasht'
-    Plug 'kkoomen/vim-doge', { 'do': 'CXXFLAGS=--std=c++17 npm ci --no-save && npx ncc build ./src/index.ts -m -o build && mkdir -p ./bin && ln -sf $(pwd)/build/index.js ./bin/vim-doge && chmod +x ./bin/vim-doge', 'on': 'DogeGenerate' }
-  else
-    Plug 'kkoomen/vim-doge', { 'do': { -> doge#install({ 'headless': 1 }) } }
   endif
   " Tree-sitter
   if has('nvim')
