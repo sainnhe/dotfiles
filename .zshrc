@@ -230,7 +230,7 @@ job-kill() {
 # {{{Alias
 alias du='du -sh'
 alias df='df -h'
-alias cp='cp -ip'
+alias cp='cp -p'
 alias mv='mv -i'
 alias cdh='pushd +$( dirs -v | "$FuzzyFinder" | grep -o "[[:digit:]]") > /dev/null'
 alias cdh-ls='dirs -vl | "$FuzzyFinder"'
