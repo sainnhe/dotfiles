@@ -494,6 +494,7 @@ require('spellsitter').setup {
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
 endif
 " }}}
 " {{{Extended functional components, but with extra dependencies
