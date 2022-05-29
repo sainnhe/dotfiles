@@ -189,7 +189,6 @@
     "clangd.arguments": ["--clang-tidy", "--completion-style=detailed", "--fallback-style=google", "--header-insertion=iwyu", "--suggest-missing-includes"],
     "cmake.lsp.enable": true,
     "rust-analyzer.server.path": "rust-analyzer",
-    "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.checkOnSave.command": "clippy",
     "rust-analyzer.inlayHints.enable": true,
     "rust-analyzer.inlayHints.typeHintsSeparator": "‣ ",
