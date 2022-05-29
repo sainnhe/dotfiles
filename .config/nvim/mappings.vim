@@ -93,15 +93,6 @@ nnoremap zh zk
 nnoremap zl zj
 nnoremap zj ]z
 nnoremap zk [z
-" zo/zc to open/close foldings
-nnoremap zo zO
-nnoremap zc zC
-" zO/zC to open/close foldings recursively
-nnoremap zO zR
-nnoremap zC zM
-" zf/zd to create/delete new foldings
-nnoremap zf zf
-nnoremap zd zd
 " zs/zl to save/load folding views
 nnoremap zs :<C-u>mkview<CR>
 nnoremap zl :<C-u>loadview<CR>
