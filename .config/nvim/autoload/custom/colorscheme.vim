@@ -9,7 +9,6 @@
 function custom#colorscheme#everforest_dark() abort "{{{
   let g:everforest_disable_italic_comment = 1
   let g:everforest_enable_italic = g:vim_italicize_keywords
-  let g:everforest_sign_column_background = 'none'
   let g:everforest_lightline_disable_bold = 1
   let g:everforest_better_performance = 1
   set background=dark
@@ -21,7 +20,6 @@ endfunction "}}}
 function custom#colorscheme#everforest_light() abort "{{{
   let g:everforest_disable_italic_comment = 1
   let g:everforest_enable_italic = g:vim_italicize_keywords
-  let g:everforest_sign_column_background = 'none'
   let g:everforest_lightline_disable_bold = 1
   let g:everforest_better_performance = 1
   set background=light
@@ -37,7 +35,6 @@ function custom#colorscheme#gruvbox_material_dark() abort "{{{
   let g:gruvbox_material_cursor = 'green'
   let g:gruvbox_material_disable_italic_comment = 1
   let g:gruvbox_material_enable_italic = g:vim_italicize_keywords
-  let g:gruvbox_material_sign_column_background = 'none'
   let g:gruvbox_material_statusline_style = 'mix'
   let g:gruvbox_material_lightline_disable_bold = 1
   let g:gruvbox_material_better_performance = 1
@@ -54,7 +51,6 @@ function custom#colorscheme#gruvbox_mix_dark() abort "{{{
   let g:gruvbox_material_cursor = 'green'
   let g:gruvbox_material_disable_italic_comment = 1
   let g:gruvbox_material_enable_italic = g:vim_italicize_keywords
-  let g:gruvbox_material_sign_column_background = 'none'
   let g:gruvbox_material_statusline_style = 'mix'
   let g:gruvbox_material_lightline_disable_bold = 1
   let g:gruvbox_material_better_performance = 1
@@ -71,7 +67,6 @@ function custom#colorscheme#gruvbox_material_light() abort "{{{
   let g:gruvbox_material_cursor = 'auto'
   let g:gruvbox_material_disable_italic_comment = 1
   let g:gruvbox_material_enable_italic = g:vim_italicize_keywords
-  let g:gruvbox_material_sign_column_background = 'none'
   let g:gruvbox_material_statusline_style = 'mix'
   let g:gruvbox_material_lightline_disable_bold = 1
   let g:gruvbox_material_better_performance = 1
@@ -228,7 +223,6 @@ function custom#colorscheme#soft_era() abort "{{{
   let g:gruvbox_material_cursor = 'auto'
   let g:gruvbox_material_disable_italic_comment = 1
   let g:gruvbox_material_enable_italic = g:vim_italicize_keywords
-  let g:gruvbox_material_sign_column_background = 'none'
   let g:gruvbox_material_lightline_disable_bold = 1
   let g:gruvbox_material_better_performance = 1
   set background=light
