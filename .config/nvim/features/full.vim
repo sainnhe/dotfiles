@@ -217,6 +217,7 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-spell-checker',
       \ 'coc-sql',
+      \ 'coc-svg',
       \ 'coc-syntax',
       \ 'coc-tag',
       \ 'coc-terminal',
