@@ -128,7 +128,7 @@ RUN \
         DOCKER_INIT=1 nvim --headless +PlugInstall +qall && \
         DOCKER_INIT=1 nvim --headless +"helptags ALL" +qall
 RUN \
-        nvim --headless +"TSInstallSync maintained" +qall
+        nvim --headless +"TSInstallSync all" +qall
 
 # Post-install
 RUN \
