@@ -23,7 +23,6 @@ RUN zypper in -y \
         gzip \
         zip \
         unzip \
-        unrar \
         findutils \
         fd \
         tealdeer \
@@ -57,7 +56,6 @@ RUN zypper in -y \
         ripgrep \
         texlive \
         ShellCheck \
-        julia \
         python310 \
         python310-pip && \
         sync
