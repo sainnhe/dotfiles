@@ -21,7 +21,9 @@ export PAGER="nvim --cmd 'let g:vim_man_pager = 1' +Man!"
 export FuzzyFinder="fzf"
 export GO111MODULE=on
 # export GOPROXY=https://mirrors.aliyun.com/goproxy/
-fpath=(/opt/local/share/zsh/site-functions $fpath)
+if [[ "$(uname)" == "Darwin" ]]; then
+    fpath=(/opt/local/share/zsh/site-functions $fpath)
+fi
 # }}}
 # {{{general
 set +o nonotify
@@ -254,7 +256,6 @@ alias proxyenv='export HTTP_PROXY=http://127.0.0.1:1081 && export HTTPS_PROXY=ht
 alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
 alias npp='proxychains -q npm --registry https://registry.npmjs.org'
 alias scanip='~/repo/dotfiles/scripts/scanip.sh'
-alias manzh='man -L zh_CN.UTF-8'
 alias cmake-export-compile-commands="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 if [ -x "$(command -v lsd)" ]; then
     alias ls='lsd'
@@ -265,6 +266,9 @@ elif [ -x "$(command -v exa)" ]; then
 fi
 if [[ "$(uname)" == "Linux" ]]; then
     alias open="xdg-open"
+    alias manzh='man -L zh_CN.UTF-8'
+else
+    alias manzh='man -M /opt/local/share/man/zh_CN'
 fi
 # }}}
 # {{{Plugins
