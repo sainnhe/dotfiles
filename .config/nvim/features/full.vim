@@ -462,7 +462,7 @@ if has('nvim')
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
-  ignore_install = { "phpdoc" },
+  ignore_install = { "phpdoc", "beancount" },
   highlight = {
     enable = true,
     disable = { "vim", "help" },
