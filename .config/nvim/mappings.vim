@@ -135,7 +135,11 @@ vnoremap x "_x
 vnoremap <S-up> <up><up><up><up><up>
 vnoremap <S-down> <down><down><down><down><down>
 vnoremap <S-left> 0
-vnoremap <S-right> $<left>
+if has('nvim')
+  vnoremap <S-right> $
+else
+  vnoremap <S-right> $<left>
+endif
 " Shift+HJKL to quickly move cursor
 vnoremap K 5<up>
 vnoremap J 5<down>
