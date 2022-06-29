@@ -120,6 +120,9 @@ Plug 'sainnhe/everforest'
 Plug 'liuchengxu/vim-which-key'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'Yggdroot/indentLine', { 'on': [] }
+if has('nvim')
+  Plug 'b0o/incline.nvim'
+endif
 " Text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'

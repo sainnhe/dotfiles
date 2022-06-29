@@ -43,6 +43,9 @@ let g:indent_blankline_buftype_exclude = ['terminal']
 let g:indent_blankline_show_current_context = 1
 set colorcolumn=9999 " Fix for cursorline
 " }}}
+" {{{incline.nvim
+lua require('incline').setup()
+" }}}
 else
 " {{{indentLine
 call plug#load('indentLine')
