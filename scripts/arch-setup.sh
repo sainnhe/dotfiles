@@ -173,7 +173,6 @@ setup_zsh() { #{{{
 setup_tmux() { #{{{
     sudo pacman -S xsel tmux python-requests
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    mkdir -p ~/.tmux
     cp /home/sainnhe/repo/dotfiles/.tmux.conf ~/.tmux.conf
     ln -s /home/sainnhe/repo/dotfiles/.tmux/tmuxline ~/.tmux/tmuxline
     printf "${BBLUE}>> Press ${BYELLOW}'prefix+I'${BBLUE} to install plugins.${NC}\n"
@@ -197,7 +196,7 @@ setup_rust() { #{{{
 } #}}}
 setup_npm() { #{{{
     cd ~
-    npm install
+    npm ci
 } #}}}
 setup_weechat() { #{{{
     proxychains -q curl -L --create-dirs -o ~/.weechat/python/autoload/autojoin.py http://www.weechat.org/files/scripts/autojoin.py
