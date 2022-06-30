@@ -137,6 +137,10 @@ setup_chroot() { #{{{
 127.0.1.1	myhostname.localdomain	myhostname
 EOF
     vim /etc/hosts
+    # cf: 1.1.1.1
+    # google: 8.8.8.8
+    # tencent: 119.29.29.29
+    vim /etc/resolv.conf
     grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux
     grub-mkconfig -o /boot/grub/grub.cfg
     # sed -ri -e 's/use_lvmetad = 1/use_lvmetad = 0/' /etc/lvm/lvm.conf
