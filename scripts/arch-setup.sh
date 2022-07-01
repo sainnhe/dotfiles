@@ -210,6 +210,7 @@ setup_plasma() { #{{{
     printf "${BBLUE}>> Set GRUB_DISABLE_OS_PROBER=false to enable detecting other OS-es.${NC}\n"
     printf "${BBLUE}>> Set GRUB_DEFAULT=x to change the boot order, where x is the index of boot item, begin by 0.${NC}\n"
     printf "${BBLUE}>> Execute 'grub-mkconfig -o /boot/grub/grub.cfg' to update grub.${NC}\n"
+    printf "${BBLUE}>> Execute 'systemctl enable --now sddm' to enable and start plasma session.${NC}\n"
 } #}}}
 setup_fonts() { #{{{
     pikaur -S fonts-meta
