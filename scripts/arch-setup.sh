@@ -207,14 +207,15 @@ setup_plasma() { #{{{
     libinput-gestures-setup autostart
     ln -sf /home/sainnhe/repo/dotfiles/.config/kwinrulesrc ~/.config/kwinrulesrc
     printf "${BBLUE}>> Edit /etc/default/grub to apply grub theme.${NC}\n"
-    printf "${BBLUE}>> Set GRUB_DISABLE_OS_PROBER=false to enable detecting other OSs.${NC}\n"
+    printf "${BBLUE}>> Set GRUB_DISABLE_OS_PROBER=false to enable detecting other OS-es.${NC}\n"
+    printf "${BBLUE}>> Set GRUB_DEFAULT=x to change the boot order, where x is the index of boot item, begin by 0.${NC}\n"
     printf "${BBLUE}>> Execute 'grub-mkconfig -o /boot/grub/grub.cfg' to update grub.${NC}\n"
 } #}}}
 setup_fonts() { #{{{
     pikaur -S fonts-meta
 } #}}}
 setup_apps() { #{{{
-    pikaur -S apps-common-meta apps-extra-meta
+    pikaur -S apps-common-meta apps-extra-meta pacman-hooks-meta
 } #}}}
 
 if [ "$1" = 'dotfiles' ]; then
