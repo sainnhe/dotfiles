@@ -282,7 +282,7 @@ nnoremap <silent><expr> <A-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<
 nnoremap <silent><expr> <A-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<A-u>"
 inoremap <silent><expr> <A-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<A-d>"
 inoremap <silent><expr> <A-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<A-u>"
-nnoremap <silent> <A-b> :<C-u>CocOutline<CR>
+nnoremap <silent><nowait> <A-b> :<C-u>call custom#explorer#toggle_outline()<CR>
 nnoremap <silent> <A-=> :<C-u>CocCommand terminal.Toggle<CR>
 tnoremap <silent> <A-=> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
 nnoremap <silent> <A--> :<C-u>CocCommand terminal.REPL<CR>
