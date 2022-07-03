@@ -16,8 +16,7 @@ function custom#explorer#startify() abort
 endfunction
 
 function custom#explorer#close_last() abort
-  let filetype = 'coc-explorer'
-  if winnr('$') == 1 && &filetype ==# filetype
+  if winnr('$') == 1 && (&filetype ==# 'coc-explorer' || &filetype ==# 'coctree')
     if tabpagenr() == 1
       call custom#utils#set_cursor_shape()
     endif
