@@ -300,6 +300,15 @@ let g:which_key_map['c'] = {
       \ 'c': 'toggle',
       \ }
 " }}}
+" {{{devdocs.vim
+nmap <leader><space>DC <Plug>(devdocs-under-cursor)
+nmap <leader><space>DA <Plug>(devdocs-under-cursor-all)
+let g:which_key_map["\<space>"]['D'] = {
+      \ 'name': 'devdocs',
+      \ 'C': 'Current file type',
+      \ 'A': 'All file types',
+      \ }
+" }}}
 " {{{vim-translator
 let g:translator_target_lang = 'zh'
 let g:translator_source_lang = 'auto'
