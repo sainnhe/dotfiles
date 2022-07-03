@@ -297,11 +297,6 @@ zinit ice wait'1' lucid depth=1 \
 zinit light dylanaraps/pfetch
 zinit ice wait'1' lucid depth=1 \
     as"program" \
-    pick"bin/*" \
-    atload"export MANPATH=$HOME/.zinit/plugins/sunaku---dasht/man:$MANPATH"
-zinit light sunaku/dasht
-zinit ice wait'1' lucid depth=1 \
-    as"program" \
     pick"sysz"
 zinit light joehillen/sysz
 # {{{fast-syntax-highlighting
