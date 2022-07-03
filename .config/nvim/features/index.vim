@@ -208,9 +208,6 @@ elseif g:vim_mode ==# 'full'
   Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install({ 'headless': 1 }) } }
-  if !has('win32')
-    Plug 'sunaku/vim-dasht'
-  endif
   " Tree-sitter
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }

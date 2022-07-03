@@ -435,27 +435,6 @@ nnoremap <silent> <leader>jj :<C-u>AnyJump<CR>
 xnoremap <silent> <leader>jj :AnyJumpVisual<CR>
 let g:which_key_map['j']['j'] = 'any jump'
 " }}}
-" {{{vim-dasht
-if !has('win32')
-  " Search related docsets
-  let g:dasht_filetype_docsets = {} " filetype => list of docset name regexp
-  " When in Elixir, also search Erlang:
-  let g:dasht_filetype_docsets['elixir'] = ['erlang']
-  " When in C, also search GLib:
-  let g:dasht_filetype_docsets['c'] = ['GLib']
-  " When in C++, also search C, Boost, OpenGL, Qt_5 and Qt_6:
-  let g:dasht_filetype_docsets['cpp'] = ['^c$', 'boost', 'OpenGL', 'Qt_5', 'Qt_6']
-  " When in Python, also search NumPy, SciPy, and Pandas:
-  let g:dasht_filetype_docsets['python'] = ['(num|sci)py', 'pandas']
-  " When in JavaScript, also search NodeJS:
-  let g:dasht_filetype_docsets['javascript'] = ['NodeJS']
-  " When in HTML, also search CSS, JavaScript, Bootstrap, and jQuery:
-  let g:dasht_filetype_docsets['html'] = ['css', 'js', 'bootstrap']
-  nnoremap <silent> <leader><space>D :call Dasht(dasht#cursor_search_terms())<Return>
-  vnoremap <silent> <leader><space>D y:<C-U>call Dasht(getreg(0))<Return>
-  let g:which_key_map["\<space>"]['D'] = 'dasht'
-endif
-" }}}
 " }}}
 " {{{Tree-sitter
 if has('nvim')
