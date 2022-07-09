@@ -41,7 +41,8 @@
     acm = commit -a
     cm-a = commit --amend
     ad = add
-    ad-u = reset HEAD --
+    adr = reset HEAD --
+    adu = add --update
     ad-fzf = !zsh $HOME/repo/dotfiles/scripts/forgit.zsh add
     logs = log --oneline --decorate --graph --pretty=format:\"(%h)  %an, %ar: %s\"
     logs-all = log --oneline --decorate --graph --all --pretty=format:\"(%h)  %an, %ar: %s\"
