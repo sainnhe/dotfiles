@@ -16,8 +16,10 @@ export LC_CTYPE=en_US.UTF-8
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
-export EDITOR="nvim"
-export PAGER="nvim --cmd 'let g:vim_man_pager = 1' +Man!"
+if [ -x "$(command -v nvim)" ]; then
+    export EDITOR="nvim"
+    export PAGER="nvim --cmd 'let g:vim_man_pager = 1' +Man!"
+fi
 export FuzzyFinder="fzf"
 export GO111MODULE=on
 # export GOPROXY=https://mirrors.aliyun.com/goproxy/
