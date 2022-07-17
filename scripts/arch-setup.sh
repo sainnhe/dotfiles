@@ -45,7 +45,6 @@ setup_dotfiles() { #{{{
     setup_symlink .config/fcitx/config
     setup_symlink .config/fcitx/profile
     setup_symlink package.json
-    setup_symlink package-lock.json
     setup_symlink .npmrc
     setup_copy .yarnrc
     setup_symlink .cargo/config.toml
