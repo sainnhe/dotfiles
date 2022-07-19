@@ -10,6 +10,7 @@
     "pyright": "1.1.261",
     "serve": "14.0.1",
     "typescript-language-server": "0.11.2",
+    "v2ray-tools": "0.1.0",
     "vercel": "27.1.5",
     "vsce": "2.9.3",
     "yo": "4.3.0"
