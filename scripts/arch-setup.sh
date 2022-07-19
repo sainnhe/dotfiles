@@ -86,11 +86,7 @@ setup_repos() { #{{{
     mkdir ~/repo
     cd ~/repo
     git clone https://github.com/sainnhe/dotfiles.git
-    git clone https://github.com/sainnhe/notes.git
-    cd dotfiles
-    git remote set-url origin git@github.com:sainnhe/dotfiles.git
-    cd ../notes
-    git remote set-url origin git@github.com:sainnhe/notes.git
+    git clone https://git.sainnhe.dev/sainnhe/notes.git
     cd ../
     git clone https://aur.archlinux.org/pikaur.git
     cd ~/repo/pikaur
