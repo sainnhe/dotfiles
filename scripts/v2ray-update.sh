@@ -15,5 +15,3 @@ curl -sL "${1}" | base64 --decode | while read line ; do
       exit 0
    fi
 done
-
-exit 3
