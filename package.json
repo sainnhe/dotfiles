@@ -5,13 +5,13 @@
     "cz-conventional-changelog": "3.3.0",
     "generator-code": "1.6.12",
     "localtunnel": "2.0.2",
-    "npm-check-updates": "15.3.4",
+    "npm-check-updates": "16.0.0",
     "ovsx": "0.5.1",
-    "pyright": "1.1.261",
+    "pyright": "1.1.263",
     "serve": "14.0.1",
     "typescript-language-server": "0.11.2",
     "v2ray-tools": "0.1.0",
-    "vercel": "27.1.5",
+    "vercel": "27.2.0",
     "vsce": "2.10.0",
     "yo": "4.3.0"
   }
