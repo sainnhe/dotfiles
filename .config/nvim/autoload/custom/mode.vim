@@ -46,6 +46,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'node',
           \ 'npm',
           \ 'yarn',
+          \ 'pnpm',
           \ 'cargo',
           \ 'clang',
           \ 'cmake-language-server',
