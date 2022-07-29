@@ -49,6 +49,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'clang',
           \ 'cmake-language-server',
           \ 'rg',
+          \ 'fzf',
           \ 'julia',
           \ 'tex',
           \ 'texlab',
