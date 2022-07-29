@@ -109,10 +109,6 @@ RUN \
         ln -s /root/repo/dotfiles/.config/nvim ~/.config/nvim && \
         cp ~/.vim/envs.example.vim ~/.vim/envs.vim
 RUN \
-        git clone --depth=1 https://github.com/neoclide/coc.nvim.git ~/.local/share/nvim/plugins/coc.nvim && \
-        cd ~/.local/share/nvim/plugins/coc.nvim && \
-        yarn install --frozen-lockfile
-RUN \
         mkdir -p ~/.local/share/nvim/coc/extensions && \
         cd ~/.local/share/nvim/coc/extensions && \
         cat ~/.config/nvim/features/full.vim |\
