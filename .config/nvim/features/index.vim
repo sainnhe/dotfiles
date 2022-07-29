@@ -221,7 +221,7 @@ elseif g:vim_mode ==# 'full'
     Plug 'lewis6991/spellsitter.nvim'
   endif
   " Extended functional components, but with extra dependencies
-  Plug 'liuchengxu/vim-clap', { 'do': 'cargo build --release', 'on': 'Clap' }
+  Plug 'liuchengxu/vim-clap', { 'on': 'Clap' }
   Plug 'KabbAmine/vCoolor.vim', { 'on': 'VCoolor' }
   if executable('fcitx')
     Plug 'lilydjwg/fcitx.vim', { 'branch': 'fcitx4', 'on': [] }

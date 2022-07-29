@@ -481,6 +481,7 @@ endif
 " {{{Extended functional components, but with extra dependencies
 " {{{vim-clap
 let g:clap_cache_directory = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'clap'
+let g:clap_default_external_filter = 'fzf'
 let g:clap_layout = { 'relative': 'editor' }
 let g:clap_search_box_border_style = 'nil'
 let g:clap_provider_grep_opts = '-H --no-heading --vimgrep --smart-case --hidden --no-ignore -g "!.git/"'
