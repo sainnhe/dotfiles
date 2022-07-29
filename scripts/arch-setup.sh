@@ -189,9 +189,9 @@ setup_rust() { #{{{
         rust-docs
     xdg-mime default firefox-developer-edition.desktop text/html
 } #}}}
-setup_npm() { #{{{
+setup_pnpm() { #{{{
     cd ~
-    npm ci
+    pnpm install
 } #}}}
 setup_weechat() { #{{{
     proxychains -q curl -L --create-dirs -o ~/.weechat/python/autoload/autojoin.py http://www.weechat.org/files/scripts/autojoin.py
@@ -236,8 +236,8 @@ elif [ "$1" = 'vim' ]; then
     setup_vim
 elif [ "$1" = 'rust' ]; then
     setup_rust
-elif [ "$1" = 'npm' ]; then
-    setup_npm
+elif [ "$1" = 'pnpm' ]; then
+    setup_pnpm
 elif [ "$1" = 'weechat' ]; then
     setup_weechat
 elif [ "$1" = 'plasma' ]; then
