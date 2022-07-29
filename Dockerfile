@@ -52,6 +52,7 @@ RUN zypper in -y \
         nodejs16-docs \
         npm16 \
         yarn \
+        pnpm \
         clang \
         ripgrep \
         texlive \
