@@ -52,7 +52,6 @@ RUN zypper in -y \
         nodejs16-docs \
         npm16 \
         yarn \
-        pnpm \
         clang \
         ripgrep \
         texlive \
@@ -63,6 +62,7 @@ RUN zypper in -y \
 RUN pip install \
         requests \
         cmake-language-server
+RUN npm install -g pnpm
 
 RUN \
         git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles && \
