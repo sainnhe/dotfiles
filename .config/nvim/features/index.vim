@@ -206,7 +206,7 @@ if g:vim_mode ==# 'light'
   Plug 'lifepillar/vim-mucomplete'
 elseif g:vim_mode ==# 'full'
   " Language features
-  Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
   if !has('win32')
     Plug 'kkoomen/vim-doge', { 'do': 'CXXFLAGS=--std=c++17 pnpm install && pnpm run build:binary:unix vim-doge && rm bin/vim-doge.tar.gz' }

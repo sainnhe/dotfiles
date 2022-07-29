@@ -44,8 +44,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
         \ 'universal': [
           \ 'gcc',
           \ 'node',
-          \ 'npm',
-          \ 'yarn',
           \ 'pnpm',
           \ 'cargo',
           \ 'clang',
