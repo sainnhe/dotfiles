@@ -5,6 +5,7 @@
     "suggest.timeout": 5000,
     "suggest.triggerCompletionWait": 30,
     "suggest.removeDuplicateItems": true,
+    "suggest.noselect": true,
     "suggest.completionItemKindLabels": {
         "keyword": "\uf1de",
         "variable": "\ue79b",

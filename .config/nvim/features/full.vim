@@ -264,20 +264,22 @@ endif
 " {{{coc-mappings
 inoremap <silent><expr> <C-j>
       \ coc#jumpable() ? "\<C-R>=coc#rpc#request('snippetNext', [])\<cr>" :
-      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#pum#visible() ? coc#_select_confirm() :
       \ "\<Down>"
 inoremap <silent><expr> <C-k>
       \ coc#jumpable() ? "\<C-R>=coc#rpc#request('snippetPrev', [])\<cr>" :
       \ "\<Up>"
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" :
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) :
+      \ custom#utils#check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) :
       \ custom#utils#check_back_space() ? "\<S-TAB>" :
       \ coc#refresh()
-inoremap <silent><expr> <CR> pumvisible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
-inoremap <silent><expr> <up> pumvisible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
-inoremap <silent><expr> <down> pumvisible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
-inoremap <silent><expr> <left> pumvisible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
-inoremap <silent><expr> <right> pumvisible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
+inoremap <silent><expr> <up> coc#pum#visible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
+inoremap <silent><expr> <down> coc#pum#visible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
+inoremap <silent><expr> <left> coc#pum#visible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
+inoremap <silent><expr> <right> coc#pum#visible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
 nnoremap <silent><expr> <A-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<A-d>"
 nnoremap <silent><expr> <A-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<A-u>"
 inoremap <silent><expr> <A-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<A-d>"
