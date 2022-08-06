@@ -292,6 +292,7 @@ tnoremap <silent> <A--> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
 nmap <silent> <leader>f<Space> :<C-u>CocList<CR>
 nmap <silent> <leader>fy :<C-u>CocList yank<CR>
 nmap <silent> <leader>fs :<C-u>CocList symbols<CR>
+nmap <silent> <leader>fh :<C-u>CocList helptags<CR>
 nmap <silent> <leader>jd <Plug>(coc-definition)
 nmap <silent> <leader>jD <Plug>(coc-declaration)
 nmap <silent> <leader>jt <Plug>(coc-type-definition)
@@ -397,6 +398,7 @@ let g:which_key_map['f'] = {
       \   "\<Space>": 'list',
       \   's': 'symbols',
       \   'y': 'yank',
+      \   'h': 'help',
       \   }
 let g:which_key_map['d'] = {
       \   'name': 'diagnostics',
@@ -492,13 +494,11 @@ nnoremap <silent> <leader>fL :<C-u>Clap lines<CR>
 nnoremap <silent> <leader>ff :<C-u>Clap files ++finder=rg --files --follow<CR>
 nnoremap <silent> <leader>fF :<C-u>Clap files ++finder=rg --files --follow --hidden --no-ignore<CR>
 nnoremap <silent> <leader>fb :<C-u>Clap buffers<CR>
-nnoremap <silent> <leader>fh :<C-u>Clap help_tags<CR>
 let g:which_key_map['f']['l'] = 'lines'
 let g:which_key_map['f']['L'] = 'lines all'
 let g:which_key_map['f']['f'] = 'files'
 let g:which_key_map['f']['F'] = 'files all'
 let g:which_key_map['f']['b'] = 'buffers'
-let g:which_key_map['f']['h'] = 'help'
 " {{{providers
 function s:clap_provider_color_schemes_sink(selected) abort
   execute 'call custom#colorscheme#' . a:selected . '()'
