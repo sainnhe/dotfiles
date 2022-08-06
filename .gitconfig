@@ -21,6 +21,7 @@
     defaultBranch = master
 [alias]
     cl = clone --depth 1
+    cn = clean -dfx -- .
     ps = push
     ft = fetch
     pl = pull
