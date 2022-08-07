@@ -2,7 +2,7 @@
 " URL: https://github.com/sainnhe/dotfiles
 " Filename: .config/nvim/mappings.vim
 " Author: Sainnhe Park
-" Email: sainnhe@gmail.com
+" Email: i@sainnhe.dev
 " License: Anti-996 && MIT
 " =============================================================================
 

@@ -2,7 +2,7 @@
 " URL: https://github.com/sainnhe/dotfiles
 " Filename: .config/nvim/features/light.vim
 " Author: Sainnhe Park
-" Email: sainnhe@gmail.com
+" Email: i@sainnhe.dev
 " License: Anti-996 && MIT
 " =============================================================================
 
@@ -362,7 +362,7 @@ let g:carbon_now_sh_options = {
 " }}}
 " {{{vim-header
 let g:header_field_author = 'Sainnhe Park'
-let g:header_field_author_email = 'sainnhe@gmail.com'
+let g:header_field_author_email = 'i@sainnhe.dev'
 nnoremap <silent> <leader><space><space>H :<C-u>AddHeader<CR>
 let g:which_key_map["\<space>"]["\<space>"]['H'] = 'add header'
 " }}}
