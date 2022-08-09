@@ -231,6 +231,20 @@ job-kill() {
     kill %"$JOB_ID"
 }
 # }}}
+pb() {
+    _server_url="https://paste.sainnhe.dev"
+    if [ "${1}" = "delete" ]; then
+        curl -X DELETE "${2}"
+    elif [ "${1}" = "upload" ]; then
+        curl -Fc=@"${2}" "${_server_url}"
+    elif [ "${1}" = "cat" ]; then
+        curl -Fc="$(cat)" "${_server_url}"
+    elif [ "${1}" = "get" ]; then
+        curl -L "${2}"
+    else
+        print "USAGE:\n    pb [SUBCOMMAND]\n\nSUBCOMMANDS:\n    delete  <admin-url>\n    upload  <file>\n    cat     <stdio>\n    get     <url>\n"
+    fi
+}
 # }}}
 # {{{Alias
 alias du='du -sh'
