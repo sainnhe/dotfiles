@@ -21,7 +21,7 @@
     defaultBranch = master
 [alias]
     cl = clone --depth 1
-    cn = clean -dfx -- .
+    cn = clean -dfx --
     ps = push
     ft = fetch
     pl = pull
@@ -35,9 +35,8 @@
     df = diff --color
     df-staged = diff --staged --color
     df-fzf = !zsh $HOME/repo/dotfiles/scripts/forgit.zsh diff
-    co = checkout
-    co-rs = checkout --
-    co-rs-fzf = !zsh $HOME/repo/dotfiles/scripts/forgit.zsh restore
+    co = checkout --
+    co-fzf = !zsh $HOME/repo/dotfiles/scripts/forgit.zsh restore
     cm = commit
     acm = commit -a
     cm-a = commit --amend
