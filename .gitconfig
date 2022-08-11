@@ -35,7 +35,7 @@
     df = diff --color
     df-staged = diff --staged --color
     df-fzf = !zsh $HOME/repo/dotfiles/scripts/forgit.zsh diff
-    co = checkout --
+    co = checkout
     co-fzf = !zsh $HOME/repo/dotfiles/scripts/forgit.zsh restore
     cm = commit
     acm = commit -a
