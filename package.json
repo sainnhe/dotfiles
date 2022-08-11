@@ -12,7 +12,7 @@
     "serve": "14.0.1",
     "typescript-language-server": "1.0.0",
     "v2ray-tools": "0.1.0",
-    "vercel": "27.3.7",
+    "vercel": "27.4.0",
     "vsce": "2.10.0",
     "yo": "4.3.0"
   }
