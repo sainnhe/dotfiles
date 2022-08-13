@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:experimental
 
 # Build: docker build -t sainnhe/dotfiles .
-# Run:   docker run -v <workdir-on-local-machine>:/root/work -it sainnhe/dotfiles zsh
+# Run:   docker run -v <workdir-on-local-machine>:/root/work -it --rm sainnhe/dotfiles zsh
 
 FROM opensuse/tumbleweed:latest
 RUN zypper ref && zypper up -y
@@ -131,7 +131,6 @@ RUN \
 RUN \
         tldr --update && \
         zypper clean --all && \
-        zypper ref && \
         yarn cache clean && \
         npm cache clean --force && \
         rm -rf ~/.cargo/git ~/.cargo/registry && \
