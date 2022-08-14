@@ -122,6 +122,7 @@ setup_surface() { #{{{
     sudo systemctl enable --now iptsd.service
     sudo pacman -Rs linux linux-headers
     sudo sync
+    echo "To configure kexec: sudo kexec -l /boot/vmlinuz-linux-surface --initrd=/boot/initramfs-linux-surface.img --reuse-cmdline"
 } #}}}
 setup_nvidia() { #{{{
     printf "${BYELLOW}>> Edit PKGBUILD for optimus-manager-qt${NC} [Enter to continue] "
