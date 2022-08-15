@@ -341,10 +341,8 @@ export FZF_DEFAULT_OPTS="
 # C-f fzf-widgets
 # C-r history search
 # **<Tab> fuzzy matching path
-if [ -d /usr/share/fzf ]; then
-    source /usr/share/fzf/completion.zsh
-    source /usr/share/fzf/key-bindings.zsh
-fi
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 bindkey '^F'  fzf-select-widget
 bindkey '^R'  fzf-insert-history
 bindkey -r "^[c"
