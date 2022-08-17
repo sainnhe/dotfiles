@@ -14,7 +14,7 @@ It's not recommended to directly copy my configs, unless you know what they mean
 
 However I built a container image for portable development, you can try it out if you are interested in my config :)
 
-This container image is based on openSUSE Tumbleweed and will be built every 3 days. It features the following:
+This container image is based on alpine and will be built on schedule. It features the following:
 
 - Vim/Neovim
 - Zsh
@@ -24,18 +24,21 @@ This container image is based on openSUSE Tumbleweed and will be built every 3 d
 To try it, install podman and run this command:
 
 ```shell
-podman run -it sainnhe/dotfiles:latest zsh
+podman run -it --rm <registry>/sainnhe/dotfiles:latest
 ```
+
+Where `<registry>` is one of the following:
+
+- [`docker.io`](https://hub.docker.com/r/sainnhe/dotfiles)
+- [`ghcr.io`](https://github.com/sainnhe/dotfiles/pkgs/container/dotfiles)
 
 To access local directory in the container, use:
 
 ```shell
-podman run -v <workdir-on-local-machine>:/root/work -it sainnhe/dotfiles:latest zsh
+podman run -v <workdir-on-local-machine>:/root/work -it --rm sainnhe/dotfiles:latest
 ```
 
 Where `<workdir-on-local-machine>` is the path of the directory you want to access on your local machine.
-
-This directory will be mounted to `/root/work` so you can access it through this path in container.
 
 ## Tips
 
