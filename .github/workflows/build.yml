@@ -19,6 +19,7 @@ jobs:
         with:
           image: sainnhe/dotfiles
           tags: latest
+          platforms: linux/amd64,linux/arm64/v8
           containerfiles: ./Containerfile
       - name: Push to Docker Hub
         uses: redhat-actions/push-to-registry@v2
