@@ -83,7 +83,9 @@ RUN ln -s /root/repo/dotfiles/.zshrc ~/.zshrc \
         && cp ~/repo/dotfiles/.zsh-theme/edge-dark.zsh ~/.zsh-theme \
         && git clone --depth 1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin \
         && zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true ' \
-        && zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true '
+        && zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true ' \
+        && passwd -d root \
+        && chsh -s /bin/zsh
 
 # Tmux
 RUN git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm \
