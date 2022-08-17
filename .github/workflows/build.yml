@@ -1,0 +1,51 @@
+name: Build and Push Container Images
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'Containerfile'
+  schedule:
+    - cron: "0 0 */3 * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Login to GitLab Registry
+        uses: docker/login-action@v2
+        with:
+          registry: registry.gitlab.com
+          username: ${{ secrets.GITLAB_USERNAME }}
+          password: ${{ secrets.GITLAB_PASSWORD }}
+      - name: Login to Red Hat Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: registry.redhat.io
+          username: ${{ secrets.REDHAT_USERNAME }}
+          password: ${{ secrets.REDHAT_PASSWORD }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: |
+            docker.io/sainnhe/dotfiles:latest
+            ghcr.io/sainnhe/dotfiles:latest
+            registry.gitlab.com/sainnhe/dotfiles:latest
+            registry.redhat.io/sainnhe/dotfiles:latest

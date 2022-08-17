@@ -1,7 +1,5 @@
-# syntax=docker/dockerfile:experimental
-
-# Build: docker build -t sainnhe/dotfiles .
-# Run:   docker run -v <workdir-on-local-machine>:/root/work -it --rm sainnhe/dotfiles zsh
+# Build: podman build -t sainnhe/dotfiles .
+# Run:   podman run -v <workdir-on-local-machine>:/root/work -it --rm sainnhe/dotfiles zsh
 
 FROM opensuse/tumbleweed:latest
 RUN zypper ref && zypper up -y
