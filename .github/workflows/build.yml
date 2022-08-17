@@ -1,4 +1,4 @@
-name: Build and Push Container Images
+name: Build and Push Container Image
 
 on:
   workflow_dispatch:
@@ -12,14 +12,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Build
-        uses: redhat-actions/buildah-build@v2
+      - name: Checkout Buildah action
+        uses: actions/checkout@v2
+        with:
+          path: "buildah-build"
+      - name: Install latest buildah
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get -qq -y install buildah
+      - name: Install qemu dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-user-static
+      - name: Build image
+        uses: ./buildah-build/
         with:
           image: sainnhe/dotfiles
           tags: latest
-          platforms: linux/amd64,linux/arm64/v8
+          platforms: linux/arm64/v8
           containerfiles: ./Containerfile
       - name: Push to Docker Hub
         uses: redhat-actions/push-to-registry@v2
