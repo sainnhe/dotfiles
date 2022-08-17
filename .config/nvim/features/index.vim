@@ -244,7 +244,7 @@ endif
 call plug#end()
 "}}}
 
-if $DOCKER_INIT ==# '1'
+if $CONTAINER ==# '1'
   finish
 endif
 
