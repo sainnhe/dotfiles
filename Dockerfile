@@ -24,7 +24,6 @@ RUN apk update && apk upgrade && apk add \
         zip \
         unzip \
         fd \
-        exa \
         dust \
         ripgrep \
         neofetch \
@@ -99,6 +98,7 @@ RUN git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/
 # Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init \
         && sh rustup-init --default-toolchain nightly --component rust-analyzer-preview rust-docs -y \
+        && zsh -c "cargo install lsd rm-improved" \
         && rm rustup-init
 
 # Vim/Neovim
