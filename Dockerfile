@@ -123,6 +123,7 @@ RUN cat ~/.config/nvim/features/full.vim |\
         xargs -I{} sh -c "cd ~/.local/share/nvim/coc/extensions/node_modules/{}; npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps"; exit 0
 # Plugins
 RUN nvim -es --cmd 'call custom#plug#install()' --cmd 'qa' \
+        && cp ~/.config/nvim/autoload/plug.vim ~/.vim/autoload/ \
         && CONTAINER=1 nvim --headless +PlugInstall +qall \
         && CONTAINER=1 nvim --headless +"helptags ALL" +qall
 # Tree-sitter
