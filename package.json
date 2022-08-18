@@ -8,11 +8,11 @@
     "localtunnel": "2.0.2",
     "npm-check-updates": "16.0.5",
     "ovsx": "0.5.1",
-    "pyright": "1.1.266",
+    "pyright": "1.1.267",
     "serve": "14.0.1",
     "typescript-language-server": "1.0.0",
     "v2ray-tools": "0.1.0",
-    "vercel": "28.0.1",
+    "vercel": "28.1.0",
     "vsce": "2.10.0",
     "yo": "4.3.0"
   }
