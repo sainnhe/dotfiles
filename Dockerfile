@@ -110,7 +110,7 @@ RUN mkdir -p ~/.config ~/.local/share/nvim \
         && cp ~/repo/dotfiles/.config/nvim/envs.example.vim ~/.vim/envs.vim \
         && cp -r ~/repo/dotfiles/.config/nvim ~/.config/nvim \
         && cp ~/repo/dotfiles/.config/nvim/envs.example.vim ~/.config/nvim/envs.vim
-        # Coc Extensions
+# Coc Extensions
 RUN mkdir -p ~/.local/share/nvim/coc/extensions \
         && cd ~/.local/share/nvim/coc/extensions \
         && cat ~/.config/nvim/features/full.vim |\
