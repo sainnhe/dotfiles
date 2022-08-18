@@ -78,8 +78,8 @@ RUN git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles \
         && cp -r ~/repo/dotfiles/.aria2 ~
 
 # Zsh
-RUN ln -s /root/repo/dotfiles/.zshrc ~/.zshrc \
-        && ln -s /root/repo/dotfiles/.zsh-snippets ~/.zsh-snippets \
+RUN cp ~/repo/dotfiles/.zshrc ~/.zshrc \
+        && cp ~/repo/dotfiles/.zsh-snippets ~/.zsh-snippets \
         && cp ~/repo/dotfiles/.zsh-theme/edge-dark.zsh ~/.zsh-theme \
         && git clone --depth 1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin \
         && zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true ' \
@@ -90,7 +90,7 @@ RUN ln -s /root/repo/dotfiles/.zshrc ~/.zshrc \
 # Tmux
 RUN git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm \
         && cp ~/repo/dotfiles/.tmux.conf ~ \
-        && ln -s /root/repo/dotfiles/.tmux/tmuxline ~/.tmux/tmuxline \
+        && cp -r ~/repo/dotfiles/.tmux/tmuxline ~/.tmux/tmuxline \
         && tmux start-server \
         && tmux new-session -d \
         && sleep 1 \
@@ -99,16 +99,18 @@ RUN git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/
 
 # Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init \
-        && sh rustup-init --default-toolchain nightly --component rust-analyzer-preview rust-docs -y \
+        && sh rustup-init --default-toolchain nightly --component rust-analyzer-preview -y \
+        && zsh -c "rustup component remove rust-docs" \
         && zsh -c "cargo install lsd rm-improved" \
         && rm rustup-init
 
 # Vim/Neovim
 RUN mkdir -p ~/.config ~/.local/share/nvim \
-        && ln -s /root/repo/dotfiles/.config/nvim ~/.vim \
-        && ln -s /root/repo/dotfiles/.config/nvim ~/.config/nvim \
-        && cp /root/repo/dotfiles/.config/nvim/envs.example.vim /root/repo/dotfiles/.config/nvim/envs.vim
-# Coc Extensions
+        && cp -r ~/repo/dotfiles/.config/nvim ~/.vim \
+        && cp ~/repo/dotfiles/.config/nvim/envs.example.vim ~/.vim/envs.vim \
+        && cp -r ~/repo/dotfiles/.config/nvim ~/.config/nvim \
+        && cp ~/repo/dotfiles/.config/nvim/envs.example.vim ~/.config/nvim/envs.vim
+        # Coc Extensions
 RUN mkdir -p ~/.local/share/nvim/coc/extensions \
         && cd ~/.local/share/nvim/coc/extensions \
         && cat ~/.config/nvim/features/full.vim |\
@@ -128,11 +130,18 @@ RUN nvim --headless +"TSInstallSync all" +qall
 
 # Finalize
 RUN rm -rf /var/cache/apk \
-        && rm -rf /root/.cache/pip \
+        && rm -rf ~/.cache/pip \
         && rm -rf ~/.cache/yarn \
         && rm -rf ~/.npm \
+        && rm -rf ~/.local/share/pnpm \
+        && rm -rf ~/.local/share/nvim/plugins/*/node_modules \
+        && ls ~/.local/share/nvim/coc/extensions/node_modules | grep -v 'coc-' | xargs -I{} rm -rf ~/.local/share/nvim/coc/extensions/node_modules/{} \
         && rm -rf ~/.cargo/git ~/.cargo/registry \
         && rm -rf ~/bin \
+        && rm -rf /tmp/* \
+        && rm -rf ~/.zinit/plugins/*/.git \
+        && rm -rf ~/.local/share/nvim/plugins/*/.git \
+        && rm -rf ~/repo \
         && mkdir ~/work
 WORKDIR /root/work
 CMD [ "/bin/zsh" ]
