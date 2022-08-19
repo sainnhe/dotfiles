@@ -106,10 +106,9 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init \
 
 # Vim/Neovim
 RUN mkdir -p ~/.config ~/.local/share/nvim \
-        && cp -r ~/repo/dotfiles/.config/nvim ~/.vim \
-        && cp ~/repo/dotfiles/.config/nvim/envs.example.vim ~/.vim/envs.vim \
-        && cp -r ~/repo/dotfiles/.config/nvim ~/.config/nvim \
-        && cp ~/repo/dotfiles/.config/nvim/envs.example.vim ~/.config/nvim/envs.vim
+        && ln -s /root/repo/dotfiles/.config/nvim ~/.vim \
+        && ln -s /root/repo/dotfiles/.config/nvim ~/.config/nvim \
+        && cp ~/repo/dotfiles/.config/nvim/envs.example.vim ~/repo/dotfiles/.config/nvim/envs.vim
 # Coc Extensions
 RUN mkdir -p ~/.local/share/nvim/coc/extensions \
         && cd ~/.local/share/nvim/coc/extensions \
@@ -123,7 +122,6 @@ RUN cat ~/.config/nvim/features/full.vim |\
         xargs -I{} sh -c "cd ~/.local/share/nvim/coc/extensions/node_modules/{}; npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps"; exit 0
 # Plugins
 RUN nvim -es --cmd 'call custom#plug#install()' --cmd 'qa' \
-        && cp ~/.config/nvim/autoload/plug.vim ~/.vim/autoload/ \
         && CONTAINER=1 nvim --headless +PlugInstall +qall \
         && CONTAINER=1 nvim --headless +"helptags ALL" +qall
 # Tree-sitter
@@ -141,8 +139,6 @@ RUN rm -rf /var/cache/apk \
         && rm -rf ~/bin \
         && rm -rf /tmp/* \
         && rm -rf ~/.zinit/plugins/*/.git \
-        && rm -rf ~/.local/share/nvim/plugins/*/.git \
-        && rm -rf ~/repo \
         && mkdir ~/work
 WORKDIR /root/work
 CMD [ "/bin/zsh" ]
