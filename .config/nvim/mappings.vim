@@ -62,9 +62,9 @@ nnoremap <A-.> <Esc>gt
 " Alt+Up/Down to move tabs
 nnoremap <silent> <A-up> :<C-u>tabm -1<CR>
 nnoremap <silent> <A-down> :<C-u>tabm +1<CR>
-" Leader Alt+</> to move tabs
-nnoremap <silent> <leader><A-,> :<C-u>tabm -1<CR>
-nnoremap <silent> <leader><A-.> :<C-u>tabm +1<CR>
+" Alt+z Alt+</> to move tabs
+nnoremap <silent> <A-z><A-,> :<C-u>tabm -1<CR>
+nnoremap <silent> <A-z><A-.> :<C-u>tabm +1<CR>
 " Alt+HJKL to jump between windows
 nnoremap <silent> <A-h> :<C-u>wincmd h<CR>
 nnoremap <silent> <A-l> :<C-u>wincmd l<CR>

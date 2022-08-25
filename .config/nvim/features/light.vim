@@ -31,8 +31,6 @@ let g:which_key_map['p'] = 'paste'
 let g:which_key_map['q'] = 'close quickfix'
 let g:which_key_map['y'] = 'yank'
 let g:which_key_map["\<space>"]["\<space>"]['h'] = 'highlight'
-let g:which_key_map['<M-,>'] = 'which_key_ignore'
-let g:which_key_map['<M-.>'] = 'which_key_ignore'
 " }}}
 if has('nvim')
 " {{{indent-blankline.nvim
