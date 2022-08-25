@@ -203,7 +203,7 @@
     "rust-analyzer.server.path": "rust-analyzer",
     "rust-analyzer.checkOnSave.command": "clippy",
     "rust-analyzer.inlayHints.enable": true,
-    "rust-analyzer.lens.enable": true,
+    "rust-analyzer.lens.enable": false,
     "rust-analyzer.inlayHints.typeHints.enable": true,
     "rust-analyzer.inlayHints.chainingHints.enable": true,
     "rust-analyzer.inlayHints.reborrowHints.enable": "mutable",
