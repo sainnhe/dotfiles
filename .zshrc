@@ -306,7 +306,6 @@ zinit ice wait'0' lucid depth=1; zinit light urbainvaes/fzf-marks
 zinit ice wait'0' lucid depth=1; zinit light skywind3000/z.lua
 zinit ice wait'1' lucid depth=1; zinit light hlissner/zsh-autopair
 zinit ice wait'0' lucid depth=1 atload"zcomp_init"; zinit light sainnhe/zsh-completions
-zinit ice wait'0' pick'.zsh-snippets' lucid; zinit light "$HOME"
 zinit ice wait'1' lucid depth=1 \
     as"program" \
     pick"pfetch"

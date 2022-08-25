@@ -162,7 +162,6 @@ setup_zsh() { #{{{
     sudo pacman -S lua zsh
     chsh -s /usr/bin/zsh
     ln -s /home/sainnhe/repo/dotfiles/.zshrc ~/.zshrc
-    ln -s /home/sainnhe/repo/dotfiles/.zsh-snippets ~/.zsh-snippets
     cp /home/sainnhe/repo/dotfiles/.zsh-theme/edge-dark.zsh ~/.zsh-theme
     printf "${BBLUE}>> Execute ${BYELLOW}'zsh'${BBLUE} to install zsh plugins${NC}\n"
 } #}}}
