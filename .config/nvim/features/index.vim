@@ -223,11 +223,6 @@ elseif g:vim_mode ==# 'full'
   " Extended functional components, but with extra dependencies
   Plug 'liuchengxu/vim-clap', { 'on': 'Clap' }
   Plug 'KabbAmine/vCoolor.vim', { 'on': 'VCoolor' }
-  " if executable('fcitx')
-  "   Plug 'lilydjwg/fcitx.vim', { 'branch': 'fcitx4', 'on': [] }
-  "         \| au InsertEnter * call plug#load('fcitx.vim')
-  " endif
-  " Status line
   Plug 'itchyny/lightline.vim'
   Plug 'albertomontesg/lightline-asyncrun'
   Plug 'ryanoasis/vim-devicons'
