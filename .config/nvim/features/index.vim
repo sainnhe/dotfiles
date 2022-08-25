@@ -179,7 +179,7 @@ Plug 'rhysd/devdocs.vim', { 'on': ['<Plug>(devdocs-under-cursor)', '<Plug>(devdo
 Plug 'voldikss/vim-translator', { 'on': ['<Plug>TranslateW', '<Plug>TranslateWV'] }
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'AndrewRadev/inline_edit.vim', { 'on': 'InlineEdit' }
 Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffAdd'] }
 Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }

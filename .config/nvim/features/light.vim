@@ -331,10 +331,11 @@ augroup END
 nnoremap <silent> <leader><space><space>r :<C-u>Goyo<CR>
 let g:which_key_map["\<space>"]["\<space>"]['r'] = 'reading mode'
 " }}}
-" {{{mundo
-let g:mundo_right = 1
-let g:mundo_width = 30
-nnoremap <silent> <leader><space><space>u :<c-u>MundoToggle<cr>
+" {{{undotree
+let g:undotree_WindowLayout = 3
+let g:undotree_SplitWidth = 30
+let g:undotree_SetFocusWhenToggle = 1
+nnoremap <silent> <leader><space><space>u :<c-u>UndotreeToggle<cr>
 let g:which_key_map["\<space>"]["\<space>"]['u'] = 'undo'
 " }}}
 " {{{inline_edit.vim
