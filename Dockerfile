@@ -68,8 +68,7 @@ RUN apk update && apk upgrade && apk add \
         python3 \
         py3-pip \
         py3-requests \
-        && npm install -g pnpm \
-        && pip install cmake-language-server
+        && npm install -g pnpm
 
 RUN git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles \
         && cp ~/repo/dotfiles/.gitconfig ~ \

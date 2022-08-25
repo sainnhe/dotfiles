@@ -47,7 +47,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'pnpm',
           \ 'cargo',
           \ 'clang',
-          \ 'cmake-language-server',
           \ 'rg',
           \ 'fzf',
           \ 'julia',
