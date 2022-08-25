@@ -131,8 +131,6 @@ if !exists('g:vim_man_pager')
   let g:startify_custom_indices = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5']
   let g:startify_commands = [
         \ {'l': 'CocList'},
-        \ {'f': 'Clap'},
-        \ {'g': 'Clap grep'},
         \ {'u': 'Update'},
         \ ]
   " figlet -f slant <words>
@@ -196,6 +194,7 @@ let g:coc_global_extensions = [
       \ 'coc-emmet',
       \ 'coc-emoji',
       \ 'coc-explorer',
+      \ 'coc-fzf-preview',
       \ 'coc-git',
       \ 'coc-gitignore',
       \ 'coc-highlight',
@@ -424,6 +423,25 @@ augroup END
 nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
 let g:which_key_map['f']['p'] = 'projects'
 " }}}
+" {{{coc-fzf-preview
+let g:fzf_preview_floating_window_rate = 0.618
+nnoremap <silent> <leader>fl :<C-u>CocCommand fzf-preview.Lines<CR>
+nnoremap <silent> <leader>fL :<C-u>CocCommand fzf-preview.BufferLines<CR>
+nnoremap <silent> <leader>ff :<C-u>CocCommand fzf-preview.ProjectFiles<CR>
+nnoremap <silent> <leader>fF :<C-u>CocCommand fzf-preview.DirectoryFiles<CR>
+nnoremap <silent> <leader>fb :<C-u>CocCommand fzf-preview.Buffers<CR>
+nnoremap <silent> <leader>fB :<C-u>CocCommand fzf-preview.AllBuffers<CR>
+nnoremap <silent> <leader>fg :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+nnoremap <silent> <leader>fm :<C-u>CocCommand fzf-preview.MruFiles<CR>
+let g:which_key_map['f']['l'] = 'lines'
+let g:which_key_map['f']['L'] = 'lines all'
+let g:which_key_map['f']['f'] = 'files'
+let g:which_key_map['f']['F'] = 'files all'
+let g:which_key_map['f']['b'] = 'buffers'
+let g:which_key_map['f']['B'] = 'buffers all'
+let g:which_key_map['f']['g'] = 'grep'
+let g:which_key_map['f']['m'] = 'mru files'
+" }}}
 " }}}
 " {{{vim-doge
 let g:doge_enable_mappings = 0
@@ -483,51 +501,6 @@ set nofoldenable
 endif
 " }}}
 " {{{Extended functional components, but with extra dependencies
-" {{{vim-clap
-let g:clap_cache_directory = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'clap'
-let g:clap_default_external_filter = 'fzf'
-let g:clap_layout = { 'relative': 'editor' }
-let g:clap_search_box_border_style = 'nil'
-let g:clap_provider_grep_opts = '-H --no-heading --vimgrep --smart-case --hidden --no-ignore -g "!.git/"'
-nnoremap <silent> <leader>fl :<C-u>Clap blines<CR>
-nnoremap <silent> <leader>fL :<C-u>Clap lines<CR>
-nnoremap <silent> <leader>ff :<C-u>Clap files ++finder=rg --files --follow<CR>
-nnoremap <silent> <leader>fF :<C-u>Clap files ++finder=rg --files --follow --hidden --no-ignore<CR>
-nnoremap <silent> <leader>fb :<C-u>Clap buffers<CR>
-let g:which_key_map['f']['l'] = 'lines'
-let g:which_key_map['f']['L'] = 'lines all'
-let g:which_key_map['f']['f'] = 'files'
-let g:which_key_map['f']['F'] = 'files all'
-let g:which_key_map['f']['b'] = 'buffers'
-" {{{providers
-function s:clap_provider_color_schemes_sink(selected) abort
-  execute 'call custom#colorscheme#' . a:selected . '()'
-endfunction
-function s:clap_provider_color_schemes_source() abort
-  return [
-        \ 'everforest_dark',
-        \ 'everforest_light',
-        \ 'gruvbox_material_dark',
-        \ 'gruvbox_mix_dark',
-        \ 'gruvbox_material_light',
-        \ 'edge_dark',
-        \ 'edge_light',
-        \ 'sonokai',
-        \ 'sonokai_shusia',
-        \ 'sonokai_andromeda',
-        \ 'sonokai_atlantis',
-        \ 'sonokai_maia',
-        \ 'sonokai_espresso',
-        \ 'soft_era'
-        \ ]
-endfunction
-let g:clap_provider_color_schemes = {}
-let g:clap_provider_color_schemes.source = function('s:clap_provider_color_schemes_source')
-let g:clap_provider_color_schemes.sink = function('s:clap_provider_color_schemes_sink')
-nnoremap <silent> <leader><space><space>C :<C-u>Clap color_schemes<CR>
-let g:which_key_map["\<space>"]["\<space>"]['C'] = 'color schemes'
-" }}}
-" }}}
 " {{{vCoolor.vim
 if !has('win32') && !has('osxdarwin')
   let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --color '

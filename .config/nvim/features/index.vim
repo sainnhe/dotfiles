@@ -207,6 +207,7 @@ if g:vim_mode ==# 'light'
 elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  Plug 'junegunn/fzf'
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
   if !has('win32')
     Plug 'kkoomen/vim-doge', { 'do': 'CXXFLAGS=--std=c++17 pnpm install && pnpm run build:binary:unix vim-doge && rm bin/vim-doge.tar.gz' }
@@ -221,7 +222,6 @@ elseif g:vim_mode ==# 'full'
     Plug 'lewis6991/spellsitter.nvim'
   endif
   " Extended functional components, but with extra dependencies
-  Plug 'liuchengxu/vim-clap', { 'on': 'Clap' }
   Plug 'KabbAmine/vCoolor.vim', { 'on': 'VCoolor' }
   Plug 'itchyny/lightline.vim'
   Plug 'albertomontesg/lightline-asyncrun'
