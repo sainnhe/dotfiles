@@ -365,6 +365,24 @@ let g:header_field_author_email = 'i@sainnhe.dev'
 nnoremap <silent> <leader><space><space>H :<C-u>AddHeader<CR>
 let g:which_key_map["\<space>"]["\<space>"]['H'] = 'add header'
 " }}}
+" {{{vim-bookmarks
+let g:bookmark_no_default_key_mappings = 1
+let g:bookmark_auto_save_file = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'bookmarks'
+let g:bookmark_highlight_lines = 1
+nnoremap <silent> <leader>bb :<C-u>BookmarkToggle<CR>
+nnoremap <silent> <leader>ba :<C-u>BookmarkAnnotate<CR>
+nnoremap <silent> <leader>bc :<C-u>BookmarkClear<CR>
+nnoremap <silent> <leader>bC :<C-u>BookmarkClearAll<CR>
+nnoremap <silent> <leader>bf :<C-u>CocCommand fzf-preview.Bookmarks<CR>
+let g:which_key_map['b'] = {
+      \ 'name': 'bookmarks',
+      \ 'b': 'bookmark',
+      \ 'a': 'annotate',
+      \ 'c': 'clear current buffer',
+      \ 'C': 'clear all',
+      \ 'f': 'fuzzy find',
+      \ }
+" }}}
 if has('nvim')
 " {{{nabla.nvim
 nnoremap <silent> <leader><space><space>m :<C-u>lua require("nabla").popup()<CR>

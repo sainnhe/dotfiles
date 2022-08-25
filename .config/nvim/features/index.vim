@@ -188,6 +188,7 @@ Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'sainnhe/vim-paste-rs', { 'on': ['<Plug>(paste-rs)', 'PasteRsAddBuffer', 'PasteRsAddSelection', 'PasteRsDelete'] }
 Plug 'kristijanhusak/vim-carbon-now-sh', { 'on': 'CarbonNowSh' }
 Plug 'alpertuna/vim-header', { 'on': ['AddHeader', 'AddMinHeader'] }
+Plug 'MattesGroeger/vim-bookmarks'
 if has('nvim')
   Plug 'jbyuki/nabla.nvim'
 endif
