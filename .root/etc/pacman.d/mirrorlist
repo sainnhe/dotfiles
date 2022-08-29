@@ -1,6 +1,6 @@
 ##
 ## Arch Linux repository mirrorlist
-## Generated on 2022-07-24
+## Generated on 2022-08-28
 ##
 
 ##Archive
@@ -157,6 +157,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://gluttony.sin.cvut.cz/arch/$repo/os/$arch
 #Server = https://gluttony.sin.cvut.cz/arch/$repo/os/$arch
 #Server = http://mirrors.nic.cz/archlinux/$repo/os/$arch
+#Server = https://mirrors.nic.cz/archlinux/$repo/os/$arch
 #Server = http://ftp.sh.cvut.cz/arch/$repo/os/$arch
 #Server = https://ftp.sh.cvut.cz/arch/$repo/os/$arch
 #Server = http://mirror.vpsfree.cz/archlinux/$repo/os/$arch
@@ -373,6 +374,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirror.system.is/arch/$repo/os/$arch
 
 ## India
+#Server = https://mirrors.abhy.me/archlinux/$repo/os/$arch
 #Server = https://mirror.albony.xyz/archlinux/$repo/os/$arch
 #Server = http://mirror.cse.iitk.ac.in/archlinux/$repo/os/$arch
 #Server = http://in-mirror.garudalinux.org/archlinux/$repo/os/$arch
@@ -641,8 +643,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 ## Slovenia
 #Server = http://archimonde.ts.si/archlinux/$repo/os/$arch
 #Server = https://archimonde.ts.si/archlinux/$repo/os/$arch
-#Server = http://arch.tux.si/mirror/$repo/os/$arch
-#Server = https://arch.tux.si/mirror/$repo/os/$arch
+#Server = http://mirror.tux.si/arch/$repo/os/$arch
+#Server = https://mirror.tux.si/arch/$repo/os/$arch
 
 ## South Africa
 #Server = http://archlinux.za.mirror.allworldit.com/archlinux/$repo/os/$arch
@@ -785,11 +787,13 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirror.ette.biz/archlinux/$repo/os/$arch
 #Server = http://codingflyboy.mm.fcix.net/archlinux/$repo/os/$arch
 #Server = http://coresite.mm.fcix.net/archlinux/$repo/os/$arch
+#Server = http://forksystems.mm.fcix.net/archlinux/$repo/os/$arch
 #Server = http://mirror.fcix.net/archlinux/$repo/os/$arch
 #Server = http://mnvoip.mm.fcix.net/archlinux/$repo/os/$arch
 #Server = http://ridgewireless.mm.fcix.net/archlinux/$repo/os/$arch
 #Server = https://codingflyboy.mm.fcix.net/archlinux/$repo/os/$arch
 #Server = https://coresite.mm.fcix.net/archlinux/$repo/os/$arch
+#Server = https://forksystems.mm.fcix.net/archlinux/$repo/os/$arch
 #Server = https://mirror.fcix.net/archlinux/$repo/os/$arch
 #Server = https://mnvoip.mm.fcix.net/archlinux/$repo/os/$arch
 #Server = https://ridgewireless.mm.fcix.net/archlinux/$repo/os/$arch
@@ -835,9 +839,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://archmirror1.octyl.net/$repo/os/$arch
 #Server = https://archmirror1.octyl.net/$repo/os/$arch
 #Server = http://ftp.osuosl.org/pub/archlinux/$repo/os/$arch
+#Server = https://ftp.osuosl.org/pub/archlinux/$repo/os/$arch
 #Server = http://arch.mirrors.pair.com/$repo/os/$arch
-#Server = http://archlinux.qern-industries.pw/$repo/os/$arch
-#Server = https://archlinux.qern-industries.pw/$repo/os/$arch
 #Server = http://dfw.mirror.rackspace.com/archlinux/$repo/os/$arch
 #Server = http://iad.mirror.rackspace.com/archlinux/$repo/os/$arch
 #Server = http://ord.mirror.rackspace.com/archlinux/$repo/os/$arch
@@ -876,6 +879,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://mirrors.xmission.com/archlinux/$repo/os/$arch
 #Server = http://mirrors.xtom.com/archlinux/$repo/os/$arch
 #Server = https://mirrors.xtom.com/archlinux/$repo/os/$arch
+#Server = https://mirror.zackmyers.io/archlinux/$repo/os/$arch
 #Server = https://zxcvfdsa.com/arch/$repo/os/$arch
 
 ## Uzbekistan
