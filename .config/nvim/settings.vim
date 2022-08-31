@@ -39,6 +39,8 @@ if has('nvim')
   set inccommand=split
   set wildoptions=pum
   set laststatus=3
+else
+  set fillchars=vert:│,fold:-,eob:~
 endif
 
 execute 'set backupdir=' . fnamemodify(custom#utils#stdpath('data'), ':p') . 'backup'
