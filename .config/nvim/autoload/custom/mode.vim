@@ -45,7 +45,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'gcc',
           \ 'node',
           \ 'pnpm',
-          \ 'cargo',
           \ 'clang',
           \ 'rg',
           \ 'fzf',
