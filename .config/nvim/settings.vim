@@ -19,6 +19,7 @@ set autoread
 set sessionoptions-=options
 set viewoptions-=options
 set wildmenu
+set wildoptions=pum
 set termguicolors t_Co=256
 set number cursorline signcolumn=yes showtabline=2 laststatus=2
 set mouse=a
@@ -37,7 +38,6 @@ endif
 
 if has('nvim')
   set inccommand=split
-  set wildoptions=pum
   set laststatus=3
 else
   set fillchars=vert:│,fold:-,eob:~
