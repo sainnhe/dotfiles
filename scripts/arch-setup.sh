@@ -206,6 +206,7 @@ setup_plasma() { #{{{
     printf "${BBLUE}>> Set GRUB_DEFAULT=x to change the boot order, where x is the index of boot item, begin by 0.${NC}\n"
     printf "${BBLUE}>> Execute 'grub-mkconfig -o /boot/grub/grub.cfg' to update grub.${NC}\n"
     printf "${BBLUE}>> Execute 'systemctl enable --now sddm' to enable and start plasma session.${NC}\n"
+    printf "${BBLUE}>> Edit DefaultTimeoutStopSec in /etc/systemd/user.conf${NC}\n"
 } #}}}
 setup_fonts() { #{{{
     pikaur -S fonts-meta
