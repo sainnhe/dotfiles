@@ -235,7 +235,8 @@
         "MD013": false,
         "MD036": false,
         "MD041": false,
-        "MD014": false
+        "MD014": false,
+        "MD028": false
     },
     "cSpell.enabledLanguageIds": [
         "asciidoc",
