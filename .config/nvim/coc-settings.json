@@ -233,10 +233,11 @@
     "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {
         "MD013": false,
-        "MD036": false,
-        "MD041": false,
         "MD014": false,
-        "MD028": false
+        "MD024": false,
+        "MD028": false,
+        "MD036": false,
+        "MD041": false
     },
     "cSpell.enabledLanguageIds": [
         "asciidoc",
