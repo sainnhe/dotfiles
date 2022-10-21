@@ -1,13 +1,15 @@
 ##
 ## Arch Linux repository mirrorlist
-## Generated on 2022-08-28
+## Generated on 2022-10-16
 ##
 
 ##Archive
 # Server=https://archive.archlinux.org/repos/2020/08/19/$repo/os/$arch
 # Server=https://archive.archlinux.org/repos/last/$repo/os/$arch
 # Server=https://arch-archive.tuna.tsinghua.edu.cn/2020/08/20/$repo/os/$arch
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+# Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+# Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch
+Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 # Server = https://linux.xidian.edu.cn/mirrors/archlinux/$repo/os/$arch
 
 ## Worldwide
@@ -222,7 +224,6 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://mirror.oldsql.cc/archlinux/$repo/os/$arch
 #Server = https://mirror.oldsql.cc/archlinux/$repo/os/$arch
 #Server = http://archlinux.mirrors.ovh.net/archlinux/$repo/os/$arch
-#Server = http://archlinux.polymorf.fr/$repo/os/$arch
 #Server = http://archlinux.rezopole.net/$repo/os/$arch
 #Server = https://mirrors.slaanesh.org/archlinux/$repo/os/$arch
 #Server = http://mirrors.standaloneinstaller.com/archlinux/$repo/os/$arch
@@ -255,6 +256,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirror.checkdomain.de/archlinux/$repo/os/$arch
 #Server = http://mirror.clientvps.com/archlinux/$repo/os/$arch
 #Server = https://mirror.clientvps.com/archlinux/$repo/os/$arch
+#Server = http://mirror.cmt.de/archlinux/$repo/os/$arch
+#Server = https://mirror.cmt.de/archlinux/$repo/os/$arch
 #Server = http://os.codefionn.eu/archlinux/$repo/os/$arch
 #Server = https://os.codefionn.eu/archlinux/$repo/os/$arch
 #Server = https://mirror.dogado.de/archlinux/$repo/os/$arch
@@ -288,8 +291,6 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirror.kumi.systems/archlinux/$repo/os/$arch
 #Server = http://mirror.fra10.de.leaseweb.net/archlinux/$repo/os/$arch
 #Server = https://mirror.fra10.de.leaseweb.net/archlinux/$repo/os/$arch
-#Server = http://archlinux.mirror.luzea.de/$repo/os/$arch
-#Server = https://archlinux.mirror.luzea.de/$repo/os/$arch
 #Server = http://mirror.metalgamer.eu/archlinux/$repo/os/$arch
 #Server = https://mirror.metalgamer.eu/archlinux/$repo/os/$arch
 #Server = http://mirror.mikrogravitation.org/archlinux/$repo/os/$arch
@@ -565,6 +566,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://piotrkosoft.net/pub/mirrors/ftp.archlinux.org/$repo/os/$arch
 #Server = http://ftp.psnc.pl/linux/archlinux/$repo/os/$arch
 #Server = https://ftp.psnc.pl/linux/archlinux/$repo/os/$arch
+#Server = http://arch.sakamoto.pl/$repo/os/$arch
+#Server = https://arch.sakamoto.pl/$repo/os/$arch
 #Server = http://repo.skni.umcs.pl/archlinux/$repo/os/$arch
 #Server = https://repo.skni.umcs.pl/archlinux/$repo/os/$arch
 #Server = http://ftp.vectranet.pl/archlinux/$repo/os/$arch
@@ -610,6 +613,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirror.rol.ru/archlinux/$repo/os/$arch
 #Server = http://mirror.truenetwork.ru/archlinux/$repo/os/$arch
 #Server = https://mirror.truenetwork.ru/archlinux/$repo/os/$arch
+#Server = https://mirror.yal.sl-chat.ru/archlinux/$repo/os/$arch
 #Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch
 #Server = https://mirror.yandex.ru/archlinux/$repo/os/$arch
 #Server = http://archlinux.zepto.cloud/$repo/os/$arch
@@ -797,6 +801,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = https://mirror.fcix.net/archlinux/$repo/os/$arch
 #Server = https://mnvoip.mm.fcix.net/archlinux/$repo/os/$arch
 #Server = https://ridgewireless.mm.fcix.net/archlinux/$repo/os/$arch
+#Server = http://mirror.fossable.org/archlinux/$repo/os/$arch
 #Server = https://america.mirror.pkgbuild.com/$repo/os/$arch
 #Server = http://mirrors.gigenet.com/archlinux/$repo/os/$arch
 #Server = http://www.gtlib.gatech.edu/pub/archlinux/$repo/os/$arch
@@ -869,6 +874,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = https://ftp.sudhip.com/archlinux/$repo/os/$arch
 #Server = http://mirror.pit.teraswitch.com/archlinux/$repo/os/$arch
 #Server = https://mirror.pit.teraswitch.com/archlinux/$repo/os/$arch
+#Server = https://mirror.the-repo.org/ArchMirror/$repo/os/$arch
 #Server = https://mirror.theash.xyz/arch/$repo/os/$arch
 #Server = https://mirror.tmmworkshop.com/archlinux/$repo/os/$arch
 #Server = http://mirror.umd.edu/archlinux/$repo/os/$arch
@@ -876,6 +882,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 #Server = http://mirrors.vectair.net/archlinux/$repo/os/$arch
 #Server = https://mirrors.vectair.net/archlinux/$repo/os/$arch
 #Server = http://mirror.vtti.vt.edu/archlinux/$repo/os/$arch
+#Server = http://wcbmedia.io:8000/$repo/os/$arch
 #Server = http://mirrors.xmission.com/archlinux/$repo/os/$arch
 #Server = http://mirrors.xtom.com/archlinux/$repo/os/$arch
 #Server = https://mirrors.xtom.com/archlinux/$repo/os/$arch
