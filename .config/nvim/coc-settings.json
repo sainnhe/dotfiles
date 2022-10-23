@@ -210,7 +210,6 @@
     "rust-analyzer.inlayHints.closingBraceHints.enable": true,
     "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "skip_trivial",
     "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "with_block",
-    "pyright.inlayHints.enable": true,
     "pyright.inlayHints.variableTypes": true,
     "pyright.inlayHints.functionReturnTypes": true,
     "python.analysis.typeCheckingMode": "basic",
