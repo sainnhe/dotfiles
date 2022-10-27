@@ -80,10 +80,9 @@ setup_repos() { #{{{
     cp ~/repo/dotfiles/.ssh/config ~/.ssh/
     ssh-keygen -t rsa -f ~/.ssh/id_rsa -C "i@sainnhe.dev"
     ssh-keygen -t ecdsa -f ~/.ssh/id_ecdsa -C "i@sainnhe.dev"
-    SSH_AGENT_PID=$(eval "$(ssh-agent -s)" | sed 's/^.* //')
+    eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_rsa
     ssh-add ~/.ssh/id_ecdsa
-    kill "${SSH_AGENT_PID}"
     mkdir ~/repo
     cd ~/repo
     git clone https://github.com/sainnhe/dotfiles.git
