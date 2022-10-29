@@ -1,5 +1,5 @@
 FROM docker.io/library/alpine:edge
-RUN apk update && apk upgrade && apk add \
+RUN apk upgrade --no-cache && apk add --no-cache \
         shadow \
         bash \
         util-linux \
@@ -69,7 +69,8 @@ RUN apk update && apk upgrade && apk add \
         python3 \
         py3-pip \
         py3-requests \
-        && npm install -g pnpm
+        && npm install -g pnpm \
+        && rm -rf ~/.npm
 
 RUN git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles \
         && cp ~/repo/dotfiles/.gitconfig ~ \
@@ -84,7 +85,8 @@ RUN cp ~/repo/dotfiles/.zshrc ~/.zshrc \
         && zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true ' \
         && zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true ' \
         && passwd -d root \
-        && chsh -s /bin/zsh
+        && chsh -s /bin/zsh \
+        && rm -rf ~/.zinit/plugins/*/.git
 
 # Tmux
 RUN git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm \
@@ -113,30 +115,28 @@ RUN mkdir -p ~/.local/share/nvim/coc/extensions \
         && cat ~/.config/nvim/features/full.vim |\
         grep "\\\ 'coc-" |\
         sed -E -e 's/^.*coc//' -e "s/',//" -e 's/^/coc/' |\
-        xargs -I{} npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps {}; exit 0
+        xargs -I{} npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps {}; exit 0 \
+        && rm -rf ~/.npm \
+        && ls ~/.local/share/nvim/coc/extensions/node_modules | grep -v 'coc-' | xargs -I{} rm -rf ~/.local/share/nvim/coc/extensions/node_modules/{}
 RUN cat ~/.config/nvim/features/full.vim |\
         grep "\\\ 'coc-" |\
         sed -E -e 's/^.*coc//' -e "s/',//" -e 's/^/coc/' |\
-        xargs -I{} sh -c "cd ~/.local/share/nvim/coc/extensions/node_modules/{}; npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps"; exit 0
+        xargs -I{} sh -c "cd ~/.local/share/nvim/coc/extensions/node_modules/{}; npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps"; exit 0 \
+        && rm -rf ~/.npm \
+        && ls ~/.local/share/nvim/coc/extensions/node_modules | grep -v 'coc-' | xargs -I{} rm -rf ~/.local/share/nvim/coc/extensions/node_modules/{}
 # Plugins
 RUN nvim -es --cmd 'call custom#plug#install()' --cmd 'qa' \
         && CONTAINER=1 nvim --headless +PlugInstall +qall \
-        && CONTAINER=1 nvim --headless +"helptags ALL" +qall
+        && CONTAINER=1 nvim --headless +"helptags ALL" +qall \
+        && rm -rf ~/.local/share/nvim/plugins/*/node_modules \
+        && rm -rf ~/.cache/yarn \
+        && rm -rf ~/.npm \
+        && rm -rf ~/.local/share/pnpm
 # Tree-sitter
 RUN nvim --headless +"TSInstallSync all" +qall
 
 # Finalize
-RUN rm -rf /var/cache/apk \
-        && rm -rf ~/.cache/pip \
-        && rm -rf ~/.cache/yarn \
-        && rm -rf ~/.npm \
-        && rm -rf ~/.local/share/pnpm \
-        && rm -rf ~/.local/share/nvim/plugins/*/node_modules \
-        && ls ~/.local/share/nvim/coc/extensions/node_modules | grep -v 'coc-' | xargs -I{} rm -rf ~/.local/share/nvim/coc/extensions/node_modules/{} \
-        && rm -rf ~/.cargo/git ~/.cargo/registry \
-        && rm -rf ~/bin \
-        && rm -rf /tmp/* \
-        && rm -rf ~/.zinit/plugins/*/.git \
+RUN rm -rf ~/bin \
         && mkdir ~/work
 WORKDIR /root/work
 CMD [ "/bin/zsh" ]
