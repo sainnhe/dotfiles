@@ -41,9 +41,7 @@ setup_dotfiles() { #{{{
     setup_symlink .config/fontconfig/fonts.conf
     setup_symlink .config/helix/config.toml
     setup_copy .config/pikaur.conf
-    setup_symlink .config/fcitx/conf
-    setup_symlink .config/fcitx/config
-    setup_symlink .config/fcitx/profile
+    setup_symlink .config/fcitx5
     setup_symlink package.json
     setup_symlink .npmrc
     setup_copy .yarnrc
