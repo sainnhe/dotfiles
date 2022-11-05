@@ -160,6 +160,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'junegunn/vim-peekaboo'
 Plug 'airblade/vim-rooter'
 Plug 'jamessan/vim-gnupg'
+Plug '520Matches/fcitx5.vim'
 if has('nvim')
   Plug 'lewis6991/impatient.nvim'
 endif
