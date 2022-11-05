@@ -5,3 +5,4 @@ arch/packages
 .config/nvim/sessions
 *.swp
 .DS_Store
+.config/fcitx5/conf
