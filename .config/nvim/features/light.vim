@@ -230,9 +230,6 @@ if has('nvim')
 " {{{impatient.nvim
 lua require('impatient')
 " }}}
-" {{{filetype.nvim
-let g:did_load_filetypes = 1
-" }}}
 endif
 " }}}
 " {{{Extended functional components
