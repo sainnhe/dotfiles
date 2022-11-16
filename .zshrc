@@ -312,8 +312,16 @@ zinit ice wait'1' lucid depth=1 \
 zinit light dylanaraps/pfetch
 zinit ice wait'1' lucid depth=1 \
     as"program" \
+    pick"neofetch"
+zinit light dylanaraps/neofetch
+zinit ice wait'1' lucid depth=1 \
+    as"program" \
     pick"sysz"
 zinit light joehillen/sysz
+zinit ice wait'1' lucid depth=1 \
+    as"program" \
+    pick"bin/asdf"
+zinit light asdf-vm/asdf
 # {{{fast-syntax-highlighting
 FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
 # }}}
