@@ -248,9 +248,10 @@ pb() { # {{{
 install-fzf() { # {{{
     _architecture=""
     case "$(uname -m)" in
-      i386)   _architecture="x86" ;;
-      i686)   _architecture="x86" ;;
-      x86_64) _architecture="amd64" ;;
+      i386)     _architecture="x86" ;;
+      i686)     _architecture="x86" ;;
+      x86_64)   _architecture="amd64" ;;
+      *)        _architecture="$(uname -m)" ;;
     esac
     _download_url=$(
     curl -sL https://api.github.com/repos/junegunn/fzf/releases/latest |\
@@ -267,6 +268,7 @@ install-fzf() { # {{{
         curl -L "${_download_url}" |\
             tar zxv -C ~/.local/bin
     fi
+    chmod a+x ~/.local/bin/fzf
     unset _download_url _architecture
 } # }}}
 # }}}
