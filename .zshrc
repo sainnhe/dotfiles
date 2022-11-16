@@ -245,6 +245,30 @@ pb() { # {{{
         print "USAGE:\n    pb [SUBCOMMAND]\n\nSUBCOMMANDS:\n    delete  <admin-url>\n    upload  <file>\n    cat     <stdio>\n    get     <url>\n"
     fi
 } # }}}
+install-fzf() { # {{{
+    _architecture=""
+    case "$(uname -m)" in
+      i386)   _architecture="x86" ;;
+      i686)   _architecture="x86" ;;
+      x86_64) _architecture="amd64" ;;
+    esac
+    _download_url=$(
+    curl -sL https://api.github.com/repos/junegunn/fzf/releases/latest |\
+        grep -e 'https://github.com.*zip' -e 'https://github.com.*tar.gz' |\
+        sed -e 's/.*https/https/' -e 's/".*$//' |\
+        grep -i "$(uname)" |\
+        grep "${_architecture}"
+    )
+    mkdir -p ~/.local/bin
+    if command -v proxychains4 &> /dev/null; then
+        proxychains4 -q curl -L "${_download_url}" |\
+            tar zxv -C ~/.local/bin
+    else
+        curl -L "${_download_url}" |\
+            tar zxv -C ~/.local/bin
+    fi
+    unset _download_url _architecture
+} # }}}
 # }}}
 # {{{Alias
 alias du='du -sh'
