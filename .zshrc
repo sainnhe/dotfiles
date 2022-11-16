@@ -271,6 +271,9 @@ install-fzf() { # {{{
     chmod a+x ~/.local/bin/fzf
     unset _download_url _architecture
 } # }}}
+uninstall-fzf() { # {{{
+    rm -f ~/.local/bin/fzf
+} # }}}
 # }}}
 # {{{Alias
 alias du='du -sh'
