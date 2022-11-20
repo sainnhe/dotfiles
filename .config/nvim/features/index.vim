@@ -216,6 +216,7 @@ elseif g:vim_mode ==# 'full'
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+    Plug 'nvim-treesitter/playground'
     Plug 'RRethy/nvim-treesitter-textsubjects'
     Plug 'lewis6991/spellsitter.nvim'
   endif
