@@ -183,6 +183,7 @@ endfunction "}}}
 function custom#colorscheme#soft_era() abort "{{{
   " {{{Palette
   let g:gruvbox_material_colors_override = {
+        \ 'bg_dim':           ['#f2edec',   '223'],
         \ 'bg0':              ['#f9f5f5',   '229'],
         \ 'bg1':              ['#f4f0f0',   '228'],
         \ 'bg2':              ['#f4f0f0',   '228'],
