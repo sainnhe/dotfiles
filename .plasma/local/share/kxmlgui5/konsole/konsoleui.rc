@@ -1,0 +1,109 @@
+<?xml version='1.0'?>
+<!DOCTYPE gui SYSTEM 'kpartgui.dtd'>
+<gui name="konsole" version="19">
+ <MenuBar>
+  <Menu name="file">
+   <text>File</text>
+   <Action name="new-window"/>
+   <Action name="new-tab"/>
+   <Action name="clone-tab"/>
+   <Separator/>
+   <DefineGroup name="session-operations"/>
+   <Separator/>
+   <DefineGroup name="session-tab-operations"/>
+   <Action name="close-window"/>
+  </Menu>
+  <Menu name="edit">
+   <text>Edit</text>
+   <DefineGroup name="session-edit-operations"/>
+  </Menu>
+  <Menu name="view">
+   <text>View</text>
+   <Menu name="view-split">
+    <text>Split View</text>
+    <Action name="split-view-left-right"/>
+    <Action name="split-view-top-bottom"/>
+    <Action name="close-active-view"/>
+    <Action name="close-other-views"/>
+    <Action name="expand-active-view"/>
+    <Action name="shrink-active-view"/>
+    <Action name="toggle-maximize-current-view"/>
+   </Menu>
+   <Separator/>
+   <Action name="detach-tab"/>
+   <Action name="detach-view"/>
+   <Action name="save-layout"/>
+   <Action name="load-layout"/>
+   <Separator/>
+   <DefineGroup name="session-view-operations"/>
+  </Menu>
+  <Action name="bookmark"/>
+  <Menu name="settings">
+   <text>Settings</text>
+   <DefineGroup name="session-settings"/>
+   <Action name="manage-profiles"/>
+   <Action name="show-menubar"/>
+   <Action name="window-colorscheme-menu"/>
+   <Separator/>
+   <Action name="view-full-screen"/>
+   <Separator/>
+   <Action name="configure-shortcuts"/>
+   <Action name="configure-notifications"/>
+   <Action name="configure-settings"/>
+  </Menu>
+  <Menu name="plugins">
+   <text>Plugins</text>
+   <ActionList name="plugin-submenu"/>
+  </Menu>
+  <Menu name="help">
+   <text>Help</text>
+  </Menu>
+ </MenuBar>
+ <ToolBar name="mainToolBar">
+  <text>Main Toolbar</text>
+  <index>0</index>
+  <Action name="new-tab"/>
+  <Action name="split-view-left-right"/>
+  <Action name="split-view-top-bottom"/>
+  <Action name="load-terminals-layout-2x2"/>
+  <Action name="load-terminals-layout-2x1"/>
+  <Action name="load-terminals-layout-1x2"/>
+ </ToolBar>
+ <ActionProperties>
+  <Action name="activate-menu" shortcut=""/>
+  <Action name="add_bookmark" shortcut=""/>
+  <Action name="clone-tab" shortcut=""/>
+  <Action name="close-window" shortcut=""/>
+  <Action name="detach-view" shortcut=""/>
+  <Action name="expand-active-view" shortcut=""/>
+  <Action name="focus-view-above" shortcut=""/>
+  <Action name="focus-view-below" shortcut=""/>
+  <Action name="focus-view-left" shortcut=""/>
+  <Action name="focus-view-right" shortcut=""/>
+  <Action name="fullscreen" shortcut="F11; Ctrl+Shift+M"/>
+  <Action name="help_contents" shortcut=""/>
+  <Action name="help_whats_this" shortcut=""/>
+  <Action name="move-tab-to-left" shortcut=""/>
+  <Action name="move-tab-to-right" shortcut=""/>
+  <Action name="next-tab" shortcut="Ctrl+Shift+Right"/>
+  <Action name="open_kcommand_bar" shortcut=""/>
+  <Action name="options_configure" shortcut=""/>
+  <Action name="options_configure_keybinding" shortcut=""/>
+  <Action name="options_show_menubar" shortcut="Ctrl+Shift+B"/>
+  <Action name="previous-tab" shortcut="Ctrl+Shift+Left"/>
+  <Action name="shrink-active-view" shortcut=""/>
+  <Action name="split-view-left-right" shortcut=""/>
+  <Action name="split-view-top-bottom" shortcut=""/>
+  <Action name="switch-to-tab-0" shortcut=""/>
+  <Action name="switch-to-tab-1" shortcut=""/>
+  <Action name="switch-to-tab-2" shortcut=""/>
+  <Action name="switch-to-tab-3" shortcut=""/>
+  <Action name="switch-to-tab-4" shortcut=""/>
+  <Action name="switch-to-tab-5" shortcut=""/>
+  <Action name="switch-to-tab-6" shortcut=""/>
+  <Action name="switch-to-tab-7" shortcut=""/>
+  <Action name="switch-to-tab-8" shortcut=""/>
+  <Action name="switch-to-tab-9" shortcut=""/>
+  <Action name="toggle-maximize-current-view" shortcut=""/>
+ </ActionProperties>
+</gui>
