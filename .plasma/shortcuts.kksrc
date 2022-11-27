@@ -1,20 +1,17 @@
 [ActivityManager][Global Shortcuts]
-switch-to-activity-50452fdc-21cc-475e-b862-a0e728a00d89=
-switch-to-activity-7c16d33f-0f6b-47e5-ac83-415e7d8b5159=
+switch-to-activity-861de59e-498e-45f2-9128-2ed1b6c68d3f=
 
 [KDE Keyboard Layout Switcher][Global Shortcuts]
-Switch keyboard layout to English (US)=
-Switch keyboard layout to 英语（美国）=
 Switch to Next Keyboard Layout=
 
 [StandardShortcuts]
 AboutApp=
 AboutKDE=
-Activate Next Tab=Ctrl+]; Ctrl+PgDown
+Activate Next Tab=Ctrl+PgDown; Ctrl+]
 Activate Previous Tab=Ctrl+[; Ctrl+PgUp
 ActualSize=Ctrl+0
 AddBookmark=Ctrl+B
-Back=Back; Alt+Left
+Back=Alt+Left; Back
 BackwardWord=Ctrl+Left
 Begin=Ctrl+Home
 BeginningOfLine=Home
@@ -22,9 +19,9 @@ Clear=
 Close=Ctrl+W; Ctrl+Esc
 ConfigureNotifications=
 ConfigureToolbars=
-Copy=Ctrl+Ins; Ctrl+C
+Copy=Ctrl+C; Ctrl+Ins
 CreateFolder=F10
-Cut=Shift+Del; Ctrl+X
+Cut=Ctrl+X; Shift+Del
 DeleteFile=Shift+Del
 DeleteWordBack=Ctrl+Backspace
 DeleteWordForward=Ctrl+Del
@@ -41,7 +38,7 @@ FindPrev=Shift+F3
 FitToHeight=
 FitToPage=
 FitToWidth=
-Forward=Forward; Alt+Right
+Forward=Alt+Right; Forward
 ForwardWord=Ctrl+Right
 FullScreen=Ctrl+Shift+F
 Goto=
@@ -57,7 +54,7 @@ Next=PgDown
 NextCompletion=Ctrl+Down
 Open=Ctrl+O
 OpenRecent=
-Paste=Ctrl+V; Shift+Ins
+Paste=Shift+Ins; Ctrl+V
 Paste Selection=Ctrl+Shift+Ins
 Preferences=Ctrl+Shift+,
 PrevCompletion=Ctrl+Up
@@ -66,7 +63,7 @@ PrintPreview=
 Prior=PgUp
 Quit=Ctrl+Q
 Redo=Ctrl+Shift+Z
-Reload=F5; Refresh
+Reload=Refresh; F5
 RenameFile=F2
 Replace=Ctrl+R
 ReportBug=
@@ -77,7 +74,7 @@ Save=Ctrl+S
 SaveAs=Ctrl+Shift+S
 SaveOptions=
 SelectAll=Ctrl+A
-ShowHideHiddenFiles=Ctrl+H; Alt+.
+ShowHideHiddenFiles=Alt+.; Ctrl+H
 ShowMenubar=Ctrl+M
 ShowStatusbar=
 ShowToolbar=
@@ -93,20 +90,11 @@ Zoom=
 ZoomIn=Ctrl+=; Ctrl++
 ZoomOut=Ctrl+-
 
-[kaccess][Global Shortcuts]
-Toggle Screen Reader On and Off=
-
-[kcm_touchpad][Global Shortcuts]
-Disable Touchpad=
-Enable Touchpad=
-Toggle Touchpad=
-
 [kded5][Global Shortcuts]
 Show System Activity=Ctrl+Alt+Del
 display=
 
 [khotkeys][Global Shortcuts]
-{8b90258b-8408-47d2-b85f-f2dd1e4d3bce}=Meta+T
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=
 
 [kmix][Global Shortcuts]
@@ -114,12 +102,8 @@ decrease_microphone_volume=Microphone Volume Down
 decrease_volume=Volume Down
 increase_microphone_volume=Microphone Volume Up
 increase_volume=Volume Up
-mic_mute=Microphone Mute; Meta+Volume Mute
+mic_mute=Meta+Volume Mute; Microphone Mute
 mute=Volume Mute
-
-[konversation][Global Shortcuts]
-next_active_tab=
-toggle_mainwindow_visibility=
 
 [ksmserver][Global Shortcuts]
 Halt Without Confirmation=
@@ -131,9 +115,10 @@ Reboot Without Confirmation=
 [kwin][Global Shortcuts]
 Activate Window Demanding Attention=
 Decrease Opacity=
-Expose=
+Expose=Meta+Tab;\s
 ExposeAll=
 ExposeClass=
+ExposeClassCurrentDesktop=
 Increase Opacity=
 Invert Screen Colors=
 Kill Window=
@@ -143,6 +128,7 @@ MoveZoomDown=
 MoveZoomLeft=
 MoveZoomRight=
 MoveZoomUp=
+Overview=Meta+W
 Setup Window Shortcut=
 Show Desktop=Meta+D
 ShowDesktopGrid=
@@ -213,6 +199,7 @@ Window Maximize Horizontal=
 Window Maximize Vertical=
 Window Minimize=Meta+Shift+M
 Window Move=
+Window Move Center=
 Window No Border=
 Window On All Desktops=
 Window One Desktop Down=
@@ -286,17 +273,20 @@ stopmedia=Media Stop
 [org.kde.dolphin.desktop][Global Shortcuts]
 _launch=Meta+E
 
+[org.kde.konsole.desktop][Global Shortcuts]
+NewTab=
+NewWindow=
+_launch=Meta+T
+
 [org.kde.krunner.desktop][Global Shortcuts]
 RunClipboard=
 _launch=Meta+Z
-
-[org.kde.plasma.emojier.desktop][Global Shortcuts]
-_launch=Meta+.
 
 [org.kde.spectacle.desktop][Global Shortcuts]
 ActiveWindowScreenShot=
 CurrentMonitorScreenShot=
 FullScreenScreenShot=
+OpenWithoutScreenshot=
 RectangularRegionScreenShot=Meta+Shift+S
 WindowUnderCursorScreenShot=
 _launch=Print
@@ -327,11 +317,12 @@ activate task manager entry 9=
 activate widget 3=Meta+Monitor Brightness Down
 clear-history=
 clipboard_action=
+cycle-panels=Meta+Alt+P
 cycleNextAction=
 cyclePrevAction=
 edit_clipboard=
 manage activities=Meta+Q
-next activity=Meta+Tab
+next activity=
 previous activity=Meta+Shift+Tab
 repeat_action=
 show dashboard=
@@ -341,14 +332,3 @@ stop current activity=
 switch to next activity=
 switch to previous activity=
 toggle do not disturb=
-
-[systemsettings.desktop][Global Shortcuts]
-_launch=
-kcm-kscreen=
-kcm-lookandfeel=
-kcm-users=
-powerdevilprofilesconfig=
-screenlocker=
-
-[yakuake][Global Shortcuts]
-toggle-window-state=Ctrl+Alt+Z
