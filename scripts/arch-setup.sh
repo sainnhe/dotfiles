@@ -210,7 +210,7 @@ setup_fonts() { #{{{
     pikaur -S fonts-meta
 } #}}}
 setup_apps() { #{{{
-    pikaur -S apps-common-meta apps-extra-meta pacman-hooks-meta
+    pikaur -S apps-common-meta apps-extra-meta pacman-hooks-meta grub-meta
 } #}}}
 
 if [ "$1" = 'dotfiles' ]; then
