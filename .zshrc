@@ -232,17 +232,64 @@ job-kill() {
 }
 # }}}
 pb() { # {{{
-    _server_url="https://paste.sainnhe.dev"
-    if [ "${1}" = "delete" ]; then
-        curl -X DELETE "${2}"
-    elif [ "${1}" = "upload" ]; then
-        curl -Fc=@"${2}" "${_server_url}"
-    elif [ "${1}" = "cat" ]; then
-        curl -Fc="$(cat)" "${_server_url}"
-    elif [ "${1}" = "get" ]; then
-        curl -L "${2}"
+    server_url="https://paste.sainnhe.dev"
+    help="USAGE:\tpb [OPTION] [SUBCOMMAND]\n\nOPTIONS:\n\t--help, -h\tShow this message\n\t--copy, -c\tCopy to clipboard\n\nSUBCOMMANDS:\n\tdelete\t\t<admin-url>\n\tupload\t\t<file>\n\tcat\t\t<stdio>\n\tget\t\t<url> or <admin-url>\n"
+    case "${1}" in
+    --help|-h)
+        printf "${help}"
+        return
+        ;;
+    --copy|-c)
+        if [ -x "$(command -v pbcopy)" ]; then
+            copy_cmd="pbcopy"
+        elif [ -x "$(command -v xclip)" ]; then
+            copy_cmd="xclip -sel c"
+        elif [ -x "$(command -v xsel)" ]; then
+            copy_cmd="xsel -ib"
+        elif [ -x "$(command -v wl-copy)" ]; then
+            copy_cmd="wl-copy"
+        else
+            printf "Can't found utilities that can access clipboard, you need to have one of xclip, xsel or wl-copy installed."
+            return 2
+        fi
+        arg="--copy"
+        subcmd="${2}"
+        url="${3}"
+        ;;
+    *)
+        arg=""
+        subcmd="${1}"
+        url="${2}"
+        ;;
+    esac
+    if [ "${arg}" = "--copy" ]; then
+        if [ "${subcmd}" = "delete" ]; then
+            curl -X DELETE "${url}"
+        elif [ "${subcmd}" = "upload" ]; then
+            curl -Fc=@"${url}" "${server_url}" | tee /dev/tty | grep admin | sed -e 's/.*: "//' -e 's/",$//' | eval "${copy_cmd}"
+        elif [ "${subcmd}" = "cat" ]; then
+            curl -Fc="$(cat)" "${server_url}" | tee /dev/tty | grep admin | sed -e 's/.*: "//' -e 's/",$//' | eval "${copy_cmd}"
+        elif [ "${subcmd}" = "get" ]; then
+            url=$(echo "${url}" | cut -d':' -f 1,2)
+            curl -L "${url}" | tee /dev/tty | eval "${copy_cmd}"
+        else
+            printf "${help}"
+            return 1
+        fi
     else
-        print "USAGE:\n    pb [SUBCOMMAND]\n\nSUBCOMMANDS:\n    delete  <admin-url>\n    upload  <file>\n    cat     <stdio>\n    get     <url>\n"
+        if [ "${subcmd}" = "delete" ]; then
+            curl -X DELETE "${url}"
+        elif [ "${subcmd}" = "upload" ]; then
+            curl -Fc=@"${url}" "${server_url}"
+        elif [ "${subcmd}" = "cat" ]; then
+            curl -Fc="$(cat)" "${server_url}"
+        elif [ "${subcmd}" = "get" ]; then
+            url=$(echo "${url}" | cut -d':' -f 1,2)
+            curl -L "${url}"
+        else
+            printf "${help}"
+            return 1
+        fi
     fi
 } # }}}
 install-fzf() { # {{{
