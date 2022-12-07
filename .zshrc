@@ -330,7 +330,6 @@ install-bash-it() { # {{{
 alias du='du -sh'
 alias df='df -h'
 alias cp='cp -p'
-alias mv='mv -i'
 alias cdh='pushd +$( dirs -v | "$FuzzyFinder" | grep -o "[[:digit:]]") > /dev/null'
 alias cdh-ls='dirs -vl | "$FuzzyFinder"'
 alias cdh-clean='popd +$( dirs -v | "$FuzzyFinder" | grep -o "[[:digit:]]") > /dev/null'
