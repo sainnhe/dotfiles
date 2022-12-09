@@ -112,9 +112,23 @@ setup_surface() { #{{{
     # DKMS modules
     sudo pacman -S dkms acpi acpi_call-dkms
     # Install the kernel and firmwares
-    sudo pacman -S linux-surface-headers linux-surface surface-ipts-firmware
+    pikaur -S \
+        linux-surface-headers \
+        linux-surface \
+        linux-firmware-marvell \
+        surface-ipts-firmware \
+        iptsd \
+        aic94xx-firmware \
+        wd719x-firmware \
+        upd72020x-fw \
+        libwacom-surface \
+        surface-control \
+        surface-dtx-daemon \
+        power-profiles-daemon \
+        libcamera \
+        libcamera-tools \
+        gst-plugin-libcamera
     # Post-Installation
-    pikaur -S aic94xx-firmware wd719x-firmware upd72020x-fw libwacom-surface surface-control surface-dtx-daemon iptsd power-profiles-daemon
     sudo grub-mkconfig -o /boot/grub/grub.cfg
     sudo systemctl enable --now surface-dtx-daemon.service
     sudo systemctl enable --now iptsd.service
