@@ -120,7 +120,7 @@
     "coc.source.emoji.shortcut": "E",
     "coc.source.emoji.priority": 8,
     "coc.source.emoji.filetypes": ["markdown", "text"],
-    "colors.filetypes": ["*"],
+    "colors.enable": true,
     "highlight.colors.enable": true,
     "highlight.colorNames.enable": false,
     "highlight.document.enable": true,
