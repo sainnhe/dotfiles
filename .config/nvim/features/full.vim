@@ -466,7 +466,7 @@ require'nvim-treesitter.configs'.setup {
   ignore_install = { "phpdoc", "beancount" },
   highlight = {
     enable = true,
-    disable = { "vim", "help" },
+    disable = { "vim", "help", "markdown" },
   },
   incremental_selection = {
     enable = true,
