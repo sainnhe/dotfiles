@@ -229,6 +229,7 @@
     "markdown-preview-enhanced.previewTheme": "one-dark.css",
     "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {
+        "MD010": false,
         "MD013": false,
         "MD014": false,
         "MD024": false,
