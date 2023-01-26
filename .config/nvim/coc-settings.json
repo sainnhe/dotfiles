@@ -91,15 +91,25 @@
     "git.virtualTextPrefix": " \ue729 ",
     "git.addGBlameToVirtualText": false,
     "git.blameUseRealTime": false,
-    "project.rootPatterns": [".git", ".svn", ".root", ".project", ".hg"],
+    "project.rootPatterns": [
+        ".git",
+        ".hg",
+        ".svn"
+    ],
     "snippets.ultisnips.enable": false,
     "snippets.snipmate.enable": true,
     "snippets.shortcut": "S",
     "snippets.priority": 99,
     "snippets.extends": {
-        "cpp": ["c"],
-        "javascriptreact": ["javascript"],
-        "typescript": ["javascript"]
+        "cpp": [
+            "c"
+        ],
+        "javascriptreact": [
+            "javascript"
+        ],
+        "typescript": [
+            "javascript"
+        ]
     },
     "suggest.languageSourcePriority": 98,
     "coc.source.file.shortcut": "F",
@@ -116,10 +126,19 @@
     "coc.source.tag.priority": 78,
     "coc.source.dictionary.shortcut": "D",
     "coc.source.dictionary.priority": 9,
-    "coc.source.dictionary.filetypes": ["markdown", "text", "help", "gitcommit", "snippets"],
+    "coc.source.dictionary.filetypes": [
+        "markdown",
+        "text",
+        "help",
+        "gitcommit",
+        "snippets"
+    ],
     "coc.source.emoji.shortcut": "E",
     "coc.source.emoji.priority": 8,
-    "coc.source.emoji.filetypes": ["markdown", "text"],
+    "coc.source.emoji.filetypes": [
+        "markdown",
+        "text"
+    ],
     "colors.enable": true,
     "highlight.colors.enable": true,
     "highlight.colorNames.enable": false,
@@ -145,14 +164,20 @@
     "explorer.keyMappings.global": {
         "s": "toggleSelection",
         "<tab>": "actionMenu",
-
         "h": "indentPrev",
         "l": "indentNext",
-        "o": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+        "o": [
+            "expandable?",
+            [
+                "expanded?",
+                "collapse",
+                "expand"
+            ],
+            "open"
+        ],
         "<cr>": "open",
         "t": "open:tab",
         "<bs>": "gotoParent",
-
         "Y": "copyFilepath",
         "y": "copyFilename",
         "c": "copyFile",
@@ -160,24 +185,18 @@
         "p": "pasteFile",
         "d": "delete",
         "D": "deleteForever",
-
         "n": "addFile",
         "N": "addDirectory",
         "r": "rename",
-
         ".": "toggleHidden",
         "R": "refresh",
         "<C-p>": "preview",
-
         "?": "help",
         "<esc>": "esc",
         "e": "systemExecute",
-
         "f": "searchRecursive",
-
         "gf": "gotoSource:file",
         "gb": "gotoSource:buffer",
-
         "gk": "gitPrev",
         "gj": "gitNext",
         "ga": "gitStage",
@@ -198,7 +217,13 @@
     "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
     "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
     "clangd.path": "clangd",
-    "clangd.arguments": ["--clang-tidy", "--completion-style=detailed", "--fallback-style=google", "--header-insertion=iwyu", "--suggest-missing-includes"],
+    "clangd.arguments": [
+        "--clang-tidy",
+        "--completion-style=detailed",
+        "--fallback-style=google",
+        "--header-insertion=iwyu",
+        "--suggest-missing-includes"
+    ],
     "rust-analyzer.server.path": "rust-analyzer",
     "rust-analyzer.checkOnSave.command": "clippy",
     "rust-analyzer.lens.enable": false,
@@ -222,7 +247,9 @@
         "/usr/share/nvim/runtime/lua/vim": true,
         "/usr/share/nvim/runtime/lua/vim/lsp": true
     },
-    "Lua.diagnostics.globals": ["vim"],
+    "Lua.diagnostics.globals": [
+        "vim"
+    ],
     "texlab.path": "texlab",
     "texlab.build.onSave": true,
     "sql.database": "mysql",

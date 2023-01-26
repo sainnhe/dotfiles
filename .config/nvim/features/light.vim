@@ -226,6 +226,24 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " {{{vim-peekaboo
 let g:peekaboo_delay = 500
 " }}}
+" {{{vim-rooter
+let g:rooter_patterns = [
+      \ '.git',
+      \ '.hg',
+      \ '.svn',
+      \ '*.sln',
+      \ '*.xcodeproj',
+      \ 'Makefile',
+      \ 'CMakeLists.txt',
+      \ 'requirements.txt',
+      \ 'package.json',
+      \ 'Cargo.toml',
+      \ 'go.mod',
+      \ '!' . expand('~'),
+      \ ]
+let g:rooter_silent_chdir = 1
+let g:rooter_manual_only = 1
+" }}}
 if has('nvim')
 " {{{impatient.nvim
 lua require('impatient')
@@ -242,7 +260,6 @@ let g:which_key_map["\<space>"]["\<space>"]['P'] = 'pomodoro toggle'
 " }}}
 " {{{asynctasks
 let g:asyncrun_open = 6
-let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 let g:asynctasks_term_pos = 'bottom' " tab
 let g:asynctasks_term_rows = 10
 let g:asynctasks_config_name = '.git/tasks.ini'
