@@ -13,9 +13,9 @@
     "serve": "14.2.0",
     "typescript-language-server": "3.0.3",
     "v2ray-tools": "0.2.0",
-    "vercel": "28.13.1",
+    "vercel": "28.14.1",
     "vsce": "2.14.0",
-    "wrangler": "^2.8.1",
+    "wrangler": "^2.9.0",
     "yo": "4.3.1"
   }
 }
