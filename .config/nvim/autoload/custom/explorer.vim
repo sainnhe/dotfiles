@@ -6,12 +6,18 @@
 " License: Anti-996 && MIT
 " =============================================================================
 
+let g:custom#explorer#first_launch = 1
+
 function custom#explorer#toggle() abort
   execute 'CocCommand explorer ' . getcwd()
 endfunction
 
 function custom#explorer#startify() abort
   execute 'Startify'
+  if g:custom#explorer#first_launch
+    execute 'Rooter'
+    let g:custom#explorer#first_launch = 0
+  endif
   call custom#explorer#toggle()
 endfunction
 
