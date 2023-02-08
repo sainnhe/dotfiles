@@ -128,7 +128,7 @@ Plug 'kana/vim-textobj-indent'
 Plug 'rhysd/vim-textobj-anyblock'
 Plug 'glts/vim-textobj-comment'
 Plug 'somini/vim-textobj-fold'
-Plug 'mattn/vim-textobj-url'
+Plug 'sainnhe/vim-textobj-url'
 Plug 'sgur/vim-textobj-parameter'
 " Operators
 Plug 'kana/vim-operator-user', { 'on': ['<Plug>(operator-replace)', '<Plug>(operator-surround-append)', '<Plug>(operator-surround-delete)', '<Plug>(operator-surround-replace)'] }
