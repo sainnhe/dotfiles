@@ -197,6 +197,7 @@ let g:coc_global_extensions = [
       \ 'coc-fzf-preview',
       \ 'coc-git',
       \ 'coc-gitignore',
+      \ 'coc-go',
       \ 'coc-highlight',
       \ 'coc-html',
       \ 'coc-htmlhint',

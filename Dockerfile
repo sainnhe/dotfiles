@@ -60,6 +60,8 @@ RUN apk upgrade --no-cache && apk add --no-cache \
         gdb \
         clang \
         clang-extra-tools \
+        go \
+        gopls \
         nodejs \
         nodejs-dev \
         nodejs-doc \

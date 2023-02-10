@@ -224,8 +224,9 @@
         "--header-insertion=iwyu",
         "--suggest-missing-includes"
     ],
+    "go.goplsPath": "gopls",
+    "go.checkForUpdates": "disabled",
     "rust-analyzer.server.path": "rust-analyzer",
-    "rust-analyzer.checkOnSave.command": "clippy",
     "rust-analyzer.lens.enable": false,
     "rust-analyzer.inlayHints.typeHints.enable": true,
     "rust-analyzer.inlayHints.chainingHints.enable": true,
