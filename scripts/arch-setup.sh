@@ -117,7 +117,6 @@ setup_surface() { #{{{
         linux-surface \
         linux-firmware-marvell \
         surface-ipts-firmware \
-        iptsd \
         aic94xx-firmware \
         wd719x-firmware \
         upd72020x-fw \
