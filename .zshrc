@@ -471,6 +471,9 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 export PF_COL1=2
 export PF_COL3=3
 # }}}
+# {{{asdf
+export PATH="$HOME/.asdf/shims:$PATH"
+# }}}
 # }}}
 # {{{Startup
 # zprof  # 取消注释首行和本行，然后执行 time zsh -i -c exit
