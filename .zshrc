@@ -232,8 +232,16 @@ job-kill() {
 }
 # }}}
 pb() { # {{{
-    server_url="https://paste.sainnhe.dev"
+    server_url="https://share.sainnhe.dev"
     help="USAGE:\tpb [OPTION] [SUBCOMMAND]\n\nOPTIONS:\n\t--help, -h\tShow this message\n\t--copy, -c\tCopy to clipboard\n\nSUBCOMMANDS:\n\tdelete\t\t<admin-url>\n\tupload\t\t<file>\n\tcat\t\t<stdio>\n\tget\t\t<url> or <admin-url>\n"
+    if [ ! -f "${HOME}/.cache/pastebin-auth" ]; then
+        printf "Username: "
+        read username
+        printf "Password: "
+        read password
+        mkdir -p "${HOME}/.cache"
+        echo "${username}:${password}" > "${HOME}/.cache/pastebin-auth"
+    fi
     case "${1}" in
     --help|-h)
         printf "${help}"
@@ -264,11 +272,11 @@ pb() { # {{{
     esac
     if [ "${arg}" = "--copy" ]; then
         if [ "${subcmd}" = "delete" ]; then
-            curl -X DELETE "${url}"
+            curl -u "$(cat ~/.cache/pastebin-auth)" -X DELETE "${url}"
         elif [ "${subcmd}" = "upload" ]; then
-            curl -Fc=@"${url}" "${server_url}" | tee /dev/tty | grep admin | sed -e 's/.*: "//' -e 's/",$//' | eval "${copy_cmd}"
+            curl -u "$(cat ~/.cache/pastebin-auth)" -Fc=@"${url}" "${server_url}" | tee /dev/tty | grep admin | sed -e 's/.*: "//' -e 's/",$//' | eval "${copy_cmd}"
         elif [ "${subcmd}" = "cat" ]; then
-            curl -Fc="$(cat)" "${server_url}" | tee /dev/tty | grep admin | sed -e 's/.*: "//' -e 's/",$//' | eval "${copy_cmd}"
+            curl -u "$(cat ~/.cache/pastebin-auth)" -Fc="$(cat)" "${server_url}" | tee /dev/tty | grep admin | sed -e 's/.*: "//' -e 's/",$//' | eval "${copy_cmd}"
         elif [ "${subcmd}" = "get" ]; then
             url=$(echo "${url}" | cut -d':' -f 1,2)
             curl -L "${url}" | tee /dev/tty | eval "${copy_cmd}"
@@ -278,11 +286,11 @@ pb() { # {{{
         fi
     else
         if [ "${subcmd}" = "delete" ]; then
-            curl -X DELETE "${url}"
+            curl -u "$(cat ~/.cache/pastebin-auth)" -X DELETE "${url}"
         elif [ "${subcmd}" = "upload" ]; then
-            curl -Fc=@"${url}" "${server_url}"
+            curl -u "$(cat ~/.cache/pastebin-auth)" -Fc=@"${url}" "${server_url}"
         elif [ "${subcmd}" = "cat" ]; then
-            curl -Fc="$(cat)" "${server_url}"
+            curl -u "$(cat ~/.cache/pastebin-auth)" -Fc="$(cat)" "${server_url}"
         elif [ "${subcmd}" = "get" ]; then
             url=$(echo "${url}" | cut -d':' -f 1,2)
             curl -L "${url}"
