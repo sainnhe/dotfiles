@@ -236,10 +236,8 @@ let g:rooter_patterns = [
       \ 'Makefile',
       \ 'CMakeLists.txt',
       \ 'requirements.txt',
-      \ 'package.json',
       \ 'Cargo.toml',
       \ 'go.mod',
-      \ '!' . expand('~'),
       \ ]
 let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
