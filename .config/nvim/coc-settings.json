@@ -222,7 +222,7 @@
         "--completion-style=detailed",
         "--fallback-style=google",
         "--header-insertion=iwyu",
-        "--suggest-missing-includes"
+        "--inlay-hints"
     ],
     "go.goplsPath": "gopls",
     "go.checkForUpdates": "disabled",
