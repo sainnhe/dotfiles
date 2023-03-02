@@ -412,6 +412,11 @@ zinit ice wait'1' lucid depth=1 \
     as"program" \
     pick"bin/asdf"
 zinit light asdf-vm/asdf
+zinit ice wait'1' lucid depth=1 \
+    as"program" \
+    pick"bin/*" \
+    atload"export MANPATH=$HOME/.zinit/plugins/sunaku---dasht/man:$MANPATH && source etc/zsh/completions.zsh"
+zinit light sunaku/dasht
 # {{{fast-syntax-highlighting
 FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
 # }}}
