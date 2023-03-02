@@ -212,6 +212,9 @@ elseif g:vim_mode ==# 'full'
   else
     Plug 'kkoomen/vim-doge', { 'do': { -> doge#install({ 'headless': 1 }) } }
   endif
+  if !has('win32')
+    Plug 'sunaku/vim-dasht'
+  endif
   " Tree-sitter
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }

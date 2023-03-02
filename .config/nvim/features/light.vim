@@ -308,12 +308,12 @@ let g:which_key_map['c'] = {
       \ }
 " }}}
 " {{{devdocs.vim
-nmap <leader><space>DC <Plug>(devdocs-under-cursor)
-nmap <leader><space>DA <Plug>(devdocs-under-cursor-all)
-let g:which_key_map["\<space>"]['D'] = {
-      \ 'name': 'devdocs',
-      \ 'C': 'Current file type',
-      \ 'A': 'All file types',
+nmap <leader><space>Dbc <Plug>(devdocs-under-cursor)
+nmap <leader><space>Dba <Plug>(devdocs-under-cursor-all)
+let g:which_key_map["\<space>"]['D']['b'] = {
+      \ 'name': 'devdocs (browser)',
+      \ 'c': 'search in current file type',
+      \ 'a': 'search in all file types'
       \ }
 " }}}
 " {{{vim-translator

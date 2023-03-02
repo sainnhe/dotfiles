@@ -452,6 +452,25 @@ let g:doge_doc_standard_python = 'google'
 nnoremap <silent> <leader><space>d :<C-u>DogeGenerate<CR>
 let g:which_key_map["\<space>"]['d'] = 'generate code doc'
 " }}}
+" {{{vim-dasht
+if !has('win32')
+  " Note:
+  " To find available docsets: https://kapeli.com/dash#docsets
+  " To install a docset: dasht-docsets-install <docset>
+  " To find installed docsets: ls ~/.local/share/dasht/docsets
+  " In the following dictionary, key is &filetype, value is docset name.
+  let g:dasht_filetype_docsets = {}
+  let g:dasht_filetype_docsets['c'] = ['C', 'GLib']
+  let g:dasht_filetype_docsets['cpp'] = ['C\+\+', 'C', 'GLib', 'Qt_5', 'Qt_6']
+  let g:dasht_filetype_docsets['python'] = ['Python_3', 'NumPy', 'SciPy']
+  nnoremap <silent> <leader><space>Dt :call Dasht(dasht#cursor_search_terms())<Return>
+  vnoremap <silent> <leader><space>Dt y:<C-U>call Dasht(getreg(0))<Return>
+  let g:which_key_map["\<space>"]['D'] = {
+        \ 'name': 'docs',
+        \ 't': 'dasht (terminal)'
+        \ }
+endif
+" }}}
 " {{{any-jump.vim
 let g:any_jump_disable_default_keybindings = 1
 nnoremap <silent> <leader>jj :<C-u>AnyJump<CR>
