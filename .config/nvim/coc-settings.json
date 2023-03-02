@@ -101,9 +101,6 @@
     "snippets.shortcut": "S",
     "snippets.priority": 99,
     "snippets.extends": {
-        "cpp": [
-            "c"
-        ],
         "javascriptreact": [
             "javascript"
         ],
