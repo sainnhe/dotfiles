@@ -218,8 +218,7 @@
         "--clang-tidy",
         "--completion-style=detailed",
         "--fallback-style=google",
-        "--header-insertion=iwyu",
-        "--inlay-hints"
+        "--header-insertion=iwyu"
     ],
     "go.goplsPath": "gopls",
     "go.checkForUpdates": "disabled",
