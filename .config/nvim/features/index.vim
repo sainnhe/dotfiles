@@ -186,6 +186,9 @@ Plug 'sainnhe/vim-paste-rs', { 'on': ['<Plug>(paste-rs)', 'PasteRsAddBuffer', 'P
 Plug 'kristijanhusak/vim-carbon-now-sh', { 'on': 'CarbonNowSh' }
 Plug 'alpertuna/vim-header', { 'on': ['AddHeader', 'AddMinHeader'] }
 Plug 'MattesGroeger/vim-bookmarks'
+  if !has('win32')
+    Plug 'sunaku/vim-dasht'
+  endif
 if has('nvim')
   Plug 'jbyuki/nabla.nvim'
 endif
@@ -212,9 +215,6 @@ elseif g:vim_mode ==# 'full'
     Plug 'kkoomen/vim-doge', { 'do': 'CXXFLAGS=--std=c++17 pnpm install && pnpm run build:binary:unix vim-doge && rm bin/vim-doge.tar.gz' }
   else
     Plug 'kkoomen/vim-doge', { 'do': { -> doge#install({ 'headless': 1 }) } }
-  endif
-  if !has('win32')
-    Plug 'sunaku/vim-dasht'
   endif
   " Tree-sitter
   if has('nvim')

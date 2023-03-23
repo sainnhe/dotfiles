@@ -310,10 +310,13 @@ let g:which_key_map['c'] = {
 " {{{devdocs.vim
 nmap <leader><space>Dbc <Plug>(devdocs-under-cursor)
 nmap <leader><space>Dba <Plug>(devdocs-under-cursor-all)
-let g:which_key_map["\<space>"]['D']['b'] = {
-      \ 'name': 'devdocs (browser)',
-      \ 'c': 'search in current file type',
-      \ 'a': 'search in all file types'
+let g:which_key_map["\<space>"]['D'] = {
+      \ 'name': 'docs',
+      \ 'b' : {
+        \ 'name': 'devdocs (browser)',
+        \ 'c': 'search in current file type',
+        \ 'a': 'search in all file types'
+        \ },
       \ }
 " }}}
 " {{{vim-translator
@@ -392,6 +395,22 @@ let g:which_key_map['b'] = {
       \ 'f': 'fuzzy find',
       \ }
 " }}}
+if !has('win32')
+" {{{vim-dasht
+  " Note:
+  " To find available docsets: https://kapeli.com/dash#docsets
+  " To install a docset: dasht-docsets-install <docset>
+  " To find installed docsets: ls ~/.local/share/dasht/docsets
+  " In the following dictionary, key is &filetype, value is docset name.
+  let g:dasht_filetype_docsets = {}
+  let g:dasht_filetype_docsets['c'] = ['C', 'GLib']
+  let g:dasht_filetype_docsets['cpp'] = ['C\+\+', 'C', 'GLib', 'Qt_5', 'Qt_6']
+  let g:dasht_filetype_docsets['python'] = ['Python_3', 'NumPy', 'SciPy']
+  nnoremap <silent> <leader><space>Dt :call Dasht(dasht#cursor_search_terms())<Return>
+  vnoremap <silent> <leader><space>Dt y:<C-U>call Dasht(getreg(0))<Return>
+  let g:which_key_map["\<space>"]['D']['t'] = 'dasht (terminal)'
+" }}}
+endif
 if has('nvim')
 " {{{nabla.nvim
 nnoremap <silent> <leader><space><space>m :<C-u>lua require("nabla").popup()<CR>
