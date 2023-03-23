@@ -180,6 +180,10 @@ endif
 " }}}
 " }}}
 " {{{Language features
+" {{{copilot.vim
+imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+" }}}
 " {{{coc.nvim
 " {{{coc-init
 let g:coc_data_home = fnamemodify(custom#utils#stdpath('data'), ':p') . 'coc'
