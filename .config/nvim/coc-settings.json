@@ -250,7 +250,7 @@
     "texlab.path": "texlab",
     "texlab.build.onSave": true,
     "sql.database": "mysql",
-    "markdown-preview-enhanced.previewTheme": "one-dark.css",
+    "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {
         "MD010": false,
