@@ -230,6 +230,7 @@ let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
       \ 'coc-webview',
+      \ 'coc-word',
       \ 'coc-xml',
       \ 'coc-yaml',
       \ 'coc-yank',

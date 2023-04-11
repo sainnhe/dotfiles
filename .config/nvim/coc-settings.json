@@ -125,13 +125,26 @@
     "coc.source.dictionary.priority": 9,
     "coc.source.dictionary.filetypes": [
         "markdown",
+        "tex",
+        "latex",
+        "text",
+        "help",
+        "gitcommit",
+        "snippets"
+    ],
+    "coc.source.word.shortcut": "W",
+    "coc.source.word.priority": 8,
+    "coc.source.word.filetypes": [
+        "markdown",
+        "tex",
+        "latex",
         "text",
         "help",
         "gitcommit",
         "snippets"
     ],
     "coc.source.emoji.shortcut": "E",
-    "coc.source.emoji.priority": 8,
+    "coc.source.emoji.priority": 7,
     "coc.source.emoji.filetypes": [
         "markdown",
         "text"
