@@ -36,7 +36,6 @@ setup_dotfiles() { #{{{
     setup_copy .aria2
     setup_copy .config/autostart
     setup_symlink .config/pip
-    setup_copy .config/xsettingsd
     setup_copy .config/autostart-scripts
     setup_symlink .config/fontconfig/fonts.conf
     setup_symlink .config/helix/config.toml
