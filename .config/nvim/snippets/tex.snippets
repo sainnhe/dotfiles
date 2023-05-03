@@ -1,0 +1,11 @@
+snippet crossref CrossRef
+	[\href{https://doi.org/${1:DOI}}{CrossRef}]${0}
+
+snippet inproceedings In Proceedings
+	\bibitem[${1:Author1}(${2:Year})]{ref:${3:Label}}
+		${4:First Name1, Last Name1.; First Name2, Last Name2}. ${5:Title}. In Proceedings of the ${6:Conference}, ${7:Location, Country}, ${8:2-4 October 2018}; pp. ${9:1--6}. [\href{https://doi.org/${10:DOI}}{CrossRef}]${0}
+
+snippet article Journal Article
+	\bibitem[${1:Author1}(${2:Year})]{ref:${3:Label}}
+		${4:First Name1, Last Name1.; First Name2, Last Name2}. ${5:Title}. {\em ${6:Journal}} {\bf ${7:Year}}, {\em ${8:volume}}, ${9:34--76}. [\href{https://doi.org/${10:DOI}}{CrossRef}]
+
