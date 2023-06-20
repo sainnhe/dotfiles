@@ -207,7 +207,6 @@ let g:coc_global_extensions = [
       \ 'coc-htmlhint',
       \ 'coc-imselect',
       \ 'coc-json',
-      \ 'coc-julia',
       \ 'coc-lists',
       \ 'coc-lua',
       \ 'coc-markdown-preview-enhanced',

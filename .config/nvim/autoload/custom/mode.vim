@@ -15,11 +15,9 @@ function custom#mode#get() abort " Get mode
   elseif l:mode_num == 2
     let l:vim_mode = 'light'
   elseif l:mode_num == 3
-    if custom#mode#check_dependencies()
-      let l:vim_mode = 'full'
-    else
-      echomsg "[dependency] Detected uninstalled dependencies, fall back to light mode."
-      let l:vim_mode = 'light'
+    let l:vim_mode = 'full'
+    if custom#mode#check_dependencies() == 0
+      echomsg "[warning] Detected uninstalled dependencies."
     endif
   else
     echoerr 'Invalid input!'
@@ -46,14 +44,15 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'node',
           \ 'npm',
           \ 'pnpm',
-          \ 'clang',
+          \ 'clangd',
           \ 'rg',
           \ 'fzf',
-          \ 'julia',
           \ 'tex',
           \ 'texlab',
           \ 'go',
-          \ 'gopls'
+          \ 'gopls',
+          \ 'cargo',
+          \ 'rust-analyzer',
           \ ],
         \ 'darwin': [
           \ 'shellcheck',
@@ -67,14 +66,14 @@ function custom#mode#check_dependencies() abort " Check dependencies
         \ }
   for dependency in l:dependencies['universal']
     if !executable(dependency)
-      echomsg "[dependency] Doesn't have " . dependency . ' installed.'
+      echomsg "[warning] Doesn't have " . dependency . ' installed.'
       let l:result = 0
     endif
   endfor
   if has('osxdarwin')
     for dependency in l:dependencies['darwin']
       if !executable(dependency)
-        echomsg "[dependency] Doesn't have " . dependency . ' installed.'
+        echomsg "[warning] Doesn't have " . dependency . ' installed.'
         let l:result = 0
       endif
     endfor
@@ -82,7 +81,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
   if !has('win32') && !has('osxdarwin')
     for dependency in l:dependencies['unix-like']
       if !executable(dependency)
-        echomsg "[dependency] Doesn't have " . dependency . ' installed.'
+        echomsg "[warning] Doesn't have " . dependency . ' installed.'
         let l:result = 0
       endif
     endfor
