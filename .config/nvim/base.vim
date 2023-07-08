@@ -32,6 +32,16 @@ if exists('g:neovide')
   let g:neovide_cursor_vfx_mode = 'sonicboom'
   let g:neovide_cursor_vfx_opacity = 50
   let g:neovide_remember_window_size = v:true
+  let g:neovide_hide_mouse_when_typing = v:true
+  let g:neovide_remember_window_size = v:true
+  let g:neovide_input_macos_alt_is_meta = v:true
+  augroup ime_input
+    autocmd!
+    autocmd InsertLeave * execute "let g:neovide_input_ime=v:false"
+    autocmd InsertEnter * execute "let g:neovide_input_ime=v:true"
+    autocmd CmdlineEnter [/\?] execute "let g:neovide_input_ime=v:false"
+    autocmd CmdlineLeave [/\?] execute "let g:neovide_input_ime=v:true"
+  augroup END
 endif
 
 " Nvui
@@ -69,9 +79,9 @@ if !filereadable(s:envs_path) " Create envs.vim if it doesn't exist
         \ 'endif',
         \ "if has('gui_running') || exists('g:fvim_loaded') || exists('g:neovide') || exists('g:nvui')",
         \ "  if !has('nvim') && !has('win32') && !has('osxdarwin')",
-        \ '    set guifont=MonoLisa\ 12',
+        \ '    set guifont=Macon\ 12',
         \ '  else',
-        \ '    set guifont=MonoLisa:h12',
+        \ '    set guifont=Macon:h12',
         \ '  endif',
         \ 'endif'
         \ ], s:envs_path, 'a')
