@@ -12,15 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Prune Untagged Images
-        uses: Chizkiyahu/delete-untagged-ghcr-action@v2
-        with:
-          token: ${{ secrets.PAT_TOKEN }}
-          repository_owner: ${{ github.repository_owner }}
-          repository: ${{ github.repository }}
-          package_name: dotfiles
-          untagged_only: true
-          owner_type: user
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install QEMU
@@ -38,6 +29,15 @@ jobs:
           containerfiles: |
             ./Containerfile
           platforms: linux/amd64,linux/arm64/v8
+      - name: Prune Untagged Images on ghcr.io
+        uses: Chizkiyahu/delete-untagged-ghcr-action@v2
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          repository_owner: ${{ github.repository_owner }}
+          repository: ${{ github.repository }}
+          package_name: dotfiles
+          untagged_only: true
+          owner_type: user
       - name: Push To ghcr.io
         id: push-to-ghcr
         uses: redhat-actions/push-to-registry@v2
