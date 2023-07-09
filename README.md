@@ -29,8 +29,8 @@ podman run -it --rm <registry>/sainnhe/dotfiles:latest
 
 Where `<registry>` is one of the following:
 
-- [`docker.io`](https://hub.docker.com/r/sainnhe/dotfiles)
 - [`ghcr.io`](https://github.com/sainnhe/dotfiles/pkgs/container/dotfiles)
+- [`quay.io`](https://quay.io/repository/sainnhe/dotfiles)
 
 To access local directory in the container, use:
 
