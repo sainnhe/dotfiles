@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:edge
+FROM public.ecr.aws/docker/library/alpine:edge
 RUN apk upgrade --no-cache && apk add --no-cache \
         shadow \
         bash \
