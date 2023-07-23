@@ -71,6 +71,7 @@ RUN apk upgrade --no-cache && apk add --no-cache \
         python3 \
         py3-pip \
         py3-requests \
+        openjdk17 \
         && npm install -g pnpm \
         && rm -rf ~/.npm
 

@@ -53,6 +53,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'gopls',
           \ 'cargo',
           \ 'rust-analyzer',
+          \ 'java'
           \ ],
         \ 'darwin': [
           \ 'shellcheck',
