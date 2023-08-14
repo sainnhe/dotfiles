@@ -42,7 +42,7 @@ Where `<workdir-on-local-machine>` is the path of the directory you want to acce
 
 ## Tips
 
-- Don't forget to install nerd font for your terminal emulater.
+- Don't forget to install nerd font for your terminal emulator.
 - Execute `tmuxinit` in zsh to start a tmux session.
 - Press Ctrl-Space twice to launch tmux-fzf which can help you better manage tmux environment.
 - Execute `colorscheme` in zsh to switch color schemes.
