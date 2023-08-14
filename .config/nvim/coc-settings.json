@@ -277,8 +277,18 @@
     "cSpell.enabledLanguageIds": [
         "asciidoc",
         "git-commit",
+        "git-rebase",
         "latex",
+        "markdown",
         "plaintext",
+        "tex",
         "text"
+    ],
+    "cSpell.userWords": [
+        "sainnhe",
+        "dotfiles",
+        "Neovim",
+        "neovim",
+        "nvim"
     ]
 }
