@@ -22,7 +22,8 @@ if [ -x "$(command -v nvim)" ]; then
 fi
 export FuzzyFinder="fzf"
 export GO111MODULE=on
-# export GOPROXY=https://mirrors.aliyun.com/goproxy/
+export GOPROXY=https://proxy.golang.com.cn,direct
+export GOSUMDB=sum.golang.google.cn
 if [[ "$(uname)" == "Darwin" ]]; then
     fpath=(/opt/local/share/zsh/site-functions $fpath)
 fi
