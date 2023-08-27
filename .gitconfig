@@ -1,8 +1,11 @@
 [user]
     name = "Sainnhe Park"
     email = i@sainnhe.dev
+    signingkey = 9809B90835E8B2FCA4B4C3A3521452943285CB57
 [core]
     editor = nvim
+[commit]
+    gpgsign = true
 [diff]
     tool = nvim_diff
 [difftool]
