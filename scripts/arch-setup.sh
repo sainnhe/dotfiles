@@ -57,15 +57,12 @@ setup_arch_repos() { #{{{
     sudo pacman-key --init
 
     # personal repository
-    curl -L https://repo.sainnhe.dev/sainnhe.gpg \
-        | sudo pacman-key --add -
-    sudo pacman-key --finger 16F249ED243F596E
-    sudo pacman-key --lsign-key 16F249ED243F596E
+    pacman-key --keyserver keys.openpgp.org --recv-keys 521452943285CB57
+    sudo pacman-key --lsign-key 521452943285CB57
 
     # linux surface
     wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
         | sudo pacman-key --add -
-    sudo pacman-key --finger 56C464BAAC421453
     sudo pacman-key --lsign-key 56C464BAAC421453
 
     # required packages
