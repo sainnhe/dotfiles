@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bun": "1.0.1",
     "code-theme-converter": "1.2.1",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
