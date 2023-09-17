@@ -191,9 +191,7 @@ setup_rust() { #{{{
     sudo pacman -S rustup
     proxychains -q rustup install nightly
     rustup default nightly
-    proxychains -q rustup component add \
-        rust-analyzer-preview \
-        rust-docs
+    proxychains -q rustup component add rust-analyzer-preview
     xdg-mime default firefox-developer-edition.desktop text/html
 } #}}}
 setup_pnpm() { #{{{
