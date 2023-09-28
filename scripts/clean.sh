@@ -83,9 +83,3 @@ if [ "$num" == "1" ] || [ "$num" == "5" ]; then
                 ktrash5 --empty 2> /dev/null
         fi
 fi
-
-printf "${BBLUE}==> Launch bleachbit? [N/y]${NC}  "
-read -r judge
-if [ "$judge"x == "y"x ]; then
-        bleachbit --gui
-fi
