@@ -160,14 +160,7 @@
         "javascript": "javascriptreact"
     },
     "imselect.defaultInput": "com.apple.keylayout.ABC",
-    "prettier.disableLanguages": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue",
-        "json"
-    ],
+    "prettier.formatterPriority": -1,
     "explorer.icon.enableNerdfont": true,
     "explorer.width": 30,
     "explorer.focus": false,
@@ -252,10 +245,20 @@
     "python.analysis.typeCheckingMode": "basic",
     "python.formatting.provider": "yapf",
     "python.formatting.yapfPath": "yapf",
-    "python.formatting.yapfArgs": ["--style", "pep8", "--parallel", "--exclude", ".git,__pycache__,.venv,venv,dist,build,.eggs,*.egg"],
+    "python.formatting.yapfArgs": [
+        "--style",
+        "pep8",
+        "--parallel",
+        "--exclude",
+        ".git,__pycache__,.venv,venv,dist,build,.eggs,*.egg"
+    ],
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Path": "flake8",
-    "python.linting.flake8Args": ["--doctests", "--exclude", ".git,__pycache__,.venv,venv,dist,build,.eggs,*.egg"],
+    "python.linting.flake8Args": [
+        "--doctests",
+        "--exclude",
+        ".git,__pycache__,.venv,venv,dist,build,.eggs,*.egg"
+    ],
     "lua.installPreReleases": true,
     "Lua.workspace.library": [
         "/opt/local/share/nvim/runtime/lua",
