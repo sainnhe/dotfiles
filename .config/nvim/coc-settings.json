@@ -60,9 +60,12 @@
     "codeLens.enable": true,
     "codeLens.separator": "▸",
     "list.indicator": "❯",
+    "list.source.grep.command": "rg",
     "list.source.grep.args": [
+        "--ignore-vcs",
         "--hidden",
-        "--no-ignore"
+        "--glob=!.git/*",
+        "--smart-case"
     ],
     "list.insertMappings": {
         "<C-p>": "action:preview",

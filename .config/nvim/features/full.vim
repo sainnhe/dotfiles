@@ -437,36 +437,50 @@ let g:which_key_map['f']['p'] = 'projects'
 " }}}
 " }}}
 " {{{LeaderF
-let g:Lf_ShortcutF = ''
-let g:Lf_ShortcutB = ''
-let g:Lf_CacheDirectory = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'leaderf'
-let g:Lf_WildIgnore = {
-      \ 'dir': ['.svn','.git','.hg'],
-      \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-      \ }
-let g:Lf_StlSeparator = { 'left': '', 'right': '' }
-let g:Lf_ShowHidden = 1
-let g:Lf_WindowHeight = 0.38
-let g:Lf_PreviewInPopup = 0
-let g:Lf_RgConfig = [
-      \ "--ignore-vcs",
-      \ "--hidden",
-      \ "--glob=!.git/*"
-      \ ]
-nnoremap <silent> <leader>fl :<C-u>LeaderfLine<CR>
-nnoremap <silent> <leader>fL :<C-u>LeaderfLineAll<CR>
-nnoremap <silent> <leader>ff :<C-u>LeaderfFile<CR>
-nnoremap <silent> <leader>fb :<C-u>LeaderfBuffer<CR>
-nnoremap <silent> <leader>fB :<C-u>LeaderfBufferAll<CR>
-nnoremap <silent> <leader>fg :<C-u>LeaderfRgInteractive<CR>
-nnoremap <silent> <leader>fm :<C-u>LeaderfMru<CR>
-let g:which_key_map['f']['l'] = 'lines'
-let g:which_key_map['f']['L'] = 'lines all'
-let g:which_key_map['f']['f'] = 'files'
-let g:which_key_map['f']['b'] = 'buffers'
-let g:which_key_map['f']['B'] = 'buffers all'
-let g:which_key_map['f']['g'] = 'grep'
-let g:which_key_map['f']['m'] = 'mru files'
+if has('python3')
+  let g:Lf_ShortcutF = ''
+  let g:Lf_ShortcutB = ''
+  let g:Lf_CacheDirectory = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'leaderf'
+  let g:Lf_WildIgnore = {
+        \ 'dir': ['.svn','.git','.hg'],
+        \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+        \ }
+  let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+  let g:Lf_ShowHidden = 1
+  let g:Lf_WindowHeight = 0.38
+  let g:Lf_PreviewInPopup = 0
+  let g:Lf_RgConfig = [
+        \ "--ignore-vcs",
+        \ "--hidden",
+        \ "--glob=!.git/*",
+        \ "--smart-case",
+        \ ]
+  nnoremap <silent> <leader>fl :<C-u>LeaderfLine<CR>
+  nnoremap <silent> <leader>fL :<C-u>LeaderfLineAll<CR>
+  nnoremap <silent> <leader>ff :<C-u>LeaderfFile<CR>
+  nnoremap <silent> <leader>fb :<C-u>LeaderfBuffer<CR>
+  nnoremap <silent> <leader>fB :<C-u>LeaderfBufferAll<CR>
+  nnoremap <silent> <leader>fm :<C-u>LeaderfMru<CR>
+  nnoremap <silent> <leader>fg :<C-u>LeaderfRgInteractive<CR>
+  let g:which_key_map['f']['l'] = 'lines'
+  let g:which_key_map['f']['L'] = 'lines all'
+  let g:which_key_map['f']['f'] = 'files'
+  let g:which_key_map['f']['b'] = 'buffers'
+  let g:which_key_map['f']['B'] = 'buffers all'
+  let g:which_key_map['f']['m'] = 'mru files'
+  let g:which_key_map['f']['g'] = 'grep'
+else
+  nnoremap <silent> <leader>fl :<C-u>CocList lines<CR>
+  nnoremap <silent> <leader>ff :<C-u>CocList files<CR>
+  nnoremap <silent> <leader>fb :<C-u>CocList buffers<CR>
+  nnoremap <silent> <leader>fm :<C-u>CocList mru<CR>
+  nnoremap <silent> <leader>fg :<C-u>CocList grep<CR>
+  let g:which_key_map['f']['l'] = 'lines'
+  let g:which_key_map['f']['f'] = 'files'
+  let g:which_key_map['f']['b'] = 'buffers'
+  let g:which_key_map['f']['m'] = 'mru files'
+  let g:which_key_map['f']['g'] = 'grep'
+endif
 " }}}
 " {{{vim-doge
 let g:doge_enable_mappings = 0

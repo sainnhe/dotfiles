@@ -210,7 +210,9 @@ elseif g:vim_mode ==# 'full'
   Plug 'github/copilot.vim'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'yaegassy/coc-marksman', { 'do': 'yarn install --frozen-lockfile' }
-  Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+  if has('python3')
+    Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+  endif
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
   " Tree-sitter
