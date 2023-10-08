@@ -187,7 +187,13 @@ let g:copilot_no_tab_map = v:true
 " {{{coc.nvim
 " {{{coc-init
 let g:coc_data_home = fnamemodify(custom#utils#stdpath('data'), ':p') . 'coc'
-let g:coc_filetype_map = {'tex': 'latex'}
+let g:coc_filetype_map = {
+      \ 'tex': 'latex',
+      \ 'plaintex': 'latex',
+      \ 'text': 'plaintext',
+      \ 'help': 'plaintext',
+      \ 'gitcommit': 'plaintext',
+      \ }
 let g:coc_global_extensions = [
       \ 'coc-calc',
       \ 'coc-clangd',

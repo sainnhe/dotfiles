@@ -124,30 +124,32 @@
     "coc.source.dictionary.shortcut": "D",
     "coc.source.dictionary.priority": 9,
     "coc.source.dictionary.filetypes": [
-        "markdown",
-        "tex",
         "latex",
-        "text",
-        "help",
-        "gitcommit",
-        "snippets"
+        "bibtex",
+        "markdown",
+        "org",
+        "restructuredtext",
+        "plaintext"
     ],
     "coc.source.word.shortcut": "W",
     "coc.source.word.priority": 8,
     "coc.source.word.filetypes": [
-        "markdown",
-        "tex",
         "latex",
-        "text",
-        "help",
-        "gitcommit",
-        "snippets"
+        "bibtex",
+        "markdown",
+        "org",
+        "restructuredtext",
+        "plaintext"
     ],
     "coc.source.emoji.shortcut": "E",
     "coc.source.emoji.priority": 7,
     "coc.source.emoji.filetypes": [
+        "latex",
+        "bibtex",
         "markdown",
-        "text"
+        "org",
+        "restructuredtext",
+        "plaintext"
     ],
     "colors.enable": true,
     "highlight.colors.enable": true,
@@ -280,6 +282,14 @@
             "ENGLISH_WORD_REPEAT_RULE"
         ]
     },
+    "ltex.enabled": [
+        "latex",
+        "bibtex",
+        "markdown",
+        "org",
+        "restructuredtext",
+        "plaintext"
+    ],
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {
