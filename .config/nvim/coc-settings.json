@@ -269,6 +269,17 @@
     "texlab.path": "texlab",
     "texlab.build.onSave": true,
     "sql.database": "mysql",
+    "ltex.language": "en-US",
+    "ltex.diagnosticSeverity": {
+        "default": "information",
+        "MORFOLOGIK_RULE_EN_US": "hint"
+    },
+    "ltex.disabledRules": {
+        "en-US": [
+            "WHITESPACE_RULE",
+            "ENGLISH_WORD_REPEAT_RULE"
+        ]
+    },
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {
@@ -277,24 +288,8 @@
         "MD014": false,
         "MD024": false,
         "MD028": false,
+        "MD033": false,
         "MD036": false,
         "MD041": false
-    },
-    "cSpell.enabledLanguageIds": [
-        "asciidoc",
-        "git-commit",
-        "git-rebase",
-        "latex",
-        "markdown",
-        "plaintext",
-        "tex",
-        "text"
-    ],
-    "cSpell.userWords": [
-        "sainnhe",
-        "dotfiles",
-        "Neovim",
-        "neovim",
-        "nvim"
-    ]
+    }
 }

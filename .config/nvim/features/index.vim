@@ -209,6 +209,7 @@ elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'github/copilot.vim'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  Plug 'yaegassy/coc-marksman', {'do': 'yarn install --frozen-lockfile'}
   Plug 'junegunn/fzf'
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }

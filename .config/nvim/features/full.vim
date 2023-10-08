@@ -187,6 +187,7 @@ let g:copilot_no_tab_map = v:true
 " {{{coc.nvim
 " {{{coc-init
 let g:coc_data_home = fnamemodify(custom#utils#stdpath('data'), ':p') . 'coc'
+let g:coc_filetype_map = {'tex': 'latex'}
 let g:coc_global_extensions = [
       \ 'coc-calc',
       \ 'coc-clangd',
@@ -209,6 +210,7 @@ let g:coc_global_extensions = [
       \ 'coc-java',
       \ 'coc-json',
       \ 'coc-lists',
+      \ 'coc-ltex',
       \ 'coc-lua',
       \ 'coc-markdown-preview-enhanced',
       \ 'coc-markdownlint',
@@ -219,7 +221,6 @@ let g:coc_global_extensions = [
       \ 'coc-rust-analyzer',
       \ 'coc-sh',
       \ 'coc-snippets',
-      \ 'coc-spell-checker',
       \ 'coc-sql',
       \ 'coc-svg',
       \ 'coc-syntax',
