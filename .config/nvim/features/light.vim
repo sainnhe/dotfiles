@@ -385,14 +385,12 @@ nnoremap <silent> <leader>bb :<C-u>BookmarkToggle<CR>
 nnoremap <silent> <leader>ba :<C-u>BookmarkAnnotate<CR>
 nnoremap <silent> <leader>bc :<C-u>BookmarkClear<CR>
 nnoremap <silent> <leader>bC :<C-u>BookmarkClearAll<CR>
-nnoremap <silent> <leader>bf :<C-u>CocCommand fzf-preview.Bookmarks<CR>
 let g:which_key_map['b'] = {
       \ 'name': 'bookmarks',
       \ 'b': 'bookmark',
       \ 'a': 'annotate',
       \ 'c': 'clear current buffer',
       \ 'C': 'clear all',
-      \ 'f': 'fuzzy find',
       \ }
 " }}}
 if !has('win32')

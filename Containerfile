@@ -70,6 +70,7 @@ RUN apk upgrade --no-cache && apk add --no-cache \
         yarn \
         python3 \
         py3-pip \
+        py3-pynvim \
         py3-requests \
         py3-flake8 \
         py3-yapf \

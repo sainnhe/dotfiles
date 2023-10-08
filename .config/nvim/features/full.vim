@@ -205,7 +205,6 @@ let g:coc_global_extensions = [
       \ 'coc-emmet',
       \ 'coc-emoji',
       \ 'coc-explorer',
-      \ 'coc-fzf-preview',
       \ 'coc-git',
       \ 'coc-gitignore',
       \ 'coc-go',
@@ -436,25 +435,38 @@ augroup END
 nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
 let g:which_key_map['f']['p'] = 'projects'
 " }}}
-" {{{coc-fzf-preview
-let g:fzf_preview_floating_window_rate = 0.618
-nnoremap <silent> <leader>fl :<C-u>CocCommand fzf-preview.Lines<CR>
-nnoremap <silent> <leader>fL :<C-u>CocCommand fzf-preview.BufferLines<CR>
-nnoremap <silent> <leader>ff :<C-u>CocCommand fzf-preview.ProjectFiles<CR>
-nnoremap <silent> <leader>fF :<C-u>CocCommand fzf-preview.DirectoryFiles<CR>
-nnoremap <silent> <leader>fb :<C-u>CocCommand fzf-preview.Buffers<CR>
-nnoremap <silent> <leader>fB :<C-u>CocCommand fzf-preview.AllBuffers<CR>
-nnoremap <silent> <leader>fg :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
-nnoremap <silent> <leader>fm :<C-u>CocCommand fzf-preview.MruFiles<CR>
+" }}}
+" {{{LeaderF
+let g:Lf_ShortcutF = ''
+let g:Lf_ShortcutB = ''
+let g:Lf_CacheDirectory = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'leaderf'
+let g:Lf_WildIgnore = {
+      \ 'dir': ['.svn','.git','.hg'],
+      \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+      \ }
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+let g:Lf_ShowHidden = 1
+let g:Lf_WindowHeight = 0.38
+let g:Lf_PreviewInPopup = 0
+let g:Lf_RgConfig = [
+      \ "--ignore-vcs",
+      \ "--hidden",
+      \ "--glob=!.git/*"
+      \ ]
+nnoremap <silent> <leader>fl :<C-u>LeaderfLine<CR>
+nnoremap <silent> <leader>fL :<C-u>LeaderfLineAll<CR>
+nnoremap <silent> <leader>ff :<C-u>LeaderfFile<CR>
+nnoremap <silent> <leader>fb :<C-u>LeaderfBuffer<CR>
+nnoremap <silent> <leader>fB :<C-u>LeaderfBufferAll<CR>
+nnoremap <silent> <leader>fg :<C-u>LeaderfRgInteractive<CR>
+nnoremap <silent> <leader>fm :<C-u>LeaderfMru<CR>
 let g:which_key_map['f']['l'] = 'lines'
 let g:which_key_map['f']['L'] = 'lines all'
 let g:which_key_map['f']['f'] = 'files'
-let g:which_key_map['f']['F'] = 'files all'
 let g:which_key_map['f']['b'] = 'buffers'
 let g:which_key_map['f']['B'] = 'buffers all'
 let g:which_key_map['f']['g'] = 'grep'
 let g:which_key_map['f']['m'] = 'mru files'
-" }}}
 " }}}
 " {{{vim-doge
 let g:doge_enable_mappings = 0

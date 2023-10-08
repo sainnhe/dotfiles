@@ -46,7 +46,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'pnpm',
           \ 'clangd',
           \ 'rg',
-          \ 'fzf',
           \ 'tex',
           \ 'texlab',
           \ 'go',
