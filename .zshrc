@@ -349,6 +349,7 @@ alias cdh-clean-all='dirs -c'
 alias cdr='cd $(git rev-parse --show-toplevel)'
 alias job-='fg %-'
 alias job-ls='jobs -l'
+alias vimprivate="vim -u DEFAULTS --cmd 'set noswapfile' --cmd 'set nobackup' --cmd 'set noundofile' --cmd 'set viminfofile=NONE' --cmd 'set viminfo=' --cmd 'set nomodeline' --cmd 'set noexrc' --noplugin"
 alias nnn='PAGER= nnn'
 alias pager="${PAGER}"
 alias help='~/repo/dotfiles/scripts/help.sh'
