@@ -69,6 +69,7 @@ RUN apk upgrade --no-cache && apk add --no-cache \
         npm-doc \
         yarn \
         python3 \
+        python3-dev \
         py3-pip \
         py3-pynvim \
         py3-requests \
