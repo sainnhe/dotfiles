@@ -276,6 +276,13 @@
     ],
     "texlab.path": "texlab",
     "texlab.build.onSave": true,
+    "texlab.build.args": [
+        "-pdf",
+        "-xelatex",
+        "-interaction=nonstopmode",
+        "-synctex=1",
+        "%f"
+    ],
     "sql.database": "mysql",
     "ltex.language": "en-US",
     "ltex.diagnosticSeverity": {
