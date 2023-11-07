@@ -215,7 +215,6 @@ let g:coc_global_extensions = [
       \ 'coc-java',
       \ 'coc-json',
       \ 'coc-lists',
-      \ 'coc-ltex',
       \ 'coc-lua',
       \ 'coc-markdown-preview-enhanced',
       \ 'coc-markdownlint',

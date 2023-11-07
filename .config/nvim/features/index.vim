@@ -209,7 +209,6 @@ elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'github/copilot.vim'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-  Plug 'yaegassy/coc-marksman', { 'do': 'yarn install --frozen-lockfile' }
   if has('python3')
     Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
   endif

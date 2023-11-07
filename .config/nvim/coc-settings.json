@@ -284,25 +284,6 @@
         "%f"
     ],
     "sql.database": "mysql",
-    "ltex.language": "en-US",
-    "ltex.diagnosticSeverity": {
-        "default": "information",
-        "MORFOLOGIK_RULE_EN_US": "hint"
-    },
-    "ltex.disabledRules": {
-        "en-US": [
-            "WHITESPACE_RULE",
-            "ENGLISH_WORD_REPEAT_RULE"
-        ]
-    },
-    "ltex.enabled": [
-        "latex",
-        "bibtex",
-        "markdown",
-        "org",
-        "restructuredtext",
-        "plaintext"
-    ],
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {
