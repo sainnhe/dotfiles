@@ -1,24 +1,24 @@
 {
   "dependencies": {
-    "@slidev/cli": "^0.43.7",
-    "bun": "1.0.7",
+    "@slidev/cli": "^0.44.0",
+    "bun": "1.0.13",
     "code-theme-converter": "1.2.1",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
-    "generator-code": "1.7.9",
+    "generator-code": "1.8.0",
     "gtop": "1.1.5",
     "less": "4.2.0",
     "localtunnel": "2.0.2",
-    "npm-check-updates": "16.14.6",
+    "npm-check-updates": "16.14.11",
     "ovsx": "0.8.3",
-    "pnpm": "8.9.2",
-    "pyright": "1.1.332",
+    "pnpm": "8.10.5",
+    "pyright": "1.1.336",
     "serve": "14.2.1",
-    "typescript-language-server": "4.0.0",
+    "typescript-language-server": "4.1.2",
     "v2ray-tools": "0.2.1",
-    "vercel": "32.5.0",
+    "vercel": "32.5.6",
     "vsce": "2.14.0",
-    "wrangler": "3.14.0",
-    "yo": "4.3.1"
+    "wrangler": "3.17.0",
+    "yo": "5.0.0"
   }
 }
