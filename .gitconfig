@@ -68,5 +68,5 @@
 ;     proxy = socks5://127.0.0.1:1080
 ; [url "https://github-proxy.sainnhe.dev/"]
 ;     insteadOf = https://github.com/
-; [url "https://ghproxy.com/https://github.com/"]
+; [url "https://mirror.ghproxy.com/https://github.com/"]
 ;     insteadOf = https://github.com/
