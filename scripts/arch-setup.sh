@@ -139,16 +139,16 @@ setup_nvidia() { #{{{
         nvidia-settings \
         nvidia-utils \
         opencl-nvidia \
-        lib32-nvidia-utils \
-        lib32-opencl-nvidia \
         virtualgl \
-        lib32-virtualgl \
         libva-vdpau-driver-vp9-git \
         libvdpau \
         vdpauinfo \
         bbswitch-dkms \
         xorg-xrandr \
         optimus-manager-qt
+        # lib32-nvidia-utils \
+        # lib32-opencl-nvidia \
+        # lib32-virtualgl \
     sudo sync
     # surface setup
     sudo mkdir -p /etc/modprobe.d
