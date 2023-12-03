@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@microsoft/inshellisense": "^0.0.1-rc.4",
     "@slidev/cli": "^0.44.0",
     "bun": "1.0.15",
     "code-theme-converter": "1.2.1",
