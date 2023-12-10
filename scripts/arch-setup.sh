@@ -56,10 +56,6 @@ setup_arch_repos() { #{{{
     sudo cp ~/repo/dotfiles/.root/etc/pacman.conf /etc/pacman.conf
     sudo pacman-key --init
 
-    # personal repository
-    pacman-key --keyserver keys.openpgp.org --recv-keys 521452943285CB57
-    sudo pacman-key --lsign-key 521452943285CB57
-
     # linux surface
     wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
         | sudo pacman-key --add -
