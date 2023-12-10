@@ -1,7 +1,7 @@
 [user]
     name = "Sainnhe Park"
     email = i@sainnhe.dev
-    signingkey = 9809B90835E8B2FCA4B4C3A3521452943285CB57
+    signingkey = 176E0BEC3A702FEBCCDA0A185A24ED790A08C8A3
 [core]
     editor = nvim
 [commit]
