@@ -22,6 +22,7 @@ restore() {
     printf "\nBackup restored\n"
     printf "To edit trust level: gpg --edit-key <key-id>\n"
     printf "Type \`trust\` and press Enter\n"
+    printf "!!! Don't forget to delete primary secret key !!!"
 }
 
 if [ "${1}" = 'backup' ]; then
