@@ -182,6 +182,8 @@ endif
 " {{{Language features
 " {{{copilot.vim
 imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
+imap <silent> <A-j> <Plug>(copilot-next)
+imap <silent> <A-k> <Plug>(copilot-previous)
 let g:copilot_no_tab_map = v:true
 " }}}
 " {{{coc.nvim
