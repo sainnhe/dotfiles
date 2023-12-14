@@ -164,18 +164,17 @@ omap T <Plug>Sneak_T
 " }}}
 " {{{Search
 " {{{vim-asterisk
-map *   <Plug>(asterisk-z*)<Plug>(is-nohl-1)
-map #   <Plug>(asterisk-z#)<Plug>(is-nohl-1)
-map g*  <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
-map g#  <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
+map *   <Plug>(asterisk-z*)
+map #   <Plug>(asterisk-z#)
+map g*  <Plug>(asterisk-gz*)
+map g#  <Plug>(asterisk-gz#)
 map z*  <Plug>(asterisk-z*)
 map gz* <Plug>(asterisk-gz*)
 map z#  <Plug>(asterisk-z#)
 map gz# <Plug>(asterisk-gz#)
 " }}}
-" {{{vim-anzu
-map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
-map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
+" {{{vim-cool
+let g:cool_total_matches = 1
 " }}}
 " }}}
 " {{{Pairs
