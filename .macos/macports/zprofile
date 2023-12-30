@@ -4,4 +4,9 @@ export PATH="$port_prefix/sbin:$PATH"
 export MANPATH="$port_prefix/share/man:$MANPATH"
 export OPENSSL_ROOT_DIR="$port_prefix"
 export PATH="$PATH:$port_prefix/libexec/qt5/bin"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21-macports.jdk/Contents/Home
+export PATH="$JAVA_HOME/bin:$PATH"
 unset port_prefix
+
+# Added by OrbStack: command-line tools and integration
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
