@@ -70,3 +70,6 @@
 ;     insteadOf = https://github.com/
 ; [url "https://mirror.ghproxy.com/https://github.com/"]
 ;     insteadOf = https://github.com/
+; ; Need to set gpg program on windows
+; [gpg]
+;     program = "C:/Users/sainnhe/scoop/apps/gnupg/current/bin/gpg.exe"
