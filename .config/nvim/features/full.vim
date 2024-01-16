@@ -256,12 +256,22 @@ let g:coc_hover_enable = 0
 call coc#config('project', {
       \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
       \ })
+let s:java_home = has('win32') ? 'C:\Users\gaoti\scoop\apps\openjdk\current' :
+                  \ has('osxdarwin') ? '/Library/Java/JavaVirtualMachines/default/Contents/Home' :
+                  \ '/usr/lib/jvm/default'
+call coc#config('java', {
+      \ 'jdt': {
+        \ 'ls': {
+          \ 'java': {
+            \ 'home': s:java_home
+            \ }
+          \ }
+        \ }
+      \ })
 call coc#config('xml', {
       \ 'java': {
-      \   'home': has('win32') ? 'C:\Users\gaoti\scoop\apps\openjdk\current' :
-        \ has('osxdarwin') ? '/Library/Java/JavaVirtualMachines/openjdk17-oracle/Contents/Home' :
-        \ '/usr/lib/jvm/default'
-      \ }
+        \ 'home': s:java_home
+        \ }
       \ })
 call coc#config('semanticTokens', {
       \ 'filetypes': has('nvim') ? [''] : ['*']
