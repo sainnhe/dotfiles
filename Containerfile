@@ -16,6 +16,7 @@ RUN apk upgrade --no-cache && apk add --no-cache \
         net-tools \
         nmap \
         openssh \
+        gnupg \
         w3m \
         aria2 \
         tar \
@@ -75,7 +76,7 @@ RUN apk upgrade --no-cache && apk add --no-cache \
         py3-requests \
         py3-flake8 \
         py3-yapf \
-        openjdk17 \
+        openjdk21 \
         && npm install -g pnpm \
         && rm -rf ~/.npm
 
