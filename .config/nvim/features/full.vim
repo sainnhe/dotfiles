@@ -256,9 +256,11 @@ let g:coc_hover_enable = 0
 call coc#config('project', {
       \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
       \ })
-let s:java_home = has('win32') ? 'C:\Users\gaoti\scoop\apps\openjdk\current' :
+let s:java_home = has('win32') ? expand('~/scoop/apps/openjdk/current') :
                   \ has('osxdarwin') ? '/Library/Java/JavaVirtualMachines/default/Contents/Home' :
-                  \ '/usr/lib/jvm/default'
+                  \ isdirectory('/usr/lib/jvm/default') ? '/usr/lib/jvm/default' :
+                  \ isdirectory('/usr/lib/jvm/jre') ? '/usr/lib/jvm/java' :
+                  \ isdirectory('/usr/lib/jvm/default-jvm') ? '/usr/lib/jvm/default-jvm' : '/usr'
 call coc#config('java', {
       \ 'jdt': {
         \ 'ls': {
