@@ -44,7 +44,7 @@ nnoremap x "_x
 " <leader>y to yank to system clipboard
 nnoremap <leader>y "+y
 " <leader>p to paste from system clipboard
-nnoremap <leader>p "+p
+nnoremap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"+p
 " Alt+T to create a new tab
 if g:vim_mode ==# 'full'
   nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call custom#explorer#startify()<CR>
