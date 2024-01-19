@@ -284,6 +284,8 @@
         "%f"
     ],
     "sql.database": "mysql",
+    "java.format.settings.url": "https://proxy.sainnhe.dev/https/github.com/google/styleguide/raw/gh-pages/eclipse-java-google-style.xml",
+    "java.format.settings.profile": "GoogleStyle",
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {
