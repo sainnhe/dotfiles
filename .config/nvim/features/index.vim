@@ -122,9 +122,6 @@ let g:which_key_map = {
       \ 'name': 'Alpha',
       \ "\<space>": {
         \ 'name': 'Beta',
-        \ "\<space>": {
-          \ 'name': 'Omega'
-          \ }
         \ }
       \ }
 Plug 'lukas-reineke/indent-blankline.nvim'

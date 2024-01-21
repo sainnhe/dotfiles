@@ -331,20 +331,20 @@ nmap <silent> <leader>jD <Plug>(coc-declaration)
 nmap <silent> <leader>jt <Plug>(coc-type-definition)
 nmap <silent> <leader>jr <Plug>(coc-references-used)
 nmap <silent> <leader>jm <Plug>(coc-implementation)
-nmap <silent> <leader><space>r <Plug>(coc-rename)
-nmap <silent> <leader><space>R <Plug>(coc-refactor)
-nmap <silent> <leader><space>ca <Plug>(coc-codeaction)
-nmap <silent> <leader><space>cl <Plug>(coc-codeaction-line)
-nmap <silent> <leader><space>cc <Plug>(coc-codeaction-cursor)
-vmap <silent> <leader><space>c <Plug>(coc-codeaction-selected)
-nmap <silent> <leader><space>o <Plug>(coc-openlink)
-nmap <silent> <leader><space>l <Plug>(coc-codelens-action)
-nmap <silent> <leader><space>mf :<C-u>CocCommand prettier.formatFile<cr>
-nmap <silent> <leader><space>mp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
-nmap <silent> <leader><space>mi :<C-u>CocCommand markdown-preview-enhanced.openImageHelper<cr>
-nmap <silent> <leader><space>mI :<C-u>CocCommand markdown-preview-enhanced.showUploadedImages<cr>
-nmap <silent> <leader><space>mr :<C-u>CocCommand markdown-preview-enhanced.runCodeChunk<cr>
-nmap <silent> <leader><space>mR :<C-u>CocCommand markdown-preview-enhanced.runAllCodeChunks<cr>
+nmap <silent> <leader>ar <Plug>(coc-rename)
+nmap <silent> <leader>aR <Plug>(coc-refactor)
+nmap <silent> <leader>acb <Plug>(coc-codeaction)
+nmap <silent> <leader>acl <Plug>(coc-codeaction-line)
+nmap <silent> <leader>acc <Plug>(coc-codeaction-cursor)
+vmap <silent> <leader>ac <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>ao <Plug>(coc-openlink)
+nmap <silent> <leader>al <Plug>(coc-codelens-action)
+nmap <silent> <leader>amf :<C-u>CocCommand prettier.formatFile<cr>
+nmap <silent> <leader>amp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
+nmap <silent> <leader>ami :<C-u>CocCommand markdown-preview-enhanced.openImageHelper<cr>
+nmap <silent> <leader>amI :<C-u>CocCommand markdown-preview-enhanced.showUploadedImages<cr>
+nmap <silent> <leader>amr :<C-u>CocCommand markdown-preview-enhanced.runCodeChunk<cr>
+nmap <silent> <leader>amR :<C-u>CocCommand markdown-preview-enhanced.runAllCodeChunks<cr>
 nmap <silent> <leader><Tab> <Plug>(coc-format)
 vmap <silent> <leader><Tab> <Plug>(coc-format-selected)
 nmap <silent> <leader>jg <Plug>(coc-git-nextchunk)
@@ -389,17 +389,17 @@ if !exists("g:which_key_map['a']")
 endif
 let g:which_key_map['a']['f'] = 'fix'
 let g:which_key_map['<Tab>'] = 'format'
-let g:which_key_map["\<space>"]['r'] = 'rename'
-let g:which_key_map["\<space>"]['R'] = 'refactor'
-let g:which_key_map["\<space>"]['o'] = 'open link'
-let g:which_key_map["\<space>"]['l'] = 'codeLens action'
-let g:which_key_map["\<space>"]['c'] = {
+let g:which_key_map['a']['r'] = 'rename'
+let g:which_key_map['a']['R'] = 'refactor'
+let g:which_key_map['a']['o'] = 'open link'
+let g:which_key_map['a']['l'] = 'codeLens'
+let g:which_key_map['a']['c'] = {
       \ 'name': 'code action',
-      \ 'a': 'full buffer',
+      \ 'b': 'current buffer',
       \ 'l': 'current line',
       \ 'c': 'current cursor',
       \ }
-let g:which_key_map["\<space>"]['m'] = {
+let g:which_key_map['a']['m'] = {
       \ 'name': 'markdown',
       \ 'f': 'format',
       \ 'p': 'preview',
@@ -494,8 +494,8 @@ let g:doge_enable_mappings = 0
 let g:doge_mapping_comment_jump_forward = '<C-j>'
 let g:doge_mapping_comment_jump_backward = '<C-k>'
 let g:doge_doc_standard_python = 'google'
-nnoremap <silent> <leader><space>d :<C-u>DogeGenerate<CR>
-let g:which_key_map["\<space>"]['d'] = 'generate code doc'
+nnoremap <silent> <leader>ad :<C-u>DogeGenerate<CR>
+let g:which_key_map['a']['d'] = 'generate docstring'
 " }}}
 " {{{any-jump.vim
 let g:any_jump_disable_default_keybindings = 1
@@ -558,11 +558,11 @@ if !has('win32') && !has('osxdarwin')
 endif
 let g:vcoolor_disable_mappings = 1
 let g:vcoolor_lowercase = 1
-nnoremap <silent> <leader><space><space>cc :<c-u>VCoolor<cr>
-nnoremap <silent> <leader><space><space>cr :<c-u>VCoolor r<cr>
-nnoremap <silent> <leader><space><space>cH :<c-u>VCoolor h<cr>
-nnoremap <silent> <leader><space><space>cR :<c-u>VCoolor ra<cr>
-let g:which_key_map["\<space>"]["\<space>"]['c'] = {
+nnoremap <silent> <leader><space>cc :<c-u>VCoolor<cr>
+nnoremap <silent> <leader><space>cr :<c-u>VCoolor r<cr>
+nnoremap <silent> <leader><space>cH :<c-u>VCoolor h<cr>
+nnoremap <silent> <leader><space>cR :<c-u>VCoolor ra<cr>
+let g:which_key_map["\<space>"]['c'] = {
       \   'name': 'color picker',
       \   'c': 'insert hex',
       \   'r': 'insert rgb',

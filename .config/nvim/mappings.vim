@@ -105,7 +105,7 @@ nnoremap zk [z
 nnoremap zs :<C-u>mkview<CR>
 nnoremap zl :<C-u>loadview<CR>
 " <leader><space><space>h to get the hi groups under current cursor
-nnoremap <leader><space><space>h :<C-u>call custom#utils#get_highlight()<CR>
+nnoremap <leader><space>h :<C-u>call custom#utils#get_highlight()<CR>
 " <leader>ji/jI to jump between indents
 nnoremap <silent> <leader>ji :<C-u>call custom#utils#go_indent(v:count1, 1)<cr>
 nnoremap <silent> <leader>jI :<C-u>call custom#utils#go_indent(v:count1, -1)<cr>

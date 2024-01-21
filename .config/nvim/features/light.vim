@@ -20,7 +20,7 @@ call which_key#register('<Space>', 'g:which_key_map')
 let g:which_key_map['p'] = 'paste'
 let g:which_key_map['q'] = 'close quickfix'
 let g:which_key_map['y'] = 'yank'
-let g:which_key_map["\<space>"]["\<space>"]['h'] = 'highlight'
+let g:which_key_map["\<space>"]['h'] = 'highlight'
 if !exists("g:which_key_map['j']")
   let g:which_key_map['j'] = { 'name': 'jump'}
 endif
@@ -242,8 +242,8 @@ let g:rooter_manual_only = 1
 let g:pomodoro_time_work = 25
 let g:pomodoro_time_slack = 5
 let g:pomodoro_status = 0
-nnoremap <silent> <leader><space><space>P :<c-u>call custom#utils#toggle_pomodoro()<cr>
-let g:which_key_map["\<space>"]["\<space>"]['P'] = 'pomodoro toggle'
+nnoremap <silent> <leader><space>p :<c-u>call custom#utils#toggle_pomodoro()<cr>
+let g:which_key_map["\<space>"]['p'] = 'pomodoro toggle'
 " }}}
 " {{{asynctasks
 let g:asyncrun_open = 6
@@ -297,10 +297,10 @@ let g:which_key_map['c'] = {
       \ }
 " }}}
 " {{{devdocs.vim
-nmap <leader><space>Dbc <Plug>(devdocs-under-cursor)
-nmap <leader><space>Dba <Plug>(devdocs-under-cursor-all)
-let g:which_key_map["\<space>"]['D'] = {
-      \ 'name': 'docs',
+nmap <leader><space>dbc <Plug>(devdocs-under-cursor)
+nmap <leader><space>dba <Plug>(devdocs-under-cursor-all)
+let g:which_key_map["\<space>"]['d'] = {
+      \ 'name': 'API docs',
       \ 'b' : {
         \ 'name': 'devdocs (browser)',
         \ 'c': 'search in current file type',
@@ -312,14 +312,14 @@ let g:which_key_map["\<space>"]['D'] = {
 let g:translator_target_lang = 'zh'
 let g:translator_source_lang = 'auto'
 let g:translator_default_engines = ['haici']
-nmap <leader><space><space>t <Plug>TranslateW
-vmap <leader><space><space>t <Plug>TranslateWV
-let g:which_key_map["\<space>"]["\<space>"]['t'] = 'translate'
+nmap <leader><space>t <Plug>TranslateW
+vmap <leader><space>t <Plug>TranslateWV
+let g:which_key_map["\<space>"]['t'] = 'translate'
 " }}}
 " {{{limelight.vim
 let g:limelight_default_coefficient = 0.7
-nnoremap <silent> <leader><space><space>f :<C-u>Limelight!!<CR>
-let g:which_key_map["\<space>"]["\<space>"]['f'] = 'focus mode'
+nnoremap <silent> <leader><space>f :<C-u>Limelight!!<CR>
+let g:which_key_map["\<space>"]['f'] = 'focus mode'
 " }}}
 " {{{goyo.vim
 let g:goyo_width = 95
@@ -329,15 +329,15 @@ augroup GoyoCustom
   autocmd! User GoyoEnter Limelight
   autocmd! User GoyoLeave Limelight!
 augroup END
-nnoremap <silent> <leader><space><space>r :<C-u>Goyo<CR>
-let g:which_key_map["\<space>"]["\<space>"]['r'] = 'reading mode'
+nnoremap <silent> <leader><space>r :<C-u>Goyo<CR>
+let g:which_key_map["\<space>"]['r'] = 'reading mode'
 " }}}
 " {{{undotree
 let g:undotree_WindowLayout = 3
 let g:undotree_SplitWidth = 30
 let g:undotree_SetFocusWhenToggle = 1
-nnoremap <silent> <leader><space><space>u :<c-u>UndotreeToggle<cr>
-let g:which_key_map["\<space>"]["\<space>"]['u'] = 'undo'
+nnoremap <silent> <leader><space>u :<c-u>UndotreeToggle<cr>
+let g:which_key_map["\<space>"]['u'] = 'undo tree'
 " }}}
 " {{{inline_edit.vim
 nnoremap <silent> <leader><space>e :<C-u>InlineEdit<CR>
@@ -349,12 +349,17 @@ command! -nargs=1 E  edit  suda://<args>
 command W w suda://%
 " }}}
 " {{{vim-paste-rs
-nmap <leader><space><space>p <Plug>(paste-rs)
-xmap <leader><space><space>p <Plug>(paste-rs)
-let g:which_key_map["\<space>"]["\<space>"]['p'] = 'paste.rs'
+nmap <leader><space>sp <Plug>(paste-rs)
+xmap <leader><space>sp <Plug>(paste-rs)
+let g:which_key_map["\<space>"]['s'] = {
+      \ 'name': 'share code snippet',
+      \ 'p': 'paste.rs',
+      \ }
 " }}}
 " {{{vim-carbon-now-sh
-vnoremap <silent> <leader><space><space>P :CarbonNowSh<CR>
+nnoremap <silent> <leader><space>sc ggVG:<C-u>CarbonNowSh<CR>
+vnoremap <silent> <leader><space>sc :CarbonNowSh<CR>
+let g:which_key_map["\<space>"]['s']['c'] = 'carbon.now.sh'
 let g:carbon_now_sh_options = {
       \ 'ln': 'true',
       \ 'fm': 'Source Code Pro'
@@ -363,8 +368,11 @@ let g:carbon_now_sh_options = {
 " {{{vim-header
 let g:header_field_author = 'Sainnhe Park'
 let g:header_field_author_email = 'i@sainnhe.dev'
-nnoremap <silent> <leader><space><space>H :<C-u>AddHeader<CR>
-let g:which_key_map["\<space>"]["\<space>"]['H'] = 'add header'
+nnoremap <silent> <leader>ah :<C-u>AddHeader<CR>
+if !exists("g:which_key_map['a']")
+  let g:which_key_map['a'] = { 'name': 'action'}
+endif
+let g:which_key_map['a']['h'] = 'add header'
 " }}}
 " {{{vim-bookmarks
 let g:bookmark_no_default_key_mappings = 1
@@ -399,15 +407,15 @@ if !has('win32')
   let g:dasht_filetype_docsets['c'] = ['C', 'GLib']
   let g:dasht_filetype_docsets['cpp'] = ['C\+\+', 'C', 'GLib', 'Qt_5', 'Qt_6']
   let g:dasht_filetype_docsets['python'] = ['Python_3', 'NumPy', 'SciPy']
-  nnoremap <silent> <leader><space>Dt :call Dasht(dasht#cursor_search_terms())<Return>
-  vnoremap <silent> <leader><space>Dt y:<C-U>call Dasht(getreg(0))<Return>
-  let g:which_key_map["\<space>"]['D']['t'] = 'dasht (terminal)'
+  nnoremap <silent> <leader><space>dt :call Dasht(dasht#cursor_search_terms())<Return>
+  vnoremap <silent> <leader><space>dt y:<C-U>call Dasht(getreg(0))<Return>
+  let g:which_key_map["\<space>"]['d']['t'] = 'dasht (terminal)'
 " }}}
 endif
 if has('nvim')
 " {{{nabla.nvim
-nnoremap <silent> <leader><space><space>m :<C-u>lua require("nabla").popup()<CR>
-let g:which_key_map["\<space>"]["\<space>"]['m'] = 'formula preview'
+nnoremap <silent> <leader>aF :<C-u>lua require("nabla").popup()<CR>
+let g:which_key_map['a']['F'] = 'preview formula'
 " }}}
 endif
 " }}}
