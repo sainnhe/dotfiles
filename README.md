@@ -12,7 +12,7 @@ This repository contains my personal configuration files for development on Wind
 
 It's not recommended to directly copy my configs, unless you know what they mean. Google and the manual pages are your best friends when exploring the open source world.
 
-If you want to have a look at my vim configs, go to [sainnhe.txt](./.config/nvim/doc/sainnhe.txt).
+If you want to have a look at my vim configs, check out [sainnhe.txt](./.config/nvim/doc/sainnhe.txt).
 
 For portable development, I bundled my dotfiles and development tools into a container image. You can try it out if you have podman or docker installed.
 
