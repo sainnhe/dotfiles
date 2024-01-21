@@ -116,8 +116,17 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/sonokai'
 Plug 'sainnhe/everforest'
-" Additional UI components
+" UI components
 Plug 'liuchengxu/vim-which-key'
+let g:which_key_map = {
+      \ 'name': 'Alpha',
+      \ "\<space>": {
+        \ 'name': 'Beta',
+        \ "\<space>": {
+          \ 'name': 'Omega'
+          \ }
+        \ }
+      \ }
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'Yggdroot/indentLine', { 'on': [] }
 " Text objects
@@ -160,10 +169,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'airblade/vim-rooter'
 Plug 'jamessan/vim-gnupg'
 Plug '520Matches/fcitx5.vim'
-if has('nvim')
-  Plug 'lewis6991/impatient.nvim'
-endif
-" Extended functional components
+" Functional components
 Plug 'tpope/vim-repeat'
 Plug 'rmolin88/pomodoro.vim'
 Plug 'skywind3000/asyncrun.vim'
@@ -221,7 +227,7 @@ elseif g:vim_mode ==# 'full'
     Plug 'RRethy/nvim-treesitter-textsubjects'
     Plug 'lewis6991/spellsitter.nvim'
   endif
-  " Extended functional components, but with extra dependencies
+  " Functional components, but with extra dependencies
   Plug 'KabbAmine/vCoolor.vim', { 'on': 'VCoolor' }
   Plug 'itchyny/lightline.vim'
   Plug 'albertomontesg/lightline-asyncrun'
@@ -230,7 +236,7 @@ elseif g:vim_mode ==# 'full'
   if g:vim_is_in_tmux == 1 && !has('win32')
     Plug 'sainnhe/tmuxline.vim', { 'on': ['Tmuxline', 'TmuxlineSnapshot'] }
   endif
-  " Additional UI components
+  " UI components
   if !exists('g:vim_man_pager')
     Plug 'mhinz/vim-startify'
   endif

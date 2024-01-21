@@ -1,0 +1,417 @@
+*sainnhe.txt*                                 Explanation of Sainnhe's Vim
+
+CONTENTS                           *sainnhe-contents*
+
+Introduction                       |sainnhe-intro|
+  Language                         |sainnhe-intro-language|
+  Code Structure                   |sainnhe-intro-code-structure|
+  Working Modes                    |sainnhe-intro-working-modes|
+Basic Settings                     |sainnhe-basic|
+  Envs                             |sainnhe-basic-envs|
+  Settings                         |sainnhe-basic-settings|
+  Mappings                         |sainnhe-basic-mappings|
+Plugins                            |sainnhe-plugins|
+  Syntax                           |sainnhe-plugins-syntax|
+  Color Schemes                    |sainnhe-plugins-color-schemes|
+  UI Components                    |sainnhe-plugins-ui-components|
+  Text Objects                     |sainnhe-plugins-text-objects|
+  Operators                        |sainnhe-plugins-operators|
+  Git Integration                  |sainnhe-plugins-git-integration|
+  Movement                         |sainnhe-plugins-movement|
+  Search                           |sainnhe-plugins-search|
+  Pairs                            |sainnhe-plugins-pairs|
+  Other Basic Features             |sainnhe-plugins-other-basic-features|
+  Functional Components            |sainnhe-plugins-functional-components|
+  Games                            |sainnhe-plugins-games|
+  Unix-like                        |sainnhe-plugins-unix-like|
+  Other Light Features             |sainnhe-plugins-other-light-features|
+  Language Features                |sainnhe-plugins-language-features|
+  Tree-Sitter                      |sainnhe-plugins-tree-sitter|
+  Functional Components Extra      |sainnhe-plugins-functional-components-extra|
+
+==============================================================================
+INTRODUCTION                                                     *sainnhe-intro*
+
+This is sainnhe's vim user manual, you should not use these vim configs unless
+you are sainnhe. But if you want to write your own vim configs and are seeking
+for a full featured vim setup with clean code structure, you've come to the
+right place.
+
+In this doc, I'll introduce the design and the usage of my vim configs. Hope
+this could bring you some inspiration.
+
+------------------------------------------------------------------------------
+                                                        *sainnhe-intro-language*
+Why Use Vim Script?~
+
+As you may have already noticed that my configs are written in vim script, not
+lua nor vim 9 script.
+
+The biggest reason that I chose to use vim script is that I want to let my
+configs support both vim and nvim. But why? Isn't nvim good enough? Well, at
+the time I made this decision, nvim was still very unstable, there were a lot
+of bugs that broke your dev environment from time to time. You obviously don't
+want see tons of loading errors when you are hurry to fix a bug right? This
+kind of things have happened several times to me. When it last happened, I
+decided to refactor my vim configs to support both vim and nvim.
+
+By saying nvim was buggy at the time I made this decision, I don't mean that I
+think nvim is stable enough for daily development at present. In fact, I still
+hold an opinion that nvim is not stable, because of two reasons:
+
+1. I don't belive in lua plugin developers. I've seen many popular lua plugins
+suddenly been archived, and authors pushed break changes that breaks your dev
+env. I'm not saying that these things don't happen in vim script plugins, but
+the problem is the frequency. It looks like lua plugin developers have no
+responsibility for the stability and compatibility of the plugins, and they
+write plugins just for fun.
+
+2. The development guidelines of vim and nvim are different. For nvim
+maintainers, they think new features are prior to stability, while for vim
+maintainers, stability is prior to new features.
+
+But I don't want to dismiss nvim outright, it actually has many advantages
+over vim, that's why I placed my configs under `.config/nvim` instead of `.vim`
+and use nvim first when nvim is available.
+
+------------------------------------------------------------------------------
+                                                  *sainnhe-intro-code-structure*
+The Code Structure~
+
+The configs are placed under `.config/nvim`. To also use them in vim, simply
+create a symlink like this:
+
+On UNIX-like OSs:
+>
+    ln -s /path/to/dotfiles/.config/nvim ~/.vim
+<
+On Windows:
+>
+    mklink /D C:\Users\username\vimfiles \path\to\dotfiles\.config\nvim
+<
+Vim will read `vimrc` which sources `init.vim`, and `init.vim` sources some
+other config files.
+
+If you opened any of vim script files in `.config/nvim`, you should see many
+fold blocks. You can type |za| to unfold them. Note that there is a special
+file named `envs.vim` which defines some local config variables that should
+not be tracked by git. When vim is launched for the first time, a default
+`envs.vim` will be generated, and you should modify the content of `envs.vim`
+to control vim's behaviors.
+
+------------------------------------------------------------------------------
+                                                   *sainnhe-intro-working-modes*
+Working Modes~
+
+There are 3 working modes:
+
+1. `minimal`: No plugins.
+2. `light`: Install plugins with no extra dependencies except git.
+3. `full`: Full featured development environment.
+
+When vim is launched for the first time, you'll be asked to choose a working
+mode. You can switch to another mode at any time when you type `:Mode`
+command.
+
+The `:Mode` command will detect for lacking dependencies. In order to ensure
+that vim can work properly, please install as many required dependencies as
+possible.
+
+The mode information will be stored in `envs.vim` as a global variable named
+`g:vim_mode`.
+
+==============================================================================
+BASIC SETTINGS                                                   *sainnhe-basic*
+
+If you have looked at `init.vim`, you'll notice that 4 files will be loaded:
+
+1. `envs.vim`
+2. `settings.vim`
+3. `mappings.vim`
+4. `features/index.vim`
+
+The first 3 files defined some basic settings that will be loaded in all 3
+working modes. Let's dive into these files one by one.
+
+------------------------------------------------------------------------------
+                                                            *sainnhe-basic-envs*
+envs.vim~
+
+As mentioned above, this file defines some variables that shouldn't be tracked
+by git, for example the color scheme and the font. In fact, it's added in
+`.gitignore`, so you won't need to worry about tracking this file by mistake.
+
+This file will be generated with default content if it doesn't exist, the
+related behavior is defined in `custom#utils#generate_default_envs()` and this
+function will be called in `init.vim`.
+
+------------------------------------------------------------------------------
+                                                        *sainnhe-basic-settings*
+settings.vim~
+
+This file defines some general settings:
+
+- Settings of different environments (e.g. tmux and some GUI clients).
+- Some vim setting options based on https://github.com/tpope/vim-sensible .
+- Status line configuration in minimal and light mode.
+- Other tricks.
+
+------------------------------------------------------------------------------
+                                                        *sainnhe-basic-mappings*
+mappings.vim~
+
+This file defines some basic mappings:
+
+- Normal Mode:
+  - Use space as leader key
+  - `Alt+X` to enter normal mode
+  - `;` to enter command mode
+  - `q` to quit
+  - `Q` to force quit
+  - `<leader>q` to close quickfix list
+  - `m` instead of `q` to record macro
+  - `Ctrl+S` to save file
+  - `Shift+H/J/K/L` to quickly move cursor
+  - `Shift+Up/Down/Left/Right` to quickly move cursor
+  - `x` to delete current character without saving it to register
+  - `<leader>y` to yank to system clipboard
+  - `<leader>p` to paste from system clipboard
+  - `Alt+T` to create a new tab
+  - `Alt+W` to close current tab
+  - `Alt+</>` to switch tabs
+  - `Alt+Up/Down` to move tabs
+  - `Alt+N/M` to move tabs
+  - `Alt+HJKL` to jump between windows
+  - `Alt+Shift+HJKL` to adjust window size
+  - `Alt+V/S` to split new window
+  - `Alt+Shift+V/S` to toggle vertical/horizontal layout in Neovim
+  - `z+Up/Down/Left/Right` to jump between folding nodes
+  - `z+hjkl` to jump between folding nodes
+  - `zs/zl` to save/load folding views
+  - `<leader><space><space>h` to get the hi groups under current cursor
+  - `<leader>ji/jI` to jump between indents
+- Insert Mode:
+  - `Alt+X` to enter normal mode
+  - `Ctrl+V` to paste from buffer
+  - `<A-v>` to paste from system clipboard
+  - `Ctrl+S` to save file
+  - `Alt+Left/Right` to switch tabs
+  - `Alt+</>` to switch tabs
+  - `Alt+HJKL` to jump between windows
+  - `Shift+Up/Down/Left/Right` to quickly move cursor
+- Visual Mode:
+  - `Alt+X` to enter normal mode
+  - `;` to enter normal mode
+  - `x` to delete selected text without saving it to register
+  - `Shift+Up/Down/Left/Right` to quickly move cursor
+  - `Shift+HJKL` to quickly move cursor
+  - `<leader>y` to yank to system clipboard
+  - `<leader>p` to paste from system clipboard
+- Command Mode:
+  - `Alt+X` to enter normal mode
+  - `Ctrl+A` to jump to the beginning of line
+- Terminal Mode:
+  - `Alt+X` to enter normal mode
+  - `Alt+HJKL` to jump between windows
+  - `Alt+Left/Right` to switch tabs
+  - `Alt+Up/Down` to move tabs
+  - `Shift+Up/Down/Left/Right` to quickly move cursor
+
+==============================================================================
+PLUGINS                                                        *sainnhe-plugins*
+
+The plugins will only be loaded in light mode or full mode.
+
+After loading basic settings, a file named `features/index.vim` will be
+loaded, which defines a set of plugins. Refer to this file for a full list of
+plugins to be installed.
+
+The plugin manager I use is https://github.com/junegunn/vim-plug, which is
+very user-friendly and performant.
+
+By default missing plugins will not be installed, so it is required to execute
+`:PlugInstall` to install plugins.
+
+Besides, there are some other useful commands that can be used for daily
+plugin maintainment:
+
+- `:PlugUpdate [name ...] [#threads]`: Update plugins.
+- `:PlugClean[!]`: Clean unlisted plugins (`!` will clean without prompt).
+- `:PlugUpgrade`: Upgrade vim-plug itself
+- `:PlugStatus`: Check the status of plugins
+- `:PlugDiff`: Examine update changes
+- `:PlugSnapshot[!] [output path]`: Generate script for restoring the current
+  snapshot of the plugins.
+- `:Update`: Update vim-plug, plugins, coc extensions and tree-sitter parsers.
+
+Executing `:PlugStatus` or `:PlugDiff` will enter a dashboard window, which
+has the following mappings:
+
+- `D`: View update logs
+  - `X`: Revert commit
+  - `?`: View diff
+  - `J/K`: Scroll diff window
+  - `C-J/C-K`: Jump to the diff of next/previous commit
+  - `<Tab>`: Open repository url in web browser
+  - `h`: Open help doc of the plugin under current cursor position
+- `S`: View plugin status
+  - `R`: Retry to update
+  - `U`: Retry to update selected plugins
+  - `L`: Load plugins
+  - `<Tab>`: Open repository url in web browser
+  - `h`: Open help doc of the plugin under current cursor position
+- `q`: Close window
+
+------------------------------------------------------------------------------
+                                                        *sainnhe-plugins-syntax*
+Syntax~
+
+The plugins in this category basically extends built-in vim |syntax| files to
+provide better regex based syntax highlighting.
+
+------------------------------------------------------------------------------
+                                                 *sainnhe-plugins-color-schemes*
+Color Schemes~
+
+Color scheme is set by a global variable `g:vim_color_scheme` which is defined
+in `envs.vim`. There are 3 ways to switch between different color schemes:
+
+- Via shell script. There is a script `scripts/colorscheme.sh` in my dotfiles
+  repo https://github.com/sainnhe/dotfiles . it can interactively select color
+  schemes and apply it to vim, zsh and tmux. This script requires fzf to be
+  installed.
+- Call autoload functions. In `autoload/custom/colorscheme.vim`, there are
+  some functions that can apply the specified color scheme. For example,
+  calling `custom#colorscheme#edge_dark()` will switch to edge dark color
+  scheme. You can type `:call custom#colorscheme#` then press `<Tab>` to get a
+  completion list that shows all available color schemes. This method can only
+  change color schemes temporarily.
+- Edit `envs.vim` manually. Change the value of `g:vim_color_scheme` to what
+  ever you like. The possible values are the postfix of all available autoload
+  functions. For example, `let g:vim_color_scheme = 'edge_dark'` will call
+  `custom#colorscheme#edge_dark()` on every vim startup.
+
+------------------------------------------------------------------------------
+                                                 *sainnhe-plugins-ui-components*
+UI Components~
+
+The plugins in this category add some UI components to make vim looks better.
+It doesn't need any manual intervention to work well.
+
+------------------------------------------------------------------------------
+                                                  *sainnhe-plugins-text-objects*
+Text Objects~
+
+The plugins in this category extends built-in |text-objects|. The following
+text objects have been added:
+
+- `,`：Function parameter
+- `.`: Current Tree-Sitter Node (nvim only)
+- `C`：Comment (including spaces at the start of a line)
+- `I`：Indents of current level
+- `b`: Block
+- `c`: Comment (excluding spaces at the start of a line)
+- `e`：Current buffer
+- `f`: Function
+- `g`：Git chunks
+- `i`：Indents of current level and all next levels
+- `l`: Line
+- `u`：URL
+- `z`：Fold
+
+------------------------------------------------------------------------------
+                                                     *sainnhe-plugins-operators*
+Operators~
+
+The plugins in this category extends built-in |operator|. The following text
+objects have been added:
+
+- `<leader>sa`：Append surround. E.g. `<leader>saiw"`, append `"` to current
+  word.
+- `<leader>sd`：Delete surround. E.g. `<leader>sda"`, delete `"` surround.
+- `<leader>sr`：Replace surround. E.g. `<leader>sra"'`, replace `"` surround
+  with `'` surround.
+- `<leader>r`： Replace text with content in |registers|. E.g. `<leader>ri"`,
+  replace the content inside double quotes with the content in the default
+  unnamed register. E.g. `"*<leader>ri"`, replace the content inside double
+  quotes with the selection and drop register.
+
+Don't panic when pressing the keyboard, think carefully before pressing. There
+are two plugins that can help you get the job done. One is
+`junegunn/vim-peekaboo` which can display the register content, and the other
+is `liuchengxu/vim-which-key` which can display available key mappings.
+
+------------------------------------------------------------------------------
+                                               *sainnhe-plugins-git-integration*
+Git Integration~
+
+The usage is simple, press `<leader>g` and you'll see all available mappings.
+
+One thing you should remember is that when opening files with conflict markers
+and pressing `<leader>gm` to resolve conflicts, 3 windows will be displayed:
+>
+    |--------|--------|
+    |   1    |   2    |
+    |--------|--------|
+    |        3        |
+    |-----------------|
+<
+Suppose you have the following git revision history:
+>
+    a     b
+    |     |
+    \     /
+      \ /
+       c
+<
+You are on `a` and is merging `b`, which triggers some conflicts.
+
+The contents in window `1` is the contents in `a`, which represent "local".
+
+The contents in window `2` is the contents in `b`, which represent "remote".
+
+The contents in window `3` is the contents in `c`, which represent "base".
+
+What you need to do is edit text in window `3` and save it. Then use `git add`
+to mark resolution and use `git commit` to continue merging.
+
+------------------------------------------------------------------------------
+                                                      *sainnhe-plugins-movement*
+Movement~
+
+There are three features:
+
+1. |w|, |b| and |e| are based on camel case naming and underline naming.
+2. `<pageup>` and `<pagedown>` scrolling is smoother.
+3. Press `s<char><char>` or `S<char><char>` to move precisely to matched
+locations. Press `s` to jump to next match and press `S` to jump to previous
+match.
+
+------------------------------------------------------------------------------
+                                                        *sainnhe-plugins-search*
+Search~
+
+There are two features:
+
+1. |star| and |#| are improved. Now they can be used in visual mode.
+2. You don't need to type `:noh` any more. Search highlighting now knows how
+to work properly itself.
+
+------------------------------------------------------------------------------
+                                                         *sainnhe-plugins-pairs*
+Pairs~
+
+There are two features:
+
+1. |%| can match not only parenthesis and brackets, but also words (e.g.
+if/else, try/catch).
+2. Pairs are automatically closed, including parenthesis, brackets and html
+tags.
+
+------------------------------------------------------------------------------
+                                          *sainnhe-plugins-other-basic-features*
+Other Basic Features~
+
+These features work out of the box. You won't realize their existence until you
+meet a specific situation, then you'll find that this feature has already been
+supported.

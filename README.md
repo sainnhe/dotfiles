@@ -8,20 +8,27 @@
 
 ## About
 
-This repository contains my personal configuration files for development on Windows && macOS && Linux (mainly for Arch).
+This repository contains my personal configuration files for development on Windows && macOS && Linux.
 
 It's not recommended to directly copy my configs, unless you know what they mean. Google and the manual pages are your best friends when exploring the open source world.
 
-However I built a container image for portable development, you can try it out if you are interested in my config :)
+If you want to have a look at my vim configs, go to [sainnhe.txt](./.config/nvim/doc/sainnhe.txt).
 
-This container image is based on alpine and will be built on schedule. It features the following:
+For portable development, I bundled my dotfiles and development tools into a container image. You can try it out if you have podman or docker installed.
+
+The container image is based on alpine and will be built on schedule. It features the following:
 
 - Vim/Neovim
 - Zsh
 - Tmux
 - Some UNIX Development Tools
 
-To try it, install podman and run this command:
+Currently, it supports two architectures:
+
+- `amd64`
+- `arm64`
+
+To run it, install podman or docker and run this command:
 
 ```shell
 podman run -it --rm <registry>/sainnhe/dotfiles:latest
@@ -47,6 +54,7 @@ Where `<workdir-on-local-machine>` is the path of the directory you want to acce
 - Press Ctrl-Space twice to launch tmux-fzf which can help you better manage tmux environment.
 - Execute `colorscheme` in zsh to switch color schemes.
 - Press Space in Vim/Neovim normal mode to get a set of shortcuts.
+- Type `:h sainnhe.txt` in vim to read the user manual.
 
 ## License
 

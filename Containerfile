@@ -116,7 +116,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init \
 RUN mkdir -p ~/.config ~/.local/share/nvim \
         && ln -s /root/repo/dotfiles/.config/nvim ~/.vim \
         && ln -s /root/repo/dotfiles/.config/nvim ~/.config/nvim \
-        && cp ~/repo/dotfiles/.config/nvim/envs.example.vim ~/repo/dotfiles/.config/nvim/envs.vim
+        && cp ~/repo/dotfiles/.config/nvim/envs.container.vim ~/repo/dotfiles/.config/nvim/envs.vim
 # Coc Extensions
 RUN mkdir -p ~/.local/share/nvim/coc/extensions \
         && cd ~/.local/share/nvim/coc/extensions \

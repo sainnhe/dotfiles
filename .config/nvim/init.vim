@@ -6,7 +6,14 @@
 " License: Anti-996 && MIT
 " =============================================================================
 
-execute 'source ' . fnamemodify(custom#utils#stdpath('config'), ':p') . 'base.vim'
+" Initialize envs.vim
+let s:envs_path = fnamemodify(custom#utils#stdpath('config'), ':p') . 'envs.vim'
+if !filereadable(s:envs_path)
+  call custom#utils#generate_default_envs()
+  call custom#mode#update()
+endif
+
+" Source configuration files
 execute 'source ' . fnamemodify(custom#utils#stdpath('config'), ':p') . 'envs.vim'
 execute 'source ' . fnamemodify(custom#utils#stdpath('config'), ':p') . 'settings.vim'
 execute 'source ' . fnamemodify(custom#utils#stdpath('config'), ':p') . 'mappings.vim'

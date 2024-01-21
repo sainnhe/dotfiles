@@ -7,15 +7,25 @@
 " =============================================================================
 
 function custom#mode#get() abort " Get mode
-  let l:input = input("[1] Minimal:  No plugins\n[2] Light:    Plugins with no extra dependencies\n[3] Full:     Full featured development environment\n==> ")
+  let l:input = input("[1] Minimal:  No plugins.\n[2] Light:    Install plugins with no extra dependencies except git.\n[3] Full:     Full featured development environment.\n==> ")
   echomsg ' '
   let l:mode_num = str2nr(l:input)
   if l:mode_num == 1
     let l:vim_mode = 'minimal'
   elseif l:mode_num == 2
-    let l:vim_mode = 'light'
+    if executable('git')
+      let l:vim_mode = 'light'
+    else
+      echomsg "[error] Doesn't have git installed. Falling back to minimal mode."
+      let l:vim_mode = 'minimal'
+    endif
   elseif l:mode_num == 3
-    let l:vim_mode = 'full'
+    if executable('git')
+      let l:vim_mode = 'full'
+    else
+      echomsg "[error] Doesn't have git installed. Falling back to minimal mode."
+      let l:vim_mode = 'minimal'
+    endif
     if custom#mode#check_dependencies() == 0
       echomsg "[warning] Detected uninstalled dependencies."
     endif
@@ -40,22 +50,22 @@ function custom#mode#check_dependencies() abort " Check dependencies
   let l:result = 1
   let l:dependencies = {
         \ 'universal': [
+          \ 'cargo',
+          \ 'clangd',
+          \ 'flake8',
           \ 'gcc',
+          \ 'go',
+          \ 'gopls',
+          \ 'java',
           \ 'node',
           \ 'npm',
           \ 'pnpm',
-          \ 'clangd',
+          \ 'python3',
           \ 'rg',
+          \ 'rust-analyzer',
           \ 'tex',
           \ 'texlab',
-          \ 'go',
-          \ 'gopls',
-          \ 'cargo',
-          \ 'rust-analyzer',
-          \ 'java',
-          \ 'python3',
           \ 'yapf',
-          \ 'flake8',
           \ ],
         \ 'darwin': [
           \ 'shellcheck',

@@ -16,21 +16,16 @@ let g:which_key_sep = ''
 let g:which_key_display_names = {' ': '', '<CR>': '↵', '<C-H>': '', '<C-I>': 'ﲑ', '<TAB>': '⇆'}
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 call which_key#register('<Space>', 'g:which_key_map')
-if !exists('g:which_key_map')
-  let g:which_key_map = {
-        \ 'name': 'Alpha',
-        \ "\<space>": {
-          \ 'name': 'Beta',
-          \ "\<space>": {
-            \ 'name': 'Omega'
-            \ }
-          \ }
-        \ }
-endif
+" Mappings registered in mappings.vim
 let g:which_key_map['p'] = 'paste'
 let g:which_key_map['q'] = 'close quickfix'
 let g:which_key_map['y'] = 'yank'
 let g:which_key_map["\<space>"]["\<space>"]['h'] = 'highlight'
+if !exists("g:which_key_map['j']")
+  let g:which_key_map['j'] = { 'name': 'jump'}
+endif
+let g:which_key_map['j']['i'] = 'next indent'
+let g:which_key_map['j']['I'] = 'prev indent'
 " }}}
 if has('nvim')
 " {{{indent-blankline.nvim
@@ -181,7 +176,7 @@ let g:cool_total_matches = 1
 " {{{auto-pairs
 let g:AutoPairsShortcutToggle = '<A-z>p'
 let g:AutoPairsShortcutFastWrap = '<A-z>`sadsfvf'
-let g:AutoPairsShortcutJump = '<A-n>'
+let g:AutoPairsShortcutJump = '<A-z>n'
 let g:AutoPairsWildClosedPair = ''
 let g:AutoPairsMultilineClose = 0
 let g:AutoPairsFlyMode = 0
@@ -241,13 +236,8 @@ let g:rooter_patterns = [
 let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
 " }}}
-if has('nvim')
-" {{{impatient.nvim
-lua require('impatient')
 " }}}
-endif
-" }}}
-" {{{Extended functional components
+" {{{Functional components
 " {{{pomodoro.vim
 let g:pomodoro_time_work = 25
 let g:pomodoro_time_slack = 5
@@ -384,12 +374,18 @@ nnoremap <silent> <leader>bb :<C-u>BookmarkToggle<CR>
 nnoremap <silent> <leader>ba :<C-u>BookmarkAnnotate<CR>
 nnoremap <silent> <leader>bc :<C-u>BookmarkClear<CR>
 nnoremap <silent> <leader>bC :<C-u>BookmarkClearAll<CR>
+nnoremap <silent> <leader>bs :<C-u>BookmarkShowAll<CR>
+nnoremap <silent> <leader>bj :<C-u>BookmarkNext<CR>
+nnoremap <silent> <leader>bk :<C-u>BookmarkPrev<CR>
 let g:which_key_map['b'] = {
       \ 'name': 'bookmarks',
-      \ 'b': 'bookmark',
+      \ 'b': 'toggle',
       \ 'a': 'annotate',
       \ 'c': 'clear current buffer',
       \ 'C': 'clear all',
+      \ 's': 'show all',
+      \ 'j': 'next',
+      \ 'k': 'prev'
       \ }
 " }}}
 if !has('win32')

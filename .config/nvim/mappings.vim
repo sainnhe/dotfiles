@@ -7,7 +7,7 @@
 " =============================================================================
 
 " {{{Normal Mode
-" Leader key
+" Use space as leader key
 let g:mapleader = "\<Space>"
 nnoremap <SPACE> <Nop>
 " Alt+X to enter normal mode
@@ -25,7 +25,7 @@ nmap <silent> q :<C-u>q<CR>
 nmap <silent> Q :<C-u>q!<CR>
 " <leader>q to close quickfix list
 nnoremap <silent> <leader>q :<C-u>cclose<CR>
-" m to record macro
+" m instead of q to record macro
 nnoremap m q
 " Ctrl+S to save file
 nnoremap <silent> <C-S> :<C-u>w<CR>
@@ -34,17 +34,25 @@ nnoremap K 7<up>
 nnoremap J 7<down>
 nnoremap H 0
 nnoremap L $
-" Shift+ArrowKeys to quickly move cursor
+" Shift+Up/Down/Left/Right to quickly move cursor
 nnoremap <S-up> <Esc>7<up>
 nnoremap <S-down> <Esc>7<down>
 nnoremap <S-left> <Esc>0
 nnoremap <S-right> <Esc>$
-" x to delete chars but not yank
+" x to delete current character without saving it to register
 nnoremap x "_x
 " <leader>y to yank to system clipboard
-nnoremap <leader>y "+y
+if has('clipboard')
+  nnoremap <leader>y "+y
+elseif has('xterm_clipboard')
+  nnoremap <leader>y "*y
+endif
 " <leader>p to paste from system clipboard
-nnoremap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"+p
+if has('clipboard')
+  nnoremap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"+p
+elseif has('xterm_clipboard')
+  nnoremap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"*p
+endif
 " Alt+T to create a new tab
 if g:vim_mode ==# 'full'
   nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call custom#explorer#startify()<CR>
@@ -62,9 +70,9 @@ nnoremap <A-.> <Esc>gt
 " Alt+Up/Down to move tabs
 nnoremap <silent> <A-up> :<C-u>tabm -1<CR>
 nnoremap <silent> <A-down> :<C-u>tabm +1<CR>
-" Alt+z Alt+</> to move tabs
-nnoremap <silent> <A-z><A-,> :<C-u>tabm -1<CR>
-nnoremap <silent> <A-z><A-.> :<C-u>tabm +1<CR>
+" Alt+N/M to move tabs
+nnoremap <silent> <A-n> :<C-u>tabm -1<CR>
+nnoremap <silent> <A-m> :<C-u>tabm +1<CR>
 " Alt+HJKL to jump between windows
 nnoremap <silent> <A-h> :<C-u>wincmd h<CR>
 nnoremap <silent> <A-l> :<C-u>wincmd l<CR>
@@ -78,12 +86,12 @@ nnoremap <silent> <A-L> :<C-u>wincmd ><CR>
 " Alt+V/S to split new window
 nnoremap <silent> <A-v> :<C-u>vsp<CR>
 nnoremap <silent> <A-s> :<C-u>sp<CR>
-" In neovim, Alt+Shift+V/S to toggle vertical/horizontal layout
+" Alt+Shift+V/S to toggle vertical/horizontal layout in Neovim
 if has('nvim')
   nnoremap <silent> <A-V> :<C-u>wincmd t<CR>:wincmd H<CR>
   nnoremap <silent> <A-S> :<C-u>wincmd t<CR>:wincmd K<CR>
 endif
-" z+ArrowKeys to jump between folding nodes
+" z+Up/Down/Left/Right to jump between folding nodes
 nnoremap z<left> zk
 nnoremap z<right> zj
 nnoremap z<up> [z
@@ -96,11 +104,11 @@ nnoremap zk [z
 " zs/zl to save/load folding views
 nnoremap zs :<C-u>mkview<CR>
 nnoremap zl :<C-u>loadview<CR>
-" Get the hi groups under current cursor
+" <leader><space><space>h to get the hi groups under current cursor
 nnoremap <leader><space><space>h :<C-u>call custom#utils#get_highlight()<CR>
-" gi/gI to jump between indents
-nnoremap <silent> gi :<C-u>call custom#utils#go_indent(v:count1, 1)<cr>
-nnoremap <silent> gI :<C-u>call custom#utils#go_indent(v:count1, -1)<cr>
+" <leader>ji/jI to jump between indents
+nnoremap <silent> <leader>ji :<C-u>call custom#utils#go_indent(v:count1, 1)<cr>
+nnoremap <silent> <leader>jI :<C-u>call custom#utils#go_indent(v:count1, -1)<cr>
 " }}}
 " {{{Insert Mode
 " Alt+X to enter normal mode
@@ -110,11 +118,26 @@ if !has('nvim')
 endif
 " Ctrl+V to paste from buffer
 inoremap <C-V> <Space><Backspace><ESC>pa
-" <A-z><C-v> to paste from system clipboard
-inoremap <A-z><C-V> <Space><Backspace><ESC>"+pa
+" <A-v> to paste from system clipboard
+if has('clipboard')
+  inoremap <A-V> <Space><Backspace><ESC>"+pa
+elseif has('xterm_clipboard')
+  inoremap <A-V> <Space><Backspace><ESC>"*pa
+endif
 " Ctrl+S to save file
 inoremap <silent> <C-S> <Esc>:w<CR>a
-" Shift+ArrowKeys to quickly move cursor
+" Alt+Left/Right to switch tabs
+inoremap <A-left> <Esc>gTi
+inoremap <A-right> <Esc>gti
+" Alt+</> to switch tabs
+inoremap <A-,> <Esc>gTi
+inoremap <A-.> <Esc>gti
+" Alt+HJKL to jump between windows
+inoremap <silent> <A-h> <Esc>:<C-u>wincmd h<CR>i
+inoremap <silent> <A-l> <Esc>:<C-u>wincmd l<CR>i
+inoremap <silent> <A-k> <Esc>:<C-u>wincmd k<CR>i
+inoremap <silent> <A-j> <Esc>:<C-u>wincmd j<CR>i
+" Shift+Up/Down/Left/Right to quickly move cursor
 inoremap <silent><expr> <S-up> pumvisible() ? "\<Space>\<Backspace>\<up>\<up>\<up>\<up>\<up>" : "\<up>\<up>\<up>\<up>\<up>"
 inoremap <silent><expr> <S-down> pumvisible() ? "\<Space>\<Backspace>\<down>\<down>\<down>\<down>\<down>" : "\<down>\<down>\<down>\<down>\<down>"
 inoremap <S-left> <ESC>I
@@ -129,9 +152,9 @@ if !has('nvim')
 endif
 " ; to enter command mode
 vnoremap ; :
-" x to delete selected text but not yank
+" x to delete selected text without saving it to register
 vnoremap x "_x
-" Shift+ArrowKeys to quickly move cursor
+" Shift+Up/Down/Left/Right to quickly move cursor
 vnoremap <S-up> <up><up><up><up><up>
 vnoremap <S-down> <down><down><down><down><down>
 vnoremap <S-left> 0
@@ -146,9 +169,17 @@ vnoremap J 5<down>
 vnoremap H 0
 vnoremap L $h
 " <leader>y to yank to system clipboard
-vnoremap <leader>y "+y
+if has('clipboard')
+  vnoremap <leader>y "+y
+elseif has('xterm_clipboard')
+  vnoremap <leader>y "*y
+endif
 " <leader>p to paste from system clipboard
-vnoremap <leader>p "+p
+if has('clipboard')
+  vnoremap <leader>p "+p
+elseif has('xterm_clipboard')
+  vnoremap <leader>p "*p
+endif
 " }}}
 " {{{Command Mode
 " Alt+X to enter normal mode
@@ -156,8 +187,8 @@ cmap <A-x> <ESC>
 if !has('nvim')
   cmap ^@ <ESC>
 endif
-" Ctrl+S to save file
-cmap <C-S> :<C-u>w<CR>
+" Ctrl+A to jump to the beginning of line
+cmap <C-a> <C-b>
 " }}}
 " {{{Terminal Mode
 " Alt+X to enter normal mode
@@ -173,7 +204,7 @@ tnoremap <A-right> <C-\><C-n>gt
 " Alt+Up/Down to move tabs
 tnoremap <silent> <A-up> <C-\><C-n>:<C-u>tabm -1<CR>
 tnoremap <silent> <A-down> <C-\><C-n>:<C-u>tabm +1<CR>
-" Shift+ArrowKeys to quickly move cursor
+" Shift+Up/Down/Left/Right to quickly move cursor
 tnoremap <S-left> <C-a>
 tnoremap <S-right> <C-e>
 " }}}

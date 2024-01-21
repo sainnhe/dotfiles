@@ -6,6 +6,53 @@
 " License: Anti-996 && MIT
 " =============================================================================
 
+" Settings in tmux
+if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
+  let g:vim_is_in_tmux = 1
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+else
+  let g:vim_is_in_tmux = 0
+endif
+
+" FVim
+if exists('g:fvim_loaded')
+  FVimCursorSmoothMove v:true
+  FVimCursorSmoothBlink v:true
+  FVimCustomTitleBar v:true
+  FVimFontLigature v:true
+  FVimFontNoBuiltinSymbols v:true
+  FVimFontAutoSnap v:true
+  FVimUIPopupMenu v:false
+  FVimToggleFullScreen
+endif
+
+" Neovide
+if exists('g:neovide')
+  let g:neovide_cursor_vfx_mode = 'sonicboom'
+  let g:neovide_cursor_vfx_opacity = 50
+  let g:neovide_remember_window_size = v:true
+  let g:neovide_hide_mouse_when_typing = v:true
+  let g:neovide_remember_window_size = v:true
+  let g:neovide_input_macos_alt_is_meta = v:true
+  augroup ime_input
+    autocmd!
+    autocmd InsertLeave * execute "let g:neovide_input_ime=v:false"
+    autocmd InsertEnter * execute "let g:neovide_input_ime=v:true"
+    autocmd CmdlineEnter [/\?] execute "let g:neovide_input_ime=v:false"
+    autocmd CmdlineLeave [/\?] execute "let g:neovide_input_ime=v:true"
+  augroup END
+endif
+
+" Nvui
+if exists('g:nvui')
+  NvuiCursorHideWhileTyping v:true
+  NvuiFrameless v:true
+  NvuiAnimationsEnabled v:true
+  NvuiFullscreen v:true
+endif
+
+" General
 filetype plugin indent on
 syntax enable
 set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
@@ -39,6 +86,7 @@ endif
 if has('nvim')
   set inccommand=split
   set laststatus=3
+  lua vim.loader.enable()
 elseif has('vim9script')
   set wildoptions=pum
   set fillchars=vert:│,fold:-,eob:~
@@ -57,10 +105,12 @@ if !isdirectory(expand(&g:undodir))
   silent! call mkdir(expand(&g:undodir), 'p')
 endif
 
+" Color scheme in minimal mode
 if g:vim_mode ==# 'minimal'
   colorscheme desert
 endif
 
+" Status line in minimal mode and light mode
 if g:vim_mode !=# 'full'
   set noshowmode
   set statusline=
@@ -85,18 +135,20 @@ if g:vim_mode !=# 'full'
   set statusline+=%{custom#utils#git_status()}
 endif
 
-augroup VimSettings
-  autocmd!
-  autocmd FileType html,css,scss,typescript,vim set shiftwidth=2
-  autocmd VimLeave * call custom#utils#set_cursor_shape()
-augroup END
-
-" Cursor Shape in Vim
+" Cursor shape in Vim
 if !has('nvim')
   let &t_ti.="\e[1 q"
   let &t_SI.="\e[5 q"
   let &t_EI.="\e[1 q"
   let &t_te.="\e[0 q"
 endif
+
+augroup CursorShape
+  autocmd!
+  autocmd VimLeave * call custom#utils#set_cursor_shape()
+augroup END
+
+" Register commands
+command! Mode call custom#mode#update()
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

@@ -1,3 +1,6 @@
+" This file will be copied to envs.vim when building the container image.
+" See Containerfile for detailed information.
+
 if !exists('g:vim_mode')
   let g:vim_mode = 'full'
 endif
@@ -14,15 +17,14 @@ if !has('win32')
         \ ]
 else
   let g:startify_bookmarks = [
-        \ {'c': '~/Documents/WindowsPowerShell/Profile.ps1'},
-        \ {'R': '~/repo/'},
-        \ {'P': '~/playground/'},
+        \ {'r': '~/repo/'},
+        \ {'p': '~/playground/'},
         \ ]
 endif
 if has('gui_running') || exists('g:fvim_loaded') || exists('g:neovide') || exists('g:nvui')
-  if has('nvim')
-    set guifont=MonoLisa:h12
+  if !has('nvim') && !has('win32') && !has('osxdarwin')
+    set guifont=Macon\ 12
   else
-    set guifont=MonoLisa\ 12
+    set guifont=Macon:h12
   endif
 endif

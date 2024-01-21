@@ -182,8 +182,8 @@ endif
 " {{{Language features
 " {{{copilot.vim
 imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
-imap <silent> <A-j> <Plug>(copilot-next)
-imap <silent> <A-k> <Plug>(copilot-previous)
+imap <silent> <A-n> <Plug>(copilot-next)
+imap <silent> <A-p> <Plug>(copilot-previous)
 let g:copilot_no_tab_map = v:true
 " }}}
 " {{{coc.nvim
@@ -347,8 +347,8 @@ nmap <silent> <leader><space>mr :<C-u>CocCommand markdown-preview-enhanced.runCo
 nmap <silent> <leader><space>mR :<C-u>CocCommand markdown-preview-enhanced.runAllCodeChunks<cr>
 nmap <silent> <leader><Tab> <Plug>(coc-format)
 vmap <silent> <leader><Tab> <Plug>(coc-format-selected)
-nmap <silent> <leader>gj <Plug>(coc-git-nextchunk)
-nmap <silent> <leader>gk <Plug>(coc-git-prevchunk)
+nmap <silent> <leader>jg <Plug>(coc-git-nextchunk)
+nmap <silent> <leader>jG <Plug>(coc-git-prevchunk)
 nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
 omap ig <Plug>(coc-git-chunk-inner)
 xmap ig <Plug>(coc-git-chunk-inner)
@@ -363,36 +363,31 @@ nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
 nmap <silent> <leader>gla :<C-u>CocList commits<cr>
 nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
 nmap <silent> <leader>gll <Plug>(coc-git-commit)
-nmap <silent> <leader>dj <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>dk <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>df <Plug>(coc-fix-current)
-nmap <silent> <leader>dd :<C-u>CocDiagnostics<cr>
-nmap <silent> <leader>d<space> :<C-u>CocList diagnostics<cr>
+nmap <silent> <leader>je <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>jE <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>af <Plug>(coc-fix-current)
 if !has('nvim')
   xmap if <Plug>(coc-funcobj-i)
   omap if <Plug>(coc-funcobj-i)
   xmap af <Plug>(coc-funcobj-a)
   omap af <Plug>(coc-funcobj-a)
 endif
-if !exists('g:which_key_map')
-  let g:which_key_map = {
-        \ 'name': 'Alpha',
-        \ "\<space>": {
-          \ 'name': 'Beta',
-          \ "\<space>": {
-            \ 'name': 'Omega'
-            \ }
-          \ }
-        \ }
+if !exists("g:which_key_map['j']")
+  let g:which_key_map['j'] = { 'name': 'jump'}
 endif
-let g:which_key_map['j'] = {
-      \   'name': 'jump',
-      \   'd': 'definition',
-      \   'D': 'declaration',
-      \   't': 'type definition',
-      \   'r': 'reference',
-      \   'm': 'implementation',
-      \   }
+let g:which_key_map['j']['d'] = 'definition'
+let g:which_key_map['j']['D'] = 'declaration'
+let g:which_key_map['j']['t'] = 'type definition'
+let g:which_key_map['j']['r'] = 'reference'
+let g:which_key_map['j']['m'] = 'implementation'
+let g:which_key_map['j']['e'] = 'next error'
+let g:which_key_map['j']['E'] = 'prev error'
+let g:which_key_map['j']['g'] = 'next git chunk'
+let g:which_key_map['j']['G'] = 'prev git chunk'
+if !exists("g:which_key_map['a']")
+  let g:which_key_map['a'] = { 'name': 'action'}
+endif
+let g:which_key_map['a']['f'] = 'fix'
 let g:which_key_map['<Tab>'] = 'format'
 let g:which_key_map["\<space>"]['r'] = 'rename'
 let g:which_key_map["\<space>"]['R'] = 'refactor'
@@ -415,8 +410,6 @@ let g:which_key_map["\<space>"]['m'] = {
       \ }
 let g:which_key_map['g'] = {
       \   'name': 'git',
-      \   'j': 'chunk next',
-      \   'k': 'chunk prev',
       \   'D': 'diff staged',
       \   'i': 'chunk info',
       \   'u': 'chunk undo',
@@ -432,14 +425,6 @@ let g:which_key_map['f'] = {
       \   's': 'symbols',
       \   'y': 'yank',
       \   'h': 'help',
-      \   }
-let g:which_key_map['d'] = {
-      \   'name': 'diagnostics',
-      \   "\<Space>": 'list (global)',
-      \   'd': 'list (current)',
-      \   'f': 'fix',
-      \   'j': 'next',
-      \   'k': 'prev',
       \   }
 nnoremap <silent> ? :let g:coc_hover_enable = (g:coc_hover_enable == 1 ? 0 : 1)<CR>
 " }}}
@@ -566,7 +551,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 endif
 " }}}
-" {{{Extended functional components, but with extra dependencies
+" {{{Functional components, but with extra dependencies
 " {{{vCoolor.vim
 if !has('win32') && !has('osxdarwin')
   let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --color '

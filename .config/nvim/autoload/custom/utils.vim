@@ -124,5 +124,38 @@ function custom#utils#clear_apple_books_wrapper() abort "{{{
   endif
   call setreg(l:register, l:content)
 endfunction "}}}
+function custom#utils#generate_default_envs() abort "{{{
+  " Generate default envs.vim
+  let l:envs_path = fnamemodify(custom#utils#stdpath('config'), ':p') . 'envs.vim'
+  call writefile([
+        \ "if !exists('g:vim_mode')",
+        \ "  let g:vim_mode = 'minimal'",
+        \ 'endif',
+        \ 'let g:vim_plug_auto_install = 0',
+        \ 'let g:vim_lightline_artify = 0',
+        \ "let g:vim_color_scheme = 'edge_dark'",
+        \ 'let g:vim_italicize_keywords = 0',
+        \ "if !has('win32')",
+        \ '  let g:startify_bookmarks = [',
+        \ "        \\ {'z': '~/.zshrc'},",
+        \ "        \\ {'t': '~/.tmux.conf'},",
+        \ "        \\ {'r': '~/repo/'},",
+        \ "        \\ {'p': '~/playground/'},",
+        \ '        \ ]',
+        \ 'else',
+        \ '  let g:startify_bookmarks = [',
+        \ "        \\ {'r': '~/repo/'},",
+        \ "        \\ {'p': '~/playground/'},",
+        \ '        \ ]',
+        \ 'endif',
+        \ "if has('gui_running') || exists('g:fvim_loaded') || exists('g:neovide') || exists('g:nvui')",
+        \ "  if !has('nvim') && !has('win32') && !has('osxdarwin')",
+        \ '    set guifont=Macon\ 12',
+        \ '  else',
+        \ '    set guifont=Macon:h12',
+        \ '  endif',
+        \ 'endif'
+        \ ], l:envs_path, 's')
+endfunction "}}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
