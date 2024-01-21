@@ -375,6 +375,14 @@ The contents in window `3` is the contents in `c`, which represent "base".
 What you need to do is edit text in window `3` and save it. Then use `git add`
 to mark resolution and use `git commit` to continue merging.
 
+Note that this merge tool requires the following configuration in your
+`~/.gitconfig`:
+>
+    ```ini
+    [merge]
+    conflictStyle = diff3
+    ```
+<
 ------------------------------------------------------------------------------
                                                       *sainnhe-plugins-movement*
 Movement~
