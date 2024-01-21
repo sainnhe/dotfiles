@@ -286,6 +286,13 @@
     "sql.database": "mysql",
     "java.format.settings.url": "https://proxy.sainnhe.dev/https/github.com/google/styleguide/raw/gh-pages/eclipse-java-google-style.xml",
     "java.format.settings.profile": "GoogleStyle",
+    "java.maxConcurrentBuilds": 4,
+    "java.signatureHelp.description.enabled": true,
+    "java.codeGeneration.generateComments": true,
+    "java.saveActions.organizeImports": true,
+    "java.referencesCodeLens.enabled": true,
+    "java.implementationsCodeLens.enabled": true,
+    "java.typeHierarchy.lazyLoad": true,
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {

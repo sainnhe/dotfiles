@@ -256,11 +256,12 @@ let g:coc_hover_enable = 0
 call coc#config('project', {
       \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
       \ })
-let s:java_home = has('win32') ? expand('~/scoop/apps/openjdk/current') :
-                  \ has('osxdarwin') ? '/Library/Java/JavaVirtualMachines/default/Contents/Home' :
-                  \ isdirectory('/usr/lib/jvm/default') ? '/usr/lib/jvm/default' :
-                  \ isdirectory('/usr/lib/jvm/jre') ? '/usr/lib/jvm/java' :
-                  \ isdirectory('/usr/lib/jvm/default-jvm') ? '/usr/lib/jvm/default-jvm' : '/usr'
+let s:java_home = !empty($JAVA_HOME) ? $JAVA_HOME :
+      \ has('win32') ? expand('~/scoop/apps/openjdk/current') :
+      \ has('osxdarwin') ? '/Library/Java/JavaVirtualMachines/default/Contents/Home' :
+      \ isdirectory('/usr/lib/jvm/default') ? '/usr/lib/jvm/default' :
+      \ isdirectory('/usr/lib/jvm/jre') ? '/usr/lib/jvm/java' :
+      \ isdirectory('/usr/lib/jvm/default-jvm') ? '/usr/lib/jvm/default-jvm' : '/usr'
 call coc#config('java', {
       \ 'jdt': {
         \ 'ls': {
@@ -270,6 +271,14 @@ call coc#config('java', {
           \ }
         \ }
       \ })
+call coc#config('java', {
+      \ 'configuration': {
+        \ 'runtimes': [{
+          \ 'name': 'JavaSE-17',
+          \ 'default': v:true,
+          \ 'path': s:java_home
+        \ }]
+      \ }})
 call coc#config('xml', {
       \ 'java': {
         \ 'home': s:java_home
