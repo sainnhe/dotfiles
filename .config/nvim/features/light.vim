@@ -417,6 +417,26 @@ let g:which_key_map['b'] = {
       \ 'k': 'prev'
       \ }
 " }}}
+" {{{vim-manpager
+let g:manpager_disable_default_mappings = 1
+function! s:manpager_mappings() abort
+  nmap <buffer><nowait> <CR>          <Plug>(manpager-open)
+  nmap <buffer><nowait> <C-]>         <Plug>(manpager-open)
+  nmap <buffer><nowait> <2-LeftMouse> <Plug>(manpager-open)
+  xmap <buffer><nowait> <CR>          <Plug>(manpager-open)
+  xmap <buffer><nowait> <C-]>         <Plug>(manpager-open)
+  xmap <buffer><nowait> <2-LeftMouse> <Plug>(manpager-open)
+  nmap <buffer><nowait> <Tab>         <Plug>(manpager-open-next)
+  nmap <buffer><nowait> <S-Tab>       <Plug>(manpager-open-previous)
+  nmap <buffer><nowait> ]t            <Plug>(manpager-next-keyword)
+  nmap <buffer><nowait> [t            <Plug>(manpager-previous-keyword)
+  nmap <buffer><nowait> q             <Plug>(manpager-close)
+endfunction
+augroup ManPagerCustom
+  autocmd!
+  autocmd FileType man call s:manpager_mappings()
+augroup END
+" }}}
 if !has('win32')
 " {{{vim-dasht
   " Note:
