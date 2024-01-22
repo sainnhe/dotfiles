@@ -16,9 +16,10 @@ export LC_CTYPE=en_US.UTF-8
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
-if [ -x "$(command -v nvim)" ]; then
-    export EDITOR="nvim"
-    export PAGER="nvim --cmd 'let g:vim_man_pager = 1' +Man!"
+if [ -x "$(command -v vim)" ]; then
+    export EDITOR="vim"
+    export PAGER="vim --cmd 'let g:vim_pager = 1' -c PAGER -"
+    export MANPAGER="vim --cmd 'let g:vim_pager = 1' -c ASMANPAGER -"
 fi
 export FuzzyFinder="fzf"
 export GO111MODULE=on

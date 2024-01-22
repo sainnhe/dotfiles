@@ -160,7 +160,6 @@ Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-endwise'
 " Other basic features
 Plug 'yianwillis/vimcdoc'
-Plug 'tweekmonster/helpful.vim'
 Plug 'drmikehenry/vim-fixkey'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-sleuth'
@@ -176,7 +175,6 @@ Plug 'skywind3000/asynctasks.vim', { 'on': ['AsyncTask', 'AsyncTaskEdit'] }
 Plug 'mg979/vim-visual-multi', { 'on': ['<Plug>(VM-Add-Cursor-At-Pos)', '<Plug>(VM-Visual-Cursors)'] }
 Plug 'scrooloose/nerdcommenter', { 'on': ['<Plug>NERDCommenterComment', '<Plug>NERDCommenterUncomment', '<Plug>NERDCommenterToggle'] }
 Plug 'vim-test/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
-Plug 'rhysd/devdocs.vim', { 'on': ['<Plug>(devdocs-under-cursor)', '<Plug>(devdocs-under-cursor-all)', 'DevDocs', 'DevDocsAll'] }
 Plug 'voldikss/vim-translator', { 'on': ['<Plug>TranslateW', '<Plug>TranslateWV'] }
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
@@ -190,6 +188,10 @@ Plug 'sainnhe/vim-paste-rs', { 'on': ['<Plug>(paste-rs)', 'PasteRsAddBuffer', 'P
 Plug 'kristijanhusak/vim-carbon-now-sh', { 'on': 'CarbonNowSh' }
 Plug 'alpertuna/vim-header', { 'on': ['AddHeader', 'AddMinHeader'] }
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'lambdalisue/vim-pager', { 'on': 'PAGER' }
+Plug 'lambdalisue/vim-manpager', { 'on': 'ASMANPAGER' }
+Plug 'powerman/vim-plugin-AnsiEsc', {'on': ['PAGER', 'ASMANPAGER', 'AnsiEsc']}
+Plug 'rhysd/devdocs.vim', { 'on': ['<Plug>(devdocs-under-cursor)', '<Plug>(devdocs-under-cursor-all)', 'DevDocs', 'DevDocsAll'] }
   if !has('win32')
     Plug 'sunaku/vim-dasht'
   endif
@@ -236,7 +238,7 @@ elseif g:vim_mode ==# 'full'
     Plug 'sainnhe/tmuxline.vim', { 'on': ['Tmuxline', 'TmuxlineSnapshot'] }
   endif
   " UI components
-  if !exists('g:vim_man_pager')
+  if !exists('g:vim_pager')
     Plug 'mhinz/vim-startify'
   endif
 endif
