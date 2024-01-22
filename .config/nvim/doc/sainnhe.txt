@@ -413,8 +413,8 @@ There are two features:
 
 1. |%| can match not only parenthesis and brackets, but also words (e.g.
 if/else, try/catch).
-2. Pairs are automatically closed, including parenthesis, brackets and html
-tags.
+2. Pairs are automatically closed, including parenthesis, brackets, html
+tags and if/endif when it's possible.
 
 ------------------------------------------------------------------------------
                                           *sainnhe-plugins-other-basic-features*
@@ -423,3 +423,6 @@ Other Basic Features~
 These features work out of the box. You won't realize their existence until you
 meet a specific situation, then you'll find that this feature has already been
 supported.
+
+==============================================================================
+vim:tw=78:nosta:noet:ts=4:sw=4:sts=0:ft=help:noet:fen:fdm=marker:fmr={{{,}}}:

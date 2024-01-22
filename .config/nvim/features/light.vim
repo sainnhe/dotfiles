@@ -205,6 +205,9 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.jsx,*.tsx'
 " }}}
 " }}}
 " {{{Other basic features
+" {{{helpful.vim
+let g:helpful = 1
+" }}}
 " {{{vim-fixkey
 " sed -n l
 if !has('nvim')
