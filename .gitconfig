@@ -3,20 +3,20 @@
     email = i@sainnhe.dev
     signingkey = 176E0BEC3A702FEBCCDA0A185A24ED790A08C8A3
 [core]
-    editor = nvim
+    editor = vim
 [commit]
     gpgsign = true
 [diff]
-    tool = nvim_diff
+    tool = vim_diff
 [difftool]
     prompt = false
-[difftool "nvim_diff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[difftool "vim_diff"]
+    cmd = "vim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
-    tool = nvim_merge
+    tool = vim_merge
     conflictStyle = diff3
-[mergetool "nvim_merge"]
-    cmd = nvim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+[mergetool "vim_merge"]
+    cmd = vim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
     trustExitCode = true
 [pull]
     rebase = true

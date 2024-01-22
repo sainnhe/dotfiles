@@ -99,10 +99,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
       endif
     endfor
   endif
-  if !has('python3')
-    echomsg "[warning] Doesn't have python3 installed."
-    let l:result = 0
-  endif
   return l:result
 endfunction
 

@@ -327,6 +327,11 @@ nmap <silent> <leader>f<Space> :<C-u>CocList<CR>
 nmap <silent> <leader>fy :<C-u>CocList yank<CR>
 nmap <silent> <leader>fs :<C-u>CocList symbols<CR>
 nmap <silent> <leader>fh :<C-u>CocList helptags<CR>
+nmap <silent> <leader>fw :<C-u>CocList --interactive --regex --ignore-case words<CR>
+nmap <silent> <leader>ff :<C-u>CocList files<CR>
+nmap <silent> <leader>fb :<C-u>CocList buffers<CR>
+nmap <silent> <leader>fm :<C-u>CocList mru<CR>
+nmap <silent> <leader>fg :<C-u>CocList grep<CR>
 nmap <silent> <leader>jd <Plug>(coc-definition)
 nmap <silent> <leader>jD <Plug>(coc-declaration)
 nmap <silent> <leader>jt <Plug>(coc-type-definition)
@@ -423,6 +428,11 @@ let g:which_key_map['g'] = {
 let g:which_key_map['f'] = {
       \   'name': 'fuzzy finder',
       \   "\<Space>": 'list',
+      \   'w': 'words',
+      \   'f': 'files',
+      \   'b': 'buffers',
+      \   'm': 'mru',
+      \   'g': 'grep',
       \   's': 'symbols',
       \   'y': 'yank',
       \   'h': 'help',
@@ -442,52 +452,6 @@ augroup END
 nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
 let g:which_key_map['f']['p'] = 'projects'
 " }}}
-" }}}
-" {{{LeaderF
-if has('python3')
-  let g:Lf_ShortcutF = ''
-  let g:Lf_ShortcutB = ''
-  let g:Lf_CacheDirectory = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'leaderf'
-  let g:Lf_WildIgnore = {
-        \ 'dir': ['.svn','.git','.hg'],
-        \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-        \ }
-  let g:Lf_StlSeparator = { 'left': '', 'right': '' }
-  let g:Lf_ShowHidden = 1
-  let g:Lf_WindowHeight = 0.38
-  let g:Lf_PreviewInPopup = 0
-  let g:Lf_RgConfig = [
-        \ "--ignore-vcs",
-        \ "--hidden",
-        \ "--glob=!.git/*",
-        \ "--smart-case",
-        \ ]
-  nnoremap <silent> <leader>fl :<C-u>LeaderfLine<CR>
-  nnoremap <silent> <leader>fL :<C-u>LeaderfLineAll<CR>
-  nnoremap <silent> <leader>ff :<C-u>LeaderfFile<CR>
-  nnoremap <silent> <leader>fb :<C-u>LeaderfBuffer<CR>
-  nnoremap <silent> <leader>fB :<C-u>LeaderfBufferAll<CR>
-  nnoremap <silent> <leader>fm :<C-u>LeaderfMru<CR>
-  nnoremap <silent> <leader>fg :<C-u>LeaderfRgInteractive<CR>
-  let g:which_key_map['f']['l'] = 'lines'
-  let g:which_key_map['f']['L'] = 'lines all'
-  let g:which_key_map['f']['f'] = 'files'
-  let g:which_key_map['f']['b'] = 'buffers'
-  let g:which_key_map['f']['B'] = 'buffers all'
-  let g:which_key_map['f']['m'] = 'mru files'
-  let g:which_key_map['f']['g'] = 'grep'
-else
-  nnoremap <silent> <leader>fl :<C-u>CocList lines<CR>
-  nnoremap <silent> <leader>ff :<C-u>CocList files<CR>
-  nnoremap <silent> <leader>fb :<C-u>CocList buffers<CR>
-  nnoremap <silent> <leader>fm :<C-u>CocList mru<CR>
-  nnoremap <silent> <leader>fg :<C-u>CocList grep<CR>
-  let g:which_key_map['f']['l'] = 'lines'
-  let g:which_key_map['f']['f'] = 'files'
-  let g:which_key_map['f']['b'] = 'buffers'
-  let g:which_key_map['f']['m'] = 'mru files'
-  let g:which_key_map['f']['g'] = 'grep'
-endif
 " }}}
 " {{{vim-doge
 let g:doge_enable_mappings = 0
