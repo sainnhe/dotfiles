@@ -135,6 +135,12 @@ if g:vim_mode !=# 'full'
   set statusline+=%{custom#utils#git_status()}
 endif
 
+" Close last window
+augroup CloseLastWin
+  autocmd!
+  autocmd BufEnter * call custom#dashboard#close_last_win()
+augroup END
+
 " Cursor shape in Vim
 if !has('nvim')
   let &t_ti.="\e[1 q"

@@ -167,14 +167,15 @@ if !exists('g:vim_pager')
         \ ]
   function! s:startify_mappings() abort
     nmap <silent><buffer> o <CR>
-    nmap <silent><buffer> h :wincmd h<CR>
+    nmap <silent><buffer> h :<C-u>wincmd h<CR>
+    nmap <silent><buffer> q :<C-u>call custom#dashboard#close()<CR>
     nmap <silent><buffer> <Tab> :CocList project<CR>
   endfunction
   augroup StartifyCustom
     autocmd!
-    autocmd User CocNvimInit if !argc() | call custom#explorer#startify() | endif
+    autocmd User CocNvimInit if !argc() | call custom#dashboard#launch_startify() | endif
     autocmd FileType startify call s:startify_mappings()
-    autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):call custom#explorer#toggle()<CR>
+    autocmd User Startified nmap <silent><buffer> <CR> <plug>(startify-open-buffers):call custom#dashboard#toggle_explorer()<CR>
   augroup END
 endif
 " }}}
@@ -317,7 +318,7 @@ nnoremap <silent><expr> <A-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<
 nnoremap <silent><expr> <A-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<A-u>"
 inoremap <silent><expr> <A-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<A-d>"
 inoremap <silent><expr> <A-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<A-u>"
-nnoremap <silent><nowait> <A-b> :<C-u>call custom#explorer#toggle_outline()<CR>
+nnoremap <silent><nowait> <A-b> :<C-u>call custom#dashboard#toggle_outline()<CR>
 nnoremap <silent> <A-=> :<C-u>CocCommand terminal.Toggle<CR>
 tnoremap <silent> <A-=> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
 nnoremap <silent> <A--> :<C-u>CocCommand terminal.REPL<CR>
@@ -433,8 +434,7 @@ nnoremap <silent> <C-b> :<C-u>execute 'CocCommand explorer --focus ' . getcwd()<
 augroup ExplorerCustom
   autocmd!
   autocmd FileType coc-explorer setlocal signcolumn=no
-  autocmd FileType coc-explorer nnoremap <buffer><silent> q :<C-u>call custom#explorer#close_startify()<CR>
-  autocmd BufEnter * call custom#explorer#close_last()
+  autocmd FileType coc-explorer nnoremap <buffer><silent> q :<C-u>call custom#dashboard#close()<CR>
   autocmd BufEnter * if stridx(@%, 'term:') != -1 | setlocal nocursorline | endif
 augroup END
 " }}}

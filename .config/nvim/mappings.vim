@@ -55,7 +55,7 @@ elseif has('xterm_clipboard')
 endif
 " Alt+T to create a new tab
 if g:vim_mode ==# 'full'
-  nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call custom#explorer#startify()<CR>
+  nnoremap <silent> <A-t> :<C-u>tabnew<CR>:call custom#dashboard#launch_startify()<CR>
 else
   nnoremap <silent> <A-t> :<C-u>tabnew<CR>
 endif
