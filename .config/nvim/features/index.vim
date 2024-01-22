@@ -167,6 +167,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'airblade/vim-rooter'
 Plug 'jamessan/vim-gnupg'
 Plug '520Matches/fcitx5.vim'
+Plug 'mbbill/fencview'
 " Functional components
 Plug 'tpope/vim-repeat'
 Plug 'rmolin88/pomodoro.vim'
@@ -180,9 +181,6 @@ Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'AndrewRadev/inline_edit.vim', { 'on': 'InlineEdit' }
-Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffAdd'] }
-Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
-Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencView'] }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'sainnhe/vim-paste-rs', { 'on': ['<Plug>(paste-rs)', 'PasteRsAddBuffer', 'PasteRsAddSelection', 'PasteRsDelete'] }
 Plug 'kristijanhusak/vim-carbon-now-sh', { 'on': 'CarbonNowSh' }
@@ -192,9 +190,9 @@ Plug 'lambdalisue/vim-pager', { 'on': 'PAGER' }
 Plug 'lambdalisue/vim-manpager', { 'on': 'ASMANPAGER' }
 Plug 'powerman/vim-plugin-AnsiEsc', {'on': ['PAGER', 'ASMANPAGER', 'AnsiEsc']}
 Plug 'rhysd/devdocs.vim', { 'on': ['<Plug>(devdocs-under-cursor)', '<Plug>(devdocs-under-cursor-all)', 'DevDocs', 'DevDocsAll'] }
-  if !has('win32')
-    Plug 'sunaku/vim-dasht'
-  endif
+if !has('win32')
+  Plug 'sunaku/vim-dasht'
+endif
 if has('nvim')
   Plug 'jbyuki/nabla.nvim'
 endif

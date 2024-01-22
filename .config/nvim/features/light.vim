@@ -236,6 +236,9 @@ let g:rooter_patterns = [
 let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
 " }}}
+" {{{fencview
+let g:fencview_autodetect = 1
+" }}}
 " }}}
 " {{{Functional components
 " {{{pomodoro.vim
@@ -294,6 +297,27 @@ let g:which_key_map['c'] = {
       \ 'a': 'comment',
       \ 'u': 'uncomment',
       \ 'c': 'toggle',
+      \ }
+" }}}
+" {{{vim-test
+nmap <silent> <leader>atc :<C-u>TestNearest<CR>
+nmap <silent> <leader>atC :<C-u>TestClass<CR>
+nmap <silent> <leader>atf :<C-u>TestFile<CR>
+nmap <silent> <leader>ats :<C-u>TestSuite<CR>
+nmap <silent> <leader>att :<C-u>TestLast<CR>
+nmap <silent> <leader>ato :<C-u>TestVisit<CR>
+let test#strategy = 'asyncrun'
+if !exists("g:which_key_map['a']")
+  let g:which_key_map['a'] = { 'name': 'action'}
+endif
+let g:which_key_map['a']['t'] = {
+      \ 'name': 'test',
+      \ 'c': 'cursor',
+      \ 'C': 'class',
+      \ 'f': 'file',
+      \ 's': 'suite',
+      \ 't': 'last test',
+      \ 'o': 'open',
       \ }
 " }}}
 " {{{devdocs.vim
@@ -369,9 +393,6 @@ let g:carbon_now_sh_options = {
 let g:header_field_author = 'Sainnhe Park'
 let g:header_field_author_email = 'i@sainnhe.dev'
 nnoremap <silent> <leader>ah :<C-u>AddHeader<CR>
-if !exists("g:which_key_map['a']")
-  let g:which_key_map['a'] = { 'name': 'action'}
-endif
 let g:which_key_map['a']['h'] = 'add header'
 " }}}
 " {{{vim-bookmarks

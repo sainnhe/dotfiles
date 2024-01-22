@@ -424,5 +424,19 @@ These features work out of the box. You won't realize their existence until you
 meet a specific situation, then you'll find that this feature has already been
 supported.
 
+------------------------------------------------------------------------------
+                                         *sainnhe-plugins-functional-components*
+Functional Components~
+
+Most of them appear when you press `<leader>` key, but there are some features
+that use other operations:
+
+- Press `.` to repeat previous operation.
+- Press ` to add multiple cursors. Support both normal mode and visual mode.
+- Configure vim as PAGER in shell:
+  `export PAGER="vim --cmd 'let g:vim_pager = 1' -c PAGER -"``
+- Configure vim as MANPAGER in shell:
+  `export MANPAGER="vim --cmd 'let g:vim_pager = 1' -c ASMANPAGER -"`
+
 ==============================================================================
 vim:tw=78:nosta:noet:ts=4:sw=4:sts=0:ft=help:noet:fen:fdm=marker:fmr={{{,}}}:
