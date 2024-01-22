@@ -51,7 +51,7 @@ The biggest reason that I chose to use vim script is that I want to let my
 configs support both vim and nvim. But why? Isn't nvim good enough? Well, at
 the time I made this decision, nvim was still very unstable, there were a lot
 of bugs that broke your dev environment from time to time. You obviously don't
-want see tons of loading errors when you are hurry to fix a bug right? This
+want to see tons of loading errors when you are hurry to fix a bug right? This
 kind of things have happened several times to me. When it last happened, I
 decided to refactor my vim configs to support both vim and nvim.
 
