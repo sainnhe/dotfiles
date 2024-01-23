@@ -327,7 +327,7 @@ nmap <silent> <leader>f<Space> :<C-u>CocList<CR>
 nmap <silent> <leader>fy :<C-u>CocList yank<CR>
 nmap <silent> <leader>fs :<C-u>CocList symbols<CR>
 nmap <silent> <leader>fh :<C-u>CocList helptags<CR>
-nmap <silent> <leader>fw :<C-u>CocList --interactive --regex --ignore-case words<CR>
+nmap <silent> <leader>fl :<C-u>CocList --interactive --ignore-case lines<CR>
 nmap <silent> <leader>ff :<C-u>CocList files<CR>
 nmap <silent> <leader>fb :<C-u>CocList buffers<CR>
 nmap <silent> <leader>fm :<C-u>CocList mru<CR>
@@ -428,10 +428,10 @@ let g:which_key_map['g'] = {
 let g:which_key_map['f'] = {
       \   'name': 'fuzzy finder',
       \   "\<Space>": 'list',
-      \   'w': 'words',
+      \   'l': 'lines',
       \   'f': 'files',
       \   'b': 'buffers',
-      \   'm': 'mru',
+      \   'm': 'mru files',
       \   'g': 'grep',
       \   's': 'symbols',
       \   'y': 'yank',
