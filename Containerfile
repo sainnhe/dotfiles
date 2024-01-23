@@ -56,6 +56,8 @@ RUN apk upgrade --no-cache && apk add --no-cache \
         patch \
         gettext \
         texinfo \
+        shellcheck \
+        shfmt \
         gcc \
         g++ \
         gdb \
