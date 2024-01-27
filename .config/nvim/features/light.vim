@@ -73,7 +73,7 @@ if !exists("g:which_key_map['g']")
   let g:which_key_map['g'] = {'name': 'git'}
 endif
 noremap <silent> <leader>gc :<C-u>Git commit<cr>
-noremap <silent> <leader>gd :<C-u>Gdiffsplit<cr>
+noremap <silent> <leader>gd :<C-u>Gdiffsplit<cr>:wincmd h<cr>:set wrap<cr>:wincmd l<cr>:set wrap<cr>
 noremap <silent> <leader>gw :<C-u>Gwrite<cr>
 let g:which_key_map['g']['c'] = 'commit'
 let g:which_key_map['g']['d'] = 'diff unstaged'
