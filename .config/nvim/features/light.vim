@@ -368,10 +368,6 @@ nnoremap <silent> <leader><space>e :<C-u>InlineEdit<CR>
 vnoremap <silent> <leader><space>e :InlineEdit<CR>
 let g:which_key_map["\<space>"]['e'] = 'inline edit'
 " }}}
-" {{{suda.vim
-command! -nargs=1 E  edit  suda://<args>
-command W w suda://%
-" }}}
 " {{{vim-paste-rs
 nmap <leader><space>sp <Plug>(paste-rs)
 xmap <leader><space>sp <Plug>(paste-rs)
@@ -457,6 +453,14 @@ if has('nvim')
 " {{{nabla.nvim
 nnoremap <silent> <leader>aF :<C-u>lua require("nabla").popup()<CR>
 let g:which_key_map['a']['F'] = 'preview formula'
+" }}}
+endif
+" }}}
+" {{{Unix-like OS specific
+if !has('win32')
+" {{{suda.vim
+command! -nargs=1 E  edit  suda://<args>
+command W w suda://%
 " }}}
 endif
 " }}}

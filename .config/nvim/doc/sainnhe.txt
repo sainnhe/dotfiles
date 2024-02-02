@@ -26,8 +26,6 @@ Plugins                            |sainnhe-plugins|
   Unix-like                        |sainnhe-plugins-unix-like|
   Other Light Features             |sainnhe-plugins-other-light-features|
   Language Features                |sainnhe-plugins-language-features|
-  Tree-Sitter                      |sainnhe-plugins-tree-sitter|
-  Functional Components Extra      |sainnhe-plugins-functional-components-extra|
 
 ==============================================================================
 INTRODUCTION                                                     *sainnhe-intro*
@@ -227,14 +225,13 @@ loaded, which defines a set of plugins. Refer to this file for a full list of
 plugins to be installed.
 
 The plugin manager I use is https://github.com/junegunn/vim-plug, which is
-very user-friendly and performant.
+very easy to use.
 
-By default missing plugins will not be installed, so it is required to execute
-`:PlugInstall` to install plugins.
+Here are some useful commands that can be used for plugin management:
 
-Besides, there are some other useful commands that can be used for daily
-plugin maintainment:
-
+- `:PlugInstall`: Install missing plugins. By default missing plugins will be
+  installed automatically. This behavior is controlled by
+  `g:vim_plug_auto_install` defined in |sainnhe-basic-envs|.
 - `:PlugUpdate [name ...] [#threads]`: Update plugins.
 - `:PlugClean[!]`: Clean unlisted plugins (`!` will clean without prompt).
 - `:PlugUpgrade`: Upgrade vim-plug itself
@@ -306,18 +303,18 @@ The plugins in this category extends built-in |text-objects|. The following
 text objects have been added:
 
 - `,`：Function parameter
-- `.`: Current Tree-Sitter Node (nvim only)
 - `C`：Comment (including spaces at the start of a line)
 - `I`：Indents of current level
 - `b`: Block
 - `c`: Comment (excluding spaces at the start of a line)
 - `e`：Current buffer
-- `f`: Function
-- `g`：Git chunks
 - `i`：Indents of current level and all next levels
 - `l`: Line
 - `u`：URL
 - `z`：Fold
+- `.`: Current Tree-Sitter Node (nvim only)
+- `f`: Function (full mode only)
+- `g`：Git chunks (full mode only)
 
 ------------------------------------------------------------------------------
                                                      *sainnhe-plugins-operators*
@@ -437,6 +434,67 @@ that use other operations:
   `export PAGER="vim --cmd 'let g:vim_pager = 1' -c PAGER -"``
 - Configure vim as MANPAGER in shell:
   `export MANPAGER="vim --cmd 'let g:vim_pager = 1' -c ASMANPAGER -"`
+
+------------------------------------------------------------------------------
+                                                         *sainnhe-plugins-games*
+Games~
+
+There are 3 games:
+
+- `:VimGameCodeBreak`
+- `:VimGameSnake`
+- `:StarWars`
+
+------------------------------------------------------------------------------
+                                                     *sainnhe-plugins-unix-like*
+Unix-like~
+
+Some features are only available on unix-like operating systems:
+
+- `:E /path/to/file`: Edit file as root.
+- `:W`: Write current buffer as root.
+
+------------------------------------------------------------------------------
+                                          *sainnhe-plugins-other-light-features*
+Other Light Features~
+
+Other features that are only available in light mode:
+
+- `Ctrl+B` in normal mode to toggle nerd tree -- a tree style file manager.
+- Basic code completion feature, press `Tab` and `Shift+Tab` to select
+  candidates, and press |i_CTRL-Y| to confirm selection.
+
+------------------------------------------------------------------------------
+                                             *sainnhe-plugins-language-features*
+Language Features~
+
+The following language features are only available in full mode.
+
+- GitHub Copilot: AI assisted code completion.
+  - `:Copilot setup` to authenticate and enable copilot.
+  - `:Copilot disable` to disable copilot.
+  - `:Copilot enable` to enable copilot.
+  - In insert mode:
+    - `Ctrl+l` to accept suggestion.
+    - `Alt+n` to cycle to next suggestion.
+    - `Alt+p` to cycle to previous suggestion.
+- coc.nvim: Advanced language server client.
+  - In normal mode:
+    - Press `Ctrl+B` to toggle coc-explorer, a tree style file and buffer
+      manager.
+    - Press `Alt+B` to toggle |coc-outline|, a document symbol viewer.
+    - Press `Alt+U`/`Alt+D` to scroll up/down floating window.
+    - Press `Alt+=` to toggle terminal for shell.
+    - Press `Alt+-` to toggle terminal for REPL.
+    - Press `?` to toggle hover information at cursor position.
+    - Press leader key for other available code features.
+  - In insert mode:
+    - Press `Tab` and `Shift+Tab` to select candidates.
+    - Press |i_CTRL-Y| to confirm selection.
+    - Press `Ctrl+J` to confirm selection and jump to the next placeholder of a
+      code snippet. Press `Ctrl+K` to jump to the previous placeholder of a code
+      snippet.
+    - Press `Alt+U`/`Alt+D` to scroll up/down floating window.
 
 ==============================================================================
 vim:tw=78:nosta:noet:ts=4:sw=4:sts=0:ft=help:noet:fen:fdm=marker:fmr={{{,}}}:

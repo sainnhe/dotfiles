@@ -16,7 +16,7 @@ if !custom#plug#check()
   call custom#plug#install()
 endif "}}}
  " Automatically install missing plugins on startup{{{
-if g:vim_plug_auto_install == 1
+if g:vim_plug_auto_install
   augroup PlugAutoInstall
     autocmd!
     autocmd VimEnter *
@@ -219,9 +219,7 @@ elseif g:vim_mode ==# 'full'
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-    Plug 'nvim-treesitter/playground'
     Plug 'RRethy/nvim-treesitter-textsubjects'
-    Plug 'lewis6991/spellsitter.nvim'
   endif
   " Functional components, but with extra dependencies
   Plug 'KabbAmine/vCoolor.vim', { 'on': 'VCoolor' }
@@ -229,7 +227,7 @@ elseif g:vim_mode ==# 'full'
   Plug 'albertomontesg/lightline-asyncrun'
   Plug 'ryanoasis/vim-devicons'
   Plug 'sainnhe/artify.vim'
-  if g:vim_is_in_tmux == 1 && !has('win32')
+  if g:vim_is_in_tmux && !has('win32')
     Plug 'sainnhe/tmuxline.vim', { 'on': ['Tmuxline', 'TmuxlineSnapshot'] }
   endif
   " UI components

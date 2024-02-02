@@ -505,10 +505,6 @@ require'nvim-treesitter.configs'.setup {
     lint_events = {"BufWrite", "CursorHold"},
   }
 }
-
-require('spellsitter').setup {
-  enable = true,
-}
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
