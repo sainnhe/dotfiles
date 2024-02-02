@@ -247,14 +247,12 @@ let g:coc_global_extensions = [
 " {{{coc-settings
 augroup CocCustom
   autocmd!
-  autocmd CursorHold * silent if g:coc_hover_enable == 1 && !coc#float#has_float() | call CocActionAsync('doHover') | endif
   autocmd CursorHold * silent if &filetype !=# 'markdown' | call CocActionAsync('highlight') | endif
   autocmd User CocGitStatusChange CocCommand git.refresh
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   autocmd User CocGitStatusChange,CocStatusChange,CocDiagnosticChange call lightline#update()
   autocmd QuitPre * CocCommand terminal.Destroy
 augroup END
-let g:coc_hover_enable = 0
 call coc#config('project', {
       \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
       \ })
@@ -297,6 +295,8 @@ if has('win32')
 endif
 " }}}
 " {{{coc-mappings
+let g:coc_snippet_next = '<C-j>'
+let g:coc_snippet_prev = '<C-k>'
 inoremap <silent><expr> <C-j>
       \ coc#jumpable() ? "\<C-R>=coc#rpc#request('snippetNext', [])\<cr>" :
       \ coc#pum#visible() ? coc#_select_confirm() :
@@ -310,6 +310,8 @@ inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) :
 inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) :
       \ custom#utils#check_back_space() ? "\<S-TAB>" :
       \ coc#refresh()
+inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
+inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : coc#refresh()
 inoremap <silent><expr> <CR> coc#pum#visible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
 inoremap <silent><expr> <up> coc#pum#visible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
 inoremap <silent><expr> <down> coc#pum#visible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
@@ -337,6 +339,7 @@ nmap <silent> <leader>jd <Plug>(coc-definition)
 nmap <silent> <leader>jD <Plug>(coc-declaration)
 nmap <silent> <leader>jt <Plug>(coc-type-definition)
 nmap <silent> <leader>jr <Plug>(coc-references-used)
+nmap <silent> <leader>jR <Plug>(coc-references)
 nmap <silent> <leader>jm <Plug>(coc-implementation)
 nmap <silent> <leader>ar <Plug>(coc-rename)
 nmap <silent> <leader>aR <Plug>(coc-refactor)
@@ -344,7 +347,16 @@ nmap <silent> <leader>acb <Plug>(coc-codeaction)
 nmap <silent> <leader>acl <Plug>(coc-codeaction-line)
 nmap <silent> <leader>acc <Plug>(coc-codeaction-cursor)
 vmap <silent> <leader>ac <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>aCp :<C-u>CocCommand editor.action.pickColor<CR>
+nmap <silent> <leader>aCP :<C-u>CocCommand editor.action.colorPresentation<CR>
+nmap <silent> <leader>js :<C-u>CocCommand document.jumpToNextSymbol<CR>
+nmap <silent> <leader>jS :<C-u>CocCommand document.jumpToPrevSymbol<CR>
 nmap <silent> <leader>ao <Plug>(coc-openlink)
+nmap <silent> <leader>ahc :<C-u>call CocAction('showOutgoingCalls')<CR>
+nmap <silent> <leader>aHc :<C-u>call CocAction('showIncomingCalls')<CR>
+nmap <silent> <leader>aht :<C-u>call CocAction('showOutgoingCalls')<CR>
+nmap <silent> <leader>aHt :<C-u>call CocAction('showIncomingCalls')<CR>
+nmap <silent> zM :<C-u>call custom#utils#coc_fold()<CR>
 nmap <silent> <leader>al <Plug>(coc-codelens-action)
 nmap <silent> <leader>amf :<C-u>CocCommand prettier.formatFile<cr>
 nmap <silent> <leader>amp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
@@ -370,8 +382,10 @@ nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
 nmap <silent> <leader>gla :<C-u>CocList commits<cr>
 nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
 nmap <silent> <leader>gll <Plug>(coc-git-commit)
-nmap <silent> <leader>je <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>jE <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>jw <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>jW <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>je <Plug>(coc-diagnostic-next-error)
+nmap <silent> <leader>jE <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>af <Plug>(coc-fix-current)
 if !has('nvim')
   xmap if <Plug>(coc-funcobj-i)
@@ -379,16 +393,35 @@ if !has('nvim')
   xmap af <Plug>(coc-funcobj-a)
   omap af <Plug>(coc-funcobj-a)
 endif
+xmap io <Plug>(coc-classobj-i)
+omap io <Plug>(coc-classobj-i)
+xmap ao <Plug>(coc-classobj-a)
+omap ao <Plug>(coc-classobj-a)
+" Show hover when provider exists, fallback to vim's builtin behavior.
+nnoremap <silent> ? :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('definitionHover')
+  else
+    call feedkeys('?', 'in')
+  endif
+endfunction
+" Define which key mappings
 if !exists("g:which_key_map['j']")
   let g:which_key_map['j'] = { 'name': 'jump'}
 endif
 let g:which_key_map['j']['d'] = 'definition'
 let g:which_key_map['j']['D'] = 'declaration'
 let g:which_key_map['j']['t'] = 'type definition'
-let g:which_key_map['j']['r'] = 'reference'
+let g:which_key_map['j']['r'] = 'reference used'
+let g:which_key_map['j']['R'] = 'reference all'
 let g:which_key_map['j']['m'] = 'implementation'
+let g:which_key_map['j']['w'] = 'next warning'
+let g:which_key_map['j']['W'] = 'prev warning'
 let g:which_key_map['j']['e'] = 'next error'
 let g:which_key_map['j']['E'] = 'prev error'
+let g:which_key_map['j']['s'] = 'next symbol'
+let g:which_key_map['j']['S'] = 'prev symbol'
 let g:which_key_map['j']['g'] = 'next git chunk'
 let g:which_key_map['j']['G'] = 'prev git chunk'
 if !exists("g:which_key_map['a']")
@@ -405,6 +438,21 @@ let g:which_key_map['a']['c'] = {
       \ 'b': 'current buffer',
       \ 'l': 'current line',
       \ 'c': 'current cursor',
+      \ }
+let g:which_key_map['a']['C'] = {
+      \ 'name': 'color',
+      \ 'p': 'pick',
+      \ 'P': 'presentation',
+      \ }
+let g:which_key_map['a']['h'] = {
+      \ 'name': 'hierarchy sub',
+      \ 'c': 'call',
+      \ 't': 'type',
+      \ }
+let g:which_key_map['a']['H'] = {
+      \ 'name': 'hierarchy super',
+      \ 'c': 'call',
+      \ 't': 'type',
       \ }
 let g:which_key_map['a']['m'] = {
       \ 'name': 'markdown',
@@ -438,7 +486,6 @@ let g:which_key_map['f'] = {
       \   'y': 'yank',
       \   'h': 'help',
       \   }
-nnoremap <silent> ? :let g:coc_hover_enable = (g:coc_hover_enable == 1 ? 0 : 1)<CR>
 " }}}
 " {{{coc-explorer
 nnoremap <silent> <C-b> :<C-u>execute 'CocCommand explorer --focus ' . getcwd()<CR>
@@ -511,26 +558,6 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 endif
-" }}}
-" {{{Functional components, but with extra dependencies
-" {{{vCoolor.vim
-if !has('win32') && !has('osxdarwin')
-  let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --color '
-endif
-let g:vcoolor_disable_mappings = 1
-let g:vcoolor_lowercase = 1
-nnoremap <silent> <leader><space>cc :<c-u>VCoolor<cr>
-nnoremap <silent> <leader><space>cr :<c-u>VCoolor r<cr>
-nnoremap <silent> <leader><space>cH :<c-u>VCoolor h<cr>
-nnoremap <silent> <leader><space>cR :<c-u>VCoolor ra<cr>
-let g:which_key_map["\<space>"]['c'] = {
-      \   'name': 'color picker',
-      \   'c': 'insert hex',
-      \   'r': 'insert rgb',
-      \   'H': 'insert hsl',
-      \   'R': 'insert rgba'
-      \   }
-" }}}
 " }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

@@ -167,6 +167,7 @@
     "explorer.icon.enableNerdfont": true,
     "explorer.width": 30,
     "explorer.focus": false,
+    "explorer.file.showHiddenFiles": true,
     "explorer.buffer.tabOnly": true,
     "explorer.keyMappingMode": "none",
     "explorer.keyMappings.global": {

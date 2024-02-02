@@ -184,7 +184,6 @@ Plug 'AndrewRadev/inline_edit.vim', { 'on': 'InlineEdit' }
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'sainnhe/vim-paste-rs', { 'on': ['<Plug>(paste-rs)', 'PasteRsAddBuffer', 'PasteRsAddSelection', 'PasteRsDelete'] }
 Plug 'kristijanhusak/vim-carbon-now-sh', { 'on': 'CarbonNowSh' }
-Plug 'alpertuna/vim-header', { 'on': ['AddHeader', 'AddMinHeader'] }
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'lambdalisue/vim-pager', { 'on': 'PAGER' }
 Plug 'lambdalisue/vim-manpager', { 'on': 'ASMANPAGER' }
@@ -222,7 +221,6 @@ elseif g:vim_mode ==# 'full'
     Plug 'RRethy/nvim-treesitter-textsubjects'
   endif
   " Functional components, but with extra dependencies
-  Plug 'KabbAmine/vCoolor.vim', { 'on': 'VCoolor' }
   Plug 'itchyny/lightline.vim'
   Plug 'albertomontesg/lightline-asyncrun'
   Plug 'ryanoasis/vim-devicons'

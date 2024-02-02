@@ -91,11 +91,11 @@ Vim will read `vimrc` which sources `init.vim`, and `init.vim` sources some
 other config files.
 
 If you opened any of vim script files in `.config/nvim`, you should see many
-fold blocks. You can type |za| to unfold them. Note that there is a special
-file named `envs.vim` which defines some local config variables that should
-not be tracked by git. When vim is launched for the first time, a default
-`envs.vim` will be generated, and you should modify the content of `envs.vim`
-to control vim's behaviors.
+fold blocks. You can type |za| or |zR| to unfold them. Note that there is a
+special file named `envs.vim` which defines some local config variables that
+should not be tracked by git. When vim is launched for the first time, a
+default `envs.vim` will be generated, and you should modify the content of
+`envs.vim` to control vim's behaviors.
 
 ------------------------------------------------------------------------------
                                                    *sainnhe-intro-working-modes*
@@ -303,10 +303,10 @@ The plugins in this category extends built-in |text-objects|. The following
 text objects have been added:
 
 - `,`：Function parameter
-- `C`：Comment (including spaces at the start of a line)
 - `I`：Indents of current level
 - `b`: Block
 - `c`: Comment (excluding spaces at the start of a line)
+- `C`：Comment (including spaces at the start of a line)
 - `e`：Current buffer
 - `i`：Indents of current level and all next levels
 - `l`: Line
@@ -314,6 +314,7 @@ text objects have been added:
 - `z`：Fold
 - `.`: Current Tree-Sitter Node (nvim only)
 - `f`: Function (full mode only)
+- `o`: Object, for example class/struct/interface (full mode only)
 - `g`：Git chunks (full mode only)
 
 ------------------------------------------------------------------------------
@@ -491,6 +492,7 @@ The following language features are only available in full mode.
   - In insert mode:
     - Press `Tab` and `Shift+Tab` to select candidates.
     - Press |i_CTRL-Y| to confirm selection.
+    - Press |i_CTRL-E| to cancel selection.
     - Press `Ctrl+J` to confirm selection and jump to the next placeholder of a
       code snippet. Press `Ctrl+K` to jump to the previous placeholder of a code
       snippet.

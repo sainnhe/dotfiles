@@ -385,12 +385,6 @@ let g:carbon_now_sh_options = {
       \ 'fm': 'Source Code Pro'
       \ }
 " }}}
-" {{{vim-header
-let g:header_field_author = 'Sainnhe Park'
-let g:header_field_author_email = 'i@sainnhe.dev'
-nnoremap <silent> <leader>ah :<C-u>AddHeader<CR>
-let g:which_key_map['a']['h'] = 'add header'
-" }}}
 " {{{vim-bookmarks
 let g:bookmark_no_default_key_mappings = 1
 let g:bookmark_auto_save_file = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'bookmarks'

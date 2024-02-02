@@ -59,22 +59,19 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'java',
           \ 'node',
           \ 'npm',
-          \ 'pnpm',
+          \ 'python',
           \ 'python3',
           \ 'rg',
           \ 'rust-analyzer',
+          \ 'shellcheck',
+          \ 'shfmt',
           \ 'tex',
           \ 'texlab',
           \ 'yapf',
           \ ],
         \ 'darwin': [
-          \ 'shellcheck',
-          \ 'shfmt'
           \ ],
         \ 'unix-like': [
-          \ 'shellcheck',
-          \ 'shfmt',
-          \ 'zenity'
           \ ]
         \ }
   for dependency in l:dependencies['universal']
