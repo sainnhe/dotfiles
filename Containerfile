@@ -75,8 +75,7 @@ RUN apk upgrade --no-cache && apk add --no-cache \
         python3-dev \
         py3-pip \
         py3-requests \
-        py3-flake8 \
-        py3-yapf \
+        ruff \
         openjdk21 \
         && npm install -g pnpm \
         && rm -rf ~/.npm

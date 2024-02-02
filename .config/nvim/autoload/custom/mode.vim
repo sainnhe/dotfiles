@@ -52,7 +52,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
         \ 'universal': [
           \ 'cargo',
           \ 'clangd',
-          \ 'flake8',
           \ 'gcc',
           \ 'go',
           \ 'gopls',
@@ -62,12 +61,12 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'python',
           \ 'python3',
           \ 'rg',
+          \ 'ruff',
           \ 'rust-analyzer',
           \ 'shellcheck',
           \ 'shfmt',
           \ 'tex',
           \ 'texlab',
-          \ 'yapf',
           \ ],
         \ 'darwin': [
           \ ],
