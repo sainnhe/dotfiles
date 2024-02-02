@@ -252,6 +252,7 @@ augroup CocCustom
   autocmd User CocGitStatusChange CocCommand git.refresh
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   autocmd User CocGitStatusChange,CocStatusChange,CocDiagnosticChange call lightline#update()
+  autocmd QuitPre * CocCommand terminal.Destroy
 augroup END
 let g:coc_hover_enable = 0
 call coc#config('project', {
