@@ -1,5 +1,6 @@
 FROM public.ecr.aws/docker/library/alpine:edge
-RUN apk upgrade --no-cache && apk add --no-cache \
+RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
+        && apk upgrade --no-cache && apk add --no-cache \
         shadow \
         bash \
         util-linux \
@@ -75,10 +76,18 @@ RUN apk upgrade --no-cache && apk add --no-cache \
         python3-dev \
         py3-pip \
         py3-requests \
-        ruff \
+        ruff@testing \
         openjdk21 \
         && npm install -g pnpm \
-        && rm -rf ~/.npm
+        && rm -rf ~/.npm \
+        && [ "$(uname -m)" = "x86_64" ] \
+        && curl -fSL \
+                -o /usr/bin/marksman \
+                https://github.com/artempyanykh/marksman/releases/latest/download/marksman-linux-x64 \
+        || curl -fSL \
+                -o /usr/bin/marksman \
+                https://github.com/artempyanykh/marksman/releases/latest/download/marksman-linux-arm64 \
+        && chmod a+x /usr/bin/marksman
 
 RUN git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles \
         && cp ~/repo/dotfiles/.gitconfig ~ \

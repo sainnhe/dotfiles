@@ -291,5 +291,12 @@
         "MD033": false,
         "MD036": false,
         "MD041": false
+    },
+    "languageserver": {
+        "markdown": {
+            "filetypes": ["markdown"],
+            "command": "marksman",
+            "args": ["server"]
+        }
     }
 }

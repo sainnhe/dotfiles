@@ -56,6 +56,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'go',
           \ 'gopls',
           \ 'java',
+          \ 'marksman',
           \ 'node',
           \ 'npm',
           \ 'python',
