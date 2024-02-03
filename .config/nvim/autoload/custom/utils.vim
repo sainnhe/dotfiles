@@ -161,7 +161,7 @@ function custom#utils#coc_fold() abort "{{{
   if CocAction('hasProvider', 'foldingRange')
     call CocAction('fold')
   else
-    normal zM
+    normal! zM
   endif
 endfunction "}}}
 
