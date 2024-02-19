@@ -66,8 +66,6 @@
 ;     proxy = socks5://127.0.0.1:1080
 ; [https]
 ;     proxy = socks5://127.0.0.1:1080
-; [url "https://hub.fgit.cf/"]
-;     insteadOf = https://github.com/
 ; [url "https://mirror.ghproxy.com/https://github.com/"]
 ;     insteadOf = https://github.com/
 ; [url "https://proxy.sainnhe.dev/https/github.com/"]
