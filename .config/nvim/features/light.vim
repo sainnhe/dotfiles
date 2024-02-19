@@ -236,9 +236,6 @@ let g:rooter_patterns = [
 let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
 " }}}
-" {{{fencview
-let g:fencview_autodetect = 1
-" }}}
 " }}}
 " {{{Functional components
 " {{{pomodoro.vim

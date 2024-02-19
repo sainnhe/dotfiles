@@ -167,7 +167,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'airblade/vim-rooter'
 Plug 'jamessan/vim-gnupg'
 Plug '520Matches/fcitx5.vim'
-Plug 'mbbill/fencview'
+Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencManualEncoding', 'FencView'] }
 " Functional components
 Plug 'tpope/vim-repeat'
 Plug 'rmolin88/pomodoro.vim'
