@@ -280,6 +280,7 @@
     "java.referencesCodeLens.enabled": true,
     "java.implementationsCodeLens.enabled": true,
     "java.typeHierarchy.lazyLoad": true,
+    "java.compile.nullAnalysis.mode": "automatic",
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.enableScriptExecution": true,
     "markdownlint.config": {
@@ -294,9 +295,13 @@
     },
     "languageserver": {
         "markdown": {
-            "filetypes": ["markdown"],
+            "filetypes": [
+                "markdown"
+            ],
             "command": "marksman",
-            "args": ["server"]
+            "args": [
+                "server"
+            ]
         }
     }
 }
