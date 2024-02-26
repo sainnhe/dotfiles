@@ -9,14 +9,13 @@
 let g:custom#dashboard#first_launch = 1
 
 function custom#dashboard#close_last_win() abort
-  if winnr('$') == 1 &&
-        \ (&filetype ==# 'coc-explorer'
+  if tabpagenr() == 1
+        \ && winnr('$') == 1
+        \ && (&filetype ==# 'coc-explorer'
         \ || &filetype ==# 'coctree'
         \ || &filetype ==# 'startify')
-    if tabpagenr() == 1
-      call custom#utils#set_cursor_shape()
-    endif
-    quit
+    call custom#utils#set_cursor_shape()
+    quitall
   endif
 endfunction
 
