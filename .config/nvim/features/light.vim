@@ -391,8 +391,8 @@ nnoremap <silent> <leader>ba :<C-u>BookmarkAnnotate<CR>
 nnoremap <silent> <leader>bc :<C-u>BookmarkClear<CR>
 nnoremap <silent> <leader>bC :<C-u>BookmarkClearAll<CR>
 nnoremap <silent> <leader>bs :<C-u>BookmarkShowAll<CR>
-nnoremap <silent> <leader>bj :<C-u>BookmarkNext<CR>
-nnoremap <silent> <leader>bk :<C-u>BookmarkPrev<CR>
+nnoremap <silent> <leader>jb :<C-u>BookmarkNext<CR>
+nnoremap <silent> <leader>jB :<C-u>BookmarkPrev<CR>
 let g:which_key_map['b'] = {
       \ 'name': 'bookmarks',
       \ 'b': 'toggle',
@@ -400,9 +400,9 @@ let g:which_key_map['b'] = {
       \ 'c': 'clear current buffer',
       \ 'C': 'clear all',
       \ 's': 'show all',
-      \ 'j': 'next',
-      \ 'k': 'prev'
       \ }
+let g:which_key_map['j']['b'] = 'next bookmark'
+let g:which_key_map['j']['B'] = 'prev bookmark'
 " }}}
 " {{{vim-manpager
 let g:manpager_disable_default_mappings = 1
