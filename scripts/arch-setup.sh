@@ -29,7 +29,6 @@ setup_copy() {
 #}}}
 setup_dotfiles() { #{{{
     setup_copy .gitconfig
-    setup_copy .gitignore_global
     setup_symlink .bashrc
     setup_symlink .w3m/config
     setup_symlink .weechat/weechat.conf

@@ -4,6 +4,7 @@
     signingkey = 176E0BEC3A702FEBCCDA0A185A24ED790A08C8A3
 [core]
     editor = vim
+    excludesFile = ~/.gitignore
 [commit]
     gpgsign = true
 [diff]
