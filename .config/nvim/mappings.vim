@@ -17,6 +17,12 @@ if !has('nvim')
 else
   nnoremap <silent> <C-l> :<C-u>wincmd p<CR>
 endif
+" Fix Alt+/
+" This mapping will cause vim to exit by default.
+augroup FixAltSlash
+  autocmd!
+  autocmd VimEnter * nnoremap <Char-247> <ESC>
+augroup END
 " ; to enter command mode
 nnoremap ; :
 " q to quit
