@@ -562,7 +562,8 @@ let g:ale_linters = {
       \ 'sh': ['shellcheck'],
       \ }
 let g:ale_java_pmd_options =
-      \ ' -R category/java/bestpractices.xml'
+      \ 'pmd'
+      \ . ' -R category/java/bestpractices.xml'
       \ . ' -R category/java/errorprone.xml'
       \ . ' -R category/java/multithreading.xml'
       \ . ' -R category/java/performance.xml'
