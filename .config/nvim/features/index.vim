@@ -170,7 +170,6 @@ Plug '520Matches/fcitx5.vim'
 Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencManualEncoding', 'FencView'] }
 " Functional components
 Plug 'tpope/vim-repeat'
-Plug 'rmolin88/pomodoro.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/asynctasks.vim', { 'on': ['AsyncTask', 'AsyncTaskEdit'] }
 Plug 'mg979/vim-visual-multi', { 'on': ['<Plug>(VM-Add-Cursor-At-Pos)', '<Plug>(VM-Visual-Cursors)'] }
@@ -212,6 +211,7 @@ elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'github/copilot.vim'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  Plug 'dense-analysis/ale'
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
   " Tree-sitter
@@ -223,6 +223,7 @@ elseif g:vim_mode ==# 'full'
   " Functional components, but with extra dependencies
   Plug 'itchyny/lightline.vim'
   Plug 'albertomontesg/lightline-asyncrun'
+  Plug 'sainnhe/lightline-ale'
   Plug 'ryanoasis/vim-devicons'
   Plug 'sainnhe/artify.vim'
   if g:vim_is_in_tmux && !has('win32')

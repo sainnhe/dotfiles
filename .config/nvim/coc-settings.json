@@ -41,14 +41,7 @@
     "diagnostic.warningSign": "\uf525",
     "diagnostic.infoSign": "\uf7fb",
     "diagnostic.hintSign": "\uf7d6",
-    "diagnostic-languageserver.filetypes": {
-        "sh": "shellcheck",
-        "zsh": "shellcheck"
-    },
-    "diagnostic-languageserver.formatFiletypes": {
-        "sh": "shfmt",
-        "zsh": "shfmt"
-    },
+    "diagnostic.displayByAle": true,
     "tree.closedIcon": "",
     "tree.openedIcon": "",
     "tree.key.toggle": "o",

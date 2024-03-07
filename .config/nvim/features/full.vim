@@ -20,7 +20,7 @@ if g:vim_lightline_artify == 0
         \ 'left': [ [ 'mode', 'paste' ],
         \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
         \ 'right': [ [ 'lineinfo' ],
-        \            [ 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
+        \            [ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok', 'linter_unavailable', 'linter_checking'],
         \           [ 'asyncrun_status', 'coc_status' ] ]
         \ }
   let g:lightline.inactive = {
@@ -40,7 +40,7 @@ else
         \ 'left': [ [ 'artify_mode', 'paste' ],
         \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
         \ 'right': [ [ 'artify_lineinfo' ],
-        \            [ 'linter_errors', 'linter_warnings', 'linter_ok', 'pomodoro' ],
+        \            [ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok', 'linter_unavailable', 'linter_checking'],
         \           [ 'asyncrun_status', 'coc_status' ] ]
         \ }
   let g:lightline.inactive = {
@@ -71,7 +71,6 @@ let g:lightline.component = {
       \ 'artify_mode': '%{custom#lightline#artify_mode()}',
       \ 'artify_lineinfo': "%2{custom#lightline#artify_line_percent()}\uf295 %3{custom#lightline#artify_line_num()}:%-2{custom#lightline#artify_column_num()}",
       \ 'vim_logo': "\ue7c5",
-      \ 'pomodoro': '%{custom#lightline#pomodoro()}',
       \ 'mode': '%{lightline#mode()}',
       \ 'filename': '%t',
       \ 'fileformat': '%{&fenc!=#""?&fenc:&enc}[%{&ff}]',
@@ -84,17 +83,36 @@ let g:lightline.component_function = {
       \ 'devicons_filetype': 'custom#lightline#devicons',
       \ 'coc_status': 'custom#lightline#coc_status'
       \ }
+" let g:lightline.component_expand = {
+"       \ 'linter_warnings': 'custom#lightline#coc_diagnostic_warning',
+"       \ 'linter_errors': 'custom#lightline#coc_diagnostic_error',
+"       \ 'linter_ok': 'custom#lightline#coc_diagnostic_ok',
+"       \ 'asyncrun_status': 'lightline#asyncrun#status'
+"       \ }
+" let g:lightline.component_type = {
+"       \ 'linter_warnings': 'warning',
+"       \ 'linter_errors': 'error'
+"       \ }
+" }}}
 let g:lightline.component_expand = {
-      \ 'linter_warnings': 'custom#lightline#coc_diagnostic_warning',
-      \ 'linter_errors': 'custom#lightline#coc_diagnostic_error',
-      \ 'linter_ok': 'custom#lightline#coc_diagnostic_ok',
+      \ 'linter_checking': 'lightline#ale#checking',
+      \ 'linter_infos': 'lightline#ale#infos',
+      \ 'linter_warnings': 'lightline#ale#warnings',
+      \ 'linter_errors': 'lightline#ale#errors',
+      \ 'linter_ok': 'lightline#ale#ok',
+      \ 'linter_unavailable': 'lightline#ale#unavailable',
       \ 'asyncrun_status': 'lightline#asyncrun#status'
       \ }
 let g:lightline.component_type = {
       \ 'linter_warnings': 'warning',
-      \ 'linter_errors': 'error'
+      \ 'linter_errors': 'error',
       \ }
-" }}}
+let g:lightline#ale#indicator_checking = 'Linting...'
+let g:lightline#ale#indicator_infos = "\uea74 "
+let g:lightline#ale#indicator_warnings = "\uea6c "
+let g:lightline#ale#indicator_errors = "\uea87 "
+let g:lightline#ale#indicator_ok = "\uf00c"
+let g:lightline#ale#indicator_unavailable = "\uf00c"
 " {{{tmuxline.vim
 if g:vim_is_in_tmux == 1 && !has('win32')
   let g:tmuxline_preset = {
@@ -202,7 +220,6 @@ let g:coc_global_extensions = [
       \ 'coc-clangd',
       \ 'coc-cmake',
       \ 'coc-css',
-      \ 'coc-diagnostic',
       \ 'coc-dictionary',
       \ 'coc-docker',
       \ 'coc-emmet',
@@ -382,10 +399,6 @@ nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
 nmap <silent> <leader>gla :<C-u>CocList commits<cr>
 nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
 nmap <silent> <leader>gll <Plug>(coc-git-commit)
-nmap <silent> <leader>jw <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>jW <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>je <Plug>(coc-diagnostic-next-error)
-nmap <silent> <leader>jE <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>af <Plug>(coc-fix-current)
 if !has('nvim')
   xmap if <Plug>(coc-funcobj-i)
@@ -416,10 +429,6 @@ let g:which_key_map['j']['t'] = 'type definition'
 let g:which_key_map['j']['r'] = 'reference used'
 let g:which_key_map['j']['R'] = 'reference all'
 let g:which_key_map['j']['m'] = 'implementation'
-let g:which_key_map['j']['w'] = 'next warning'
-let g:which_key_map['j']['W'] = 'prev warning'
-let g:which_key_map['j']['e'] = 'next error'
-let g:which_key_map['j']['E'] = 'prev error'
 let g:which_key_map['j']['s'] = 'next symbol'
 let g:which_key_map['j']['S'] = 'prev symbol'
 let g:which_key_map['j']['g'] = 'next git chunk'
@@ -500,6 +509,66 @@ augroup END
 nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
 let g:which_key_map['f']['p'] = 'projects'
 " }}}
+" }}}
+" {{{ale
+let g:ale_close_preview_on_insert = 1
+let g:ale_detail_to_floating_preview = 1
+let g:ale_disable_lsp = 1
+let g:ale_echo_cursor = 0
+let g:ale_virtualtext_cursor = 0
+let g:ale_echo_msg_error_str = 'ERR'
+let g:ale_echo_msg_info_str = 'INFO'
+let g:ale_echo_msg_warning_str = 'WARN'
+let g:ale_echo_msg_log_str = 'LOG'
+let g:ale_hover_cursor = 0
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
+let g:ale_sign_error = "\uf65b"
+let g:ale_sign_info = "\uf7fb"
+let g:ale_sign_warning = "\uf525"
+nmap <silent> <leader>jl <Plug>(ale_next_wrap)<Plug>(ale_detail)
+nmap <silent> <leader>jL <Plug>(ale_previous_wrap)<Plug>(ale_detail)
+nmap <silent> <leader>je <Plug>(ale_next_wrap_error)<Plug>(ale_detail)
+nmap <silent> <leader>jE <Plug>(ale_previous_wrap_error)<Plug>(ale_detail)
+let g:which_key_map['j']['l'] = 'next linting'
+let g:which_key_map['j']['L'] = 'prev linting'
+let g:which_key_map['j']['e'] = 'next error'
+let g:which_key_map['j']['E'] = 'prev error'
+" For example, 'javascriptreact': 'javascript' will make javascriptreact to run
+" javascript linters
+let g:ale_linter_aliases = {
+      \ 'Dockerfile': 'dockerfile',
+      \ 'csh': 'sh',
+      \ 'html': ['html', 'javascript', 'css'],
+      \ 'javascriptreact': ['javascript', 'jsx'],
+      \ 'plaintex': 'tex',
+      \ 'ps1': 'powershell',
+      \ 'rmarkdown': 'r',
+      \ 'rmd': 'r',
+      \ 'systemverilog': 'verilog',
+      \ 'typescriptreact': ['typescript', 'tsx'],
+      \ 'vader': ['vim', 'vader'],
+      \ 'verilog_systemverilog': ['verilog_systemverilog', 'verilog'],
+      \ 'vimwiki': 'markdown',
+      \ 'vue': ['vue', 'javascript'],
+      \ 'xsd': ['xsd', 'xml'],
+      \ 'xslt': ['xslt', 'xml'],
+      \ 'zsh': 'sh',
+      \ }
+" Disable default linters and use configured only.
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+      \ 'java': ['pmd'],
+      \ 'sh': ['shellcheck'],
+      \ }
+let g:ale_java_pmd_options =
+      \ ' -R category/java/bestpractices.xml'
+      \ . ' -R category/java/errorprone.xml'
+      \ . ' -R category/java/multithreading.xml'
+      \ . ' -R category/java/performance.xml'
+      \ . ' -R category/java/security.xml'
+      "\ . ' -R category/java/codestyle.xml'
+      "\ . ' -R category/java/design.xml'
+      "\ . ' -R category/java/documentation.xml'
 " }}}
 " {{{vim-doge
 let g:doge_enable_mappings = 0

@@ -238,13 +238,6 @@ let g:rooter_manual_only = 1
 " }}}
 " }}}
 " {{{Functional components
-" {{{pomodoro.vim
-let g:pomodoro_time_work = 25
-let g:pomodoro_time_slack = 5
-let g:pomodoro_status = 0
-nnoremap <silent> <leader><space>p :<c-u>call custom#utils#toggle_pomodoro()<cr>
-let g:which_key_map["\<space>"]['p'] = 'pomodoro toggle'
-" }}}
 " {{{asynctasks
 let g:asyncrun_open = 6
 let g:asynctasks_term_pos = 'bottom' " tab

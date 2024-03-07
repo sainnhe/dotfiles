@@ -43,13 +43,6 @@ function custom#lightline#git_global() abort "{{{
   endif
   return status
 endfunction "}}}
-function custom#lightline#pomodoro() abort "{{{
-  if pomo#remaining_time() ==# '0'
-    return "\ue001"
-  else
-    return "\ue003 ".pomo#remaining_time()
-  endif
-endfunction "}}}
 function custom#lightline#devicons() "{{{
   " return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'no ft') : ''
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
