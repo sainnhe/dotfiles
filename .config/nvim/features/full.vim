@@ -225,6 +225,7 @@ let g:coc_global_extensions = [
       \ 'coc-emmet',
       \ 'coc-emoji',
       \ 'coc-explorer',
+      \ 'coc-eslint',
       \ 'coc-git',
       \ 'coc-gitignore',
       \ 'coc-go',
