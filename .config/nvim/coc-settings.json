@@ -280,13 +280,10 @@
   "java.codeGeneration.generateComments": true,
   "java.saveActions.organizeImports": true,
   "java.cleanup.actionsOnSave": [
-    "qualifyMembers",
-    "qualifyStaticMembers",
     "addOverride",
     "addDeprecated",
     "stringConcatToTextBlock",
     "invertEquals",
-    "addFinalModifier",
     "instanceofPatternMatch",
     "lambdaExpression",
     "switchExpression",
