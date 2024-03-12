@@ -273,7 +273,7 @@
   ],
   "sql.database": "mysql",
   "xml.codeLens.enabled": true,
-  "java.format.settings.url": "https://proxy.sainnhe.dev/https/github.com/google/styleguide/raw/gh-pages/eclipse-java-google-style.xml",
+  "java.format.settings.url": "https://cdn.jsdelivr.net/gh/google/styleguide@gh-pages/eclipse-java-google-style.xml",
   "java.format.settings.profile": "GoogleStyle",
   "java.maxConcurrentBuilds": 4,
   "java.signatureHelp.description.enabled": true,
