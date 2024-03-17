@@ -51,7 +51,7 @@
   "tree.key.actions": "<tab>",
   "tree.key.toggleSelection": "s",
   "outline.keepWindow": true,
-  "outline.autoPreview": true,
+  "outline.togglePreviewKey": "<C-p>",
   "signature.triggerSignatureWait": 300,
   "codeLens.enable": true,
   "codeLens.separator": "▸",
