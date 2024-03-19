@@ -79,8 +79,7 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         openjdk21 \
         lsd@testing \
         ruff@testing \
-        && npm install -g pnpm \
-        && rm -rf ~/.npm \
+        pnpm@testing \
         && [ "$(uname -m)" = "x86_64" ] \
         && curl -fSL \
                 -o /usr/bin/marksman \
