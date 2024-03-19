@@ -91,7 +91,7 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
 
 RUN git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles \
         && cp ~/repo/dotfiles/.gitconfig ~ \
-        && cp ~/repo/dotfiles/.gitignore_global ~ \
+        && cp ~/repo/dotfiles/.gitignore_global ~/.gitignore \
         && cp -r ~/repo/dotfiles/.w3m ~ \
         && cp -r ~/repo/dotfiles/.aria2 ~
 
