@@ -27,7 +27,6 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         unzip \
         fd \
         dust \
-        exa \
         ripgrep \
         neofetch \
         socat \
@@ -76,8 +75,10 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         python3-dev \
         py3-pip \
         py3-requests \
-        ruff@testing \
+        openjdk8 \
         openjdk21 \
+        lsd@testing \
+        ruff@testing \
         && npm install -g pnpm \
         && rm -rf ~/.npm \
         && [ "$(uname -m)" = "x86_64" ] \
