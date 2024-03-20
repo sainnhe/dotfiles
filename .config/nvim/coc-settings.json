@@ -279,16 +279,6 @@
   "java.signatureHelp.description.enabled": true,
   "java.codeGeneration.generateComments": true,
   "java.saveActions.organizeImports": true,
-  "java.cleanup.actionsOnSave": [
-    "addOverride",
-    "addDeprecated",
-    "stringConcatToTextBlock",
-    "invertEquals",
-    "instanceofPatternMatch",
-    "lambdaExpression",
-    "switchExpression",
-    "tryWithResource"
-  ],
   "java.referencesCodeLens.enabled": true,
   "java.implementationsCodeLens.enabled": true,
   "java.typeHierarchy.lazyLoad": true,

@@ -292,7 +292,7 @@ call coc#config('java', {
 call coc#config('java', {
       \ 'configuration': {
         \ 'runtimes': [{
-          \ 'name': 'JavaSE-17',
+          \ 'name': 'JavaSE-1.8',
           \ 'default': v:true,
           \ 'path': s:java_home
         \ }]
