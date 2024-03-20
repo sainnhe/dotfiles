@@ -76,6 +76,7 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         py3-pip \
         py3-requests \
         openjdk8 \
+        maven \
         lsd@testing \
         ruff@testing \
         pnpm@testing \
