@@ -66,7 +66,7 @@ else
   nnoremap <silent> <A-t> :<C-u>tabnew<CR>
 endif
 " Alt+W to close current tab
-nnoremap <silent> <A-w> :<C-u>call custom#utils#close_on_last_tab()<CR>
+nnoremap <silent> <A-w> :<C-u>tabc<CR>
 " Alt+Left/Right to switch tabs
 nnoremap <A-left> <Esc>gT
 nnoremap <A-right> <Esc>gt

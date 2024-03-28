@@ -6,14 +6,6 @@
 " License: Anti-996 && MIT
 " =============================================================================
 
-function custom#utils#close_on_last_tab() abort "{{{
-  if tabpagenr('$') == 1
-    execute 'windo bd'
-    execute 'q'
-  elseif tabpagenr('$') > 1
-    execute 'windo bd'
-  endif
-endfunction "}}}
 function custom#utils#indent_len(str) abort "{{{
   return type(a:str) == 1 ? len(matchstr(a:str, '^\s*')) : 0
 endfunction "}}}
