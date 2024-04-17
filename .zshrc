@@ -421,6 +421,9 @@ export PF_COL3=3
 # {{{asdf
 export PATH="$HOME/.asdf/shims:$PATH"
 # }}}
+# {{{pb
+export PB_DOMAIN="https://share.sainnhe.dev"
+# }}}
 # }}}
 # {{{Startup
 # zprof  # 取消注释首行和本行，然后执行 time zsh -i -c exit
