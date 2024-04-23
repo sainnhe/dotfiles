@@ -24,41 +24,64 @@
 [init]
     defaultBranch = master
 [alias]
-    cl = clone --depth 1
-    cn = clean -dfx --
+    ########################################
+    ###           Basic Alias            ###
+    ########################################
+    # Common
     ps = push
     ft = fetch
     pl = pull
     mg = merge
-    mt = mergetool
     st = status
     sm = submodule
     br = branch
+    co = checkout
+    cm = commit
+    acm = commit -a
+    ad = add
+    # Staged tracked changes
+    adu = add --update
+    # Discard staged changes
+    adr = reset HEAD --
+    # Clone with depth 1
+    cl = clone --depth 1
+    # Clean path
+    cn = clean -dfx --
+    # Use vim merge tool to solve conflicts
+    mt = mergetool
+    # Diff
     dt = difftool
     dt-staged = difftool --staged
     df = diff --color
     df-staged = diff --staged --color
-    df-fzf = !zsh $HOME/repo/dotfiles/scripts/forgit.zsh diff
-    co = checkout
-    co-fzf = !zsh $HOME/repo/dotfiles/scripts/forgit.zsh restore
-    cm = commit
-    acm = commit -a
-    cm-a = commit --amend
-    ad = add
-    adr = reset HEAD --
-    adu = add --update
-    ad-fzf = !zsh $HOME/repo/dotfiles/scripts/forgit.zsh add
+    ########################################
+    ###             Advanced             ###
+    ########################################
     logs = log --oneline --decorate --graph --pretty=format:\"(%h)  %an, %ar: %s\"
-    logs-all = log --oneline --decorate --graph --all --pretty=format:\"(%h)  %an, %ar: %s\"
-    log-fzf = !zsh $HOME/repo/dotfiles/scripts/forgit.zsh log
-    ig-fzf = !zsh $HOME/repo/dotfiles/scripts/forgit.zsh ignore
-    ed = !nvim `git ls-files -m --other --exclude-standard` -p
+    logs-all-branches = log --oneline --decorate --graph --all --pretty=format:\"(%h)  %an, %ar: %s\"
+    ed = !vim `git ls-files -m --other --exclude-standard` -p
     rg = !rg $(git rev-parse --show-toplevel) --column --smart-case -e
-    rg-ls = !rg $(git rev-parse --show-toplevel) --files
-    rg-all = !rg $(git rev-parse --show-toplevel) --column --smart-case --no-ignore --hidden -g '!.git' -e
-    rg-all-ls = !rg $(git rev-parse --show-toplevel) --no-ignore --hidden -g '!.git' --files
-    ls-committed = ls-tree --full-tree -r --name-only HEAD
+    rga = !rg $(git rev-parse --show-toplevel) --column --smart-case --no-ignore --hidden -g '!.git' -e
+    # Count committed lines of an author
     author-stats = "!f() { git log --author=\"$1\" --pretty=tformat: --numstat | awk \"{ add += \\$1; subs += \\$2; loc += \\$1 - \\$2 } END { printf \\\"增加行数: %s, 删除行数: %s, 总计变化行数: %s\\n\\\", add, subs, loc }\"; }; f"
+    ########################################
+    ###               Fzf                ###
+    ########################################
+    # The following alias integrates fzf into git workflow. All of them support multiple selections and preview.
+    # Filter changed files between two revisions and use difftool/diff to view them.
+    # If you don't pass two revisions, the aliases will compare unstaged/staged changes.
+    dtf = "!f() { git diff --name-only $1 $2 | fzf --preview \"git diff --color $1 $2 -- {}\" | xargs -o -I{} git difftool $1 $2 -- {}; }; f"
+    dtf-staged = "!f() { git diff --staged --name-only $1 $2 | fzf --preview \"git diff --staged --color $1 $2 -- {}\" | xargs -o -I{} git difftool --staged $1 $2 -- {}; }; f"
+    dff = "!f() { git diff --name-only $1 $2 | fzf --preview \"git diff --color $1 $2 -- {}\" | xargs -o -I{} git diff $1 $2 -- {}; }; f"
+    dff-staged = "!f() { git diff --staged --name-only $1 $2 | fzf --preview \"git diff --staged --color $1 $2 -- {}\" | xargs -o -I{} git diff --staged $1 $2 -- {}; }; f"
+    # Filter unstaged files and checkout
+    cof = "!git diff --name-only | fzf --preview \"git diff --color -- {}\" | xargs -I{} git checkout -- {}"
+    # Filter unstaged files and stage
+    adf = "!git diff --name-only | fzf --preview \"git diff --color -- {}\" | xargs -I{} git add -- {}"
+    # Filter untracked files and clean
+    cnf = "!git ls-files --others --exclude-standard | fzf --preview \"cat {}\" | xargs -I{} git clean -dfx -- {}"
+    # Filter logs
+    logf = "!git log --oneline | fzf --preview 'git show --color $(echo {} | cut -d \" \" -f 1)' | cut -d \" \" -f 1 | xargs -I{} git show {}"
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
