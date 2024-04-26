@@ -71,6 +71,7 @@
     "<C-f>": "do:switch",
     "<A-x>": "do:togglemode",
     "<A-z>": "do:togglemode",
+    "<C-z>": "do:togglemode",
     "<Down>": "prompt:next",
     "<Up>": "prompt:previous",
     "<C-v>": "prompt:paste"

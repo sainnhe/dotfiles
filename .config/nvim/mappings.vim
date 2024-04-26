@@ -10,9 +10,10 @@
 " Use space as leader key
 let g:mapleader = "\<Space>"
 nnoremap <SPACE> <Nop>
-" Alt+X/Alt+Z to enter normal mode
+" Alt+X/Alt+Z/Ctrl+Z to enter normal mode
 nnoremap <A-x> <ESC>
 nnoremap <A-z> <ESC>
+nnoremap <C-z> <ESC>
 if !has('nvim')
   nnoremap ^@ <ESC>
 else
@@ -118,9 +119,10 @@ nnoremap <silent> <leader>ji :<C-u>call custom#utils#go_indent(v:count1, 1)<cr>
 nnoremap <silent> <leader>jI :<C-u>call custom#utils#go_indent(v:count1, -1)<cr>
 " }}}
 " {{{Insert Mode
-" Alt+X/Alt+Z to enter normal mode
+" Alt+X/Alt+Z/Ctrl+Z to enter normal mode
 inoremap <A-x> <ESC><right>
 inoremap <A-z> <ESC><right>
+inoremap <C-z> <ESC><right>
 if !has('nvim')
   inoremap ^@ <ESC>
 endif
@@ -152,11 +154,13 @@ inoremap <S-left> <ESC>I
 inoremap <S-right> <ESC>A
 " }}}
 " {{{Visual Mode
-" Alt+X/Alt+z to enter normal mode
+" Alt+X/Alt+z/Ctrl+Z to enter normal mode
 vnoremap <A-x> <ESC>
 snoremap <A-x> <ESC>
 vnoremap <A-z> <ESC>
 snoremap <A-z> <ESC>
+vnoremap <C-z> <ESC>
+snoremap <C-z> <ESC>
 if !has('nvim')
   vnoremap ^@ <ESC>
 endif
@@ -192,9 +196,10 @@ elseif has('xterm_clipboard')
 endif
 " }}}
 " {{{Command Mode
-" Alt+X/Alt+Z to enter normal mode
+" Alt+X/Alt+Z/Ctrl+Z to enter normal mode
 cmap <A-x> <ESC>
 cmap <A-z> <ESC>
+cmap <C-z> <ESC>
 if !has('nvim')
   cmap ^@ <ESC>
 endif
@@ -202,9 +207,10 @@ endif
 cmap <C-a> <C-b>
 " }}}
 " {{{Terminal Mode
-" Alt+X/Alt+Z to enter normal mode
+" Alt+X/Alt+Z/Ctrl+Z to enter normal mode
 tnoremap <A-x> <C-\><C-n>
 tnoremap <A-z> <C-\><C-n>
+tnoremap <C-z> <C-\><C-n>
 " Alt+HJKL to jump between windows
 tnoremap <silent> <A-h> <C-\><C-n>:<C-u>wincmd h<CR>
 tnoremap <silent> <A-j> <C-\><C-n>:<C-u>wincmd j<CR>
