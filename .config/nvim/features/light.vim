@@ -174,23 +174,23 @@ let g:cool_total_matches = 1
 " }}}
 " {{{Pairs
 " {{{auto-pairs
-let g:AutoPairsShortcutToggle = '<A-z>p'
-let g:AutoPairsShortcutFastWrap = '<A-z>`sadsfvf'
-let g:AutoPairsShortcutJump = '<A-z>n'
+let g:AutoPairsShortcutToggle = '<A-c>p'
+let g:AutoPairsShortcutFastWrap = '<A-c>`sadsfvf'
+let g:AutoPairsShortcutJump = '<A-c>n'
 let g:AutoPairsWildClosedPair = ''
 let g:AutoPairsMultilineClose = 0
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsMapCh = 0
-inoremap <A-z>' '
-inoremap <A-z>" "
-inoremap <A-z>` `
-inoremap <A-z>( (
-inoremap <A-z>[ [
-inoremap <A-z>{ {
-inoremap <A-z>) )
-inoremap <A-z>] ]
-inoremap <A-z>} }
-inoremap <A-z><Backspace> <Space><Esc><left>"_xa<Backspace>
+inoremap <A-c>' '
+inoremap <A-c>" "
+inoremap <A-c>` `
+inoremap <A-c>( (
+inoremap <A-c>[ [
+inoremap <A-c>{ {
+inoremap <A-c>) )
+inoremap <A-c>] ]
+inoremap <A-c>} }
+inoremap <A-c><Backspace> <Space><Esc><left>"_xa<Backspace>
 " }}}
 " {{{vim-matchup
 let g:matchup_matchparen_deferred = 1
@@ -200,7 +200,7 @@ let g:matchup_mouse_enabled = 0
 " }}}
 " {{{vim-closetag
 let g:closetag_shortcut = '>'
-let g:closetag_close_shortcut = '<A-z>>'
+let g:closetag_close_shortcut = '<A-c>>'
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.jsx,*.tsx'
 " }}}
 " }}}

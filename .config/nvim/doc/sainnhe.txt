@@ -162,7 +162,7 @@ This file defines some basic mappings:
 
 - Normal Mode:
   - Use space as leader key
-  - `Alt+X` to enter normal mode
+  - `Alt+X`/`Alt+Z` to enter normal mode
   - `;` to enter command mode
   - `q` to quit
   - `Q` to force quit
