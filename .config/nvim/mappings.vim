@@ -50,16 +50,16 @@ nnoremap <S-right> <Esc>$
 " x to delete current character without saving it to register
 nnoremap x "_x
 " <leader>y to yank to system clipboard
-if has('clipboard')
-  nnoremap <leader>y "+y
+if has('clipboard') || !empty($WAYLAND_DISPLAY)
+  nmap <leader>y "+y
 elseif has('xterm_clipboard')
-  nnoremap <leader>y "*y
+  nmap <leader>y "*y
 endif
 " <leader>p to paste from system clipboard
-if has('clipboard')
-  nnoremap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"+p
+if has('clipboard') || !empty($WAYLAND_DISPLAY)
+  nmap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"+p
 elseif has('xterm_clipboard')
-  nnoremap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"*p
+  nmap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"*p
 endif
 " Alt+T to create a new tab
 if g:vim_mode ==# 'full'
@@ -129,10 +129,10 @@ endif
 " Ctrl+V to paste from buffer
 inoremap <C-V> <Space><Backspace><ESC>pa
 " <A-v> to paste from system clipboard
-if has('clipboard')
-  inoremap <A-V> <Space><Backspace><ESC>"+pa
+if has('clipboard') || !empty($WAYLAND_DISPLAY)
+  imap <A-V> <Space><Backspace><ESC>"+pa
 elseif has('xterm_clipboard')
-  inoremap <A-V> <Space><Backspace><ESC>"*pa
+  imap <A-V> <Space><Backspace><ESC>"*pa
 endif
 " Ctrl+S to save file
 inoremap <silent> <C-S> <Esc>:w<CR>a
@@ -183,16 +183,16 @@ vnoremap J 5<down>
 vnoremap H 0
 vnoremap L $h
 " <leader>y to yank to system clipboard
-if has('clipboard')
-  vnoremap <leader>y "+y
+if has('clipboard') || !empty($WAYLAND_DISPLAY)
+  vmap <leader>y "+y
 elseif has('xterm_clipboard')
-  vnoremap <leader>y "*y
+  vmap <leader>y "*y
 endif
 " <leader>p to paste from system clipboard
-if has('clipboard')
-  vnoremap <leader>p "+p
+if has('clipboard') || !empty($WAYLAND_DISPLAY)
+  vmap <leader>p "+p
 elseif has('xterm_clipboard')
-  vnoremap <leader>p "*p
+  vmap <leader>p "*p
 endif
 " }}}
 " {{{Command Mode
