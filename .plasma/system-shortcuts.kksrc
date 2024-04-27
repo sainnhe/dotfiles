@@ -1,17 +1,18 @@
 [ActivityManager][Global Shortcuts]
-switch-to-activity-861de59e-498e-45f2-9128-2ed1b6c68d3f=
+switch-to-activity-65581ed0-9473-4050-b3b0-466e242b0c64=
 
 [KDE Keyboard Layout Switcher][Global Shortcuts]
+Switch keyboard layout to 英语（美国）=
 Switch to Next Keyboard Layout=
 
 [StandardShortcuts]
 AboutApp=
 AboutKDE=
-Activate Next Tab=Ctrl+]; Ctrl+PgDown
+Activate Next Tab=Ctrl+PgDown; Ctrl+]
 Activate Previous Tab=Ctrl+PgUp; Ctrl+[
 ActualSize=Ctrl+0
 AddBookmark=Ctrl+B
-Back=Alt+Left; Back
+Back=Back; Alt+Left
 BackwardWord=Ctrl+Left
 Begin=Ctrl+Home
 BeginningOfLine=Home
@@ -21,7 +22,7 @@ ConfigureNotifications=
 ConfigureToolbars=
 Copy=Ctrl+C; Ctrl+Ins
 CreateFolder=F10
-Cut=Ctrl+X; Shift+Del
+Cut=Shift+Del; Ctrl+X
 DeleteFile=Shift+Del
 DeleteWordBack=Ctrl+Backspace
 DeleteWordForward=Ctrl+Del
@@ -63,7 +64,7 @@ PrintPreview=
 Prior=PgUp
 Quit=Ctrl+Q
 Redo=Ctrl+Shift+Z
-Reload=Refresh; F5
+Reload=F5; Refresh
 RenameFile=F2
 Replace=Ctrl+R
 ReportBug=
@@ -74,7 +75,7 @@ Save=Ctrl+S
 SaveAs=Ctrl+Shift+S
 SaveOptions=
 SelectAll=Ctrl+A
-ShowHideHiddenFiles=Alt+.; Ctrl+H
+ShowHideHiddenFiles=Ctrl+H; Alt+.
 ShowMenubar=Ctrl+M
 ShowStatusbar=
 ShowToolbar=
@@ -87,11 +88,19 @@ Undo=Ctrl+Z
 Up=Alt+Up
 WhatsThis=Shift+F1
 Zoom=
-ZoomIn=Ctrl+=; Ctrl++
+ZoomIn=Ctrl++; Ctrl+=
 ZoomOut=Ctrl+-
 
+[kaccess][Global Shortcuts]
+Toggle Screen Reader On and Off=Meta+Alt+S
+
+[kcm_touchpad][Global Shortcuts]
+Disable Touchpad=Touchpad Off
+Enable Touchpad=Touchpad On
+Toggle Touchpad=Touchpad Toggle
+
 [kded5][Global Shortcuts]
-Show System Activity=Ctrl+Alt+Del
+Show System Activity=
 display=
 
 [khotkeys][Global Shortcuts]
@@ -115,13 +124,14 @@ Reboot Without Confirmation=
 [kwin][Global Shortcuts]
 Activate Window Demanding Attention=
 Decrease Opacity=
+Edit Tiles=
 Expose=Meta+Tab
 ExposeAll=
 ExposeClass=
 ExposeClassCurrentDesktop=
 Increase Opacity=
-Invert Screen Colors=
 Kill Window=
+Move Tablet to Next Output=
 MoveMouseToCenter=
 MoveMouseToFocus=
 MoveZoomDown=
@@ -173,6 +183,10 @@ Switch to Screen 4=
 Switch to Screen 5=
 Switch to Screen 6=
 Switch to Screen 7=
+Switch to Screen Above=
+Switch to Screen Below=
+Switch to Screen to the Left=
+Switch to Screen to the Right=
 Toggle Night Color=
 Toggle Window Raise/Lower=
 Walk Through Desktop List=
@@ -180,7 +194,7 @@ Walk Through Desktop List (Reverse)=
 Walk Through Desktops=
 Walk Through Desktops (Reverse)=
 Walk Through Windows=Alt+Tab
-Walk Through Windows (Reverse)=Alt+Shift+Backtab
+Walk Through Windows (Reverse)=
 Walk Through Windows Alternative=
 Walk Through Windows Alternative (Reverse)=
 Walk Through Windows of Current Application=Alt+`
@@ -206,6 +220,10 @@ Window One Desktop Down=
 Window One Desktop Up=
 Window One Desktop to the Left=
 Window One Desktop to the Right=
+Window One Screen Down=
+Window One Screen Up=
+Window One Screen to the Left=
+Window One Screen to the Right=
 Window Operations Menu=
 Window Pack Down=
 Window Pack Left=
@@ -273,6 +291,9 @@ stopmedia=Media Stop
 [org.kde.dolphin.desktop][Global Shortcuts]
 _launch=Meta+E
 
+[org.kde.kcalc.desktop][Global Shortcuts]
+_launch=Launch (1)
+
 [org.kde.konsole.desktop][Global Shortcuts]
 NewTab=
 NewWindow=
@@ -281,6 +302,9 @@ _launch=Meta+T
 [org.kde.krunner.desktop][Global Shortcuts]
 RunClipboard=
 _launch=Meta+Z
+
+[org.kde.plasma.emojier.desktop][Global Shortcuts]
+_launch=Meta+.
 
 [org.kde.spectacle.desktop][Global Shortcuts]
 ActiveWindowScreenShot=
@@ -332,3 +356,11 @@ stop current activity=
 switch to next activity=
 switch to previous activity=
 toggle do not disturb=
+
+[systemsettings.desktop][Global Shortcuts]
+_launch=Tools
+kcm-kscreen=
+kcm-lookandfeel=
+kcm-users=
+powerdevilprofilesconfig=
+screenlocker=
