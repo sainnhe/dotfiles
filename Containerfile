@@ -65,6 +65,7 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         clang-extra-tools \
         go \
         gopls \
+        golangci-lint \
         nodejs \
         nodejs-dev \
         nodejs-doc \

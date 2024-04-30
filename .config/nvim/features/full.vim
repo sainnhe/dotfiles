@@ -561,6 +561,7 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
       \ 'java': ['pmd'],
       \ 'sh': ['shellcheck'],
+      \ 'go': ['golangci-lint'],
       \ }
 let g:ale_java_pmd_options =
       \ 'pmd'
