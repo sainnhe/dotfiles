@@ -216,6 +216,7 @@ let g:coc_filetype_map = {
       \ 'gitcommit': 'plaintext',
       \ }
 let g:coc_global_extensions = [
+      \ 'coc-angular',
       \ 'coc-calc',
       \ 'coc-clangd',
       \ 'coc-cmake',
