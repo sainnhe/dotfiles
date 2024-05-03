@@ -219,6 +219,7 @@
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
   "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
   "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+  "angular.forceStrictTemplates": true,
   "clangd.path": "clangd",
   "clangd.arguments": [
     "--clang-tidy",
