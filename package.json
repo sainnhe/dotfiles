@@ -7,6 +7,7 @@
     "gtop": "1.1.5",
     "npm-check-updates": "16.14.18",
     "ovsx": "0.9.0",
+    "pnpm": "^9.0.6",
     "vercel": "33.6.3",
     "wrangler": "3.45.0"
   }
