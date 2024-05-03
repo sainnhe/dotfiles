@@ -269,6 +269,10 @@ install-bash-it() { # {{{
 cargo-update() { # {{{
     cargo install $(cargo install --list | egrep '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
 } # }}}
+compeval() { # {{{
+    source <(pnpm completion zsh)
+    source <(ng completion script)
+} # }}}
 # }}}
 # {{{Alias
 alias du='du -sh'
