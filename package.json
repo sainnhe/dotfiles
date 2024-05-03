@@ -1,14 +1,15 @@
 {
   "dependencies": {
-    "@microsoft/inshellisense": "0.0.1-rc.11",
-    "@vscode/vsce": "2.24.0",
+    "@angular/cli": "17.3.6",
+    "@microsoft/inshellisense": "0.0.1-rc.15",
+    "@vscode/vsce": "2.26.0",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "gtop": "1.1.5",
-    "npm-check-updates": "16.14.18",
-    "ovsx": "0.9.0",
-    "pnpm": "^9.0.6",
-    "vercel": "33.6.3",
-    "wrangler": "3.45.0"
+    "npm-check-updates": "16.14.20",
+    "ovsx": "0.9.1",
+    "pnpm": "9.0.6",
+    "vercel": "34.1.7",
+    "wrangler": "3.53.1"
   }
 }
