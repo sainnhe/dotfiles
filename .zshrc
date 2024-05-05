@@ -270,8 +270,8 @@ cargo-update() { # {{{
     cargo install $(cargo install --list | egrep '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
 } # }}}
 compeval() { # {{{
-    source <(pnpm completion zsh)
-    source <(ng completion script)
+    [ -x "$(command -v pnpm)" ] && source <(pnpm completion zsh) || echo "pnpm not found"
+    [ -x "$(command -v ng)" ] && source <(ng completion script) || echo "ng not found"
 } # }}}
 # }}}
 # {{{Alias
