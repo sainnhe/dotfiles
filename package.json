@@ -2,14 +2,14 @@
   "dependencies": {
     "@angular/cli": "17.3.6",
     "@microsoft/inshellisense": "0.0.1-rc.15",
-    "@vscode/vsce": "2.26.0",
+    "@vscode/vsce": "2.26.1",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "gtop": "1.1.5",
     "npm-check-updates": "16.14.20",
     "ovsx": "0.9.1",
     "pnpm": "9.0.6",
-    "vercel": "34.1.7",
+    "vercel": "34.1.8",
     "wrangler": "3.53.1"
   }
 }
