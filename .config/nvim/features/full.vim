@@ -242,7 +242,6 @@ let g:coc_global_extensions = [
       \ 'coc-markdown-preview-enhanced',
       \ 'coc-markdownlint',
       \ 'coc-marketplace',
-      \ 'coc-prettier',
       \ 'coc-project',
       \ 'coc-pyright',
       \ 'coc-rust-analyzer',
@@ -378,7 +377,6 @@ nmap <silent> <leader>aht :<C-u>call CocAction('showOutgoingCalls')<CR>
 nmap <silent> <leader>aHt :<C-u>call CocAction('showIncomingCalls')<CR>
 nmap <silent> zM :<C-u>call custom#utils#coc_fold()<CR>
 nmap <silent> <leader>al <Plug>(coc-codelens-action)
-nmap <silent> <leader>amf :<C-u>CocCommand prettier.formatFile<cr>
 nmap <silent> <leader>amp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
 nmap <silent> <leader>ami :<C-u>CocCommand markdown-preview-enhanced.openImageHelper<cr>
 nmap <silent> <leader>amI :<C-u>CocCommand markdown-preview-enhanced.showUploadedImages<cr>
@@ -468,7 +466,6 @@ let g:which_key_map['a']['H'] = {
       \ }
 let g:which_key_map['a']['m'] = {
       \ 'name': 'markdown',
-      \ 'f': 'format',
       \ 'p': 'preview',
       \ 'i': 'image helper',
       \ 'I': 'image uploaded',
