@@ -232,6 +232,7 @@ let g:rooter_patterns = [
       \ 'requirements.txt',
       \ 'Cargo.toml',
       \ 'go.mod',
+      \ 'tsconfig.json',
       \ ]
 let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
