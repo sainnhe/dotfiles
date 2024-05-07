@@ -97,6 +97,24 @@
     ".hg",
     ".svn"
   ],
+  "todo-tree.tags": [
+    {
+      "tagName": "todo",
+      "regex": "TODO",
+      "icon": {
+        "text": "",
+        "hlGroup": "Green"
+      }
+    },
+    {
+      "tagName": "fixme",
+      "regex": "FIXME",
+      "icon": {
+        "text": "",
+        "hlGroup": "Blue"
+      }
+    }
+  ],
   "snippets.ultisnips.enable": false,
   "snippets.snipmate.enable": true,
   "snippets.shortcut": "S",
