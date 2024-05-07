@@ -268,7 +268,7 @@
   "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "with_block",
   "pyright.inlayHints.variableTypes": true,
   "pyright.inlayHints.functionReturnTypes": true,
-  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.typeCheckingMode": "standard",
   "python.formatting.provider": "ruff",
   "python.linting.ruffEnabled": true,
   "lua.installPreReleases": true,
