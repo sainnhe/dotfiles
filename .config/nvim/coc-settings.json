@@ -231,6 +231,7 @@
     "gu": "gitUnstage"
   },
   "tsserver.implicitProjectConfig.experimentalDecorators": true,
+  "tsserver.npm": "npm",
   "typescript.referencesCodeLens.enabled": true,
   "typescript.referencesCodeLens.showOnAllFunctions": true,
   "typescript.implementationsCodeLens.enabled": true,
