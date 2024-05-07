@@ -401,7 +401,9 @@ nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
 nmap <silent> <leader>gla :<C-u>CocList commits<cr>
 nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
 nmap <silent> <leader>gll <Plug>(coc-git-commit)
-nmap <silent> <leader>af <Plug>(coc-fix-current)
+nmap <silent> <leader>afc <Plug>(coc-fix-current)
+nmap <silent> <leader>afa :<C-u>call CocActionAsync('fixAll')<CR>
+nmap <silent> <leader>ai :<C-u>call CocActionAsync('organizeImport')<CR>
 if !has('nvim')
   xmap if <Plug>(coc-funcobj-i)
   omap if <Plug>(coc-funcobj-i)
@@ -435,11 +437,16 @@ let g:which_key_map['j']['s'] = 'next symbol'
 let g:which_key_map['j']['S'] = 'prev symbol'
 let g:which_key_map['j']['g'] = 'next git chunk'
 let g:which_key_map['j']['G'] = 'prev git chunk'
+let g:which_key_map['<Tab>'] = 'format'
 if !exists("g:which_key_map['a']")
   let g:which_key_map['a'] = { 'name': 'action'}
 endif
-let g:which_key_map['a']['f'] = 'fix'
-let g:which_key_map['<Tab>'] = 'format'
+let g:which_key_map['a']['f'] = {
+      \ 'name': 'fix',
+      \ 'c': 'current cursor',
+      \ 'a': 'all buffer',
+      \ }
+let g:which_key_map['a']['i'] = 'organize import'
 let g:which_key_map['a']['r'] = 'rename'
 let g:which_key_map['a']['R'] = 'refactor'
 let g:which_key_map['a']['o'] = 'open link'
