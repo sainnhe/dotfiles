@@ -292,6 +292,14 @@ call coc#config('java', {
         \ }
       \ })
 call coc#config('java', {
+      \ 'format': {
+        \ 'settings': {
+          \ 'url': fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'resources', ':p') . 'eclipse-java-google-style.xml',
+          \ 'profile': 'GoogleStyle'
+          \ }
+        \ }
+      \ })
+call coc#config('java', {
       \ 'configuration': {
         \ 'runtimes': [{
           \ 'name': 'JavaSE-1.8',

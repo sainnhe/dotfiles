@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+curl -fSLO https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml
