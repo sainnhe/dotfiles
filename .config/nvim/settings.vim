@@ -34,7 +34,7 @@ if exists('g:neovide')
   let g:neovide_remember_window_size = v:true
   let g:neovide_hide_mouse_when_typing = v:true
   let g:neovide_remember_window_size = v:true
-  let g:neovide_input_macos_alt_is_meta = v:true
+  let g:neovide_input_macos_option_key_is_meta = 'both'
   augroup ime_input
     autocmd!
     autocmd InsertLeave * execute "let g:neovide_input_ime=v:false"
