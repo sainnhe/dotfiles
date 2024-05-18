@@ -311,6 +311,15 @@ let g:which_key_map['a']['t'] = {
       \ 'o': 'open',
       \ }
 " }}}
+" {{{vim-dadbod-ui
+let g:db_ui_save_location = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'dbui'
+let g:db_ui_win_position = 'right'
+let g:db_ui_winwidth = 40
+let g:db_ui_show_database_icon = 1
+let g:db_ui_use_nerd_fonts = 1
+nmap <leader><space>D :<C-u>DBUIToggle<CR>
+let g:which_key_map["\<space>"]['D'] = 'database'
+" }}}
 " {{{devdocs.vim
 nmap <leader><space>dbc <Plug>(devdocs-under-cursor)
 nmap <leader><space>dba <Plug>(devdocs-under-cursor-all)
