@@ -38,7 +38,6 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         onefetch \
         bottom \
         nnn \
-        lua \
         zsh \
         tmux \
         fzf \

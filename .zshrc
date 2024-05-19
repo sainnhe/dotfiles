@@ -332,12 +332,12 @@ zinit light zsh-users/zsh-autosuggestions
 zinit ice wait'0' lucid depth=1; zinit light zsh-users/zsh-history-substring-search
 zinit ice wait'1' lucid depth=1; zinit light ytet5uy4/fzf-widgets
 zinit ice wait'0' lucid depth=1; zinit light urbainvaes/fzf-marks
-zinit ice wait'0' lucid depth=1; zinit light skywind3000/z.lua
 zinit ice wait'1' lucid depth=1; zinit light hlissner/zsh-autopair
 zinit ice wait'0' lucid depth=1 \
     atload"zcomp_init" \
     atpull"zinit cclear && zinit creinstall sainnhe/zsh-completions"
 zinit light sainnhe/zsh-completions
+zinit snippet OMZP::dotenv
 zinit ice pick"pb" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@master/scripts/pb"
 zinit ice as"completion"; zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@master/scripts/_pb"
 zinit ice pick"pfetch" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/pfetch@master/pfetch"
