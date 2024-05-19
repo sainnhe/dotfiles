@@ -317,6 +317,33 @@ let g:db_ui_win_position = 'right'
 let g:db_ui_winwidth = 40
 let g:db_ui_show_database_icon = 1
 let g:db_ui_use_nerd_fonts = 1
+let g:db_ui_icons = {
+      \ 'expanded': {
+        \ 'db': '▾ ',
+        \ 'buffers': '▾ ',
+        \ 'saved_queries': '▾ ',
+        \ 'schemas': '▾ ',
+        \ 'schema': '▾ פּ',
+        \ 'tables': '▾ 藺',
+        \ 'table': '▾ ',
+        \ },
+      \ 'collapsed': {
+        \ 'db': '▸ ',
+        \ 'buffers': '▸ ',
+        \ 'saved_queries': '▸ ',
+        \ 'schemas': '▸ ',
+        \ 'schema': '▸ פּ',
+        \ 'tables': '▸ 藺',
+        \ 'table': '▸ ',
+        \ },
+      \ 'saved_query': '',
+      \ 'new_query': '璘',
+      \ 'tables': '離',
+      \ 'buffers': '﬘',
+      \ 'add_connection': '',
+      \ 'connection_ok': '✓',
+      \ 'connection_error': '✕',
+      \ }
 nmap <leader><space>D :<C-u>DBUIToggle<CR>
 let g:which_key_map["\<space>"]['D'] = 'database'
 " }}}
