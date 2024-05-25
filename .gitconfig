@@ -88,9 +88,9 @@
     process = git-lfs filter-process
     required = true
 ; [http]
-;     proxy = socks5://127.0.0.1:1080
+;     proxy = socks5://127.0.0.1:17080
 ; [https]
-;     proxy = socks5://127.0.0.1:1080
+;     proxy = socks5://127.0.0.1:17080
 ; [url "https://mirror.ghproxy.com/https://github.com/"]
 ;     insteadOf = https://github.com/
 ; [url "https://domain.tld/https/github.com/"]
