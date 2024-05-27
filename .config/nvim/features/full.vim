@@ -235,7 +235,6 @@ let g:coc_global_extensions = [
       \ 'coc-html',
       \ 'coc-htmlhint',
       \ 'coc-imselect',
-      \ 'coc-java',
       \ 'coc-json',
       \ 'coc-lists',
       \ 'coc-lua',
@@ -302,7 +301,7 @@ call coc#config('java', {
 call coc#config('java', {
       \ 'configuration': {
         \ 'runtimes': [{
-          \ 'name': 'JavaSE-17',
+          \ 'name': 'JavaSE-21',
           \ 'default': v:true,
           \ 'path': s:java_home
         \ }]
