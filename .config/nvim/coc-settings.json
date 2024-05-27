@@ -323,6 +323,21 @@
   "java.implementationsCodeLens.enabled": true,
   "java.typeHierarchy.lazyLoad": true,
   "java.compile.nullAnalysis.mode": "automatic",
+  "java.cleanup.actions": [
+    "qualifyMembers",
+    "qualifyStaticMembers",
+    "addOverride",
+    "addDeprecated",
+    "stringConcatToTextBlock",
+    "invertEquals",
+    "addFinalModifier",
+    "instanceofPatternMatch",
+    "lambdaExpressionFromAnonymousClass",
+    "lambdaExpression",
+    "switchExpression",
+    "tryWithResource",
+    "renameFileToType"
+  ],
   "markdown-preview-enhanced.previewTheme": "github-dark.css",
   "markdown-preview-enhanced.enableScriptExecution": true,
   "markdownlint.config": {
