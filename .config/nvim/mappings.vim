@@ -56,10 +56,12 @@ elseif has('xterm_clipboard')
   nmap <leader>y "*y
 endif
 " <leader>p to paste from system clipboard
-if has('clipboard') || !empty($WAYLAND_DISPLAY)
+if has('clipboard')
   nmap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"+p
 elseif has('xterm_clipboard')
   nmap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"*p
+elseif !empty($WAYLAND_DISPLAY)
+  nmap <silent> <leader>p "+p
 endif
 " Alt+T to create a new tab
 if g:vim_mode ==# 'full'
