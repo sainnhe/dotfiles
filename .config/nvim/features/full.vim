@@ -246,6 +246,7 @@ let g:coc_global_extensions = [
       \ 'coc-rust-analyzer',
       \ 'coc-sh',
       \ 'coc-snippets',
+      \ 'coc-sonarlint',
       \ 'coc-sql',
       \ 'coc-svg',
       \ 'coc-syntax',
@@ -309,6 +310,11 @@ call coc#config('java', {
 call coc#config('xml', {
       \ 'java': {
         \ 'home': s:java_home
+        \ }
+      \ })
+call coc#config('sonarlint', {
+      \ 'ls': {
+        \ 'javaHome': s:java_home
         \ }
       \ })
 call coc#config('semanticTokens', {
