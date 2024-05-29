@@ -302,6 +302,7 @@ alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
 alias npp='proxychains -q npm --registry https://registry.npmjs.org'
 alias scanip='~/repo/dotfiles/scripts/scanip.sh'
 alias cmake-export-compile-commands="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
+alias rga="rg --hidden --ignore-vcs '--glob=!.git/*'"
 if [ -x "$(command -v lsd)" ]; then
     alias ls='lsd'
     alias tree='lsd --tree'
