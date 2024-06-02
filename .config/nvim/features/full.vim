@@ -273,9 +273,6 @@ augroup CocCustom
   autocmd User CocGitStatusChange,CocStatusChange,CocDiagnosticChange call lightline#update()
   autocmd QuitPre * CocCommand terminal.Destroy
 augroup END
-call coc#config('project', {
-      \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
-      \ })
 let s:java_home = !empty($JAVA_HOME) ? $JAVA_HOME :
       \ has('win32') ? expand('~/scoop/apps/openjdk/current') :
       \ has('osxdarwin') ? '/Library/Java/JavaVirtualMachines/default/Contents/Home' :
@@ -289,9 +286,14 @@ call coc#config('java', {
             \ 'home': s:java_home
             \ }
           \ }
-        \ }
-      \ })
-call coc#config('java', {
+        \ },
+      \ 'configuration': {
+        \ 'runtimes': [{
+          \ 'name': 'JavaSE-21',
+          \ 'default': v:true,
+          \ 'path': s:java_home
+        \ }]
+      \ },
       \ 'format': {
         \ 'settings': {
           \ 'url': fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'resources', ':p') . 'eclipse-java-google-style.xml',
@@ -299,14 +301,6 @@ call coc#config('java', {
           \ }
         \ }
       \ })
-call coc#config('java', {
-      \ 'configuration': {
-        \ 'runtimes': [{
-          \ 'name': 'JavaSE-21',
-          \ 'default': v:true,
-          \ 'path': s:java_home
-        \ }]
-      \ }})
 call coc#config('xml', {
       \ 'java': {
         \ 'home': s:java_home
@@ -319,6 +313,9 @@ call coc#config('sonarlint', {
       \ })
 call coc#config('semanticTokens', {
       \ 'filetypes': has('nvim') ? [''] : ['*']
+      \ })
+call coc#config('project', {
+      \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
       \ })
 if has('win32')
   call coc#config('terminal', {
