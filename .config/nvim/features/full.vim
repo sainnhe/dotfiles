@@ -582,13 +582,13 @@ let g:ale_linters = {
 let g:ale_java_pmd_options =
       \ 'pmd'
       \ . ' -R category/java/bestpractices.xml'
+      \ . ' -R category/java/documentation.xml'
       \ . ' -R category/java/errorprone.xml'
       \ . ' -R category/java/multithreading.xml'
       \ . ' -R category/java/performance.xml'
       \ . ' -R category/java/security.xml'
       "\ . ' -R category/java/codestyle.xml'
       "\ . ' -R category/java/design.xml'
-      "\ . ' -R category/java/documentation.xml'
 " }}}
 " {{{vim-doge
 let g:doge_enable_mappings = 0
