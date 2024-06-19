@@ -407,7 +407,7 @@ zinit ice wait'0' lucid depth=1 \
     atload"zcomp_init" \
     atpull"zinit cclear && zinit creinstall sainnhe/zsh-completions"
 zinit light sainnhe/zsh-completions
-zinit snippet OMZP::dotenv
+zinit snippet "https://testingcf.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/plugins/dotenv/dotenv.plugin.zsh"
 zinit ice pick"pfetch" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/pfetch@master/pfetch"
 zinit ice pick"neofetch" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/neofetch@master/neofetch"
 zinit ice pick"sysz" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/joehillen/sysz@master/sysz"
@@ -478,13 +478,6 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-# }}}
-# {{{z.lua
-export _ZL_DATA="$HOME/.cache/.zlua"
-export _ZL_MATCH_MODE=1
-alias zc='z -c' # 严格匹配当前路径的子路径
-alias zz='z -i' # 使用交互式选择模式
-alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # }}}
 # {{{pfetch
 export PF_COL1=2
