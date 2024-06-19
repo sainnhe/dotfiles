@@ -80,6 +80,7 @@ Plug 'sheerun/vim-polyglot', { 'as': 'vim-syntax' }
 Plug 'bfrg/vim-cpp-modern', { 'as': 'vim-syntax-c-cpp', 'for': ['c', 'cpp'] }
 Plug 'maxmellon/vim-jsx-pretty', { 'as': 'vim-syntax-jsx', 'for': ['javascriptreact'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'kaarmu/typst.vim'
 let g:polyglot_disabled = ['sensible', 'c', 'cpp', 'markdown', 'javascriptreact', 'java']
 let g:vim_json_syntax_conceal = 0
 let g:markdown_fenced_languages = [

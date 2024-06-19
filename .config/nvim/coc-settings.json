@@ -351,6 +351,16 @@
     "MD036": false,
     "MD041": false
   },
+  "diagnostic-languageserver.formatters": {
+    "typstyle": {
+      "command": "typstyle"
+    }
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "typst": [
+      "typstyle"
+    ]
+  },
   "languageserver": {
     "markdown": {
       "filetypes": [
@@ -360,6 +370,12 @@
       "args": [
         "server"
       ]
+    },
+    "typst": {
+      "filetypes": [
+        "typst"
+      ],
+      "command": "typst-lsp"
     }
   }
 }
