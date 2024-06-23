@@ -279,6 +279,19 @@ let s:java_home = !empty($JAVA_HOME) ? $JAVA_HOME :
       \ isdirectory('/usr/lib/jvm/default') ? '/usr/lib/jvm/default' :
       \ isdirectory('/usr/lib/jvm/jre') ? '/usr/lib/jvm/java' :
       \ isdirectory('/usr/lib/jvm/default-jvm') ? '/usr/lib/jvm/default-jvm' : '/usr'
+let g:root_patterns = [
+      \ '.git',
+      \ '.hg',
+      \ '.svn',
+      \ 'Makefile',
+      \ 'CMakeLists.txt',
+      \ 'requirements.txt',
+      \ 'Cargo.toml',
+      \ 'go.mod',
+      \ 'tsconfig.json',
+      \ 'pom.xml',
+      \ 'venv',
+      \ ]
 call coc#config('java', {
       \ 'jdt': {
         \ 'ls': {
@@ -316,6 +329,7 @@ call coc#config('semanticTokens', {
       \ })
 call coc#config('project', {
       \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
+      \ 'rootPatterns': g:root_patterns
       \ })
 if has('win32')
   call coc#config('terminal', {

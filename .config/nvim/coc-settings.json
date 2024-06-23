@@ -92,11 +92,6 @@
   "git.virtualTextPrefix": " \ue729 ",
   "git.addGBlameToVirtualText": false,
   "git.blameUseRealTime": false,
-  "project.rootPatterns": [
-    ".git",
-    ".hg",
-    ".svn"
-  ],
   "todo-tree.tags": [
     {
       "tagName": "todo",

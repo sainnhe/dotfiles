@@ -221,19 +221,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:peekaboo_delay = 500
 " }}}
 " {{{vim-rooter
-let g:rooter_patterns = [
-      \ '.git',
-      \ '.hg',
-      \ '.svn',
-      \ '*.sln',
-      \ '*.xcodeproj',
-      \ 'Makefile',
-      \ 'CMakeLists.txt',
-      \ 'requirements.txt',
-      \ 'Cargo.toml',
-      \ 'go.mod',
-      \ 'tsconfig.json',
-      \ ]
+let g:rooter_patterns = g:root_patterns
 let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
 " }}}
