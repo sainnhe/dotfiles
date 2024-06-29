@@ -1,12 +1,12 @@
 {
   "dependencies": {
-    "@angular/cli": "18.0.4",
+    "@angular/cli": "18.0.6",
     "@microsoft/inshellisense": "0.0.1-rc.15",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "npm-check-updates": "16.14.20",
     "pnpm": "9.4.0",
-    "vercel": "^34.2.7",
-    "wrangler": "3.61.0"
+    "vercel": "^34.2.8",
+    "wrangler": "3.62.0"
   }
 }
