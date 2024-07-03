@@ -11,3 +11,10 @@
   - `layout.css.backdrop-filter.enabled`
   - `svg.context-properties.content.enabled`
 - Restart Firefox
+
+# Awesome userChrome.css
+
+[Store](https://firefoxcss-store.github.io/)
+
+- [artsyfriedchicken/EdgyArc-fr](https://github.com/artsyfriedchicken/EdgyArc-fr/)
+- [awwpotato/PotatoFox](https://codeberg.org/awwpotato/PotatoFox)
