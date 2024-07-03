@@ -1,4 +1,4 @@
-# Steps to enable user css
+## Steps to enable user css
 
 - Open [about:support](about:support)
 - Find "Profile Folder" and create a symlink to the `chrome` folder in this repository
@@ -12,9 +12,9 @@
   - `svg.context-properties.content.enabled`
 - Restart Firefox
 
-# Awesome userChrome.css
+## Awesome userChrome.css
 
 [Store](https://firefoxcss-store.github.io/)
 
 - [artsyfriedchicken/EdgyArc-fr](https://github.com/artsyfriedchicken/EdgyArc-fr/)
-- [awwpotato/PotatoFox](https://codeberg.org/awwpotato/PotatoFox)
+- [awwpotato/PotatoFox](https://codeberg.org/awwpotato/PotatoFox): Mirrored on Gitea
