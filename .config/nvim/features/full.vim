@@ -246,7 +246,6 @@ let g:coc_global_extensions = [
       \ 'coc-rust-analyzer',
       \ 'coc-sh',
       \ 'coc-snippets',
-      \ 'coc-sonarlint',
       \ 'coc-sql',
       \ 'coc-svg',
       \ 'coc-syntax',
