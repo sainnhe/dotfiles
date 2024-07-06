@@ -318,11 +318,6 @@ call coc#config('xml', {
         \ 'home': s:java_home
         \ }
       \ })
-call coc#config('sonarlint', {
-      \ 'ls': {
-        \ 'javaHome': s:java_home
-        \ }
-      \ })
 call coc#config('semanticTokens', {
       \ 'filetypes': has('nvim') ? [''] : ['*']
       \ })

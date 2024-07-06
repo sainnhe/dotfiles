@@ -333,7 +333,6 @@
     "tryWithResource",
     "renameFileToType"
   ],
-  "sonarlint.disableTelemetry": true,
   "markdown-preview-enhanced.previewTheme": "github-dark.css",
   "markdown-preview-enhanced.enableScriptExecution": true,
   "markdownlint.config": {
