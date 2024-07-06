@@ -261,6 +261,29 @@
   ],
   "go.goplsPath": "gopls",
   "go.checkForUpdates": "disabled",
+  "go.goplsOptions": {
+    "semanticTokens": true,
+    "usePlaceholders": true,
+    "codelenses": {
+      "gc_details": true,
+      "generate": true,
+      "regenerate_cgo": true,
+      "run_govulncheck": true,
+      "tidy": true,
+      "upgrade_dependency": true,
+      "vendor": true
+    },
+    "vulncheck": "Imports",
+    "hints": {
+      "assignVariableTypes": true,
+      "compositeLiteralFields": true,
+      "compositeLiteralTypes": true,
+      "constantValues": true,
+      "functionTypeParameters": true,
+      "parameterNames": true,
+      "rangeVariableTypes": true
+    }
+  },
   "rust-analyzer.server.path": "rust-analyzer",
   "rust-analyzer.lens.enable": true,
   "rust-analyzer.lens.run.enable": false,

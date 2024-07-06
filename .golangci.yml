@@ -1,0 +1,23 @@
+linters:
+  disable-all: true
+  enable:
+    # Default linters
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    # Additional linters
+    - revive
+    - gocritic
+    - gosec
+    - gocyclo
+linters-settings:
+  gocritic:
+    disable-all: true
+    enabled-tags:
+      - diagnostic
+      - performance
+severity:
+  default-severity: warning

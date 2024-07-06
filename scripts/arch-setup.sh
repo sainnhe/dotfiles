@@ -49,6 +49,7 @@ setup_dotfiles() { #{{{
     setup_copy .config/libinput-gestures.conf
     setup_symlink .config/QtProject/qtcreator/themes
     setup_symlink .config/QtProject/qtcreator/styles
+    setup_symlink .golangci.yml
     printf "${BBLUE}>> Setup root directory manually.${NC}\n"
 } #}}}
 setup_arch_repos() { #{{{
