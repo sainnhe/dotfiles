@@ -1,7 +1,7 @@
-## Steps to enable user css
+## Steps to enable user css/js
 
 - Open [about:support](about:support)
-- Find "Profile Folder" and create a symlink to the `chrome` folder in this repository
+- Find "Profile Folder" and create a symlink to the `chrome` and `user.js` in this directory.
 - Open [about:config](about:config)
 - Enable the following items:
   - `toolkit.legacyUserProfileCustomizations.stylesheets`
