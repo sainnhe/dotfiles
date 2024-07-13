@@ -12,8 +12,8 @@ execute 'call custom#colorscheme#' . g:vim_color_scheme . '()'
 " {{{Additional UI components
 " {{{vim-which-key
 let g:which_key_sort_horizontal = 1
-let g:which_key_sep = ''
-let g:which_key_display_names = {' ': '', '<CR>': '↵', '<C-H>': '', '<C-I>': 'ﲑ', '<TAB>': '⇆'}
+let g:which_key_sep = ''
+let g:which_key_display_names = {' ': '', '<CR>': '󰌑', '<C-H>': '', '<C-I>': '󰞓', '<TAB>': '⇆'}
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 call which_key#register('<Space>', 'g:which_key_map')
 " Mappings registered in mappings.vim
@@ -307,28 +307,28 @@ let g:db_ui_show_database_icon = 1
 let g:db_ui_use_nerd_fonts = 1
 let g:db_ui_icons = {
       \ 'expanded': {
-        \ 'db': '▾ ',
-        \ 'buffers': '▾ ',
+        \ 'db': '▾ ',
+        \ 'buffers': '▾ ',
         \ 'saved_queries': '▾ ',
         \ 'schemas': '▾ ',
-        \ 'schema': '▾ פּ',
-        \ 'tables': '▾ 藺',
-        \ 'table': '▾ ',
+        \ 'schema': '▾ ',
+        \ 'tables': '▾ ',
+        \ 'table': '▾ 󰓫',
         \ },
       \ 'collapsed': {
-        \ 'db': '▸ ',
-        \ 'buffers': '▸ ',
+        \ 'db': '▸ ',
+        \ 'buffers': '▸ ',
         \ 'saved_queries': '▸ ',
         \ 'schemas': '▸ ',
-        \ 'schema': '▸ פּ',
-        \ 'tables': '▸ 藺',
-        \ 'table': '▸ ',
+        \ 'schema': '▸ ',
+        \ 'tables': '▸ ',
+        \ 'table': '▸ 󰓫',
         \ },
       \ 'saved_query': '',
-      \ 'new_query': '璘',
-      \ 'tables': '離',
-      \ 'buffers': '﬘',
-      \ 'add_connection': '',
+      \ 'new_query': '󰓰',
+      \ 'tables': '',
+      \ 'buffers': '',
+      \ 'add_connection': '󰆺',
       \ 'connection_ok': '✓',
       \ 'connection_error': '✕',
       \ }

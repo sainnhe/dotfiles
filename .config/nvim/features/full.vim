@@ -9,10 +9,10 @@
 " {{{Status line
 " {{{lightline.vim
 let g:lightline = {}
-let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
-let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
-let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
-let g:lightline.tabline_subseparator = { 'left': "\ue0bb", 'right': "\ue0bb" }
+let g:lightline.separator = { 'left': "", 'right': "" }
+let g:lightline.subseparator = { 'left': "", 'right': "" }
+let g:lightline.tabline_separator = { 'left': "", 'right': "" }
+let g:lightline.tabline_subseparator = { 'left': "", 'right': "" }
 let g:lightline#asyncrun#indicator_none = ''
 let g:lightline#asyncrun#indicator_run = 'Running...'
 if g:vim_lightline_artify == 0
@@ -69,8 +69,8 @@ let g:lightline.component = {
       \ 'git_buffer' : '%{get(b:, "coc_git_status", "")}',
       \ 'git_global' : '%{custom#lightline#git_global()}',
       \ 'artify_mode': '%{custom#lightline#artify_mode()}',
-      \ 'artify_lineinfo': "%2{custom#lightline#artify_line_percent()}\uf295 %3{custom#lightline#artify_line_num()}:%-2{custom#lightline#artify_column_num()}",
-      \ 'vim_logo': "\ue7c5",
+      \ 'artify_lineinfo': "%2{custom#lightline#artify_line_percent()} %3{custom#lightline#artify_line_num()}:%-2{custom#lightline#artify_column_num()}",
+      \ 'vim_logo': "",
       \ 'mode': '%{lightline#mode()}',
       \ 'filename': '%t',
       \ 'fileformat': '%{&fenc!=#""?&fenc:&enc}[%{&ff}]',
@@ -108,28 +108,28 @@ let g:lightline.component_type = {
       \ 'linter_errors': 'error',
       \ }
 let g:lightline#ale#indicator_checking = 'Linting...'
-let g:lightline#ale#indicator_infos = "\uea74 "
-let g:lightline#ale#indicator_warnings = "\uea6c "
-let g:lightline#ale#indicator_errors = "\uea87 "
-let g:lightline#ale#indicator_ok = "\uf00c"
-let g:lightline#ale#indicator_unavailable = "\uf00c"
+let g:lightline#ale#indicator_infos = " "
+let g:lightline#ale#indicator_warnings = " "
+let g:lightline#ale#indicator_errors = " "
+let g:lightline#ale#indicator_ok = ""
+let g:lightline#ale#indicator_unavailable = ""
 " {{{tmuxline.vim
 if g:vim_is_in_tmux == 1 && !has('win32')
   let g:tmuxline_preset = {
         \'a'    : '#S',
         \'b'    : '%R',
-        \'c'    : [ '#{sysstat_mem} #[fg=blue]#{sysstat_ntemp} #(~/.tmux/tmuxline/widget-color.sh)\ufa51#{upload_speed}' ],
+        \'c'    : [ '#{sysstat_mem} #[fg=blue]#{sysstat_ntemp} #(~/.tmux/tmuxline/widget-color.sh)󰕒#{upload_speed}' ],
         \'win'  : [ '#I', '#W' ],
         \'cwin' : [ '#I', '#W', '#F' ],
-        \'x'    : [ "#(~/.tmux/tmuxline/widget-color.sh)#{download_speed} \uf6d9 #[fg=blue]#{sysstat_itemp} #{sysstat_cpu}" ],
+        \'x'    : [ "#(~/.tmux/tmuxline/widget-color.sh)#{download_speed} 󰇚 #[fg=blue]#{sysstat_itemp} #{sysstat_cpu}" ],
         \'y'    : [ '%a' ],
         \'z'    : '#H #{prefix_highlight}'
         \}
   let g:tmuxline_separators = {
-        \ 'left' : "\ue0bc",
-        \ 'left_alt': "\ue0bd",
-        \ 'right' : "\ue0ba",
-        \ 'right_alt' : "\ue0bd",
+        \ 'left' : "",
+        \ 'left_alt': "",
+        \ 'right' : "",
+        \ 'right_alt' : "",
         \ 'space' : ' '}
 endif
 " }}}
@@ -174,11 +174,11 @@ if !exists('g:vim_pager')
           \ ]
   endif
   let g:startify_lists = [
-        \ { 'type': 'dir',       'header': ["   \ufa1eMRU Files in ". getcwd()] },
-        \ { 'type': 'files',     'header': ["   \ufa1eMRU Files"]            },
-        \ { 'type': 'bookmarks', 'header': ["   \uf5c2 Bookmarks"]      },
-        \ { 'type': 'sessions',  'header': ["   \ue62e Sessions"]       },
-        \ { 'type': 'commands',  'header': ["   \ufb32 Commands"]       },
+        \ { 'type': 'dir',       'header': ["   󰔟 MRU Files in ". getcwd()] },
+        \ { 'type': 'files',     'header': ["   󱦟 MRU Files"]            },
+        \ { 'type': 'bookmarks', 'header': ["    Bookmarks"]      },
+        \ { 'type': 'sessions',  'header': ["    Sessions"]       },
+        \ { 'type': 'commands',  'header': ["    Commands"]       },
         \ ]
   let g:startify_skiplist = [
         \ '/mnt/*',
@@ -548,9 +548,9 @@ let g:ale_echo_msg_warning_str = 'WARN'
 let g:ale_echo_msg_log_str = 'LOG'
 let g:ale_hover_cursor = 0
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
-let g:ale_sign_error = "\uf65b"
-let g:ale_sign_info = "\uf7fb"
-let g:ale_sign_warning = "\uf525"
+let g:ale_sign_error = "󰅜"
+let g:ale_sign_info = "󰋼"
+let g:ale_sign_warning = ""
 nmap <silent> <leader>jl <Plug>(ale_next_wrap)<Plug>(ale_detail)
 nmap <silent> <leader>jL <Plug>(ale_previous_wrap)<Plug>(ale_detail)
 nmap <silent> <leader>je <Plug>(ale_next_wrap_error)<Plug>(ale_detail)

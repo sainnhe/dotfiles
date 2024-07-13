@@ -8,16 +8,16 @@
 
 function custom#lightline#coc_diagnostic_error() abort "{{{
   let info = get(b:, 'coc_diagnostic_info', {})
-  return get(info, 'error', 0) ==# 0 ? '' : "\uf659 " . info['error']
+  return get(info, 'error', 0) ==# 0 ? '' : " " . info['error']
 endfunction "}}}
 function custom#lightline#coc_diagnostic_warning() abort "{{{
   let info = get(b:, 'coc_diagnostic_info', {})
-  return get(info, 'warning', 0) ==# 0 ? '' : "\uf529 " . info['warning']
+  return get(info, 'warning', 0) ==# 0 ? '' : " " . info['warning']
 endfunction "}}}
 function custom#lightline#coc_diagnostic_ok() abort "{{{
   let info = get(b:, 'coc_diagnostic_info', {})
   if (get(info, 'error', 0) == 0) && (get(info, 'warning', 0) == 0)
-    let msg = "\uf00c"
+    let msg = ""
   else
     let msg = ''
   endif
@@ -48,13 +48,13 @@ function custom#lightline#devicons() "{{{
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction "}}}
 function custom#lightline#tabnum(n) abort "{{{
-  return a:n." \ue0bb"
+  return a:n." "
 endfunction "}}}
 function custom#lightline#artify_active_tabnum(n) abort "{{{
-  return artify#convert(a:n, 'bold')." \ue0bb"
+  return artify#convert(a:n, 'bold')." "
 endfunction "}}}
 function custom#lightline#artify_inactive_tabnum(n) abort "{{{
-  return artify#convert(a:n, 'double_struck')." \ue0bb"
+  return artify#convert(a:n, 'double_struck')." "
 endfunction "}}}
 function custom#lightline#artify_tabname(s) abort "{{{
   if g:vim_lightline_artify ==# 2
