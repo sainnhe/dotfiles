@@ -87,7 +87,7 @@
   "git.topRemovedSign.text": "▔",
   "git.changedDecorator": " ",
   "git.stagedDecorator": " ",
-  "git.untrackedDecorator": " ",
+  "git.untrackedDecorator": " 󰐕",
   "git.conflictedDecorator": "",
   "git.virtualTextPrefix": "  ",
   "git.addGBlameToVirtualText": false,
