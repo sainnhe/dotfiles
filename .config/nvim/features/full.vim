@@ -118,7 +118,7 @@ if g:vim_is_in_tmux == 1 && !has('win32')
   let g:tmuxline_preset = {
         \'a'    : '#S',
         \'b'    : '%R',
-        \'c'    : [ '#{sysstat_mem} #[fg=blue]#{sysstat_ntemp} #(~/.tmux/tmuxline/widget-color.sh)󰕒#{upload_speed}' ],
+        \'c'    : [ '#{sysstat_mem} #[fg=blue]#{sysstat_ntemp} #(~/.tmux/tmuxline/widget-color.sh)󰕒 #{upload_speed}' ],
         \'win'  : [ '#I', '#W' ],
         \'cwin' : [ '#I', '#W', '#F' ],
         \'x'    : [ "#(~/.tmux/tmuxline/widget-color.sh)#{download_speed} 󰇚 #[fg=blue]#{sysstat_itemp} #{sysstat_cpu}" ],
