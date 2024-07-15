@@ -55,11 +55,13 @@ endif
 " General
 filetype plugin indent on
 syntax enable
+set encoding=utf-8
+scriptencoding utf-8
 set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
 set fileformats=unix,dos,mac
 set autoindent smartindent breakindent
-set list listchars=tab:>-,trail:~,extends:>,precedes:<
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set list listchars=tab:\ \ ,trail:~,extends:>,precedes:<
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set timeout timeoutlen=500
 set incsearch hlsearch
 set autoread
