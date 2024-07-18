@@ -265,7 +265,7 @@
     "semanticTokens": true,
     "usePlaceholders": true,
     "codelenses": {
-      "gc_details": true,
+      "gc_details": false,
       "generate": true,
       "regenerate_cgo": true,
       "run_govulncheck": true,
@@ -393,6 +393,15 @@
         "typst"
       ],
       "command": "typst-lsp"
+    },
+    "protobuf-language-server": {
+      "command": "protobuf-language-server",
+      "filetypes": [
+        "proto"
+      ],
+      "settings": {
+        "additional-proto-dirs": []
+      }
     }
   }
 }
