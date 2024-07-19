@@ -100,6 +100,7 @@ _go() {
     go install github.com/golang/mock/mockgen@latest
     go install github.com/golang/protobuf/protoc-gen-go@latest
     go install github.com/lasorda/protobuf-language-server@latest
+    ln -s "$DOTFILES_DIR/.golangci.yml" ~
     echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.env/macos.env"
 }
 
