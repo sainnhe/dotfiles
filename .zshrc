@@ -22,9 +22,6 @@ if [ -x "$(command -v vim)" ]; then
     export MANPAGER="vim --cmd 'let g:vim_pager = 1' -c ASMANPAGER -"
 fi
 export FuzzyFinder="fzf"
-export GO111MODULE=on
-export GOPROXY=https://proxy.golang.com.cn,direct
-export GOSUMDB=sum.golang.google.cn
 if [[ "$(uname)" == "Darwin" ]]; then
     fpath=(/opt/local/share/zsh/site-functions $fpath)
 fi
@@ -361,16 +358,12 @@ alias help='~/repo/dotfiles/scripts/help.sh'
 alias colorscheme='~/repo/dotfiles/scripts/colorscheme.sh'
 alias tmuxinit='~/repo/dotfiles/scripts/tmuxinit.sh'
 alias px='proxychains4 -q'
-alias bebusy='~/repo/dotfiles/scripts/bebusy.py'
-alias clean='~/repo/dotfiles/scripts/clean.sh'
+alias arch-clean='~/repo/dotfiles/scripts/arch/clean.sh'
 alias javaswitch='~/repo/dotfiles/scripts/javaswitch.sh'
 alias gencomp-help='gencomp'
 alias nvistat='nvidia-smi'
 alias proxyenv='export HTTP_PROXY=http://127.0.0.1:17080 && export HTTPS_PROXY=http://127.0.0.1:17080 && export http_proxy=http://127.0.0.1:17080 && export https_proxy=http://127.0.0.1:17080'
 alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
-alias npp='proxychains -q npm --registry https://registry.npmjs.org'
-alias scanip='~/repo/dotfiles/scripts/scanip.sh'
-alias cmake-export-compile-commands="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 alias rga="rg --hidden --ignore-vcs '--glob=!.git/*'"
 if [ -x "$(command -v lsd)" ]; then
     alias ls='lsd'

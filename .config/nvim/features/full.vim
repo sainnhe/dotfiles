@@ -222,6 +222,7 @@ let g:coc_global_extensions = [
       \ 'coc-cmake',
       \ 'coc-css',
       \ 'coc-deno',
+      \ 'coc-diagnostic',
       \ 'coc-dictionary',
       \ 'coc-docker',
       \ 'coc-emmet',
