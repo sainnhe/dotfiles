@@ -1,4 +1,24 @@
-//
+// Basic Settings
+user_pref("gfx.webrender.all", true);
+user_pref("gfx.webrender.enabled", true);
+user_pref("layers.acceleration.force-enabled", true);
+user_pref("layout.css.backdrop-filter.enabled", true);
+user_pref("layout.css.color-mix.enabled", true);
+user_pref("layout.css.has-selector.enabled", true);
+user_pref("layout.css.light-dark.enabled", true);
+user_pref("svg.context-properties.content.enabled", true);
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+
+// Required for EdgyArc-fr
+user_pref("af.edgyarc.centered-url", true);
+user_pref("af.edgyarc.show-sidebar-header", true);
+user_pref("uc.tweak.floating-tabs", true);
+user_pref("uc.tweak.hide-forward-button", true);
+user_pref("uc.tweak.hide-tabs-bar", true);
+user_pref("uc.tweak.rounded-corners", true);
+
+
+
 /* You may copy+paste this file and use it as it is.
  *
  * If you make changes to your about:config while the program is running, the
