@@ -42,7 +42,6 @@ _deps() {
         gnupg2 \
         hyperfine \
         lsd \
-        neofetch \
         nnn \
         onefetch \
         rclone \

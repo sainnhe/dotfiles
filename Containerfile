@@ -28,7 +28,6 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         fd \
         dust \
         ripgrep \
-        neofetch \
         socat \
         tcpdump \
         rsync \
