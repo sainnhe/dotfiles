@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "@angular/cli": "18.0.7",
-    "@microsoft/inshellisense": "0.0.1-rc.15",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "npm-check-updates": "16.14.20",
