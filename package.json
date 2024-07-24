@@ -1,11 +1,9 @@
 {
   "dependencies": {
-    "@angular/cli": "18.0.7",
-    "commitizen": "4.3.0",
-    "cz-conventional-changelog": "3.3.0",
+    "@angular/cli": "18.1.1",
     "npm-check-updates": "16.14.20",
-    "pnpm": "9.4.0",
-    "vercel": "^34.3.0",
-    "wrangler": "3.63.1"
+    "pnpm": "9.6.0",
+    "vercel": "^35.1.0",
+    "wrangler": "3.66.0"
   }
 }
