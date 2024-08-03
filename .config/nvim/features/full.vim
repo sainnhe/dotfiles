@@ -273,30 +273,11 @@ augroup CocCustom
   autocmd User CocGitStatusChange,CocStatusChange,CocDiagnosticChange call lightline#update()
   autocmd QuitPre * CocCommand terminal.Destroy
 augroup END
-let s:java_home = !empty($JAVA_HOME) ? $JAVA_HOME :
-      \ has('win32') ? expand('~/scoop/apps/openjdk/current') :
-      \ has('osxdarwin') ? '/Library/Java/JavaVirtualMachines/default/Contents/Home' :
-      \ isdirectory('/usr/lib/jvm/default') ? '/usr/lib/jvm/default' :
-      \ isdirectory('/usr/lib/jvm/jre') ? '/usr/lib/jvm/java' :
-      \ isdirectory('/usr/lib/jvm/default-jvm') ? '/usr/lib/jvm/default-jvm' : '/usr'
-let g:root_patterns = [
-      \ '.git',
-      \ '.hg',
-      \ '.svn',
-      \ 'Makefile',
-      \ 'CMakeLists.txt',
-      \ 'requirements.txt',
-      \ 'Cargo.toml',
-      \ 'go.mod',
-      \ 'tsconfig.json',
-      \ 'pom.xml',
-      \ 'venv',
-      \ ]
 call coc#config('java', {
       \ 'jdt': {
         \ 'ls': {
           \ 'java': {
-            \ 'home': s:java_home
+            \ 'home': g:java_home
             \ }
           \ }
         \ },
@@ -304,7 +285,7 @@ call coc#config('java', {
         \ 'runtimes': [{
           \ 'name': 'JavaSE-21',
           \ 'default': v:true,
-          \ 'path': s:java_home
+          \ 'path': g:java_home
         \ }]
       \ },
       \ 'format': {
@@ -316,7 +297,7 @@ call coc#config('java', {
       \ })
 call coc#config('xml', {
       \ 'java': {
-        \ 'home': s:java_home
+        \ 'home': g:java_home
         \ }
       \ })
 call coc#config('semanticTokens', {

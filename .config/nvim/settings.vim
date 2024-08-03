@@ -159,4 +159,25 @@ augroup END
 " Register commands
 command! Mode call custom#mode#update()
 
+" Some global variables
+let g:root_patterns = [
+      \ '.git',
+      \ '.hg',
+      \ '.svn',
+      \ 'Makefile',
+      \ 'CMakeLists.txt',
+      \ 'requirements.txt',
+      \ 'Cargo.toml',
+      \ 'go.mod',
+      \ 'tsconfig.json',
+      \ 'pom.xml',
+      \ 'venv',
+      \ ]
+let g:java_home = !empty($JAVA_HOME) ? $JAVA_HOME :
+      \ has('win32') ? expand('~/scoop/apps/openjdk/current') :
+      \ has('osxdarwin') ? '/Library/Java/JavaVirtualMachines/default/Contents/Home' :
+      \ isdirectory('/usr/lib/jvm/default') ? '/usr/lib/jvm/default' :
+      \ isdirectory('/usr/lib/jvm/jre') ? '/usr/lib/jvm/java' :
+      \ isdirectory('/usr/lib/jvm/default-jvm') ? '/usr/lib/jvm/default-jvm' : '/usr'
+
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
