@@ -465,6 +465,7 @@ FZF_MARKS_JUMP="^z"
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
 bindkey '^[z' autosuggest-execute
+bindkey '^[x' autosuggest-execute
 # }}}
 # {{{zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
