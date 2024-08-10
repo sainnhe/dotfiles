@@ -28,15 +28,15 @@ if [ "$THEME"x == ""x ]; then
 fi
 
 _switch_color_scheme() {
-    if [ -f ~/.config/nvim/envs.vim ]; then
+    if [ -f ~/.vim/envs.vim ]; then
         sed -E -i.bak \
             "s/let g:vim_color_scheme = '.*'/let g:vim_color_scheme = '${2}'/" \
-            ~/.config/nvim/envs.vim && \
-            rm ~/.config/nvim/envs.vim.bak
+            ~/.vim/envs.vim && \
+            rm ~/.vim/envs.vim.bak
         sed -E -i.bak \
             "s/let g:vim_italicize_keywords = .*/let g:vim_italicize_keywords = ${ITALICIZE}/" \
-            ~/.config/nvim/envs.vim && \
-            rm ~/.config/nvim/envs.vim.bak
+            ~/.vim/envs.vim && \
+            rm ~/.vim/envs.vim.bak
     fi
     if [ -f ~/.tmux.conf ]; then
         sed -E -i.bak \
