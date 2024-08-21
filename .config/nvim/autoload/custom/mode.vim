@@ -55,6 +55,8 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'gcc',
           \ 'go',
           \ 'golangci-lint',
+          \ 'staticcheck',
+          \ 'revive',
           \ 'gopls',
           \ 'java',
           \ 'marksman',

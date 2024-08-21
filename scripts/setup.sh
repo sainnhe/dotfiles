@@ -94,6 +94,8 @@ _go() {
     sudo port -N install \
         go \
         golangci-lint \
+        staticcheck \
+        revive \
         gopls \
         protobuf-c
     go install github.com/golang/mock/mockgen@latest

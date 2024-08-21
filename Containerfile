@@ -64,6 +64,7 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         go \
         gopls \
         golangci-lint \
+        staticcheck \
         nodejs \
         nodejs-dev \
         nodejs-doc \
