@@ -102,7 +102,7 @@ _go() {
     go install github.com/golang/protobuf/protoc-gen-go@latest
     go install github.com/lasorda/protobuf-language-server@latest
     ln -s "$DOTFILES_DIR/.golangci.yml" ~
-    echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.env/macos.env"
+    echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.zprofile"
 }
 
 _java() {
@@ -111,7 +111,7 @@ _java() {
         openjdk21-openj9 \
         openjdk21-zulu \
         maven3
-    echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.env/macos.env"
+    echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.zprofile"
 }
 
 _typst() {
