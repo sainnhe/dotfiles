@@ -289,7 +289,6 @@
   "rust-analyzer.lens.run.enable": false,
   "rust-analyzer.lens.debug.enable": false,
   "rust-analyzer.lens.references.adt.enable": true,
-  "rust-analyzer.lens.forceCustomCommands": true,
   "rust-analyzer.lens.implementations.enable": true,
   "rust-analyzer.lens.references.trait.enable": true,
   "rust-analyzer.lens.references.method.enable": true,
