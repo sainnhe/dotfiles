@@ -156,6 +156,12 @@ augroup CursorShape
   autocmd VimLeave * call custom#utils#set_cursor_shape()
 augroup END
 
+" Color columns
+augroup ColorColumns
+  autocmd!
+  autocmd FileType go setlocal colorcolumn=120
+augroup END
+
 " Register commands
 command! Mode call custom#mode#update()
 
