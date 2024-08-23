@@ -225,6 +225,15 @@
     "ga": "gitStage",
     "gu": "gitUnstage"
   },
+  "yaml.format.enable": true,
+  "yaml.schemas": {
+    "Kubernetes": [
+      "/k8s*.yaml",
+      "/k8s*.yml",
+      "/kubernetes*.yaml",
+      "/kubernetes*.yml"
+    ]
+  },
   "tsserver.implicitProjectConfig.experimentalDecorators": true,
   "tsserver.npm": "npm",
   "typescript.referencesCodeLens.enabled": true,
