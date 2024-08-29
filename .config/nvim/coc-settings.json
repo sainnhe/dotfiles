@@ -236,6 +236,7 @@
   },
   "tsserver.implicitProjectConfig.experimentalDecorators": true,
   "tsserver.npm": "npm",
+  "tsserver.useLocalTsdk": true,
   "typescript.referencesCodeLens.enabled": true,
   "typescript.referencesCodeLens.showOnAllFunctions": true,
   "typescript.implementationsCodeLens.enabled": true,
