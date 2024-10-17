@@ -216,6 +216,7 @@ elseif g:vim_mode ==# 'full'
   Plug 'github/copilot.vim'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'sainnhe/coc-java', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
+  Plug 'yaegassy/coc-ruff', { 'do': 'yarn install --frozen-lockfile' }
   Plug 'dense-analysis/ale'
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
