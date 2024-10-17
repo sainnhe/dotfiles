@@ -217,6 +217,7 @@ let g:coc_filetype_map = {
       \ }
 let g:coc_global_extensions = [
       \ 'coc-angular',
+      \ 'coc-basedpyright',
       \ 'coc-calc',
       \ 'coc-clangd',
       \ 'coc-cmake',
