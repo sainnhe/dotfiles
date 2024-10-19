@@ -1,0 +1,11 @@
+post_install() {
+    systemctl enable --now clash-meta
+    systemctl enable --now podman
+    systemctl enable --now sshd
+}
+
+pre_remove() {
+    systemctl disable --now clash-meta
+    systemctl disable --now podman
+    systemctl disable --now sshd
+}
