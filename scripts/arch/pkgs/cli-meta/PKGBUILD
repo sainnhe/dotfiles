@@ -64,7 +64,6 @@ depends=(base
          rsync
          socat
          tcpdump
-         tcping-go-bin
          traceroute
          w3m
          # Containers
