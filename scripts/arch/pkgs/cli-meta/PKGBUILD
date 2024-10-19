@@ -1,0 +1,122 @@
+# Maintainer: Sainnhe Park <i@sainnhe.dev>
+pkgname=cli-meta
+pkgdesc='Meta package to install some CLI components'
+pkgver=2024.05.07
+pkgrel=1
+arch=(any)
+url='https://www.sainnhe.dev/'
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+depends=(base
+         base-devel
+         pacman-contrib
+         devtools
+         # System
+         ntfs-3g
+         openssh
+         man-db
+         man-pages
+         man-pages-zh_cn
+         # AMD GPU
+         mesa
+         vulkan-radeon
+         libva-mesa-driver
+         mesa-vdpau
+         nvtop
+         # Shell Utils
+         awk
+         bingrep
+         bottom
+         cmatrix
+         dust
+         fd
+         figlet
+         fzf
+         git
+         git-lfs
+         gnupg
+         helix
+         hyperfine
+         lsd
+         onefetch
+         pigz
+         ripgrep
+         sysbench
+         sysstat
+         tealdeer
+         unrar
+         unzip
+         viu
+         zip
+         # Network Utils
+         aria2
+         axel
+         bind
+         clash-meta
+         cloudflared
+         inetutils
+         iproute2
+         lsof
+         net-tools
+         nmap
+         proxychains-ng
+         rclone
+         rsync
+         socat
+         tcpdump
+         tcping-go-bin
+         traceroute
+         w3m
+         # Containers
+         podman
+         podman-compose
+         # Zsh
+         zsh
+         # Tmux
+         tmux
+         nnn
+         python-requests
+         # Vim/Neovim
+         vim
+         neovim
+         wl-clipboard
+         xsel
+         words
+         shellcheck
+         shfmt
+         marksman
+         # Node
+         nodejs
+         npm
+         yarn
+         pnpm
+         # Rust
+         rust
+         rust-analyzer
+         # C/C++
+         gcc
+         clang
+         cmake
+         # Go
+         go
+         gopls
+         golangci-lint
+         staticcheck
+         revive
+         protobuf
+         # Java
+         jdk21-openjdk
+         maven
+         # Python
+         python
+         python-pip
+         python-pynvim
+         ruff
+         # Typst
+         typst
+         typst-lsp
+     )
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}

@@ -97,7 +97,7 @@ _go() {
         staticcheck \
         revive \
         gopls \
-        protobuf-c
+        protobuf3-cpp
     go install github.com/golang/mock/mockgen@latest
     go install github.com/golang/protobuf/protoc-gen-go@latest
     go install github.com/lasorda/protobuf-language-server@latest
