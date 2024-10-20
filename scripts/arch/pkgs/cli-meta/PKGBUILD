@@ -105,6 +105,7 @@ depends=(base
          # Java
          jdk21-openjdk
          maven
+         pmd
          # Python
          python
          python-pip
