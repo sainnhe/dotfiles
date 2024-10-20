@@ -3,3 +3,6 @@
 .config/nvim/autoload/plug.vim.old
 .config/nvim/sessions
 .config/fcitx5/conf
+*.pkg.tar.zst
+scripts/arch/pkgs/*/pkg
+scripts/arch/pkgs/*/src
