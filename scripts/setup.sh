@@ -30,6 +30,7 @@ _git() {
     sudo port -N install git git-lfs cloudflared
     cp "$DOTFILES_DIR"/.gitconfig ~
     cp "$DOTFILES_DIR"/.gitignore_global ~
+    echo "Run ./gnupg.sh to setup gpg"
 }
 
 _deps() {
