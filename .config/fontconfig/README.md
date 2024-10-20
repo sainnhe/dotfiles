@@ -5,5 +5,4 @@ Make sure to have the following fonts installed:
 - Source Code Pro
 - [LXGW WenKai](https://github.com/lxgw/LxgwWenKai)
 - LXGW WenKai Mono
-- Noto Sans Symbols
-- Noto Color Emoji
+- Noto 全字符集
