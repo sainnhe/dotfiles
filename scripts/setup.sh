@@ -16,9 +16,26 @@ _help() {
     echo "./setup.sh tmux"
 }
 
+# Util Func{{{
+_symlink() {
+    if [[ "$1" == *"/"* ]]; then
+        DIR=$(echo "$1" | grep -o ".*\/")
+        mkdir -p "$HOME/$DIR"
+    fi
+    ln -sf "$DOTFILES_DIR/$1" "$HOME/$1"
+}
+
+_copy() {
+    if [[ "$1" == *"/"* ]]; then
+        DIR=$(echo "$1" | grep -o ".*\/")
+        mkdir -p "$HOME/$DIR"
+    fi
+    cp -rf "$DOTFILES_DIR/$1" "$HOME/$1"
+}
+#}}}
+
 _ssh() {
-    mkdir -p ~/.ssh
-    cp "$DOTFILES_DIR"/.ssh/config ~/.ssh/
+    _copy .ssh/config
     ssh-keygen -t rsa -f ~/.ssh/id_rsa -C "$1"
     ssh-keygen -t ecdsa -f ~/.ssh/id_ecdsa -C "$1"
     eval "$(ssh-agent -s)"
@@ -27,9 +44,9 @@ _ssh() {
 }
 
 _git() {
+    _copy .gitconfig
+    _symlink .gitignore_global
     sudo port -N install git git-lfs cloudflared
-    cp "$DOTFILES_DIR"/.gitconfig ~
-    cp "$DOTFILES_DIR"/.gitignore_global ~
     echo "Run ./gnupg.sh to setup gpg"
 }
 
@@ -61,24 +78,26 @@ _deps() {
 }
 
 _rust() {
+    _copy .cargo/config.toml
     sudo port -N install cargo rust-analyzer
     cargo install cargo-update cargo-cache
 }
 
 _node() {
+    _copy .npmrc
+    _copy .yarnrc
+    _symlink package.json
     sudo port -N install \
         nodejs20 \
         npm10 \
         yarn \
         pnpm
-    cp "$DOTFILES_DIR/.npmrc" ~
-    cp "$DOTFILES_DIR/.yarnrc" ~
-    ln -s "$DOTFILES_DIR/package.json" ~
     echo "!!! Make sure to modify the cache dir in ~/.npmrc"
     echo "!!! To install required commands: cd ~ && pnpm install"
 }
 
 _python() {
+    _copy .config/pip/pip.conf
     sudo port -N install \
         py-pip \
         py310-pip \
@@ -87,11 +106,10 @@ _python() {
         python310 \
         python312 \
         ruff
-    mkdir -p ~/.config/pip
-    cp "$DOTFILES_DIR"/.config/pip/pip.conf ~/.config/pip
 }
 
 _go() {
+    _symlink .golangci.yml
     sudo port -N install \
         go \
         golangci-lint \
@@ -102,7 +120,6 @@ _go() {
     go install go.uber.org/mock/mockgen@latest
     go install github.com/golang/protobuf/protoc-gen-go@latest
     go install github.com/lasorda/protobuf-language-server@latest
-    ln -s "$DOTFILES_DIR/.golangci.yml" ~
     echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.zprofile"
 }
 
@@ -121,6 +138,17 @@ _typst() {
     cargo install typstyle
 }
 
+_vim() {
+    _symlink .config/nvim
+    ln -s "$DOTFILES_DIR/.config/nvim" ~/.vim
+    nvim
+}
+
+_zsh() {
+    _symlink .zshrc
+    cp "$DOTFILES_DIR/.zsh-theme/edge-dark.zsh" ~/.zsh-theme
+}
+
 _tmux() {
     git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm \
         && cp "$DOTFILES_DIR"/.tmux.conf ~ \
@@ -131,6 +159,15 @@ _tmux() {
         && ~/.tmux/plugins/tpm/scripts/install_plugins.sh \
         && tmux kill-server
 }
+
+_dotfiles() {
+    _symlink .aria2
+    _symlink .config/fcitx5
+    _symlink .config/fontconfig
+    _symlink .config/helix
+    _symlink .config/zathura
+    _symlink .w3m
+} #}}}
 
 if [ "$1" = "help" ]; then
     _help
@@ -152,8 +189,14 @@ elif [ "$1" = "java" ]; then
     _java
 elif [ "$1" = "typst" ]; then
     _typst
+elif [ "$1" = "vim" ]; then
+    _vim
+elif [ "$1" = "zsh" ]; then
+    _zsh
 elif [ "$1" = "tmux" ]; then
     _tmux
+elif [ "$1" = "dotfiles" ]; then
+    _dotfiles
 fi
 
-# vim: set tabstop=4
+# vim: set tabstop=4 fdm=marker fmr={{{,}}}:
