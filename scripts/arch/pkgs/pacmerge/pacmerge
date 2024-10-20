@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+if (( UID )); then
+  printf "You must be root.\n" >&2
+  exit 1
+fi
+
+shopt -s globstar nullglob
+
+set -- "${1:-/etc}"/**/*.pacnew
+
+(( $# )) || exit 1
+
+for file; do
+  current="${file/.pacnew/}"
+
+  ${DIFFTOOL:-vim -d} "$current" "$file"
+
+  rm -iv "$file" # -i gets us prompting for free
+  [[ -f "$file" ]] && mv -iv "$file" "$current"
+done

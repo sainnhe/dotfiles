@@ -1,0 +1,22 @@
+# Maintainer: Sainnhe Park <i@sainnhe.dev>
+pkgname=pacmerge
+pkgver=2023.09.10
+pkgrel=1
+pkgdesc="Merge .pacnew files"
+arch=(any)
+url='https://archlinux.sainnhe.dev/'
+license=('unknown')
+depends=('vim')
+provides=('pacmerge')
+conflicts=('pacmerge')
+source=('pacmerge')
+md5sums=('4f1daab21148b22bbe3b5ea744657ee3')
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}
+
+package() {
+    install -d "${pkgdir}/usr/bin"
+    install -Dm 755 "${srcdir}/pacmerge" "${pkgdir}/usr/bin/"
+}
