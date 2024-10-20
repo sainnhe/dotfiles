@@ -18,7 +18,6 @@ depends=(base
          man-pages-zh_cn
          ntfs-3g
          openssh
-         util-linux
          # AMD GPU
          mesa
          vulkan-radeon
@@ -26,7 +25,6 @@ depends=(base
          mesa-vdpau
          nvtop
          # Shell Utils
-         awk
          bingrep
          bottom
          cmatrix
@@ -57,7 +55,6 @@ depends=(base
          clash-meta
          cloudflared
          inetutils
-         iproute2
          lsof
          net-tools
          nmap
