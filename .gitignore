@@ -6,3 +6,4 @@
 *.pkg.tar.zst
 scripts/arch/pkgs/*/pkg
 scripts/arch/pkgs/*/src
+scripts/arch/pkgs/palette-git/palette-git
