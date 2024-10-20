@@ -11,9 +11,6 @@ depends=(fontconfig
          adobe-source-sans-fonts
          adobe-source-serif-fonts
          adobe-source-code-pro-fonts
-         adobe-source-han-sans-cn-fonts
-         adobe-source-han-serif-cn-fonts
-         adobe-source-han-mono-cn-fonts
          ttf-lxgw-wenkai
          ttf-lxgw-wenkai-mono
          noto-fonts
