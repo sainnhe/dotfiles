@@ -25,6 +25,12 @@ export FuzzyFinder="fzf"
 if [[ "$(uname)" == "Darwin" ]]; then
     fpath=(/opt/local/share/zsh/site-functions $fpath)
 fi
+if test -d "$HOME/.zsh_envs.d/"; then
+    for _env in "$HOME/.zsh_envs.d/"*; do
+        test -r "$_env" && . "$_env"
+    done
+    unset _env
+fi
 # }}}
 # {{{general
 set +o nonotify

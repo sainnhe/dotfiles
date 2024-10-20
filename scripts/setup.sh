@@ -167,6 +167,7 @@ _dotfiles() {
     _symlink .config/helix
     _symlink .config/zathura
     _symlink .w3m
+    echo "Setup ~/.zsh_envs.d manually"
 } #}}}
 
 if [ "$1" = "help" ]; then
