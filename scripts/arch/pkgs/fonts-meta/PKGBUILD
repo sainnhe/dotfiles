@@ -1,0 +1,28 @@
+# Maintainer: Sainnhe Park <i@sainnhe.dev>
+pkgname=fonts-meta
+pkgdesc='Meta package to install some fonts'
+pkgver=2023.09.08
+pkgrel=1
+arch=(any)
+url='https://archlinux.sainnhe.dev/'
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+depends=(fontconfig
+         adobe-source-sans-fonts
+         adobe-source-serif-fonts
+         adobe-source-code-pro-fonts
+         adobe-source-han-sans-cn-fonts
+         adobe-source-han-serif-cn-fonts
+         adobe-source-han-mono-cn-fonts
+         ttf-lxgw-wenkai
+         ttf-lxgw-wenkai-mono
+         noto-fonts
+         noto-fonts-cjk
+         noto-fonts-emoji
+         noto-fonts-extra
+         ttf-ms-win11-auto
+         ttf-ms-win11-auto-zh_cn)
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}
