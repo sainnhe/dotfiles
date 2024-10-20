@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+total=$(ls -1 /usr/bin/palette-* | wc -l)
+index=$(( ( RANDOM % 52 )  + 1 ))
+script=$(ls -1 /usr/bin/palette-* | sed -n "${index}p")
+
+${script}
