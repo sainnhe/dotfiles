@@ -19,13 +19,17 @@ depends=(plasma-meta
          kde-system-meta
          kde-utilities-meta
          # Opt Depends
+         qt6-multimedia-ffmpeg
+         pipewire
+         phonon-qt6-mpv-git
+         phonon-qt5-mpv-git
+         pyside6
+         fcron
+         tesseract-data-chi_sim
          geoip
          sshfs
-         systemdgenie
          cryfs
-         bluez-utils
-         pulseaudio-bluetooth
-         pulseaudio-alsa
+         systemdgenie
          # Theme Engines
          kvantum
          qtcurve-kde
