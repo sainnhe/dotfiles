@@ -13,11 +13,12 @@ depends=(base
          pacman-contrib
          devtools
          # System
-         ntfs-3g
-         openssh
          man-db
          man-pages
          man-pages-zh_cn
+         ntfs-3g
+         openssh
+         util-linux
          # AMD GPU
          mesa
          vulkan-radeon

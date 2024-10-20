@@ -98,7 +98,7 @@ _go() {
         revive \
         gopls \
         protobuf3-cpp
-    go install github.com/golang/mock/mockgen@latest
+    go install go.uber.org/mock/mockgen@latest
     go install github.com/golang/protobuf/protoc-gen-go@latest
     go install github.com/lasorda/protobuf-language-server@latest
     ln -s "$DOTFILES_DIR/.golangci.yml" ~
