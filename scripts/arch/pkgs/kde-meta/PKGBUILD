@@ -1,0 +1,36 @@
+# Maintainer: Sainnhe Park <i@sainnhe.dev>
+pkgname=kde-meta
+pkgdesc='Meta package to install some components for KDE Plasma'
+pkgver=2023.01.27
+pkgrel=1
+arch=(any)
+url='https://www.sainnhe.dev/'
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+depends=(plasma-meta
+         kde-accessibility-meta
+         kde-applications-meta
+         kde-education-meta
+         kde-graphics-meta
+         kde-multimedia-meta
+         kde-network-meta
+         kde-pim-meta
+         kde-sdk-meta
+         kde-system-meta
+         kde-utilities-meta
+         # Opt Depends
+         geoip
+         sshfs
+         systemdgenie
+         cryfs
+         bluez-utils
+         pulseaudio-bluetooth
+         pulseaudio-alsa
+         # Theme Engines
+         kvantum
+         qtcurve-kde
+         qtcurve-utils)
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}
