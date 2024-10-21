@@ -1,0 +1,41 @@
+# Maintainer: Sainnhe Park <i@sainnhe.dev>
+pkgname=gui-meta
+pkgdesc='Meta package to install some GUI components'
+pkgver=2024.06.04
+pkgrel=1
+arch=(any)
+url='https://archlinux.sainnhe.dev/'
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+depends=(# Browsers
+         firefox-developer-edition
+         firefox-developer-edition-i18n-zh-cn
+         ungoogled-chromium
+         chromium-extension-web-store
+         # IM
+         element-desktop
+         telegram-desktop
+         wechat-universal-bwrap
+         # Code OSS
+         code
+         code-marketplace
+         code-features
+         kwallet5
+         # Multimedia
+         gimp
+         gimp-help-zh_cn
+         inkscape
+         # Zathura
+         zathura
+         zathura-cb
+         zathura-djvu
+         zathura-pdf-mupdf
+         zathura-ps
+         # Office
+         onlyoffice-bin
+         larksuite-bin
+         )
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}
