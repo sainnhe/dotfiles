@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=kde-meta
 pkgdesc='Meta package to install some components for KDE Plasma'
-pkgver=2023.01.27
+pkgver=2024.10.21
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -20,7 +20,7 @@ depends=(plasma-meta
          kde-system-meta
          kde-utilities-meta
          # Opt Depends
-         qt6-multimedia-ffmpeg
+         qt6-multimedia-gstreamer
          pipewire
          phonon-qt6-mpv-git
          phonon-qt5-mpv-git
@@ -34,7 +34,21 @@ depends=(plasma-meta
          # Theme Engines
          kvantum
          qtcurve-kde
-         qtcurve-utils)
+         qtcurve-utils
+         # Fcitx
+         fcitx5
+         fcitx5-qt
+         fcitx5-gtk
+         fcitx5-lua
+         fcitx5-configtool
+         fcitx5-chinese-addons
+         fcitx5-pinyin-zhwiki
+         fcitx5-table-extra
+         fcitx5-table-other
+         fcitx5-breeze
+         fcitx5-nord
+         fcitx5-material-color
+         )
 
 pkgver() {
     date --utc +"%Y.%m.%d"
