@@ -1,11 +1,12 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=hooks-meta
-pkgver=2024.10.20
+pkgver=2024.10.21
 pkgrel=1
 pkgdesc='Meta package tp install some hooks'
 arch=('any')
 url='https://www.sainnhe.dev/'
 license=('unknown')
+install="${pkgname}.install"
 depends=('kernel-modules-hook-reflink'
          'check-broken-packages-pacman-hook-git'
          'pacdiff-pacman-hook-git'

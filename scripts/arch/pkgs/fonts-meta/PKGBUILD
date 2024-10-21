@@ -1,16 +1,13 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=fonts-meta
 pkgdesc='Meta package to install some fonts'
-pkgver=2023.09.08
+pkgver=2024.10.21
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
 provides=("${pkgname}")
 conflicts=("${pkgname}")
 depends=(fontconfig
-         adobe-source-sans-fonts
-         adobe-source-serif-fonts
-         adobe-source-code-pro-fonts
          ttf-lxgw-wenkai
          ttf-lxgw-wenkai-mono
          noto-fonts
