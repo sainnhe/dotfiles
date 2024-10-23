@@ -41,11 +41,6 @@ depends=(plasma-meta
          # Cursor Themes
          capitaine-cursors
          posy-cursors
-         # Material Themes
-         materia-kde
-         kvantum-theme-materia
-         materia-gtk-theme
-         papirus-icon-theme
          # Fcitx
          fcitx5
          fcitx5-qt
