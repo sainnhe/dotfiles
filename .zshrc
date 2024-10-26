@@ -345,6 +345,13 @@ pb() { # {{{
         fi
     fi
 } # }}}
+pacclean() { # {{{
+    sudo paccache -rf -k 0
+    pacman -Qdtq | sudo pacman -Rns -
+    /usr/bin/ls -d -1 "$HOME/.cache/pikaur/build/"* | grep -v '.*git\>' | xargs sudo rm -rf
+    /usr/bin/ls -d -1 "$HOME/.local/share/pikaur/aur_repos/"* | grep -v '.*git\>' | xargs sudo rm -rf
+    rm -rf ~/.cache/pikaur/pkg
+} # }}}
 # }}}
 # {{{Alias
 alias du='du -sh'
