@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=gui-meta
 pkgdesc='Meta package to install some GUI components'
-pkgver=2024.06.04
+pkgver=2024.10.26
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -25,6 +25,8 @@ depends=(# Browsers
          gimp
          gimp-help-zh_cn
          inkscape
+         # Utilities
+         bleachbit
          # Zathura
          zathura
          zathura-cb
