@@ -9,8 +9,8 @@ setup_live() { #{{{
     fdisk /dev/nvme0n1
     echo "Type 'n' to create a new partition, 't' to change type, 'w' to write changes."
     mkfs.btrfs --checksum xxhash -L ArchLinux -O block-group-tree /dev/nvme0n1pN # N is the number of the partition
-    mount /dev/nvme0n1pN /mnt
-    echo "Edit pacman.conf to change parallel downloads to 8, edit /etc/pacman.d/mirrorlist to select a mirror."
+    mount -o compress=zstd /dev/nvme0n1pN /mnt
+    echo "Edit /etc/pacman.conf to change parallel downloads to 8, edit /etc/pacman.d/mirrorlist to select a mirror."
     pacstrap -K /mnt \
         base \
         base-devel \
@@ -26,6 +26,7 @@ setup_live() { #{{{
         efibootmgr \
         grub
     genfstab -L /mnt >>/mnt/etc/fstab
+    echo "Make sure /etc/fstab contains compress=zstd"
     echo "Copy pacman.conf and mirrorlist to chroot if you want."
     arch-chroot /mnt
 } #}}}
