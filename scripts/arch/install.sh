@@ -68,13 +68,6 @@ setup_reboot() { #{{{
     # Arch Linux CN
     echo '[archlinuxcn]' >> /etc/pacman.conf
     echo 'Server = https://repo.archlinuxcn.org/$arch' >> /etc/pacman.conf
-    # Arch4edu
-    echo '[arch4edu]' >> /etc/pacman.conf
-    echo 'Server = https://repository.arch4edu.org/$arch' >> /etc/pacman.conf
-    pacman-key --recv-keys 7931B6D628C8D3BA
-    pacman-key --finger 7931B6D628C8D3BA
-    pacman-key --lsign-key 7931B6D628C8D3BA
-    # Install AUR Helper
     pacman -Sy
     pacman -S archlinuxcn-keyring
     pacman -S pikaur
