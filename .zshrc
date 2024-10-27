@@ -374,7 +374,6 @@ alias px='proxychains4 -q'
 alias arch-clean='~/repo/dotfiles/scripts/arch/clean.sh'
 alias javaswitch='~/repo/dotfiles/scripts/javaswitch.sh'
 alias gencomp-help='gencomp'
-alias nvistat='nvidia-smi'
 alias proxyenv='export HTTP_PROXY=http://127.0.0.1:17080 && export HTTPS_PROXY=http://127.0.0.1:17080 && export http_proxy=http://127.0.0.1:17080 && export https_proxy=http://127.0.0.1:17080'
 alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
 alias rga="rg --hidden --ignore-vcs '--glob=!.git/*'"
