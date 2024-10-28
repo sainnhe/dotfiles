@@ -3,3 +3,5 @@
 .vim
 .vim-bookmarks
 .editorconfig
+staticcheck.conf
+.tool-versions
