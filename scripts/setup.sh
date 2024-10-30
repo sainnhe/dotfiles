@@ -165,7 +165,7 @@ _dotfiles() {
     _symlink .config/fcitx5
     _symlink .config/fontconfig
     _symlink .config/helix
-    _symlink .config/zathura
+    _copy .config/zathura
     _symlink .w3m
     echo "Setup ~/.zsh_envs.d manually"
 } #}}}
