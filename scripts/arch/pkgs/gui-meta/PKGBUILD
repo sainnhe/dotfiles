@@ -1,12 +1,13 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=gui-meta
 pkgdesc='Meta package to install some GUI components'
-pkgver=2024.10.26
+pkgver=2024.11.02
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
 provides=("${pkgname}")
 conflicts=("${pkgname}")
+install="${pkgname}.install"
 depends=(# Browsers
          firefox-developer-edition
          firefox-developer-edition-i18n-zh-cn
@@ -36,6 +37,8 @@ depends=(# Browsers
          # Office
          onlyoffice-bin
          larksuite-bin
+         # AMD
+         lact
          )
 
 pkgver() {
