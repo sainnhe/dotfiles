@@ -1,0 +1,25 @@
+# Maintainer: Sainnhe Park <i@sainnhe.dev>
+pkgname=steam-meta
+pkgdesc='Meta package to install steam'
+pkgver=2024.11.02
+pkgrel=1
+arch=(any)
+url='https://www.sainnhe.dev/'
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+depends=(steam
+         # Drivers
+         vulkan-radeon
+         lib32-vulkan-radeon
+         vulkan-mesa-layers
+         lib32-vulkan-mesa-layers
+         mesa
+         lib32-mesa
+         # Dependencies
+         xdg-desktop-portal
+         lib32-systemd
+         )
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}
