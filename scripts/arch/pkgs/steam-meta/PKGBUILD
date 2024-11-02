@@ -8,6 +8,7 @@ url='https://www.sainnhe.dev/'
 provides=("${pkgname}")
 conflicts=("${pkgname}")
 depends=(steam
+         steamcmd
          # Drivers
          vulkan-radeon
          lib32-vulkan-radeon
