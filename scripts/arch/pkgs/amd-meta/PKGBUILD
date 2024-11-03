@@ -22,9 +22,14 @@ depends=(# GPU Drivers
          lib32-libva-mesa-driver
          lib32-mesa-vdpau
          # GPU Control & Monitor
-         nvtop
          lact
+         nvtop
+         radeontop
+         mesa-utils
+         vulkan-tools
          clinfo
+         libva-utils
+         vdpauinfo
          # CPU Microcode Update
          amd-ucode
          # Dependencies

@@ -1,3 +1,4 @@
 post_install() {
     systemctl enable --now lactd
+    echo "==> Remember to install env file in /etc/profile.d"
 }
