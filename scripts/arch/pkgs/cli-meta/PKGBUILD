@@ -105,6 +105,7 @@ depends=(base
          # Python
          python
          python-pip
+         python-pipx
          python-pynvim
          ruff
          ruff-lsp
