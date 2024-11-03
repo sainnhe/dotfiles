@@ -1,9 +1,9 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
-pkgname="palette-git"
+pkgname="palette-scripts-git"
 pkgdesc='Print color palette'
 url='https://github.com/stark/Color-Scripts'
-provides=('palette')
-conflicts=('palette')
+provides=('palette-scripts')
+conflicts=('palette-scripts')
 arch=('any')
 depends=('bash' 'python' 'perl')
 makedepends=('git')
