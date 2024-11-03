@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=cli-meta
 pkgdesc='Meta package to install some CLI components'
-pkgver=2024.10.26
+pkgver=2024.11.03
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -20,12 +20,6 @@ depends=(base
          openssh
          nftables
          ufw
-         # AMD GPU
-         mesa
-         vulkan-radeon
-         libva-mesa-driver
-         mesa-vdpau
-         nvtop
          # Shell Utils
          bingrep
          bottom

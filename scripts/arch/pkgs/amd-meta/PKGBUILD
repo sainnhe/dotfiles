@@ -1,0 +1,34 @@
+# Maintainer: Sainnhe Park <i@sainnhe.dev>
+pkgname=amd-meta
+pkgdesc='Meta package to install amd components'
+pkgver=2024.11.03
+pkgrel=1
+arch=(any)
+url='https://www.sainnhe.dev/'
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+install="${pkgname}.install"
+depends=(# GPU Drivers
+         mesa
+         vulkan-radeon
+         vulkan-mesa-layers
+         libva-mesa-driver
+         mesa-vdpau
+         lib32-mesa
+         lib32-vulkan-radeon
+         lib32-vulkan-mesa-layers
+         lib32-libva-mesa-driver
+         lib32-mesa-vdpau
+         # GPU Control Panel
+         nvtop
+         lact
+         # CPU Microcode Update
+         amd-ucode
+         # Dependencies
+         xdg-desktop-portal
+         lib32-systemd
+         )
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}
