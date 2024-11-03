@@ -19,6 +19,9 @@ depends=(# GPU Drivers
          lib32-vulkan-mesa-layers
          lib32-libva-mesa-driver
          lib32-mesa-vdpau
+         # OpenCL
+         opencl-rusticl-mesa
+         clinfo
          # GPU Control Panel
          nvtop
          lact
