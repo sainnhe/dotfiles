@@ -300,9 +300,6 @@ call coc#config('xml', {
         \ 'home': g:java_home
         \ }
       \ })
-call coc#config('semanticTokens', {
-      \ 'filetypes': has('nvim') ? [''] : ['*']
-      \ })
 call coc#config('project', {
       \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
       \ 'rootPatterns': g:root_patterns
@@ -602,8 +599,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
   ignore_install = { "phpdoc", "beancount" },
   highlight = {
-    enable = true,
-    disable = { "vim", "help", "markdown" },
+    enable = false,
   },
   incremental_selection = {
     enable = true,

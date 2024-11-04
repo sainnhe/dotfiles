@@ -55,6 +55,7 @@
   "signature.triggerSignatureWait": 300,
   "codeLens.enable": true,
   "codeLens.separator": "▸",
+  "semanticTokens.enable": true,
   "list.indicator": "❯",
   "list.source.grep.command": "rg",
   "list.source.grep.args": [
