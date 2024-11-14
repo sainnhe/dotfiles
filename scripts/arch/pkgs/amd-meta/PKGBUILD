@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=amd-meta
 pkgdesc='Meta package to install amd components'
-pkgver=2024.11.03
+pkgver=2024.11.14
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -13,14 +13,10 @@ depends=(# GPU Drivers
          vulkan-radeon
          vulkan-mesa-layers
          opencl-rusticl-mesa
-         libva-mesa-driver
-         mesa-vdpau
          lib32-mesa
          lib32-vulkan-radeon
          lib32-vulkan-mesa-layers
          lib32-opencl-rusticl-mesa
-         lib32-libva-mesa-driver
-         lib32-mesa-vdpau
          # GPU Control & Monitor
          lact
          nvtop
