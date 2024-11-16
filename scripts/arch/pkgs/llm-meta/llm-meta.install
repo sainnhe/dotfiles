@@ -1,3 +1,0 @@
-post_install() {
-    systemctl enable --now ollama
-}
