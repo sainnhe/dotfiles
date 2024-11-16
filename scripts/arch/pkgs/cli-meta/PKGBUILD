@@ -74,7 +74,6 @@ depends=(base
          vim
          neovim
          wl-clipboard
-         xsel
          words
          shellcheck
          shfmt
