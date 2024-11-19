@@ -178,6 +178,7 @@ let g:root_patterns = [
       \ 'tsconfig.json',
       \ 'pom.xml',
       \ 'venv',
+      \ 'BUILD',
       \ ]
 let g:java_home = !empty($JAVA_HOME) ? $JAVA_HOME :
       \ has('win32') ? expand('~/scoop/apps/openjdk/current') :
