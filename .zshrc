@@ -360,7 +360,7 @@ zinit ice wait'1' lucid depth=1 \
     atload"export MANPATH=$HOME/.zinit/plugins/sunaku---dasht/man:$MANPATH && source etc/zsh/completions.zsh"
 zinit light sunaku/dasht
 zinit ice pick"pb" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/pb"
-zinit ice pick"pb" as"completion"; zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/_pb"
+zinit ice pick"_pb" as"completion"; zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/_pb"
 # {{{fast-syntax-highlighting
 FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
 # }}}
