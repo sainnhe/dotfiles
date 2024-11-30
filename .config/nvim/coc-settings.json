@@ -139,6 +139,7 @@
   "coc.source.dictionary.filetypes": [
     "latex",
     "bibtex",
+    "typst",
     "markdown",
     "org",
     "restructuredtext",
@@ -149,6 +150,7 @@
   "coc.source.word.filetypes": [
     "latex",
     "bibtex",
+    "typst",
     "markdown",
     "org",
     "restructuredtext",
@@ -159,6 +161,7 @@
   "coc.source.emoji.filetypes": [
     "latex",
     "bibtex",
+    "typst",
     "markdown",
     "org",
     "restructuredtext",
