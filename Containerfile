@@ -8,6 +8,7 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         mandoc \
         ncurses-terminfo \
         shadow \
+        file \
         # Utilities
         bottom \
         dust \
