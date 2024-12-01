@@ -52,9 +52,12 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         w3m \
         wget \
         # Development
+        flex \
         git \
         git-lfs \
         neovim \
+        openssl \
+        openssl-dev \
         shellcheck \
         shfmt \
         tmux \
