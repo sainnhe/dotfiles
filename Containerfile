@@ -82,6 +82,10 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         gopls \
         protobuf \
         staticcheck \
+        # Rust
+        rust \
+        cargo \
+        rust-analyzer \
         # Python
         py3-pip \
         py3-pynvim \
@@ -137,12 +141,6 @@ RUN git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/
         && sleep 1 \
         && ~/.tmux/plugins/tpm/scripts/install_plugins.sh \
         && tmux kill-server
-
-# Rust
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init \
-        && sh rustup-init --default-toolchain nightly --component rust-analyzer-preview -y \
-        && zsh -c "rustup component remove rust-docs" \
-        && rm rustup-init
 
 # Vim/Neovim
 RUN mkdir -p ~/.config ~/.local/share/nvim \
