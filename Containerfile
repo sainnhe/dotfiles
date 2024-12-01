@@ -1,92 +1,113 @@
 FROM public.ecr.aws/docker/library/alpine:edge
 RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
         && apk upgrade --no-cache && apk add --no-cache \
-        shadow \
+        # Basic packages
         bash \
-        util-linux \
-        ncurses-terminfo \
-        mandoc \
         man-pages \
         man-pages-posix \
+        mandoc \
+        ncurses-terminfo \
+        shadow \
+        # Utilities
+        bottom \
+        dust \
+        fd \
+        fzf \
+        gnupg \
+        gzip \
+        hyperfine \
+        lsd@testing \
+        nnn \
         ntfs-3g \
         ntfs-3g-progs \
-        git \
-        subversion \
+        onefetch \
+        openssh \
+        pigz \
+        ripgrep \
+        sysstat \
+        tar \
+        tealdeer@testing \
+        unzip \
+        util-linux \
+        viu \
+        xz \
+        zip \
+        # Network
+        aria2 \
+        axel \
+        bind-tools \
         curl \
-        wget \
+        inetutils \
+        lsof \
         net-tools \
         nmap \
-        openssh \
-        gnupg \
-        w3m \
-        aria2 \
-        tar \
-        xz \
-        gzip \
-        zip \
-        unzip \
-        fd \
-        dust \
-        ripgrep \
+        rclone \
+        rsync \
         socat \
         tcpdump \
-        rsync \
-        subversion \
-        sysbench \
-        hyperfine \
-        onefetch \
-        bottom \
-        nnn \
-        zsh \
-        tmux \
-        fzf \
-        vim \
+        traceroute \
+        w3m \
+        wget \
+        # Development
+        git \
+        git-lfs \
         neovim \
-        helix \
-        tree-sitter-grammars \
-        make \
-        cmake \
-        autoconf \
-        automake \
-        pkgconf \
-        bison \
-        binutils \
-        patch \
-        gettext \
-        texinfo \
         shellcheck \
         shfmt \
-        gcc \
-        g++ \
-        gdb \
+        tmux \
+        vim \
+        zsh \
+        # Build tools
+        autoconf \
+        automake \
+        binutils \
+        bison \
+        cmake \
+        gettext \
+        make \
+        patch \
+        pkgconf \
+        texinfo \
+        # C/C++
         clang \
         clang-extra-tools \
+        g++ \
+        gcc \
+        gdb \
+        # Go
         go \
-        gopls \
         golangci-lint \
+        gopls \
+        protobuf \
         staticcheck \
+        # Python
+        py3-pip \
+        py3-pynvim \
+        py3-requests \
+        python3 \
+        python3-dev \
+        ruff \
+        ruff@testing \
+        # Node
         nodejs \
         nodejs-dev \
         nodejs-doc \
         npm \
         npm-doc \
-        yarn \
-        python3 \
-        python3-dev \
-        py3-pip \
-        py3-requests \
-        openjdk8 \
-        maven \
-        lsd@testing \
-        ruff@testing \
         pnpm@testing \
+        yarn \
+        # Java
+        maven \
+        openjdk21 \
+        # Typst
+        typst \
         && [ "$(uname -m)" = "x86_64" ] \
         && curl -fSL \
-                -o /usr/bin/marksman \
-                https://github.com/artempyanykh/marksman/releases/latest/download/marksman-linux-x64 \
+        -o /usr/bin/marksman \
+        https://github.com/artempyanykh/marksman/releases/latest/download/marksman-linux-x64 \
         || curl -fSL \
-                -o /usr/bin/marksman \
-                https://github.com/artempyanykh/marksman/releases/latest/download/marksman-linux-arm64 \
+        -o /usr/bin/marksman \
+        https://github.com/artempyanykh/marksman/releases/latest/download/marksman-linux-arm64 \
         && chmod a+x /usr/bin/marksman
 
 RUN git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles \
