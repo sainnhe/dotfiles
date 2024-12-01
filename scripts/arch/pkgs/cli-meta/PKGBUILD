@@ -113,6 +113,8 @@ depends=(base
          typst-lsp
          # Kernel Development
          bc
+         cpio
+         qemu-base
      )
 
 pkgver() {
