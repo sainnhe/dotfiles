@@ -170,8 +170,6 @@ let g:root_patterns = [
       \ '.git',
       \ '.hg',
       \ '.svn',
-      \ 'Makefile',
-      \ 'CMakeLists.txt',
       \ 'requirements.txt',
       \ 'Cargo.toml',
       \ 'go.mod',
