@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=cli-meta
 pkgdesc='Meta package to install some CLI components'
-pkgver=2024.11.17
+pkgver=2024.12.01
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -37,7 +37,6 @@ depends=(base
          onefetch
          pigz
          ripgrep
-         sysbench
          sysstat
          tealdeer
          unrar
@@ -69,7 +68,6 @@ depends=(base
          # Tmux
          tmux
          nnn
-         python-requests
          # Vim/Neovim
          vim
          neovim
@@ -107,6 +105,7 @@ depends=(base
          python-pip
          python-pipx
          python-pynvim
+         python-requests
          ruff
          ruff-lsp
          # Typst
