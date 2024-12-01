@@ -37,7 +37,9 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         axel \
         bind-tools \
         curl \
-        inetutils \
+        inetutils-ftp \
+        inetutils-syslogd-openrc \
+        inetutils-telnet \
         lsof \
         net-tools \
         nmap \
