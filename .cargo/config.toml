@@ -1,10 +1,5 @@
 [source.crates-io]
-registry = "https://github.com/rust-lang/crates.io-index"
+replace-with = 'aliyun'
+[source.aliyun]
+registry = "sparse+https://mirrors.aliyun.com/crates.io-index/"
 
-replace-with = 'tencent'
-
-[source.tencent]
-registry = "http://rust.mirrors.tencent.com/index"
-
-[net]
-git-fetch-with-cli = true
