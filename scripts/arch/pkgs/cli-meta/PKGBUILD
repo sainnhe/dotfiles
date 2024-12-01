@@ -111,6 +111,8 @@ depends=(base
          # Typst
          typst
          typst-lsp
+         # Kernel Development
+         bc
      )
 
 pkgver() {
