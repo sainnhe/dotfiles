@@ -172,6 +172,7 @@ Plug '520Matches/fcitx5.vim'
 Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencManualEncoding', 'FencView'] }
 " Functional components
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/asynctasks.vim', { 'on': ['AsyncTask', 'AsyncTaskEdit'] }
 Plug 'mg979/vim-visual-multi', { 'on': ['<Plug>(VM-Add-Cursor-At-Pos)', '<Plug>(VM-Visual-Cursors)'] }
