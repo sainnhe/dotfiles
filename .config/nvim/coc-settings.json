@@ -276,6 +276,7 @@
   "go.goplsPath": "gopls",
   "go.checkForUpdates": "disabled",
   "go.goplsOptions": {
+    "staticcheck": true,
     "semanticTokens": true,
     "usePlaceholders": true,
     "codelenses": {
