@@ -28,7 +28,6 @@ linters:
     - sloglint
     - sqlclosecheck
     - testpackage
-    - tparallel
     - unconvert
     - usestdlibvars
 linters-settings:
