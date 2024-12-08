@@ -107,8 +107,9 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         pnpm@testing \
         yarn \
         # Java
-        maven \
         openjdk21 \
+        maven \
+        gradle \
         # Typst
         typst \
         && [ "$(uname -m)" = "x86_64" ] \
