@@ -128,7 +128,8 @@ _java() {
         pmd \
         openjdk21-openj9 \
         openjdk21-zulu \
-        maven3
+        maven3 \
+        gradle
     echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.zprofile"
 }
 
