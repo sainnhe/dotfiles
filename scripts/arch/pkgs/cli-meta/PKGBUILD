@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=cli-meta
 pkgdesc='Meta package to install some CLI components'
-pkgver=2024.12.01
+pkgver=2024.12.08
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -99,6 +99,7 @@ depends=(base
          # Java
          jdk21-openjdk
          maven
+         gradle
          pmd
          # Python
          python
