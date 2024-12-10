@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "@angular/cli": "18.2.11",
-    "npm-check-updates": "17.1.9",
-    "pnpm": "9.12.3",
-    "vercel": "^37.14.0",
-    "wrangler": "3.84.1"
+    "@angular/cli": "19.0.4",
+    "npm-check-updates": "17.1.11",
+    "pnpm": "9.15.0",
+    "vercel": "^39.2.0",
+    "wrangler": "3.94.0"
   }
 }
