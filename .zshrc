@@ -351,7 +351,7 @@ zinit ice pick"sysz" as"program"; zinit snippet "https://testingcf.jsdelivr.net/
 zinit ice mv"httpstat.sh -> httpstat" \
         pick"httpstat" as"program"
 zinit snippet "https://testingcf.jsdelivr.net/gh/b4b4r07/httpstat@master/httpstat.sh"
-zinit ice wait'1' lucid depth=1 \
+zinit ice wait'1' lucid ver=v0.15.0 \
     as"program" \
     pick"bin/asdf"
 zinit light asdf-vm/asdf
