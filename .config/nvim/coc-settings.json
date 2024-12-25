@@ -52,6 +52,7 @@
   "tree.key.toggleSelection": "s",
   "outline.keepWindow": true,
   "outline.togglePreviewKey": "<C-p>",
+  "outline.sortBy": "position",
   "signature.triggerSignatureWait": 300,
   "codeLens.enable": true,
   "codeLens.separator": "▸",
@@ -404,7 +405,8 @@
       "filetypes": [
         "typst"
       ],
-      "command": "typst-lsp"
+      "command": "tinymist",
+      "args": ["lsp"]
     },
     "protobuf-language-server": {
       "command": "protobuf-language-server",

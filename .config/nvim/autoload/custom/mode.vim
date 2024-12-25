@@ -77,7 +77,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'shellcheck',
           \ 'shfmt',
           \ 'typst',
-          \ 'typst-lsp',
+          \ 'tinymist',
           \ 'typstyle',
           \ 'yarn',
           \ ],

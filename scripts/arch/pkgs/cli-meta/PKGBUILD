@@ -111,7 +111,7 @@ depends=(base
          ruff-lsp
          # Typst
          typst
-         typst-lsp
+         tinymist
          # Kernel Development
          bc
          cpio

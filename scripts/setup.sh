@@ -135,7 +135,7 @@ _java() {
 
 _typst() {
     sudo port -N install typst
-    cargo install --git=https://github.com/nvarner/typst-lsp typst-lsp
+    cargo install --git https://github.com/Myriad-Dreamin/tinymist --locked tinymist
     cargo install typstyle
 }
 
