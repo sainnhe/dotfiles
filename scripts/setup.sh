@@ -80,10 +80,7 @@ _deps() {
 _rust() {
     _copy .cargo/config.toml
     sudo port -N install cargo rust-analyzer
-    cargo install \
-        cargo-update \
-        cargo-cache \
-        protols
+    cargo install cargo-update cargo-cache
 }
 
 _node() {
@@ -123,6 +120,7 @@ _go() {
     go install go.uber.org/mock/mockgen@latest
     go install github.com/golang/protobuf/protoc-gen-go@latest
     go install github.com/sqls-server/sqls@latest
+    cargo install protols
     echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.zprofile"
 }
 
