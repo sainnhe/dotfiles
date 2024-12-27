@@ -67,7 +67,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'pip',
           \ 'pmd',
           \ 'pnpm',
-          \ 'protobuf-language-server',
+          \ 'protols',
           \ 'protoc',
           \ 'protoc-gen-go',
           \ 'python',

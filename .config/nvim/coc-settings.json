@@ -408,14 +408,11 @@
       "command": "tinymist",
       "args": ["lsp"]
     },
-    "protobuf-language-server": {
-      "command": "protobuf-language-server",
+    "protobuf": {
+      "command": "protols",
       "filetypes": [
         "proto"
-      ],
-      "settings": {
-        "additional-proto-dirs": []
-      }
+      ]
     }
   }
 }
