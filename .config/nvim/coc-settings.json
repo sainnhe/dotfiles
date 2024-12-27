@@ -406,12 +406,20 @@
         "typst"
       ],
       "command": "tinymist",
-      "args": ["lsp"]
+      "args": [
+        "lsp"
+      ]
     },
     "protobuf": {
       "command": "protols",
       "filetypes": [
         "proto"
+      ]
+    },
+    "sql": {
+      "command": "sqls",
+      "filetypes": [
+        "sql"
       ]
     }
   }
