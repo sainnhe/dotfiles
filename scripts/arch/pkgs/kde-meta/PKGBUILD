@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=kde-meta
 pkgdesc='Meta package to install some components for KDE Plasma'
-pkgver=2024.10.23
+pkgver=2024.12.27
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -31,6 +31,7 @@ depends=(plasma-meta
          sshfs
          cryfs
          systemdgenie
+         flatpak
          # Theme Engines
          kvantum
          qtcurve-kde
