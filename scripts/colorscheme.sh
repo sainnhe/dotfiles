@@ -5,16 +5,17 @@ THEME=$(printf "\
 [2]  Gruvbox Mix Dark\n\
 [3]  Gruvbox Material Light\n\
 [4]  Edge Dark\n\
-[5]  Edge Light\n\
-[6]  Everforest Dark\n\
-[7]  Everforest Light\n\
-[8]  Sonokai\n\
-[9]  Sonokai Shusia\n\
-[10] Sonokai Andromeda\n\
-[11] Sonokai Atlantis\n\
-[12] Sonokai Maia\n\
-[13] Sonokai Espresso\n\
-[14] Soft Era\n" |\
+[5]  Edge Dim Dark\n\
+[6]  Edge Light\n\
+[7]  Everforest Dark\n\
+[8]  Everforest Light\n\
+[9]  Sonokai\n\
+[10] Sonokai Shusia\n\
+[11] Sonokai Andromeda\n\
+[12] Sonokai Atlantis\n\
+[13] Sonokai Maia\n\
+[14] Sonokai Espresso\n\
+[15] Soft Era\n" |\
 fzf |\
 sed -E -e 's/^\[//' -e 's/].*//')
 
@@ -76,20 +77,25 @@ elif [ "$THEME" == "4" ]; then
         ~/repo/dotfiles/.zsh-theme/edge-dark
 elif [ "$THEME" == "5" ]; then
     _switch_color_scheme \
+        edge-dim-dark \
+        edge_dim_dark \
+        ~/repo/dotfiles/.zsh-theme/edge-dim-dark
+elif [ "$THEME" == "6" ]; then
+    _switch_color_scheme \
         edge-light \
         edge_light \
         ~/repo/dotfiles/.zsh-theme/edge-light
-elif [ "$THEME" == "6" ]; then
+elif [ "$THEME" == "7" ]; then
     _switch_color_scheme \
         everforest-dark \
         everforest_dark \
         ~/repo/dotfiles/.zsh-theme/everforest-dark
-elif [ "$THEME" == "7" ]; then
+elif [ "$THEME" == "8" ]; then
     _switch_color_scheme \
         everforest-light \
         everforest_light \
         ~/repo/dotfiles/.zsh-theme/everforest-light
-elif [ "$THEME" == "8" ]; then
+elif [ "$THEME" == "9" ]; then
     _switch_color_scheme \
         sonokai \
         sonokai \
@@ -98,7 +104,7 @@ elif [ "$THEME" == "8" ]; then
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
         rm ~/.config/zathura/zathurarc.bak
-elif [ "$THEME" == "9" ]; then
+elif [ "$THEME" == "10" ]; then
     _switch_color_scheme \
         sonokai-shusia \
         sonokai_shusia \
@@ -107,7 +113,7 @@ elif [ "$THEME" == "9" ]; then
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
         rm ~/.config/zathura/zathurarc.bak
-elif [ "$THEME" == "10" ]; then
+elif [ "$THEME" == "11" ]; then
     _switch_color_scheme \
         sonokai-andromeda \
         sonokai_andromeda \
@@ -116,7 +122,7 @@ elif [ "$THEME" == "10" ]; then
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
         rm ~/.config/zathura/zathurarc.bak
-elif [ "$THEME" == "11" ]; then
+elif [ "$THEME" == "12" ]; then
     _switch_color_scheme \
         sonokai-atlantis \
         sonokai_atlantis \
@@ -125,7 +131,7 @@ elif [ "$THEME" == "11" ]; then
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
         rm ~/.config/zathura/zathurarc.bak
-elif [ "$THEME" == "12" ]; then
+elif [ "$THEME" == "13" ]; then
     _switch_color_scheme \
         sonokai-maia \
         sonokai_maia \
@@ -134,7 +140,7 @@ elif [ "$THEME" == "12" ]; then
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
         rm ~/.config/zathura/zathurarc.bak
-elif [ "$THEME" == "13" ]; then
+elif [ "$THEME" == "14" ]; then
     _switch_color_scheme \
         sonokai-espresso \
         sonokai_espresso \
@@ -143,7 +149,7 @@ elif [ "$THEME" == "13" ]; then
         "s/^include themes.*/include themes\/edge-dark/" \
         ~/.config/zathura/zathurarc && \
         rm ~/.config/zathura/zathurarc.bak
-elif [ "$THEME" == "14" ]; then
+elif [ "$THEME" == "15" ]; then
     _switch_color_scheme \
         soft-era \
         soft_era \
