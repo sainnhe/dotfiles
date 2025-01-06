@@ -78,6 +78,21 @@ function custom#colorscheme#gruvbox_material_light() abort "{{{
 endfunction "}}}
 function custom#colorscheme#edge_dark() abort "{{{
   let g:edge_style = 'aura'
+  let g:edge_dim_foreground = 0
+  let g:edge_disable_italic_comment = 1
+  let g:edge_enable_italic = g:vim_italicize_keywords
+  let g:edge_cursor = 'blue'
+  let g:edge_lightline_disable_bold = 1
+  let g:edge_better_performance = 1
+  set background=dark
+  colorscheme edge
+  if g:vim_mode ==# 'full'
+    call custom#utils#switch_lightline_color_scheme('edge')
+  endif
+endfunction "}}}
+function custom#colorscheme#edge_dim_dark() abort "{{{
+  let g:edge_style = 'aura'
+  let g:edge_dim_foreground = 1
   let g:edge_disable_italic_comment = 1
   let g:edge_enable_italic = g:vim_italicize_keywords
   let g:edge_cursor = 'blue'
@@ -91,6 +106,7 @@ function custom#colorscheme#edge_dark() abort "{{{
 endfunction "}}}
 function custom#colorscheme#edge_light() abort "{{{
   let g:edge_style = 'aura'
+  let g:edge_dim_foreground = 0
   let g:edge_disable_italic_comment = 1
   let g:edge_enable_italic = g:vim_italicize_keywords
   let g:edge_cursor = 'purple'
