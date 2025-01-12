@@ -272,7 +272,7 @@
     "--background-index",
     "--completion-style=detailed",
     "--fallback-style=google",
-    "--header-insertion=iwyu"
+    "--header-insertion=never"
   ],
   "go.goplsPath": "gopls",
   "go.checkForUpdates": "disabled",
