@@ -1,7 +1,7 @@
-.config/nvim/envs.vim
-.config/nvim/autoload/plug.vim
-.config/nvim/autoload/plug.vim.old
-.config/nvim/sessions
+.vim/envs.vim
+.vim/autoload/plug.vim
+.vim/autoload/plug.vim.old
+.vim/sessions
 .config/fcitx5/conf
 *.pkg.tar.zst
 scripts/arch/pkgs/*/pkg
