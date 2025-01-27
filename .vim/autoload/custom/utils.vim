@@ -62,25 +62,21 @@ function custom#utils#check_back_space() abort "{{{
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction "}}}
 function custom#utils#stdpath(type) abort "{{{
-  if has('nvim')
-    return stdpath(a:type)
+  if !has('win32')
+    if a:type ==# 'config'
+      return expand('~') . '/.vim'
+    elseif a:type ==# 'cache'
+      return expand('~') . '/.cache/vim'
+    elseif a:type ==# 'data'
+      return expand('~') . '/.local/share/vim'
+    endif
   else
-    if !has('win32')
-      if a:type ==# 'config'
-        return expand('~') . '/.vim'
-      elseif a:type ==# 'cache'
-        return expand('~') . '/.cache/vim'
-      elseif a:type ==# 'data'
-        return expand('~') . '/.local/share/vim'
-      endif
-    else
-      if a:type ==# 'config'
-        return expand('~') . '\vimfiles'
-      elseif a:type ==# 'cache'
-        return expand('~') . '\AppData\Local\Temp\vim'
-      elseif a:type ==# 'data'
-        return expand('~') . '\AppData\Local\vim-data'
-      endif
+    if a:type ==# 'config'
+      return expand('~') . '\vimfiles'
+    elseif a:type ==# 'cache'
+      return expand('~') . '\AppData\Local\Temp\vim'
+    elseif a:type ==# 'data'
+      return expand('~') . '\AppData\Local\vim-data'
     endif
   endif
 endfunction "}}}
@@ -119,35 +115,9 @@ endfunction "}}}
 function custom#utils#generate_default_envs() abort "{{{
   " Generate default envs.vim
   let l:envs_path = fnamemodify(custom#utils#stdpath('config'), ':p') . 'envs.vim'
-  call writefile([
-        \ "if !exists('g:vim_mode')",
-        \ "  let g:vim_mode = 'minimal'",
-        \ 'endif',
-        \ 'let g:vim_plug_auto_install = 1',
-        \ 'let g:vim_lightline_artify = 0',
-        \ "let g:vim_color_scheme = 'edge_dark'",
-        \ 'let g:vim_italicize_keywords = 0',
-        \ "if !has('win32')",
-        \ '  let g:startify_bookmarks = [',
-        \ "        \\ {'z': '~/.zshrc'},",
-        \ "        \\ {'t': '~/.tmux.conf'},",
-        \ "        \\ {'r': '~/repo/'},",
-        \ "        \\ {'p': '~/playground/'},",
-        \ '        \ ]',
-        \ 'else',
-        \ '  let g:startify_bookmarks = [',
-        \ "        \\ {'r': '~/repo/'},",
-        \ "        \\ {'p': '~/playground/'},",
-        \ '        \ ]',
-        \ 'endif',
-        \ "if has('gui_running') || exists('g:fvim_loaded') || exists('g:neovide') || exists('g:nvui')",
-        \ "  if !has('nvim') && !has('win32') && !has('osxdarwin')",
-        \ '    set guifont=Macon\ 12',
-        \ '  else',
-        \ '    set guifont=Macon:h12',
-        \ '  endif',
-        \ 'endif'
-        \ ], l:envs_path, 's')
+  let l:envs_default_path = fnamemodify(custom#utils#stdpath('config'), ':p') . 'envs.default.vim'
+  let content = readfile(l:envs_default_path, 'b')
+  call writefile(content, l:envs_path, 'b')
 endfunction "}}}
 function custom#utils#coc_fold() abort "{{{
   if CocAction('hasProvider', 'foldingRange')

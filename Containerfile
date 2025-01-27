@@ -151,7 +151,7 @@ RUN git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/
 RUN mkdir -p ~/.config ~/.local/share/vim \
         && ln -s /root/repo/dotfiles/.vim ~/.vim \
         && ln -s /root/repo/dotfiles/.vim ~/.config/nvim \
-        && cp ~/repo/dotfiles/.vim/envs.container.vim ~/repo/dotfiles/.vim/envs.vim
+        && cp ~/repo/dotfiles/.vim/envs.default.vim ~/repo/dotfiles/.vim/envs.vim
 # Coc Extensions
 RUN mkdir -p ~/.local/share/vim/coc/extensions \
         && cd ~/.local/share/vim/coc/extensions \

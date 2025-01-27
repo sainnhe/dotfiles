@@ -1,6 +1,3 @@
-" This file will be copied to envs.vim when building the container image.
-" See Containerfile for detailed information.
-
 if !exists('g:vim_mode')
   let g:vim_mode = 'full'
 endif
