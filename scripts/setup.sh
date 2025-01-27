@@ -144,6 +144,7 @@ _vim() {
     _symlink .config/nvim
     ln -s "$DOTFILES_DIR/.config/nvim" ~/.vim
     nvim
+    echo "Check ~/.local/share and create symlink for these dirs."
 }
 
 _zsh() {
