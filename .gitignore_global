@@ -1,6 +1,6 @@
 .DS_Store
 .vscode
-.vim
+.vim/coc-settings.json
 .vim-bookmarks
 .editorconfig
 staticcheck.conf

@@ -1,6 +1,6 @@
 " =============================================================================
 " URL: https://github.com/sainnhe/dotfiles
-" Filename: .config/nvim/features/full.vim
+" Filename: .vim/features/full.vim
 " Author: Sainnhe Park
 " Email: i@sainnhe.dev
 " License: Anti-996 && MIT

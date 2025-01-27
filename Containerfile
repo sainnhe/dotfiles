@@ -148,30 +148,30 @@ RUN git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/
         && tmux kill-server
 
 # Vim/Neovim
-RUN mkdir -p ~/.config ~/.local/share/nvim \
-        && ln -s /root/repo/dotfiles/.config/nvim ~/.vim \
-        && ln -s /root/repo/dotfiles/.config/nvim ~/.config/nvim \
-        && cp ~/repo/dotfiles/.config/nvim/envs.container.vim ~/repo/dotfiles/.config/nvim/envs.vim
+RUN mkdir -p ~/.config ~/.local/share/vim \
+        && ln -s /root/repo/dotfiles/.vim ~/.vim \
+        && ln -s /root/repo/dotfiles/.vim ~/.config/nvim \
+        && cp ~/repo/dotfiles/.vim/envs.container.vim ~/repo/dotfiles/.vim/envs.vim
 # Coc Extensions
-RUN mkdir -p ~/.local/share/nvim/coc/extensions \
-        && cd ~/.local/share/nvim/coc/extensions \
-        && cat ~/.config/nvim/features/full.vim |\
+RUN mkdir -p ~/.local/share/vim/coc/extensions \
+        && cd ~/.local/share/vim/coc/extensions \
+        && cat ~/.vim/features/full.vim |\
         grep "\\\ 'coc-" |\
         sed -E -e 's/^.*coc//' -e "s/',//" -e 's/^/coc/' |\
         xargs -I{} npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps {}; exit 0 \
         && rm -rf ~/.npm \
-        && ls ~/.local/share/nvim/coc/extensions/node_modules | grep -v 'coc-' | xargs -I{} rm -rf ~/.local/share/nvim/coc/extensions/node_modules/{}
-RUN cat ~/.config/nvim/features/full.vim |\
+        && ls ~/.local/share/vim/coc/extensions/node_modules | grep -v 'coc-' | xargs -I{} rm -rf ~/.local/share/vim/coc/extensions/node_modules/{}
+RUN cat ~/.vim/features/full.vim |\
         grep "\\\ 'coc-" |\
         sed -E -e 's/^.*coc//' -e "s/',//" -e 's/^/coc/' |\
-        xargs -I{} sh -c "cd ~/.local/share/nvim/coc/extensions/node_modules/{}; npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps"; exit 0 \
+        xargs -I{} sh -c "cd ~/.local/share/vim/coc/extensions/node_modules/{}; npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps"; exit 0 \
         && rm -rf ~/.npm \
-        && ls ~/.local/share/nvim/coc/extensions/node_modules | grep -v 'coc-' | xargs -I{} rm -rf ~/.local/share/nvim/coc/extensions/node_modules/{}
+        && ls ~/.local/share/vim/coc/extensions/node_modules | grep -v 'coc-' | xargs -I{} rm -rf ~/.local/share/vim/coc/extensions/node_modules/{}
 # Plugins
 RUN nvim -es --cmd 'call custom#plug#install()' --cmd 'qa' \
         && CONTAINER=1 nvim --headless +PlugInstall +qall \
         && CONTAINER=1 nvim --headless +"helptags ALL" +qall \
-        && rm -rf ~/.local/share/nvim/plugins/*/node_modules \
+        && rm -rf ~/.local/share/vim/plugins/*/node_modules \
         && rm -rf ~/.cache/yarn \
         && rm -rf ~/.npm \
         && rm -rf ~/.local/share/pnpm

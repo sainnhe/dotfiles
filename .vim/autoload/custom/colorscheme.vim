@@ -1,6 +1,6 @@
 " =============================================================================
 " URL: https://github.com/sainnhe/dotfiles
-" Filename: .config/nvim/autoload/custom/colorscheme.vim
+" Filename: .vim/autoload/custom/colorscheme.vim
 " Author: Sainnhe Park
 " Email: i@sainnhe.dev
 " License: Anti-996 && MIT

@@ -202,9 +202,6 @@ test_cmd_pre() { # {{{
 test_cmd() { # {{{
     test_cmd_pre "$1" && echo 'yes' || echo 'no'
 } # }}}
-nvim-light () { # {{{
-    nvim --cmd "let g:vim_mode = 'light'" "$@"
-} # }}}
 # {{{FuzzyFinder
 # fuzzy match dirs and cd
 cdf() {

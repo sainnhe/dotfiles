@@ -1,6 +1,6 @@
 " =============================================================================
 " URL: https://github.com/sainnhe/dotfiles
-" Filename: .config/nvim/autoload/custom/mode.vim
+" Filename: .vim/autoload/custom/mode.vim
 " Author: Sainnhe Park
 " Email: i@sainnhe.dev
 " License: Anti-996 && MIT
@@ -69,17 +69,17 @@ function custom#utils#stdpath(type) abort "{{{
       if a:type ==# 'config'
         return expand('~') . '/.vim'
       elseif a:type ==# 'cache'
-        return expand('~') . '/.cache/nvim'
+        return expand('~') . '/.cache/vim'
       elseif a:type ==# 'data'
-        return expand('~') . '/.local/share/nvim'
+        return expand('~') . '/.local/share/vim'
       endif
     else
       if a:type ==# 'config'
         return expand('~') . '\vimfiles'
       elseif a:type ==# 'cache'
-        return expand('~') . '\AppData\Local\Temp\nvim'
+        return expand('~') . '\AppData\Local\Temp\vim'
       elseif a:type ==# 'data'
-        return expand('~') . '\AppData\Local\nvim-data'
+        return expand('~') . '\AppData\Local\vim-data'
       endif
     endif
   endif

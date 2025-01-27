@@ -17,7 +17,7 @@ fi
 if [ "$var"x == "n"x ]; then
     cd ~/repo/notes
     filename=$(find . -name "*.md" | sed 's/^..//' | fzf )
-    nvim "$HOME/repo/notes/$filename"
+    vim "$HOME/repo/notes/$filename"
 elif [ "$var"x == "m"x ]; then
     wikiman -l zh,en -s man
 elif [ "$var"x == "a"x ]; then

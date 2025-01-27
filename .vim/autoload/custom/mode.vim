@@ -1,6 +1,6 @@
 " =============================================================================
 " URL: https://github.com/sainnhe/dotfiles
-" Filename: .config/nvim/autoload/custom/mode.vim
+" Filename: .vim/autoload/custom/mode.vim
 " Author: Sainnhe Park
 " Email: i@sainnhe.dev
 " License: Anti-996 && MIT
@@ -36,7 +36,7 @@ function custom#mode#get() abort " Get mode
   return l:vim_mode
 endfunction
 
-function custom#mode#update() abort " Update .config/nvim/envs.vim
+function custom#mode#update() abort " Update .vim/envs.vim
   let l:vim_mode = custom#mode#get()
   let l:insert_str = "  let g:vim_mode = '" . l:vim_mode . "'"
   let l:envs_path = fnamemodify(custom#utils#stdpath('config'), ':p') . 'envs.vim'

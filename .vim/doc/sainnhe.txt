@@ -69,33 +69,29 @@ maintainers, they think new features are prior to stability, while for vim
 maintainers, stability is prior to new features.
 
 But I don't want to dismiss nvim outright, it actually has many advantages
-over vim, that's why I placed my configs under `.config/nvim` instead of `.vim`
-and use nvim first when nvim is available.
+over vim, but stability matters more to me.
 
 ------------------------------------------------------------------------------
                                                   *sainnhe-intro-code-structure*
 The Code Structure~
 
-The configs are placed under `.config/nvim`. To also use them in vim, simply
-create a symlink like this:
+The configs are placed under `.vim`. To use it, simply create a symlink like
+this:
 
 On UNIX-like OSs:
 >
-    ln -s /path/to/dotfiles/.config/nvim ~/.vim
+    ln -s /path/to/dotfiles/.vim ~/.vim
 <
 On Windows:
 >
-    mklink /D C:\Users\username\vimfiles \path\to\dotfiles\.config\nvim
+    mklink /D C:\Users\username\vimfiles \path\to\dotfiles\.vim
 <
-Vim will read `vimrc` which sources `init.vim`, and `init.vim` sources some
-other config files.
-
-If you opened any of vim script files in `.config/nvim`, you should see many
-fold blocks. You can type |za| or |zR| to unfold them. Note that there is a
-special file named `envs.vim` which defines some local config variables that
-should not be tracked by git. When vim is launched for the first time, a
-default `envs.vim` will be generated, and you should modify the content of
-`envs.vim` to control vim's behaviors.
+If you opened any of vim script files in `.vim`, you should see many fold
+blocks. You can type |za| or |zR| to unfold them. Note that there is a special
+file named `envs.vim` which defines some local config variables that should
+not be tracked by git. When vim is launched for the first time, a default
+`envs.vim` will be generated, and you should modify the content of `envs.vim`
+to control vim's behaviors.
 
 ------------------------------------------------------------------------------
                                                    *sainnhe-intro-working-modes*
