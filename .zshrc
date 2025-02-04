@@ -267,7 +267,11 @@ install-bash-it() { # {{{
     bash ~/.bash_it/install.sh
 } # }}}
 cargo-update() { # {{{
-    cargo install $(cargo install --list | egrep '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
+    if [ -x "$(command -v cargo-install-update)" ]; then
+        cargo install-update -a
+    else
+        cargo install $(cargo install --list | grep -E '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
+    fi
 } # }}}
 compeval() { # {{{
     [ -x "$(command -v pnpm)" ] && source <(pnpm completion zsh) || echo "pnpm not found"
