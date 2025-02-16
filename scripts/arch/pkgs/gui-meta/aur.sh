@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 pikaur -S --asdeps \
-        wechat-bin \
+        wechat-universal-bwrap \
         code-marketplace \
         code-features \
         larksuite-bin
