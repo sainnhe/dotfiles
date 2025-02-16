@@ -1,0 +1,18 @@
+# Maintainer: Sainnhe Park <i@sainnhe.dev>
+pkgname=llm-meta
+pkgdesc='Meta package to install LLM components'
+pkgver=2025.02.15
+pkgrel=1
+arch=(any)
+url='https://www.sainnhe.dev/'
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+install="${pkgname}.install"
+depends=(ollama
+         ollama-cuda
+         ollama-docs
+     )
+
+pkgver() {
+    date --utc +"%Y.%m.%d"
+}

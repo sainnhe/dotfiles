@@ -5,3 +5,11 @@ post_install() {
     systemctl enable --now nftables
     systemctl enable --now ufw
 }
+
+pre_remove() {
+    systemctl disable --now clash-meta
+    systemctl disable --now podman
+    systemctl disable --now sshd
+    systemctl disable --now nftables
+    systemctl disable --now ufw
+}

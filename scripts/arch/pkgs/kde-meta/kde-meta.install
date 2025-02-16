@@ -2,3 +2,8 @@ post_install() {
     systemctl enable --now sddm
     systemctl enable --now bluetooth
 }
+
+pre_remove() {
+    systemctl disable --now sddm
+    systemctl disable --now bluetooth
+}

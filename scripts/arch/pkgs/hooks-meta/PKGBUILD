@@ -1,6 +1,6 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=hooks-meta
-pkgver=2024.10.21
+pkgver=2025.02.15
 pkgrel=1
 pkgdesc='Meta package tp install some hooks'
 arch=('any')

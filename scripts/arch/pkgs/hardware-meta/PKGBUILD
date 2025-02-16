@@ -1,14 +1,14 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
-pkgname=amd-meta
-pkgdesc='Meta package to install amd components'
-pkgver=2024.11.14
+pkgname=hardware-meta
+pkgdesc='Meta package to install hardware components'
+pkgver=2025.02.16
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
 provides=("${pkgname}")
 conflicts=("${pkgname}")
 install="${pkgname}.install"
-depends=(# GPU Drivers
+depends=(# AMD GPU Drivers
          mesa
          vulkan-radeon
          vulkan-mesa-layers
@@ -17,7 +17,14 @@ depends=(# GPU Drivers
          lib32-vulkan-radeon
          lib32-vulkan-mesa-layers
          lib32-opencl-rusticl-mesa
-         # GPU Control & Monitor
+         # Nvidia GPU Drivers
+         nvidia
+         nvidia-utils
+         opencl-nvidia
+         lib32-nvidia-utils
+         lib32-opencl-nvidia
+         lib32-libglvnd
+         # GPU Controller & Monitor
          lact
          nvtop
          radeontop
@@ -26,8 +33,10 @@ depends=(# GPU Drivers
          clinfo
          libva-utils
          vdpauinfo
+         nvidia-settings
          # CPU Microcode Update
          amd-ucode
+         intel-ucode
          # Dependencies
          xdg-desktop-portal
          lib32-systemd

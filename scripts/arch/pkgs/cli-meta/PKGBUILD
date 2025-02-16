@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=cli-meta
 pkgdesc='Meta package to install some CLI components'
-pkgver=2025.01.12
+pkgver=2025.02.15
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'

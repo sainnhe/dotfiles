@@ -1,5 +1,0 @@
-post_install() {
-    systemctl enable --now lactd
-    echo "==> Remember to install env file in /etc/profile.d"
-    echo "==> Set \"media.ffmpeg.vaapi.enabled\" to true in firefox about:config"
-}

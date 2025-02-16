@@ -1,0 +1,7 @@
+post_install() {
+    systemctl enable --now ollama
+}
+
+pre_remove() {
+    systemctl disable --now ollama
+}
