@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=gui-meta
 pkgdesc='Meta package to install some GUI components'
-pkgver=2025.02.16
+pkgver=2025.02.17
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -16,6 +16,7 @@ depends=(# Browsers
          element-desktop
          telegram-desktop
          wechat-universal-bwrap
+         com.qq.weixin.work.deepin
          # Code OSS
          code
          code-marketplace
@@ -38,6 +39,28 @@ depends=(# Browsers
          larksuite-bin
          # Gaming
          steam
+         # Deepin Wine
+         deepin-wine8-stable
+         libcap
+         cups
+         nss
+         fontconfig
+         freetype2
+         mesa
+         gnutls
+         libjpeg-turbo
+         krb5
+         unixodbc
+         sdl2
+         v4l-utils
+         libxcomposite
+         libxcursor
+         libxfixes
+         libxi
+         libxinerama
+         libxrandr
+         libxrender
+         libxxf86vm
          )
 
 pkgver() {
