@@ -1,6 +1,6 @@
 post_install() {
     systemctl enable --now ollama
-    printf "==> Edit the systemd config like this:\nsystemctl edit ollama.service\n[Service]\nEnvironment=\"OLLAMA_ORIGINS=https://ollama.sainnhe.dev\"\n"
+    printf "==> Edit the systemd config like this:\nsystemctl edit ollama.service\n[Service]\nEnvironment=\"OLLAMA_ORIGINS=https://ollama.sainnhe.dev\"\nEnvironment=\"CUDA_VISIBLE_DEVICES=0\"\n"
 }
 
 pre_remove() {
