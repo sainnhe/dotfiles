@@ -268,7 +268,7 @@ install-bash-it() { # {{{
 } # }}}
 cargo-update() { # {{{
     if [ -x "$(command -v cargo-install-update)" ]; then
-        cargo install-update -a
+        cargo install-update -ag
     else
         cargo install $(cargo install --list | grep -E '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
     fi
