@@ -266,11 +266,17 @@ install-bash-it() { # {{{
     git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
     bash ~/.bash_it/install.sh
 } # }}}
-cargo-update() { # {{{
+cargoupdate() { # {{{
     if [ -x "$(command -v cargo-install-update)" ]; then
+        echo "==> Updating packages using cargo install-update..."
         cargo install-update -ag
     else
+        echo "==> Updating packages using grep and cargo install..."
         cargo install $(cargo install --list | grep -E '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
+    fi
+    if [ -x "$(command -v cargo-cache)" ]; then
+        echo "==> Cleaning cache..."
+        cargo cache -a
     fi
 } # }}}
 compeval() { # {{{
