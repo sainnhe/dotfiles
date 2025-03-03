@@ -330,6 +330,13 @@ if [[ "$(uname)" == "Linux" ]]; then
 else
     alias manzh='man -M /opt/local/share/man/zh_CN'
 fi
+if [ -x "$(command -v docker-compose)" ]; then
+    alias dcup='docker-compose up -d'
+    alias dcdown='docker-compose down'
+else
+    alias dcup='docker compose up -d'
+    alias dcdown='docker compose down'
+fi
 # }}}
 # {{{Plugins
 # https://github.com/zdharma-continuum/zinit
