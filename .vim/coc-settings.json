@@ -276,6 +276,12 @@
   ],
   "go.goplsPath": "gopls",
   "go.checkForUpdates": "disabled",
+  "go.tags": {
+    "tags": "json,yaml",
+    "options": "json=omitempty",
+    "transform": "snakecase",
+    "skipUnexported": false
+  },
   "go.goplsOptions": {
     "staticcheck": true,
     "semanticTokens": true,
