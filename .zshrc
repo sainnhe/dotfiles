@@ -337,6 +337,13 @@ else
     alias dcup='docker compose up -d'
     alias dcdown='docker compose down'
 fi
+if [ -x "$(command -v podman-compose)" ]; then
+    alias pmup='podman-compose up -d'
+    alias pmdown='podman-compose down'
+else
+    alias pmup='podman compose up -d'
+    alias pmdown='podman compose down'
+fi
 # }}}
 # {{{Plugins
 # https://github.com/zdharma-continuum/zinit
