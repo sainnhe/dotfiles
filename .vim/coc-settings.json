@@ -277,8 +277,8 @@
   "go.goplsPath": "gopls",
   "go.checkForUpdates": "disabled",
   "go.tags": {
-    "tags": "json,yaml",
-    "options": "json=omitempty",
+    "tags": "json,yaml,toml,xml",
+    "options": "",
     "transform": "snakecase",
     "skipUnexported": false
   },
