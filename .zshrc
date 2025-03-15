@@ -266,7 +266,11 @@ install-bash-it() { # {{{
     git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
     bash ~/.bash_it/install.sh
 } # }}}
-cargoupdate() { # {{{
+rustupdate() { # {{{
+    if [ -x "$(command -v rustup)" ]; then
+        echo "==> Updating rust..."
+        rustup update
+    fi
     if [ -x "$(command -v cargo-install-update)" ]; then
         echo "==> Updating packages using cargo install-update..."
         cargo install-update -ag
