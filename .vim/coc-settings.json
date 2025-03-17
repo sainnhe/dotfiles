@@ -323,7 +323,7 @@
   "rust-analyzer.inlayHints.closingBraceHints.enable": true,
   "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "skip_trivial",
   "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "with_block",
-  "basedpyright.analysis.typeCheckingMode": "standard",
+  "basedpyright.analysis.typeCheckingMode": "recommended",
   "ruff.nativeServer": true,
   "ruff.run": "onType",
   "ruff.lint.run": "onType",
