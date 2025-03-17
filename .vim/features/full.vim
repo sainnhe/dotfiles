@@ -237,6 +237,7 @@ let g:coc_global_extensions = [
       \ 'coc-html',
       \ 'coc-htmlhint',
       \ 'coc-imselect',
+      \ 'coc-java',
       \ 'coc-json',
       \ 'coc-lists',
       \ 'coc-lua',
