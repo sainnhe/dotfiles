@@ -16,20 +16,29 @@ export LC_CTYPE=en_US.UTF-8
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
+# Fuzzy finder
+export FUZZY_FINDER="fzf"
+# Vim
 if [ -x "$(command -v vim)" ]; then
     export EDITOR="vim"
     export PAGER="vim --cmd 'let g:vim_pager = 1' -c PAGER -"
     export MANPAGER="vim --cmd 'let g:vim_pager = 1' -c ASMANPAGER -"
 fi
-export FuzzyFinder="fzf"
-if [[ "$(uname)" == "Darwin" ]]; then
-    fpath=(/opt/local/share/zsh/site-functions $fpath)
-fi
+# Other envs
 if test -d "$HOME/.zsh_envs.d/"; then
     for _env in "$HOME/.zsh_envs.d/"*; do
         test -r "$_env" && . "$_env"
     done
     unset _env
+fi
+# Asdf
+if ! [ -x "$(command -v asdf)" ] && [ -x "$(command -v go)" ]; then
+    go install github.com/asdf-vm/asdf/cmd/asdf@latest
+fi
+if [ -x "$(command -v asdf)" ]; then
+    export ASDF_DIR="$HOME/.local/share/asdf"
+    export ASDF_DATA_DIR="$ASDF_DIR"
+    export PATH="$ASDF_DATA_DIR/shims:$PATH"
 fi
 # }}}
 # {{{general
@@ -189,11 +198,6 @@ zstyle -e ':completion:*:hosts' hosts 'reply=(
     zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
 }
 # }}}
-# {{{rtv
-export RTV_EDITOR="vim"
-export RTV_BROWSER="w3m"
-export RTV_URLVIEWER="urlscan"
-# }}}
 # }}}
 # {{{Functions
 test_cmd_pre() { # {{{
@@ -202,34 +206,34 @@ test_cmd_pre() { # {{{
 test_cmd() { # {{{
     test_cmd_pre "$1" && echo 'yes' || echo 'no'
 } # }}}
-# {{{FuzzyFinder
+# {{{FUZZY_FINDER
 # fuzzy match dirs and cd
 cdf() {
     local dir
     dir=$(find ${1:-.} -path '*/\.*' -prune \
-        -o -type d -print 2> /dev/null | "$FuzzyFinder") &&
+        -o -type d -print 2> /dev/null | "$FUZZY_FINDER") &&
         cd "$dir"
     }
 # include hidden dirs
 cdf-all() {
     local dir
-    dir=$(find ${1:-.} -type d 2> /dev/null | grep -v ".git/" | "$FuzzyFinder") && cd "$dir"
+    dir=$(find ${1:-.} -type d 2> /dev/null | grep -v ".git/" | "$FUZZY_FINDER") && cd "$dir"
 }
 # job to fore
 job-fore() {
-    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
+    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FUZZY_FINDER" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
     fg %"$JOB_ID"
 }
 
 # job to back
 job-back() {
-    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
+    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FUZZY_FINDER" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
     bg %"$JOB_ID"
 }
 
 # job kill
 job-kill() {
-    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
+    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FUZZY_FINDER" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
     kill %"$JOB_ID"
 }
 # }}}
@@ -300,9 +304,9 @@ pacclean() { # {{{
 alias du='du -sh'
 alias df='df -h'
 alias cp='cp -p'
-alias cdh='pushd +$( dirs -v | "$FuzzyFinder" | grep -o "[[:digit:]]") > /dev/null'
-alias cdh-ls='dirs -vl | "$FuzzyFinder"'
-alias cdh-clean='popd +$( dirs -v | "$FuzzyFinder" | grep -o "[[:digit:]]") > /dev/null'
+alias cdh='pushd +$( dirs -v | "$FUZZY_FINDER" | grep -o "[[:digit:]]") > /dev/null'
+alias cdh-ls='dirs -vl | "$FUZZY_FINDER"'
+alias cdh-clean='popd +$( dirs -v | "$FUZZY_FINDER" | grep -o "[[:digit:]]") > /dev/null'
 alias cdh-clean-all='dirs -c'
 alias cdr='cd $(git rev-parse --show-toplevel)'
 alias job-='fg %-'
@@ -377,10 +381,6 @@ zinit ice pick"sysz" as"program"; zinit snippet "https://testingcf.jsdelivr.net/
 zinit ice mv"httpstat.sh -> httpstat" \
         pick"httpstat" as"program"
 zinit snippet "https://testingcf.jsdelivr.net/gh/b4b4r07/httpstat@master/httpstat.sh"
-zinit ice wait'1' lucid ver=v0.15.0 \
-    as"program" \
-    pick"bin/asdf"
-zinit light asdf-vm/asdf
 zinit ice wait'1' lucid depth=1 \
     as"program" \
     pick"bin/*" \
@@ -448,9 +448,6 @@ bindkey -M vicmd 'j' history-substring-search-down
 # {{{pfetch
 export PF_COL1=2
 export PF_COL3=3
-# }}}
-# {{{asdf
-export PATH="$HOME/.asdf/shims:$PATH"
 # }}}
 # {{{pb
 export PB_DOMAIN="share.sainnhe.dev"
