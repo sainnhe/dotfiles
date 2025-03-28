@@ -287,10 +287,6 @@ rustupdate() { # {{{
         cargo cache -a
     fi
 } # }}}
-compeval() { # {{{
-    [ -x "$(command -v pnpm)" ] && source <(pnpm completion zsh) || echo "pnpm not found"
-    [ -x "$(command -v ng)" ] && source <(ng completion script) || echo "ng not found"
-} # }}}
 pacclean() { # {{{
     sudo paccache -rf -k 0
     pacman -Qdtq | sudo pacman -Rns -
