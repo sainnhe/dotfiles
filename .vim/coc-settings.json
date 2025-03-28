@@ -388,16 +388,6 @@
     "MD036": false,
     "MD041": false
   },
-  "diagnostic-languageserver.formatters": {
-    "typstyle": {
-      "command": "typstyle"
-    }
-  },
-  "diagnostic-languageserver.formatFiletypes": {
-    "typst": [
-      "typstyle"
-    ]
-  },
   "languageserver": {
     "markdown": {
       "filetypes": [
@@ -415,7 +405,12 @@
       "command": "tinymist",
       "args": [
         "lsp"
-      ]
+      ],
+      "settings": {
+        "exportPdf": "onSave",
+        "compileStatus": "enable",
+        "formatterMode": "typstyle"
+      }
     },
     "protobuf": {
       "command": "protols",

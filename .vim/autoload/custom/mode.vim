@@ -79,7 +79,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'staticcheck',
           \ 'tinymist',
           \ 'typst',
-          \ 'typstyle',
           \ 'yarn',
           \ ],
         \ 'darwin': [
