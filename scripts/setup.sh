@@ -126,7 +126,6 @@ _go() {
 
 _java() {
     sudo port -N install \
-        pmd \
         openjdk21-openj9 \
         openjdk21-zulu \
         maven3 \

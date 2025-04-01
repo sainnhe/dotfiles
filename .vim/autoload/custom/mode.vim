@@ -63,7 +63,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'node',
           \ 'npm',
           \ 'pip',
-          \ 'pmd',
           \ 'pnpm',
           \ 'protoc',
           \ 'protoc-gen-go',

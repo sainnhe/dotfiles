@@ -184,5 +184,7 @@ let g:java_home = !empty($JAVA_HOME) ? $JAVA_HOME :
       \ isdirectory('/usr/lib/jvm/default') ? '/usr/lib/jvm/default' :
       \ isdirectory('/usr/lib/jvm/jre') ? '/usr/lib/jvm/java' :
       \ isdirectory('/usr/lib/jvm/default-jvm') ? '/usr/lib/jvm/default-jvm' : '/usr'
+let g:java_ignore_html = 1
+let g:java_ignore_markdown = 1
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

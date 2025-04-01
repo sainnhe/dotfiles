@@ -101,7 +101,6 @@ depends=(base
          jdk21-openjdk
          maven
          gradle
-         pmd
          # Python
          python
          python-pip

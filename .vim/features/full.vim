@@ -562,20 +562,9 @@ let g:ale_linter_aliases = {
 " Disable default linters and use configured only.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-      \ 'java': ['pmd'],
       \ 'sh': ['shellcheck'],
       \ 'go': ['govet', 'revive', 'staticcheck'],
       \ }
-let g:ale_java_pmd_options =
-      \ 'pmd'
-      \ . ' -R category/java/bestpractices.xml'
-      \ . ' -R category/java/errorprone.xml'
-      \ . ' -R category/java/multithreading.xml'
-      \ . ' -R category/java/performance.xml'
-      \ . ' -R category/java/security.xml'
-      " \ . ' -R category/java/documentation.xml'
-      "\ . ' -R category/java/codestyle.xml'
-      "\ . ' -R category/java/design.xml'
 " }}}
 " {{{vim-doge
 let g:doge_enable_mappings = 0
