@@ -177,9 +177,11 @@
     "javascript": "javascriptreact"
   },
   "imselect.defaultInput": "com.apple.keylayout.ABC",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "eslint.packageManager": "pnpm",
   "eslint.run": "onSave",
-  "eslint.autoFixOnSave": true,
   "eslint.format.enable": true,
   "eslint.experimental.useFlatConfig": true,
   "explorer.icon.enableNerdfont": true,
