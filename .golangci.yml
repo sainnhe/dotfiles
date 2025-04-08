@@ -1,9 +1,9 @@
+version: "2"
 linters:
-  disable-all: true
+  default: none
   enable:
     # Default linters
     - errcheck
-    - gosimple
     - govet
     - ineffassign
     - staticcheck
@@ -13,8 +13,6 @@ linters:
     - goconst
     - gocritic
     - gocyclo
-    - gofmt
-    - goimports
     - gosec
     - lll
     - misspell
@@ -30,14 +28,18 @@ linters:
     - testpackage
     - unconvert
     - usestdlibvars
-linters-settings:
-  gocritic:
-    disable-all: true
-    enabled-tags:
-      - diagnostic
-      - performance
-  rowserrcheck:
-    packages:
-      - github.com/jmoiron/sqlx
+  settings:
+    gocritic:
+      disable-all: true
+      enabled-tags:
+        - diagnostic
+        - performance
+    rowserrcheck:
+      packages:
+        - github.com/jmoiron/sqlx
 severity:
-  default-severity: warning
+  default: warning
+formatters:
+  enable:
+    - gofmt
+    - goimports
