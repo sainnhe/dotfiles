@@ -411,7 +411,8 @@
       "settings": {
         "exportPdf": "onSave",
         "compileStatus": "enable",
-        "formatterMode": "typstyle"
+        "formatterMode": "typstyle",
+        "semanticTokens": "disable"
       }
     },
     "protobuf": {
