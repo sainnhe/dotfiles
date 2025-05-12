@@ -5,10 +5,10 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/node_modules/.bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
 if command -v rustup &> /dev/null; then
     export PATH="$HOME/.rustup/toolchains/$(rustup show active-toolchain | grep default | sed 's/ (.*//')/bin:$PATH"
 fi
+export PATH="$HOME/.cargo/bin:$PATH"
 export MANPATH="$HOME/.local/share/man:$MANPATH"
 export MANPATH="/usr/local/share/man:$MANPATH"
 export LANG=en_US.UTF-8
