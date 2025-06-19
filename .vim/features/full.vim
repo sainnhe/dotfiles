@@ -244,6 +244,7 @@ let g:coc_global_extensions = [
       \ 'coc-markdown-preview-enhanced',
       \ 'coc-markdownlint',
       \ 'coc-marketplace',
+      \ 'coc-prettier',
       \ 'coc-project',
       \ 'coc-rust-analyzer',
       \ 'coc-sh',
