@@ -274,6 +274,13 @@ augroup CocCustom
   autocmd User CocGitStatusChange,CocStatusChange,CocDiagnosticChange call lightline#update()
   autocmd QuitPre * CocCommand terminal.Destroy
 augroup END
+call coc#config('languageserver', {
+      \ 'sql': {
+        \ 'command': "sqls",
+        \ 'filetypes': ['sql'],
+        \ 'args': ['-config', expand('~/.config/sqls.yml')]
+        \ }
+      \ })
 call coc#config('java', {
       \ 'jdt': {
         \ 'ls': {

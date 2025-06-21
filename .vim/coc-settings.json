@@ -423,11 +423,6 @@
     "protobuf": {
       "command": "protols",
       "filetypes": ["proto"]
-    },
-    "sql": {
-      "command": "sqls",
-      "filetypes": ["sql"],
-      "args": ["-config", "/home/sainnhe/.config/sqls.yml"]
     }
   }
 }
