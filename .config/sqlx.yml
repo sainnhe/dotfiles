@@ -1,0 +1,34 @@
+# https://github.com/sqls-server/sqls?tab=readme-ov-file#db-configuration
+lowercaseKeywords: false
+connections:
+  - alias: dsn_mysql
+    driver: mysql
+    dataSourceName: root:root@tcp(127.0.0.1:13306)/world
+  - alias: individual_mysql
+    driver: mysql
+    proto: tcp
+    user: root
+    passwd: root
+    host: 127.0.0.1
+    port: 13306
+    dbName: world
+    params:
+      autocommit: "true"
+      tls: skip-verify
+  - alias: mysql_via_ssh
+    driver: mysql
+    proto: tcp
+    user: admin
+    passwd: Q+ACgv12ABx/
+    host: 192.168.121.163
+    port: 3306
+    dbName: world
+    sshConfig:
+      host: 192.168.121.168
+      port: 22
+      user: sshuser
+      passPhrase: ssspass
+      privateKey: /home/sqls-server/.ssh/id_rsa
+  - alias: dsn_vertica
+    driver: vertica
+    dataSourceName: vertica://user:pass@host:5433/dbname

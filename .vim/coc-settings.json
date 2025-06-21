@@ -2,7 +2,7 @@
   "suggest.labelMaxLength": 50,
   "suggest.snippetIndicator": " ",
   "suggest.timeout": 5000,
-  "suggest.triggerCompletionWait": 30,
+  "suggest.triggerCompletionWait": 0,
   "suggest.removeDuplicateItems": true,
   "suggest.noselect": true,
   "suggest.completionItemKindLabels": {
@@ -115,12 +115,8 @@
   "snippets.shortcut": "S",
   "snippets.priority": 99,
   "snippets.extends": {
-    "javascriptreact": [
-      "javascript"
-    ],
-    "typescript": [
-      "javascript"
-    ]
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"]
   },
   "suggest.languageSourcePriority": 98,
   "coc.source.file.shortcut": "F",
@@ -195,15 +191,7 @@
     "<tab>": "actionMenu",
     "h": "indentPrev",
     "l": "indentNext",
-    "o": [
-      "expandable?",
-      [
-        "expanded?",
-        "collapse",
-        "expand"
-      ],
-      "open"
-    ],
+    "o": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "<cr>": "open",
     "t": "open:tab",
     "<bs>": "gotoParent",
@@ -366,9 +354,7 @@
     "/usr/share/nvim/runtime/lua/vim",
     "/usr/share/nvim/runtime/lua/vim/lsp"
   ],
-  "Lua.diagnostics.globals": [
-    "vim"
-  ],
+  "Lua.diagnostics.globals": ["vim"],
   "texlab.path": "texlab",
   "texlab.build.onSave": true,
   "texlab.build.args": [
@@ -378,7 +364,6 @@
     "-synctex=1",
     "%f"
   ],
-  "sql.database": "mysql",
   "xml.codeLens.enabled": true,
   "java.maxConcurrentBuilds": 4,
   "java.signatureHelp.description.enabled": true,
@@ -417,40 +402,32 @@
   },
   "languageserver": {
     "markdown": {
-      "filetypes": [
-        "markdown"
-      ],
+      "filetypes": ["markdown"],
       "command": "marksman",
-      "args": [
-        "server"
-      ]
+      "args": ["server"]
     },
     "typst": {
-      "filetypes": [
-        "typst"
-      ],
+      "filetypes": ["typst"],
       "command": "tinymist",
-      "args": [
-        "lsp"
-      ],
+      "args": ["lsp"],
       "settings": {
         "exportPdf": "onSave",
         "compileStatus": "enable",
+        "semanticTokens": "disable",
         "formatterMode": "typstyle",
-        "semanticTokens": "disable"
+        "formatterPrintWidth": 120,
+        "formatterIndentSize": 2,
+        "completion.triggerOnSnippetPlaceholders": true
       }
     },
     "protobuf": {
       "command": "protols",
-      "filetypes": [
-        "proto"
-      ]
+      "filetypes": ["proto"]
     },
     "sql": {
       "command": "sqls",
-      "filetypes": [
-        "sql"
-      ]
+      "filetypes": ["sql"],
+      "args": ["-config", "/home/sainnhe/.config/sqls.yml"]
     }
   }
 }
