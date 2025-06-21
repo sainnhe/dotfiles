@@ -274,6 +274,9 @@ augroup CocCustom
   autocmd User CocGitStatusChange,CocStatusChange,CocDiagnosticChange call lightline#update()
   autocmd QuitPre * CocCommand terminal.Destroy
 augroup END
+call coc#config('workspace', {
+      \ 'rootPatterns': g:root_patterns
+      \ })
 call coc#config('languageserver', {
       \ 'sql': {
         \ 'command': "sqls",
@@ -419,9 +422,10 @@ xmap io <Plug>(coc-classobj-i)
 omap io <Plug>(coc-classobj-i)
 xmap ao <Plug>(coc-classobj-a)
 omap ao <Plug>(coc-classobj-a)
+nmap ` <Plug>(coc-cursors-position)
 " Show hover when provider exists, fallback to vim's builtin behavior.
-nnoremap <silent> ? :call ShowDocumentation()<CR>
-function! ShowDocumentation()
+nnoremap <silent> ? :call DoHover()<CR>
+function! DoHover()
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('definitionHover')
   else

@@ -246,16 +246,6 @@ let g:which_key_map['t'] = {
       \ }
 let g:which_key_map['g']['p'] = 'push'
 " }}}
-" {{{vim-visual-multi
-let g:VM_default_mappings = 0
-let g:VM_maps = {}
-let g:VM_maps['Add Cursor At Pos'] = '`'
-let g:VM_maps['Visual Cursors'] = '`'
-let g:VM_maps['Switch Mode'] = 'v'
-nmap ` <Plug>(VM-Add-Cursor-At-Pos)
-vmap ` <Plug>(VM-Visual-Cursors)
-xmap ` <Plug>(VM-Visual-Cursors)
-" }}}
 " {{{nerdcommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
