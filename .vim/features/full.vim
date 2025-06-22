@@ -527,7 +527,6 @@ xmap io <Plug>(coc-classobj-i)
 omap io <Plug>(coc-classobj-i)
 xmap ao <Plug>(coc-classobj-a)
 omap ao <Plug>(coc-classobj-a)
-nmap ` <Plug>(coc-cursors-position)
 " }}}
 " {{{coc-explorer
 nnoremap <silent> <C-b> :<C-u>execute 'CocCommand explorer --focus ' . getcwd()<CR>
