@@ -316,11 +316,6 @@ if has('win32')
         \ 'shellArgs': ['-nologo'],
         \ })
 endif
-call coc#config('coc-ai', {
-      \ 'global': {
-        \ 'rolesConfigPath': custom#utils#get_path([custom#utils#stdpath('config'), 'resources', 'coc-ai.toml'])
-        \ },
-      \ })
 " }}}
 " {{{coc-mappings
 " Select

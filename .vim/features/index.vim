@@ -216,7 +216,6 @@ elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'yaegassy/coc-ruff', { 'do': 'yarn install --frozen-lockfile' }
-  Plug 'Kuro96/coc-ai', { 'do': 'yarn install --frozen-lockfile' }
   Plug 'dense-analysis/ale'
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }

@@ -3,7 +3,6 @@
 .vim/autoload/plug.vim.old
 .vim/sessions
 .vim/resources/sqls.yml
-.vim/resources/coc-ai.toml
 .config/fcitx5/conf
 *.pkg.tar.zst
 scripts/arch/pkgs/*/pkg
