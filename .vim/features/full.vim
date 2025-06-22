@@ -557,6 +557,10 @@ augroup END
 nnoremap <silent> <leader>fp :<c-u>CocList project<cr>
 let g:which_key_map['f']['p'] = 'projects'
 " }}}
+" {{{coc-todo-tree
+nnoremap <silent> <leader><space>T :<c-u>CocCommand coc-todo-tree.showTree<cr>
+let g:which_key_map["\<space>"]['T'] = 'todo'
+" }}}
 " }}}
 " {{{ale
 let g:ale_close_preview_on_insert = 1
