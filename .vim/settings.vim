@@ -94,9 +94,9 @@ elseif has('vim9script')
   set fillchars=vert:│,fold:-,eob:~
 endif
 
-execute 'set backupdir=' . fnamemodify(custom#utils#stdpath('data'), ':p') . 'backup'
-execute 'set directory=' . fnamemodify(custom#utils#stdpath('data'), ':p') . 'swap'
-execute 'set undofile undodir=' . fnamemodify(custom#utils#stdpath('cache'), ':p') . 'undo' . (has('nvim') ? '-nvim' : '-vim')
+execute 'set backupdir=' . custom#utils#get_path([custom#utils#stdpath('data'), 'backup'])
+execute 'set directory=' . custom#utils#get_path([custom#utils#stdpath('data'), 'swap'])
+execute 'set undofile undodir=' . custom#utils#get_path([custom#utils#stdpath('data'), 'undo' . (has('nvim') ? '-nvim' : '-vim')])
 if !isdirectory(expand(&g:directory))
   silent! call mkdir(expand(&g:directory), 'p')
 endif

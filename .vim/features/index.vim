@@ -71,7 +71,7 @@ augroup VimPlug
   autocmd FileType vim-plug call s:setup_extra_keys()
 augroup END
 " }}}
-call plug#begin(fnamemodify(custom#utils#stdpath('data'), ':p') . 'plugins')
+call plug#begin(custom#utils#get_path([custom#utils#stdpath('data'), 'plugins']))
 " }}}
 
 " Plugin lists
@@ -216,6 +216,7 @@ elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'yaegassy/coc-ruff', { 'do': 'yarn install --frozen-lockfile' }
+  Plug 'Kuro96/coc-ai', { 'do': 'yarn install --frozen-lockfile' }
   Plug 'dense-analysis/ale'
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
@@ -248,10 +249,10 @@ if $CONTAINER ==# '1'
 endif
 
 if g:vim_mode ==# 'full'
-  execute 'source ' . fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'features', ':p') . 'full.vim'
+  execute 'source ' . custom#utils#get_path([custom#utils#stdpath('config'), 'features', 'full.vim'])
 endif
-execute 'source ' . fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'features', ':p') . 'light.vim'
-execute 'source ' . fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'features', ':p') . 'builtins.vim'
+execute 'source ' . custom#utils#get_path([custom#utils#stdpath('config'), 'features', 'light.vim'])
+execute 'source ' . custom#utils#get_path([custom#utils#stdpath('config'), 'features', 'builtins.vim'])
 
 command Update call custom#utils#update()
 

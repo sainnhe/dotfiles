@@ -300,7 +300,7 @@ let g:which_key_map['a']['t'] = {
       \ }
 " }}}
 " {{{vim-dadbod-ui
-let g:db_ui_save_location = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'dbui'
+let g:db_ui_save_location = custom#utils#get_path([custom#utils#stdpath('cache'), 'dbui'])
 let g:db_ui_win_position = 'right'
 let g:db_ui_winwidth = 40
 let g:db_ui_show_database_icon = 1
@@ -402,7 +402,7 @@ let g:carbon_now_sh_options = {
 " }}}
 " {{{vim-bookmarks
 let g:bookmark_no_default_key_mappings = 1
-let g:bookmark_auto_save_file = fnamemodify(custom#utils#stdpath('cache'), ':p') . 'bookmarks'
+let g:bookmark_auto_save_file = custom#utils#get_path([custom#utils#stdpath('cache'), 'bookmarks'])
 let g:bookmark_highlight_lines = 1
 let g:bookmark_save_per_working_dir = 1
 nnoremap <silent> <leader>bb :<C-u>BookmarkToggle<CR>

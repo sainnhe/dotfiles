@@ -1,1 +1,1 @@
-execute 'source ' . fnamemodify(custom#utils#stdpath('config'), ':p') . 'vimrc'
+execute 'source ' . custom#utils#get_path([custom#utils#stdpath('config'), 'vimrc'])

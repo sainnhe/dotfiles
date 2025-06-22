@@ -137,7 +137,7 @@ endif
 " {{{Additional UI components
 " {{{vim-startify
 if !exists('g:vim_pager')
-  let g:startify_session_dir = fnamemodify(custom#utils#stdpath('data'), ':p') . 'sessions'
+  let g:startify_session_dir = custom#utils#get_path([custom#utils#stdpath('data'), 'sessions'])
   let g:startify_files_number = 5
   let g:startify_update_oldfiles = 1
   let g:startify_session_delete_buffers = 1
@@ -201,7 +201,7 @@ endif
 " {{{Language features
 " {{{coc.nvim
 " {{{coc-init
-let g:coc_data_home = fnamemodify(custom#utils#stdpath('data'), ':p') . 'coc'
+let g:coc_data_home = custom#utils#get_path([custom#utils#stdpath('data'), 'coc'])
 let g:coc_filetype_map = {
       \ 'tex': 'latex',
       \ 'plaintex': 'latex',
@@ -276,7 +276,7 @@ call coc#config('languageserver', {
       \ 'sql': {
         \ 'command': "sqls",
         \ 'filetypes': ['sql'],
-        \ 'args': ['-config', expand('~/.config/sqls.yml')]
+        \ 'args': ['-config', custom#utils#get_path([custom#utils#stdpath('config'), 'resources', 'sqls.yml'])]
         \ }
       \ })
 call coc#config('java', {
@@ -296,7 +296,7 @@ call coc#config('java', {
       \ },
       \ 'format': {
         \ 'settings': {
-          \ 'url': fnamemodify(fnamemodify(custom#utils#stdpath('config'), ':p') . 'resources', ':p') . 'eclipse-java-google-style.xml',
+          \ 'url': custom#utils#get_path([custom#utils#stdpath('config'), 'resources', 'eclipse-java-google-style.xml']),
           \ 'profile': 'GoogleStyle'
           \ }
         \ }
@@ -307,7 +307,7 @@ call coc#config('xml', {
         \ }
       \ })
 call coc#config('project', {
-      \ 'dbpath': fnamemodify(g:coc_data_home, ':p') . 'project.json',
+      \ 'dbpath': custom#utils#get_path([custom#utils#stdpath('data'), 'coc', 'project.json']),
       \ 'rootPatterns': g:root_patterns
       \ })
 if has('win32')
@@ -316,6 +316,11 @@ if has('win32')
         \ 'shellArgs': ['-nologo'],
         \ })
 endif
+call coc#config('coc-ai', {
+      \ 'global': {
+        \ 'rolesConfigPath': custom#utils#get_path([custom#utils#stdpath('config'), 'resources', 'coc-ai.toml'])
+        \ },
+      \ })
 " }}}
 " {{{coc-mappings
 " Select
