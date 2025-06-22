@@ -219,6 +219,10 @@ elseif g:vim_mode ==# 'full'
   Plug 'dense-analysis/ale'
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
+  " Fuzzy Search
+  if has('python') || has('python3')
+    Plug 'Yggdroot/LeaderF'
+  endif
   " Tree-sitter
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }

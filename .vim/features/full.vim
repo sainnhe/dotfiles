@@ -624,6 +624,19 @@ xnoremap <silent> <leader>jj :AnyJumpVisual<CR>
 let g:which_key_map['j']['j'] = 'any jump'
 " }}}
 " }}}
+" {{{Fuzzy Search
+if has('python') || has('python3')
+  nmap <silent> <leader>fl :<C-u>Leaderf line<CR>
+  let g:Lf_WindowPosition = 'bottom'
+  let g:Lf_WindowHeight = 0.38
+  let g:Lf_CacheDirectory = custom#utils#get_path([custom#utils#stdpath('cache'), 'leaderf'])
+  let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+  let g:Lf_RootMarkers = g:root_patterns
+  let g:Lf_PreviewInPopup = 0
+  let g:Lf_ShortcutF = ''
+  let g:Lf_ShortcutB = ''
+endif
+" }}}
 " {{{Tree-sitter
 if has('nvim')
 lua <<EOF
