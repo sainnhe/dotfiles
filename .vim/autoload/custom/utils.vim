@@ -127,24 +127,13 @@ function custom#utils#coc_fold() abort "{{{
   endif
 endfunction "}}}
 function! custom#utils#get_path(paths) abort "{{{
-  " 调用示例:
-  " let my_path = custom#utils#get_path(['~/.config/nvim', 'resources', 'file.xml'])
-
-  " 1. 检查输入是否为空列表，避免错误
   if empty(a:paths)
     return ''
   endif
-
-  " 2. 使用正确的局部变量前缀 l:
-  let l:full_path = get(a:paths, 0, '') " 取出第一个元素作为基础
-
-  " 3. 从第二个元素开始循环 (使用切片)
+  let l:full_path = get(a:paths, 0, '')
   for path_component in a:paths[1:]
-    " 4. 使用 '/' 作为分隔符进行拼接
     let l:full_path = l:full_path . '/' . path_component
   endfor
-
-  " 5. 仅在最后调用一次 fnamemodify 来规范化路径
   return fnamemodify(l:full_path, ':p')
 endfunction "}}}
 
