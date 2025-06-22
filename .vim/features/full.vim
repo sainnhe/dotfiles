@@ -375,26 +375,42 @@ nnoremap <silent> <A--> :<C-u>CocCommand terminal.REPL<CR>
 tnoremap <silent> <A--> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
 " List
 nmap <silent> <leader>f<Space> :<C-u>CocList<CR>
-nmap <silent> <leader>fl :<C-u>CocList --interactive --ignore-case lines<CR>
-nmap <silent> <leader>ff :<C-u>CocList files<CR>
 nmap <silent> <leader>fb :<C-u>CocList buffers<CR>
-nmap <silent> <leader>fm :<C-u>CocList mru<CR>
+nmap <silent> <leader>fc :<C-u>CocList vimcommands<CR>
+nmap <silent> <leader>fC :<C-u>CocList commands<CR>
+nmap <silent> <leader>fd :<C-u>CocList diagnostics<CR>
+nmap <silent> <leader>fe :<C-u>CocList extensions<CR>
+nmap <silent> <leader>ff :<C-u>CocList files<CR>
 nmap <silent> <leader>fg :<C-u>CocList grep<CR>
-nmap <silent> <leader>fy :<C-u>CocList yank<CR>
-nmap <silent> <leader>fs :<C-u>CocList symbols<CR>
 nmap <silent> <leader>fh :<C-u>CocList helptags<CR>
+nmap <silent> <leader>fl :<C-u>CocList --interactive --ignore-case lines<CR>
+nmap <silent> <leader>fm :<C-u>CocList mru<CR>
+nmap <silent> <leader>fM :<C-u>CocList marketplace<CR>
+nmap <silent> <leader>fo :<C-u>CocList outline<CR>
+nmap <silent> <leader>fr :<C-u>CocList registers<CR>
+nmap <silent> <leader>fs :<C-u>CocList symbols<CR>
+nmap <silent> <leader>fw :<C-u>CocList windows<CR>
+nmap <silent> <leader>fy :<C-u>CocList yank<CR>
 let g:which_key_map['f'] = {
-      \   'name': 'fuzzy finder',
-      \   "\<Space>": 'list',
-      \   'l': 'lines',
-      \   'f': 'files',
-      \   'b': 'buffers',
-      \   'm': 'mru files',
-      \   'g': 'grep',
-      \   'y': 'yank',
-      \   's': 'symbols',
-      \   'h': 'help',
-      \   }
+      \ 'name': 'fuzzy finder',
+      \ "\<Space>": 'list',
+      \ 'b': 'buffers',
+      \ 'c': 'vim commands',
+      \ 'C': 'coc commands',
+      \ 'd': 'diagnostics',
+      \ 'e': 'extensions',
+      \ 'f': 'files',
+      \ 'g': 'grep',
+      \ 'h': 'help',
+      \ 'l': 'lines',
+      \ 'm': 'mru files',
+      \ 'M': 'marketplace',
+      \ 'o': 'outline',
+      \ 'r': 'registers',
+      \ 's': 'symbols',
+      \ 'w': 'windows',
+      \ 'y': 'yank',
+      \ }
 " Jump
 nmap <silent> <leader>jd <Plug>(coc-definition)
 nmap <silent> <leader>jD <Plug>(coc-declaration)
