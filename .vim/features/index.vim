@@ -213,7 +213,6 @@ if g:vim_mode ==# 'light'
   Plug 'lifepillar/vim-mucomplete'
 elseif g:vim_mode ==# 'full'
   " Language features
-  Plug 'github/copilot.vim'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'yaegassy/coc-ruff', { 'do': 'yarn install --frozen-lockfile' }
   Plug 'dense-analysis/ale'

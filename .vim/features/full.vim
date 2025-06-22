@@ -199,12 +199,6 @@ endif
 " }}}
 " }}}
 " {{{Language features
-" {{{copilot.vim
-imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
-imap <silent> <A-n> <Plug>(copilot-next)
-imap <silent> <A-p> <Plug>(copilot-previous)
-let g:copilot_no_tab_map = v:true
-" }}}
 " {{{coc.nvim
 " {{{coc-init
 let g:coc_data_home = fnamemodify(custom#utils#stdpath('data'), ':p') . 'coc'
@@ -231,6 +225,7 @@ let g:coc_global_extensions = [
       \ 'coc-eslint',
       \ 'coc-explorer',
       \ 'coc-git',
+      \ 'coc-github-copilot',
       \ 'coc-gitignore',
       \ 'coc-go',
       \ 'coc-highlight',
@@ -323,116 +318,92 @@ if has('win32')
 endif
 " }}}
 " {{{coc-mappings
-let g:coc_snippet_next = '<C-j>'
-let g:coc_snippet_prev = '<C-k>'
-inoremap <silent><expr> <C-j>
-      \ coc#jumpable() ? "\<C-R>=coc#rpc#request('snippetNext', [])\<cr>" :
-      \ coc#pum#visible() ? coc#_select_confirm() :
-      \ "\<Down>"
-inoremap <silent><expr> <C-k>
-      \ coc#jumpable() ? "\<C-R>=coc#rpc#request('snippetPrev', [])\<cr>" :
-      \ "\<Up>"
-inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) :
-      \ custom#utils#check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) :
-      \ custom#utils#check_back_space() ? "\<S-TAB>" :
-      \ coc#refresh()
-inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
-inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : coc#refresh()
-inoremap <silent><expr> <CR> coc#pum#visible() ? "\<Space>\<Backspace>\<CR>" : "\<CR>"
-inoremap <silent><expr> <up> coc#pum#visible() ? "\<Space>\<Backspace>\<up>" : "\<up>"
-inoremap <silent><expr> <down> coc#pum#visible() ? "\<Space>\<Backspace>\<down>" : "\<down>"
-inoremap <silent><expr> <left> coc#pum#visible() ? "\<Space>\<Backspace>\<left>" : "\<left>"
-inoremap <silent><expr> <right> coc#pum#visible() ? "\<Space>\<Backspace>\<right>" : "\<right>"
+" Select
+inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#next(1) : "\<tab>"
+inoremap <silent><expr> <S-tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-tab>"
+" Confirm
+function! s:confirm()
+  if coc#pum#has_item_selected()
+    return coc#pum#confirm()
+  endif
+  call coc#inline#accept()
+  return coc#pum#cancel()
+endfunction
+inoremap <silent><expr> <C-y> <sid>confirm()
+" Cancel
+function! s:cancel()
+  if coc#pum#visible()
+    call coc#pum#close('cancel')
+  endif
+  if coc#inline#visible()
+    call coc#inline#cancel()
+  endif
+  return ''
+endfunction
+inoremap <silent><expr> <C-e> <sid>cancel()
+" Snippet
+inoremap <silent><expr> <C-j> coc#jumpable() ?
+      \ "\<C-R>=coc#rpc#request('snippetNext', [])\<cr>" :
+      \ coc#inline#next()
+inoremap <silent><expr> <C-k> coc#jumpable() ?
+      \ "\<C-R>=coc#rpc#request('snippetPrev', [])\<cr>" :
+      \ coc#inline#prev()
+" Navigation
+inoremap <silent><expr> <up> <sid>cancel() . "\<up>"
+inoremap <silent><expr> <down> <sid>cancel() . "\<down>"
+inoremap <silent><expr> <left> <sid>cancel() . "\<left>"
+inoremap <silent><expr> <right> <sid>cancel() . "\<right>"
+" Floating window
 nnoremap <silent><expr> <A-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<A-d>"
 nnoremap <silent><expr> <A-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<A-u>"
 inoremap <silent><expr> <A-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<A-d>"
 inoremap <silent><expr> <A-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<A-u>"
-nnoremap <silent><nowait> <A-b> :<C-u>call custom#dashboard#toggle_outline()<CR>
-nnoremap <silent> <A-=> :<C-u>CocCommand terminal.Toggle<CR>
-tnoremap <silent> <A-=> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
-nnoremap <silent> <A--> :<C-u>CocCommand terminal.REPL<CR>
-tnoremap <silent> <A--> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
-nmap <silent> <leader>f<Space> :<C-u>CocList<CR>
-nmap <silent> <leader>fy :<C-u>CocList yank<CR>
-nmap <silent> <leader>fs :<C-u>CocList symbols<CR>
-nmap <silent> <leader>fh :<C-u>CocList helptags<CR>
-nmap <silent> <leader>fl :<C-u>CocList --interactive --ignore-case lines<CR>
-nmap <silent> <leader>ff :<C-u>CocList files<CR>
-nmap <silent> <leader>fb :<C-u>CocList buffers<CR>
-nmap <silent> <leader>fm :<C-u>CocList mru<CR>
-nmap <silent> <leader>fg :<C-u>CocList grep<CR>
-nmap <silent> <leader>jd <Plug>(coc-definition)
-nmap <silent> <leader>jD <Plug>(coc-declaration)
-nmap <silent> <leader>jt <Plug>(coc-type-definition)
-nmap <silent> <leader>jr <Plug>(coc-references-used)
-nmap <silent> <leader>jR <Plug>(coc-references)
-nmap <silent> <leader>jm <Plug>(coc-implementation)
-nmap <silent> <leader>ar <Plug>(coc-rename)
-nmap <silent> <leader>aR <Plug>(coc-refactor)
-nmap <silent> <leader>acb <Plug>(coc-codeaction)
-nmap <silent> <leader>acl <Plug>(coc-codeaction-line)
-nmap <silent> <leader>acc <Plug>(coc-codeaction-cursor)
-vmap <silent> <leader>ac <Plug>(coc-codeaction-selected)
-nmap <silent> <leader>aCp :<C-u>CocCommand editor.action.pickColor<CR>
-nmap <silent> <leader>aCP :<C-u>CocCommand editor.action.colorPresentation<CR>
-nmap <silent> <leader>js :<C-u>CocCommand document.jumpToNextSymbol<CR>
-nmap <silent> <leader>jS :<C-u>CocCommand document.jumpToPrevSymbol<CR>
-nmap <silent> <leader>ao <Plug>(coc-openlink)
-nmap <silent> <leader>ahc :<C-u>call CocAction('showOutgoingCalls')<CR>
-nmap <silent> <leader>aHc :<C-u>call CocAction('showIncomingCalls')<CR>
-nmap <silent> <leader>aht :<C-u>call CocAction('showOutgoingCalls')<CR>
-nmap <silent> <leader>aHt :<C-u>call CocAction('showIncomingCalls')<CR>
-nmap <silent> zM :<C-u>call custom#utils#coc_fold()<CR>
-nmap <silent> <leader>al <Plug>(coc-codelens-action)
-nmap <silent> <leader>amp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
-nmap <silent> <leader>ami :<C-u>CocCommand markdown-preview-enhanced.openImageHelper<cr>
-nmap <silent> <leader>amI :<C-u>CocCommand markdown-preview-enhanced.showUploadedImages<cr>
-nmap <silent> <leader>amr :<C-u>CocCommand markdown-preview-enhanced.runCodeChunk<cr>
-nmap <silent> <leader>amR :<C-u>CocCommand markdown-preview-enhanced.runAllCodeChunks<cr>
-nmap <silent> <leader><Tab> <Plug>(coc-format)
-vmap <silent> <leader><Tab> <Plug>(coc-format-selected)
-nmap <silent> <leader>jg <Plug>(coc-git-nextchunk)
-nmap <silent> <leader>jG <Plug>(coc-git-prevchunk)
-nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
-omap ig <Plug>(coc-git-chunk-inner)
-xmap ig <Plug>(coc-git-chunk-inner)
-omap ag <Plug>(coc-git-chunk-outer)
-xmap ag <Plug>(coc-git-chunk-outer)
-nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
-nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
-nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
-nmap <silent> <leader>gf :<C-u>CocCommand git.foldUnchanged<CR>
-nmap <silent> <leader>go :<C-u>CocCommand git.browserOpen<CR>
-nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
-nmap <silent> <leader>gla :<C-u>CocList commits<cr>
-nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
-nmap <silent> <leader>gll <Plug>(coc-git-commit)
-nmap <silent> <leader>afc <Plug>(coc-fix-current)
-nmap <silent> <leader>afa :<C-u>call CocActionAsync('fixAll')<CR>
-nmap <silent> <leader>ai :<C-u>call CocActionAsync('organizeImport')<CR>
-if !has('nvim')
-  xmap if <Plug>(coc-funcobj-i)
-  omap if <Plug>(coc-funcobj-i)
-  xmap af <Plug>(coc-funcobj-a)
-  omap af <Plug>(coc-funcobj-a)
-endif
-xmap io <Plug>(coc-classobj-i)
-omap io <Plug>(coc-classobj-i)
-xmap ao <Plug>(coc-classobj-a)
-omap ao <Plug>(coc-classobj-a)
-nmap ` <Plug>(coc-cursors-position)
-" Show hover when provider exists, fallback to vim's builtin behavior.
-nnoremap <silent> ? :call DoHover()<CR>
-function! DoHover()
+function! s:do_hover()
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('definitionHover')
   else
     call feedkeys('?', 'in')
   endif
 endfunction
-" Define which key mappings
+nnoremap <silent> ? :call <sid>do_hover()<CR>
+" Outline
+nnoremap <silent><nowait> <A-b> :<C-u>call custom#dashboard#toggle_outline()<CR>
+" Terminal
+nnoremap <silent> <A-=> :<C-u>CocCommand terminal.Toggle<CR>
+tnoremap <silent> <A-=> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
+nnoremap <silent> <A--> :<C-u>CocCommand terminal.REPL<CR>
+tnoremap <silent> <A--> <C-\><C-n>:<C-u>CocCommand terminal.Toggle<CR>
+" List
+nmap <silent> <leader>f<Space> :<C-u>CocList<CR>
+nmap <silent> <leader>fl :<C-u>CocList --interactive --ignore-case lines<CR>
+nmap <silent> <leader>ff :<C-u>CocList files<CR>
+nmap <silent> <leader>fb :<C-u>CocList buffers<CR>
+nmap <silent> <leader>fm :<C-u>CocList mru<CR>
+nmap <silent> <leader>fg :<C-u>CocList grep<CR>
+nmap <silent> <leader>fy :<C-u>CocList yank<CR>
+nmap <silent> <leader>fs :<C-u>CocList symbols<CR>
+nmap <silent> <leader>fh :<C-u>CocList helptags<CR>
+let g:which_key_map['f'] = {
+      \   'name': 'fuzzy finder',
+      \   "\<Space>": 'list',
+      \   'l': 'lines',
+      \   'f': 'files',
+      \   'b': 'buffers',
+      \   'm': 'mru files',
+      \   'g': 'grep',
+      \   'y': 'yank',
+      \   's': 'symbols',
+      \   'h': 'help',
+      \   }
+" Jump
+nmap <silent> <leader>jd <Plug>(coc-definition)
+nmap <silent> <leader>jD <Plug>(coc-declaration)
+nmap <silent> <leader>jt <Plug>(coc-type-definition)
+nmap <silent> <leader>jr <Plug>(coc-references-used)
+nmap <silent> <leader>jR <Plug>(coc-references)
+nmap <silent> <leader>jm <Plug>(coc-implementation)
+nmap <silent> <leader>js :<C-u>CocCommand document.jumpToNextSymbol<CR>
+nmap <silent> <leader>jS :<C-u>CocCommand document.jumpToPrevSymbol<CR>
 if !exists("g:which_key_map['j']")
   let g:which_key_map['j'] = { 'name': 'jump'}
 endif
@@ -444,9 +415,29 @@ let g:which_key_map['j']['R'] = 'reference all'
 let g:which_key_map['j']['m'] = 'implementation'
 let g:which_key_map['j']['s'] = 'next symbol'
 let g:which_key_map['j']['S'] = 'prev symbol'
-let g:which_key_map['j']['g'] = 'next git chunk'
-let g:which_key_map['j']['G'] = 'prev git chunk'
-let g:which_key_map['<Tab>'] = 'format'
+" Action
+nmap <silent> <leader>afc <Plug>(coc-fix-current)
+nmap <silent> <leader>afa :<C-u>call CocActionAsync('fixAll')<CR>
+nmap <silent> <leader>ai :<C-u>call CocActionAsync('organizeImport')<CR>
+nmap <silent> <leader>ar <Plug>(coc-rename)
+nmap <silent> <leader>aR <Plug>(coc-refactor)
+nmap <silent> <leader>ao <Plug>(coc-openlink)
+nmap <silent> <leader>al <Plug>(coc-codelens-action)
+nmap <silent> <leader>acb <Plug>(coc-codeaction)
+nmap <silent> <leader>acl <Plug>(coc-codeaction-line)
+nmap <silent> <leader>acc <Plug>(coc-codeaction-cursor)
+vmap <silent> <leader>ac <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>aCp :<C-u>CocCommand editor.action.pickColor<CR>
+nmap <silent> <leader>aCP :<C-u>CocCommand editor.action.colorPresentation<CR>
+nmap <silent> <leader>ahc :<C-u>call CocAction('showOutgoingCalls')<CR>
+nmap <silent> <leader>aHc :<C-u>call CocAction('showIncomingCalls')<CR>
+nmap <silent> <leader>aht :<C-u>call CocAction('showOutgoingCalls')<CR>
+nmap <silent> <leader>aHt :<C-u>call CocAction('showIncomingCalls')<CR>
+nmap <silent> <leader>amp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
+nmap <silent> <leader>ami :<C-u>CocCommand markdown-preview-enhanced.openImageHelper<cr>
+nmap <silent> <leader>amI :<C-u>CocCommand markdown-preview-enhanced.showUploadedImages<cr>
+nmap <silent> <leader>amr :<C-u>CocCommand markdown-preview-enhanced.runCodeChunk<cr>
+nmap <silent> <leader>amR :<C-u>CocCommand markdown-preview-enhanced.runAllCodeChunks<cr>
 if !exists("g:which_key_map['a']")
   let g:which_key_map['a'] = { 'name': 'action'}
 endif
@@ -489,6 +480,31 @@ let g:which_key_map['a']['m'] = {
       \ 'r': 'run code chunk',
       \ 'R': 'run all code chunks',
       \ }
+" Fold
+nmap <silent> zM :<C-u>call custom#utils#coc_fold()<CR>
+" Format
+nmap <silent> <leader><Tab> <Plug>(coc-format)
+vmap <silent> <leader><Tab> <Plug>(coc-format-selected)
+let g:which_key_map['<Tab>'] = 'format'
+" Git
+nmap <silent> <leader>jg <Plug>(coc-git-nextchunk)
+nmap <silent> <leader>jG <Plug>(coc-git-prevchunk)
+omap ig <Plug>(coc-git-chunk-inner)
+xmap ig <Plug>(coc-git-chunk-inner)
+omap ag <Plug>(coc-git-chunk-outer)
+xmap ag <Plug>(coc-git-chunk-outer)
+nmap <silent> <leader>gD :CocCommand git.diffCached<CR>
+nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
+nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
+nmap <silent> <leader>ga :<C-u>CocCommand git.chunkStage<CR>
+nmap <silent> <leader>gs :<C-u>CocList gstatus<cr>
+nmap <silent> <leader>gf :<C-u>CocCommand git.foldUnchanged<CR>
+nmap <silent> <leader>go :<C-u>CocCommand git.browserOpen<CR>
+nmap <silent> <leader>gla :<C-u>CocList commits<cr>
+nmap <silent> <leader>glc :<C-u>CocList bcommits<cr>
+nmap <silent> <leader>gll <Plug>(coc-git-commit)
+let g:which_key_map['j']['g'] = 'next git chunk'
+let g:which_key_map['j']['G'] = 'prev git chunk'
 let g:which_key_map['g'] = {
       \   'name': 'git',
       \   'D': 'diff staged',
@@ -496,22 +512,22 @@ let g:which_key_map['g'] = {
       \   'u': 'chunk undo',
       \   'a': 'chunk stage',
       \   's': 'status',
-      \   'l': {'name': 'logs', 'a': 'log (all)', 'c': 'log (cur buf)', 'l': 'log (cur line)'},
       \   'f': 'toggle fold unchanged',
       \   'o': 'open remote url in the browser',
+      \   'l': {'name': 'logs', 'a': 'log (all)', 'c': 'log (cur buf)', 'l': 'log (cur line)'},
       \   }
-let g:which_key_map['f'] = {
-      \   'name': 'fuzzy finder',
-      \   "\<Space>": 'list',
-      \   'l': 'lines',
-      \   'f': 'files',
-      \   'b': 'buffers',
-      \   'm': 'mru files',
-      \   'g': 'grep',
-      \   's': 'symbols',
-      \   'y': 'yank',
-      \   'h': 'help',
-      \   }
+" Text objects
+if !has('nvim')
+  xmap if <Plug>(coc-funcobj-i)
+  omap if <Plug>(coc-funcobj-i)
+  xmap af <Plug>(coc-funcobj-a)
+  omap af <Plug>(coc-funcobj-a)
+endif
+xmap io <Plug>(coc-classobj-i)
+omap io <Plug>(coc-classobj-i)
+xmap ao <Plug>(coc-classobj-a)
+omap ao <Plug>(coc-classobj-a)
+nmap ` <Plug>(coc-cursors-position)
 " }}}
 " {{{coc-explorer
 nnoremap <silent> <C-b> :<C-u>execute 'CocCommand explorer --focus ' . getcwd()<CR>
