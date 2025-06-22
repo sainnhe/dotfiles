@@ -349,10 +349,10 @@ inoremap <silent><expr> <C-k> coc#jumpable() ?
       \ "\<C-R>=coc#rpc#request('snippetPrev', [])\<cr>" :
       \ coc#inline#prev()
 " Navigation
-inoremap <silent><expr> <up> <sid>cancel() . "\<up>"
-inoremap <silent><expr> <down> <sid>cancel() . "\<down>"
-inoremap <silent><expr> <left> <sid>cancel() . "\<left>"
-inoremap <silent><expr> <right> <sid>cancel() . "\<right>"
+" Create placeholder mappings for <up> and <down> to avoid coc adding mappings
+" for them.
+inoremap <silent><expr> <up> coc#pum#visible() ? "\<up>" : "\<up>"
+inoremap <silent><expr> <down> coc#pum#visible() ? "\<down>" : "\<down>"
 " Floating window
 nnoremap <silent><expr> <A-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<A-d>"
 nnoremap <silent><expr> <A-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<A-u>"
