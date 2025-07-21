@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "npm-check-updates": "17.1.15",
-    "pnpm": "10.6.3"
+    "@google/gemini-cli": "^0.1.13",
+    "npm-check-updates": "18.0.1",
+    "pnpm": "10.13.1"
   }
 }
