@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=gui-meta
 pkgdesc='Meta package to install some GUI components'
-pkgver=2025.02.17
+pkgver=2025.07.26
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -10,8 +10,7 @@ conflicts=("${pkgname}")
 depends=(# Browsers
          firefox-developer-edition
          firefox-developer-edition-i18n-zh-cn
-         ungoogled-chromium
-         chromium-extension-web-store
+         chromium
          # IM
          element-desktop
          telegram-desktop
