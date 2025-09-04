@@ -609,9 +609,16 @@ let g:ale_linter_aliases = {
 " Disable default linters and use configured only.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
+      \ 'cpp': ['cc', 'clangcheck', 'clangtidy', 'cppcheck'],
       \ 'sh': ['shellcheck'],
       \ 'go': ['govet', 'revive', 'staticcheck'],
       \ }
+" C++ config
+let g:ale_cpp_cc_executable = 'clang++'
+let g:ale_cpp_cc_options = '-std=c++14 -Wall'
+let g:ale_cpp_clangtidy_checks = ['*']
+let g:ale_cpp_clangtidy_extra_options = '--format-style=llvm'
+let g:ale_cpp_cppcheck_options = '--enable=all'
 " }}}
 " {{{vim-doge
 let g:doge_enable_mappings = 0
