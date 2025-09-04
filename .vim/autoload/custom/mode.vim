@@ -51,7 +51,10 @@ function custom#mode#check_dependencies() abort " Check dependencies
   let l:dependencies = {
         \ 'universal': [
           \ 'cargo',
+          \ 'clang++',
           \ 'clangd',
+          \ 'clang-tidy',
+          \ 'cppcheck',
           \ 'gcc',
           \ 'go',
           \ 'golangci-lint',

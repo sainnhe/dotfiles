@@ -77,6 +77,13 @@ _deps() {
         shfmt
 }
 
+_cpp() {
+    sudo port -N install \
+        clang-21 \
+        cppcheck
+    sudo port select clang mp-clang-21
+}
+
 _rust() {
     _copy .cargo/config.toml
     sudo port -N install cargo rust-analyzer
@@ -177,6 +184,8 @@ elif [ "$1" = "git" ]; then
     _git
 elif [ "$1" = "deps" ]; then
     _deps
+elif [ "$1" = "cpp" ]; then
+    _cpp
 elif [ "$1" = "rust" ]; then
     _rust
 elif [ "$1" = "node" ]; then
