@@ -268,7 +268,7 @@
     "--clang-tidy",
     "--background-index",
     "--completion-style=detailed",
-    "--fallback-style=google",
+    "--fallback-style=LLVM",
     "--header-insertion=never"
   ],
   "go.goplsPath": "gopls",
