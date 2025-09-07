@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=cli-meta
 pkgdesc='Meta package to install some CLI components'
-pkgver=2025.02.22
+pkgver=2025.09.07
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -47,7 +47,7 @@ depends=(base
          aria2
          axel
          bind
-         clash-meta
+         mihomo
          cloudflared
          inetutils
          lsof
