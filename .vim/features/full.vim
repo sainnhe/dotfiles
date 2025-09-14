@@ -616,9 +616,28 @@ let g:ale_linters = {
 " C++ config
 let g:ale_cpp_cc_executable = 'clang++'
 let g:ale_cpp_cc_options = '-std=c++14 -Wall'
-let g:ale_cpp_clangtidy_checks = ['*']
-let g:ale_cpp_clangtidy_extra_options = '--format-style=llvm'
 let g:ale_cpp_cppcheck_options = '--enable=style'
+" https://clang.llvm.org/extra/clang-tidy/
+" https://clang.llvm.org/extra/clang-tidy/checks/list.html
+" These options will be appended to the value of 'Checks' option in .clang-tidy
+let g:ale_cpp_clangtidy_checks = [
+      \ '-*',
+      \ 'boost-*',
+      \ 'bugprone-*',
+      \ 'cert-*',
+      \ 'clang-analyzer-*',
+      \ 'concurrency-*',
+      \ 'cppcoreguidelines-*',
+      \ 'google-*',
+      \ 'hicpp-*',
+      \ 'llvm-*',
+      \ 'misc-*',
+      \ 'modernize-*',
+      \ 'mpi-*',
+      \ 'performance-*',
+      \ 'portability-*',
+      \ 'readability-*',
+      \ ]
 " }}}
 " {{{vim-doge
 let g:doge_enable_mappings = 0
