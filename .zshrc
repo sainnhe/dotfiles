@@ -348,6 +348,9 @@ else
     alias pmup='podman compose up -d'
     alias pmdown='podman compose down'
 fi
+if [ -x "$(command -v bazelisk)" ]; then
+    alias bzl='bazelisk'
+fi
 # }}}
 # {{{Plugins
 # https://github.com/zdharma-continuum/zinit
