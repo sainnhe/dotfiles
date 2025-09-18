@@ -1,6 +1,5 @@
 {
   "coc.preferences.enableLinkedEditing": true,
-  "coc.preferences.enableMessageDialog": true,
   "coc.preferences.formatOnType": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
@@ -127,12 +126,8 @@
   "snippets.shortcut": "S",
   "snippets.priority": 99,
   "snippets.extends": {
-    "javascriptreact": [
-      "javascript"
-    ],
-    "typescript": [
-      "javascript"
-    ]
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"]
   },
   "coc.source.file.shortcut": "F",
   "coc.source.file.priority": 89,
@@ -202,15 +197,7 @@
     "<tab>": "actionMenu",
     "h": "indentPrev",
     "l": "indentNext",
-    "o": [
-      "expandable?",
-      [
-        "expanded?",
-        "collapse",
-        "expand"
-      ],
-      "open"
-    ],
+    "o": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "<cr>": "open",
     "t": "open:tab",
     "<bs>": "gotoParent",
@@ -373,9 +360,7 @@
     "/usr/share/nvim/runtime/lua/vim",
     "/usr/share/nvim/runtime/lua/vim/lsp"
   ],
-  "Lua.diagnostics.globals": [
-    "vim"
-  ],
+  "Lua.diagnostics.globals": ["vim"],
   "texlab.path": "texlab",
   "texlab.build.onSave": true,
   "texlab.build.args": [
@@ -423,22 +408,14 @@
   },
   "languageserver": {
     "markdown": {
-      "filetypes": [
-        "markdown"
-      ],
+      "filetypes": ["markdown"],
       "command": "marksman",
-      "args": [
-        "server"
-      ]
+      "args": ["server"]
     },
     "typst": {
-      "filetypes": [
-        "typst"
-      ],
+      "filetypes": ["typst"],
       "command": "tinymist",
-      "args": [
-        "lsp"
-      ],
+      "args": ["lsp"],
       "settings": {
         "exportPdf": "onSave",
         "compileStatus": "enable",
@@ -451,18 +428,18 @@
     },
     "protobuf": {
       "command": "protols",
-      "filetypes": [
-        "proto"
-      ]
+      "filetypes": ["proto"]
     },
     "bazel": {
-      "command": "bazel-lsp",
-      "filetypes": [
-        "bzl"
-      ],
+      "command": "starpls",
+      "filetypes": ["bzl"],
       "args": [
-        "--bazel",
-        "bazelisk"
+        "server",
+        "--bazel_path",
+        "bazelisk",
+        "--experimental_enable_label_completions",
+        "--experimental_infer_ctx_attributes",
+        "--experimental_use_code_flow_analysis"
       ]
     }
   }

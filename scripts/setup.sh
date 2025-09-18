@@ -77,17 +77,20 @@ _deps() {
         shfmt
 }
 
+_rust() {
+    _copy .cargo/config.toml
+    sudo port -N install cargo rust-analyzer
+    cargo install cargo-update cargo-cache
+}
+
 _cpp() {
     sudo port -N install \
         clang-21 \
         cppcheck
     sudo port select clang mp-clang-21
-}
-
-_rust() {
-    _copy .cargo/config.toml
-    sudo port -N install cargo rust-analyzer
-    cargo install cargo-update cargo-cache
+    curl -fSL https://github.com/withered-magic/starpls/releases/latest/download/starpls-darwin-arm64 \
+        -o ~/.local/bin/starpls &&
+        chmod a+x ~/.local/bin/starpls
 }
 
 _node() {

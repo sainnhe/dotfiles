@@ -50,11 +50,10 @@ function custom#mode#check_dependencies() abort " Check dependencies
   let l:result = 1
   let l:dependencies = {
         \ 'universal': [
-          \ 'bazel-lsp',
           \ 'cargo',
           \ 'clang++',
-          \ 'clangd',
           \ 'clang-tidy',
+          \ 'clangd',
           \ 'cppcheck',
           \ 'gcc',
           \ 'go',
@@ -79,6 +78,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'shellcheck',
           \ 'shfmt',
           \ 'sqls',
+          \ 'starpls',
           \ 'staticcheck',
           \ 'tinymist',
           \ 'typst',
