@@ -50,6 +50,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
   let l:result = 1
   let l:dependencies = {
         \ 'universal': [
+          \ 'bazel-lsp',
           \ 'cargo',
           \ 'clang++',
           \ 'clangd',
