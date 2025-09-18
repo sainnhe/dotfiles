@@ -637,6 +637,7 @@ let g:ale_cpp_clangtidy_checks = [
       \ 'performance-*',
       \ 'portability-*',
       \ 'readability-*',
+      \ '-modernize-use-trailing-return-type',
       \ ]
 " }}}
 " {{{vim-doge
