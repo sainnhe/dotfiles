@@ -308,7 +308,6 @@ text objects have been added:
 - `l`: Line
 - `u`：URL
 - `z`：Fold
-- `.`: Current Tree-Sitter Node (nvim only)
 - `f`: Function (full mode only)
 - `o`: Object, for example class/struct/interface (full mode only)
 - `g`：Git chunks (full mode only)

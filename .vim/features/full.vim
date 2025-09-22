@@ -668,47 +668,5 @@ if has('python') || has('python3')
   let g:Lf_ShortcutB = ''
 endif
 " }}}
-" {{{Tree-sitter
-if has('nvim')
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
-  ignore_install = { "phpdoc", "beancount" },
-  highlight = {
-    enable = false,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<2-LeftMouse>"
-    },
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-      }
-    }
-  },
-  textsubjects = {
-    enable = true,
-    keymaps = {
-        ['.'] = 'textsubjects-smart',
-    }
-  },
-  query_linter = {
-    enable = true,
-    use_virtual_text = true,
-    lint_events = {"BufWrite", "CursorHold"},
-  }
-}
-EOF
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-set nofoldenable
-endif
-" }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

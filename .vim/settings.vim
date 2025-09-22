@@ -88,7 +88,6 @@ endif
 if has('nvim')
   set inccommand=split
   set laststatus=3
-  lua vim.loader.enable()
 elseif has('vim9script')
   set wildoptions=pum
   set fillchars=vert:│,fold:-,eob:~

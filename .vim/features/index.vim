@@ -125,7 +125,6 @@ let g:which_key_map = {
         \ 'name': 'Beta',
         \ }
       \ }
-Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'Yggdroot/indentLine', { 'on': [] }
 " Text objects
 Plug 'kana/vim-textobj-user'
@@ -222,12 +221,6 @@ elseif g:vim_mode ==# 'full'
   " Fuzzy Search
   if has('python') || has('python3')
     Plug 'Yggdroot/LeaderF'
-  endif
-  " Tree-sitter
-  if has('nvim')
-    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-    Plug 'RRethy/nvim-treesitter-textsubjects'
   endif
   " Functional components, but with extra dependencies
   Plug 'itchyny/lightline.vim'
