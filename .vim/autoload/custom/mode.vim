@@ -55,6 +55,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'clang-tidy',
           \ 'clangd',
           \ 'cppcheck',
+          \ 'cpplint',
           \ 'gcc',
           \ 'go',
           \ 'golangci-lint',

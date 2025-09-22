@@ -609,7 +609,7 @@ let g:ale_linter_aliases = {
 " Disable default linters and use configured only.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-      \ 'cpp': ['cc', 'clangtidy', 'cppcheck'],
+      \ 'cpp': ['cc', 'clangtidy', 'cppcheck', 'cpplint'],
       \ 'sh': ['shellcheck'],
       \ 'go': ['govet', 'revive', 'staticcheck'],
       \ }
