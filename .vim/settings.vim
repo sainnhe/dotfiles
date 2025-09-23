@@ -176,6 +176,7 @@ let g:root_patterns = [
       \ 'pom.xml',
       \ 'venv',
       \ 'MODULE.bazel',
+      \ 'BUILD',
       \ ]
 let g:java_home = !empty($JAVA_HOME) ? $JAVA_HOME :
       \ has('win32') ? expand('~/scoop/apps/openjdk/current') :
