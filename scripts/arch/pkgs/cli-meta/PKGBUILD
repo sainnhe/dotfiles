@@ -88,8 +88,6 @@ depends=(base
          # C/C++
          gcc
          clang
-         cppcheck
-         python-cpplint
          cmake
          # Go
          go

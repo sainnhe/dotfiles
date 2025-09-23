@@ -84,9 +84,7 @@ _rust() {
 }
 
 _cpp() {
-    sudo port -N install \
-        clang-21 \
-        cppcheck
+    sudo port -N install clang-21
     sudo port select clang mp-clang-21
     curl -fSL https://github.com/withered-magic/starpls/releases/latest/download/starpls-darwin-arm64 \
         -o ~/.local/bin/starpls &&

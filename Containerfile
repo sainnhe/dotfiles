@@ -77,7 +77,6 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         # C/C++
         clang \
         clang-extra-tools \
-        cppcheck \
         g++ \
         gcc \
         gdb \
