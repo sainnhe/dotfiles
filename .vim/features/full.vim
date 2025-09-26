@@ -636,7 +636,7 @@ if has('python') || has('python3')
   let g:Lf_CacheDirectory = custom#utils#get_path([custom#utils#stdpath('cache'), 'leaderf'])
   let g:Lf_StlSeparator = { 'left': '', 'right': '' }
   let g:Lf_RootMarkers = g:root_patterns
-  let g:Lf_PreviewInPopup = 0
+  let g:Lf_PreviewInPopup = 1
   let g:Lf_ShortcutF = ''
   let g:Lf_ShortcutB = ''
 endif
