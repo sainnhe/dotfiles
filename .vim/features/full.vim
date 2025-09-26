@@ -629,7 +629,7 @@ let g:which_key_map['j']['j'] = 'any jump'
 " }}}
 " }}}
 " {{{Fuzzy Search
-if has('python') || has('python3')
+if has('python3')
   nmap <silent> <leader>fl :<C-u>Leaderf line<CR>
   let g:Lf_WindowPosition = 'bottom'
   let g:Lf_WindowHeight = 0.38

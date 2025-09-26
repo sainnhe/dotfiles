@@ -219,7 +219,7 @@ elseif g:vim_mode ==# 'full'
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
   " Fuzzy Search
-  if has('python') || has('python3')
+  if has('python3')
     Plug 'Yggdroot/LeaderF'
   endif
   " Functional components, but with extra dependencies
