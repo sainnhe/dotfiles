@@ -263,11 +263,15 @@
   "angular.forceStrictTemplates": true,
   "clangd.path": "clangd",
   "clangd.arguments": [
-    "--clang-tidy",
+    "--all-scopes-completion",
     "--background-index",
+    "--background-index-priority=normal",
+    "--clang-tidy",
     "--completion-style=detailed",
     "--fallback-style=LLVM",
-    "--header-insertion=never"
+    "--function-arg-placeholders",
+    "--header-insertion=iwyu",
+    "--log=error"
   ],
   "go.goplsPath": "gopls",
   "go.checkForUpdates": "disabled",
