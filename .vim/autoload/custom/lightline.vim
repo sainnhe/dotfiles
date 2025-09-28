@@ -14,14 +14,15 @@ function custom#lightline#coc_diagnostic_warning() abort "{{{
   let info = get(b:, 'coc_diagnostic_info', {})
   return get(info, 'warning', 0) ==# 0 ? '' : " " . info['warning']
 endfunction "}}}
+function custom#lightline#coc_diagnostic_info_and_hint() abort "{{{
+  let info = get(b:, 'coc_diagnostic_info', {})
+  let total_cnt = get(info, 'information', 0) + get(info, 'hint', 0)
+  return total_cnt ==# 0 ? '' : " " . total_cnt
+endfunction "}}}
 function custom#lightline#coc_diagnostic_ok() abort "{{{
   let info = get(b:, 'coc_diagnostic_info', {})
-  if (get(info, 'error', 0) == 0) && (get(info, 'warning', 0) == 0)
-    let msg = ""
-  else
-    let msg = ''
-  endif
-  return msg
+  let total_cnt = get(info, 'error', 0) + get(info, 'warning', 0) + get(info, 'information', 0) + get(info, 'hint', 0)
+  return total_cnt ==# 0 ? "" : ''
 endfunction "}}}
 function custom#lightline#coc_status() abort "{{{
   return get(g:, 'coc_status', '')

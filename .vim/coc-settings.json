@@ -19,7 +19,7 @@
   "diagnostic.errorSign": "󰅜",
   "diagnostic.warningSign": "󰀦",
   "diagnostic.infoSign": "󰋼",
-  "diagnostic.hintSign": "󰋗",
+  "diagnostic.hintSign": "󰋼",
   "diagnostic.level": "hint",
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": true,

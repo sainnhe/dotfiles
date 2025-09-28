@@ -21,7 +21,7 @@ if g:vim_lightline_artify == 0
         \ 'left': [ [ 'mode', 'paste' ],
         \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
         \ 'right': [ [ 'lineinfo' ],
-        \            [ 'linter_errors', 'linter_warnings', 'linter_ok'],
+        \            [ 'linter_errors', 'linter_warnings', 'linter_info_and_hint', 'linter_ok'],
         \           [ 'asyncrun_status', 'coc_status' ] ]
         \ }
   " ALE Based:
@@ -50,7 +50,7 @@ else
         \ 'left': [ [ 'artify_mode', 'paste' ],
         \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
         \ 'right': [ [ 'artify_lineinfo' ],
-        \            [ 'linter_errors', 'linter_warnings', 'linter_ok'],
+        \            [ 'linter_errors', 'linter_warnings', 'linter_info_and_hint', 'linter_ok'],
         \           [ 'asyncrun_status', 'coc_status' ] ]
         \ }
   " ALE Based:
@@ -103,6 +103,7 @@ let g:lightline.component_function = {
       \ }
 " Coc Based:
 let g:lightline.component_expand = {
+      \ 'linter_info_and_hint': 'custom#lightline#coc_diagnostic_info_and_hint',
       \ 'linter_warnings': 'custom#lightline#coc_diagnostic_warning',
       \ 'linter_errors': 'custom#lightline#coc_diagnostic_error',
       \ 'linter_ok': 'custom#lightline#coc_diagnostic_ok',
@@ -452,6 +453,15 @@ let g:which_key_map['j']['R'] = 'reference all'
 let g:which_key_map['j']['m'] = 'implementation'
 let g:which_key_map['j']['s'] = 'next symbol'
 let g:which_key_map['j']['S'] = 'prev symbol'
+" Diagnostics
+nmap <silent> <leader>jl <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>jL <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>je <Plug>(coc-diagnostic-next-error)
+nmap <silent> <leader>jE <Plug>(coc-diagnostic-prev-error)
+let g:which_key_map['j']['l'] = 'next linting'
+let g:which_key_map['j']['L'] = 'prev linting'
+let g:which_key_map['j']['e'] = 'next error'
+let g:which_key_map['j']['E'] = 'prev error'
 " Action
 nmap <silent> <leader>afc <Plug>(coc-fix-current)
 nmap <silent> <leader>afa :<C-u>call CocActionAsync('fixAll')<CR>
