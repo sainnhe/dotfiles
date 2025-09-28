@@ -16,7 +16,6 @@
   "cursors.cancelKey": "<esc>",
   "cursors.nextKey": "<tab>",
   "cursors.previousKey": "<s-tab>",
-  "diagnostic.displayByAle": true,
   "diagnostic.errorSign": "󰅜",
   "diagnostic.warningSign": "󰀦",
   "diagnostic.infoSign": "󰋼",

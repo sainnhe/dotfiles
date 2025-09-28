@@ -215,7 +215,6 @@ elseif g:vim_mode ==# 'full'
   " Language features
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'yaegassy/coc-ruff', { 'do': 'yarn install --frozen-lockfile' }
-  Plug 'dense-analysis/ale'
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
   " Fuzzy Search
@@ -225,7 +224,6 @@ elseif g:vim_mode ==# 'full'
   " Functional components, but with extra dependencies
   Plug 'itchyny/lightline.vim'
   Plug 'albertomontesg/lightline-asyncrun'
-  Plug 'sainnhe/lightline-ale'
   Plug 'ryanoasis/vim-devicons'
   Plug 'sainnhe/artify.vim'
   if g:vim_is_in_tmux && !has('win32')

@@ -16,13 +16,22 @@ let g:lightline.tabline_subseparator = { 'left': "", 'right': "" }
 let g:lightline#asyncrun#indicator_none = ''
 let g:lightline#asyncrun#indicator_run = 'Running...'
 if g:vim_lightline_artify == 0
+  " Coc Based:
   let g:lightline.active = {
         \ 'left': [ [ 'mode', 'paste' ],
         \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
         \ 'right': [ [ 'lineinfo' ],
-        \            [ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok', 'linter_unavailable', 'linter_checking'],
+        \            [ 'linter_errors', 'linter_warnings', 'linter_ok'],
         \           [ 'asyncrun_status', 'coc_status' ] ]
         \ }
+  " ALE Based:
+  " let g:lightline.active = {
+  "       \ 'left': [ [ 'mode', 'paste' ],
+  "       \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
+  "       \ 'right': [ [ 'lineinfo' ],
+  "       \            [ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok', 'linter_unavailable', 'linter_checking'],
+  "       \           [ 'asyncrun_status', 'coc_status' ] ]
+  "       \ }
   let g:lightline.inactive = {
         \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
         \ 'right': [ [ 'lineinfo' ] ]
@@ -36,13 +45,22 @@ if g:vim_lightline_artify == 0
         \ 'active': [ 'tabnum', 'filename', 'modified' ],
         \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
 else
+  " Coc Based:
   let g:lightline.active = {
         \ 'left': [ [ 'artify_mode', 'paste' ],
         \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
         \ 'right': [ [ 'artify_lineinfo' ],
-        \            [ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok', 'linter_unavailable', 'linter_checking'],
+        \            [ 'linter_errors', 'linter_warnings', 'linter_ok'],
         \           [ 'asyncrun_status', 'coc_status' ] ]
         \ }
+  " ALE Based:
+  " let g:lightline.active = {
+  "       \ 'left': [ [ 'artify_mode', 'paste' ],
+  "       \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
+  "       \ 'right': [ [ 'artify_lineinfo' ],
+  "       \            [ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok', 'linter_unavailable', 'linter_checking'],
+  "       \           [ 'asyncrun_status', 'coc_status' ] ]
+  "       \ }
   let g:lightline.inactive = {
         \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
         \ 'right': [ [ 'artify_lineinfo' ] ]
@@ -83,36 +101,39 @@ let g:lightline.component_function = {
       \ 'devicons_filetype': 'custom#lightline#devicons',
       \ 'coc_status': 'custom#lightline#coc_status'
       \ }
-" let g:lightline.component_expand = {
-"       \ 'linter_warnings': 'custom#lightline#coc_diagnostic_warning',
-"       \ 'linter_errors': 'custom#lightline#coc_diagnostic_error',
-"       \ 'linter_ok': 'custom#lightline#coc_diagnostic_ok',
-"       \ 'asyncrun_status': 'lightline#asyncrun#status'
-"       \ }
-" let g:lightline.component_type = {
-"       \ 'linter_warnings': 'warning',
-"       \ 'linter_errors': 'error'
-"       \ }
-" }}}
+" Coc Based:
 let g:lightline.component_expand = {
-      \ 'linter_checking': 'lightline#ale#checking',
-      \ 'linter_infos': 'lightline#ale#infos',
-      \ 'linter_warnings': 'lightline#ale#warnings',
-      \ 'linter_errors': 'lightline#ale#errors',
-      \ 'linter_ok': 'lightline#ale#ok',
-      \ 'linter_unavailable': 'lightline#ale#unavailable',
+      \ 'linter_warnings': 'custom#lightline#coc_diagnostic_warning',
+      \ 'linter_errors': 'custom#lightline#coc_diagnostic_error',
+      \ 'linter_ok': 'custom#lightline#coc_diagnostic_ok',
       \ 'asyncrun_status': 'lightline#asyncrun#status'
       \ }
 let g:lightline.component_type = {
       \ 'linter_warnings': 'warning',
-      \ 'linter_errors': 'error',
+      \ 'linter_errors': 'error'
       \ }
-let g:lightline#ale#indicator_checking = 'Linting...'
-let g:lightline#ale#indicator_infos = " "
-let g:lightline#ale#indicator_warnings = " "
-let g:lightline#ale#indicator_errors = " "
-let g:lightline#ale#indicator_ok = ""
-let g:lightline#ale#indicator_unavailable = ""
+
+" ALE Based:
+" let g:lightline.component_expand = {
+"       \ 'linter_checking': 'lightline#ale#checking',
+"       \ 'linter_infos': 'lightline#ale#infos',
+"       \ 'linter_warnings': 'lightline#ale#warnings',
+"       \ 'linter_errors': 'lightline#ale#errors',
+"       \ 'linter_ok': 'lightline#ale#ok',
+"       \ 'linter_unavailable': 'lightline#ale#unavailable',
+"       \ 'asyncrun_status': 'lightline#asyncrun#status'
+"       \ }
+" let g:lightline.component_type = {
+"       \ 'linter_warnings': 'warning',
+"       \ 'linter_errors': 'error',
+"       \ }
+" let g:lightline#ale#indicator_checking = 'Linting...'
+" let g:lightline#ale#indicator_infos = " "
+" let g:lightline#ale#indicator_warnings = " "
+" let g:lightline#ale#indicator_errors = " "
+" let g:lightline#ale#indicator_ok = ""
+" let g:lightline#ale#indicator_unavailable = ""
+" }}}
 " {{{tmuxline.vim
 if g:vim_is_in_tmux == 1 && !has('win32')
   let g:tmuxline_preset = {
@@ -561,57 +582,6 @@ let g:which_key_map['f']['p'] = 'projects'
 nnoremap <silent> <leader><space>T :<c-u>CocCommand coc-todo-tree.showTree<cr>
 let g:which_key_map["\<space>"]['T'] = 'todo'
 " }}}
-" }}}
-" {{{ale
-let g:ale_close_preview_on_insert = 1
-let g:ale_detail_to_floating_preview = 1
-let g:ale_disable_lsp = 1
-let g:ale_echo_cursor = 0
-let g:ale_virtualtext_cursor = 0
-let g:ale_echo_msg_error_str = 'ERR'
-let g:ale_echo_msg_info_str = 'INFO'
-let g:ale_echo_msg_warning_str = 'WARN'
-let g:ale_echo_msg_log_str = 'LOG'
-let g:ale_hover_cursor = 0
-let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
-let g:ale_sign_error = "󰅜"
-let g:ale_sign_info = "󰋼"
-let g:ale_sign_warning = ""
-nmap <silent> <leader>jl <Plug>(ale_next_wrap)<Plug>(ale_detail)
-nmap <silent> <leader>jL <Plug>(ale_previous_wrap)<Plug>(ale_detail)
-nmap <silent> <leader>je <Plug>(ale_next_wrap_error)<Plug>(ale_detail)
-nmap <silent> <leader>jE <Plug>(ale_previous_wrap_error)<Plug>(ale_detail)
-let g:which_key_map['j']['l'] = 'next linting'
-let g:which_key_map['j']['L'] = 'prev linting'
-let g:which_key_map['j']['e'] = 'next error'
-let g:which_key_map['j']['E'] = 'prev error'
-" For example, 'javascriptreact': 'javascript' will make javascriptreact to run
-" javascript linters
-let g:ale_linter_aliases = {
-      \ 'Dockerfile': 'dockerfile',
-      \ 'csh': 'sh',
-      \ 'html': ['html', 'javascript', 'css'],
-      \ 'javascriptreact': ['javascript', 'jsx'],
-      \ 'plaintex': 'tex',
-      \ 'ps1': 'powershell',
-      \ 'rmarkdown': 'r',
-      \ 'rmd': 'r',
-      \ 'systemverilog': 'verilog',
-      \ 'typescriptreact': ['typescript', 'tsx'],
-      \ 'vader': ['vim', 'vader'],
-      \ 'verilog_systemverilog': ['verilog_systemverilog', 'verilog'],
-      \ 'vimwiki': 'markdown',
-      \ 'vue': ['vue', 'javascript'],
-      \ 'xsd': ['xsd', 'xml'],
-      \ 'xslt': ['xslt', 'xml'],
-      \ 'zsh': 'sh',
-      \ }
-" Disable default linters and use configured only.
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-      \ 'sh': ['shellcheck'],
-      \ 'go': ['govet', 'revive', 'staticcheck'],
-      \ }
 " }}}
 " {{{vim-doge
 let g:doge_enable_mappings = 0
