@@ -174,6 +174,7 @@ _dotfiles() {
     _symlink .config/helix
     _copy .config/zathura
     _symlink .w3m
+    _symlink .clang-tidy
     echo "Setup ~/.zsh_envs.d manually"
 } #}}}
 
