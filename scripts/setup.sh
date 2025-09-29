@@ -111,7 +111,8 @@ _python() {
         py312-pip \
         py312-requests \
         python310 \
-        python312
+        python312 \
+        ruff
 }
 
 _go() {

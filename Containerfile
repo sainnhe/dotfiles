@@ -17,7 +17,7 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         gnupg \
         gzip \
         hyperfine \
-        lsd@testing \
+        lsd \
         nnn \
         ntfs-3g \
         ntfs-3g-progs \
@@ -96,13 +96,14 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         py3-requests \
         python3 \
         python3-dev \
+        ruff \
         # Node
         nodejs \
         nodejs-dev \
         nodejs-doc \
         npm \
         npm-doc \
-        pnpm@testing \
+        pnpm \
         yarn \
         # Java
         openjdk21 \

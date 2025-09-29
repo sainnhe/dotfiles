@@ -106,6 +106,7 @@ depends=(base
          python-pipx
          python-pynvim
          python-requests
+         ruff
          # Typst
          typst
          tinymist

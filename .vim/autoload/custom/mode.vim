@@ -71,6 +71,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'python',
           \ 'revive',
           \ 'rg',
+          \ 'ruff',
           \ 'rust-analyzer',
           \ 'shellcheck',
           \ 'shfmt',
