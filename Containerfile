@@ -147,14 +147,14 @@ RUN mkdir -p ~/.config ~/.local/share/vim \
 RUN mkdir -p ~/.local/share/vim/coc/extensions \
         && cd ~/.local/share/vim/coc/extensions \
         && cat ~/.vim/features/full.vim |\
-        grep "\\\ 'coc-" |\
-        sed -E -e 's/^.*coc//' -e "s/',//" -e 's/^/coc/' |\
+        grep -E "\\\ 'coc-|\\\ '@.*/coc-" |\
+        sed -E -e "s/^.*\\ '//" -e "s/',//" -e "s/',//" |\
         xargs -I{} npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps {}; exit 0 \
         && rm -rf ~/.npm \
         && ls ~/.local/share/vim/coc/extensions/node_modules | grep -v 'coc-' | xargs -I{} rm -rf ~/.local/share/vim/coc/extensions/node_modules/{}
 RUN cat ~/.vim/features/full.vim |\
-        grep "\\\ 'coc-" |\
-        sed -E -e 's/^.*coc//' -e "s/',//" -e 's/^/coc/' |\
+        grep -E "\\\ 'coc-|\\\ '@.*/coc-" |\
+        sed -E -e "s/^.*\\ '//" -e "s/',//" -e "s/',//" |\
         xargs -I{} sh -c "cd ~/.local/share/vim/coc/extensions/node_modules/{}; npm install --ignore-scripts --no-lockfile --production --no-global --legacy-peer-deps"; exit 0 \
         && rm -rf ~/.npm \
         && ls ~/.local/share/vim/coc/extensions/node_modules | grep -v 'coc-' | xargs -I{} rm -rf ~/.local/share/vim/coc/extensions/node_modules/{}
@@ -166,8 +166,6 @@ RUN nvim -es --cmd 'call custom#plug#install()' --cmd 'qa' \
         && rm -rf ~/.cache/yarn \
         && rm -rf ~/.npm \
         && rm -rf ~/.local/share/pnpm
-# Tree-sitter
-RUN nvim --headless +"TSInstallSync all" +qall
 
 # Finalize
 RUN rm -rf ~/bin \
