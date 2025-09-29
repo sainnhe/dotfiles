@@ -72,7 +72,6 @@ _deps() {
         neovim \
         tmux \
         # Other dev deps
-        marksman \
         shellcheck \
         shfmt
 }
@@ -112,8 +111,7 @@ _python() {
         py312-pip \
         py312-requests \
         python310 \
-        python312 \
-        ruff
+        python312
 }
 
 _go() {

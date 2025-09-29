@@ -76,7 +76,6 @@ depends=(base
          words
          shellcheck
          shfmt
-         marksman
          # Node
          nodejs
          npm
@@ -107,8 +106,6 @@ depends=(base
          python-pipx
          python-pynvim
          python-requests
-         ruff
-         ruff-lsp
          # Typst
          typst
          tinymist

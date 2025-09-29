@@ -280,6 +280,9 @@ let g:coc_global_extensions = [
       \ 'coc-xml',
       \ 'coc-yaml',
       \ 'coc-yank',
+      \ '@yaegassy/coc-ruff',
+      \ '@yaegassy/coc-marksman',
+      \ '@yaegassy/coc-nginx',
       \ ]
 " }}}
 " {{{coc-settings

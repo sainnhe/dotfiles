@@ -96,8 +96,6 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         py3-requests \
         python3 \
         python3-dev \
-        ruff \
-        ruff@testing \
         # Node
         nodejs \
         nodejs-dev \
@@ -111,15 +109,7 @@ RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/a
         maven \
         gradle \
         # Typst
-        typst \
-        && [ "$(uname -m)" = "x86_64" ] \
-        && curl -fSL \
-        -o /usr/bin/marksman \
-        https://github.com/artempyanykh/marksman/releases/latest/download/marksman-linux-x64 \
-        || curl -fSL \
-        -o /usr/bin/marksman \
-        https://github.com/artempyanykh/marksman/releases/latest/download/marksman-linux-arm64 \
-        && chmod a+x /usr/bin/marksman
+        typst
 
 RUN git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles \
         && cp ~/repo/dotfiles/.gitconfig ~ \
