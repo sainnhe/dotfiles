@@ -354,7 +354,7 @@
   "rust-analyzer.semanticHighlighting.operator.enable": true,
   "rust-analyzer.semanticHighlighting.nonStandardTokens": true,
   "rust-analyzer.semanticHighlighting.doc.comment.inject.enable": true,
-  "basedpyright.enable": true,
+  "basedpyright.enable": false,
   "basedpyright.analysis.typeCheckingMode": "recommended",
   "zuban.enable": false,
   "ruff.nativeServer": true,
@@ -420,6 +420,13 @@
     "MD041": false
   },
   "languageserver": {
+    "pyrefly": {
+      "enable": true,
+      "command": "pyrefly",
+      "args": ["lsp"],
+      "filetypes": ["python"],
+      "rootPatterns": ["pyrefly.toml", "pyproject.toml", ".git"]
+    },
     "typst": {
       "filetypes": ["typst"],
       "command": "tinymist",

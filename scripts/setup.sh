@@ -113,6 +113,7 @@ _python() {
         python310 \
         python312 \
         ruff
+    pip install pyrefly
 }
 
 _go() {

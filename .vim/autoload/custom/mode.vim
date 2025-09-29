@@ -68,6 +68,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'protoc',
           \ 'protoc-gen-go',
           \ 'protols',
+          \ 'pyrefly',
           \ 'python',
           \ 'revive',
           \ 'rg',
