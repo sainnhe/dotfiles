@@ -37,15 +37,24 @@
     "--smart-case"
   ],
   "list.insertMappings": {
+    "<C-c>": "do:cancel",
     "<C-p>": "action:preview",
     "<Down>": "do:next",
     "<Up>": "do:previous",
+    "<C-j>": "do:next",
+    "<C-k>": "do:previous",
     "<C-s>": "do:toggle",
     "<C-f>": "do:switch",
     "<A-x>": "do:togglemode",
     "<A-z>": "do:togglemode",
     "<C-z>": "do:togglemode",
     "<C-v>": "prompt:paste"
+  },
+  "list.normalMappings": {
+    "<C-c>": "do:cancel",
+    "<C-j>": "do:next",
+    "<C-k>": "do:previous",
+    "<C-s>": "do:toggle"
   },
   "outline.autoPreview": true,
   "outline.expandLevel": 1,
