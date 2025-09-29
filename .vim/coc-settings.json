@@ -274,10 +274,9 @@
   "clangd.arguments": [
     "--all-scopes-completion",
     "--background-index",
-    "--background-index-priority=normal",
     "--clang-tidy",
     "--completion-style=detailed",
-    "--fallback-style=LLVM",
+    "--fallback-style=Google",
     "--function-arg-placeholders",
     "--header-insertion=iwyu",
     "--log=error"
