@@ -391,9 +391,10 @@ let g:carbon_now_sh_options = {
 " }}}
 " {{{vim-bookmarks
 let g:bookmark_no_default_key_mappings = 1
+let g:bookmark_auto_save = 1
 let g:bookmark_auto_save_file = custom#utils#get_path([custom#utils#stdpath('cache'), 'bookmarks'])
-let g:bookmark_highlight_lines = 1
 let g:bookmark_save_per_working_dir = 1
+let g:bookmark_highlight_lines = 1
 nnoremap <silent> <leader>bb :<C-u>BookmarkToggle<CR>
 nnoremap <silent> <leader>ba :<C-u>BookmarkAnnotate<CR>
 nnoremap <silent> <leader>bc :<C-u>BookmarkClear<CR>
