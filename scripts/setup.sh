@@ -143,7 +143,7 @@ _java() {
 
 _typst() {
     sudo port -N install typst
-    cargo install --git https://github.com/Myriad-Dreamin/tinymist --locked tinymist
+    cargo install --git https://github.com/Myriad-Dreamin/tinymist --locked tinymist-cli
 }
 
 _vim() {
