@@ -399,12 +399,10 @@ export FZF_DEFAULT_OPTS="
 --height=50%
 --layout=reverse
 --prompt='❯ '
---pointer='-'
---marker='+'
 --ansi
 --tabstop=4
---color=dark
---color=hl:2:bold,fg+:4:bold,bg+:-1,hl+:2:bold,info:3:bold,border:0,prompt:2,pointer:5,marker:1,header:6
+--style=full
+--color=dark,fg+:2:bold,selected-fg:1:bold,bg+:-1,hl:4,hl+:4:bold,gutter:0,info:3:bold,border:0,prompt:2,pointer:2,marker:1,header:6
 --bind=tab:down,btab:up,ctrl-s:toggle,ctrl-p:toggle-preview
 --separator=
 "
