@@ -321,6 +321,7 @@ alias gencomp-help='gencomp'
 alias proxyenv='export HTTP_PROXY=http://127.0.0.1:17080 && export HTTPS_PROXY=http://127.0.0.1:17080 && export http_proxy=http://127.0.0.1:17080 && export https_proxy=http://127.0.0.1:17080'
 alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
 alias rga="rg --hidden --ignore-vcs '--glob=!.git/*'"
+alias man="LANG=zh_CN man"
 if [ -x "$(command -v lsd)" ]; then
     alias ls='lsd'
     alias tree='lsd --tree'
@@ -330,9 +331,6 @@ elif [ -x "$(command -v exa)" ]; then
 fi
 if [[ "$(uname)" == "Linux" ]]; then
     alias open="xdg-open"
-    alias manzh='man -L zh_CN.UTF-8'
-else
-    alias manzh='man -M /opt/local/share/man/zh_CN'
 fi
 if [ -x "$(command -v docker-compose)" ]; then
     alias dcup='docker-compose up -d'
