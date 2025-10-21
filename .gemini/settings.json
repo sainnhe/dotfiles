@@ -1,0 +1,20 @@
+{
+  "general": {
+    "preferredEditor": "vim",
+    "enablePromptCompletion": true
+  },
+  "ui": {
+    "theme": "GitHub"
+  },
+  "model": {
+    "name": "gemini-2.5-pro"
+  },
+  "telemetry": {
+    "enabled": false
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  }
+}
