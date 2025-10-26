@@ -43,6 +43,7 @@ depends=(base
          unzip
          viu
          zip
+         asdf-vm
          # Network Utils
          aria2
          axel
@@ -110,8 +111,6 @@ depends=(base
          # Typst
          typst
          tinymist
-         # .NET
-         dotnet-sdk
          # Kernel Development
          bc
          cpio
