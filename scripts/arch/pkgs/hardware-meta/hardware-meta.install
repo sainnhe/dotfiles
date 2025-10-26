@@ -1,7 +1,8 @@
 post_install() {
-    systemctl enable --now lactd
     echo "==> Remember to install env file in /etc/profile.d"
     echo "==> Set \"gfx.webrender.all\" and \"media.ffmpeg.vaapi.enabled\" to true in firefox about:config"
+    echo "==> The lactd service has been disabled by default because it's too buggy and will easily crash the system on rolling updates."
+    echo "==> You can enable it manually with: systemctl enable --now lactd"
 }
 
 pre_remove() {
