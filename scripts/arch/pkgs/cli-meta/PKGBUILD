@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=cli-meta
 pkgdesc='Meta package to install some CLI components'
-pkgver=2025.09.07
+pkgver=2025.10.26
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -110,6 +110,8 @@ depends=(base
          # Typst
          typst
          tinymist
+         # .NET
+         dotnet-sdk
          # Kernel Development
          bc
          cpio
