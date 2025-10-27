@@ -50,10 +50,10 @@ nnoremap <S-right> <Esc>$
 " x to delete current character without saving it to register
 nnoremap x "_x
 " <leader>y to yank to system clipboard
-if has('clipboard') || !empty($WAYLAND_DISPLAY)
-  nmap <leader>y "+y
-elseif has('xterm_clipboard')
+if has('xterm_clipboard')
   nmap <leader>y "*y
+else
+  nmap <leader>y "+y
 endif
 " <leader>p to paste from system clipboard
 if has('clipboard')
