@@ -92,26 +92,6 @@ function custom#utils#update() abort "{{{
   PlugUpgrade
   CocUpdate
 endfunction "}}}
-function custom#utils#clear_apple_books_wrapper() abort "{{{
-  " Check which register to use: '+' for system clipboard, '*' for X11 primary
-  if has('clipboard')
-    let l:register = '+'
-  elseif has('xterm_clipboard')
-    let l:register = '*'
-  else
-    echoerr "No clipboard support"
-    return
-  endif
-  " Get clipboard content
-  let l:content = getreg(l:register)
-  " Detect and replace
-  let l:pattern_zh = '”\n.*\n.*\n.*\n此材料可能受版权保护。'
-  if match(l:content, l:pattern_zh) != -1
-    let l:content = substitute(l:content, l:pattern_zh, '', '')
-    let l:content = substitute(l:content, '^“', '', '')
-  endif
-  call setreg(l:register, l:content)
-endfunction "}}}
 function custom#utils#generate_default_envs() abort "{{{
   " Generate default envs.vim
   let l:envs_path = custom#utils#get_path([custom#utils#stdpath('config'), 'envs.vim'])

@@ -56,11 +56,9 @@ else
   nmap <leader>y "+y
 endif
 " <leader>p to paste from system clipboard
-if has('clipboard')
-  nmap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"+p
-elseif has('xterm_clipboard')
-  nmap <silent> <leader>p :<C-u>call custom#utils#clear_apple_books_wrapper()<CR>"*p
-elseif !empty($WAYLAND_DISPLAY)
+if has('xterm_clipboard')
+  nmap <silent> <leader>p "*p
+else
   nmap <silent> <leader>p "+p
 endif
 " Alt+T to create a new tab
@@ -131,10 +129,10 @@ endif
 " Ctrl+V to paste from buffer
 inoremap <C-V> <Space><Backspace><ESC>pa
 " <A-v> to paste from system clipboard
-if has('clipboard') || !empty($WAYLAND_DISPLAY)
-  imap <A-V> <Space><Backspace><ESC>"+pa
-elseif has('xterm_clipboard')
+if has('xterm_clipboard')
   imap <A-V> <Space><Backspace><ESC>"*pa
+else
+  imap <A-V> <Space><Backspace><ESC>"+pa
 endif
 " Ctrl+S to save file
 inoremap <silent> <C-S> <Esc>:w<CR>a
@@ -191,10 +189,10 @@ else
   vmap <leader>p "+p
 endif
 " <leader>p to paste from system clipboard
-if has('clipboard') || !empty($WAYLAND_DISPLAY)
-  vmap <leader>p "+p
-elseif has('xterm_clipboard')
+if has('xterm_clipboard')
   vmap <leader>p "*p
+else
+  vmap <leader>p "+p
 endif
 " }}}
 " {{{Command Mode
