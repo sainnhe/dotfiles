@@ -204,7 +204,7 @@ if !has('nvim')
 endif
 " }}}
 " {{{vim-oscyank
-if (!has('nvim') && !has('clipboard_working'))
+if !has('clipboard_working')
     " In the event that the clipboard isn't working, it's quite likely that
     " the + and * registers will not be distinct from the unnamed register. In
     " this case, a:event.regname will always be '' (empty string). However, it
