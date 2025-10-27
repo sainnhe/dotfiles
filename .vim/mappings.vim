@@ -185,10 +185,10 @@ vnoremap J 5<down>
 vnoremap H 0
 vnoremap L $h
 " <leader>y to yank to system clipboard
-if has('clipboard') || !empty($WAYLAND_DISPLAY)
-  vmap <leader>y "+y
-elseif has('xterm_clipboard')
-  vmap <leader>y "*y
+if has('xterm_clipboard')
+  vmap <leader>p "*p
+else
+  vmap <leader>p "+p
 endif
 " <leader>p to paste from system clipboard
 if has('clipboard') || !empty($WAYLAND_DISPLAY)
