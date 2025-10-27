@@ -5,3 +5,4 @@
 .editorconfig
 staticcheck.conf
 .tool-versions
+.ccls-cache*
