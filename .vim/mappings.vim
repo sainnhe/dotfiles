@@ -50,16 +50,16 @@ nnoremap <S-right> <Esc>$
 " x to delete current character without saving it to register
 nnoremap x "_x
 " <leader>y to yank to system clipboard
-if has('xterm_clipboard')
+if custom#utils#check_clipboard() ==# 1
   nmap <leader>y "*y
 else
   nmap <leader>y "+y
 endif
 " <leader>p to paste from system clipboard
-if has('xterm_clipboard')
-  nmap <silent> <leader>p "*p
+if custom#utils#check_clipboard() ==# 1
+  nmap <leader>p "*p
 else
-  nmap <silent> <leader>p "+p
+  nmap <leader>p "+p
 endif
 " Alt+T to create a new tab
 if g:vim_mode ==# 'full'
@@ -129,7 +129,7 @@ endif
 " Ctrl+V to paste from buffer
 inoremap <C-V> <Space><Backspace><ESC>pa
 " <A-v> to paste from system clipboard
-if has('xterm_clipboard')
+if custom#utils#check_clipboard() ==# 1
   imap <A-V> <Space><Backspace><ESC>"*pa
 else
   imap <A-V> <Space><Backspace><ESC>"+pa
@@ -183,13 +183,13 @@ vnoremap J 5<down>
 vnoremap H 0
 vnoremap L $h
 " <leader>y to yank to system clipboard
-if has('xterm_clipboard')
-  vmap <leader>p "*p
+if custom#utils#check_clipboard() ==# 1
+  vmap <leader>y "*y
 else
-  vmap <leader>p "+p
+  vmap <leader>y "+y
 endif
 " <leader>p to paste from system clipboard
-if has('xterm_clipboard')
+if custom#utils#check_clipboard() ==# 1
   vmap <leader>p "*p
 else
   vmap <leader>p "+p

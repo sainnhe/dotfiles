@@ -116,5 +116,14 @@ function! custom#utils#get_path(paths) abort "{{{
   endfor
   return fnamemodify(l:full_path, ':p')
 endfunction "}}}
+function! custom#utils#check_clipboard() abort "{{{
+  if executable('pbcopy') || executable('wl-copy') || executable('xsel')
+    return 0
+  elseif has('xterm_clipboard')
+    return 1
+  else
+    return 2
+  endif
+endfunction "}}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
