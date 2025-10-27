@@ -161,7 +161,6 @@ Plug 'tpope/vim-endwise'
 " Other basic features
 Plug 'yianwillis/vimcdoc'
 Plug 'drmikehenry/vim-fixkey'
-Plug 'ojroques/vim-oscyank'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-sleuth'
