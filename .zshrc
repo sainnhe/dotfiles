@@ -19,10 +19,10 @@ export SAVEHIST=$HISTSIZE
 # Fuzzy finder
 export FUZZY_FINDER="fzf"
 # Vim
-if [ -x "$(command -v vim)" ]; then
-    export EDITOR="vim"
-    export PAGER="vim --cmd 'let g:vim_pager = 1' -c PAGER -"
-    export MANPAGER="vim --cmd 'let g:vim_pager = 1' -c ASMANPAGER -"
+if [ -x "$(command -v nvim)" ]; then
+    export EDITOR="nvim"
+    export PAGER="nvim --cmd 'let g:vim_pager = 1' -c PAGER -"
+    export MANPAGER="nvim --cmd 'let g:vim_pager = 1' -c ASMANPAGER -"
 fi
 # Other envs
 if test -d "$HOME/.zsh_envs.d/"; then
