@@ -5,10 +5,15 @@
 [core]
     editor = vim
     excludesFile = ~/.gitignore_global
+    fsmonitor = true
+    untrackedCache = true
 [commit]
     gpgsign = true
 [diff]
     tool = vim_diff
+    algorithm = histogram
+    colorMoved = plain
+    renames = true
 [difftool]
     prompt = false
 [difftool "vim_diff"]
@@ -21,8 +26,26 @@
     trustExitCode = true
 [pull]
     rebase = true
+[rebase]
+    autoSquash = true
+    autoStash = true
 [init]
     defaultBranch = master
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+[help]
+    autocorrect = prompt
+[rerere]
+    enabled = true
+    autoupdate = true
 [alias]
     ########################################
     ###           Basic Alias            ###
