@@ -43,6 +43,8 @@
     all = true
 [help]
     autocorrect = prompt
+[color]
+    ui = auto
 [rerere]
     enabled = true
     autoupdate = true
