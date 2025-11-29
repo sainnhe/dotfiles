@@ -79,7 +79,7 @@ _deps() {
 _rust() {
     _copy .cargo/config.toml
     sudo port -N install cargo rust-analyzer
-    cargo install cargo-update cargo-cache
+    cargo install cargo-update cargo-cache rip2
 }
 
 _cpp() {
