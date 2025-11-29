@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "@github/copilot": "^0.0.357",
-    "@google/gemini-cli": "^0.15.0",
+    "@github/copilot": "^0.0.365",
+    "@google/gemini-cli": "^0.18.4",
     "npm-check-updates": "19.1.2",
-    "pnpm": "10.22.0"
+    "pnpm": "10.24.0"
   }
 }
