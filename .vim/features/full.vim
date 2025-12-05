@@ -221,6 +221,23 @@ endif
 " }}}
 " }}}
 " {{{Language features
+" {{{llama.vim
+let g:llama_config = {
+    \ 'endpoint':           exists("$LLAMA_ENDPOINT") ? $LLAMA_ENDPOINT : 'http://127.0.0.1:8012/infill',
+    \ 'show_info':          0,
+    \ 'auto_fim':           v:true,
+    \ 'keymap_trigger':     "<Plug>(llama-trigger)",
+    \ 'keymap_accept_full': "<Plug>(llama-accept-all)",
+    \ 'keymap_accept_line': "<Plug>(llama-accept-line)",
+    \ 'keymap_accept_word': "<Plug>(llama-accept-word)",
+    \ 'enable_at_startup':  exists("$LLAMA_ENDPOINT") ? v:true : v:false,
+    \ }
+
+augroup LlamaCustom
+  autocmd!
+  autocmd ColorScheme * highlight! link llama_hl_hint CocInlineVirtualText
+augroup END
+" }}}
 " {{{coc.nvim
 " {{{coc-init
 let g:coc_data_home = custom#utils#get_path([custom#utils#stdpath('data'), 'coc'])
@@ -347,15 +364,22 @@ endif
 " Select
 inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#next(1) : "\<tab>"
 inoremap <silent><expr> <S-tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-tab>"
-" Confirm
-function! s:confirm()
-  if coc#pum#has_item_selected()
+" Accept inline
+function! s:accept_inline(kind)
+  if a:kind ==# "all" && coc#pum#has_item_selected()
     return coc#pum#confirm()
   endif
-  call coc#inline#accept()
-  return coc#pum#cancel()
+  call coc#pum#close("cancel")
+  call coc#inline#accept(a:kind)
+  if g:llama_config.enable_at_startup
+    return "\<Plug>(llama-accept-" . a:kind . ")"
+  else
+    return ""
+  endif
 endfunction
-inoremap <silent><expr> <C-y> <sid>confirm()
+inoremap <silent><expr> <C-y> <sid>accept_inline("all")
+inoremap <silent><expr> <C-l> <sid>accept_inline("line")
+inoremap <silent><expr> <C-o> <sid>accept_inline("word")
 " Cancel
 function! s:cancel()
   if coc#pum#visible()
