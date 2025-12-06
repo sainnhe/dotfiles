@@ -18,7 +18,6 @@ _serve() {
         -fa on \
         --cache-reuse 256 \
         -hf "$1"
-    echo "==> Endpoint: http://0.0.0.0:8080/infill"
 }
 
 if [ "$(uname)" = "Linux" ]; then
