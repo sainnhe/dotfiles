@@ -232,11 +232,6 @@ let g:llama_config = {
     \ 'keymap_accept_word': "<Plug>(llama-accept-word)",
     \ 'enable_at_startup':  exists("$LLAMA_ENDPOINT") ? v:true : v:false,
     \ }
-
-augroup LlamaCustom
-  autocmd!
-  autocmd ColorScheme * highlight! link llama_hl_hint CocInlineVirtualText
-augroup END
 " }}}
 " {{{coc.nvim
 " {{{coc-init
@@ -366,16 +361,16 @@ inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#next(1) : "\<tab>"
 inoremap <silent><expr> <S-tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-tab>"
 " Accept inline
 function! s:accept_inline(kind)
-  if a:kind ==# "all" && coc#pum#has_item_selected()
+  if coc#pum#has_item_selected()
     return coc#pum#confirm()
   endif
   call coc#pum#close("cancel")
-  call coc#inline#accept(a:kind)
-  if g:llama_config.enable_at_startup
+  if coc#inline#visible()
+    call coc#inline#accept(a:kind)
+  elseif g:llama_config.enable_at_startup
     return "\<Plug>(llama-accept-" . a:kind . ")"
-  else
-    return ""
   endif
+  return ""
 endfunction
 inoremap <silent><expr> <C-y> <sid>accept_inline("all")
 inoremap <silent><expr> <C-l> <sid>accept_inline("line")
