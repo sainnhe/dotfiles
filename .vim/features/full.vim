@@ -364,7 +364,6 @@ function! s:accept_inline(kind)
   if coc#pum#has_item_selected()
     return coc#pum#confirm()
   endif
-  call coc#pum#close("cancel")
   if coc#inline#visible()
     call coc#inline#accept(a:kind)
   elseif g:llama_config.enable_at_startup
