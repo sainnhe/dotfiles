@@ -33,13 +33,15 @@ if [ "${UNAME}" = "Linux" ]; then
         echo "Usage: $0 [deepseek|qwen|hf_model]"
     fi
 elif [ "${UNAME}" = "Darwin" ]; then
-    if [ "$1" = "qwen" ]; then
+    if [ "$1" = "qwen3" ]; then
         _serve \
             unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q4_K_M \
             -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0
+    elif [ "$1" = "qwen2.5-7b" ]; then
+        _serve QuantFactory/Qwen2.5-Coder-7B-GGUF:Q4_K_M
     elif [ -n "$1" ]; then
         _serve "$@"
     else
-        echo "Usage: $0 [qwen|hf_model]"
+        echo "Usage: $0 [qwen3|qwen2.5-7b|hf_model]"
     fi
 fi
