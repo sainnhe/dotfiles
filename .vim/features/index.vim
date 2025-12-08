@@ -213,7 +213,7 @@ if g:vim_mode ==# 'light'
   Plug 'lifepillar/vim-mucomplete'
 elseif g:vim_mode ==# 'full'
   " Language features
-  Plug 'sainnhe/llama.vim'
+  Plug 'ggml-org/llama.vim'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
   Plug 'pechorin/any-jump.vim', { 'on': ['AnyJump', 'AnyJumpVisual'] }
