@@ -223,7 +223,7 @@ endif
 " {{{Language features
 " {{{llama.vim
 let g:llama_config = {
-    \ 'endpoint':           exists("$LLAMA_ENDPOINT") ? $LLAMA_ENDPOINT : 'http://127.0.0.1:8012/infill',
+    \ 'endpoint':           exists("$LLAMA_ENDPOINT") ? $LLAMA_ENDPOINT : 'http://127.0.0.1:8080/infill',
     \ 'show_info':          0,
     \ 'auto_fim':           v:true,
     \ 'keymap_trigger':     "<Plug>(llama-trigger)",
@@ -367,7 +367,7 @@ function! s:accept_inline(kind)
   if coc#inline#visible()
     call coc#inline#accept(a:kind)
   elseif g:llama_config.enable_at_startup
-    return "\<Plug>(llama-accept-" . a:kind . ")"
+    call feedkeys("\<Plug>(llama-accept-" . a:kind . ")", 'm')
   endif
   return ""
 endfunction
