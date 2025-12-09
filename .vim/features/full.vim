@@ -295,6 +295,7 @@ let g:coc_global_extensions = [
       \ '@yaegassy/coc-marksman',
       \ '@yaegassy/coc-nginx',
       \ '@yaegassy/coc-ruff',
+      \ '@yaegassy/coc-pyrefly',
       \ '@yaegassy/coc-zuban',
       \ ]
 " }}}

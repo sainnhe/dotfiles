@@ -357,6 +357,7 @@
   "basedpyright.enable": true,
   "basedpyright.analysis.typeCheckingMode": "recommended",
   "basedpyright.analysis.inlayHints.genericTypes": true,
+  "pyrefly.enable": false,
   "zuban.enable": false,
   "ruff.nativeServer": true,
   "ruff.run": "onType",
@@ -422,13 +423,6 @@
     "MD041": false
   },
   "languageserver": {
-    "pyrefly": {
-      "enable": false,
-      "command": "pyrefly",
-      "args": ["lsp"],
-      "filetypes": ["python"],
-      "rootPatterns": ["pyrefly.toml", "pyproject.toml", ".git"]
-    },
     "typst": {
       "filetypes": ["typst"],
       "command": "tinymist",
