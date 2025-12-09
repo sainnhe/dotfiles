@@ -27,14 +27,16 @@ if [ "${UNAME}" = "Linux" ]; then
         _serve QuantFactory/DeepSeek-Coder-V2-Lite-Base-GGUF:Q4_K_S \
             -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
             --draft 5
-    elif [ "$1" = "qwen" ]; then
+    elif [ "$1" = "qwen-14b" ]; then
         _serve QuantFactory/Qwen2.5-Coder-14B-GGUF:Q4_K_M \
             -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
             --draft 5
+    elif [ "$1" = "qwen-7b" ]; then
+        _serve QuantFactory/Qwen2.5-Coder-7B-GGUF:Q4_K_M
     elif [ -n "$1" ]; then
         _serve "$@"
     else
-        echo "Usage: $0 [deepseek|qwen|hf_model]"
+        echo "Usage: $0 [deepseek|qwen-14b|qwen-7b|hf_model]"
     fi
 elif [ "${UNAME}" = "Darwin" ]; then
     if [ "$1" = "qwen3" ]; then
