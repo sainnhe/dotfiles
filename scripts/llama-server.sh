@@ -24,9 +24,13 @@ _serve() {
 
 if [ "${UNAME}" = "Linux" ]; then
     if [ "$1" = "deepseek" ]; then
-        _serve QuantFactory/DeepSeek-Coder-V2-Lite-Base-GGUF:Q4_K_S
+        _serve QuantFactory/DeepSeek-Coder-V2-Lite-Base-GGUF:Q4_K_S \
+            -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
+            --draft 5
     elif [ "$1" = "qwen" ]; then
-        _serve QuantFactory/Qwen2.5-Coder-14B-GGUF:Q4_K_M
+        _serve QuantFactory/Qwen2.5-Coder-14B-GGUF:Q4_K_M \
+            -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
+            --draft 5
     elif [ -n "$1" ]; then
         _serve "$@"
     else
