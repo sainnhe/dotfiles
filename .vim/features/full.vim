@@ -223,7 +223,7 @@ endif
 " {{{Language features
 " {{{llama.vim
 let g:llama_config = {
-    \ 'endpoint':           exists("$LLAMA_ENDPOINT") ? $LLAMA_ENDPOINT : 'http://127.0.0.1:8080/infill',
+    \ 'endpoint':           exists("$LLAMA_ENDPOINT") ? $LLAMA_ENDPOINT : 'http://localhost:8080/infill',
     \ 'show_info':          0,
     \ 'auto_fim':           v:true,
     \ 'keymap_trigger':     "<Plug>(llama-trigger)",
@@ -231,9 +231,25 @@ let g:llama_config = {
     \ 'keymap_accept_line': "<Plug>(llama-accept-line)",
     \ 'keymap_accept_word': "<Plug>(llama-accept-word)",
     \ 'enable_at_startup':  exists("$LLAMA_ENDPOINT") ? v:true : v:false,
-		\ 'ring_update_ms':     60000,
-		\ 'ring_n_chunks':      32,
+		\ 'n_predict':          256,
+		\ 'n_prefix':           256,
+		\ 'n_suffix':           96,
+		\ 'max_cache_keys':     500,
+		\ 'ring_update_ms':     4000,
+		\ 'ring_n_chunks':      8,
+		\ 'ring_chunk_size':    32,
+		\ 'ring_scope':         2048,
+		\ 't_max_predict_ms':   3000,
+		\ 't_max_prompt_ms':    2000,
     \ }
+" ring 是一个循环队列，用于模仿短期记忆，队列中有 ring_n_chunks 个 chunk，每个 chunk 有 ring_chunk_size 行
+" 当光标移动时，插件会在光标前后的 ring_scope 行内寻找值得记住的代码
+" 当处于 normal 模式或者停止插入时，每过 ring_update_ms 毫秒，插件会将 ring 中的 chunks 送给 llama.cpp 进行处理。
+" 这套配置适用于 8k context
+" 远程上下文 8*32=256 lines
+" 眼前上文 256 lines
+" 眼前下文 96 lines
+" 总 token 数约 13 * (256+256+96) = 7904 刚好卡在 8k，不至于截断
 " }}}
 " {{{coc.nvim
 " {{{coc-init
