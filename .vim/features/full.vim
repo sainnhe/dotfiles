@@ -231,6 +231,8 @@ let g:llama_config = {
     \ 'keymap_accept_line': "<Plug>(llama-accept-line)",
     \ 'keymap_accept_word': "<Plug>(llama-accept-word)",
     \ 'enable_at_startup':  exists("$LLAMA_ENDPOINT") ? v:true : v:false,
+		\ 'ring_update_ms':     60000,
+		\ 'ring_n_chunks':      32,
     \ }
 " }}}
 " {{{coc.nvim
