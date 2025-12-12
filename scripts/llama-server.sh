@@ -43,12 +43,11 @@ if [ "${UNAME}" = "Linux" ]; then
     fi
 elif [ "${UNAME}" = "Darwin" ]; then
     if [ "$1" = "qwen3" ]; then
-        _serve \
-            unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q4_K_M \
+        _serve -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q4_K_M \
             -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
             --draft 5
     elif [ "$1" = "qwen2.5-7b" ]; then
-        _serve QuantFactory/Qwen2.5-Coder-7B-GGUF:Q4_K_M
+        _serve -hf QuantFactory/Qwen2.5-Coder-7B-GGUF:Q4_K_M
     elif [ "$1" = "seed" ]; then
         _serve --spm-infill \
             -m ~/Library/Caches/llama.cpp/custom/mradermacher_Seed-Coder-8B-Base-GGUF_Seed-Coder-8B-Base.Q4_K_M.edited.gguf
