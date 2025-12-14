@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=cli-meta
 pkgdesc='Meta package to install some CLI components'
-pkgver=2025.12.06
+pkgver=2025.12.14
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -119,8 +119,6 @@ depends=(base
          valkey
          postgresql
          mariadb
-         # LLM
-         llama.cpp-vulkan
      )
 
 pkgver() {
