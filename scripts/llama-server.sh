@@ -6,7 +6,7 @@ _serve() {
     llama-server \
         --host :: \
         --port 8080 \
-        -ngl 99 \
+        -ngl -1 \
         -c 8192 \
         -ctk q8_0 \
         -ctv q8_0 \
