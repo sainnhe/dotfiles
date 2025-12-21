@@ -1,66 +1,8 @@
 ---
-# 来源: https://github.com/GoogleCloudPlatform/functions-framework-cpp/blob/main/.clang-tidy
-# 本配置基于 GCP 的 .clang-tidy，在此基础上做了以下几点修改：
-# 1. 修改 HeaderFilterRegex，检查所有头文件
-# clang-tidy 默认不检查头文件，而 GCP 的配置里配置了 HeaderFilterRegex 用于检查 google/cloud/functions 目录下的头文件，然而我们并没有这个目录。
-# 修改后的 HeaderFilterRegex 会检查所有头文件。
-# 2. 禁用 WarningsAsErrors，将编译错误和一般的代码问题区分开。
-# 3. 添加以下 rules:
-#   - abseil-*            Checks related to Abseil library.
-#   - boost-*             Checks related to Boost library.
-#   - cert-*              Checks related to CERT Secure Coding Guidelines.
-#   - clang-analyzer-*    Clang Static Analyzer checks.
-#   - concurrency-*       Checks related to concurrent programming (including threads, fibers, coroutines, etc.).
-#   - cppcoreguidelines-* Checks related to C++ Core Guidelines.
-#   - hicpp-*             Checks related to High Integrity C++ Coding Standard.
-#   - llvm-*              Checks related to the LLVM coding conventions.
-#   - mpi-*               Checks related to MPI (Message Passing Interface).
-# 参考: https://clang.llvm.org/extra/clang-tidy/
-# 4. 禁用以下 rules:
-#   - cppcoreguidelines-avoid-c-arrays && hicpp-avoid-c-arrays: 理由和 GCP 原版配置禁用 modernize-avoid-c-arrays 一样。
+# 上游: https://github.com/GoogleCloudPlatform/functions-framework-cpp/blob/main/.clang-tidy
+# 本配置在 GCP 的基础上进行修改，主要面向 C++20 以及性能敏感的场景。
+# 命名风格参考 Google C++ Style Guide: https://google.github.io/styleguide/cppguide.html
 
-# Configure clang-tidy for this project.
-
-# Here is an explanation for why some of the checks are disabled:
-#
-#  -google-readability-namespace-comments: the *_CLIENT_NS is a macro, and
-#      clang-tidy fails to match it against the initial value.
-#
-#  -google-readability-braces-around-statements:
-#  -readability-braces-around-statements: we think that often a one liner, such
-#      as `if (expr) return;` is more readable.
-#
-#  -google-runtime-references: this was based on a previous version of the
-#      Google Style Guide. References are encouraged and we think they better
-#      express the intent:
-#      https://google.github.io/styleguide/cppguide.html#Inputs_and_Outputs
-#
-#  -readability-redundant-declaration: A friend declaration inside a class
-#      counts as a declaration, so if we also declare that friend outside the
-#      class in order to document it as part of the public API, that will
-#      trigger a redundant declaration warning from this check.
-#
-#  -modernize-use-trailing-return-type: clang-tidy recommends using
-#      `auto Foo() -> std::string { return ...; }`, we think the code is less
-#      readable in this form.
-#
-#  -modernize-return-braced-init-list: We think removing typenames and using
-#      only braced-init can hurt readability.
-#
-#  -modernize-avoid-c-arrays: We only use C arrays when they seem to be the
-#      right tool for the job, such as `char foo[] = "hello"`. In these cases,
-#      avoiding C arrays often makes the code less readable, and std::array is
-#      not a drop-in replacement because it doesn't deduce the size.
-#
-#  -performance-move-const-arg: This warning requires the developer to
-#      know/care more about the implementation details of types/functions than
-#      should be necessary. For example, `A a; F(std::move(a));` will trigger a
-#      warning IFF `A` is a trivial type (and therefore the move is
-#      meaningless). It would also warn if `F` accepts by `const&`, which is
-#      another detail that the caller need not care about.
-#
-#  -bugprone-easily-swappable-parameters: Too many false positives.
-#
 Checks: >
   -*,
   abseil-*,
@@ -70,9 +12,6 @@ Checks: >
   clang-analyzer-*,
   concurrency-*,
   cppcoreguidelines-*,
-  google-*,
-  hicpp-*,
-  llvm-*,
   misc-*,
   modernize-*,
   mpi-*,
@@ -81,48 +20,48 @@ Checks: >
   readability-*,
   -bugprone-easily-swappable-parameters,
   -cppcoreguidelines-avoid-c-arrays,
-  -google-readability-braces-around-statements,
-  -google-readability-namespace-comments,
-  -google-runtime-references,
-  -hicpp-avoid-c-arrays,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-non-private-member-variables-in-classes,
+  -cppcoreguidelines-owning-memory,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
+  -misc-non-private-member-variables-in-classes,
   -modernize-avoid-c-arrays,
   -modernize-return-braced-init-list,
   -modernize-use-trailing-return-type,
-  -performance-move-const-arg,
-  -readability-braces-around-statements,
   -readability-identifier-length,
-  -readability-redundant-declaration
+  -readability-magic-numbers
 
 # 禁用 WarningsAsErrors，将编译错误和一般的代码问题区分开
+# 注意，在 CI 中建议显式启用 --warnings-as-errors=*
 WarningsAsErrors: ""
-# # Turn all the warnings from the checks above into errors.
-# WarningsAsErrors: "*"
 
-# 检查所有头文件
-HeaderFilterRegex: ".*"
-# HeaderFilterRegex: "google/cloud/functions/.*\\.h$"
+# 排除 bazel 下载的文件 (external) 和生成的文件 (bazel-out)
+HeaderFilterRegex: '^(?!(?:.*/)?(?:external/|bazel-out/|bazel-[^/]+/)).*'
 
 CheckOptions:
   - { key: readability-identifier-naming.NamespaceCase,          value: lower_case }
   - { key: readability-identifier-naming.ClassCase,              value: CamelCase  }
   - { key: readability-identifier-naming.StructCase,             value: CamelCase  }
   - { key: readability-identifier-naming.TemplateParameterCase,  value: CamelCase  }
-  - { key: readability-identifier-naming.FunctionCase,           value: aNy_CasE  }
+  - { key: readability-identifier-naming.FunctionCase,           value: CamelCase  }
   - { key: readability-identifier-naming.VariableCase,           value: lower_case }
+  - { key: readability-identifier-naming.ParameterCase,          value: lower_case }
   - { key: readability-identifier-naming.ClassMemberCase,        value: lower_case }
+  - { key: readability-identifier-naming.MacroDefinitionCase,    value: UPPER_CASE }
   - { key: readability-identifier-naming.ClassMemberSuffix,      value: _          }
   - { key: readability-identifier-naming.PrivateMemberSuffix,    value: _          }
   - { key: readability-identifier-naming.ProtectedMemberSuffix,  value: _          }
-  - { key: readability-identifier-naming.EnumConstantCase,         value: CamelCase }
-  - { key: readability-identifier-naming.EnumConstantPrefix,       value: k         }
-  - { key: readability-identifier-naming.ConstexprVariableCase,    value: CamelCase }
-  - { key: readability-identifier-naming.ConstexprVariablePrefix,  value: k         }
-  - { key: readability-identifier-naming.GlobalConstantCase,       value: CamelCase }
-  - { key: readability-identifier-naming.GlobalConstantPrefix,     value: k         }
-  - { key: readability-identifier-naming.MemberConstantCase,       value: CamelCase }
-  - { key: readability-identifier-naming.MemberConstantPrefix,     value: k         }
-  - { key: readability-identifier-naming.StaticConstantCase,       value: CamelCase }
-  - { key: readability-identifier-naming.StaticConstantPrefix,     value: k         }
-  - { key: readability-implicit-bool-conversion.AllowIntegerConditions,  value: 1   }
-  - { key: readability-implicit-bool-conversion.AllowPointerConditions,  value: 1   }
-  - { key: readability-function-cognitive-complexity.IgnoreMacros,  value: 1   }
+  - { key: readability-identifier-naming.EnumConstantCase,       value: CamelCase  }
+  - { key: readability-identifier-naming.EnumConstantPrefix,     value: k          }
+  - { key: readability-identifier-naming.ConstexprVariableCase,  value: CamelCase  }
+  - { key: readability-identifier-naming.ConstexprVariablePrefix,value: k          }
+  - { key: readability-identifier-naming.GlobalConstantCase,     value: CamelCase  }
+  - { key: readability-identifier-naming.GlobalConstantPrefix,   value: k          }
+  - { key: readability-identifier-naming.MemberConstantCase,     value: CamelCase  }
+  - { key: readability-identifier-naming.MemberConstantPrefix,   value: k          }
+  - { key: readability-identifier-naming.StaticConstantCase,     value: CamelCase  }
+  - { key: readability-identifier-naming.StaticConstantPrefix,   value: k          }
+  - { key: readability-implicit-bool-conversion.AllowIntegerConditions,  value: 1  }
+  - { key: readability-implicit-bool-conversion.AllowPointerConditions,  value: 1  }
+  - { key: readability-function-cognitive-complexity.IgnoreMacros,       value: 1  }
