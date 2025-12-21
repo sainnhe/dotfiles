@@ -6,6 +6,7 @@
 # 修改后的 HeaderFilterRegex 会检查所有头文件。
 # 2. 禁用 WarningsAsErrors，将编译错误和一般的代码问题区分开。
 # 3. 添加以下 rules:
+#   - abseil-*            Checks related to Abseil library.
 #   - boost-*             Checks related to Boost library.
 #   - cert-*              Checks related to CERT Secure Coding Guidelines.
 #   - clang-analyzer-*    Clang Static Analyzer checks.
@@ -62,6 +63,7 @@
 #
 Checks: >
   -*,
+  abseil-*,
   boost-*,
   bugprone-*,
   cert-*,
