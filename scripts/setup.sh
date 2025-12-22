@@ -128,7 +128,7 @@ _go() {
     go install go.uber.org/mock/mockgen@latest
     go install github.com/golang/protobuf/protoc-gen-go@latest
     go install github.com/sqls-server/sqls@latest
-    cargo install protols
+    go install github.com/bufbuild/buf/cmd/buf@latest
     echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.zprofile"
 }
 

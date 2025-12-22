@@ -50,6 +50,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
   let l:result = 1
   let l:dependencies = {
         \ 'universal': [
+          \ 'buf',
           \ 'cargo',
           \ 'clang++',
           \ 'clang-tidy',
@@ -67,7 +68,6 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'pnpm',
           \ 'protoc',
           \ 'protoc-gen-go',
-          \ 'protols',
           \ 'pyrefly',
           \ 'python',
           \ 'revive',

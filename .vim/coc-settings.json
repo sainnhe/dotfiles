@@ -438,7 +438,8 @@
       }
     },
     "protobuf": {
-      "command": "protols",
+      "command": "buf",
+      "args": ["lsp", "serve"],
       "filetypes": ["proto"]
     },
     "bazel": {
