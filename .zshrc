@@ -372,9 +372,8 @@ zinit snippet "https://testingcf.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/plugins/
 zinit ice pick"pfetch" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/pfetch@master/pfetch"
 zinit ice pick"neofetch" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/neofetch@master/neofetch"
 zinit ice pick"sysz" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/joehillen/sysz@master/sysz"
-zinit ice mv"httpstat.sh -> httpstat" \
-        pick"httpstat" as"program"
-zinit snippet "https://testingcf.jsdelivr.net/gh/b4b4r07/httpstat@master/httpstat.sh"
+zinit ice pick"httpstat" as"program"
+zinit snippet "https://testingcf.jsdelivr.net/gh/b4b4r07/httpstat@master/httpstat"
 zinit ice wait'1' lucid depth=1 \
     as"program" \
     pick"bin/*" \
