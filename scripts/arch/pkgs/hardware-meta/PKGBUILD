@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=hardware-meta
 pkgdesc='Meta package to install hardware components'
-pkgver=2025.05.24
+pkgver=2025.12.27
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -18,7 +18,7 @@ depends=(# AMD GPU Drivers
          lib32-vulkan-mesa-layers
          lib32-opencl-mesa
          # Nvidia GPU Drivers
-         nvidia
+         NVIDIA-MODULE
          nvidia-utils
          opencl-nvidia
          lib32-nvidia-utils
