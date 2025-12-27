@@ -99,6 +99,7 @@ depends=(base
          staticcheck
          revive
          protobuf
+         buf
          # Java
          jdk21-openjdk
          maven
