@@ -519,8 +519,8 @@ nmap <silent> <leader>aCp :<C-u>CocCommand editor.action.pickColor<CR>
 nmap <silent> <leader>aCP :<C-u>CocCommand editor.action.colorPresentation<CR>
 nmap <silent> <leader>ahc :<C-u>call CocAction('showOutgoingCalls')<CR>
 nmap <silent> <leader>aHc :<C-u>call CocAction('showIncomingCalls')<CR>
-nmap <silent> <leader>aht :<C-u>call CocAction('showOutgoingCalls')<CR>
-nmap <silent> <leader>aHt :<C-u>call CocAction('showIncomingCalls')<CR>
+nmap <silent> <leader>aht :<C-u>call CocAction('showSubTypes')<CR>
+nmap <silent> <leader>aHt :<C-u>call CocAction('showSuperTypes')<CR>
 nmap <silent> <leader>amp :<C-u>CocCommand markdown-preview-enhanced.openPreview<cr>
 nmap <silent> <leader>ami :<C-u>CocCommand markdown-preview-enhanced.openImageHelper<cr>
 nmap <silent> <leader>amI :<C-u>CocCommand markdown-preview-enhanced.showUploadedImages<cr>
