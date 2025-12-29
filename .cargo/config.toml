@@ -3,3 +3,6 @@ replace-with = 'aliyun'
 [source.aliyun]
 registry = "sparse+https://mirrors.aliyun.com/crates.io-index/"
 
+[target.'cfg(target_os = "linux")']
+linker = "clang"
+rustflags = ["-C", "link-arg=-fuse-ld=/usr/bin/mold"]
