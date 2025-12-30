@@ -363,6 +363,7 @@
   "ruff.run": "onType",
   "ruff.lint.run": "onType",
   "ruff.autoFixOnSave": true,
+  "ty.enable": false,
   "prettier.formatterPriority": -1,
   "github-copilot.statusIcon": "",
   "lua.installPreReleases": true,

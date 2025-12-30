@@ -312,8 +312,9 @@ let g:coc_global_extensions = [
       \ 'coc-yank',
       \ '@yaegassy/coc-marksman',
       \ '@yaegassy/coc-nginx',
-      \ '@yaegassy/coc-ruff',
       \ '@yaegassy/coc-pyrefly',
+      \ '@yaegassy/coc-ruff',
+      \ '@yaegassy/coc-ty',
       \ '@yaegassy/coc-zuban',
       \ ]
 " }}}
