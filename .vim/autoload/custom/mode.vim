@@ -79,6 +79,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'sqls',
           \ 'starpls',
           \ 'staticcheck',
+          \ 'systemd-lsp',
           \ 'tinymist',
           \ 'typst',
           \ 'yarn',

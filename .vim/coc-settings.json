@@ -453,6 +453,10 @@
         "--experimental_infer_ctx_attributes",
         "--experimental_use_code_flow_analysis"
       ]
+    },
+    "systemd": {
+      "command": "systemd-lsp",
+      "filetypes": ["systemd"]
     }
   }
 }
