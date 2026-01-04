@@ -235,7 +235,7 @@ let g:llama_config = {
 		\ 'n_prefix':           256,
 		\ 'n_suffix':           96,
 		\ 'max_cache_keys':     500,
-		\ 'ring_update_ms':     4000,
+		\ 'ring_update_ms':     10000,
 		\ 'ring_n_chunks':      8,
 		\ 'ring_chunk_size':    32,
 		\ 'ring_scope':         2048,
