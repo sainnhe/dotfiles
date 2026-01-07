@@ -4,6 +4,6 @@
     "@google/gemini-cli": "^0.22.2",
     "@qwen-code/qwen-code": "^0.5.2",
     "npm-check-updates": "19.2.0",
-    "pnpm": "10.26.2"
+    "pnpm": "10.27.0"
   }
 }
