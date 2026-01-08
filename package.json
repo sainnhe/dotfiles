@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "@github/copilot": "^0.0.372",
-    "@google/gemini-cli": "^0.22.2",
-    "@qwen-code/qwen-code": "^0.5.2",
-    "npm-check-updates": "19.2.0",
-    "pnpm": "10.26.2"
+    "@github/copilot": "^0.0.375",
+    "@google/gemini-cli": "^0.23.0",
+    "@qwen-code/qwen-code": "^0.6.1",
+    "npm-check-updates": "19.3.1",
+    "pnpm": "10.27.0"
   }
 }
