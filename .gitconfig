@@ -89,6 +89,8 @@
     rga = !rg $(git rev-parse --show-toplevel) --column --smart-case --no-ignore --hidden -g '!.git' -e
     # Count committed lines of an author
     author-stats = "!f() { git log --author=\"$1\" --pretty=tformat: --numstat | awk \"{ add += \\$1; subs += \\$2; loc += \\$1 - \\$2 } END { printf \\\"增加行数: %s, 删除行数: %s, 总计变化行数: %s\\n\\\", add, subs, loc }\"; }; f"
+    # Pull master, rebase current branch and force push current branch
+    rbmp = "!f() { git checkout master && git pull origin master && git checkout $1 && git rebase master && git push -f origin $1; }; f $(git branch --show-current)"
     ########################################
     ###               Fzf                ###
     ########################################
