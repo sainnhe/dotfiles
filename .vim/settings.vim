@@ -93,6 +93,17 @@ elseif has('vim9script')
   set fillchars=vert:│,fold:-,eob:~
 endif
 
+" Clipboard
+if !empty($SSH_CONNECTION)
+  if has('nvim')
+    let g:clipboard = 'osc52'
+  elseif has('vim9script')
+    let g:osc52_force_avail = v:true
+    packadd osc52
+    set clipmethod+=osc52
+  endif
+endif
+
 execute 'set backupdir=' . custom#utils#get_path([custom#utils#stdpath('data'), 'backup'])
 execute 'set directory=' . custom#utils#get_path([custom#utils#stdpath('data'), 'swap'])
 execute 'set undofile undodir=' . custom#utils#get_path([custom#utils#stdpath('data'), 'undo' . (has('nvim') ? '-nvim' : '-vim')])
