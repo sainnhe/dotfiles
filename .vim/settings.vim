@@ -98,9 +98,13 @@ if !empty($SSH_CONNECTION)
   if has('nvim')
     let g:clipboard = 'osc52'
   elseif has('vim9script')
-    let g:osc52_force_avail = v:true
-    packadd osc52
-    set clipmethod+=osc52
+    try
+      let g:osc52_force_avail = v:true
+      packadd osc52
+      set clipmethod+=osc52
+    catch
+      let g:custom_osc52_enabled = v:false
+    endtry
   endif
 endif
 
