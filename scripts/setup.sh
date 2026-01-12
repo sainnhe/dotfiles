@@ -129,6 +129,7 @@ _go() {
     go install github.com/golang/protobuf/protoc-gen-go@latest
     go install github.com/sqls-server/sqls@latest
     go install github.com/bufbuild/buf/cmd/buf@latest
+    go install github.com/nao1215/gup@latest
     echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.zprofile"
 }
 
