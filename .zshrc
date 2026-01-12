@@ -322,6 +322,7 @@ alias proxyenv='export HTTP_PROXY=http://127.0.0.1:17080 && export HTTPS_PROXY=h
 alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
 alias rga="rg --hidden --ignore-vcs '--glob=!.git/*'"
 alias man="LANG=zh_CN man"
+alias rp="realpath"
 if [ -x "$(command -v lsd)" ]; then
     alias ls='lsd'
     alias tree='lsd --tree'
