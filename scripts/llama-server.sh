@@ -26,6 +26,26 @@ _serve() {
         "$@"
 }
 
+_serve_hp() {
+    llama-server \
+        --host :: \
+        --port 8080 \
+        -ngl -1 \
+        -c 32768 \
+        -ctk f16 \
+        -ctv f16 \
+        -b 4096 \
+        -ub 1024 \
+        --temp 0.15 \
+        --top-k 40 \
+        --top-p 0.9 \
+        --min-p 0.05 \
+        --repeat-penalty 1.0 \
+        -fa on \
+        --cache-reuse 256 \
+        "$@"
+}
+
 if [ "$1" = "seed" ]; then
     _serve --spm-infill \
         -m "$CACHE_DIR/custom/mradermacher_Seed-Coder-8B-Base-GGUF_Seed-Coder-8B-Base.Q4_K_M.edited.gguf"
@@ -34,7 +54,7 @@ elif [ "$1" = "qwen-7b" ]; then
 elif [ "$1" = "qwen-14b" ]; then
     _serve -hf QuantFactory/Qwen2.5-Coder-14B-GGUF:Q4_K_M
 elif [ "$1" = "qwen3" ]; then
-    _serve -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_0 \
+    _serve_hp -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_0 \
         -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
         --draft 7
 elif [ "$1" = "deepseek" ]; then
