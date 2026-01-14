@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@github/copilot": "^0.0.377",
+    "@github/copilot": "^0.0.381",
     "@google/gemini-cli": "^0.23.0",
     "opencode-ai": "^1.1.19",
     "npm-check-updates": "19.3.1",
