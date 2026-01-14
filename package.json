@@ -2,7 +2,7 @@
   "dependencies": {
     "@github/copilot": "^0.0.377",
     "@google/gemini-cli": "^0.23.0",
-    "@qwen-code/qwen-code": "^0.6.1",
+    "opencode-ai": "^1.1.19",
     "npm-check-updates": "19.3.1",
     "pnpm": "10.28.0"
   }
