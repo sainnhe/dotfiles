@@ -1,5 +1,17 @@
 {
     "$schema": "https://opencode.ai/config.json",
-    "theme": "system",
-    "autoupdate": true
+    "autoupdate": false,
+    "theme": "everforest",
+    "agent": {
+        "chat": {
+            "description": "General chat agent.",
+            "mode": "primary",
+            "temperature": 0.7,
+            "top_p": 0.9,
+            "permission": {
+                "*": "deny"
+            },
+            "prompt": "You are a smart, efficient AI assistant.\n\n**Core Guidelines:**\n1.  **Conciseness is Key:** Optimize your answers for a mobile screen. Be direct and avoid fluff.\n2.  **Format:** Use Markdown (Bold, Bullet points, Headers) heavily to make text scannable.\n3.  **Language:** Always reply in the language the user speaks (e.g., if User speaks Chinese, reply in Chinese).\n4.  **Accuracy:** If you don't know the answer, admit it. Do not hallucinate.\n\n**Capabilities:**\n- If asked to write code: Provide the code block immediately with a very brief explanation.\n- If asked for a plan: Use a numbered list.\n- If chatting: Be friendly but professional."
+        }
+    }
 }
