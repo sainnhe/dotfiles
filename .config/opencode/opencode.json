@@ -13,5 +13,90 @@
             },
             "prompt": "You are a smart, efficient AI assistant.\n\n**Core Guidelines:**\n1.  **Conciseness is Key:** Optimize your answers for a mobile screen. Be direct and avoid fluff.\n2.  **Format:** Use Markdown (Bold, Bullet points, Headers) heavily to make text scannable.\n3.  **Language:** Always reply in the language the user speaks (e.g., if User speaks Chinese, reply in Chinese).\n4.  **Accuracy:** If you don't know the answer, admit it. Do not hallucinate.\n\n**Capabilities:**\n- If asked to write code: Provide the code block immediately with a very brief explanation.\n- If asked for a plan: Use a numbered list.\n- If chatting: Be friendly but professional."
         }
+    },
+    "provider": {
+        "nvidia-nim": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "Nvidia NIM",
+            "options": {
+                "apiKey": "nvapi-xxx",
+                "baseURL": "https://integrate.api.nvidia.com/v1"
+            },
+            "models": {
+                "z-ai/glm4.7": {
+                    "id": "z-ai/glm4.7",
+                    "name": "GLM 4.7",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true,
+                    "options": {
+                        "chat_template_kwargs": {
+                            "thinking": true
+                        }
+                    }
+                },
+                "deepseek-ai/deepseek-v3.2": {
+                    "id": "deepseek-ai/deepseek-v3.2",
+                    "name": "Deepseek V3.2",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true,
+                    "options": {
+                        "chat_template_kwargs": {
+                            "thinking": true
+                        }
+                    }
+                },
+                "qwen/qwen3-coder-480b-a35b-instruct": {
+                    "id": "qwen/qwen3-coder-480b-a35b-instruct",
+                    "name": "Qwen3 Coder Instruct",
+                    "reasoning": false,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
+                "qwen/qwen3-235b-a22b": {
+                    "id": "qwen/qwen3-235b-a22b",
+                    "name": "Qwen3",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true,
+                    "options": {
+                        "chat_template_kwargs": {
+                            "thinking": true
+                        }
+                    }
+                },
+                "minimaxai/minimax-m2.1": {
+                    "id": "minimaxai/minimax-m2.1",
+                    "name": "MiniMax M2.1",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true,
+                    "options": {
+                        "chat_template_kwargs": {
+                            "thinking": true
+                        }
+                    }
+                },
+                "moonshotai/kimi-k2-thinking": {
+                    "id": "moonshotai/kimi-k2-thinking",
+                    "name": "Kimi K2 Thinking",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true,
+                    "options": {
+                        "chat_template_kwargs": {
+                            "thinking": true
+                        }
+                    }
+                }
+            }
+        }
     }
 }
