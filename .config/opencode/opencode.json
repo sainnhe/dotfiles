@@ -15,6 +15,29 @@
         }
     },
     "provider": {
+        "tencent-cloud": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "Tencent Cloud",
+            "options": {
+                "apiKey": "sk-xxx",
+                "baseURL": "https://api.lkeap.cloud.tencent.com/v1"
+            },
+            "models": {
+                "tencent-cloud/deepseek-v3.2": {
+                    "id": "deepseek-v3.2",
+                    "name": "Deepseek V3.2",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true,
+                    "options": {
+                        "thinking": {
+                            "type": "enabled"
+                        }
+                    }
+                }
+            }
+        },
         "nvidia-nim": {
             "npm": "@ai-sdk/openai-compatible",
             "name": "Nvidia NIM",
@@ -23,7 +46,7 @@
                 "baseURL": "https://integrate.api.nvidia.com/v1"
             },
             "models": {
-                "z-ai/glm4.7": {
+                "nvidia-nim/glm4.7": {
                     "id": "z-ai/glm4.7",
                     "name": "GLM 4.7",
                     "reasoning": true,
@@ -36,7 +59,7 @@
                         }
                     }
                 },
-                "deepseek-ai/deepseek-v3.2": {
+                "nvidia-nim/deepseek-v3.2": {
                     "id": "deepseek-ai/deepseek-v3.2",
                     "name": "Deepseek V3.2",
                     "reasoning": true,
@@ -49,7 +72,7 @@
                         }
                     }
                 },
-                "qwen/qwen3-coder-480b-a35b-instruct": {
+                "nvidia-nim/qwen3-coder-480b-a35b-instruct": {
                     "id": "qwen/qwen3-coder-480b-a35b-instruct",
                     "name": "Qwen3 Coder Instruct",
                     "reasoning": false,
@@ -57,7 +80,7 @@
                     "attachment": true,
                     "temperature": true
                 },
-                "qwen/qwen3-235b-a22b": {
+                "nvidia-nim/qwen3-235b-a22b": {
                     "id": "qwen/qwen3-235b-a22b",
                     "name": "Qwen3",
                     "reasoning": true,
@@ -70,7 +93,7 @@
                         }
                     }
                 },
-                "minimaxai/minimax-m2.1": {
+                "nvidia-nim/minimax-m2.1": {
                     "id": "minimaxai/minimax-m2.1",
                     "name": "MiniMax M2.1",
                     "reasoning": true,
@@ -83,7 +106,7 @@
                         }
                     }
                 },
-                "moonshotai/kimi-k2-thinking": {
+                "nvidia-nim/kimi-k2-thinking": {
                     "id": "moonshotai/kimi-k2-thinking",
                     "name": "Kimi K2 Thinking",
                     "reasoning": true,
