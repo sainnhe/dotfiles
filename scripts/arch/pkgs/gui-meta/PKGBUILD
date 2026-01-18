@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=gui-meta
 pkgdesc='Meta package to install some GUI components'
-pkgver=2026.01.11
+pkgver=2026.01.18
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -14,7 +14,6 @@ depends=(# Browsers
          # IM
          telegram-desktop
          wechat-universal-bwrap
-         com.qq.weixin.work.deepin
          # Code OSS
          code
          code-marketplace
