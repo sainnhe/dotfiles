@@ -76,10 +76,14 @@ elif [ "$2" = "qwen-30b" ]; then
     _serve "$1" -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_0 \
         -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
         --draft 7
+elif [ "$2" = "glm-4.7-flash" ]; then
+    _serve "$1" -hf unsloth/GLM-4.7-Flash-GGUF:Q8_0 \
+        -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
+        --draft 7
 elif [ "$2" = "deepseek" ]; then
     _serve "$1" -hf QuantFactory/DeepSeek-Coder-V2-Lite-Base-GGUF:Q4_K_S
 elif [ -n "$1" ]; then
     _serve "$@"
 else
-    echo "Usage: $0 {low|medium|high} {seed|qwen-7b|qwen-14b|qwen-30b|deepseek|args...}"
+    echo "Usage: $0 {low|medium|high} {seed|qwen-7b|qwen-14b|qwen-30b|glm-4.7-flash|deepseek|args...}"
 fi
