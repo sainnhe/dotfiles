@@ -1,1 +1,2 @@
-export LLAMA_ENDPOINT="http://0.0.0.0:8080/infill"
+export LLAMA_BASE_URL="http://0.0.0.0:8080"
+export LLAMA_MODE="low"
