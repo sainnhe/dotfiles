@@ -83,7 +83,7 @@ elif [ "$2" = "glm-4.7-flash" ]; then
         -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
         --draft 7
 elif [ "$2" = "iquest-coder" ]; then
-    _serve "$1" -hf mradermacher/IQuest-Coder-V1-40B-Base-GGUF:Q8_0 \
+    _serve "$1" -hf mradermacher/IQuest-Coder-V1-40B-Base-GGUF:Q6_K \
         -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
         --draft 7
 elif [ -n "$1" ]; then
