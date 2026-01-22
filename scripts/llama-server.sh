@@ -78,12 +78,8 @@ elif [ "$2" = "qwen-30b" ]; then
     _serve "$1" -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_0 \
         -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
         --draft 7
-elif [ "$2" = "iquest-coder" ]; then
-    _serve "$1" -hf mradermacher/IQuest-Coder-V1-40B-Base-i1-GGUF:Q4_K_M \
-        -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
-        --draft 7
 elif [ -n "$1" ]; then
     _serve "$@"
 else
-    echo "Usage: $0 {low|medium|high} {seed|deepseek|qwen-7b|qwen-14b|qwen-30b|iquest-coder|args...}"
+    echo "Usage: $0 {low|medium|high} {seed|deepseek|qwen-7b|qwen-14b|qwen-30b|args...}"
 fi
