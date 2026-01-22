@@ -80,6 +80,7 @@ elif [ "$2" = "qwen-30b" ]; then
         --draft 7
 elif [ "$2" = "glm-4.7-flash" ]; then
     _serve "$1" -hf unsloth/GLM-4.7-Flash-GGUF:Q8_0 \
+        --chat-template-kwargs '{"enable_thinking": false}' \
         -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
         --draft 7
 elif [ "$2" = "iquest-coder" ]; then
