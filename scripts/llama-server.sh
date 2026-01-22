@@ -68,6 +68,8 @@ _serve() {
 if [ "$2" = "seed" ]; then
     _serve "$1" --spm-infill \
         -m "$CACHE_DIR/custom/mradermacher_Seed-Coder-8B-Base-GGUF_Seed-Coder-8B-Base.Q4_K_M.edited.gguf"
+elif [ "$2" = "deepseek" ]; then
+    _serve "$1" -hf QuantFactory/DeepSeek-Coder-V2-Lite-Base-GGUF:Q4_K_S
 elif [ "$2" = "qwen-7b" ]; then
     _serve "$1" -hf QuantFactory/Qwen2.5-Coder-7B-GGUF:Q4_K_M
 elif [ "$2" = "qwen-14b" ]; then
@@ -84,10 +86,8 @@ elif [ "$2" = "iquest-coder" ]; then
     _serve "$1" -hf mradermacher/IQuest-Coder-V1-40B-Base-GGUF:Q8_0 \
         -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
         --draft 7
-elif [ "$2" = "deepseek" ]; then
-    _serve "$1" -hf QuantFactory/DeepSeek-Coder-V2-Lite-Base-GGUF:Q4_K_S
 elif [ -n "$1" ]; then
     _serve "$@"
 else
-    echo "Usage: $0 {low|medium|high} {seed|qwen-7b|qwen-14b|qwen-30b|glm-4.7-flash|iquest-coder|deepseek|args...}"
+    echo "Usage: $0 {low|medium|high} {seed|deepseek|qwen-7b|qwen-14b|qwen-30b|glm-4.7-flash|iquest-coder|args...}"
 fi
