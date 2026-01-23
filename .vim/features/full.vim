@@ -222,21 +222,20 @@ endif
 " }}}
 " {{{Language features
 " {{{llama.vim
-if $LLAMA_MODE ==# 'high'
+if $LLAMA_FIM_MODE ==# 'high'
   let s:llama_params_scale = 4
-elseif $LLAMA_MODE ==# 'medium'
+elseif $LLAMA_FIM_MODE ==# 'medium'
   let s:llama_params_scale = 2
 else
   let s:llama_params_scale = 1
 endif
-let s:llama_base_url = exists("$LLAMA_BASE_URL") ? $LLAMA_BASE_URL : 'http://localhost:8080'
 let g:llama_config = {
-    \ 'enable_at_startup':      exists("$LLAMA_BASE_URL") ? v:true : v:false,
-    \ 'endpoint_fim':           s:llama_base_url . '/infill',
-		\ 'endpoint_inst':          s:llama_base_url . '/v1/chat/completions',
-		\ 'api_key':                '',
+    \ 'enable_at_startup':      $LLAMA_FIM_ENDPOINT !=# '',
+    \ 'endpoint_fim':           $LLAMA_FIM_ENDPOINT,
+		\ 'endpoint_inst':          $LLAMA_INST_ENDPOINT,
+		\ 'api_key':                $LLAMA_INST_API_KEY,
 		\ 'model_fim':              '',
-		\ 'model_inst':             '',
+		\ 'model_inst':             $LLAMA_INST_MODEL,
     \ 'show_info':              0,
     \ 'auto_fim':               v:true,
     \ 'keymap_fim_trigger':     "<Plug>(llama-trigger)",
