@@ -10,7 +10,6 @@ if [ "$UNAME" = "Linux" ]; then
         -DGGML_BUILD_EXAMPLES=OFF \
         -DGGML_BUILD_TESTS=OFF \
         -DLLAMA_BUILD_BORINGSSL=ON \
-        -DLLAMA_BUILD_LIBRESSL=ON \
         -DGGML_CUDA=ON \
         -DGGML_CUDA_FA_ALL_QUANTS=ON \
         -DGGML_LTO=ON \
