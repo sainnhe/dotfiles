@@ -66,25 +66,41 @@ _serve() {
 }
 
 if [ "$2" = "seed" ]; then
+    # TODO: Try without token editing
     _serve "$1" --spm-infill \
-        -m "$CACHE_DIR/custom/mradermacher_Seed-Coder-8B-Base-GGUF_Seed-Coder-8B-Base.Q4_K_M.edited.gguf"
+        -hf mradermacher/Seed-Coder-8B-Base-i1-GGUF:IQ4_NL
 elif [ "$2" = "deepseek" ]; then
-    _serve "$1" -hf QuantFactory/DeepSeek-Coder-V2-Lite-Base-GGUF:Q4_K_S
-elif [ "$2" = "qwen-7b" ]; then
-    _serve "$1" -hf QuantFactory/Qwen2.5-Coder-7B-GGUF:Q4_K_M
-elif [ "$2" = "qwen-14b" ]; then
-    _serve "$1" -hf QuantFactory/Qwen2.5-Coder-14B-GGUF:Q4_K_M
-elif [ "$2" = "qwen-30b" ]; then
-    _serve "$1" -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_0 \
-        -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
-        --draft 7
-elif [ "$2" = "glm-4.7-flash" ]; then
-    _serve "$1" -hf unsloth/GLM-4.7-Flash-GGUF:Q8_0 \
-        --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}' \
-        -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
-        --draft 7
+    _serve "$1" -hf legraphista/DeepSeek-Coder-V2-Lite-Base-IMat-GGUF:IQ4_NL
+elif [ "$2" = "qwen" ]; then
+    if [ "$1" = "low" ]; then
+        _serve "$1" -hf mradermacher/Qwen2.5-Coder-7B-i1-GGUF:Q4_K_M
+    elif [ "$1" = "medium" ]; then
+        _serve "$1" -hf mradermacher/Qwen3-Coder-REAP-25B-A3B-i1-GGUF:Q4_K_M \
+            -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
+            --draft 5
+    elif [ "$1" = "high" ]; then
+        _serve "$1" -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_0 \
+            -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
+            --draft 7
+    fi
+elif [ "$2" = "glm" ]; then
+    if [ "$1" = "medium" ]; then
+        # TODO: Switch to imatrix quant
+        # https://huggingface.co/models?other=base_model:quantized:cerebras/GLM-4.7-Flash-REAP-23B-A3B
+        _serve "$1" -hf unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL \
+            --jinja \
+            --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}' \
+            -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
+            --draft 5
+    elif [ "$1" = "high" ]; then
+        _serve "$1" -hf unsloth/GLM-4.7-Flash-GGUF:Q8_0 \
+            --jinja \
+            --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}' \
+            -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
+            --draft 7
+    fi
 elif [ -n "$1" ]; then
     _serve "$@"
 else
-    echo "Usage: $0 {low|medium|high} {seed|deepseek|qwen-7b|qwen-14b|qwen-30b|glm-4.7-flash|args...}"
+    echo "Usage: $0 {low|medium|high} {seed|deepseek|qwen|glm|args...}"
 fi
