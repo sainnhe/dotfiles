@@ -67,34 +67,38 @@ _serve() {
 
 if [ "$2" = "seed" ]; then
     # TODO: Try without token editing
-    _serve "$1" --spm-infill \
-        -hf mradermacher/Seed-Coder-8B-Base-i1-GGUF:IQ4_NL
+    _serve "$1" -a ByteDance-Seed/Seed-Coder-8B-Base \
+        -hf mradermacher/Seed-Coder-8B-Base-i1-GGUF:IQ4_NL \
+        --spm-infill
 elif [ "$2" = "deepseek" ]; then
-    _serve "$1" -hf legraphista/DeepSeek-Coder-V2-Lite-Base-IMat-GGUF:IQ4_NL
+    _serve "$1" -a deepseek-ai/DeepSeek-Coder-V2-Lite-Base \
+        -hf legraphista/DeepSeek-Coder-V2-Lite-Base-IMat-GGUF:IQ4_NL
 elif [ "$2" = "qwen" ]; then
     if [ "$1" = "low" ]; then
-        _serve "$1" -hf mradermacher/Qwen2.5-Coder-7B-i1-GGUF:Q4_K_M
+        _serve "$1" -a Qwen/Qwen2.5-Coder-7B \
+            -hf mradermacher/Qwen2.5-Coder-7B-i1-GGUF:Q4_K_M
     elif [ "$1" = "medium" ]; then
-        _serve "$1" -hf mradermacher/Qwen3-Coder-REAP-25B-A3B-i1-GGUF:Q4_K_M \
+        _serve "$1" -a cerebras/Qwen3-Coder-REAP-25B-A3B \
+            -hf mradermacher/Qwen3-Coder-REAP-25B-A3B-i1-GGUF:Q4_K_M \
             -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
             --draft 5
     elif [ "$1" = "high" ]; then
-        _serve "$1" -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_0 \
+        _serve "$1" -a Qwen/Qwen3-Coder-30B-A3B-Instruct \
+            -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_K_XL \
             -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
             --draft 7
     fi
 elif [ "$2" = "glm" ]; then
     if [ "$1" = "medium" ]; then
-        # TODO: Switch to imatrix quant
-        # https://huggingface.co/models?other=base_model:quantized:cerebras/GLM-4.7-Flash-REAP-23B-A3B
-        _serve "$1" -hf unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL \
-            --jinja \
+        _serve "$1" -a cerebras/GLM-4.7-Flash-REAP-23B-A3B \
+            -hf unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL \
             --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}' \
             -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
             --draft 5
     elif [ "$1" = "high" ]; then
-        _serve "$1" -hf unsloth/GLM-4.7-Flash-GGUF:Q8_0 \
-            --jinja \
+        # TODO: Remove unnecessary chat_template_kwargs && test with --jinja
+        _serve "$1" -a zai-org/GLM-4.7-Flash \
+            -hf unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL \
             --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}' \
             -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
             --draft 7
