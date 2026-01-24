@@ -1,32 +1,51 @@
 #!/bin/bash
 
 UNAME=$(uname)
+BUILD_DIR="build"
+
+COMMON_ARGS=(
+    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_INSTALL_PREFIX="$HOME/.local"
+    -DGGML_NATIVE=ON
+    -DGGML_LTO=ON
+    -DGGML_BUILD_EXAMPLES=OFF
+    -DGGML_BUILD_TESTS=OFF
+    -DBUILD_SHARED_LIBS=OFF
+)
 
 if [ "$UNAME" = "Linux" ]; then
-    cmake -B build \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_CUDA_ARCHITECTURES="native" \
-        -DCMAKE_INSTALL_PREFIX="$HOME/.local" \
-        -DGGML_BUILD_EXAMPLES=OFF \
-        -DGGML_BUILD_TESTS=OFF \
-        -DLLAMA_BUILD_BORINGSSL=ON \
-        -DGGML_CUDA=ON \
-        -DGGML_CUDA_FA_ALL_QUANTS=ON \
-        -DGGML_LTO=ON \
-        -DGGML_NATIVE=ON
-    cmake --build build --parallel "$(nproc)"
+    CORES="$(nproc)"
+    PLATFORM_ARGS=(
+        # SSL
+        -DLLAMA_OPENSSL=ON
+
+        # NVIDIA
+        -DGGML_CUDA=ON
+        -DCMAKE_CUDA_ARCHITECTURES="native"
+        -DGGML_CUDA_GRAPHS=ON
+        -DGGML_CUDA_FA_ALL_QUANTS=ON
+
+        # AMD CPU
+        -DGGML_AVX512=ON
+        -DGGML_AVX512_VBMI=ON
+        -DGGML_AVX512_VNNI=ON
+        -DGGML_AVX512_BF16=ON
+        -DGGML_OPENMP=ON
+    )
 elif [ "$UNAME" = "Darwin" ]; then
-    cmake -B build \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX="$HOME/.local" \
-        -DGGML_BUILD_EXAMPLES=OFF \
-        -DGGML_BUILD_TESTS=OFF \
-        -DGGML_LTO=ON \
-        -DGGML_NATIVE=ON \
-        -DGGML_BLAS=ON \
-        -DGGML_BLAS_VENDOR=Apple \
-        -DGGML_ACCELERATE=ON \
-        -DGGML_METAL=ON \
+    PLATFORM_ARGS=(
+        # Apple Silicon / Metal
+        -DGGML_METAL=ON
         -DGGML_METAL_EMBED_LIBRARY=ON
-    cmake --build build --parallel "$(sysctl -n hw.logicalcpu)"
+        -DGGML_ACCELERATE=ON
+        -DGGML_BLAS=ON
+        -DGGML_BLAS_VENDOR=Apple
+    )
+else
+    echo "ERR: Unsupported system $UNAME"
+    exit 1
 fi
+
+cmake -B $BUILD_DIR "${COMMON_ARGS[@]}" "${PLATFORM_ARGS[@]}"
+cmake --build $BUILD_DIR --config Release --parallel "$CORES"
+cmake --install $BUILD_DIR
