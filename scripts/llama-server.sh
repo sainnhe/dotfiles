@@ -103,7 +103,7 @@ elif [ "$2" = "glm" ]; then
         _serve "$1" -a cerebras/GLM-4.7-Flash-REAP-23B-A3B \
             -hf unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL \
             --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}'
-    if [ "$1" = "medium" ]; then
+    elif [ "$1" = "medium" ]; then
         _serve "$1" -a cerebras/GLM-4.7-Flash-REAP-23B-A3B \
             -hf unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL \
             --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}' \
