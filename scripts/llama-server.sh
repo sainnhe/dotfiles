@@ -98,6 +98,11 @@ elif [ "$2" = "qwen" ]; then
             --draft 7
     fi
 elif [ "$2" = "glm" ]; then
+    # TODO: Remove unnecessary chat_template_kwargs && test with --jinja
+    if [ "$1" = "low" ]; then
+        _serve "$1" -a cerebras/GLM-4.7-Flash-REAP-23B-A3B \
+            -hf unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL \
+            --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}'
     if [ "$1" = "medium" ]; then
         _serve "$1" -a cerebras/GLM-4.7-Flash-REAP-23B-A3B \
             -hf unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL \
@@ -105,7 +110,6 @@ elif [ "$2" = "glm" ]; then
             -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
             --draft 5
     elif [ "$1" = "high" ]; then
-        # TODO: Remove unnecessary chat_template_kwargs && test with --jinja
         _serve "$1" -a zai-org/GLM-4.7-Flash \
             -hf unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL \
             --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}' \
