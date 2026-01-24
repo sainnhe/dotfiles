@@ -2,6 +2,13 @@
     "$schema": "https://opencode.ai/config.json",
     "autoupdate": false,
     "theme": "everforest",
+    "plugin": [
+        "@franlol/opencode-md-table-formatter@latest",
+        "@tarquinen/opencode-dcp@latest",
+        "envsitter-guard@latest",
+        "opencode-ignore@latest",
+        "cc-safety-net@latest"
+    ],
     "agent": {
         "chat": {
             "description": "General chat agent.",
