@@ -242,7 +242,7 @@ let g:llama_config = {
     \ 'keymap_fim_accept_full': "<Plug>(llama-accept-all)",
     \ 'keymap_fim_accept_line': "<Plug>(llama-accept-line)",
     \ 'keymap_fim_accept_word': "<Plug>(llama-accept-word)",
-    \ 'keymap_inst_trigger':    ":",
+    \ 'keymap_inst_trigger':    "?",
     \ 'keymap_inst_accept':     "<C-y>",
     \ 'keymap_inst_cancel':     "<Esc>",
 		\ 'n_predict':              256,
