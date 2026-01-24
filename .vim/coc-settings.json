@@ -279,7 +279,8 @@
     "--fallback-style=Google",
     "--function-arg-placeholders",
     "--header-insertion=iwyu",
-    "--log=error"
+    "--log=error",
+    "-j=16"
   ],
   "go.goplsPath": "gopls",
   "go.checkForUpdates": "disabled",
