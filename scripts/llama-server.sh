@@ -99,6 +99,7 @@ elif [ "$2" = "qwen" ]; then
     fi
 elif [ "$2" = "glm" ]; then
     # TODO: Remove unnecessary chat_template_kwargs && test with --jinja
+    # TODO: Performance of REAP variant is very poor
     if [ "$1" = "low" ]; then
         _serve "$1" -a cerebras/GLM-4.7-Flash-REAP-23B-A3B \
             -hf unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL \
