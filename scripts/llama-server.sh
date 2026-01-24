@@ -6,6 +6,8 @@ else
     CACHE_DIR="$HOME/.cache/llama.cpp"
 fi
 
+HELP_MSG="Usage: $0 {low|medium|high} {seed|deepseek|qwen|glm|args...}"
+
 _serve() {
     local MODE=$1
     shift # 移除第一个参数，剩下的 $@ 将作为模型路径或其他参数传递
@@ -37,8 +39,7 @@ _serve() {
         CACHE_REUSE=2048
         ;;
     *)
-        echo "Usage: _serve {low|medium|high} [additional llama-server args]"
-        echo "Example: _serve medium -m ./models/qwen2.5-coder-32b-q4_k_m.gguf"
+        echo "$HELP_MSG"
         return 1
         ;;
     esac
@@ -66,9 +67,17 @@ _serve() {
 }
 
 if [ "$2" = "seed" ]; then
-    # TODO: Try without token editing
+    # Modified version of mradermacher/Seed-Coder-8B-Base-i1-GGUF
+    # Ref: https://github.com/ggml-org/llama.cpp/issues/17900
+    MODEL_URL='https://ciscai-gguf-editor.hf.space/download/mradermacher/Seed-Coder-8B-Base-i1-GGUF/Seed-Coder-8B-Base.i1-IQ4_NL.gguf?add=%5B%22tokenizer.ggml.fim_mid_token_id%22,4,126%5D&add=%5B%22tokenizer.ggml.fim_pre_token_id%22,4,124%5D&add=%5B%22tokenizer.ggml.fim_suf_token_id%22,4,125%5D'
+    MODEL_DIR="${CACHE_DIR}/custom"
+    MODEL_PATH="${MODEL_DIR}/Seed-Coder-8B-Base.gguf"
+    if [ ! -f "$MODEL_PATH" ]; then
+        mkdir -p "$MODEL_DIR"
+        curl -fSL -C - -o "$MODEL_PATH" "$MODEL_URL" || exit 1
+    fi
     _serve "$1" -a ByteDance-Seed/Seed-Coder-8B-Base \
-        -hf mradermacher/Seed-Coder-8B-Base-i1-GGUF:IQ4_NL \
+        -m "$MODEL_PATH" \
         --spm-infill
 elif [ "$2" = "deepseek" ]; then
     _serve "$1" -a deepseek-ai/DeepSeek-Coder-V2-Lite-Base \
@@ -106,5 +115,5 @@ elif [ "$2" = "glm" ]; then
 elif [ -n "$1" ]; then
     _serve "$@"
 else
-    echo "Usage: $0 {low|medium|high} {seed|deepseek|qwen|glm|args...}"
+    echo "$HELP_MSG"
 fi
