@@ -6,12 +6,12 @@ else
     CACHE_DIR="$HOME/.cache/llama.cpp"
 fi
 
-HELP_MSG="Usage: $0 {low|medium|high} {seed|deepseek|qwen|glm|args...}"
+UNIT="$1"
+MODE="$2"
+MODEL="$3"
+HELP_MSG="Usage: $0 {cpu|gpu} {low|medium|high} {seed|deepseek|qwen|glm}"
 
 _serve() {
-    local MODE=$1
-    shift # 移除第一个参数，剩下的 $@ 将作为模型路径或其他参数传递
-
     # 默认值 (Low / 8k)
     local CONTEXT=8192
     local CTK="q8_0"
@@ -44,29 +44,42 @@ _serve() {
         ;;
     esac
 
-    echo "🚀 Starting llama-server in [$MODE] mode..."
+    echo "🚀 Starting llama-server in [$MODE] mode using $UNIT..."
     echo "   Context: $CONTEXT | KV-Cache: $CTK | Batch: $BATCH"
 
-    llama-server \
-        --host :: \
-        --port 8080 \
-        -ngl -1 \
-        -c "$CONTEXT" \
-        -ctk "$CTK" \
-        -ctv "$CTV" \
-        -b "$BATCH" \
-        -ub "$UBATCH" \
-        --temp 0.15 \
-        --top-k 40 \
-        --top-p 0.9 \
-        --min-p 0.05 \
-        --repeat-penalty 1.0 \
-        -fa on \
-        --cache-reuse "$CACHE_REUSE" \
-        "$@"
+    ARGS=(
+        --host ::
+        --port 8080
+        -c "$CONTEXT"
+        -ctk "$CTK"
+        -ctv "$CTV"
+        -b "$BATCH"
+        -ub "$UBATCH"
+        --temp 0.15
+        --top-k 40
+        --top-p 0.9
+        --min-p 0.05
+        --repeat-penalty 1.0
+        -fa on
+        --cache-reuse "$CACHE_REUSE"
+    )
+
+    if [ "$UNIT" = "cpu" ]; then
+        ARGS+=(
+            -ngl 0
+            --mlock
+            -t "$(nproc)"
+        )
+    else
+        ARGS+=(
+            -ngl -1
+        )
+    fi
+
+    llama-server "${ARGS[@]}" "$@"
 }
 
-if [ "$2" = "seed" ]; then
+if [ "$MODEL" = "seed" ]; then
     # Modified version of mradermacher/Seed-Coder-8B-Base-i1-GGUF
     # Ref: https://github.com/ggml-org/llama.cpp/issues/17900
     MODEL_URL='https://ciscai-gguf-editor.hf.space/download/mradermacher/Seed-Coder-8B-Base-i1-GGUF/Seed-Coder-8B-Base.i1-IQ4_NL.gguf?add=%5B%22tokenizer.ggml.fim_mid_token_id%22,4,126%5D&add=%5B%22tokenizer.ggml.fim_pre_token_id%22,4,124%5D&add=%5B%22tokenizer.ggml.fim_suf_token_id%22,4,125%5D'
@@ -76,49 +89,47 @@ if [ "$2" = "seed" ]; then
         mkdir -p "$MODEL_DIR"
         curl -fSL -C - -o "$MODEL_PATH" "$MODEL_URL" || exit 1
     fi
-    _serve "$1" -a ByteDance-Seed/Seed-Coder-8B-Base \
+    _serve -a ByteDance-Seed/Seed-Coder-8B-Base \
         -m "$MODEL_PATH" \
         --spm-infill
-elif [ "$2" = "deepseek" ]; then
-    _serve "$1" -a deepseek-ai/DeepSeek-Coder-V2-Lite-Base \
+elif [ "$MODEL" = "deepseek" ]; then
+    _serve -a deepseek-ai/DeepSeek-Coder-V2-Lite-Base \
         -hf legraphista/DeepSeek-Coder-V2-Lite-Base-IMat-GGUF:IQ4_NL
-elif [ "$2" = "qwen" ]; then
-    if [ "$1" = "low" ]; then
-        _serve "$1" -a Qwen/Qwen2.5-Coder-7B \
+elif [ "$MODEL" = "qwen" ]; then
+    if [ "$MODE" = "low" ]; then
+        _serve -a Qwen/Qwen2.5-Coder-7B \
             -hf mradermacher/Qwen2.5-Coder-7B-i1-GGUF:Q4_K_M
-    elif [ "$1" = "medium" ]; then
-        _serve "$1" -a cerebras/Qwen3-Coder-REAP-25B-A3B \
+    elif [ "$MODE" = "medium" ]; then
+        _serve -a cerebras/Qwen3-Coder-REAP-25B-A3B \
             -hf mradermacher/Qwen3-Coder-REAP-25B-A3B-i1-GGUF:Q4_K_M \
             -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
             --draft 5
-    elif [ "$1" = "high" ]; then
-        _serve "$1" -a Qwen/Qwen3-Coder-30B-A3B-Instruct \
+    elif [ "$MODE" = "high" ]; then
+        _serve -a Qwen/Qwen3-Coder-30B-A3B-Instruct \
             -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_K_XL \
             -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
             --draft 7
     fi
-elif [ "$2" = "glm" ]; then
+elif [ "$MODEL" = "glm" ]; then
     # TODO: Remove unnecessary chat_template_kwargs && test with --jinja
     # TODO: Performance of REAP variant is very poor
-    if [ "$1" = "low" ]; then
-        _serve "$1" -a cerebras/GLM-4.7-Flash-REAP-23B-A3B \
+    if [ "$MODE" = "low" ]; then
+        _serve -a cerebras/GLM-4.7-Flash-REAP-23B-A3B \
             -hf unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL \
             --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}'
-    elif [ "$1" = "medium" ]; then
-        _serve "$1" -a cerebras/GLM-4.7-Flash-REAP-23B-A3B \
+    elif [ "$MODE" = "medium" ]; then
+        _serve -a cerebras/GLM-4.7-Flash-REAP-23B-A3B \
             -hf unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL \
             --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}' \
             -hfd unsloth/Qwen2.5-Coder-0.5B-Instruct-GGUF:Q8_0 \
             --draft 5
-    elif [ "$1" = "high" ]; then
-        _serve "$1" -a zai-org/GLM-4.7-Flash \
+    elif [ "$MODE" = "high" ]; then
+        _serve -a zai-org/GLM-4.7-Flash \
             -hf unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL \
             --chat-template-kwargs '{"enable_thinking": false, "thinking": {"type": "disabled"}}' \
             -hfd unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0 \
             --draft 7
     fi
-elif [ -n "$1" ]; then
-    _serve "$@"
 else
     echo "$HELP_MSG"
 fi
