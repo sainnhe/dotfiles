@@ -87,7 +87,8 @@ if [ "$MODEL" = "seed" ]; then
     MODEL_PATH="${MODEL_DIR}/Seed-Coder-8B-Base.gguf"
     if [ ! -f "$MODEL_PATH" ]; then
         mkdir -p "$MODEL_DIR"
-        curl -fSL -C - -o "$MODEL_PATH" "$MODEL_URL" || exit 1
+        curl -fSL -C - -o "${MODEL_PATH}.part" "$MODEL_URL" || exit 1
+        mv "${MODEL_PATH}.part" "${MODEL_PATH}"
     fi
     _serve -a ByteDance-Seed/Seed-Coder-8B-Base \
         -m "$MODEL_PATH" \

@@ -4,7 +4,7 @@ UNAME=$(uname)
 BUILD_DIR="build"
 
 COMMON_ARGS=(
-    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_BUILD_TYPE=Debug
     -DCMAKE_INSTALL_PREFIX="$HOME/.local"
     -DGGML_NATIVE=ON
     -DGGML_LTO=ON
