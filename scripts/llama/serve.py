@@ -40,10 +40,10 @@ def download_model_if_not_exist(url, path):
     part_path.rename(path)
 
 
-def build_serve_cmd(cmd_args) -> list[str]:
-    if cmd_args.perf == "low":
+def build_serve_cmd(flags) -> list[str]:
+    if flags.perf == "low":
         scale = 1
-    elif cmd_args.perf == "medium":
+    elif flags.perf == "medium":
         scale = 2
     else:
         scale = 4
@@ -53,13 +53,13 @@ def build_serve_cmd(cmd_args) -> list[str]:
         "--host",
         "::",
         "--port",
-        "8080" if cmd_args.mode == "fim" else "8081",
+        "8080" if flags.mode == "fim" else "8081",
         "--ctx-size",
         str(8192 * scale),
         "--cache-type-k",
-        "q8_0" if cmd_args.perf != "high" else "f16",
+        "q8_0" if flags.perf != "high" else "f16",
         "--cache-type-v",
-        "q8_0" if cmd_args.perf != "high" else "f16",
+        "q8_0" if flags.perf != "high" else "f16",
         "--batch-size",
         str(max(4096, 2048 * scale)),
         "--ubatch-size",
@@ -67,19 +67,19 @@ def build_serve_cmd(cmd_args) -> list[str]:
         "--cache-reuse",
         str(512 * scale),
         "--temp",
-        "0.15" if cmd_args.mode == "fim" else "0.7",
+        "0.15" if flags.mode == "fim" else "0.7",
         "--top-k",
-        "40" if cmd_args.mode == "fim" else "50",
+        "40" if flags.mode == "fim" else "50",
         "--top-p",
-        "0.9" if cmd_args.mode == "fim" else "0.95",
+        "0.9" if flags.mode == "fim" else "0.95",
         "--min-p",
         "0.05",
         "--repeat-penalty",
-        "1.0" if cmd_args.mode == "fim" else "1.05",
+        "1.0" if flags.mode == "fim" else "1.05",
         "--flash-attn",
         "on",
         "--n-gpu-layers",
-        "0" if cmd_args.proc == "cpu" else "-1",
+        "0" if flags.proc == "cpu" else "-1",
         "--threads",
         str(get_thread_num()),
         "--mlock",
@@ -87,7 +87,7 @@ def build_serve_cmd(cmd_args) -> list[str]:
 
     # Model specific args
     model_args: list[str] = []
-    if cmd_args.model == "seed":
+    if flags.model == "seed":
         # Modified version of mradermacher/Seed-Coder-8B-Base-i1-GGUF
         # Ref: https://github.com/ggml-org/llama.cpp/issues/17900
         model_path = get_cache_dir() / "custom" / "Seed-Coder-8B-Base.gguf"
@@ -102,22 +102,22 @@ def build_serve_cmd(cmd_args) -> list[str]:
             str(model_path),
             "--spm-infill",
         ]
-    elif cmd_args.model == "deepseek":
+    elif flags.model == "deepseek":
         model_args = [
             "--alias",
             "deepseek-ai/DeepSeek-Coder-V2-Lite-Base",
             "--hf-repo",
             "legraphista/DeepSeek-Coder-V2-Lite-Base-IMat-GGUF:IQ4_NL",
         ]
-    elif cmd_args.model == "qwen":
-        if cmd_args.perf == "low":
+    elif flags.model == "qwen":
+        if flags.perf == "low":
             model_args = [
                 "--alias",
                 "Qwen/Qwen2.5-Coder-7B",
                 "--hf-repo",
                 "mradermacher/Qwen2.5-Coder-7B-i1-GGUF:Q4_K_M",
             ]
-        elif cmd_args.perf == "medium":
+        elif flags.perf == "medium":
             model_args = [
                 "--alias",
                 "cerebras/Qwen3-Coder-REAP-25B-A3B",
@@ -131,18 +131,18 @@ def build_serve_cmd(cmd_args) -> list[str]:
                 "--hf-repo",
                 "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_K_XL",
             ]
-    elif cmd_args.model == "glm":
+    elif flags.model == "glm":
         # TODO: Remove unnecessary chat_template_kwargs
         # TODO: test with --jinja
         # TODO: Performance of REAP variant is very poor
-        if cmd_args.perf == "low":
+        if flags.perf == "low":
             model_args = [
                 "--alias",
                 "Akicou/GLM-4.7-Flash-REAP-50",
                 "--hf-repo",
                 "Akicou/GLM-4.7-Flash-REAP-50-GGUF:Q4_K_M",
             ]
-        elif cmd_args.perf == "medium":
+        elif flags.perf == "medium":
             model_args = [
                 "--alias",
                 "cerebras/GLM-4.7-Flash-REAP-23B-A3B",
@@ -162,7 +162,7 @@ def build_serve_cmd(cmd_args) -> list[str]:
         )
 
     serve_cmd = ["llama-server"] + comm_args + model_args
-    if cmd_args.proc == "cpu" and platform.system() == "Linux":
+    if flags.proc == "cpu" and platform.system() == "Linux":
         serve_cmd = ["taskset", "-c", "0-" + str(get_thread_num() - 1)] + serve_cmd
 
     return serve_cmd
@@ -198,8 +198,7 @@ def main():
         required=True,
     )
 
-    args = parser.parse_args()
-    serve_cmd = build_serve_cmd(args)
+    serve_cmd = build_serve_cmd(parser.parse_args())
     print(serve_cmd)
 
     try:
