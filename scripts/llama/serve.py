@@ -171,19 +171,28 @@ def build_serve_cmd(cmd_args) -> list[str]:
 def main():
     parser = argparse.ArgumentParser(description="llama.cpp server wrapper")
     parser.add_argument(
-        "proc", choices=["cpu", "gpu"], help="Processing unit to use", default="cpu"
+        "--proc",
+        choices=["cpu", "gpu"],
+        help="Processing unit to use",
+        default="cpu",
+        required=False,
     )
     parser.add_argument(
-        "perf",
+        "--perf",
         choices=["low", "medium", "high"],
         help="Performace mode",
         default="low",
+        required=False,
     )
     parser.add_argument(
-        "mode", choices=["fim", "inst"], help="Serving mode", default="fim"
+        "--mode",
+        choices=["fim", "inst"],
+        help="Serving mode",
+        default="fim",
+        required=False,
     )
     parser.add_argument(
-        "model",
+        "--model",
         choices=["seed", "deepseek", "qwen", "glm"],
         help="Model family",
         required=True,
@@ -191,6 +200,7 @@ def main():
 
     args = parser.parse_args()
     serve_cmd = build_serve_cmd(args)
+    print(serve_cmd)
 
     try:
         subprocess.run(serve_cmd)
