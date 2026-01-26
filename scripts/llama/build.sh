@@ -19,13 +19,13 @@ if [ "$UNAME" = "Linux" ]; then
         # SSL
         -DLLAMA_OPENSSL=ON
 
-        # NVIDIA
+        # GPU
         -DGGML_CUDA=ON
         -DCMAKE_CUDA_ARCHITECTURES="native"
         -DGGML_CUDA_GRAPHS=ON
         -DGGML_CUDA_FA_ALL_QUANTS=ON
 
-        # AMD CPU
+        # CPU
         -DGGML_AVX512=ON
         -DGGML_AVX512_VBMI=ON
         -DGGML_AVX512_VNNI=ON
