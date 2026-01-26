@@ -6,6 +6,7 @@ import platform
 import subprocess
 from pathlib import Path
 import re
+import resource
 
 
 def get_cache_dir():
@@ -38,6 +39,25 @@ def download_model_if_not_exist(url, path):
     cmd = ["curl", "-fSL", "-C", "-", "-o", str(part_path), url]
     subprocess.run(cmd, check=True)  # Raise exception when failed
     part_path.rename(path)
+
+
+def setup_memlock_limit():
+    if platform.system() != "Linux":
+        return
+
+    print("🔐 Adjusting memory lock limits (ulimit -l)...")
+    try:
+        # Set both soft and hard limits to infinity
+        limit = resource.RLIM_INFINITY
+        resource.setrlimit(resource.RLIMIT_MEMLOCK, (limit, limit))
+        print("✅ Memory lock limit set to UNLIMITED.")
+    except (ValueError, PermissionError) as e:
+        soft, hard = resource.getrlimit(resource.RLIMIT_MEMLOCK)
+        print(f"⚠️  Could not set ulimit to unlimited: {e}")
+        print(f"   Current limits: Soft={soft}, Hard={hard}")
+        print(
+            "   If --mlock fails, add '* soft memlock unlimited' to /etc/security/limits.conf"
+        )
 
 
 def setup_huge_pages():
@@ -108,6 +128,7 @@ def build_serve_cmd(flags) -> list[str]:
         scale = 2
     else:
         scale = 4
+    threads = get_thread_num()
 
     # Build common args
     comm_args: list[str] = [
@@ -142,7 +163,7 @@ def build_serve_cmd(flags) -> list[str]:
         "--n-gpu-layers",
         "0" if flags.proc == "cpu" else "-1",
         "--threads",
-        str(get_thread_num()),
+        str(threads),
         "--mlock",
     ]
 
@@ -224,7 +245,7 @@ def build_serve_cmd(flags) -> list[str]:
 
     serve_cmd = ["llama-server"] + comm_args + model_args
     if flags.proc == "cpu" and platform.system() == "Linux":
-        serve_cmd = ["taskset", "-c", "0-" + str(get_thread_num() - 1)] + serve_cmd
+        serve_cmd = ["taskset", "-c", "0-" + str(threads - 1)] + serve_cmd
 
     return serve_cmd
 
@@ -260,8 +281,11 @@ def main():
     )
 
     flags = parser.parse_args()
-    if flags.proc == "cpu" and platform.system() == "Linux":
-        setup_huge_pages()
+
+    if platform.system() == "Linux":
+        setup_memlock_limit()
+        if flags.proc == "cpu":
+            setup_huge_pages()
 
     serve_cmd = build_serve_cmd(flags)
     print(serve_cmd)
