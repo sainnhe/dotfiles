@@ -1,0 +1,202 @@
+#!/usr/bin/env python3
+
+import argparse
+import os
+import platform
+import subprocess
+import sys
+from pathlib import Path
+
+
+def get_cache_dir():
+    if platform.system() == "Darwin":
+        return Path.home() / "Library/Caches/llama.cpp"
+    return Path.home() / ".cache" / "llama.cpp"
+
+
+def get_thread_num():
+    if platform.system() == "Darwin":
+        return int(
+            subprocess.check_output(
+                ["sysctl", "-n", "hw.perflevel0.logicalcpu"]
+            ).strip()
+        )
+    else:
+        return os.cpu_count() // 2
+
+
+def download_model_if_not_exist(url, path):
+    path = Path(path)
+    if path.exists():
+        return
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    print(f"📥 Downloading custom model to {path}...")
+    part_path = path.with_suffix(".part")
+
+    # Download using curl, supports resuming
+    cmd = ["curl", "-fSL", "-C", "-", "-o", str(part_path), url]
+    subprocess.run(cmd, check=True)  # Raise exception when failed
+    part_path.rename(path)
+
+
+def build_serve_cmd(cmd_args) -> list[str]:
+    if cmd_args.perf == "low":
+        scale = 1
+    elif cmd_args.perf == "medium":
+        scale = 2
+    else:
+        scale = 4
+
+    # Build common args
+    comm_args: list[str] = [
+        "--host",
+        "::",
+        "--port",
+        "8080" if cmd_args.mode == "fim" else "8081",
+        "--ctx-size",
+        str(8192 * scale),
+        "--cache-type-k",
+        "q8_0" if cmd_args.perf != "high" else "f16",
+        "--cache-type-v",
+        "q8_0" if cmd_args.perf != "high" else "f16",
+        "--batch-size",
+        str(max(4096, 2048 * scale)),
+        "--ubatch-size",
+        str(max(1024, 512 * scale)),
+        "--cache-reuse",
+        str(512 * scale),
+        "--temp",
+        "0.15" if cmd_args.mode == "fim" else "0.7",
+        "--top-k",
+        "40" if cmd_args.mode == "fim" else "50",
+        "--top-p",
+        "0.9" if cmd_args.mode == "fim" else "0.95",
+        "--min-p",
+        "0.05",
+        "--repeat-penalty",
+        "1.0" if cmd_args.mode == "fim" else "1.05",
+        "--flash-attn",
+        "on",
+        "--n-gpu-layers",
+        "0" if cmd_args.proc == "cpu" else "-1",
+        "--threads",
+        str(get_thread_num()),
+        "--mlock",
+    ]
+
+    # Model specific args
+    model_args: list[str] = []
+    if cmd_args.model == "seed":
+        # Modified version of mradermacher/Seed-Coder-8B-Base-i1-GGUF
+        # Ref: https://github.com/ggml-org/llama.cpp/issues/17900
+        model_path = get_cache_dir() / "custom" / "Seed-Coder-8B-Base.gguf"
+        download_model_if_not_exist(
+            "https://ciscai-gguf-editor.hf.space/download/mradermacher/Seed-Coder-8B-Base-i1-GGUF/Seed-Coder-8B-Base.i1-IQ4_NL.gguf?add=%5B%22tokenizer.ggml.fim_mid_token_id%22,4,126%5D&add=%5B%22tokenizer.ggml.fim_pre_token_id%22,4,124%5D&add=%5B%22tokenizer.ggml.fim_suf_token_id%22,4,125%5D",
+            model_path,
+        )
+        model_args = [
+            "--alias",
+            "ByteDance-Seed/Seed-Coder-8B-Base",
+            "--model",
+            str(model_path),
+            "--spm-infill",
+        ]
+    elif cmd_args.model == "deepseek":
+        model_args = [
+            "--alias",
+            "deepseek-ai/DeepSeek-Coder-V2-Lite-Base",
+            "--hf-repo",
+            "legraphista/DeepSeek-Coder-V2-Lite-Base-IMat-GGUF:IQ4_NL",
+        ]
+    elif cmd_args.model == "qwen":
+        if cmd_args.perf == "low":
+            model_args = [
+                "--alias",
+                "Qwen/Qwen2.5-Coder-7B",
+                "--hf-repo",
+                "mradermacher/Qwen2.5-Coder-7B-i1-GGUF:Q4_K_M",
+            ]
+        elif cmd_args.perf == "medium":
+            model_args = [
+                "--alias",
+                "cerebras/Qwen3-Coder-REAP-25B-A3B",
+                "--hf-repo",
+                "mradermacher/Qwen3-Coder-REAP-25B-A3B-i1-GGUF:Q4_K_M",
+            ]
+        else:
+            model_args = [
+                "--alias",
+                "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+                "--hf-repo",
+                "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_K_XL",
+            ]
+    elif cmd_args.model == "glm":
+        # TODO: Remove unnecessary chat_template_kwargs
+        # TODO: test with --jinja
+        # TODO: Performance of REAP variant is very poor
+        if cmd_args.perf == "low":
+            model_args = [
+                "--alias",
+                "Akicou/GLM-4.7-Flash-REAP-50",
+                "--hf-repo",
+                "Akicou/GLM-4.7-Flash-REAP-50-GGUF:Q4_K_M",
+            ]
+        elif cmd_args.perf == "medium":
+            model_args = [
+                "--alias",
+                "cerebras/GLM-4.7-Flash-REAP-23B-A3B",
+                "--hf-repo",
+                "unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL",
+            ]
+        else:
+            model_args = [
+                "--alias",
+                "zai-org/GLM-4.7-Flash",
+                "--hf-repo",
+                "unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL",
+            ]
+        model_args.append("--chat-template-kwargs")
+        model_args.append(
+            '{"enable_thinking": false, "thinking": {"type": "disabled"}}'
+        )
+
+    serve_cmd = ["llama-server"] + comm_args + model_args
+    if cmd_args.proc == "cpu" and platform.system() == "Linux":
+        serve_cmd = ["taskset", "-c", "0-" + str(get_thread_num() - 1)] + serve_cmd
+
+    return serve_cmd
+
+
+def main():
+    parser = argparse.ArgumentParser(description="llama.cpp server wrapper")
+    parser.add_argument(
+        "proc", choices=["cpu", "gpu"], help="Processing unit to use", default="cpu"
+    )
+    parser.add_argument(
+        "perf",
+        choices=["low", "medium", "high"],
+        help="Performace mode",
+        default="low",
+    )
+    parser.add_argument(
+        "mode", choices=["fim", "inst"], help="Serving mode", default="fim"
+    )
+    parser.add_argument(
+        "model",
+        choices=["seed", "deepseek", "qwen", "glm"],
+        help="Model family",
+        required=True,
+    )
+
+    args = parser.parse_args()
+    serve_cmd = build_serve_cmd(args)
+
+    try:
+        subprocess.run(serve_cmd)
+    except KeyboardInterrupt:
+        print("\n👋 Server stopped.")
+
+
+if __name__ == "__main__":
+    main()
