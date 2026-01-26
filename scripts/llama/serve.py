@@ -4,8 +4,8 @@ import argparse
 import os
 import platform
 import subprocess
-import sys
 from pathlib import Path
+import re
 
 
 def get_cache_dir():
@@ -38,6 +38,67 @@ def download_model_if_not_exist(url, path):
     cmd = ["curl", "-fSL", "-C", "-", "-o", str(part_path), url]
     subprocess.run(cmd, check=True)  # Raise exception when failed
     part_path.rename(path)
+
+
+def setup_huge_pages():
+    if platform.system() != "Linux":
+        return
+
+    def get_current_setting(path):
+        try:
+            with open(path, "r") as f:
+                content = f.read().strip()
+                match = re.search(r"\[(.*?)\]", content)
+                return match.group(1) if match else None
+        except FileNotFoundError:
+            return None
+
+    enabled_path = "/sys/kernel/mm/transparent_hugepage/enabled"
+    defrag_path = "/sys/kernel/mm/transparent_hugepage/defrag"
+
+    # Read current system states
+    current_enabled = get_current_setting(enabled_path)
+    current_defrag = get_current_setting(defrag_path)
+
+    # Validation criteria:
+    # 1. 'enabled' should be 'always' or 'madvise' (llama.cpp uses madvise internally)
+    # 2. 'defrag' should be 'always' to prevent latency spikes during MoE inference
+    enabled_ok = current_enabled in ["always", "madvise"]
+    defrag_ok = current_defrag == "always"
+
+    if enabled_ok and defrag_ok:
+        print(
+            f"✅ Huge Pages already optimized: enabled=[{current_enabled}], defrag=[{current_defrag}]"
+        )
+        return
+
+    # Log specific missing requirements
+    print("🔍 Huge Pages configuration needs update:")
+    if not enabled_ok:
+        print(
+            f"   - 'enabled' is currently [{current_enabled}], expected [madvise/always]"
+        )
+    if not defrag_ok:
+        print(f"   - 'defrag' is currently [{current_defrag}], expected [always]")
+
+    print("🛠️  Requesting sudo privileges to update kernel memory settings...")
+
+    # We use 'madvise' for enabled as it is safer for system-wide stability
+    # while still allowing llama.cpp (which calls madvise) to use Huge Pages.
+    cmd = (
+        "echo madvise | sudo tee /sys/kernel/mm/transparent_hugepage/enabled && "
+        "echo always | sudo tee /sys/kernel/mm/transparent_hugepage/defrag"
+    )
+
+    try:
+        # Run the command through shell to support the pipe and sudo tee
+        subprocess.run(cmd, shell=True, check=True, capture_output=True)
+        print("🚀 Linux performance optimization applied successfully!")
+    except subprocess.CalledProcessError:
+        print(
+            "❌ Failed to update settings. Please check sudo permissions, or setup manually:"
+        )
+        print(cmd)
 
 
 def build_serve_cmd(flags) -> list[str]:
@@ -198,7 +259,11 @@ def main():
         required=True,
     )
 
-    serve_cmd = build_serve_cmd(parser.parse_args())
+    flags = parser.parse_args()
+    if flags.proc == "cpu" and platform.system() == "Linux":
+        setup_huge_pages()
+
+    serve_cmd = build_serve_cmd(flags)
     print(serve_cmd)
 
     try:
