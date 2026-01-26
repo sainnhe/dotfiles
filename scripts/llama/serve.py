@@ -166,6 +166,7 @@ def build_serve_cmd(flags) -> list[str]:
         "--threads",
         str(threads),
         "--mlock",
+        "--jinja",
     ]
 
     # Model specific args
@@ -215,8 +216,6 @@ def build_serve_cmd(flags) -> list[str]:
                 "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_K_XL",
             ]
     elif flags.model == "glm":
-        # TODO: Remove unnecessary chat_template_kwargs
-        # TODO: test with --jinja
         # TODO: Performance of REAP variant is very poor
         if flags.perf == "low":
             model_args = [
@@ -239,10 +238,6 @@ def build_serve_cmd(flags) -> list[str]:
                 "--hf-repo",
                 "unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL",
             ]
-        model_args.append("--chat-template-kwargs")
-        model_args.append(
-            '{"enable_thinking": false, "thinking": {"type": "disabled"}}'
-        )
 
     serve_cmd = ["llama-server"] + comm_args + model_args
     if flags.proc == "cpu" and platform.system() == "Linux":
