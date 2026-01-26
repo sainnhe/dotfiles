@@ -41,6 +41,7 @@ def download_model_if_not_exist(url, path):
     part_path.rename(path)
 
 
+# TODO: memlock doesn't seem to be working properly
 def setup_memlock_limit():
     if platform.system() != "Linux":
         return
