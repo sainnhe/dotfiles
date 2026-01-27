@@ -166,8 +166,9 @@ def build_serve_cmd(flags) -> list[str]:
         "--threads",
         str(threads),
         "--mlock",
-        "--jinja",
     ]
+    if flags.mode == "inst":
+        comm_args.append("--jinja")
 
     # Model specific args
     model_args: list[str] = []
@@ -252,7 +253,7 @@ def main():
         "--proc",
         choices=["cpu", "gpu"],
         help="Processing unit to use",
-        default="cpu",
+        default="gpu",
         required=False,
     )
     parser.add_argument(
@@ -273,7 +274,8 @@ def main():
         "--model",
         choices=["seed", "deepseek", "qwen", "glm"],
         help="Model family",
-        required=True,
+        default="glm",
+        required=False,
     )
 
     flags = parser.parse_args()
