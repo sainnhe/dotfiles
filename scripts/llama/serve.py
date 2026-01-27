@@ -217,7 +217,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_K_XL",
             ]
     elif flags.model == "glm":
-        # TODO: Performance of REAP variant is very poor
+        # TODO: FIM performance is very poor
         if flags.perf == "low":
             model_args = [
                 "--alias",
@@ -274,8 +274,7 @@ def main():
         "--model",
         choices=["seed", "deepseek", "qwen", "glm"],
         help="Model family",
-        default="glm",
-        required=False,
+        required=True,
     )
 
     flags = parser.parse_args()
