@@ -171,9 +171,9 @@
                         }
                     }
                 },
-                "nvidia/kimi-k2-thinking": {
-                    "id": "moonshotai/kimi-k2-thinking",
-                    "name": "Kimi K2 Thinking",
+                "nvidia/kimi-k2.5": {
+                    "id": "moonshotai/kimi-k2.5",
+                    "name": "Kimi K2.5",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
