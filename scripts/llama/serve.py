@@ -212,49 +212,96 @@ def build_serve_cmd(flags) -> list[str]:
     # Model specific args
     model_args: list[str] = []
     if flags.model == "seed":
-        # Modified version of mradermacher/Seed-Coder-8B-Base-i1-GGUF
-        # Ref: https://github.com/ggml-org/llama.cpp/issues/17900
-        model_path = get_cache_dir() / "custom" / "Seed-Coder-8B-Base.gguf"
-        download_model_if_not_exist(
-            "https://ciscai-gguf-editor.hf.space/download/mradermacher/Seed-Coder-8B-Base-i1-GGUF/Seed-Coder-8B-Base.i1-IQ4_NL.gguf?add=%5B%22tokenizer.ggml.fim_mid_token_id%22,4,126%5D&add=%5B%22tokenizer.ggml.fim_pre_token_id%22,4,124%5D&add=%5B%22tokenizer.ggml.fim_suf_token_id%22,4,125%5D",
-            model_path,
-        )
-        model_args = [
-            "--alias",
-            "ByteDance-Seed/Seed-Coder-8B-Base",
-            "--model",
-            str(model_path),
-            "--spm-infill",
-        ]
-    elif flags.model == "deepseek":
-        model_args = [
-            "--alias",
-            "deepseek-ai/DeepSeek-Coder-V2-Lite-Base",
-            "--hf-repo",
-            "legraphista/DeepSeek-Coder-V2-Lite-Base-IMat-GGUF:IQ4_NL",
-        ]
-    elif flags.model == "qwen":
-        if flags.perf == "low":
+        if flags.mode == "fim":
+            # Modified version of mradermacher/Seed-Coder-8B-Base-i1-GGUF
+            # Ref: https://github.com/ggml-org/llama.cpp/issues/17900
+            model_path = get_cache_dir() / "custom" / "Seed-Coder-8B-Base.gguf"
+            download_model_if_not_exist(
+                "https://ciscai-gguf-editor.hf.space/download/mradermacher/Seed-Coder-8B-Base-i1-GGUF/Seed-Coder-8B-Base.i1-IQ4_NL.gguf?add=%5B%22tokenizer.ggml.fim_mid_token_id%22,4,126%5D&add=%5B%22tokenizer.ggml.fim_pre_token_id%22,4,124%5D&add=%5B%22tokenizer.ggml.fim_suf_token_id%22,4,125%5D",
+                model_path,
+            )
             model_args = [
                 "--alias",
-                "Qwen/Qwen2.5-Coder-7B",
-                "--hf-repo",
-                "mradermacher/Qwen2.5-Coder-7B-i1-GGUF:Q4_K_M",
+                "ByteDance-Seed/Seed-Coder-8B-Base",
+                "--model",
+                str(model_path),
+                "--spm-infill",
             ]
-        elif flags.perf == "medium":
+        else:
+            if flags.perf == "low":
+                model_args = [
+                    "--alias",
+                    "ByteDance-Seed/Seed-Coder-8B-Reasoning",
+                    "--hf-repo",
+                    "unsloth/Seed-Coder-8B-Reasoning-GGUF:IQ4_NL",
+                ]
+            else:
+                model_args = [
+                    "--alias",
+                    "ByteDance-Seed/Seed-OSS-36B-Instruct",
+                    "--hf-repo",
+                    "unsloth/Seed-OSS-36B-Instruct-GGUF:IQ4_NL",
+                ]
+    elif flags.model == "deepseek":
+        if flags.mode == "fim":
             model_args = [
                 "--alias",
-                "cerebras/Qwen3-Coder-REAP-25B-A3B",
+                "deepseek-ai/DeepSeek-Coder-V2-Lite-Base",
                 "--hf-repo",
-                "mradermacher/Qwen3-Coder-REAP-25B-A3B-i1-GGUF:Q4_K_M",
+                "legraphista/DeepSeek-Coder-V2-Lite-Base-IMat-GGUF:IQ4_NL",
             ]
         else:
             model_args = [
                 "--alias",
-                "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+                "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
                 "--hf-repo",
-                "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_K_XL",
+                "unsloth/DeepSeek-R1-0528-Qwen3-8B-GGUF:IQ4_NL",
             ]
+    elif flags.model == "qwen":
+        if flags.mode == "fim":
+            if flags.perf == "low":
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen2.5-Coder-7B",
+                    "--hf-repo",
+                    "mradermacher/Qwen2.5-Coder-7B-i1-GGUF:Q4_K_M",
+                ]
+            elif flags.perf == "medium":
+                model_args = [
+                    "--alias",
+                    "cerebras/Qwen3-Coder-REAP-25B-A3B",
+                    "--hf-repo",
+                    "mradermacher/Qwen3-Coder-REAP-25B-A3B-i1-GGUF:Q4_K_M",
+                ]
+            else:
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+                    "--hf-repo",
+                    "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_K_XL",
+                ]
+        else:
+            if flags.perf == "low":
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3-8B",
+                    "--hf-repo",
+                    "unsloth/Qwen3-8B-GGUF:IQ4_NL",
+                ]
+            elif flags.perf == "medium":
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3-14B",
+                    "--hf-repo",
+                    "unsloth/Qwen3-14B-GGUF:IQ4_NL",
+                ]
+            else:
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3-32B",
+                    "--hf-repo",
+                    "unsloth/Qwen3-32B-GGUF:IQ4_NL",
+                ]
     elif flags.model == "glm":
         # TODO: FIM performance is very poor
         if flags.perf == "low":
