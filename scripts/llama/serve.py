@@ -320,7 +320,7 @@ def build_serve_cmd(flags) -> list[str]:
             ]
     elif flags.model == "nemotron":
         if flags.mode == "fim":
-            logger.error("Nemotron models are only supported in inst mode.")
+            logger.error("This model family is only supported in inst mode.")
             exit(1)
         else:
             model_args = [
@@ -328,6 +328,17 @@ def build_serve_cmd(flags) -> list[str]:
                 "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
                 "--hf-repo",
                 "unsloth/Nemotron-3-Nano-30B-A3B-GGUF:IQ4_NL",
+            ]
+    elif flags.model == "gpt-oss":
+        if flags.mode == "fim":
+            logger.error("This model family is only supported in inst mode.")
+            exit(1)
+        else:
+            model_args = [
+                "--alias",
+                "openai/gpt-oss-20b",
+                "--hf-repo",
+                "unsloth/gpt-oss-20b-GGUF:Q4_K_M",
             ]
 
     serve_cmd = ["llama-server"] + comm_args + model_args
@@ -362,7 +373,7 @@ def main():
     )
     parser.add_argument(
         "--model",
-        choices=["seed", "deepseek", "qwen", "glm", "nemotron"],
+        choices=["seed", "deepseek", "qwen", "glm", "nemotron", "gpt-oss"],
         help="Model family",
         required=True,
     )
