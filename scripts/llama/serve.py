@@ -288,19 +288,12 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/Qwen3-8B-GGUF:IQ4_NL",
                 ]
-            elif flags.perf == "medium":
-                model_args = [
-                    "--alias",
-                    "Qwen/Qwen3-14B",
-                    "--hf-repo",
-                    "unsloth/Qwen3-14B-GGUF:IQ4_NL",
-                ]
             else:
                 model_args = [
                     "--alias",
-                    "Qwen/Qwen3-32B",
+                    "Qwen/Qwen3-30B-A3B",
                     "--hf-repo",
-                    "unsloth/Qwen3-32B-GGUF:IQ4_NL",
+                    "unsloth/Qwen3-30B-A3B-GGUF:IQ4_NL",
                 ]
     elif flags.model == "glm":
         # TODO: FIM performance is very poor
@@ -324,6 +317,17 @@ def build_serve_cmd(flags) -> list[str]:
                 "zai-org/GLM-4.7-Flash",
                 "--hf-repo",
                 "unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL",
+            ]
+    elif flags.model == "nemotron":
+        if flags.mode == "fim":
+            logger.error("Nemotron models are only supported in inst mode.")
+            exit(1)
+        else:
+            model_args = [
+                "--alias",
+                "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+                "--hf-repo",
+                "unsloth/Nemotron-3-Nano-30B-A3B-GGUF:IQ4_NL",
             ]
 
     serve_cmd = ["llama-server"] + comm_args + model_args
@@ -358,7 +362,7 @@ def main():
     )
     parser.add_argument(
         "--model",
-        choices=["seed", "deepseek", "qwen", "glm"],
+        choices=["seed", "deepseek", "qwen", "glm", "nemotron"],
         help="Model family",
         required=True,
     )
