@@ -5,10 +5,24 @@
     "plugin": [
         "@franlol/opencode-md-table-formatter@latest",
         "@tarquinen/opencode-dcp@latest",
-        "envsitter-guard@latest",
-        "opencode-ignore@latest",
         "cc-safety-net@latest"
     ],
+    "permission": {
+        "*": "allow",
+        "edit": "ask",
+        "bash": "ask",
+        "external_directory": "ask",
+        "doom_loop": "ask",
+        "read": {
+            "*": "allow",
+            "*.crt": "deny",
+            "*.key": "deny",
+            "*.pem": "deny",
+            "*.env": "deny",
+            "*.env.*": "deny",
+            "*.env.example": "allow"
+        }
+    },
     "agent": {
         "chat": {
             "description": "General chat agent.",
