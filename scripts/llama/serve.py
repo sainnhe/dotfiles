@@ -7,6 +7,45 @@ import subprocess
 from pathlib import Path
 import re
 import resource
+import logging
+import sys
+
+
+class ColoredFormatter(logging.Formatter):
+    grey = "\x1b[38;20m"
+    green = "\x1b[32;20m"
+    yellow = "\x1b[33;20m"
+    red = "\x1b[31;20m"
+    bold_red = "\x1b[31;1m"
+    reset = "\x1b[0m"
+
+    format_str = "%(asctime)s | %(levelname)-8s | %(message)s"
+
+    FORMATS = {
+        logging.DEBUG: grey + format_str + reset,
+        logging.INFO: green + format_str + reset,
+        logging.WARNING: yellow + format_str + reset,
+        logging.ERROR: red + format_str + reset,
+        logging.CRITICAL: bold_red + format_str + reset,
+    }
+
+    def format(self, record):
+        log_fmt = self.FORMATS.get(record.levelno)
+        formatter = logging.Formatter(log_fmt, datefmt="%H:%M:%S")
+        return formatter.format(record)
+
+
+def setup_logger():
+    ch = logging.StreamHandler(sys.stdout)
+    ch.setLevel(logging.DEBUG)
+    ch.setFormatter(ColoredFormatter())
+    logger = logging.getLogger("LlamaServe")
+    logger.setLevel(logging.DEBUG)
+    logger.addHandler(ch)
+    return logger
+
+
+logger = setup_logger()
 
 
 def get_cache_dir():
@@ -32,7 +71,7 @@ def download_model_if_not_exist(url, path):
         return
 
     path.parent.mkdir(parents=True, exist_ok=True)
-    print(f"📥 Downloading custom model to {path}...")
+    logger.info(f"Downloading custom model to {path}...")
     part_path = path.with_suffix(".part")
 
     # Download using curl, supports resuming
@@ -41,24 +80,24 @@ def download_model_if_not_exist(url, path):
     part_path.rename(path)
 
 
-# TODO: memlock doesn't seem to be working properly
 def setup_memlock_limit():
     if platform.system() != "Linux":
         return
 
-    print("🔐 Adjusting memory lock limits (ulimit -l)...")
+    logger.info("Adjusting memory lock limits (ulimit -l)...")
     try:
         # Set both soft and hard limits to infinity
         limit = resource.RLIM_INFINITY
         resource.setrlimit(resource.RLIMIT_MEMLOCK, (limit, limit))
-        print("✅ Memory lock limit set to UNLIMITED.")
+        logger.info("Memory lock limit set to UNLIMITED.")
     except (ValueError, PermissionError) as e:
         soft, hard = resource.getrlimit(resource.RLIMIT_MEMLOCK)
-        print(f"⚠️  Could not set ulimit to unlimited: {e}")
-        print(f"   Current limits: Soft={soft}, Hard={hard}")
-        print(
-            "   If --mlock fails, add '* soft memlock unlimited' to /etc/security/limits.conf"
-        )
+        logger.error(f"Could not set ulimit to unlimited: {e}")
+        logger.error(f"Current limits: Soft={soft}, Hard={hard}")
+        logger.error("Add the following lines to /etc/security/limits.conf and reboot:")
+        print("* soft memlock unlimited")
+        print("* hard memlock unlimited")
+        logger.error('You can verify ulimit via "ulimit -Hl"')
 
 
 def setup_huge_pages():
@@ -88,21 +127,21 @@ def setup_huge_pages():
     defrag_ok = current_defrag == "always"
 
     if enabled_ok and defrag_ok:
-        print(
-            f"✅ Huge Pages already optimized: enabled=[{current_enabled}], defrag=[{current_defrag}]"
+        logger.info(
+            f"Huge Pages already optimized: enabled=[{current_enabled}], defrag=[{current_defrag}]"
         )
         return
 
     # Log specific missing requirements
-    print("🔍 Huge Pages configuration needs update:")
+    logger.warning("Huge Pages configuration needs update:")
     if not enabled_ok:
-        print(
-            f"   - 'enabled' is currently [{current_enabled}], expected [madvise/always]"
+        logger.warning(
+            f"'enabled' is currently [{current_enabled}], expected [madvise/always]"
         )
     if not defrag_ok:
-        print(f"   - 'defrag' is currently [{current_defrag}], expected [always]")
+        logger.warning(f"'defrag' is currently [{current_defrag}], expected [always]")
 
-    print("🛠️  Requesting sudo privileges to update kernel memory settings...")
+    logger.warning("Requesting sudo privileges to update kernel memory settings...")
 
     # We use 'madvise' for enabled as it is safer for system-wide stability
     # while still allowing llama.cpp (which calls madvise) to use Huge Pages.
@@ -114,10 +153,10 @@ def setup_huge_pages():
     try:
         # Run the command through shell to support the pipe and sudo tee
         subprocess.run(cmd, shell=True, check=True, capture_output=True)
-        print("🚀 Linux performance optimization applied successfully!")
+        logger.info("Linux performance optimization applied successfully!")
     except subprocess.CalledProcessError:
-        print(
-            "❌ Failed to update settings. Please check sudo permissions, or setup manually:"
+        logger.error(
+            "Failed to update settings. Please check sudo permissions, or setup manually:"
         )
         print(cmd)
 
