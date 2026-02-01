@@ -395,10 +395,9 @@ def main():
 
     flags = parser.parse_args()
 
-    if platform.system() == "Linux":
+    if platform.system() == "Linux" and flags.proc == "cpu":
         setup_memlock_limit()
-        if flags.proc == "cpu":
-            setup_huge_pages()
+        setup_huge_pages()
 
     serve_cmd = build_serve_cmd(flags)
     print(serve_cmd)
