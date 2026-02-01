@@ -216,9 +216,9 @@ def build_serve_cmd(flags) -> list[str]:
             if flags.perf == "low":
                 model_args = [
                     "--alias",
-                    "Qwen/Qwen3-8B",
+                    "Qwen/Qwen2.5-Coder-7B",
                     "--hf-repo",
-                    "unsloth/Qwen3-8B-GGUF:IQ4_NL",
+                    "mradermacher/Qwen2.5-Coder-7B-i1-GGUF:Q4_K_M",
                 ]
             elif flags.perf == "medium":
                 model_args = [
