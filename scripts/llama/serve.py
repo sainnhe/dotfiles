@@ -318,21 +318,6 @@ def build_serve_cmd(flags) -> list[str]:
                 "--hf-repo",
                 "unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL",
             ]
-    elif flags.model == "phi":
-        if flags.mode == "fim":
-            model_args = [
-                "--alias",
-                "microsoft/phi-4",
-                "--hf-repo",
-                "bartowski/phi-4-GGUF:IQ4_NL",
-            ]
-        else:
-            model_args = [
-                "--alias",
-                "microsoft/Phi-4-reasoning-plus",
-                "--hf-repo",
-                "bartowski/microsoft_Phi-4-reasoning-plus-GGUF:IQ4_NL",
-            ]
     elif flags.model == "nemotron":
         if flags.mode == "fim":
             logger.error("This model family is only supported in inst mode.")
@@ -388,7 +373,7 @@ def main():
     )
     parser.add_argument(
         "--model",
-        choices=["qwen", "seed", "deepseek", "glm", "phi", "nemotron", "gpt-oss"],
+        choices=["qwen", "seed", "deepseek", "glm", "nemotron", "gpt-oss"],
         help="Model family",
         required=True,
     )
