@@ -1,5 +1,5 @@
 export LLAMA_FIM_ENDPOINT="http://0.0.0.0:8080/infill"
-export LLAMA_FIM_MODE="low"
+export LLAMA_FIM_PERF="low"
 export LLAMA_INST_ENDPOINT="https://api.lkeap.cloud.tencent.com/v1/chat/completions"
 export LLAMA_INST_MODEL="deepseek-v3.2"
 export LLAMA_INST_API_KEY="sk-xxx"

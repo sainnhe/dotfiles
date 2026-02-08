@@ -175,7 +175,7 @@ def build_serve_cmd(flags) -> list[str]:
         "--host",
         "::",
         "--port",
-        "8080" if flags.mode == "fim" else "8081",
+        "8080" if flags.task == "fim" else "8081",
         "--ctx-size",
         str(8192 * scale),
         "--cache-type-k",
@@ -189,15 +189,15 @@ def build_serve_cmd(flags) -> list[str]:
         "--cache-reuse",
         str(512 * scale),
         "--temp",
-        "0.15" if flags.mode == "fim" else "0.7",
+        "0.15" if flags.task == "fim" else "0.7",
         "--top-k",
-        "40" if flags.mode == "fim" else "50",
+        "40" if flags.task == "fim" else "50",
         "--top-p",
-        "0.9" if flags.mode == "fim" else "0.95",
+        "0.9" if flags.task == "fim" else "0.95",
         "--min-p",
         "0.05",
         "--repeat-penalty",
-        "1.0" if flags.mode == "fim" else "1.05",
+        "1.0" if flags.task == "fim" else "1.05",
         "--flash-attn",
         "on",
         "--n-gpu-layers",
@@ -206,13 +206,13 @@ def build_serve_cmd(flags) -> list[str]:
         str(threads),
         "--mlock",
     ]
-    if flags.mode == "inst":
+    if flags.task == "inst":
         comm_args.append("--jinja")
 
     # Model specific args
     model_args: list[str] = []
     if flags.model == "qwen":
-        if flags.mode == "fim":
+        if flags.task == "fim":
             if flags.perf == "low":
                 model_args = [
                     "--alias",
@@ -250,7 +250,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "unsloth/Qwen3-30B-A3B-GGUF:IQ4_NL",
                 ]
     elif flags.model == "seed":
-        if flags.mode == "fim":
+        if flags.task == "fim":
             # Modified version of mradermacher/Seed-Coder-8B-Base-i1-GGUF
             # Ref: https://github.com/ggml-org/llama.cpp/issues/17900
             model_path = get_cache_dir() / "custom" / "Seed-Coder-8B-Base.gguf"
@@ -281,7 +281,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "unsloth/Seed-OSS-36B-Instruct-GGUF:IQ4_NL",
                 ]
     elif flags.model == "deepseek":
-        if flags.mode == "fim":
+        if flags.task == "fim":
             model_args = [
                 "--alias",
                 "deepseek-ai/DeepSeek-Coder-V2-Lite-Base",
@@ -319,7 +319,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL",
             ]
     elif flags.model == "nemotron":
-        if flags.mode == "fim":
+        if flags.task == "fim":
             logger.error("This model family is only supported in inst mode.")
             exit(1)
         else:
@@ -330,7 +330,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "unsloth/Nemotron-3-Nano-30B-A3B-GGUF:IQ4_NL",
             ]
     elif flags.model == "gpt-oss":
-        if flags.mode == "fim":
+        if flags.task == "fim":
             logger.error("This model family is only supported in inst mode.")
             exit(1)
         else:
@@ -351,6 +351,7 @@ def build_serve_cmd(flags) -> list[str]:
 def main():
     parser = argparse.ArgumentParser(description="llama.cpp server wrapper")
     parser.add_argument(
+        "-p",
         "--proc",
         choices=["cpu", "gpu"],
         help="Processing unit to use",
@@ -358,6 +359,7 @@ def main():
         required=False,
     )
     parser.add_argument(
+        "-P",
         "--perf",
         choices=["low", "medium", "high"],
         help="Performace mode",
@@ -365,13 +367,15 @@ def main():
         required=False,
     )
     parser.add_argument(
-        "--mode",
+        "-t",
+        "--task",
         choices=["fim", "inst"],
-        help="Serving mode",
+        help="Task",
         default="fim",
         required=False,
     )
     parser.add_argument(
+        "-m",
         "--model",
         choices=["qwen", "seed", "deepseek", "glm", "nemotron", "gpt-oss"],
         help="Model family",

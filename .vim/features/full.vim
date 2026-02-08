@@ -222,9 +222,9 @@ endif
 " }}}
 " {{{Language features
 " {{{llama.vim
-if $LLAMA_FIM_MODE ==# 'high'
+if $LLAMA_FIM_PERF ==# 'high'
   let s:llama_params_scale = 4
-elseif $LLAMA_FIM_MODE ==# 'medium'
+elseif $LLAMA_FIM_PERF ==# 'medium'
   let s:llama_params_scale = 2
 else
   let s:llama_params_scale = 1
