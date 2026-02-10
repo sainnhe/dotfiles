@@ -197,6 +197,14 @@
                             "thinking": true
                         }
                     }
+                },
+                "nvidia/step-3.5-flash": {
+                    "id": "stepfun-ai/step-3.5-flash",
+                    "name": "Step 3.5 Flash",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
                 }
             }
         }
