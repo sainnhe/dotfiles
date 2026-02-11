@@ -151,14 +151,6 @@
                         }
                     }
                 },
-                "nvidia/qwen3-coder-480b-a35b-instruct": {
-                    "id": "qwen/qwen3-coder-480b-a35b-instruct",
-                    "name": "Qwen3 Coder",
-                    "reasoning": false,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
                 "nvidia/qwen3-235b-a22b": {
                     "id": "qwen/qwen3-235b-a22b",
                     "name": "Qwen3",
@@ -171,6 +163,14 @@
                             "thinking": true
                         }
                     }
+                },
+                "nvidia/qwen3-coder-480b-a35b-instruct": {
+                    "id": "qwen/qwen3-coder-480b-a35b-instruct",
+                    "name": "Qwen3 Coder",
+                    "reasoning": false,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
                 },
                 "nvidia/minimax-m2.1": {
                     "id": "minimaxai/minimax-m2.1",
