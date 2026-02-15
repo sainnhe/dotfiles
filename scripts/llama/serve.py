@@ -223,9 +223,9 @@ def build_serve_cmd(flags) -> list[str]:
             elif flags.perf == "medium":
                 model_args = [
                     "--alias",
-                    "cerebras/Qwen3-Coder-REAP-25B-A3B",
+                    "Qwen/Qwen3-Coder-30B-A3B-Instruct",
                     "--hf-repo",
-                    "mradermacher/Qwen3-Coder-REAP-25B-A3B-i1-GGUF:Q4_K_M",
+                    "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:IQ4_NL",
                 ]
             else:
                 model_args = [
