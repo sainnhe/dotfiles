@@ -205,7 +205,7 @@ def build_serve_cmd(flags) -> list[str]:
         "--flash-attn",
         "on",
         "--n-gpu-layers",
-        "0" if flags.proc == "cpu" else "-1",
+        flags.ngl,
         "--threads",
         str(threads),
         "--mlock",
@@ -346,7 +346,7 @@ def build_serve_cmd(flags) -> list[str]:
             ]
 
     serve_cmd = ["llama-server"] + comm_args + model_args
-    if flags.proc == "cpu" and platform.system() == "Linux":
+    if flags.ngl != "-1" and platform.system() == "Linux":
         serve_cmd = ["taskset", "-c", "0-" + str(threads - 1)] + serve_cmd
 
     return serve_cmd
@@ -355,15 +355,14 @@ def build_serve_cmd(flags) -> list[str]:
 def main():
     parser = argparse.ArgumentParser(description="llama.cpp server wrapper")
     parser.add_argument(
-        "-p",
-        "--proc",
-        choices=["cpu", "gpu"],
-        help="Processing unit to use",
-        default="gpu",
+        "-n",
+        "--ngl",
+        help="Number of layers to store in VRAM",
+        default="-1",
         required=False,
     )
     parser.add_argument(
-        "-P",
+        "-p",
         "--perf",
         choices=["low", "medium", "high"],
         help="Performace mode",
@@ -388,7 +387,7 @@ def main():
 
     flags = parser.parse_args()
 
-    if platform.system() == "Linux" and flags.proc == "cpu":
+    if flags.ngl != "-1" and platform.system() == "Linux":
         setup_memlock_limit()
         setup_huge_pages()
 
