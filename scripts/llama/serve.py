@@ -168,6 +168,10 @@ def build_serve_cmd(flags) -> list[str]:
         scale = 2
     else:
         scale = 4
+    if flags.task == "fim":
+        base_ctx = 8192
+    else:
+        base_ctx = 16384
     threads = get_thread_num()
 
     # Build common args
@@ -177,17 +181,17 @@ def build_serve_cmd(flags) -> list[str]:
         "--port",
         "8080" if flags.task == "fim" else "8081",
         "--ctx-size",
-        str(8192 * scale),
+        str(base_ctx * scale),
         "--cache-type-k",
         "q8_0" if flags.perf != "high" else "f16",
         "--cache-type-v",
         "q8_0" if flags.perf != "high" else "f16",
         "--batch-size",
-        str(max(4096, 2048 * scale)),
+        "2048",
         "--ubatch-size",
-        str(max(1024, 512 * scale)),
+        "512",
         "--cache-reuse",
-        str(512 * scale),
+        "512",
         "--temp",
         "0.15" if flags.task == "fim" else "0.7",
         "--top-k",
