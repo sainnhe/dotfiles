@@ -210,7 +210,7 @@ def build_serve_cmd(flags) -> list[str]:
         str(threads),
         "--mlock",
     ]
-    if flags.task == "inst":
+    if flags.task == "chat":
         comm_args.append("--jinja")
 
     # Model specific args
@@ -324,7 +324,7 @@ def build_serve_cmd(flags) -> list[str]:
             ]
     elif flags.model == "nemotron":
         if flags.task == "fim":
-            logger.error("This model family is only supported in inst mode.")
+            logger.error("This model family is only supported in chat mode.")
             exit(1)
         else:
             model_args = [
@@ -335,7 +335,7 @@ def build_serve_cmd(flags) -> list[str]:
             ]
     elif flags.model == "gpt-oss":
         if flags.task == "fim":
-            logger.error("This model family is only supported in inst mode.")
+            logger.error("This model family is only supported in chat mode.")
             exit(1)
         else:
             model_args = [
@@ -372,7 +372,7 @@ def main():
     parser.add_argument(
         "-t",
         "--task",
-        choices=["fim", "inst"],
+        choices=["fim", "chat"],
         help="Task",
         default="fim",
         required=False,
