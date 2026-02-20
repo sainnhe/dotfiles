@@ -307,9 +307,9 @@ def build_serve_cmd(flags) -> list[str]:
         elif flags.perf == "medium":
             model_args = [
                 "--alias",
-                "cerebras/GLM-4.7-Flash-REAP-23B-A3B",
+                "zai-org/GLM-4.7-Flash",
                 "--hf-repo",
-                "unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF:IQ4_NL",
+                "unsloth/GLM-4.7-Flash-GGUF:IQ4_NL",
             ]
         else:
             model_args = [
