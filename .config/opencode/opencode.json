@@ -74,9 +74,9 @@
                 "baseURL": "https://api-inference.modelscope.cn/v1"
             },
             "models": {
-                "modelscope/glm-4.7": {
-                    "id": "ZhipuAI/GLM-4.7",
-                    "name": "GLM 4.7",
+                "modelscope/glm-5": {
+                    "id": "ZhipuAI/GLM-5",
+                    "name": "GLM 5",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
@@ -96,9 +96,9 @@
                         "enable_thinking": true
                     }
                 },
-                "modelscope/qwen3": {
-                    "id": "Qwen/Qwen3-235B-A22B-Thinking-2507",
-                    "name": "Qwen3",
+                "modelscope/qwen3.5": {
+                    "id": "Qwen/Qwen3.5-397B-A17B",
+                    "name": "Qwen3.5",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
@@ -125,9 +125,9 @@
                 "baseURL": "https://integrate.api.nvidia.com/v1"
             },
             "models": {
-                "nvidia/glm4.7": {
-                    "id": "z-ai/glm4.7",
-                    "name": "GLM 4.7",
+                "nvidia/glm5": {
+                    "id": "z-ai/glm5",
+                    "name": "GLM 5",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
@@ -151,9 +151,9 @@
                         }
                     }
                 },
-                "nvidia/qwen3-235b-a22b": {
-                    "id": "qwen/qwen3-235b-a22b",
-                    "name": "Qwen3",
+                "nvidia/qwen3.5": {
+                    "id": "qwen/qwen3.5-397b-a17b",
+                    "name": "Qwen3.5",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
