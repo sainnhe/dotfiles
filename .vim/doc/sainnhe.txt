@@ -466,14 +466,6 @@ Language Features~
 
 The following language features are only available in full mode.
 
-- GitHub Copilot: AI assisted code completion.
-  - `:Copilot setup` to authenticate and enable copilot.
-  - `:Copilot disable` to disable copilot.
-  - `:Copilot enable` to enable copilot.
-  - In insert mode:
-    - `Ctrl+l` to accept suggestion.
-    - `Alt+n` to cycle to next suggestion.
-    - `Alt+p` to cycle to previous suggestion.
 - coc.nvim: Advanced language server client.
   - In normal mode:
     - Press `Ctrl+B` to toggle coc-explorer, a tree style file and buffer

@@ -292,7 +292,6 @@ let g:coc_global_extensions = [
       \ 'coc-eslint',
       \ 'coc-explorer',
       \ 'coc-git',
-      \ 'coc-github-copilot',
       \ 'coc-gitignore',
       \ 'coc-go',
       \ 'coc-highlight',
@@ -395,6 +394,7 @@ endif
 inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#next(1) : "\<tab>"
 inoremap <silent><expr> <S-tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-tab>"
 " Accept inline
+" Supports both coc inline and llama.vim
 function! s:accept_inline(kind)
   if coc#pum#has_item_selected()
     return coc#pum#confirm()

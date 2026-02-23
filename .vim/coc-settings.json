@@ -366,7 +366,6 @@
   "ruff.autoFixOnSave": true,
   "ty.enable": false,
   "prettier.formatterPriority": -1,
-  "github-copilot.statusIcon": "",
   "lua.installPreReleases": true,
   "Lua.hint.enable": true,
   "Lua.codeLens.enable": true,
