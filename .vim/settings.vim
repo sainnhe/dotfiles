@@ -108,9 +108,9 @@ if !empty($SSH_CONNECTION)
   endif
 endif
 
-execute 'set backupdir=' . custom#utils#get_path([custom#utils#stdpath('data'), 'backup'])
-execute 'set directory=' . custom#utils#get_path([custom#utils#stdpath('data'), 'swap'])
-execute 'set undofile undodir=' . custom#utils#get_path([custom#utils#stdpath('data'), 'undo' . (has('nvim') ? '-nvim' : '-vim')])
+execute 'set backupdir=' . custom#utils#get_path([custom#utils#stdpath('state'), 'backup'])
+execute 'set directory=' . custom#utils#get_path([custom#utils#stdpath('state'), 'swap'])
+execute 'set undofile undodir=' . custom#utils#get_path([custom#utils#stdpath('state'), 'undo' . (has('nvim') ? '-nvim' : '-vim')])
 if !isdirectory(expand(&g:directory))
   silent! call mkdir(expand(&g:directory), 'p')
 endif

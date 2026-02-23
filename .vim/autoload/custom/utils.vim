@@ -69,6 +69,8 @@ function custom#utils#stdpath(type) abort "{{{
       return expand('~') . '/.cache/vim'
     elseif a:type ==# 'data'
       return expand('~') . '/.local/share/vim'
+    elseif a:type ==# 'state'
+      return expand('~') . '/.local/state/vim'
     endif
   else
     if a:type ==# 'config'
@@ -77,6 +79,8 @@ function custom#utils#stdpath(type) abort "{{{
       return expand('~') . '\AppData\Local\Temp\vim'
     elseif a:type ==# 'data'
       return expand('~') . '\AppData\Local\vim-data'
+    elseif a:type ==# 'state'
+      return expand('~') . '\AppData\Local\vim-state'
     endif
   endif
 endfunction "}}}
