@@ -295,6 +295,24 @@ pacclean() { # {{{
     rm -rf ~/.cache/pikaur/pkg
     sync
 } # }}}
+auto_activate_venv() { # {{{
+  # 检查当前目录下是否有.venv/bin/activate
+  if [[ -f "./.venv/bin/activate" ]]; then
+    # 如果已经激活了虚拟环境，并且不是当前目录下的，则先取消激活
+    if [[ -n "$VIRTUAL_ENV" ]] && [[ "$VIRTUAL_ENV" != "$(pwd)/.venv" ]]; then
+      deactivate
+    fi
+    # 激活当前目录下的虚拟环境
+    source ./.venv/bin/activate
+  else
+    # 如果当前目录下没有.venv/bin/activate，并且已经激活了虚拟环境，我们不做任何操作（不自动去激活）
+    # 用户可以手动去激活
+    # 这里我们选择不自动去激活，所以什么都不做
+    :
+  fi
+}
+add-zsh-hook chpwd auto_activate_venv
+# }}}
 # }}}
 # {{{Alias
 alias du='du -sh'
