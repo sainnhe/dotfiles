@@ -185,6 +185,7 @@ let g:root_patterns = [
       \ '.hg',
       \ '.svn',
       \ 'requirements.txt',
+      \ 'pyproject.toml',
       \ 'Cargo.toml',
       \ 'go.mod',
       \ 'tsconfig.json',
