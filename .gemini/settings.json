@@ -2,7 +2,12 @@
   "general": {
     "preferredEditor": "vim",
     "previewFeatures": true,
-    "enablePromptCompletion": true
+    "enablePromptCompletion": true,
+    "sessionRetention": {
+      "enabled": true,
+      "maxAge": "30d",
+      "warningAcknowledged": true
+    }
   },
   "ui": {
     "theme": "GitHub"
@@ -14,5 +19,8 @@
     "auth": {
       "selectedType": "oauth-personal"
     }
+  },
+  "model": {
+    "name": "gemini-3.1-pro-preview"
   }
 }
