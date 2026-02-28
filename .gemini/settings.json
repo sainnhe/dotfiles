@@ -15,6 +15,9 @@
   "telemetry": {
     "enabled": false
   },
+  "context": {
+    "fileName": ["AGENTS.md", "GEMINI.md"]
+  },
   "security": {
     "auth": {
       "selectedType": "oauth-personal"
