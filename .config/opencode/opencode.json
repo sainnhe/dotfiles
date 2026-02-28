@@ -43,6 +43,31 @@
         "custom-nvidia"
     ],
     "provider": {
+        "custom-local": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "Local",
+            "options": {
+                "baseURL": "http://0.0.0.0:8080/v1"
+            },
+            "models": {
+                "local/qwen3.5": {
+                    "id": "Qwen/Qwen3.5-35B-A3B",
+                    "name": "Qwen3.5",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
+                "local/glm4.7-flash": {
+                    "id": "zai-org/GLM-4.7-Flash",
+                    "name": "GLM 4.7 Flash",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                }
+            }
+        },
         "custom-tencent-cloud": {
             "npm": "@ai-sdk/openai-compatible",
             "name": "Tencent Cloud",
