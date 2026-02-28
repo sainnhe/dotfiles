@@ -249,9 +249,9 @@ def build_serve_cmd(flags) -> list[str]:
             else:
                 model_args = [
                     "--alias",
-                    "Qwen/Qwen3-30B-A3B",
+                    "Qwen/Qwen3.5-35B-A3B",
                     "--hf-repo",
-                    "unsloth/Qwen3-30B-A3B-GGUF:IQ4_NL",
+                    "unsloth/Qwen3.5-35B-A3B-GGUF:UD-Q4_K_M",
                 ]
     elif flags.model == "seed":
         if flags.task == "fim":
