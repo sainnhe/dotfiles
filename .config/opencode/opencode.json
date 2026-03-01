@@ -24,6 +24,9 @@
         }
     },
     "agent": {
+        "plan": {
+            "disable": true
+        },
         "chat": {
             "description": "General chat agent.",
             "mode": "primary",
