@@ -39,19 +39,36 @@
         "github-copilot",
         "google",
         "custom-tencent-cloud",
-        "custom-modelscope"
+        "custom-modelscope",
+        "custom-local"
     ],
     "provider": {
         "custom-local": {
             "npm": "@ai-sdk/openai-compatible",
             "name": "Local",
             "options": {
-                "baseURL": "http://0.0.0.0:8080/v1"
+                "baseURL": "http://0.0.0.0:8081/v1"
             },
             "models": {
                 "local/qwen3.5": {
                     "id": "Qwen/Qwen3.5-35B-A3B",
                     "name": "Qwen3.5",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
+                "local/seed-coder": {
+                    "id": "ByteDance-Seed/Seed-Coder-8B-Reasoning",
+                    "name": "Seed Coder",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
+                "local/seed-oss": {
+                    "id": "ByteDance-Seed/Seed-OSS-36B-Instruct",
+                    "name": "Seed OSS",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
