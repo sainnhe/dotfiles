@@ -414,7 +414,7 @@ def main():
     try:
         subprocess.run(serve_cmd)
     except KeyboardInterrupt:
-        print("\n👋 Server stopped.")
+        logger.info("Server stopped.")
 
 
 if __name__ == "__main__":
