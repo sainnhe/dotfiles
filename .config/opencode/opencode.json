@@ -53,9 +53,17 @@
                 "baseURL": "http://0.0.0.0:8081/v1"
             },
             "models": {
-                "local/qwen3.5": {
+                "local/qwen3.5-moe": {
                     "id": "Qwen/Qwen3.5-35B-A3B",
-                    "name": "Qwen3.5",
+                    "name": "Qwen3.5 (MoE)",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
+                "local/qwen3.5-dense": {
+                    "id": "Qwen/Qwen3.5-27B",
+                    "name": "Qwen3.5 (Dense)",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
