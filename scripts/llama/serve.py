@@ -218,31 +218,54 @@ def build_serve_cmd(flags) -> list[str]:
     # Model specific args
     model_args: list[str] = []
     if flags.model == "qwen":
-        if flags.perf == "low":
-            model_args = [
-                "--alias",
-                "Qwen/Qwen3-8B",
-                "--hf-repo",
-                "unsloth/Qwen3-8B-GGUF:IQ4_NL",
-            ]
-        elif flags.perf == "medium":
-            model_args = [
-                "--alias",
-                "Qwen/Qwen3.5-35B-A3B",
-                "--hf-repo",
-                "unsloth/Qwen3.5-35B-A3B-GGUF:UD-Q4_K_M",
-            ]
+        if flags.task == "fim":
+            if flags.perf == "low":
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen2.5-Coder-7B",
+                    "--hf-repo",
+                    "mradermacher/Qwen2.5-Coder-7B-i1-GGUF:Q4_K_M",
+                ]
+            elif flags.perf == "medium":
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+                    "--hf-repo",
+                    "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:IQ4_NL",
+                ]
+            else:
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+                    "--hf-repo",
+                    "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_K_XL",
+                ]
         else:
-            model_args = [
-                "--alias",
-                "Qwen/Qwen3.5-27B",
-                "--hf-repo",
-                "unsloth/Qwen3.5-27B-GGUF:UD-Q8_K_XL",
-                "--hf-repo-draft",
-                "Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0",
-                "--draft-n",
-                "7",
-            ]
+            if flags.perf == "low":
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3-8B",
+                    "--hf-repo",
+                    "unsloth/Qwen3-8B-GGUF:IQ4_NL",
+                ]
+            elif flags.perf == "medium":
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3.5-35B-A3B",
+                    "--hf-repo",
+                    "unsloth/Qwen3.5-35B-A3B-GGUF:UD-Q4_K_M",
+                ]
+            else:
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3.5-27B",
+                    "--hf-repo",
+                    "unsloth/Qwen3.5-27B-GGUF:UD-Q8_K_XL",
+                    "--hf-repo-draft",
+                    "Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0",
+                    "--draft-n",
+                    "7",
+                ]
     elif flags.model == "seed":
         if flags.task == "fim":
             # Modified version of mradermacher/Seed-Coder-8B-Base-i1-GGUF
