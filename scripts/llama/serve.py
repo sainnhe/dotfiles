@@ -210,7 +210,7 @@ def build_serve_cmd(flags) -> list[str]:
         str(threads),
         "--mlock",
         "--parallel",
-        "4",
+        "1",
         "--mlock",
         "--jinja",
     ]
