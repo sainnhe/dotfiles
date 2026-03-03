@@ -244,9 +244,9 @@ def build_serve_cmd(flags) -> list[str]:
             if flags.perf == "low":
                 model_args = [
                     "--alias",
-                    "Qwen/Qwen3-8B",
+                    "Qwen/Qwen3.5-9B",
                     "--hf-repo",
-                    "unsloth/Qwen3-8B-GGUF:IQ4_NL",
+                    "unsloth/Qwen3.5-9B-GGUF:IQ4_NL",
                 ]
             elif flags.perf == "medium":
                 model_args = [
@@ -262,9 +262,9 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/Qwen3.5-27B-GGUF:UD-Q8_K_XL",
                     "--hf-repo-draft",
-                    "Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q8_0",
+                    "unsloth/Qwen3.5-2B-GGUF:UD-Q8_K_XL",
                     "--draft-n",
-                    "7",
+                    "5",
                 ]
     elif flags.model == "seed":
         if flags.task == "fim":
