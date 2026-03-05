@@ -329,6 +329,9 @@ objects have been added:
   unnamed register. E.g. `"*<leader>ri"`, replace the content inside double
   quotes with the selection and drop register.
 
+And you can use `cr<case>` to change the case under cursur. Check
+|abolish-coercion| for more information.
+
 Don't panic when pressing the keyboard, think carefully before pressing. There
 are two plugins that can help you get the job done. One is
 `junegunn/vim-peekaboo` which can display the register content, and the other
