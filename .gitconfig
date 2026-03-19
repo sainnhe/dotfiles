@@ -61,6 +61,7 @@
     sm = submodule
     br = branch
     co = checkout
+    sw = switch
     cm = commit
     acm = commit -a
     ad = add
