@@ -352,9 +352,9 @@ def build_serve_cmd(flags) -> list[str]:
         else:
             model_args = [
                 "--alias",
-                "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+                "nvidia/Nemotron-Cascade-2-30B-A3B",
                 "--hf-repo",
-                "unsloth/Nemotron-3-Nano-30B-A3B-GGUF:IQ4_NL",
+                "bartowski/nvidia_Nemotron-Cascade-2-30B-A3B-GGUF:IQ4_XS",
             ]
     elif flags.model == "gpt-oss":
         if flags.task == "fim":
