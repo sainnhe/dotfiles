@@ -43,6 +43,7 @@ depends=(base
          unzip
          viu
          zip
+         7zip
          asdf-vm
          # Network Utils
          aria2
