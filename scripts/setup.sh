@@ -93,7 +93,7 @@ _cpp() {
 _node() {
     _copy .npmrc
     _copy .yarnrc
-    _symlink package.json
+    _copy package.json
     sudo port -N install \
         nodejs20 \
         npm10 \
@@ -112,7 +112,8 @@ _python() {
         py312-requests \
         python310 \
         python312 \
-        ruff
+        ruff \
+        uv
     pip install pyrefly
 }
 
@@ -130,6 +131,7 @@ _go() {
     go install github.com/sqls-server/sqls@latest
     go install github.com/bufbuild/buf/cmd/buf@latest
     go install github.com/nao1215/gup@latest
+    go install github.com/asdf-vm/asdf/cmd/asdf@latest
     echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.zprofile"
 }
 

@@ -32,9 +32,6 @@ if test -d "$HOME/.zsh_envs.d/"; then
     unset _env
 fi
 # Asdf
-if ! [ -x "$(command -v asdf)" ] && [ -x "$(command -v go)" ]; then
-    go install github.com/asdf-vm/asdf/cmd/asdf@latest
-fi
 if [ -x "$(command -v asdf)" ]; then
     export ASDF_DIR="$HOME/.local/share/asdf"
     export ASDF_DATA_DIR="$ASDF_DIR"
