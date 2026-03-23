@@ -1,7 +1,6 @@
 {
     "$schema": "https://opencode.ai/config.json",
     "autoupdate": false,
-    "theme": "everforest",
     "plugin": [
         "@franlol/opencode-md-table-formatter@latest",
         "@tarquinen/opencode-dcp@latest",
@@ -41,9 +40,9 @@
     "enabled_providers": [
         "github-copilot",
         "google",
+        "custom-local",
         "custom-tencent-cloud",
-        "custom-modelscope",
-        "custom-local"
+        "custom-modelscope"
     ],
     "provider": {
         "custom-local": {
@@ -88,6 +87,14 @@
                 "local/glm4.7-flash": {
                     "id": "zai-org/GLM-4.7-Flash",
                     "name": "GLM 4.7 Flash",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
+                "local/nemotron-cascade-2": {
+                    "id": "nvidia/Nemotron-Cascade-2-30B-A3B",
+                    "name": "Nemotron Cascade 2",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
