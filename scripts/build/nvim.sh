@@ -1,10 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# 开启严格模式：遇到错误、未定义变量或管道失败时立即退出
+set -euo pipefail
 
 # 遇到错误立即退出
 set -e
 
 echo "🚀 开始清理旧的编译缓存和依赖..."
-make distclean || true
+make clean || true
 
 echo "⚙️ 开始拉取依赖并编译 Neovim..."
 make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$HOME/.local" -j$(nproc)
