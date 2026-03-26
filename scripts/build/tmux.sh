@@ -32,15 +32,15 @@ cd "ncurses-${NCURSES_VER}"
 
 echo "    -> 正在配置并编译 ncurses..."
 ./configure --prefix="$LOCAL_INSTALL_DIR" \
-            --enable-widec \
-            --with-shared \
-            --without-debug \
-            --without-ada \
-            --without-tests \
-            --with-xterm-kbs=del \
-            --with-termlib \
-            --enable-pc-files \
-            --with-pkg-config-libdir="$LOCAL_INSTALL_DIR/lib/pkgconfig"
+    --enable-widec \
+    --with-shared \
+    --without-debug \
+    --without-ada \
+    --without-tests \
+    --with-xterm-kbs=del \
+    --with-termlib \
+    --enable-pc-files \
+    --with-pkg-config-libdir="$LOCAL_INSTALL_DIR/lib/pkgconfig"
 
 make -j"$(nproc)"
 make install
