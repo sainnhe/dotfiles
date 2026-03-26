@@ -10,13 +10,15 @@ echo "==> 开始配置 LLVM 构建 (使用 Unix Makefiles)..."
 
 cmake \
     -G "Unix Makefiles" \
-    -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$HOME/.local/llvm" \
-    -DLLVM_TARGETS_TO_BUILD="Native" \
-    -DLLVM_USE_LINKER="lld" \
+    -DCMAKE_C_COMPILER=clang \
+    -DCMAKE_CXX_COMPILER=clang++ \
     -DCMAKE_C_COMPILER_LAUNCHER="ccache" \
     -DCMAKE_CXX_COMPILER_LAUNCHER="ccache" \
+    -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" \
+    -DLLVM_TARGETS_TO_BUILD="Native" \
+    -DLLVM_USE_LINKER="lld" \
     ../llvm
 
 echo "==> 开始编译..."
