@@ -260,7 +260,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "--alias",
                     "Qwen/Qwen3.5-27B",
                     "--hf-repo",
-                    "unsloth/Qwen3.5-27B-GGUF:UD-Q8_K_XL",
+                    "unsloth/Qwen3.5-27B-GGUF:UD-Q4_K_XL",
                     "--hf-repo-draft",
                     "unsloth/Qwen3.5-2B-GGUF:UD-Q8_K_XL",
                     "--draft-n",
