@@ -133,6 +133,7 @@ _go() {
     go install github.com/nao1215/gup@latest
     go install github.com/asdf-vm/asdf/cmd/asdf@latest
     go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
+    go install github.com/fullstorydev/grpcui/cmd/grpcui@latest
     echo "Be sure to update ~/.zprofile with envs in $DOTFILES_DIR/.zprofile"
 }
 
