@@ -193,6 +193,7 @@ let g:root_patterns = [
       \ 'venv',
       \ 'MODULE.bazel',
       \ 'BUILD',
+      \ 'buf.yaml',
       \ ]
 let g:java_home = !empty($JAVA_HOME) ? $JAVA_HOME :
       \ has('win32') ? expand('~/scoop/apps/openjdk/current') :
