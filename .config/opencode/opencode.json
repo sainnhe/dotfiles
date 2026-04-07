@@ -99,6 +99,22 @@
                     "tool_call": true,
                     "attachment": true,
                     "temperature": true
+                },
+                "local/gemma-4-moe": {
+                    "id": "google/gemma-4-26B-A4B-it",
+                    "name": "Gemma 4 (MoE)",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
+                "local/gemma-4-dense": {
+                    "id": "google/gemma-4-31B-it",
+                    "name": "Gemma 4 (Dense)",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
                 }
             }
         },
