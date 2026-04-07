@@ -345,6 +345,29 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL",
                 ]
+    elif flags.model == "gemma":
+        if flags.task == "fim":
+            logger.error("This model family is only supported in chat mode.")
+            exit(1)
+        else:
+            if flags.perf == "low" or flags.perf == "medium":
+                model_args = [
+                    "--alias",
+                    "google/gemma-4-26B-A4B-it",
+                    "--hf-repo",
+                    "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_NL",
+                ]
+            else:
+                model_args = [
+                    "--alias",
+                    "google/gemma-4-31B-it",
+                    "--hf-repo",
+                    "unsloth/gemma-4-31B-it-GGUF:UD-Q4_K_XL",
+                    "--hf-repo-draft",
+                    "unsloth/gemma-4-E2B-it-GGUF:UD-Q8_K_XL",
+                    "--draft-n",
+                    "5",
+                ]
     elif flags.model == "nemotron":
         if flags.task == "fim":
             logger.error("This model family is only supported in chat mode.")
@@ -403,7 +426,7 @@ def main():
     parser.add_argument(
         "-m",
         "--model",
-        choices=["qwen", "seed", "deepseek", "glm", "nemotron", "gpt-oss"],
+        choices=["qwen", "seed", "deepseek", "glm", "gemma", "nemotron", "gpt-oss"],
         help="Model family",
         required=True,
     )
