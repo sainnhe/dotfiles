@@ -262,7 +262,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/Qwen3.5-27B-GGUF:UD-Q4_K_XL",
                     "--hf-repo-draft",
-                    "unsloth/Qwen3.5-2B-GGUF:UD-Q8_K_XL",
+                    "unsloth/Qwen3.5-2B-GGUF:UD-Q4_K_XL",
                     "--draft-n",
                     "5",
                 ]
@@ -364,7 +364,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/gemma-4-31B-it-GGUF:UD-Q4_K_XL",
                     "--hf-repo-draft",
-                    "unsloth/gemma-4-E2B-it-GGUF:UD-Q8_K_XL",
+                    "unsloth/gemma-4-E2B-it-GGUF:UD-Q4_K_XL",
                     "--draft-n",
                     "5",
                 ]
