@@ -261,10 +261,10 @@ def build_serve_cmd(flags) -> list[str]:
                     "Qwen/Qwen3.5-27B",
                     "--hf-repo",
                     "unsloth/Qwen3.5-27B-GGUF:UD-Q4_K_XL",
-                    "--hf-repo-draft",
-                    "unsloth/Qwen3.5-2B-GGUF:UD-Q4_K_XL",
-                    "--draft-n",
-                    "5",
+                    #  "--hf-repo-draft",
+                    #  "unsloth/Qwen3.5-2B-GGUF:UD-Q4_K_XL",
+                    #  "--draft-n",
+                    #  "5",
                 ]
     elif flags.model == "seed":
         if flags.task == "fim":
@@ -363,10 +363,10 @@ def build_serve_cmd(flags) -> list[str]:
                     "google/gemma-4-31B-it",
                     "--hf-repo",
                     "unsloth/gemma-4-31B-it-GGUF:UD-Q4_K_XL",
-                    "--hf-repo-draft",
-                    "unsloth/gemma-4-E2B-it-GGUF:UD-Q4_K_XL",
-                    "--draft-n",
-                    "5",
+                    #  "--hf-repo-draft",
+                    #  "unsloth/gemma-4-E2B-it-GGUF:UD-Q4_K_XL",
+                    #  "--draft-n",
+                    #  "5",
                 ]
     elif flags.model == "nemotron":
         if flags.task == "fim":
