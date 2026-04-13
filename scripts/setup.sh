@@ -44,6 +44,9 @@ _ssh() {
     echo "4. gpgconf --kill gpg-agent"
     echo "5. gpg-connect-agent updatestartuptty /bye"
     echo "6. gpg --export-ssh-key <key-id>"
+    echo "NOTE: 如果遇到任何奇怪的问题，试一下 4 和 5"
+    echo "NOTE: 如果是在命令行终端登录失败，需要强制触发一次弹窗："
+    echo "echo test | gpg --clearsign"
 }
 
 _new_ssh() {
