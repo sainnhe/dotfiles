@@ -4,7 +4,8 @@ DOTFILES_DIR=$(git rev-parse --show-toplevel)
 
 _help() {
     echo "Usage:"
-    echo "./setup.sh ssh your_email@domain.tld"
+    echo "./setup.sh ssh"
+    echo "./setup.sh new_ssh your_email@domain.tld"
     echo "./setup.sh git"
     echo "./setup.sh deps"
     echo "./setup.sh rust"
@@ -35,6 +36,17 @@ _copy() {
 #}}}
 
 _ssh() {
+    ln -sf "$DOTFILES_DIR/.gnupg/gpg-agent.conf" ~/.gnupg/gpg-agent.conf
+    cp "$DOTFILES_DIR/.zsh_envs.d/gnupg.zsh" ~/.zsh_envs.d/gnupg.zsh
+    echo "1. Restore gpg keys"
+    echo "2. gpg --list-keys --with-keygrip"
+    echo "3. Add keygrip to ~/.gnupg/sshcontrol"
+    echo "4. gpgconf --kill gpg-agent"
+    echo "5. gpg-connect-agent updatestartuptty /bye"
+    echo "6. gpg --export-ssh-key <key-id>"
+}
+
+_new_ssh() {
     _copy .ssh/config
     ssh-keygen -t rsa -f ~/.ssh/id_rsa -C "$1"
     ssh-keygen -t ecdsa -f ~/.ssh/id_ecdsa -C "$1"
@@ -186,7 +198,9 @@ _dotfiles() {
 if [ "$1" = "help" ]; then
     _help
 elif [ "$1" = "ssh" ]; then
-    _ssh "$2"
+    _ssh
+elif [ "$1" = "new_ssh" ]; then
+    _new_ssh "$2"
 elif [ "$1" = "git" ]; then
     _git
 elif [ "$1" = "deps" ]; then
