@@ -37,13 +37,14 @@ _copy() {
 
 _ssh() {
     ln -sf "$DOTFILES_DIR/.gnupg/gpg-agent.conf" ~/.gnupg/gpg-agent.conf
-    cp "$DOTFILES_DIR/.zsh_envs.d/gnupg.zsh" ~/.zsh_envs.d/gnupg.zsh
+    ln -sf "$DOTFILES_DIR/.zsh_envs.d/gnupg_ssh.zsh" ~/.zsh_envs.d/gnupg_ssh.zsh
     echo "1. Restore gpg keys"
     echo "2. gpg --list-keys --with-keygrip"
     echo "3. Add keygrip to ~/.gnupg/sshcontrol"
     echo "4. gpgconf --kill gpg-agent"
     echo "5. gpg-connect-agent updatestartuptty /bye"
     echo "6. gpg --export-ssh-key <key-id>"
+    echo "7. Optionally create a symlink of gnupg_tty.zsh"
     echo "NOTE: 如果遇到任何奇怪的问题，试一下 4 和 5"
 }
 
