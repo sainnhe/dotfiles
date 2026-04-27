@@ -123,21 +123,48 @@
             "name": "Tencent Cloud",
             "options": {
                 "apiKey": "sk-xxx",
-                "baseURL": "https://api.lkeap.cloud.tencent.com/v1"
+                "baseURL": "https://tokenhub.tencentmaas.cn/v1"
             },
             "models": {
-                "tencent-cloud/deepseek-v3.2": {
-                    "id": "deepseek-v3.2",
-                    "name": "Deepseek V3.2",
+                "tencent-cloud/deepseek-v4-flash": {
+                    "id": "deepseek-v4-flash",
+                    "name": "Deepseek V4 Flash",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
-                    "temperature": true,
-                    "options": {
-                        "thinking": {
-                            "type": "enabled"
-                        }
-                    }
+                    "temperature": true
+                },
+                "tencent-cloud/deepseek-v4-pro": {
+                    "id": "deepseek-v4-pro",
+                    "name": "Deepseek V4 Pro",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
+                "tencent-cloud/glm-5.1": {
+                    "id": "glm-5.1",
+                    "name": "GLM 5.1",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
+                "tencent-cloud/kimi-k2.6": {
+                    "id": "kimi-k2.6",
+                    "name": "Kimi K2.6",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
+                "tencent-cloud/minimax-m2.7": {
+                    "id": "minimax-m2.7",
+                    "name": "Minimax M2.7",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
                 }
             }
         },
