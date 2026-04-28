@@ -1,9 +1,21 @@
 {
     "$schema": "https://opencode.ai/config.json",
     "autoupdate": false,
+    "server": {
+        "hostname": "0.0.0.0",
+        "port": 8040,
+        "mdns": true,
+        "mdnsDomain": "opencode.local",
+        "cors": [
+            "http://localhost:8040",
+            "http://127.0.0.1:8040",
+            "http://0.0.0.0:8040",
+            "http://opencode.local:8040"
+        ]
+    },
+    "shell": "zsh",
     "plugin": [
         "@franlol/opencode-md-table-formatter@latest",
-        "@tarquinen/opencode-dcp@latest",
         "cc-safety-net@latest"
     ],
     "permission": {
@@ -22,6 +34,7 @@
             "*.env.example": "allow"
         }
     },
+    "default_agent": "build",
     "agent": {
         "plan": {
             "disable": true
@@ -35,7 +48,26 @@
                 "*": "deny"
             },
             "prompt": "You are a smart, efficient AI assistant.\n\n**Core Guidelines:**\n1.  **Conciseness is Key:** Optimize your answers for a mobile screen. Be direct and avoid fluff.\n2.  **Format:** Use Markdown (Bold, Bullet points, Headers) heavily to make text scannable.\n3.  **Language:** Always reply in the language the user speaks (e.g., if User speaks Chinese, reply in Chinese).\n4.  **Accuracy:** If you don't know the answer, admit it. Do not hallucinate.\n\n**Capabilities:**\n- If asked to write code: Provide the code block immediately with a very brief explanation.\n- If asked for a plan: Use a numbered list.\n- If chatting: Be friendly but professional."
+        },
+        "code-reviewer": {
+            "description": "Code reviewer.",
+            "mode": "primary",
+            "temperature": 0.7,
+            "top_p": 0.9,
+            "prompt": "You are a senior and pragmatic Principal Software Engineer responsible for reviewing project code submissions. Your core goal is to guarantee system stability and security, filtering out all trivial noise.\n\n### Review Principles & Strict Constraints:\n1. **Critical Issues Only**: You must focus solely on defects that could lead to system crashes, data loss, security breaches, or severe performance degradation. Pay special attention to:\n   - Memory leaks or unreleased resources\n   - Concurrency/thread-safety issues (e.g., deadlocks, race conditions)\n   - Security vulnerabilities (e.g., SQL injection, XSS, unauthorized access)\n   - Severe performance bottlenecks (e.g., O(N^2) nested loops on large datasets)\n   - Bugs that clearly break core business logic\n   - Unhandled fatal exceptions or null pointer risks\n\n2. **Ignore Code Style**: You are strictly prohibited from reporting any Lint-level issues regarding code formatting, indentation, spacing, line breaks, variable naming conventions (e.g., camelCase vs. snake_case), missing comments, etc.\n\n3. **Zero Noise**: If you do not find any defects that meet the \"Critical Issues\" definition, simply reply: \"No critical defects found.\" Do not report minor code blemishes just to have something to say.\n\n4. **Language Alignment**: You must detect the primary language of the user's input (prompt, code comments, or context). If the user inputs in Simplified Chinese, your review report MUST be entirely in Simplified Chinese; if English, output in English.\n\n### Output Format Requirements:\nFor each critical issue discovered, output concisely using the following structure:\n- **[File/Line]**: <location of the issue>\n- **[Issue Type]**: <e.g., Security Vulnerability / Concurrency Risk / Memory Leak>\n- **[Impact]**: <explain the severe consequences if left unfixed in 1-2 sentences>\n- **[Fix Suggestion]**: <provide specific code modification recommendations>",
         }
+    },
+    "command": {
+        "review-code": {
+            "template": "Review the code under this directory.",
+            "description": "Review code",
+            "agent": "code-reviewer"
+        }
+    },
+    "compaction": {
+        "auto": true,
+        "prune": true,
+        "reserved": 10000
     },
     "enabled_providers": [
         "github-copilot",
@@ -52,65 +84,9 @@
                 "baseURL": "http://0.0.0.0:8081/v1"
             },
             "models": {
-                "local/qwen3.5-moe": {
-                    "id": "Qwen/Qwen3.5-35B-A3B",
-                    "name": "Qwen3.5 (MoE)",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/qwen3.5-dense": {
-                    "id": "Qwen/Qwen3.5-27B",
-                    "name": "Qwen3.5 (Dense)",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/seed-coder": {
-                    "id": "ByteDance-Seed/Seed-Coder-8B-Reasoning",
-                    "name": "Seed Coder",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/seed-oss": {
-                    "id": "ByteDance-Seed/Seed-OSS-36B-Instruct",
-                    "name": "Seed OSS",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/glm4.7-flash": {
-                    "id": "zai-org/GLM-4.7-Flash",
-                    "name": "GLM 4.7 Flash",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/nemotron-cascade-2": {
-                    "id": "nvidia/Nemotron-Cascade-2-30B-A3B",
-                    "name": "Nemotron Cascade 2",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/gemma-4-moe": {
-                    "id": "google/gemma-4-26B-A4B-it",
-                    "name": "Gemma 4 (MoE)",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/gemma-4-dense": {
-                    "id": "google/gemma-4-31B-it",
-                    "name": "Gemma 4 (Dense)",
+                "local/qwen3.6": {
+                    "id": "Qwen/Qwen3.6-35B-A3B",
+                    "name": "Qwen 3.6",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
@@ -178,30 +154,19 @@
             "models": {
                 "modelscope/qwen3.5": {
                     "id": "Qwen/Qwen3.5-397B-A17B",
-                    "name": "Qwen3.5",
+                    "name": "Qwen 3.5",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
                     "temperature": true
                 },
-                "modelscope/glm-5": {
-                    "id": "ZhipuAI/GLM-5",
-                    "name": "GLM 5",
+                "modelscope/mimo-v2.5-pro": {
+                    "id": "XiaomiMiMo/MiMo-V2.5-Pro",
+                    "name": "MiMo V2.5 Pro",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
                     "temperature": true
-                },
-                "modelscope/deepseek-v3.2": {
-                    "id": "deepseek-ai/DeepSeek-V3.2",
-                    "name": "Deepseek V3.2",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true,
-                    "options": {
-                        "enable_thinking": true
-                    }
                 }
             }
         }
