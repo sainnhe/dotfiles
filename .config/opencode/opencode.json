@@ -73,8 +73,7 @@
         "github-copilot",
         "google",
         "custom-local",
-        "custom-tencent-cloud",
-        "custom-modelscope"
+        "custom-tencent-cloud"
     ],
     "provider": {
         "custom-local": {
@@ -137,32 +136,6 @@
                 "tencent-cloud/minimax-m2.7": {
                     "id": "minimax-m2.7",
                     "name": "Minimax M2.7",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                }
-            }
-        },
-        "custom-modelscope": {
-            "npm": "@ai-sdk/openai-compatible",
-            "name": "ModelScope",
-            "options": {
-                "apiKey": "ms-xxx",
-                "baseURL": "https://api-inference.modelscope.cn/v1"
-            },
-            "models": {
-                "modelscope/qwen3.5": {
-                    "id": "Qwen/Qwen3.5-397B-A17B",
-                    "name": "Qwen 3.5",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "modelscope/mimo-v2.5-pro": {
-                    "id": "XiaomiMiMo/MiMo-V2.5-Pro",
-                    "name": "MiMo V2.5 Pro",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
