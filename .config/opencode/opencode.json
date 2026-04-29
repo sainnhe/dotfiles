@@ -59,7 +59,7 @@
     },
     "command": {
         "review-code": {
-            "template": "Review the code under this directory.",
+            "template": "审核一下当前目录下的代码。",
             "description": "Review code",
             "agent": "code-reviewer"
         }
