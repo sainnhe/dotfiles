@@ -71,7 +71,6 @@
     },
     "enabled_providers": [
         "github-copilot",
-        "google",
         "custom-local",
         "custom-tencent-cloud"
     ],
