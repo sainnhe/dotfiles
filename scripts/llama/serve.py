@@ -217,50 +217,27 @@ def build_serve_cmd(flags) -> list[str]:
     # Model specific args
     model_args: list[str] = []
     if flags.model == "qwen":
-        if flags.task == "fim":
-            if flags.perf == "low":
-                model_args = [
-                    "--alias",
-                    "Qwen/Qwen2.5-Coder-7B",
-                    "--hf-repo",
-                    "mradermacher/Qwen2.5-Coder-7B-i1-GGUF:Q4_K_M",
-                ]
-            elif flags.perf == "medium":
-                model_args = [
-                    "--alias",
-                    "Qwen/Qwen3-Coder-30B-A3B-Instruct",
-                    "--hf-repo",
-                    "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:IQ4_NL",
-                ]
-            else:
-                model_args = [
-                    "--alias",
-                    "Qwen/Qwen3-Coder-30B-A3B-Instruct",
-                    "--hf-repo",
-                    "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q8_K_XL",
-                ]
+        if flags.perf == "low":
+            model_args = [
+                "--alias",
+                "Qwen/Qwen3.5-9B",
+                "--hf-repo",
+                "unsloth/Qwen3.5-9B-GGUF:IQ4_NL",
+            ]
+        elif flags.perf == "medium":
+            model_args = [
+                "--alias",
+                "Qwen/Qwen3.6-35B-A3B",
+                "--hf-repo",
+                "unsloth/Qwen3.6-35B-A3B-GGUF:UD-IQ4_NL",
+            ]
         else:
-            if flags.perf == "low":
-                model_args = [
-                    "--alias",
-                    "Qwen/Qwen3.5-9B",
-                    "--hf-repo",
-                    "unsloth/Qwen3.5-9B-GGUF:IQ4_NL",
-                ]
-            elif flags.perf == "medium":
-                model_args = [
-                    "--alias",
-                    "Qwen/Qwen3.6-35B-A3B",
-                    "--hf-repo",
-                    "unsloth/Qwen3.6-35B-A3B-GGUF:UD-IQ4_NL",
-                ]
-            else:
-                model_args = [
-                    "--alias",
-                    "Qwen/Qwen3.6-27B",
-                    "--hf-repo",
-                    "unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL",
-                ]
+            model_args = [
+                "--alias",
+                "Qwen/Qwen3.6-27B",
+                "--hf-repo",
+                "unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL",
+            ]
     elif flags.model == "seed":
         if flags.task == "fim":
             # Modified version of mradermacher/Seed-Coder-8B-Base-i1-GGUF
