@@ -237,6 +237,10 @@ def build_serve_cmd(flags) -> list[str]:
                 "Qwen/Qwen3.6-27B",
                 "--hf-repo",
                 "unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL",
+                #  "--hf-repo-draft",
+                #  "unsloth/Qwen3.5-2B-GGUF:UD-Q4_K_XL",
+                #  "--spec-draft-n-max",
+                #  "5",
             ]
     elif flags.model == "seed":
         if flags.task == "fim":
