@@ -172,6 +172,10 @@ def build_serve_cmd(flags) -> list[str]:
         base_ctx = 8192
     else:
         base_ctx = 16384
+    if flags.context_size is not None:
+        ctx_size = str(flags.context_size)
+    else:
+        ctx_size = str(base_ctx * scale)
     threads = get_thread_num()
 
     # Build common args
@@ -181,7 +185,7 @@ def build_serve_cmd(flags) -> list[str]:
         "--port",
         "8080" if flags.task == "fim" else "8081",
         "--ctx-size",
-        str(base_ctx * scale),
+        ctx_size,
         "--cache-type-k",
         "q8_0",
         "--cache-type-v",
@@ -205,7 +209,7 @@ def build_serve_cmd(flags) -> list[str]:
         "--flash-attn",
         "on",
         "--n-gpu-layers",
-        flags.ngl,
+        str(flags.ngl),
         "--threads",
         str(threads),
         "--parallel",
@@ -377,27 +381,18 @@ def build_serve_cmd(flags) -> list[str]:
 def main():
     parser = argparse.ArgumentParser(description="llama.cpp server wrapper")
     parser.add_argument(
-        "-n",
-        "--ngl",
-        help="Number of layers to store in VRAM",
-        default="-1",
-        required=False,
-    )
-    parser.add_argument(
         "-p",
         "--perf",
         choices=["low", "medium", "high"],
         help="Performace mode",
-        default="low",
-        required=False,
+        required=True,
     )
     parser.add_argument(
         "-t",
         "--task",
         choices=["fim", "chat"],
         help="Task",
-        default="fim",
-        required=False,
+        required=True,
     )
     parser.add_argument(
         "-m",
@@ -405,6 +400,22 @@ def main():
         choices=["qwen", "seed", "deepseek", "glm", "gemma", "nemotron", "gpt-oss"],
         help="Model family",
         required=True,
+    )
+    parser.add_argument(
+        "-n",
+        "--ngl",
+        type=int,
+        default=-1,
+        help="Number of layers to store in VRAM",
+        required=False,
+    )
+    parser.add_argument(
+        "-c",
+        "--context-size",
+        type=int,
+        default=None,
+        help="Override the default context size calculation (e.g., 8192, 16384)",
+        required=False,
     )
 
     flags = parser.parse_args()
