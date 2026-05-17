@@ -212,11 +212,16 @@ def build_serve_cmd(flags) -> list[str]:
         str(flags.ngl),
         "--threads",
         str(threads),
-        "--parallel",
-        "1",
         "--mlock",
         "--jinja",
     ]
+
+    if flags.parallel is not None:
+        comm_args.append("--parallel")
+        comm_args.append(str(flags.parallel))
+    else:
+        comm_args.append("--parallel")
+        comm_args.append("1")
 
     # Model specific args
     model_args: list[str] = []
@@ -226,25 +231,33 @@ def build_serve_cmd(flags) -> list[str]:
                 "--alias",
                 "Qwen/Qwen3.5-9B",
                 "--hf-repo",
-                "unsloth/Qwen3.5-9B-GGUF:IQ4_NL",
+                "unsloth/Qwen3.5-9B-MTP-GGUF:UD-Q4_K_XL",
+                "--spec-type",
+                "draft-mtp",
+                "--spec-draft-n-max",
+                "6",
             ]
         elif flags.perf == "medium":
             model_args = [
                 "--alias",
                 "Qwen/Qwen3.6-35B-A3B",
                 "--hf-repo",
-                "unsloth/Qwen3.6-35B-A3B-GGUF:UD-IQ4_NL",
+                "unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-IQ4_NL",
+                "--spec-type",
+                "draft-mtp",
+                "--spec-draft-n-max",
+                "6",
             ]
         else:
             model_args = [
                 "--alias",
                 "Qwen/Qwen3.6-27B",
                 "--hf-repo",
-                "unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL",
-                #  "--hf-repo-draft",
-                #  "unsloth/Qwen3.5-2B-GGUF:UD-Q4_K_XL",
-                #  "--spec-draft-n-max",
-                #  "5",
+                "unsloth/Qwen3.6-27B-MTP-GGUF:IQ4_NL",
+                "--spec-type",
+                "draft-mtp",
+                "--spec-draft-n-max",
+                "6",
             ]
     elif flags.model == "seed":
         if flags.task == "fim":
@@ -343,10 +356,6 @@ def build_serve_cmd(flags) -> list[str]:
                     "google/gemma-4-31B-it",
                     "--hf-repo",
                     "unsloth/gemma-4-31B-it-GGUF:UD-Q4_K_XL",
-                    #  "--hf-repo-draft",
-                    #  "unsloth/gemma-4-E2B-it-GGUF:UD-Q4_K_XL",
-                    #  "--draft-n",
-                    #  "5",
                 ]
     elif flags.model == "nemotron":
         if flags.task == "fim":
@@ -415,6 +424,14 @@ def main():
         type=int,
         default=None,
         help="Override the default context size calculation (e.g., 8192, 16384)",
+        required=False,
+    )
+    parser.add_argument(
+        "-P",
+        "--parallel",
+        type=int,
+        default=None,
+        help="Number of server slots",
         required=False,
     )
 
