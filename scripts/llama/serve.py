@@ -212,16 +212,11 @@ def build_serve_cmd(flags) -> list[str]:
         str(flags.ngl),
         "--threads",
         str(threads),
+        "--parallel",
+        str(flags.parallel),
         "--mlock",
         "--jinja",
     ]
-
-    if flags.parallel is not None:
-        comm_args.append("--parallel")
-        comm_args.append(str(flags.parallel))
-    else:
-        comm_args.append("--parallel")
-        comm_args.append("1")
 
     # Model specific args
     model_args: list[str] = []
@@ -430,7 +425,7 @@ def main():
         "-P",
         "--parallel",
         type=int,
-        default=None,
+        default=1,
         help="Number of server slots",
         required=False,
     )
