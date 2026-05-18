@@ -173,7 +173,7 @@ def build_serve_cmd(flags) -> list[str]:
     else:
         base_ctx = 16384
     if flags.context_size is not None:
-        ctx_size = str(flags.context_size)
+        ctx_size = str(int(flags.context_size * 1024))
     else:
         ctx_size = str(base_ctx * scale)
     threads = get_thread_num()
@@ -416,9 +416,9 @@ def main():
     parser.add_argument(
         "-c",
         "--context-size",
-        type=int,
+        type=float,
         default=None,
-        help="Override the default context size calculation (e.g., 8192, 16384)",
+        help="Override the default context size calculation in k tokens (e.g., 8 for 8k/8192)",
         required=False,
     )
     parser.add_argument(
