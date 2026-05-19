@@ -230,7 +230,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "--spec-type",
                 "draft-mtp",
                 "--spec-draft-n-max",
-                "4",
+                "3",
             ]
         elif flags.perf == "medium":
             model_args = [
@@ -241,7 +241,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "--spec-type",
                 "draft-mtp",
                 "--spec-draft-n-max",
-                "4",
+                "3",
             ]
         else:
             model_args = [
@@ -252,7 +252,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "--spec-type",
                 "draft-mtp",
                 "--spec-draft-n-max",
-                "4",
+                "3",
             ]
     elif flags.model == "seed":
         if flags.task == "fim":
