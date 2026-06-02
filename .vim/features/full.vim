@@ -344,12 +344,13 @@ augroup END
 call coc#config('workspace', {
       \ 'rootPatterns': g:root_patterns
       \ })
+let s:sqls_config_path = custom#utils#get_path([custom#utils#stdpath('config'), 'resources', 'sqls.yml'])
 call coc#config('languageserver', {
       \ 'sql': {
         \ 'command': "sqls",
         \ 'filetypes': ['sql'],
-        \ 'enable': v:false,
-        \ 'args': ['-config', custom#utils#get_path([custom#utils#stdpath('config'), 'resources', 'sqls.yml'])]
+        \ 'enable': filereadable(s:sqls_config_path) ? v:true : v:false,
+        \ 'args': ['-config', s:sqls_config_path]
         \ }
       \ })
 call coc#config('java', {
