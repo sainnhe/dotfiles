@@ -348,6 +348,7 @@ call coc#config('languageserver', {
       \ 'sql': {
         \ 'command': "sqls",
         \ 'filetypes': ['sql'],
+        \ 'enable': v:false,
         \ 'args': ['-config', custom#utils#get_path([custom#utils#stdpath('config'), 'resources', 'sqls.yml'])]
         \ }
       \ })
