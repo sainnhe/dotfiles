@@ -64,6 +64,10 @@ _git() {
     echo "Run ./gnupg.sh to setup gpg"
 }
 
+_download_bin() {
+    curl -fSL "$1" -o "$HOME/.local/bin/$2" && chmod a+x "$HOME/.local/bin/$2"
+}
+
 _deps() {
     sudo port -N install \
         # General
@@ -88,6 +92,7 @@ _deps() {
         # Other dev deps
         shellcheck \
         shfmt
+    _download_bin https://github.com/withered-magic/starpls/releases/latest/download/starpls-darwin-arm64 starpls
 }
 
 _rust() {
@@ -99,9 +104,6 @@ _rust() {
 _cpp() {
     sudo port -N install clang-21
     sudo port select clang mp-clang-21
-    curl -fSL https://github.com/withered-magic/starpls/releases/latest/download/starpls-darwin-arm64 \
-        -o ~/.local/bin/starpls &&
-        chmod a+x ~/.local/bin/starpls
 }
 
 _node() {
