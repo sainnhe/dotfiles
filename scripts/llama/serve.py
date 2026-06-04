@@ -236,6 +236,8 @@ def build_serve_cmd(flags) -> list[str]:
                 "draft-mtp",
                 "--spec-draft-n-max",
                 "3",
+                "--image-min-tokens",
+                "2048",
             ]
         elif flags.perf == "medium":
             model_args = [
@@ -247,6 +249,8 @@ def build_serve_cmd(flags) -> list[str]:
                 "draft-mtp",
                 "--spec-draft-n-max",
                 "3",
+                "--image-min-tokens",
+                "2048",
             ]
         else:
             model_args = [
@@ -258,6 +262,8 @@ def build_serve_cmd(flags) -> list[str]:
                 "draft-mtp",
                 "--spec-draft-n-max",
                 "3",
+                "--image-min-tokens",
+                "4096",
             ]
     elif flags.model == "seed":
         if flags.task == "fim":
@@ -349,6 +355,8 @@ def build_serve_cmd(flags) -> list[str]:
                     "google/gemma-4-26B-A4B-it",
                     "--hf-repo",
                     "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_NL",
+                    "--image-min-tokens",
+                    "2048",
                 ]
             else:
                 model_args = [
@@ -356,6 +364,8 @@ def build_serve_cmd(flags) -> list[str]:
                     "google/gemma-4-31B-it",
                     "--hf-repo",
                     "unsloth/gemma-4-31B-it-GGUF:UD-Q4_K_XL",
+                    "--image-min-tokens",
+                    "4096",
                 ]
     elif flags.model == "nemotron":
         if flags.task == "fim":
