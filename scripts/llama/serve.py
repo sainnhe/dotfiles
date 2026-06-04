@@ -208,6 +208,7 @@ def build_serve_cmd(flags) -> list[str]:
         "1.05",
         "--flash-attn",
         "on",
+        "--swa-full",
         "--n-gpu-layers",
         str(flags.ngl),
         "--threads",
