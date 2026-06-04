@@ -161,6 +161,10 @@ def setup_huge_pages():
         print(cmd)
 
 
+def should_use_mlock(flags):
+    return flags.ngl != -1 and platform.system() == "Linux"
+
+
 def build_serve_cmd(flags) -> list[str]:
     if flags.perf == "low":
         scale = 1
@@ -194,8 +198,6 @@ def build_serve_cmd(flags) -> list[str]:
         "2048",
         "--ubatch-size",
         "512",
-        "--cache-reuse",
-        "512",
         "--temp",
         "0.7",
         "--top-k",
@@ -208,16 +210,18 @@ def build_serve_cmd(flags) -> list[str]:
         "1.05",
         "--flash-attn",
         "on",
-        "--swa-full",
+        "--kv-unified",
         "--n-gpu-layers",
         str(flags.ngl),
         "--threads",
         str(threads),
         "--parallel",
         str(flags.parallel),
-        "--mlock",
         "--jinja",
     ]
+
+    if should_use_mlock(flags):
+        comm_args.extend(["--mlock"])
 
     # Model specific args
     model_args: list[str] = []
@@ -377,7 +381,7 @@ def build_serve_cmd(flags) -> list[str]:
             ]
 
     serve_cmd = ["llama-server"] + comm_args + model_args
-    if flags.ngl != "-1" and platform.system() == "Linux":
+    if should_use_mlock(flags):
         serve_cmd = ["taskset", "-c", "0-" + str(threads - 1)] + serve_cmd
 
     return serve_cmd
@@ -433,7 +437,7 @@ def main():
 
     flags = parser.parse_args()
 
-    if flags.ngl != "-1" and platform.system() == "Linux":
+    if should_use_mlock(flags):
         setup_memlock_limit()
         setup_huge_pages()
 
