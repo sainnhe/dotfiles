@@ -24,6 +24,10 @@ if [ -x "$(command -v vim)" ]; then
     export PAGER="vim --cmd 'let g:vim_pager = 1' -c PAGER -"
     export MANPAGER="vim --cmd 'let g:vim_pager = 1' -c ASMANPAGER -"
 fi
+# Pspg
+if [ -x "$(command -v pspg)" ]; then
+    export PSQL_PAGER='pspg -s s --no-topbar'
+fi
 # Other envs
 if test -d "$HOME/.zsh_envs.d/"; then
     for _env in "$HOME/.zsh_envs.d/"*; do

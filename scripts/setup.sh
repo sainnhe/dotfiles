@@ -85,6 +85,7 @@ _deps() {
         rsync \
         socat \
         tcpdump \
+        pspg \
         # Dev env
         vim \
         neovim \

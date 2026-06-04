@@ -127,6 +127,7 @@ depends=(base
          valkey
          postgresql
          mariadb
+         pspg
      )
 
 pkgver() {
