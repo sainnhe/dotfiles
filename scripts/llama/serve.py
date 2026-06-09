@@ -349,7 +349,16 @@ def build_serve_cmd(flags) -> list[str]:
             logger.error("This model family is only supported in chat mode.")
             exit(1)
         else:
-            if flags.perf == "low" or flags.perf == "medium":
+            if flags.perf == "low":
+                model_args = [
+                    "--alias",
+                    "google/gemma-4-12B-it",
+                    "--hf-repo",
+                    "unsloth/gemma-4-12b-it-GGUF:UD-Q4_K_XL",
+                    "--image-min-tokens",
+                    "2048",
+                ]
+            elif flags.perf == "medium":
                 model_args = [
                     "--alias",
                     "google/gemma-4-26B-A4B-it",
