@@ -353,6 +353,14 @@ call coc#config('languageserver', {
         \ 'args': ['-config', s:sqls_config_path]
         \ }
       \ })
+call coc#config('languageserver', {
+      \ 'pgls': {
+        \ 'command': "pgls",
+        \ 'filetypes': ['sql'],
+        \ 'enable': executable('pgls') ? v:true : v:false,
+        \ 'args': ['lsp-proxy']
+        \ }
+      \ })
 call coc#config('java', {
       \ 'jdt': {
         \ 'ls': {

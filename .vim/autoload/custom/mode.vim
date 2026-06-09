@@ -64,6 +64,7 @@ function custom#mode#check_dependencies() abort " Check dependencies
           \ 'mvn',
           \ 'node',
           \ 'npm',
+          \ 'pgls',
           \ 'pip',
           \ 'pnpm',
           \ 'protoc',
