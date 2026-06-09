@@ -13,11 +13,16 @@ fi
 mkdir -p "$LOG_DIR"
 LOG_PATH="$LOG_DIR/$(date +%Y-%m-%dT%H:%M:%S%Z).log"
 
-# 1. Kill all llama-server process
-ps aux | grep 'llama-server --host' | grep -v grep | awk '{print $2}' | xargs -I{} kill {}
+_kill_ps() {
+    ps aux | grep 'llama-server --host' | grep -v grep | awk '{print $2}' | xargs -I{} kill {}
+}
 
-# 2. Run ppl.sh
-"$HOME/.local/bin/llama-perplexity" \
-    -hf unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-IQ4_NL \
-    -f "$DATASET_PATH" \
-    -ngl -1 &>"$LOG_PATH"
+_run_ppl() {
+    "$HOME/.local/bin/llama-perplexity" \
+        -hf unsloth/Qwen3.5-9B-MTP-GGUF:UD-Q4_K_XL \
+        -f "$DATASET_PATH" \
+        -ngl -1 &>"$LOG_PATH"
+}
+
+# Try to run ppl without killing processes. Kill processes if failed.
+_run_ppl || _kill_ps && _run_ppl
