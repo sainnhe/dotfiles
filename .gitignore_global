@@ -6,3 +6,4 @@
 staticcheck.conf
 .tool-versions
 .ccls-cache*
+postgres-language-server.jsonc
