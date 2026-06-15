@@ -172,6 +172,14 @@
                     "attachment": true,
                     "temperature": true
                 },
+                "tencent-cloud/kimi-k2.7-code": {
+                    "id": "kimi-k2.7-code",
+                    "name": "Kimi K2.7 Code",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
                 "tencent-cloud/minimax-m3": {
                     "id": "minimax-m3",
                     "name": "Minimax M3",
