@@ -156,9 +156,9 @@
                     "attachment": true,
                     "temperature": true
                 },
-                "tencent-cloud/glm-5.1": {
-                    "id": "glm-5.1",
-                    "name": "GLM 5.1",
+                "tencent-cloud/glm-5.2": {
+                    "id": "glm-5.2",
+                    "name": "GLM 5.2",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
