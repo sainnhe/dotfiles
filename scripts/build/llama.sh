@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 UNAME=$(uname)
 BUILD_DIR="build"
 
