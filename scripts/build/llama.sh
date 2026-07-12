@@ -6,12 +6,17 @@ UNAME=$(uname)
 BUILD_DIR="build"
 
 COMMON_ARGS=(
-    -DCMAKE_C_COMPILER=clang
-    -DCMAKE_CXX_COMPILER=clang++
+    -DCMAKE_CXX_STANDARD=17
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX="$HOME/.local"
-    -DGGML_NATIVE=ON
+    -DCMAKE_C_COMPILER=clang
+    -DCMAKE_CXX_COMPILER=clang++
+    -DCMAKE_AR=llvm-ar
+    -DCMAKE_RANLIB=llvm-ranlib
+    -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld"
+    -DCMAKE_SHARED_LINKER_FLAGS="-fuse-ld=lld"
     -DGGML_LTO=ON
+    -DGGML_NATIVE=ON
     -DGGML_BUILD_EXAMPLES=OFF
     -DGGML_BUILD_TESTS=OFF
     -DBUILD_SHARED_LIBS=OFF
@@ -35,7 +40,6 @@ if [ "$UNAME" = "Linux" ]; then
         -DGGML_AVX512_VBMI=ON
         -DGGML_AVX512_VNNI=ON
         -DGGML_AVX512_BF16=ON
-        -DGGML_OPENMP=ON
     )
 elif [ "$UNAME" = "Darwin" ]; then
     CORES="$(sysctl -n hw.ncpu)"
