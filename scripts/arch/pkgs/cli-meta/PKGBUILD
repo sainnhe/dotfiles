@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=cli-meta
 pkgdesc='Meta package to install some CLI components'
-pkgver=2026.03.22
+pkgver=2026.07.12
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -94,6 +94,7 @@ depends=(base
          gcc
          clang
          lld
+         ccache
          cmake
          bazel
          # Go
