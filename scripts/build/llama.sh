@@ -6,6 +6,8 @@ UNAME=$(uname)
 BUILD_DIR="build"
 
 COMMON_ARGS=(
+    -DCMAKE_C_COMPILER=clang
+    -DCMAKE_CXX_COMPILER=clang++
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX="$HOME/.local"
     -DGGML_NATIVE=ON
@@ -24,6 +26,7 @@ if [ "$UNAME" = "Linux" ]; then
         # GPU
         -DGGML_CUDA=ON
         -DCMAKE_CUDA_ARCHITECTURES="native"
+        -DCMAKE_CUDA_HOST_COMPILER=clang++
         -DGGML_CUDA_GRAPHS=ON
         -DGGML_CUDA_FA_ALL_QUANTS=ON
 
@@ -35,6 +38,7 @@ if [ "$UNAME" = "Linux" ]; then
         -DGGML_OPENMP=ON
     )
 elif [ "$UNAME" = "Darwin" ]; then
+    CORES="$(sysctl -n hw.ncpu)"
     PLATFORM_ARGS=(
         # Apple Silicon / Metal
         -DGGML_METAL=ON
