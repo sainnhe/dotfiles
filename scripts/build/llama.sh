@@ -5,12 +5,36 @@ set -euo pipefail
 UNAME=$(uname)
 BUILD_DIR="build"
 
+check_installed() {
+    local cmd="$1"
+    if ! command -v "$cmd" &>/dev/null; then
+        echo "ERR: Not found '$cmd'"
+        exit 1
+    fi
+}
+
+REQUIRED_TOOLS=(
+    "cmake"
+    "clang"
+    "clang++"
+    "ccache"
+    "lld"
+    "llvm-ar"
+    "llvm-ranlib"
+)
+
+for tool in "${REQUIRED_TOOLS[@]}"; do
+    check_installed "$tool"
+done
+
 COMMON_ARGS=(
     -DCMAKE_CXX_STANDARD=17
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX="$HOME/.local"
     -DCMAKE_C_COMPILER=clang
     -DCMAKE_CXX_COMPILER=clang++
+    -DCMAKE_C_COMPILER_LAUNCHER=ccache
+    -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
     -DCMAKE_AR=llvm-ar
     -DCMAKE_RANLIB=llvm-ranlib
     -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld"
@@ -32,6 +56,7 @@ if [ "$UNAME" = "Linux" ]; then
         -DGGML_CUDA=ON
         -DCMAKE_CUDA_ARCHITECTURES="native"
         -DCMAKE_CUDA_HOST_COMPILER=clang++
+        -DCMAKE_CUDA_COMPILER_LAUNCHER=ccache
         -DGGML_CUDA_GRAPHS=ON
         -DGGML_CUDA_FA_ALL_QUANTS=ON
 
