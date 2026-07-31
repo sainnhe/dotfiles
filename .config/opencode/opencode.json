@@ -164,9 +164,9 @@
                     "attachment": true,
                     "temperature": true
                 },
-                "tencent-cloud/kimi-k2.6": {
-                    "id": "kimi-k2.6",
-                    "name": "Kimi K2.6",
+                "tencent-cloud/kimi-k3": {
+                    "id": "kimi-k3",
+                    "name": "Kimi K3",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
