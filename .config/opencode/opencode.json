@@ -141,7 +141,7 @@
             },
             "models": {
                 "tencent-cloud/deepseek-v4-flash": {
-                    "id": "deepseek-v4-flash",
+                    "id": "deepseek-v4-flash-202605",
                     "name": "Deepseek V4 Flash",
                     "reasoning": true,
                     "tool_call": true,
