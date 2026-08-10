@@ -319,6 +319,7 @@ let g:coc_global_extensions = [
       \ 'coc-toml',
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
+      \ 'coc-vscode-loader',
       \ 'coc-webview',
       \ 'coc-word',
       \ 'coc-xml',
