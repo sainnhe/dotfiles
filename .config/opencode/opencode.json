@@ -125,6 +125,14 @@
                     "tool_call": true,
                     "attachment": true,
                     "temperature": true
+                },
+                "local/muse-glimmer-30b": {
+                    "id": "meta-models/Muse-Glimmer-30B",
+                    "name": "Muse Glimmer 30B",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
                 }
             }
         },
