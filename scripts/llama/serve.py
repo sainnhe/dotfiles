@@ -382,6 +382,17 @@ def build_serve_cmd(flags) -> list[str]:
                     "--spec-draft-n-max",
                     "3",
                 ]
+    elif flags.model == "muse":
+        if flags.task == "fim":
+            logger.error("This model family is only supported in chat mode.")
+            exit(1)
+        else:
+            model_args = [
+                "--alias",
+                "meta-models/Muse-Glimmer-30B",
+                "--hf-repo",
+                "unsloth/Muse-Glimmer-30B-GGUF:UD-Q4_K_XL",
+            ]
     elif flags.model == "nemotron":
         if flags.task == "fim":
             logger.error("This model family is only supported in chat mode.")
@@ -431,7 +442,16 @@ def main():
     parser.add_argument(
         "-m",
         "--model",
-        choices=["qwen", "seed", "deepseek", "glm", "gemma", "nemotron", "gpt-oss"],
+        choices=[
+            "qwen",
+            "seed",
+            "deepseek",
+            "glm",
+            "gemma",
+            "muse",
+            "nemotron",
+            "gpt-oss",
+        ],
         help="Model family",
         required=True,
     )
