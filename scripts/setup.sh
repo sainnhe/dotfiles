@@ -43,7 +43,7 @@ _ssh() {
     echo "3. Add keygrip to ~/.gnupg/sshcontrol"
     echo "4. gpgconf --kill gpg-agent"
     echo "5. gpg-connect-agent updatestartuptty /bye"
-    echo "6. gpg --export-ssh-key <key-id>"
+    echo "6. ssh-add -L"
     echo "7. Optionally create a symlink of gpg_tty.zsh"
     echo "NOTE: 如果遇到任何奇怪的问题，试一下 4 和 5"
 }
