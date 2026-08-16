@@ -233,6 +233,10 @@
     "ga": "gitStage",
     "gu": "gitUnstage"
   },
+  "json.schemaDownload.trustedDomains": {
+    "https://opencode.ai": true,
+    "https://models.dev": true
+  },
   "yaml.format.enable": true,
   "yaml.schemas": {
     "Kubernetes": [
