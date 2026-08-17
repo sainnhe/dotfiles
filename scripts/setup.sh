@@ -46,6 +46,8 @@ _ssh() {
     echo "6. ssh-add -L"
     echo "7. Optionally create a symlink of gpg_tty.zsh"
     echo "NOTE: 如果遇到任何奇怪的问题，试一下 4 和 5"
+    echo "NOTE: 执行以下命令添加 ssh 公钥文件，这样就可以在 ~/.ssh/config 中指定"
+    echo "ssh-add -L | grep '^ssh-rsa' > ~/.ssh/gpg_rsa.pub"
 }
 
 _new_ssh() {
