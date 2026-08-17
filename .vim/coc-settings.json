@@ -235,7 +235,9 @@
   },
   "json.schemaDownload.trustedDomains": {
     "https://opencode.ai": true,
-    "https://models.dev": true
+    "https://models.dev": true,
+    "https://www.schemastore.org": true,
+    "https://json.schemastore.org": true
   },
   "yaml.format.enable": true,
   "yaml.schemas": {
