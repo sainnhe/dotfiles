@@ -183,7 +183,7 @@ def build_serve_cmd(flags) -> list[str]:
     threads = get_thread_num()
 
     # Build common args
-    comm_args: list[str] = [
+    common_args: list[str] = [
         "--host",
         "::",
         "--port",
@@ -198,16 +198,6 @@ def build_serve_cmd(flags) -> list[str]:
         "2048",
         "--ubatch-size",
         "512",
-        "--temp",
-        "0.7",
-        "--top-k",
-        "50",
-        "--top-p",
-        "0.95",
-        "--min-p",
-        "0.05",
-        "--repeat-penalty",
-        "1.05",
         "--flash-attn",
         "on",
         "--kv-unified",
@@ -220,8 +210,39 @@ def build_serve_cmd(flags) -> list[str]:
         "--jinja",
     ]
 
+    if flags.perf == "low":
+        common_args.extend(
+            [
+                "--temp",
+                "0.7",
+                "--top-k",
+                "50",
+                "--top-p",
+                "0.95",
+                "--min-p",
+                "0.05",
+                "--repeat-penalty",
+                "1.05",
+            ]
+        )
+    else:
+        common_args.extend(
+            [
+                "--temp",
+                "1.0",
+                "--top-k",
+                "20",
+                "--top-p",
+                "0.95",
+                "--min-p",
+                "0.0",
+                "--repeat-penalty",
+                "1.0",
+            ]
+        )
+
     if should_use_mlock(flags):
-        comm_args.extend(["--mlock"])
+        common_args.extend(["--mlock"])
 
     # Model specific args
     model_args: list[str] = []
@@ -255,9 +276,9 @@ def build_serve_cmd(flags) -> list[str]:
         else:
             model_args = [
                 "--alias",
-                "Qwen/Qwen3.6-27B",
+                "Qwen/Qwen3.8-27B",
                 "--hf-repo",
-                "unsloth/Qwen3.6-27B-MTP-GGUF:IQ4_NL",
+                "unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL",
                 "--spec-type",
                 "draft-mtp",
                 "--spec-draft-n-max",
@@ -416,7 +437,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "unsloth/gpt-oss-20b-GGUF:Q4_K_M",
             ]
 
-    serve_cmd = ["llama-server"] + comm_args + model_args
+    serve_cmd = ["llama-server"] + common_args + model_args
     if should_use_mlock(flags):
         serve_cmd = ["taskset", "-c", "0-" + str(threads - 1)] + serve_cmd
 
