@@ -254,9 +254,15 @@ def build_serve_cmd(flags) -> list[str]:
                 "--hf-repo",
                 "unsloth/Qwen3.5-9B-MTP-GGUF:UD-Q4_K_XL",
                 "--spec-type",
-                "draft-mtp",
+                "draft-mtp,ngram-mod",
                 "--spec-draft-n-max",
                 "3",
+                "--spec-ngram-mod-n-match",
+                "24",
+                "--spec-ngram-mod-n-min",
+                "4",
+                "--spec-ngram-mod-n-max",
+                "64",
                 "--image-min-tokens",
                 "1024",
             ]
@@ -267,9 +273,15 @@ def build_serve_cmd(flags) -> list[str]:
                 "--hf-repo",
                 "unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-IQ4_NL",
                 "--spec-type",
-                "draft-mtp",
+                "draft-mtp,ngram-mod",
                 "--spec-draft-n-max",
                 "3",
+                "--spec-ngram-mod-n-match",
+                "24",
+                "--spec-ngram-mod-n-min",
+                "4",
+                "--spec-ngram-mod-n-max",
+                "64",
                 "--image-min-tokens",
                 "1024",
             ]
@@ -280,9 +292,15 @@ def build_serve_cmd(flags) -> list[str]:
                 "--hf-repo",
                 "unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL",
                 "--spec-type",
-                "draft-mtp",
+                "draft-mtp,ngram-mod",
                 "--spec-draft-n-max",
                 "3",
+                "--spec-ngram-mod-n-match",
+                "24",
+                "--spec-ngram-mod-n-min",
+                "4",
+                "--spec-ngram-mod-n-max",
+                "64",
                 "--image-min-tokens",
                 "1024",
             ]
@@ -301,6 +319,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "--model",
                 str(model_path),
                 "--spm-infill",
+                "--spec-default",
             ]
         else:
             if flags.perf == "low":
@@ -309,6 +328,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "ByteDance-Seed/Seed-Coder-8B-Reasoning",
                     "--hf-repo",
                     "unsloth/Seed-Coder-8B-Reasoning-GGUF:IQ4_NL",
+                    "--spec-default",
                 ]
             elif flags.perf == "medium":
                 model_args = [
@@ -316,6 +336,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "ByteDance-Seed/Seed-OSS-36B-Instruct",
                     "--hf-repo",
                     "unsloth/Seed-OSS-36B-Instruct-GGUF:IQ4_NL",
+                    "--spec-default",
                 ]
             else:
                 model_args = [
@@ -323,6 +344,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "ByteDance-Seed/Seed-OSS-36B-Instruct",
                     "--hf-repo",
                     "unsloth/Seed-OSS-36B-Instruct-GGUF:UD-Q8_K_XL",
+                    "--spec-default",
                 ]
     elif flags.model == "deepseek":
         if flags.task == "fim":
@@ -331,6 +353,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "deepseek-ai/DeepSeek-Coder-V2-Lite-Base",
                 "--hf-repo",
                 "legraphista/DeepSeek-Coder-V2-Lite-Base-IMat-GGUF:IQ4_NL",
+                "--spec-default",
             ]
         else:
             model_args = [
@@ -338,6 +361,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
                 "--hf-repo",
                 "unsloth/DeepSeek-R1-0528-Qwen3-8B-GGUF:IQ4_NL",
+                "--spec-default",
             ]
     elif flags.model == "glm":
         if flags.task == "fim":
@@ -350,6 +374,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "Akicou/GLM-4.7-Flash-REAP-50",
                     "--hf-repo",
                     "Akicou/GLM-4.7-Flash-REAP-50-GGUF:Q4_K_M",
+                    "--spec-default",
                 ]
             elif flags.perf == "medium":
                 model_args = [
@@ -357,6 +382,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "zai-org/GLM-4.7-Flash",
                     "--hf-repo",
                     "unsloth/GLM-4.7-Flash-GGUF:IQ4_NL",
+                    "--spec-default",
                 ]
             else:
                 model_args = [
@@ -364,6 +390,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "zai-org/GLM-4.7-Flash",
                     "--hf-repo",
                     "unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL",
+                    "--spec-default",
                 ]
     elif flags.model == "gemma":
         if flags.task == "fim":
@@ -377,9 +404,15 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/gemma-4-12b-it-GGUF:UD-Q4_K_XL",
                     "--spec-type",
-                    "draft-mtp",
+                    "draft-mtp,ngram-mod",
                     "--spec-draft-n-max",
                     "3",
+                    "--spec-ngram-mod-n-match",
+                    "24",
+                    "--spec-ngram-mod-n-min",
+                    "4",
+                    "--spec-ngram-mod-n-max",
+                    "64",
                 ]
             elif flags.perf == "medium":
                 model_args = [
@@ -388,9 +421,15 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_NL",
                     "--spec-type",
-                    "draft-mtp",
+                    "draft-mtp,ngram-mod",
                     "--spec-draft-n-max",
                     "3",
+                    "--spec-ngram-mod-n-match",
+                    "24",
+                    "--spec-ngram-mod-n-min",
+                    "4",
+                    "--spec-ngram-mod-n-max",
+                    "64",
                 ]
             else:
                 model_args = [
@@ -399,9 +438,15 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/gemma-4-31B-it-GGUF:UD-Q4_K_XL",
                     "--spec-type",
-                    "draft-mtp",
+                    "draft-mtp,ngram-mod",
                     "--spec-draft-n-max",
                     "3",
+                    "--spec-ngram-mod-n-match",
+                    "24",
+                    "--spec-ngram-mod-n-min",
+                    "4",
+                    "--spec-ngram-mod-n-max",
+                    "64",
                 ]
     elif flags.model == "muse":
         if flags.task == "fim":
@@ -413,6 +458,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "meta-models/Muse-Glimmer-30B",
                 "--hf-repo",
                 "unsloth/Muse-Glimmer-30B-GGUF:UD-Q4_K_XL",
+                "--spec-default",
             ]
     elif flags.model == "nemotron":
         if flags.task == "fim":
@@ -424,6 +470,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "nvidia/Nemotron-Cascade-2-30B-A3B",
                 "--hf-repo",
                 "bartowski/nvidia_Nemotron-Cascade-2-30B-A3B-GGUF:IQ4_XS",
+                "--spec-default",
             ]
     elif flags.model == "gpt-oss":
         if flags.task == "fim":
@@ -435,6 +482,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "openai/gpt-oss-20b",
                 "--hf-repo",
                 "unsloth/gpt-oss-20b-GGUF:Q4_K_M",
+                "--spec-default",
             ]
 
     serve_cmd = ["llama-server"] + common_args + model_args
