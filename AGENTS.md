@@ -1,8 +1,6 @@
 # Agent Behavioral Guidelines
 
-> Guidelines 1-4 are strictly derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls.
->
-> Guideline 5 is a custom domain-specific extension for Quantitative Trading Research & Systems Engineering.
+> Behavioral guidelines to reduce common LLM coding mistakes, derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls.
 
 ## 1. Think Before Coding
 
@@ -59,17 +57,3 @@ For multi-step tasks, state a brief plan:
 ```
 
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
-
-## 5. Quantitative Rigor
-
-**No lookahead. No leakage. No fantasy fills.**
-
-Treat extraordinary results as bugs. A backtest is evidence only if it strictly mirrors live trading reality.
-
-- **Strictly Point-in-Time:** Features at time T must only use data knowable at T. No forward-looking window ops (e.g., no `shift(-1)`, no `center=True`).
-- **Execution Realism:** A signal computed at close T fills at T+1 at the earliest. Never assume fill-at-close on the same bar.
-- **Account for Friction:** Always model transaction costs, slippage, and spread. Zero-cost backtests are research toys, not evidence.
-- **Out-of-Sample Discipline:** Fit scalers and select features on the training window only. Touch the holdout data exactly once.
-- **Skeptical Default:** If a result looks too good (Sharpe > 3, unnaturally smooth equity curve), hunt for the data leak first—do not celebrate.
-
-Ask yourself: "Does this code assume information or execution speed I wouldn't actually have in live trading?" If yes, fix it.
