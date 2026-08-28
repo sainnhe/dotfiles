@@ -30,6 +30,7 @@ depends=(base
          fzf
          git
          git-lfs
+         git-crypt
          gnupg
          helix
          hyperfine
