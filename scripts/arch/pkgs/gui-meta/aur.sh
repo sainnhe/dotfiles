@@ -6,4 +6,5 @@ pikaur -S --asdeps \
         code-marketplace \
         code-features \
         larksuite-bin \
-        com.qq.weixin.work.deepin
+        com.qq.weixin.work.deepin \
+        aerion-bin
