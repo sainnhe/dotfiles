@@ -115,6 +115,10 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+[lfs "https://github.com/"]
+    locksverify = true
+[lfs "https://dev.azure.com/"]
+    locksverify = true
 ; [http]
 ;     proxy = socks5://127.0.0.1:17080
 ; [https]
