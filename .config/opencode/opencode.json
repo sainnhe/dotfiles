@@ -160,9 +160,17 @@
                     "attachment": true,
                     "temperature": true
                 },
-                "tencent-cloud/glm-5.2": {
-                    "id": "glm-5.2",
-                    "name": "GLM 5.2",
+                "tencent-cloud/glm-5.3-flash": {
+                    "id": "glm-5.3-flash",
+                    "name": "GLM 5.3 Flash",
+                    "reasoning": true,
+                    "tool_call": true,
+                    "attachment": true,
+                    "temperature": true
+                },
+                "tencent-cloud/glm-5.3": {
+                    "id": "glm-5.3",
+                    "name": "GLM 5.3",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
@@ -171,22 +179,6 @@
                 "tencent-cloud/kimi-k3": {
                     "id": "kimi-k3",
                     "name": "Kimi K3",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "tencent-cloud/kimi-k2.7-code": {
-                    "id": "kimi-k2.7-code",
-                    "name": "Kimi K2.7 Code",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "tencent-cloud/minimax-m3": {
-                    "id": "minimax-m3",
-                    "name": "Minimax M3",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
