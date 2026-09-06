@@ -96,7 +96,6 @@ _deps() {
         shellcheck \
         shfmt
     _download_bin https://github.com/withered-magic/starpls/releases/latest/download/starpls-darwin-arm64 starpls
-    _download_bin https://github.com/supabase-community/postgres-language-server/releases/latest/download/postgres-language-server_aarch64-apple-darwin pgls
 }
 
 _rust() {

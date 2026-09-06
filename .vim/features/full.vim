@@ -346,22 +346,23 @@ call coc#config('workspace', {
       \ 'rootPatterns': g:root_patterns
       \ })
 let s:sqls_config_path = custom#utils#get_path([custom#utils#stdpath('config'), 'resources', 'sqls.yml'])
-call coc#config('languageserver', {
-      \ 'sql': {
-        \ 'command': "sqls",
-        \ 'filetypes': ['sql'],
-        \ 'enable': filereadable(s:sqls_config_path) ? v:true : v:false,
-        \ 'args': ['-config', s:sqls_config_path]
-        \ }
-      \ })
-call coc#config('languageserver', {
-      \ 'pgls': {
-        \ 'command': "pgls",
-        \ 'filetypes': ['sql'],
-        \ 'enable': executable('pgls') ? v:true : v:false,
-        \ 'args': ['lsp-proxy']
-        \ }
-      \ })
+if executable('postgres-language-server')
+  call coc#config('languageserver', {
+        \ 'pgls': {
+          \ 'command': "postgres-language-server",
+          \ 'filetypes': ['sql'],
+          \ 'args': ['lsp-proxy']
+          \ }
+        \ })
+elseif executable('sqls') && filereadable(s:sqls_config_path)
+  call coc#config('languageserver', {
+        \ 'sql': {
+          \ 'command': "sqls",
+          \ 'filetypes': ['sql'],
+          \ 'args': ['-config', s:sqls_config_path]
+          \ }
+        \ })
+endif
 call coc#config('java', {
       \ 'jdt': {
         \ 'ls': {
