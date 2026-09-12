@@ -144,17 +144,9 @@
                 "baseURL": "https://tokenhub.tencentmaas.cn/v1"
             },
             "models": {
-                "tencent-cloud/deepseek-v4-flash": {
-                    "id": "deepseek-v4-flash-202605",
-                    "name": "Deepseek V4 Flash",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "tencent-cloud/deepseek-v4-pro": {
-                    "id": "deepseek-v4-pro-202606",
-                    "name": "Deepseek V4 Pro",
+                "tencent-cloud/deepseek-v4.1-flash": {
+                    "id": "deepseek/deepseek-flash",
+                    "name": "Deepseek V4.1 Flash",
                     "reasoning": true,
                     "tool_call": true,
                     "attachment": true,
