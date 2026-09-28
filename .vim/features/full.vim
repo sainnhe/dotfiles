@@ -318,7 +318,7 @@ let g:coc_global_extensions = [
       \ 'coc-todo-tree',
       \ 'coc-toml',
       \ 'coc-tsserver',
-      \ 'coc-vimlsp',
+      \ 'coc-vimls',
       \ 'coc-vscode-loader',
       \ 'coc-webview',
       \ 'coc-word',
