@@ -242,6 +242,8 @@ let g:llama_config = {
     \ 'keymap_fim_accept_full': "<Plug>(llama-accept-all)",
     \ 'keymap_fim_accept_line': "<Plug>(llama-accept-line)",
     \ 'keymap_fim_accept_word': "<Plug>(llama-accept-word)",
+    \ 'keymap_fim_next':        "<Plug>(llama-next)",
+    \ 'keymap_fim_prev':        "<Plug>(llama-prev)",
     \ 'keymap_inst_trigger':    "?",
     \ 'keymap_inst_accept':     "<C-y>",
     \ 'keymap_inst_cancel':     "<Esc>",
@@ -433,12 +435,14 @@ function! s:cancel()
 endfunction
 inoremap <silent><expr> <C-e> <sid>cancel()
 " Snippet
-inoremap <silent><expr> <C-j> coc#jumpable() ?
-      \ "\<C-R>=coc#rpc#request('snippetNext', [])\<cr>" :
-      \ coc#inline#next()
-inoremap <silent><expr> <C-k> coc#jumpable() ?
-      \ "\<C-R>=coc#rpc#request('snippetPrev', [])\<cr>" :
-      \ coc#inline#prev()
+function! s:cycle_inline(direction)
+  if coc#jumpable()
+    return "\<C-R>=coc#rpc#request('snippet" . (a:direction > 0 ? 'Next' : 'Prev') . "', [])\<cr>"
+  endif
+  return ""
+endfunction
+inoremap <silent><expr> <C-j> <sid>cycle_inline(1)
+inoremap <silent><expr> <C-k> <sid>cycle_inline(-1)
 " Navigation
 " Create placeholder mappings for <up> and <down> to avoid coc adding mappings
 " for them.
