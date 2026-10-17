@@ -1,10 +1,10 @@
 {
   "dependencies": {
-    "@github/copilot": "^1.0.88",
-    "@google/gemini-cli": "^0.61.0",
-    "@postgres-language-server/cli": "^0.25.7",
-    "npm-check-updates": "23.1.0",
-    "opencode-ai": "^1.18.33",
-    "pnpm": "12.6.0"
+    "@github/copilot": "^1.0.98",
+    "@google/gemini-cli": "^0.64.0",
+    "@postgres-language-server/cli": "^0.28.2",
+    "npm-check-updates": "23.1.1",
+    "opencode-ai": "^1.19.3",
+    "pnpm": "12.14.0"
   }
 }
