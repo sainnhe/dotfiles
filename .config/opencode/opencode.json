@@ -67,6 +67,7 @@
     },
     "enabled_providers": [
         "github-copilot",
+        "google-vertex",
         "custom-local",
         "custom-tencent-cloud"
     ],
