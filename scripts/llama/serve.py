@@ -484,6 +484,23 @@ def build_serve_cmd(flags) -> list[str]:
                 "unsloth/gpt-oss-20b-GGUF:Q4_K_M",
                 "--spec-default",
             ]
+    elif flags.model == "jb":
+        if flags.task == "fim":
+            model_args = [
+                "--alias",
+                "JetBrains/Mellum2-12B-A2.5B-Base",
+                "--hf-repo",
+                "mradermacher/Mellum2-12B-A2.5B-Base-i1-GGUF:IQ4_NL",
+                "--spec-default",
+            ]
+        else:
+            model_args = [
+                "--alias",
+                "JetBrains/Mellum2.1-12B-A2.5B-Thinking",
+                "--hf-repo",
+                "bartowski/Mellum2.1-12B-A2.5B-Thinking-GGUF:IQ4_NL",
+                "--spec-default",
+            ]
 
     serve_cmd = ["llama-server"] + common_args + model_args
     if should_use_mlock(flags):
@@ -520,6 +537,7 @@ def main():
             "muse",
             "nemotron",
             "gpt-oss",
+            "jb",
         ],
         help="Model family",
         required=True,
