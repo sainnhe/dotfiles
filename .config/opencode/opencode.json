@@ -1,181 +1,182 @@
 {
     "$schema": "https://opencode.ai/config.json",
-    "autoupdate": false,
-    "server": {
-        "hostname": "0.0.0.0",
-        "port": 8040,
-        "mdns": true,
-        "mdnsDomain": "opencode.local",
-        "cors": [
-            "http://localhost:8040",
-            "http://127.0.0.1:8040",
-            "http://0.0.0.0:8040",
-            "http://opencode.local:8040"
-        ]
-    },
+    "update": "notify",
     "shell": "zsh",
-    "plugin": [
-        "@franlol/opencode-md-table-formatter@latest",
-        "cc-safety-net@latest"
-    ],
-    "permission": {
-        "*": "allow",
-        "edit": "ask",
-        "bash": "ask",
-        "external_directory": "ask",
-        "doom_loop": "ask",
-        "read": {
-            "*": "allow",
-            "*.crt": "deny",
-            "*.key": "deny",
-            "*.pem": "deny",
-            "*.env": "deny",
-            "*.env.*": "deny",
-            "*.env.example": "allow"
-        }
-    },
-    "default_agent": "build",
-    "agent": {
-        "plan": {
-            "disable": true
+    "username": "sainnhe",
+    "model": "tencent-cloud/deepseek-flash",
+    "snapshots": true,
+    "formatter": true,
+    "permissions": [
+        {
+            "action": "read",
+            "resource": "*",
+            "effect": "allow"
         },
+        {
+            "action": "read",
+            "resource": "*.env",
+            "effect": "deny"
+        },
+        {
+            "action": "read",
+            "resource": "*.key",
+            "effect": "deny"
+        },
+        {
+            "action": "read",
+            "resource": "*.pem",
+            "effect": "deny"
+        },
+        {
+            "action": "read",
+            "resource": "*.crt",
+            "effect": "deny"
+        },
+        {
+            "action": "edit",
+            "resource": "*",
+            "effect": "ask"
+        },
+        {
+            "action": "glob",
+            "resource": "*",
+            "effect": "allow"
+        },
+        {
+            "action": "grep",
+            "resource": "*",
+            "effect": "ask"
+        },
+        {
+            "action": "shell",
+            "resource": "*",
+            "effect": "ask"
+        },
+        {
+            "action": "shell",
+            "resource": "git remote *",
+            "effect": "deny"
+        },
+        {
+            "action": "subagent",
+            "resource": "*",
+            "effect": "ask"
+        },
+        {
+            "action": "skill",
+            "resource": "*",
+            "effect": "ask"
+        },
+        {
+            "action": "question",
+            "resource": "*",
+            "effect": "allow"
+        },
+        {
+            "action": "webfetch",
+            "resource": "*",
+            "effect": "allow"
+        },
+        {
+            "action": "websearch",
+            "resource": "*",
+            "effect": "allow"
+        },
+        {
+            "action": "external_directory",
+            "resource": "*",
+            "effect": "ask"
+        },
+        {
+            "action": "opencode_list_mcp_resources",
+            "resource": "*",
+            "effect": "allow"
+        },
+        {
+            "action": "opencode_read_mcp_resource",
+            "resource": "*",
+            "effect": "allow"
+        },
+        {
+            "action": "execute",
+            "resource": "*",
+            "effect": "ask"
+        }
+    ],
+    "default_agent": "build",
+    "agents": {
         "chat": {
             "description": "General chat agent.",
             "mode": "primary",
-            "permission": {
-                "*": "deny"
-            },
-            "prompt": "You are a smart, efficient AI assistant.\n\n**Core Guidelines:**\n1.  **Conciseness is Key:** Optimize your answers for a mobile screen. Be direct and avoid fluff.\n2.  **Format:** Use Markdown (Bold, Bullet points, Headers) heavily to make text scannable.\n3.  **Language:** Always reply in the language the user speaks (e.g., if User speaks Chinese, reply in Chinese).\n4.  **Accuracy:** If you don't know the answer, admit it. Do not hallucinate.\n\n**Capabilities:**\n- If asked to write code: Provide the code block immediately with a very brief explanation.\n- If asked for a plan: Use a numbered list.\n- If chatting: Be friendly but professional."
-        },
-        "code-reviewer": {
-            "description": "Code reviewer.",
-            "mode": "primary",
-            "prompt": "You are a senior and pragmatic Principal Software Engineer responsible for reviewing project code submissions. Your core goal is to guarantee system stability and security, filtering out all trivial noise.\n\n### Review Principles & Strict Constraints:\n1. **Critical Issues Only**: You must focus solely on defects that could lead to system crashes, data loss, security breaches, or severe performance degradation. Pay special attention to:\n   - Memory leaks or unreleased resources\n   - Concurrency/thread-safety issues (e.g., deadlocks, race conditions)\n   - Security vulnerabilities (e.g., SQL injection, XSS, unauthorized access)\n   - Severe performance bottlenecks (e.g., O(N^2) nested loops on large datasets)\n   - Bugs that clearly break core business logic\n   - Unhandled fatal exceptions or null pointer risks\n\n2. **Ignore Code Style**: You are strictly prohibited from reporting any Lint-level issues regarding code formatting, indentation, spacing, line breaks, variable naming conventions (e.g., camelCase vs. snake_case), missing comments, etc.\n\n3. **Zero Noise**: If you do not find any defects that meet the \"Critical Issues\" definition, simply reply: \"No critical defects found.\" Do not report minor code blemishes just to have something to say.\n\n4. **Language Alignment**: You must detect the primary language of the user's input (prompt, code comments, or context). If the user inputs in Simplified Chinese, your review report MUST be entirely in Simplified Chinese; if English, output in English.\n\n### Output Format Requirements:\nFor each critical issue discovered, output concisely using the following structure:\n- **[File/Line]**: <location of the issue>\n- **[Issue Type]**: <e.g., Security Vulnerability / Concurrency Risk / Memory Leak>\n- **[Impact]**: <explain the severe consequences if left unfixed in 1-2 sentences>\n- **[Fix Suggestion]**: <provide specific code modification recommendations>"
+            "system": "",
+            "permissions": [
+                {
+                    "action": "*",
+                    "resource": "*",
+                    "effect": "deny"
+                }
+            ]
         }
     },
-    "command": {
-        "review-code": {
-            "template": "审核一下当前目录下的代码。",
-            "description": "Review code",
-            "agent": "code-reviewer"
-        }
+    "watcher": {
+        "ignore": [
+            "dist/**",
+            "bazel-*/**",
+            "target/**"
+        ]
+    },
+    "websearch": {
+        "provider": "random"
     },
     "compaction": {
         "auto": true,
-        "prune": true,
-        "reserved": 10000
-    },
-    "enabled_providers": [
-        "github-copilot",
-        "google-vertex",
-        "custom-local",
-        "custom-tencent-cloud"
-    ],
-    "provider": {
-        "custom-local": {
-            "npm": "@ai-sdk/openai-compatible",
-            "name": "Local",
-            "options": {
-                "baseURL": "http://0.0.0.0:8081/v1"
-            },
-            "models": {
-                "local/qwen3.5-9B": {
-                    "id": "Qwen/Qwen3.5-9B",
-                    "name": "Qwen3.5 9B",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/qwen3.6-35B-A3B": {
-                    "id": "Qwen/Qwen3.6-35B-A3B",
-                    "name": "Qwen3.6 35B A3B",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/qwen3.6-27B": {
-                    "id": "Qwen/Qwen3.6-27B",
-                    "name": "Qwen3.6 27B",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/gemma-4-12B-it": {
-                    "id": "google/gemma-4-12B-it",
-                    "name": "Gemma 4 12B",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/gemma-4-26B-A4B-it": {
-                    "id": "google/gemma-4-26B-A4B-it",
-                    "name": "Gemma 4 26B A4B",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/gemma-4-31B-it": {
-                    "id": "google/gemma-4-31B-it",
-                    "name": "Gemma 4 31B",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                },
-                "local/muse-glimmer-30b": {
-                    "id": "meta-models/Muse-Glimmer-30B",
-                    "name": "Muse Glimmer 30B",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
-                }
-            }
+        "keep": {
+            "tokens": 80000
         },
-        "custom-tencent-cloud": {
-            "npm": "@ai-sdk/openai-compatible",
+        "buffer": 300000
+    },
+    "commands": {
+        "review-diff": {
+            "description": "Review the git diff",
+            "template": "Review the git diff under current directory, including both staged and unstaged changes."
+        }
+    },
+    "instructions": [
+        "CONTRIBUTING.md"
+    ],
+    "plugins": [
+        "cc-safety-net@latest"
+    ],
+    "providers": {
+        "tencent-cloud": {
             "name": "Tencent Cloud",
-            "options": {
-                "apiKey": "sk-xxx",
+            "package": "@opencode/ai/providers/openai-compatible",
+            "settings": {
                 "baseURL": "https://tokenhub.tencentmaas.cn/v1"
             },
+            "env": [
+                "TOKENHUB_API_KEY"
+            ],
             "models": {
-                "tencent-cloud/deepseek-flash": {
-                    "id": "deepseek/deepseek-flash",
+                "deepseek-flash": {
+                    "modelID": "deepseek/deepseek-flash",
                     "name": "Deepseek Flash",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
+                    "family": "deepseek"
                 },
-                "tencent-cloud/glm-5.3-flash": {
-                    "id": "glm-5.3-flash",
-                    "name": "GLM 5.3 Flash",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
+                "glm-flash": {
+                    "modelID": "glm-5.3-flash",
+                    "name": "GLM Flash",
+                    "family": "glm"
                 },
-                "tencent-cloud/glm-5.3": {
-                    "id": "glm-5.3",
-                    "name": "GLM 5.3",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
+                "glm": {
+                    "modelID": "glm-5.3",
+                    "name": "GLM",
+                    "family": "glm"
                 },
-                "tencent-cloud/kimi-k3": {
-                    "id": "kimi-k3",
-                    "name": "Kimi K3",
-                    "reasoning": true,
-                    "tool_call": true,
-                    "attachment": true,
-                    "temperature": true
+                "kimi": {
+                    "modelID": "kimi-k3",
+                    "name": "Kimi",
+                    "family": "kimi"
                 }
             }
         }
