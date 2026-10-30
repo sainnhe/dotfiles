@@ -179,6 +179,20 @@
                     "family": "kimi"
                 }
             }
+        },
+        "local": {
+            "name": "Local",
+            "package": "@opencode/ai/providers/openai-compatible",
+            "settings": {
+                "baseURL": "http://localhost:8080"
+            },
+            "models": {
+                "qwen3.6-35b-a3b": {
+                    "modelID": "Qwen/Qwen3.6-35B-A3B",
+                    "name": "Qwen3.6 35B A3B",
+                    "family": "qwen"
+                }
+            }
         }
     }
 }

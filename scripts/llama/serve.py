@@ -242,7 +242,7 @@ def build_serve_cmd(flags) -> list[str]:
         )
 
     if should_use_mlock(flags):
-        common_args.extend(["--mlock"])
+        common_args.extend(["--load-mode", "mlock"])
 
     # Model specific args
     model_args: list[str] = []
