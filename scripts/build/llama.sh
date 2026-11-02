@@ -39,6 +39,7 @@ COMMON_ARGS=(
     -DCMAKE_RANLIB=llvm-ranlib
     -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld"
     -DCMAKE_SHARED_LINKER_FLAGS="-fuse-ld=lld"
+    -DCMAKE_CUDA_FLAGS="-allow-unsupported-compiler"
     -DGGML_LTO=ON
     -DGGML_NATIVE=ON
     -DGGML_BUILD_EXAMPLES=OFF
