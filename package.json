@@ -2,6 +2,6 @@
   "dependencies": {
     "@postgres-language-server/cli": "^0.28.2",
     "npm-check-updates": "23.1.1",
-    "pnpm": "12.15.0"
+    "pnpm": "12.18.0"
   }
 }
