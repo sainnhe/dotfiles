@@ -147,6 +147,48 @@
     "plugins": [
         "cc-safety-net@latest"
     ],
+    "mcp": {
+        "servers": {
+            "context7": {
+                "type": "remote",
+                "url": "https://mcp.context7.com/mcp"
+            },
+            "github": {
+                "type": "remote",
+                "url": "https://api.githubcopilot.com/mcp/",
+                "oauth": false,
+                "headers": {
+                    "Authorization": "Bearer {env:OPENCODE_GITHUB_PAT}"
+                }
+            },
+            "yahoo-finance": {
+                "type": "local",
+                "command": [
+                    "uvx",
+                    "--from",
+                    "git+https://github.com/wshobson/maverick-mcp",
+                    "maverick-mcp",
+                    "--transport",
+                    "stdio"
+                ],
+                "timeout": {
+                    "startup": 120000
+                }
+            },
+            "akshare": {
+                "type": "local",
+                "command": [
+                    "uvx",
+                    "--from",
+                    "aktools",
+                    "aktools-mcp"
+                ],
+                "timeout": {
+                    "startup": 120000
+                }
+            }
+        }
+    },
     "providers": {
         "tencent-cloud": {
             "name": "Tencent Cloud",
