@@ -131,9 +131,9 @@
     "compaction": {
         "auto": true,
         "keep": {
-            "tokens": 80000
+            "tokens": 32768
         },
-        "buffer": 300000
+        "buffer": "15%"
     },
     "commands": {
         "review-diff": {
@@ -203,27 +203,47 @@
                 "deepseek-flash": {
                     "modelID": "deepseek/deepseek-flash",
                     "name": "Deepseek Flash",
-                    "family": "deepseek"
+                    "family": "deepseek",
+                    "limit": {
+                        "output": 393216,
+                        "context": 1048576
+                    }
                 },
                 "glm-flash": {
                     "modelID": "glm-5.3-flash",
                     "name": "GLM Flash",
-                    "family": "glm"
+                    "family": "glm",
+                    "limit": {
+                        "output": 131072,
+                        "context": 1048576
+                    }
                 },
                 "glm": {
                     "modelID": "glm-5.3",
                     "name": "GLM",
-                    "family": "glm"
+                    "family": "glm",
+                    "limit": {
+                        "output": 131072,
+                        "context": 1048576
+                    }
                 },
                 "kimi": {
                     "modelID": "kimi-k3.1-pro",
                     "name": "Kimi",
-                    "family": "kimi"
+                    "family": "kimi",
+                    "limit": {
+                        "output": 1048576,
+                        "context": 1048576
+                    }
                 },
                 "hy": {
                     "modelID": "hy4",
                     "name": "Hy",
-                    "family": "hy"
+                    "family": "hy",
+                    "limit": {
+                        "output": 65536,
+                        "context": 1048576
+                    }
                 }
             }
         },
@@ -237,7 +257,12 @@
                 "qwen3.6-35b-a3b": {
                     "modelID": "Qwen/Qwen3.6-35B-A3B",
                     "name": "Qwen3.6 35B A3B",
-                    "family": "qwen"
+                    "family": "qwen",
+                    "limit": {
+                        "input": 196608,
+                        "output": 65536,
+                        "context": 262144
+                    }
                 }
             }
         }
