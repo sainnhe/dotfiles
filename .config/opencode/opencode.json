@@ -174,9 +174,14 @@
                     "family": "glm"
                 },
                 "kimi": {
-                    "modelID": "kimi-k3",
+                    "modelID": "kimi-k3.1-pro",
                     "name": "Kimi",
                     "family": "kimi"
+                },
+                "hy": {
+                    "modelID": "hy4",
+                    "name": "Hy",
+                    "family": "hy"
                 }
             }
         },
