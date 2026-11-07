@@ -6,3 +6,4 @@
 staticcheck.conf
 .ccls-cache*
 postgres-language-server.jsonc
+maverick*
