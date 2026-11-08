@@ -273,7 +273,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "--hf-repo",
                 "ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF:IQ3_XXS",
                 "--spec-type",
-                "draft-mtp,ngram-mod",
+                "ngram-mod",
                 "--spec-draft-n-max",
                 "3",
                 "--spec-ngram-mod-n-match",
@@ -282,8 +282,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "4",
                 "--spec-ngram-mod-n-max",
                 "64",
-                "--image-min-tokens",
-                "1024",
+                "--no-mmproj",
             ]
         else:
             model_args = [
@@ -301,8 +300,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "4",
                 "--spec-ngram-mod-n-max",
                 "64",
-                "--image-min-tokens",
-                "1024",
+                "--no-mmproj",
             ]
     elif flags.model == "seed":
         if flags.task == "fim":
