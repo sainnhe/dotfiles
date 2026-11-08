@@ -271,7 +271,7 @@
                     "name": "Qwen3.8 27B",
                     "family": "qwen",
                     "limit": {
-                        "context": 262144
+                        "context": 196608
                     }
                 }
             }
