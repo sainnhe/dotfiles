@@ -205,7 +205,6 @@
                     "name": "Deepseek Flash",
                     "family": "deepseek",
                     "limit": {
-                        "output": 393216,
                         "context": 1048576
                     }
                 },
@@ -214,7 +213,6 @@
                     "name": "GLM Flash",
                     "family": "glm",
                     "limit": {
-                        "output": 131072,
                         "context": 1048576
                     }
                 },
@@ -223,7 +221,6 @@
                     "name": "GLM",
                     "family": "glm",
                     "limit": {
-                        "output": 131072,
                         "context": 1048576
                     }
                 },
@@ -232,7 +229,6 @@
                     "name": "Kimi",
                     "family": "kimi",
                     "limit": {
-                        "output": 1048576,
                         "context": 1048576
                     }
                 },
@@ -241,7 +237,6 @@
                     "name": "Hy",
                     "family": "hy",
                     "limit": {
-                        "output": 65536,
                         "context": 1048576
                     }
                 }
@@ -254,13 +249,28 @@
                 "baseURL": "http://localhost:8080"
             },
             "models": {
-                "qwen3.6-35b-a3b": {
-                    "modelID": "Qwen/Qwen3.6-35B-A3B",
-                    "name": "Qwen3.6 35B A3B",
+                "qwen3.8-27b": {
+                    "modelID": "Qwen/Qwen3.8-27B",
+                    "name": "Qwen3.8 27B",
                     "family": "qwen",
                     "limit": {
-                        "input": 196608,
-                        "output": 65536,
+                        "context": 262144
+                    }
+                }
+            }
+        },
+        "remote": {
+            "name": "Remote",
+            "package": "@opencode/ai/providers/openai-compatible",
+            "settings": {
+                "baseURL": "http://localhost:18080"
+            },
+            "models": {
+                "qwen3.8-27b": {
+                    "modelID": "Qwen/Qwen3.8-27B",
+                    "name": "Qwen3.8 27B",
+                    "family": "qwen",
+                    "limit": {
                         "context": 262144
                     }
                 }
