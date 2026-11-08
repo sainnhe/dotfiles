@@ -269,11 +269,11 @@ def build_serve_cmd(flags) -> list[str]:
         elif flags.perf == "medium":
             model_args = [
                 "--alias",
-                "Qwen/Qwen3.8-27B",
+                "Qwen/Qwen3.6-35B-A3B",
                 "--hf-repo",
-                "ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF:IQ3_XXS",
+                "unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-IQ4_NL",
                 "--spec-type",
-                "ngram-mod",
+                "draft-mtp,ngram-mod",
                 "--spec-draft-n-max",
                 "3",
                 "--spec-ngram-mod-n-match",
@@ -282,7 +282,8 @@ def build_serve_cmd(flags) -> list[str]:
                 "4",
                 "--spec-ngram-mod-n-max",
                 "64",
-                "--no-mmproj",
+                "--image-min-tokens",
+                "1024",
             ]
         else:
             model_args = [

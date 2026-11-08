@@ -249,9 +249,9 @@
                 "baseURL": "http://localhost:8080"
             },
             "models": {
-                "qwen3.8-27b": {
-                    "modelID": "Qwen/Qwen3.8-27B",
-                    "name": "Qwen3.8 27B",
+                "qwen3.6-35b-a3b": {
+                    "modelID": "Qwen/Qwen3.6-35B-A3B",
+                    "name": "Qwen3.6 35B A3B",
                     "family": "qwen",
                     "limit": {
                         "context": 262144
