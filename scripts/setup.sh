@@ -37,14 +37,14 @@ _copy() {
 
 _ssh() {
     ln -sf "$DOTFILES_DIR/.gnupg/gpg-agent.conf" ~/.gnupg/gpg-agent.conf
-    ln -sf "$DOTFILES_DIR/.zsh_envs.d/gpg.zsh" ~/.zsh_envs.d/gpg.zsh
+    _symlink .zshenvs/gpg.zsh
     echo "1. Restore gpg keys"
     echo "2. gpg --list-keys --with-keygrip"
     echo "3. Add keygrip to ~/.gnupg/sshcontrol"
     echo "4. gpgconf --kill gpg-agent"
     echo "5. gpg-connect-agent updatestartuptty /bye"
     echo "6. ssh-add -L"
-    echo "7. Optionally create a symlink of gpg_tty.zsh"
+    echo "7. Optionally create a symlink of .zshenvs/gpg_tty.zsh"
     echo "NOTE: 如果遇到任何奇怪的问题，试一下 4 和 5"
     echo "NOTE: 执行以下命令添加 ssh 公钥文件，这样就可以在 ~/.ssh/config 中指定"
     echo "ssh-add -L | grep '^ssh-rsa' > ~/.ssh/gpg_rsa.pub"
@@ -178,7 +178,10 @@ _vim() {
 
 _zsh() {
     _symlink .zshrc
+    _symlink .zshenv
+    mkdir -p ~/.zshenvs
     cp "$DOTFILES_DIR/.zsh-theme/edge-dark.zsh" ~/.zsh-theme
+    echo "Setup ~/.zshenvs manually"
 }
 
 _tmux() {
@@ -200,7 +203,6 @@ _dotfiles() {
     _copy .config/zathura
     _symlink .w3m
     _symlink .clang-tidy
-    echo "Setup ~/.zsh_envs.d manually"
 } #}}}
 
 if [ "$1" = "help" ]; then
