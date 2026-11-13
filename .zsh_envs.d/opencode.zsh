@@ -1,2 +1,0 @@
-export TOKENHUB_API_KEY=
-export OPENCODE_GITHUB_PAT=
