@@ -25,10 +25,26 @@ if [[ "$OSTYPE" == darwin* && -x "/opt/local/bin/port" ]]; then
         "${MACPORTS_PREFIX}/share/zsh/site-functions"(N-/)
         $fpath
     )
-    export INFOPATH="${MACPORTS_PREFIX}/share/info:${INFOPATH}"
-    export CPATH="${MACPORTS_PREFIX}/include:${CPATH}"
-    export LIBRARY_PATH="${MACPORTS_PREFIX}/lib:${LIBRARY_PATH}"
-    export PKG_CONFIG_PATH="${MACPORTS_PREFIX}/lib/pkgconfig:/opt/local/share/pkgconfig:${PKG_CONFIG_PATH}"
+
+    # Prepend to colon-separated variables while keeping them idempotent, since
+    # this file is sourced by every shell (including nested ones)
+    _path_prepend() {
+        local var=$1 cur
+        shift
+        cur=${(P)var}
+        local -a dirs
+        dirs=("$@" ${(s.:.)cur})
+        dirs=(${dirs:#})
+        typeset -U dirs
+        typeset -gx "$var"="${(j.:.)dirs}"
+    }
+    _path_prepend CPATH "${MACPORTS_PREFIX}/include"
+    _path_prepend LIBRARY_PATH "${MACPORTS_PREFIX}/lib"
+    _path_prepend INFOPATH "${MACPORTS_PREFIX}/share/info"
+    _path_prepend PKG_CONFIG_PATH \
+        "${MACPORTS_PREFIX}/lib/pkgconfig" "${MACPORTS_PREFIX}/share/pkgconfig"
+    unset -f _path_prepend
+
     export OPENSSL_ROOT_DIR="${MACPORTS_PREFIX}"
 fi
 
@@ -46,6 +62,19 @@ path=(
     $path
 )
 
+# User level man path
+manpath=(
+    "$HOME/.local/share/man"(N-/)
+    "/usr/local/share/man"(N-/)
+    $manpath
+)
+# Rust man pages live under the toolchain, not ~/.cargo
+() {
+    local -a dirs
+    dirs=("${RUSTUP_HOME:-$HOME/.rustup}"/toolchains/*/share/man(N-/))
+    (( ${#dirs} )) && manpath=("$dirs[1]" $manpath)
+}
+
 # Asdf
 if (( $+commands[asdf] )); then
     export ASDF_DIR="$HOME/.local/share/asdf"
@@ -58,6 +87,7 @@ fi
 
 # Trailing colon
 [[ -n "$MANPATH" && "$MANPATH" != *: ]] && export MANPATH="${MANPATH}:"
+[[ -n "$INFOPATH" && "$INFOPATH" != *: ]] && export INFOPATH="${INFOPATH}:"
 # }}}
 # {{{Editor & Pager
 export LESS="-FRX"
