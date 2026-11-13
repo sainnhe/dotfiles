@@ -120,6 +120,7 @@ RUN git clone --depth=1 https://github.com/sainnhe/dotfiles ~/repo/dotfiles \
 
 # Zsh
 RUN cp ~/repo/dotfiles/.zshrc ~/.zshrc \
+        && cp ~/repo/dotfiles/.zshenv ~/.zshenv \
         && cp ~/repo/dotfiles/.zsh-theme/edge-dark.zsh ~/.zsh-theme \
         && git clone --depth 1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin \
         && zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true ' \
