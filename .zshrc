@@ -6,7 +6,7 @@ fi
 # }}}
 # {{{Custom Envs
 if [[ -d "$HOME/.zshenvs" ]]; then
-    for _env in "$HOME/.zshenvs/"*(N); do
+    for _env in "$HOME/.zshenvs/"*.zsh(N); do
         [[ -r "$_env" ]] && source "$_env"
     done
     unset _env
@@ -49,12 +49,12 @@ setopt combining_chars        # Properly render NFD Unicode filenames (essential
 bindkey -e                    # Force Emacs keybindings (prevent EDITOR=vim from enabling vi mode)
 # }}}
 # {{{Prompt
-# Set cursor style to blinking vertical bar (DECSCUSR 5)
+# Set cursor style to blinking vertical bar
 [[ -n "$TTY" && -w "$TTY" ]] && printf '\e[5 q' > "$TTY"
 # }}}
 # {{{Alias
 alias vimdefault="vim -u DEFAULTS"
-alias pager="${PAGER}"
+[[ -n "$PAGER" ]] && alias pager="${PAGER}"
 alias colorscheme='~/repo/dotfiles/scripts/colorscheme.sh'
 alias tmuxinit='~/repo/dotfiles/scripts/tmuxinit.sh'
 
@@ -149,9 +149,6 @@ add-zsh-hook chpwd _auto_activate_venv
 # }}}
 # {{{Completion
 zcomp_init() {
-    # Must be set before using (#q...) glob qualifiers below
-    setopt extended_glob
-
     local zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
     [[ -d "${zcompdump:h}" ]] || mkdir -p "${zcompdump:h}"
 
@@ -200,7 +197,7 @@ zcomp_init() {
     zstyle ':completion:*' group-name ''
     zstyle ':completion:*' verbose yes
 
-    # Fuzzy matching for mistyped completions (capped at 7 errors)
+    # Fuzzy matching for mistyped completions
     zstyle ':completion:*' completer _complete _match _approximate
     zstyle ':completion:*:match:*' original only
     zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
@@ -211,7 +208,7 @@ zcomp_init() {
     # Array subscript sorting
     zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
-    # Directory & file colors (highlight typed prefix in blue)
+    # Directory & file colors
     export LSCOLORS=ExFxCxdxBxegedabagacad
     export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
     zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")'
@@ -283,7 +280,7 @@ fi
 source "$HOME/.zinit/bin/zinit.zsh"
 # {{{powerlevel10k
 PURE_POWER_MODE=modern
-zinit ice depth=1 atload'[[ -r "$HOME/.zsh-theme" ]] && source "$HOME/.zsh-theme"'
+zinit ice depth=1 atload'[[ -f "$HOME/.zsh-theme" ]] && source "$HOME/.zsh-theme"'
 zinit light romkatv/powerlevel10k
 # }}}
 # {{{neofetch
@@ -303,7 +300,7 @@ zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshuji
 zinit ice wait'0a' lucid pick"_pb" as"completion"
 zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/_pb"
 
-zinit ice wait'0a' lucid depth=1 blockf \
+zinit ice wait'0a' lucid depth=1 \
     atload"zcomp_init; zicdreplay" \
     atpull"zinit cclear && zinit creinstall -q sainnhe/zsh-completions"
 zinit light sainnhe/zsh-completions
@@ -321,8 +318,6 @@ zinit ice wait'0b' lucid depth=1
 zinit light zsh-users/zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
 # }}}
 # {{{fzf-widgets
 zinit ice wait'0b' lucid depth=1
