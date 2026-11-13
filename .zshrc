@@ -41,6 +41,10 @@ setopt pushd_ignore_dups      # Do not push duplicate directories onto the stack
 setopt pushd_silent           # Do not print the directory stack after pushd/popd
 setopt interactive_comments   # Allow comments starting with '#' in interactive shells
 setopt no_beep                # Disable terminal bell on errors
+setopt extended_glob          # Enable advanced glob qualifiers (#, ~, ^) globally
+setopt numeric_glob_sort      # Sort filenames numerically (e.g., file2 before file10)
+setopt long_list_jobs         # Display PID when suspending or backgrounding jobs
+setopt combining_chars        # Properly render NFD Unicode filenames (essential on macOS)
 
 bindkey -e                    # Force Emacs keybindings (prevent EDITOR=vim from enabling vi mode)
 # }}}
