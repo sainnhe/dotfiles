@@ -1,469 +1,353 @@
-# {{{Settings
 # zmodload zsh/zprof
-# {{{env
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/node_modules/.bin:$PATH"
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
-if command -v rustup &> /dev/null; then
-    export PATH="$HOME/.rustup/toolchains/$(rustup show active-toolchain | grep default | sed 's/ (.*//')/bin:$PATH"
+# {{{Instant Prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-export PATH="$HOME/.cargo/bin:$PATH"
-export MANPATH="$HOME/.local/share/man:$MANPATH"
-export MANPATH="/usr/local/share/man:$MANPATH"
-export HISTFILE="$HOME/.zsh_history"
-export HISTSIZE=999999999
-export SAVEHIST=$HISTSIZE
-# Fuzzy finder
-export FUZZY_FINDER="fzf"
-# Vim
-if [ -x "$(command -v vim)" ]; then
-    export EDITOR="vim"
-    export PAGER="vim --cmd 'let g:vim_pager = 1' -c PAGER -"
-    export MANPAGER="vim --cmd 'let g:vim_pager = 1' -c ASMANPAGER -"
-fi
-# Pspg
-if [ -x "$(command -v pspg)" ]; then
-    export PSQL_PAGER='pspg -s s --no-topbar'
-fi
-# Other envs
-if test -d "$HOME/.zsh_envs.d/"; then
-    for _env in "$HOME/.zsh_envs.d/"*; do
-        test -r "$_env" && . "$_env"
+# }}}
+# {{{Custom Envs
+if [[ -d "$HOME/.zshenvs" ]]; then
+    for _env in "$HOME/.zshenvs/"*(N); do
+        [[ -r "$_env" ]] && source "$_env"
     done
     unset _env
 fi
-# Asdf
-if [ -x "$(command -v asdf)" ]; then
-    export ASDF_DIR="$HOME/.local/share/asdf"
-    export ASDF_DATA_DIR="$ASDF_DIR"
-    export PATH="$ASDF_DATA_DIR/shims:$PATH"
+# }}}
+# {{{General
+umask 077
+
+# History
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
+[[ -d "${HISTFILE:h}" ]] || mkdir -p "${HISTFILE:h}"
+HISTSIZE=200000
+SAVEHIST=$HISTSIZE
+
+setopt extended_history       # Save timestamp and duration for each command
+setopt share_history          # Share history across multiple sessions/panes in real time
+setopt hist_ignore_dups       # Ignore consecutive duplicate commands
+setopt hist_ignore_all_dups   # Remove older duplicate entries from the history list
+setopt hist_save_no_dups      # Do not write duplicate entries to the history file
+setopt hist_find_no_dups      # Do not display duplicates when searching history
+setopt hist_ignore_space      # Ignore commands starting with a space (useful for secrets)
+setopt hist_reduce_blanks     # Remove superfluous blanks from each command
+
+# Navigation & Interaction
+DIRSTACKSIZE=20
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+KEYTIMEOUT=1
+
+setopt auto_cd                # Change directory by typing its name without 'cd'
+setopt autopushd              # Push the old directory onto the stack on 'cd'
+setopt pushd_ignore_dups      # Do not push duplicate directories onto the stack
+setopt pushd_silent           # Do not print the directory stack after pushd/popd
+setopt interactive_comments   # Allow comments starting with '#' in interactive shells
+setopt no_beep                # Disable terminal bell on errors
+
+bindkey -e                    # Force Emacs keybindings (prevent EDITOR=vim from enabling vi mode)
+# }}}
+# {{{Prompt
+# Set cursor style to blinking vertical bar (DECSCUSR 5)
+[[ -n "$TTY" && -w "$TTY" ]] && printf '\e[5 q' > "$TTY"
+# }}}
+# {{{Alias
+alias vimdefault="vim -u DEFAULTS"
+alias pager="${PAGER}"
+alias colorscheme='~/repo/dotfiles/scripts/colorscheme.sh'
+alias tmuxinit='~/repo/dotfiles/scripts/tmuxinit.sh'
+
+if (( $+commands[lsd] )); then
+    alias ls='lsd'
+    alias tree='lsd --tree'
+fi
+
+if [[ "$OSTYPE" == linux* ]]; then
+    alias open="xdg-open"
 fi
 # }}}
-# {{{general
-set +o nonotify
-umask 077
-setopt hist_save_no_dups hist_ignore_dups       # eliminate duplicate entries in history
-setopt correctall                               # enable auto correction
-setopt autopushd pushdignoredups                # auto push dir into stack and and don’t duplicate them
-bindkey -e                                      # emacs mode
-# }}}
-# {{{prompt
-autoload -U promptinit
-promptinit
-printf "\e[5 q" > $TTY
-# }}}
-# {{{completion
-zcomp_init () {
-    # Auto load
-    autoload -U +X compinit && compinit
-    autoload -U +X bashcompinit && bashcompinit
+# {{{Functions
+cdh() { # {{{
+    local idx
+    idx=$(dirs -v | fzf | awk '{print $1}')
+    [[ -n "$idx" ]] && pushd +"$idx" > /dev/null
+} # }}}
+cdr() { # {{{
+    local root
+    root=$(git rev-parse --show-toplevel 2> /dev/null) && cd "$root"
+} # }}}
+cdf() { # {{{
+    local dir
+    dir=$(find "${1:-.}" -path '*/.*' -prune -o -type d -print 2> /dev/null | fzf) && cd "$dir"
+} # }}}
+cdfa() { # {{{
+    local dir
+    dir=$(find "${1:-.}" -not -path '*/.git*' -type d 2> /dev/null | fzf) && cd "$dir"
+} # }}}
+rustupdate() { # {{{
+    if (( $+commands[rustup] )); then
+        echo "==> Updating rust..."
+        rustup update
+    fi
+    if (( $+commands[cargo-install-update] )); then
+        echo "==> Updating packages using cargo install-update..."
+        cargo install-update -ag
+    elif (( $+commands[cargo] )); then
+        echo "==> Updating packages using cargo install..."
+        local pkgs
+        pkgs=(${=$(cargo install --list | grep -E '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')})
+        (( ${#pkgs} )) && cargo install $pkgs
+    fi
+    if (( $+commands[cargo-cache] )); then
+        echo "==> Cleaning cache..."
+        cargo cache -a
+    fi
+} # }}}
+pacclean() { # {{{
+    emulate -L zsh
+    setopt extended_glob null_glob
 
-    # Set options
-    setopt MENU_COMPLETE       # press <Tab> one time to select item
-    setopt COMPLETEALIASES     # complete alias
-    setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
-    setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
-    setopt PATH_DIRS           # Perform path search even on command names with slashes.
-    setopt AUTO_MENU           # Show completion menu on a successive tab press.
-    setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
-    setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a trailing slash.
-    setopt EXTENDED_GLOB       # Needed for file modification glob modifiers with compinit
-    unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
+    sudo paccache -rf -k 0
+    local orphans
+    orphans=(${=$(pacman -Qdtq)})
+    (( ${#orphans} )) && sudo pacman -Rns $orphans
 
-    # Use caching to make completion for commands such as dpkg and apt usable.
-    zstyle ':completion::complete:*' use-cache on
-    zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.cache/.zcompcache"
+    local dirs
+    dirs=("$HOME/.cache/pikaur/build/"*~*.git(/))
+    (( ${#dirs} )) && sudo rm -rf $dirs
 
-    # Case-insensitive (all), partial-word, and then substring completion.
-    if zstyle -t ':prezto:module:completion:*' case-sensitive; then
-      zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-      setopt CASE_GLOB
+    dirs=("$HOME/.local/share/pikaur/aur_repos/"*~*.git(/))
+    (( ${#dirs} )) && sudo rm -rf $dirs
+
+    rm -rf "$HOME/.cache/pikaur/pkg"
+    sync
+} # }}}
+_auto_activate_venv() { # {{{
+    local venv_dir
+    if [[ -f "./.venv/bin/activate" ]]; then
+        venv_dir="$PWD/.venv"
+    elif [[ -f "./venv/bin/activate" ]]; then
+        venv_dir="$PWD/venv"
     else
-      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-      unsetopt CASE_GLOB
+        return
     fi
 
-    # Group matches and describe.
+    # Deactivate any existing virtual environment if it differs from the current one
+    if [[ -n "$VIRTUAL_ENV" && "$VIRTUAL_ENV" != "$venv_dir" ]]; then
+        deactivate
+    fi
+
+    # Activate the target virtual environment if not already active
+    if [[ "$VIRTUAL_ENV" != "$venv_dir" ]]; then
+        source "${venv_dir}/bin/activate"
+    fi
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _auto_activate_venv
+# }}}
+# }}}
+# {{{Completion
+zcomp_init() {
+    # Must be set before using (#q...) glob qualifiers below
+    setopt extended_glob
+
+    local zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
+    [[ -d "${zcompdump:h}" ]] || mkdir -p "${zcompdump:h}"
+
+    autoload -Uz compinit bashcompinit
+    # Regenerate zcompdump once every 24 hours; otherwise skip security check (-C)
+    if [[ -n "$zcompdump"(#qN.mh+24) || ! -f "$zcompdump" ]]; then
+        compinit -d "$zcompdump"
+    else
+        compinit -C -d "$zcompdump"
+    fi
+    bashcompinit
+
+    # Compile zcompdump to bytecode (.zwc) in background if outdated
+    if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+        zcompile "$zcompdump" &!
+    fi
+
+    # Completion options
+    setopt menu_complete         # Insert the first match immediately on single Tab
+    setopt auto_menu             # Show completion menu on successive Tab press
+    setopt auto_list             # Automatically list choices on ambiguous completion
+    setopt auto_param_slash      # Add trailing slash when completing a directory
+    setopt complete_in_word      # Complete from both ends of a word
+    setopt always_to_end         # Move cursor to the end of a completed word
+    setopt path_dirs             # Perform path search even on command names with slashes
+    unsetopt flow_control        # Disable start/stop characters (Ctrl-S / Ctrl-Q) in editor
+
+    # Cache expensive completions (e.g., apt, pacman, cargo, docker)
+    zstyle ':completion::complete:*' use-cache on
+    zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
+
+    # Case-insensitive, partial-word, and substring matching
+    zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+    # Menu, grouping, and descriptions
     zstyle ':completion:*:*:*:*:*' menu select
     zstyle ':completion:*:matches' group 'yes'
     zstyle ':completion:*:options' description 'yes'
     zstyle ':completion:*:options' auto-description '%d'
     zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
     zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
-    zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+    zstyle ':completion:*:messages' format ' %F{purple}-- %d --%f'
     zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
     zstyle ':completion:*:default' list-prompt '%S%M matches%s'
     zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
     zstyle ':completion:*' group-name ''
     zstyle ':completion:*' verbose yes
 
-    # Fuzzy match mistyped completions.
+    # Fuzzy matching for mistyped completions (capped at 7 errors)
     zstyle ':completion:*' completer _complete _match _approximate
     zstyle ':completion:*:match:*' original only
-    zstyle ':completion:*:approximate:*' max-errors 1 numeric
-
-    # Increase the number of errors based on the length of the typed word. But make
-    # sure to cap (at 7) the max-errors to avoid hanging.
     zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
 
-    # Don't complete unavailable commands.
+    # Ignore internal/unavailable functions
     zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 
-    # Array completion element sorting.
+    # Array subscript sorting
     zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
-    # Directories
+    # Directory & file colors (highlight typed prefix in blue)
     export LSCOLORS=ExFxCxdxBxegedabagacad
     export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-    # zstyle ':completion:*' list-colors 'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
-    zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+    zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")'
+
+    # Directory navigation completion
     zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
     zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
     zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
     zstyle ':completion:*' squeeze-slashes true
 
-    # History
+    # History word completion
     zstyle ':completion:*:history-words' stop yes
     zstyle ':completion:*:history-words' remove-all-dups yes
     zstyle ':completion:*:history-words' list false
     zstyle ':completion:*:history-words' menu yes
 
-    # Environment Variables
+    # Environment variables
     zstyle ':completion::*:(-command-|export):*' fake-parameters ${${${_comps[(I)-value-*]#*,}%%,*}:#-*-}
 
-    # Populate hostname completion. But allow ignoring custom entries from static
-    # */etc/hosts* which might be uninteresting.
-    zstyle -a ':prezto:module:completion:*:hosts' etc-host-ignores '_etc_host_ignores'
-
-zstyle -e ':completion:*:hosts' hosts 'reply=(
-      ${=${=${=${${(f)"$(cat {/etc/ssh/ssh_,~/.ssh/}known_hosts(|2)(N) 2> /dev/null)"}%%[#| ]*}//\]:[0-9]*/ }//,/ }//\[/ }
-      ${=${(f)"$(cat /etc/hosts(|)(N) <<(ypcat hosts 2> /dev/null))"}%%(\#${_etc_host_ignores:+|${(j:|:)~_etc_host_ignores}})*}
-      ${=${${${${(@M)${(f)"$(cat ~/.ssh/config 2> /dev/null)"}:#Host *}#Host }:#*\**}:#*\?*}}
+    # Hostname completion from known_hosts, /etc/hosts, and ~/.ssh/config
+    zstyle -e ':completion:*:hosts' hosts 'reply=(
+        ${=${=${=${${(f)"$(cat {/etc/ssh/ssh_,~/.ssh/}known_hosts(|2)(N) 2> /dev/null)"}%%[#| ]*}//\]:[0-9]*/ }//,/ }//\[/ }
+        ${=${(f)"$(cat /etc/hosts(N) 2> /dev/null)"}%%\#*}
+        ${=${${${${(@M)${(f)"$(cat ~/.ssh/config(N) 2> /dev/null)"}:#Host *}#Host }:#*\**}:#*\?*}}
     )'
 
-    # Don't complete uninteresting users...
+    # Ignore system service accounts
     zstyle ':completion:*:*:*:users' ignored-patterns \
-      adm amanda apache avahi beaglidx bin cacti canna clamav daemon \
-      dbus distcache dovecot fax ftp games gdm gkrellmd gopher \
-      hacluster haldaemon halt hsqldb ident junkbust ldap lp mail \
-      mailman mailnull mldonkey mysql nagios \
-      named netdump news nfsnobody nobody nscd ntp nut nx openvpn \
-      operator pcap postfix postgres privoxy pulse pvm quagga radvd \
-      rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs '_*'
-
-    # ... unless we really want to.
+        adm amanda apache avahi beaglidx bin cacti canna clamav daemon \
+        dbus distcache dovecot fax ftp games gdm gkrellmd gopher \
+        hacluster haldaemon halt hsqldb ident junkbust ldap lp mail \
+        mailman mailnull mldonkey mysql nagios \
+        named netdump news nfsnobody nobody nscd ntp nut nx openvpn \
+        operator pcap postfix postgres privoxy pulse pvm quagga radvd \
+        rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs '_*'
     zstyle '*' single-ignored show
 
-    # Ignore multiple entries.
+    # Prevent duplicate file suggestions in rm/kill/diff and auto-rehash new binaries
     zstyle ':completion:*:(rm|kill|diff):*' ignore-line other
     zstyle ':completion:*:rm:*' file-patterns '*:all-files'
-
-    # auto rehash
     zstyle ':completion:*' rehash true
 
-    #highlight prefix
-    zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")'
-
-    # Kill
+    # Process completion for kill
     zstyle ':completion:*:*:*:*:processes' command 'ps -u $LOGNAME -o pid,user,command -w'
     zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
     zstyle ':completion:*:*:kill:*' menu yes select
     zstyle ':completion:*:*:kill:*' force-list always
     zstyle ':completion:*:*:kill:*' insert-ids single
 
-    # Man
+    # Man pages
     zstyle ':completion:*:manuals' separate-sections true
     zstyle ':completion:*:manuals.(^1*)' insert-sections true
 
-    # Media Players
-    zstyle ':completion:*:*:mpg123:*' file-patterns '*.(mp3|MP3):mp3\ files *(-/):directories'
-    zstyle ':completion:*:*:mpg321:*' file-patterns '*.(mp3|MP3):mp3\ files *(-/):directories'
-    zstyle ':completion:*:*:ogg123:*' file-patterns '*.(ogg|OGG|flac):ogg\ files *(-/):directories'
-    zstyle ':completion:*:*:mocp:*' file-patterns '*.(wav|WAV|mp3|MP3|ogg|OGG|flac):ogg\ files *(-/):directories'
-
-    # Mutt
-    if [[ -s "$HOME/.mutt/aliases" ]]; then
-      zstyle ':completion:*:*:mutt:*' menu yes select
-      zstyle ':completion:*:mutt:*' users ${${${(f)"$(<"$HOME/.mutt/aliases")"}#alias[[:space:]]}%%[[:space:]]*}
-    fi
-
-    # SSH/SCP/RSYNC
+    # SSH / SCP / RSYNC
     zstyle ':completion:*:(ssh|scp|rsync):*' tag-order 'hosts:-host:host hosts:-domain:domain hosts:-ipaddr:ip\ address *'
     zstyle ':completion:*:(scp|rsync):*' group-order users files all-files hosts-domain hosts-host hosts-ipaddr
-    zstyle ':completion:*:ssh:*' group-order users hosts-domain hosts-host users hosts-ipaddr
+    zstyle ':completion:*:ssh:*' group-order users hosts-domain hosts-host hosts-ipaddr
     zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' loopback ip6-loopback localhost ip6-localhost broadcasthost
     zstyle ':completion:*:(ssh|scp|rsync):*:hosts-domain' ignored-patterns '<->.<->.<->.<->' '^[-[:alnum:]]##(.[-[:alnum:]]##)##' '*@*'
     zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
 }
 # }}}
-# }}}
-# {{{Functions
-test_cmd_pre() { # {{{
-    command -v "$1" >/dev/null
-} # }}}
-test_cmd() { # {{{
-    test_cmd_pre "$1" && echo 'yes' || echo 'no'
-} # }}}
-# {{{FUZZY_FINDER
-# fuzzy match dirs and cd
-cdf() {
-    local dir
-    dir=$(find ${1:-.} -path '*/\.*' -prune \
-        -o -type d -print 2> /dev/null | "$FUZZY_FINDER") &&
-        cd "$dir"
-    }
-# include hidden dirs
-cdf-all() {
-    local dir
-    dir=$(find ${1:-.} -type d 2> /dev/null | grep -v ".git/" | "$FUZZY_FINDER") && cd "$dir"
-}
-# job to fore
-job-fore() {
-    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FUZZY_FINDER" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
-    fg %"$JOB_ID"
-}
-
-# job to back
-job-back() {
-    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FUZZY_FINDER" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
-    bg %"$JOB_ID"
-}
-
-# job kill
-job-kill() {
-    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FUZZY_FINDER" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
-    kill %"$JOB_ID"
-}
-# }}}
-install-fzf() { # {{{
-    _architecture=""
-    case "$(uname -m)" in
-      i386)     _architecture="x86" ;;
-      i686)     _architecture="x86" ;;
-      x86_64)   _architecture="amd64" ;;
-      *)        _architecture="$(uname -m)" ;;
-    esac
-    _download_url=$(
-    curl -sL https://api.github.com/repos/junegunn/fzf/releases/latest |\
-        grep -e 'https://github.com.*zip' -e 'https://github.com.*tar.gz' |\
-        sed -e 's/.*https/https/' -e 's/".*$//' |\
-        grep -i "$(uname)" |\
-        grep "${_architecture}"
-    )
-    mkdir -p ~/.local/bin
-    if command -v proxychains4 &> /dev/null; then
-        proxychains4 -q curl -L "${_download_url}" |\
-            tar zxv -C ~/.local/bin
-    else
-        curl -L "${_download_url}" |\
-            tar zxv -C ~/.local/bin
-    fi
-    chmod a+x ~/.local/bin/fzf
-    unset _download_url _architecture
-} # }}}
-uninstall-fzf() { # {{{
-    rm -f ~/.local/bin/fzf
-} # }}}
-install-bash-it() { # {{{
-    git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-    bash ~/.bash_it/install.sh
-} # }}}
-rustupdate() { # {{{
-    if [ -x "$(command -v rustup)" ]; then
-        echo "==> Updating rust..."
-        rustup update
-    fi
-    if [ -x "$(command -v cargo-install-update)" ]; then
-        echo "==> Updating packages using cargo install-update..."
-        cargo install-update -ag
-    else
-        echo "==> Updating packages using grep and cargo install..."
-        cargo install $(cargo install --list | grep -E '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
-    fi
-    if [ -x "$(command -v cargo-cache)" ]; then
-        echo "==> Cleaning cache..."
-        cargo cache -a
-    fi
-} # }}}
-pacclean() { # {{{
-    sudo paccache -rf -k 0
-    pacman -Qdtq | sudo pacman -Rns -
-    /usr/bin/ls -d -1 "$HOME/.cache/pikaur/build/"* | grep -v '.*git\>' | xargs sudo rm -rf
-    /usr/bin/ls -d -1 "$HOME/.local/share/pikaur/aur_repos/"* | grep -v '.*git\>' | xargs sudo rm -rf
-    rm -rf ~/.cache/pikaur/pkg
-    sync
-} # }}}
-auto_activate_venv() { # {{{
-  # 检查当前目录下是否有.venv/bin/activate
-  if [[ -f "./.venv/bin/activate" ]]; then
-    # 如果已经激活了虚拟环境，并且不是当前目录下的，则先取消激活
-    if [[ -n "$VIRTUAL_ENV" ]] && [[ "$VIRTUAL_ENV" != "$(pwd)/.venv" ]]; then
-      deactivate
-    fi
-    # 激活当前目录下的虚拟环境
-    source ./.venv/bin/activate
-  else
-    # 如果当前目录下没有.venv/bin/activate，并且已经激活了虚拟环境，我们不做任何操作（不自动去激活）
-    # 用户可以手动去激活
-    # 这里我们选择不自动去激活，所以什么都不做
-    :
-  fi
-}
-add-zsh-hook chpwd auto_activate_venv
-# }}}
-# }}}
-# {{{Alias
-alias du='du -sh'
-alias df='df -h'
-alias cp='cp -p'
-alias cdh='pushd +$( dirs -v | "$FUZZY_FINDER" | grep -o "[[:digit:]]") > /dev/null'
-alias cdh-ls='dirs -vl | "$FUZZY_FINDER"'
-alias cdh-clean='popd +$( dirs -v | "$FUZZY_FINDER" | grep -o "[[:digit:]]") > /dev/null'
-alias cdh-clean-all='dirs -c'
-alias cdr='cd $(git rev-parse --show-toplevel)'
-alias job-='fg %-'
-alias job-ls='jobs -l'
-alias vimprivate="vim -u DEFAULTS --cmd 'set noswapfile' --cmd 'set nobackup' --cmd 'set noundofile' --cmd 'set viminfofile=NONE' --cmd 'set viminfo=' --cmd 'set nomodeline' --cmd 'set noexrc' --noplugin"
-alias vimdefault="vim -u DEFAULTS"
-alias nnn='PAGER= nnn'
-alias pager="${PAGER}"
-alias help='~/repo/dotfiles/scripts/help.sh'
-alias colorscheme='~/repo/dotfiles/scripts/colorscheme.sh'
-alias tmuxinit='~/repo/dotfiles/scripts/tmuxinit.sh'
-alias px='proxychains4 -q'
-alias arch-clean='~/repo/dotfiles/scripts/arch/clean.sh'
-alias javaswitch='~/repo/dotfiles/scripts/javaswitch.sh'
-alias gencomp-help='gencomp'
-alias proxyenv='export HTTP_PROXY=http://127.0.0.1:17080 && export HTTPS_PROXY=http://127.0.0.1:17080 && export http_proxy=http://127.0.0.1:17080 && export https_proxy=http://127.0.0.1:17080'
-alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
-alias rga="rg --hidden --ignore-vcs '--glob=!.git/*'"
-alias man="LANG=zh_CN man"
-alias rp="realpath"
-if [ -x "$(command -v lsd)" ]; then
-    alias ls='lsd'
-    alias tree='lsd --tree'
-elif [ -x "$(command -v exa)" ]; then
-    alias ls='exa'
-    alias tree='exa --tree'
-fi
-if [[ "$(uname)" == "Linux" ]]; then
-    alias open="xdg-open"
-fi
-if [ -x "$(command -v docker-compose)" ]; then
-    alias dcup='docker-compose up -d'
-    alias dcdown='docker-compose down'
-else
-    alias dcup='docker compose up -d'
-    alias dcdown='docker compose down'
-fi
-if [ -x "$(command -v podman-compose)" ]; then
-    alias pmup='podman-compose up -d'
-    alias pmdown='podman-compose down'
-else
-    alias pmup='podman compose up -d'
-    alias pmdown='podman compose down'
-fi
-# }}}
 # {{{Plugins
-# https://github.com/zdharma-continuum/zinit
-# https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview
-# https://github.com/sorin-ionescu/prezto
-[ ! -f "$HOME/.zinit/bin/zinit.zsh" ] && mkdir -p ~/.zinit && git clone --depth 1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
+# Bootstrap Zinit
+if [[ ! -f "$HOME/.zinit/bin/zinit.zsh" ]]; then
+    mkdir -p "$HOME/.zinit"
+    git clone --depth 1 https://github.com/zdharma-continuum/zinit.git "$HOME/.zinit/bin"
+fi
 source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+# {{{powerlevel10k
 PURE_POWER_MODE=modern
-zinit ice atload"source $HOME/.zsh-theme"
+zinit ice depth=1 atload'[[ -r "$HOME/.zsh-theme" ]] && source "$HOME/.zsh-theme"'
 zinit light romkatv/powerlevel10k
-zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light zsh-users/zsh-autosuggestions
-zinit ice wait'0' lucid depth=1; zinit light zsh-users/zsh-history-substring-search
-zinit ice wait'1' lucid depth=1; zinit light ytet5uy4/fzf-widgets
-zinit ice wait'0' lucid depth=1; zinit light urbainvaes/fzf-marks
-zinit ice wait'1' lucid depth=1; zinit light hlissner/zsh-autopair
-zinit ice wait'0' lucid depth=1 \
-    atload"zcomp_init" \
-    atpull"zinit cclear && zinit creinstall sainnhe/zsh-completions"
-zinit light sainnhe/zsh-completions
-zinit snippet "https://testingcf.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/plugins/dotenv/dotenv.plugin.zsh"
-zinit ice pick"pfetch" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/pfetch@master/pfetch"
-zinit ice pick"neofetch" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/neofetch@master/neofetch"
-zinit ice pick"sysz" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/joehillen/sysz@master/sysz"
-zinit ice pick"httpstat" as"program"
-zinit snippet "https://testingcf.jsdelivr.net/gh/b4b4r07/httpstat@master/httpstat"
-zinit ice wait'1' lucid depth=1 \
-    as"program" \
-    pick"bin/*" \
-    atload"export MANPATH=$HOME/.zinit/plugins/sunaku---dasht/man:$MANPATH && source etc/zsh/completions.zsh"
-zinit light sunaku/dasht
-zinit ice pick"pb" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/pb"
-zinit ice pick"_pb" as"completion"; zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/_pb"
-# {{{fast-syntax-highlighting
-FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
 # }}}
-# {{{fzf
-# $ fzf                 # fuzzy search files
-# Tab/Down/S-Tab/Up     # navigate
-# C-s                   # Select items
-# C-p                   # Toggle preview
-export FZF_DEFAULT_COMMAND='fd . --type=file --hidden'
-export FZF_DEFAULT_OPTS="
---multi
---height=50%
---layout=reverse
---prompt='❯ '
---ansi
---tabstop=4
---style=full
---color=dark,fg+:2:bold,selected-fg:1:bold,bg+:-1,hl:4,hl+:4:bold,gutter:0,info:3:bold,border:0,prompt:2,pointer:2,marker:1,header:6
---bind=tab:down,btab:up,ctrl-s:toggle,ctrl-p:toggle-preview
---separator=
-"
+# {{{neofetch
+zinit ice pick"neofetch" as"program"
+zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/neofetch@master/neofetch"
+# }}}
+# {{{sysz
+zinit ice pick"sysz" as"program"
+zinit snippet "https://testingcf.jsdelivr.net/gh/joehillen/sysz@master/sysz"
+# }}}
+# {{{pastebin
+export PB_DOMAIN="share.sainnhe.dev"
+zinit ice pick"pb" as"program"
+zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/pb"
+# }}}
+# {{{completions
+zinit ice wait'0a' lucid pick"_pb" as"completion"
+zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/_pb"
 
-# C-f fzf-widgets
-# C-r history search
-# **<Tab> fuzzy matching path
-[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-bindkey '^F'  fzf-select-widget
-bindkey '^R'  fzf-insert-history
-bindkey -r "^[c"
-bindkey -r "^T"
-# }}}
-# {{{fzf-marks
-# Usage:
-# $ mark        # mark current directory
-# $ fzm         # select marked directories using fzf
-# ^z            # select marked directories using fzf
-# ^d            # delete selected items when in fzf
-FZF_MARKS_FILE="$HOME/.cache/fzf-marks"
-FZF_MARKS_COMMAND="fzf"
-FZF_MARKS_COLOR_RHS="249"
-FZF_MARKS_JUMP="^z"
+zinit ice wait'0a' lucid depth=1 blockf \
+    atload"zcomp_init; zicdreplay" \
+    atpull"zinit cclear && zinit creinstall -q sainnhe/zsh-completions"
+zinit light sainnhe/zsh-completions
 # }}}
 # {{{zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
+zinit ice wait'0b' lucid depth=1 atload"_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
 bindkey '^[z' autosuggest-execute
 bindkey '^[x' autosuggest-execute
 # }}}
 # {{{zsh-history-substring-search
+zinit ice wait'0b' lucid depth=1
+zinit light zsh-users/zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 # }}}
-# {{{pfetch
-export PF_COL1=2
-export PF_COL3=3
+# {{{fzf-widgets
+zinit ice wait'0b' lucid depth=1
+zinit light ytet5uy4/fzf-widgets
+bindkey '^F' fzf-select-widget
+bindkey '^R' fzf-insert-history
+bindkey -r "^[c"
+bindkey -r "^T"
 # }}}
-# {{{pb
-export PB_DOMAIN="share.sainnhe.dev"
+# {{{fzf-marks
+FZF_MARKS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/fzf-marks"
+FZF_MARKS_COMMAND="fzf"
+FZF_MARKS_COLOR_RHS="249"
+FZF_MARKS_JUMP="^z"
+zinit ice wait'0b' lucid depth=1
+zinit light urbainvaes/fzf-marks
+# }}}
+# {{{zsh-autopair
+zinit ice wait'0b' lucid depth=1
+zinit light hlissner/zsh-autopair
+# }}}
+# {{{dotenv
+zinit ice wait'0b' lucid
+zinit snippet "https://testingcf.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/plugins/dotenv/dotenv.plugin.zsh"
+# }}}
+# {{{fast-syntax-highlighting
+zinit ice wait'0c' lucid depth=1 atload'FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"'
+zinit light zdharma-continuum/fast-syntax-highlighting
 # }}}
 # }}}
-# {{{Startup
-# zprof  # 取消注释首行和本行，然后执行 time zsh -i -c exit
-# 若直接执行 zprof，将会测试包括 lazyload 在内的所有启动时间
-# }}}
+# zprof # Uncomment and execute: time zsh -i -c exit
 # vim: set fdm=marker fmr={{{,}}}:
