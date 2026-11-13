@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-source "$HOME/.zsh_envs.d/cuda.zsh"
-source "$HOME/.zsh_envs.d/llama.zsh"
+[ -f "$HOME/.zshenvs/cuda.zsh" ] && source "$HOME/.zshenvs/cuda.zsh"
+[ -f "$HOME/.zshenvs/llama.zsh" ] && source "$HOME/.zshenvs/llama.zsh"
 LOG_DIR="$HOME/ppl/log"
 DATASET_PATH="$HOME/ppl/codebase.raw"
 
