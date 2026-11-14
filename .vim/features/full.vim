@@ -289,7 +289,6 @@ let g:coc_global_extensions = [
       \ 'coc-diagnostic',
       \ 'coc-dictionary',
       \ 'coc-docker',
-      \ 'coc-emmet',
       \ 'coc-emoji',
       \ 'coc-eslint',
       \ 'coc-explorer',
