@@ -107,6 +107,8 @@ _rust() {
 _cpp() {
     sudo port -N install clang-21
     sudo port select clang mp-clang-21
+    _symlink .clang-format
+    _symlink .clang-tidy
 }
 
 _node() {

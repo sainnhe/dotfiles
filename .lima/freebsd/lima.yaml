@@ -30,6 +30,6 @@ mounts:
 user:
   name: sainnhe
   comment: "Sainnhe Park"
-  home: /home/sainnhe
+  home: /home/sainnhe.freebsd
   shell: /bin/sh
   passwordlessSudo: true
