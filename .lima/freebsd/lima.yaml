@@ -1,0 +1,35 @@
+# https://github.com/lima-vm/lima/blob/master/templates/default.yaml
+
+minimumLimaVersion: 2.1.0
+images:
+# https://download.freebsd.org/ftp/releases/VM-IMAGES/
+- location: "https://download.freebsd.org/ftp/releases/VM-IMAGES/15.1-RELEASE/amd64/Latest/FreeBSD-15.1-RELEASE-amd64-BASIC-CLOUDINIT-zfs.raw.xz"
+  arch: "x86_64"
+  digest: "sha256:93011721f334015ce203d43c4d204e7cddc73dc6e3e757532fe67b740dc916b4"
+- location: "https://download.freebsd.org/ftp/releases/VM-IMAGES/15.1-RELEASE/aarch64/Latest/FreeBSD-15.1-RELEASE-arm64-aarch64-BASIC-CLOUDINIT-zfs.raw.xz"
+  arch: "aarch64"
+  digest: "sha256:907ca57e12503124cc48da5d698da139459c60afa023aa12e82729d655e8e15b"
+
+os: FreeBSD
+vmType: qemu
+cpus: 8
+memory: 8GiB
+disk: 128GiB
+
+vmOpts:
+  qemu:
+    cpuType:
+      aarch64: "host"
+      x86_64:  "host"
+
+mounts:
+- location: "~"
+  mountPoint: /home/host
+  writable: true
+
+user:
+  name: sainnhe
+  comment: "Sainnhe Park"
+  home: /home/sainnhe
+  shell: /bin/sh
+  passwordlessSudo: true
