@@ -193,11 +193,11 @@ def build_serve_cmd(flags) -> list[str]:
         "--cache-type-k",
         "q8_0",
         "--cache-type-v",
-        "q8_0",
+        "q4_0",
         "--batch-size",
         "2048",
         "--ubatch-size",
-        "512",
+        "256",
         "--flash-attn",
         "on",
         "--kv-unified",
@@ -243,6 +243,8 @@ def build_serve_cmd(flags) -> list[str]:
 
     if should_use_mlock(flags):
         common_args.extend(["--load-mode", "mlock"])
+    else:
+        common_args.extend(["--load-mode", "none"])
 
     # Model specific args
     model_args: list[str] = []
@@ -254,7 +256,7 @@ def build_serve_cmd(flags) -> list[str]:
                 "--hf-repo",
                 "unsloth/Qwen3.5-9B-MTP-GGUF:UD-Q4_K_XL",
                 "--spec-type",
-                "draft-mtp,ngram-mod",
+                "ngram-mod,draft-mtp",
                 "--spec-draft-n-max",
                 "3",
                 "--spec-ngram-mod-n-match",
@@ -269,21 +271,25 @@ def build_serve_cmd(flags) -> list[str]:
         elif flags.perf == "medium":
             model_args = [
                 "--alias",
-                "Qwen/Qwen3.6-35B-A3B",
+                "Qwen/Qwen3.8-27B",
                 "--hf-repo",
-                "unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-IQ4_NL",
+                "unsloth/Qwen3.8-27B-GGUF:UD-IQ4_XS",
                 "--spec-type",
-                "draft-mtp,ngram-mod",
+                "ngram-mod,draft-mtp",
                 "--spec-draft-n-max",
-                "3",
+                "1",
                 "--spec-ngram-mod-n-match",
-                "24",
+                "8",
                 "--spec-ngram-mod-n-min",
                 "4",
                 "--spec-ngram-mod-n-max",
-                "64",
-                "--image-min-tokens",
-                "1024",
+                "48",
+                "--no-mmproj",
+                "--no-reasoning-preserve",
+                "--fit",
+                "off",
+                "-ot",
+                "blk\\.([3-9]|[1-5][0-9]|6[0-3])\\.ffn_.*=CPU",
             ]
         else:
             model_args = [
@@ -403,7 +409,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/gemma-4-12b-it-GGUF:UD-Q4_K_XL",
                     "--spec-type",
-                    "draft-mtp,ngram-mod",
+                    "ngram-mod,draft-mtp",
                     "--spec-draft-n-max",
                     "3",
                     "--spec-ngram-mod-n-match",
@@ -420,7 +426,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_NL",
                     "--spec-type",
-                    "draft-mtp,ngram-mod",
+                    "ngram-mod,draft-mtp",
                     "--spec-draft-n-max",
                     "3",
                     "--spec-ngram-mod-n-match",
@@ -437,7 +443,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/gemma-4-31B-it-GGUF:UD-Q4_K_XL",
                     "--spec-type",
-                    "draft-mtp,ngram-mod",
+                    "ngram-mod,draft-mtp",
                     "--spec-draft-n-max",
                     "3",
                     "--spec-ngram-mod-n-match",
