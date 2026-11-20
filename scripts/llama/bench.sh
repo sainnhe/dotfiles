@@ -25,7 +25,7 @@ print(json.dumps({
     "model": "Qwen/Qwen3.8-27B",
     "messages": [{"role": "user", "content": prompt}],
     "max_tokens": 512,
-    "temperature": 0.0,
+    "temperature": 1.0,
     "stream": False
 }))
 ' "$REPEAT")
