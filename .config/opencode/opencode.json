@@ -3,7 +3,7 @@
     "update": "notify",
     "shell": "zsh",
     "username": "sainnhe",
-    "model": "tencent-cloud/deepseek-flash",
+    "model": "vertex-maas/deepseek-flash",
     "snapshots": true,
     "formatter": true,
     "permissions": [
@@ -210,30 +210,13 @@
                     "body": {
                         "temperature": 1.0,
                         "top_p": 1.0
-                    }
-                },
-                "glm-flash": {
-                    "modelID": "glm-5.3-flash",
-                    "name": "GLM Flash",
-                    "family": "glm",
-                    "limit": {
-                        "context": 1048576
                     },
-                    "body": {
-                        "temperature": 1.0,
-                        "top_p": 1.0
-                    }
-                },
-                "glm": {
-                    "modelID": "glm-5.3",
-                    "name": "GLM",
-                    "family": "glm",
-                    "limit": {
-                        "context": 1048576
-                    },
-                    "body": {
-                        "temperature": 1.0,
-                        "top_p": 1.0
+                    "cost": {
+                        "input": 2,
+                        "output": 8,
+                        "cache": {
+                            "read": 0.04
+                        }
                     }
                 },
                 "kimi": {
@@ -246,6 +229,14 @@
                     "body": {
                         "temperature": 1.0,
                         "top_p": 0.95
+                    },
+                    "cost": {
+                        "input": 13,
+                        "output": 68,
+                        "cache": {
+                            "read": 1.3,
+                            "write": 13
+                        }
                     }
                 },
                 "hy": {
@@ -258,6 +249,44 @@
                     "body": {
                         "temperature": 0.9,
                         "top_p": 1.0
+                    },
+                    "cost": {
+                        "input": 6,
+                        "output": 18,
+                        "cache": {
+                            "read": 0.3
+                        }
+                    }
+                }
+            }
+        },
+        "vertex-maas": {
+            "name": "Google Vertex AI (MaaS)",
+            "package": "@opencode/ai/providers/openai-compatible",
+            "settings": {
+                "baseURL": "https://aiplatform.googleapis.com/v1/projects/{env:GOOGLE_CLOUD_PROJECT}/locations/global/endpoints/openapi"
+            },
+            "env": [
+                "VERTEX_ACCESS_TOKEN"
+            ],
+            "models": {
+                "deepseek-flash": {
+                    "modelID": "deepseek-ai/deepseek-v4.1-flash-1017-maas",
+                    "name": "Deepseek Flash",
+                    "family": "deepseek",
+                    "limit": {
+                        "context": 1048576
+                    },
+                    "body": {
+                        "temperature": 1.0,
+                        "top_p": 1.0
+                    },
+                    "cost": {
+                        "input": 2.1,
+                        "output": 8.4,
+                        "cache": {
+                            "read": 0.21
+                        }
                     }
                 }
             }
@@ -275,31 +304,6 @@
                     "family": "qwen",
                     "limit": {
                         "context": 131072
-                    },
-                    "body": {
-                        "temperature": 1.0,
-                        "top_p": 0.95,
-                        "top_k": 20,
-                        "min_p": 0.0,
-                        "presence_penalty": 0.0,
-                        "repetition_penalty": 1.0
-                    }
-                }
-            }
-        },
-        "remote": {
-            "name": "Remote",
-            "package": "@opencode/ai/providers/openai-compatible",
-            "settings": {
-                "baseURL": "http://localhost:18080"
-            },
-            "models": {
-                "qwen3.8-27b": {
-                    "modelID": "Qwen/Qwen3.8-27B",
-                    "name": "Qwen3.8 27B",
-                    "family": "qwen",
-                    "limit": {
-                        "context": 196608
                     },
                     "body": {
                         "temperature": 1.0,

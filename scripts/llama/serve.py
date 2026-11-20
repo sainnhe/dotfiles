@@ -328,7 +328,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "--spec-type",
                     "ngram-mod,draft-mtp",
                     "--spec-draft-n-max",
-                    "1",
+                    "2",
                     "--spec-ngram-mod-n-match",
                     "16",
                     "--spec-ngram-mod-n-min",

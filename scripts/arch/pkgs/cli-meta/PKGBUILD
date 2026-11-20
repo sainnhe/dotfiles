@@ -1,7 +1,7 @@
 # Maintainer: Sainnhe Park <i@sainnhe.dev>
 pkgname=cli-meta
 pkgdesc='Meta package to install some CLI components'
-pkgver=2026.11.14
+pkgver=2026.11.20
 pkgrel=1
 arch=(any)
 url='https://www.sainnhe.dev/'
@@ -134,6 +134,7 @@ depends=(base
          pspg
          # Other
          azure-cli
+         google-cloud-cli
          opencode
      )
 
