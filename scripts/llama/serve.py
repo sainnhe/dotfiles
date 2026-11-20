@@ -180,7 +180,6 @@ def build_serve_cmd(flags) -> list[str]:
         ctx_size = str(int(flags.context_size * 1024))
     else:
         ctx_size = str(base_ctx * scale)
-    threads = get_thread_num()
 
     # Build common args
     common_args: list[str] = [
@@ -203,8 +202,6 @@ def build_serve_cmd(flags) -> list[str]:
         "--kv-unified",
         "--n-gpu-layers",
         str(flags.ngl),
-        "--threads",
-        str(threads),
         "--parallel",
         str(flags.parallel),
         "--jinja",
@@ -563,7 +560,7 @@ def build_serve_cmd(flags) -> list[str]:
 
     serve_cmd = ["llama-server"] + common_args + model_args
     if should_use_mlock(flags):
-        serve_cmd = ["taskset", "-c", "0-" + str(threads - 1)] + serve_cmd
+        serve_cmd = ["taskset", "-c", "0-" + str(get_thread_num() - 1)] + serve_cmd
 
     return serve_cmd
 
