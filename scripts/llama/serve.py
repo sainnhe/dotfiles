@@ -292,23 +292,44 @@ def build_serve_cmd(flags) -> list[str]:
                 "blk\\.([3-9]|[1-5][0-9]|6[0-3])\\.ffn_.*=CPU",
             ]
         else:
-            model_args = [
-                "--alias",
-                "Qwen/Qwen3.8-27B",
-                "--hf-repo",
-                "unsloth/Qwen3.8-27B-GGUF:UD-IQ4_XS",
-                "--spec-type",
-                "draft-mtp,ngram-mod",
-                "--spec-draft-n-max",
-                "3",
-                "--spec-ngram-mod-n-match",
-                "24",
-                "--spec-ngram-mod-n-min",
-                "4",
-                "--spec-ngram-mod-n-max",
-                "64",
-                "--no-mmproj",
-            ]
+            if flags.task == "fim":
+                model_args = [
+                    #  "--alias",
+                    #  "Qwen3-Coder-30B-A3B-Instruct",
+                    #  "--hf-repo",
+                    #  "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:UD-Q4_K_XL",
+                    "--alias",
+                    "Qwen/Qwen3-Coder-Next",
+                    "--hf-repo",
+                    "unsloth/Qwen3-Coder-Next-GGUF:UD-Q3_K_M",
+                    "--spec-type",
+                    "ngram-mod",
+                    "--spec-ngram-mod-n-match",
+                    "24",
+                    "--spec-ngram-mod-n-min",
+                    "4",
+                    "--spec-ngram-mod-n-max",
+                    "64",
+                    "--no-mmproj",
+                ]
+            else:
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3.8-27B",
+                    "--hf-repo",
+                    "unsloth/Qwen3.8-27B-GGUF:UD-IQ4_XS",
+                    "--spec-type",
+                    "draft-mtp,ngram-mod",
+                    "--spec-draft-n-max",
+                    "3",
+                    "--spec-ngram-mod-n-match",
+                    "24",
+                    "--spec-ngram-mod-n-min",
+                    "4",
+                    "--spec-ngram-mod-n-max",
+                    "64",
+                    "--no-mmproj",
+                ]
     elif flags.model == "seed":
         if flags.task == "fim":
             # Modified version of mradermacher/Seed-Coder-8B-Base-i1-GGUF
