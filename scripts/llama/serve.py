@@ -193,7 +193,7 @@ def build_serve_cmd(flags) -> list[str]:
         "--cache-type-k",
         "q8_0",
         "--cache-type-v",
-        "q4_0",
+        "q8_0",
         "--batch-size",
         "2048",
         "--ubatch-size",
