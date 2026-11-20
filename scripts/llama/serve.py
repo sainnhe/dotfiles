@@ -249,50 +249,40 @@ def build_serve_cmd(flags) -> list[str]:
     # Model specific args
     model_args: list[str] = []
     if flags.model == "qwen":
-        if flags.perf == "low":
-            model_args = [
-                "--alias",
-                "Qwen/Qwen3.5-9B",
-                "--hf-repo",
-                "unsloth/Qwen3.5-9B-MTP-GGUF:UD-Q4_K_XL",
-                "--spec-type",
-                "ngram-mod,draft-mtp",
-                "--spec-draft-n-max",
-                "3",
-                "--spec-ngram-mod-n-match",
-                "24",
-                "--spec-ngram-mod-n-min",
-                "4",
-                "--spec-ngram-mod-n-max",
-                "64",
-                "--image-min-tokens",
-                "1024",
-            ]
-        elif flags.perf == "medium":
-            model_args = [
-                "--alias",
-                "Qwen/Qwen3.8-27B",
-                "--hf-repo",
-                "unsloth/Qwen3.8-27B-GGUF:UD-IQ4_XS",
-                "--spec-type",
-                "ngram-mod,draft-mtp",
-                "--spec-draft-n-max",
-                "1",
-                "--spec-ngram-mod-n-match",
-                "8",
-                "--spec-ngram-mod-n-min",
-                "4",
-                "--spec-ngram-mod-n-max",
-                "48",
-                "--no-mmproj",
-                "--no-reasoning-preserve",
-                "--fit",
-                "off",
-                "-ot",
-                "blk\\.([3-9]|[1-5][0-9]|6[0-3])\\.ffn_.*=CPU",
-            ]
-        else:
-            if flags.task == "fim":
+        if flags.task == "fim":
+            if flags.perf == "low":
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen2.5-Coder-7B-Instruct",
+                    "--hf-repo",
+                    "unsloth/Qwen2.5-Coder-7B-Instruct-GGUF:Q4_K_M",
+                    "--spec-type",
+                    "ngram-mod",
+                    "--spec-ngram-mod-n-match",
+                    "24",
+                    "--spec-ngram-mod-n-min",
+                    "4",
+                    "--spec-ngram-mod-n-max",
+                    "64",
+                    "--no-mmproj",
+                ]
+            elif flags.perf == "medium":
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen2.5-Coder-14B-Instruct",
+                    "--hf-repo",
+                    "unsloth/Qwen2.5-Coder-14B-Instruct-GGUF:Q4_K_M",
+                    "--spec-type",
+                    "ngram-mod",
+                    "--spec-ngram-mod-n-match",
+                    "24",
+                    "--spec-ngram-mod-n-min",
+                    "4",
+                    "--spec-ngram-mod-n-max",
+                    "64",
+                    "--no-mmproj",
+                ]
+            else:
                 model_args = [
                     #  "--alias",
                     #  "Qwen3-Coder-30B-A3B-Instruct",
@@ -311,6 +301,49 @@ def build_serve_cmd(flags) -> list[str]:
                     "--spec-ngram-mod-n-max",
                     "64",
                     "--no-mmproj",
+                ]
+        else:
+            if flags.perf == "low":
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3.5-9B",
+                    "--hf-repo",
+                    "unsloth/Qwen3.5-9B-MTP-GGUF:UD-Q4_K_XL",
+                    "--spec-type",
+                    "ngram-mod,draft-mtp",
+                    "--spec-draft-n-max",
+                    "3",
+                    "--spec-ngram-mod-n-match",
+                    "24",
+                    "--spec-ngram-mod-n-min",
+                    "4",
+                    "--spec-ngram-mod-n-max",
+                    "64",
+                    "--image-min-tokens",
+                    "1024",
+                ]
+            elif flags.perf == "medium":
+                model_args = [
+                    "--alias",
+                    "Qwen/Qwen3.8-27B",
+                    "--hf-repo",
+                    "unsloth/Qwen3.8-27B-GGUF:UD-IQ4_XS",
+                    "--spec-type",
+                    "ngram-mod,draft-mtp",
+                    "--spec-draft-n-max",
+                    "1",
+                    "--spec-ngram-mod-n-match",
+                    "8",
+                    "--spec-ngram-mod-n-min",
+                    "4",
+                    "--spec-ngram-mod-n-max",
+                    "48",
+                    "--no-mmproj",
+                    "--no-reasoning-preserve",
+                    "--fit",
+                    "off",
+                    "-ot",
+                    "blk\\.([3-9]|[1-5][0-9]|6[0-3])\\.ffn_.*=CPU",
                 ]
             else:
                 model_args = [
