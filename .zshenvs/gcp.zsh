@@ -1,0 +1,2 @@
+export GOOGLE_CLOUD_PROJECT=
+export GOOGLE_CLOUD_LOCATION=global
