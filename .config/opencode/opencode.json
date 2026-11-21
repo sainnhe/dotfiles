@@ -3,7 +3,7 @@
     "update": "notify",
     "shell": "zsh",
     "username": "sainnhe",
-    "model": "vertex-maas/deepseek-flash",
+    "model": "google-vertex/deepseek-flash",
     "snapshots": true,
     "formatter": true,
     "permissions": [
@@ -260,15 +260,7 @@
                 }
             }
         },
-        "vertex-maas": {
-            "name": "Google Vertex AI (MaaS)",
-            "package": "@opencode/ai/providers/openai-compatible",
-            "settings": {
-                "baseURL": "https://aiplatform.googleapis.com/v1/projects/{env:GOOGLE_CLOUD_PROJECT}/locations/global/endpoints/openapi"
-            },
-            "env": [
-                "VERTEX_ACCESS_TOKEN"
-            ],
+        "google-vertex": {
             "models": {
                 "deepseek-flash": {
                     "modelID": "deepseek-ai/deepseek-v4.1-flash-1017-maas",

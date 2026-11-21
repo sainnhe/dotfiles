@@ -68,7 +68,6 @@ if [[ "$OSTYPE" == linux* ]]; then
 fi
 # }}}
 # {{{Functions
-zmodload zsh/datetime
 cdh() { # {{{
     local idx
     idx=$(dirs -v | fzf | awk '{print $1}')
@@ -123,21 +122,6 @@ pacclean() { # {{{
 
     rm -rf "$HOME/.cache/pikaur/pkg"
     sync
-} # }}}
-opencode() { # {{{
-    local now=$EPOCHSECONDS
-    if [[ -z "$VERTEX_ACCESS_TOKEN" || -z "$VERTEX_TOKEN_EXPIRES_AT" || $now -ge $VERTEX_TOKEN_EXPIRES_AT ]]; then
-        echo "==> Refreshing gcloud auth token..."
-        local token
-        if token="$(gcloud auth application-default print-access-token)" && [[ -n "$token" ]]; then
-            export VERTEX_ACCESS_TOKEN="$token"
-            export VERTEX_TOKEN_EXPIRES_AT=$((now + 3000))
-        else
-            echo "Error: Failed to get gcloud ADC access token." >&2
-            return 1
-        fi
-    fi
-    command opencode "$@"
 } # }}}
 _auto_activate_venv() { # {{{
     local venv_dir
