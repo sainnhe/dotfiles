@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 
 import argparse
+import logging
 import os
 import platform
-import subprocess
-from pathlib import Path
 import re
-import resource
-import logging
+import subprocess
 import sys
+from pathlib import Path
 
 
 class ColoredFormatter(logging.Formatter):
@@ -48,25 +47,48 @@ def setup_logger():
 logger = setup_logger()
 
 
-def get_cache_dir():
+def get_cache_dir() -> Path:
     if platform.system() == "Darwin":
         return Path.home() / "Library/Caches/llama.cpp"
     return Path.home() / ".cache" / "llama.cpp"
 
 
-def get_thread_num():
+def get_thread_num() -> int:
     if platform.system() == "Darwin":
         return int(
             subprocess.check_output(
                 ["sysctl", "-n", "hw.perflevel0.logicalcpu"]
             ).strip()
         )
-    else:
-        return os.cpu_count() // 2
+    return max(1, (os.cpu_count() or 2) // 2)
 
 
-def download_model_if_not_exist(url, path):
-    path = Path(path)
+def get_vram_mib() -> int:
+    try:
+        out = subprocess.check_output(
+            ["nvidia-smi", "--query-gpu=memory.total", "--format=csv,noheader,nounits"],
+            stderr=subprocess.DEVNULL,
+            text=True,
+        )
+        return int(out.strip().splitlines()[0])
+    except Exception:
+        return 0
+
+
+def get_avail_ram_mib() -> int:
+    try:
+        meminfo = {}
+        with open("/proc/meminfo", "r") as f:
+            for line in f:
+                parts = line.split()
+                if len(parts) >= 2:
+                    meminfo[parts[0].rstrip(":")] = int(parts[1]) // 1024
+        return meminfo.get("MemAvailable", meminfo.get("MemTotal", 32768))
+    except Exception:
+        return 32768
+
+
+def download_model_if_not_exist(url: str, path: Path):
     if path.exists():
         return
 
@@ -74,30 +96,9 @@ def download_model_if_not_exist(url, path):
     logger.info(f"Downloading custom model to {path}...")
     part_path = path.with_suffix(".part")
 
-    # Download using curl, supports resuming
     cmd = ["curl", "-fSL", "-C", "-", "-o", str(part_path), url]
-    subprocess.run(cmd, check=True)  # Raise exception when failed
+    subprocess.run(cmd, check=True)
     part_path.rename(path)
-
-
-def setup_memlock_limit():
-    if platform.system() != "Linux":
-        return
-
-    logger.info("Adjusting memory lock limits (ulimit -l)...")
-    try:
-        # Set both soft and hard limits to infinity
-        limit = resource.RLIM_INFINITY
-        resource.setrlimit(resource.RLIMIT_MEMLOCK, (limit, limit))
-        logger.info("Memory lock limit set to UNLIMITED.")
-    except (ValueError, PermissionError) as e:
-        soft, hard = resource.getrlimit(resource.RLIMIT_MEMLOCK)
-        logger.error(f"Could not set ulimit to unlimited: {e}")
-        logger.error(f"Current limits: Soft={soft}, Hard={hard}")
-        logger.error("Add the following lines to /etc/security/limits.conf and reboot:")
-        print("* soft memlock unlimited")
-        print("* hard memlock unlimited")
-        logger.error('You can verify ulimit via "ulimit -Hl"')
 
 
 def setup_huge_pages():
@@ -107,8 +108,7 @@ def setup_huge_pages():
     def get_current_setting(path):
         try:
             with open(path, "r") as f:
-                content = f.read().strip()
-                match = re.search(r"\[(.*?)\]", content)
+                match = re.search(r"\[(.*?)\]", f.read().strip())
                 return match.group(1) if match else None
         except FileNotFoundError:
             return None
@@ -116,13 +116,9 @@ def setup_huge_pages():
     enabled_path = "/sys/kernel/mm/transparent_hugepage/enabled"
     defrag_path = "/sys/kernel/mm/transparent_hugepage/defrag"
 
-    # Read current system states
     current_enabled = get_current_setting(enabled_path)
     current_defrag = get_current_setting(defrag_path)
 
-    # Validation criteria:
-    # 1. 'enabled' should be 'always' or 'madvise' (llama.cpp uses madvise internally)
-    # 2. 'defrag' should be 'always' to prevent latency spikes during MoE inference
     enabled_ok = current_enabled in ["always", "madvise"]
     defrag_ok = current_defrag == "always"
 
@@ -132,7 +128,6 @@ def setup_huge_pages():
         )
         return
 
-    # Log specific missing requirements
     logger.warning("Huge Pages configuration needs update:")
     if not enabled_ok:
         logger.warning(
@@ -142,16 +137,11 @@ def setup_huge_pages():
         logger.warning(f"'defrag' is currently [{current_defrag}], expected [always]")
 
     logger.warning("Requesting sudo privileges to update kernel memory settings...")
-
-    # We use 'madvise' for enabled as it is safer for system-wide stability
-    # while still allowing llama.cpp (which calls madvise) to use Huge Pages.
     cmd = (
         "echo madvise | sudo tee /sys/kernel/mm/transparent_hugepage/enabled && "
         "echo always | sudo tee /sys/kernel/mm/transparent_hugepage/defrag"
     )
-
     try:
-        # Run the command through shell to support the pipe and sudo tee
         subprocess.run(cmd, shell=True, check=True, capture_output=True)
         logger.info("Linux performance optimization applied successfully!")
     except subprocess.CalledProcessError:
@@ -161,94 +151,43 @@ def setup_huge_pages():
         print(cmd)
 
 
-def should_use_mlock(flags):
+def needs_cpu_offload(flags, is_high_vram: bool) -> bool:
+    if platform.system() != "Linux":
+        return False
+    if is_high_vram:
+        return flags.ngl != -1
     conds = [
-        flags.model == "inkling" and flags.perf != "high",
-        flags.model == "qwen" and flags.task != "fim" and flags.perf != "high",
+        flags.model == "inkling",
+        flags.model == "qwen" and flags.task != "fim" and flags.perf != "low",
     ]
-    cond = False
-    for c in conds:
-        cond = cond or c
-    return (flags.ngl != -1 or cond) and platform.system() == "Linux"
+    return flags.ngl != -1 or any(conds)
 
 
-def build_serve_cmd(flags) -> list[str]:
-    if flags.perf == "low":
-        scale = 1
-    elif flags.perf == "medium":
-        scale = 2
-    else:
-        scale = 4
-    if flags.task == "fim":
-        base_ctx = 8192
-    else:
-        base_ctx = 16384
-    if flags.context_size is not None:
-        ctx_size = str(int(flags.context_size * 1024))
-    else:
-        ctx_size = str(base_ctx * scale)
+def build_serve_cmd(flags, is_high_vram: bool, avail_ram_mib: int) -> list[str]:
+    scale = {"low": 1, "medium": 2, "high": 4}[flags.perf]
+    base_ctx = 8192 if flags.task == "fim" else 16384
+    ctx_size = (
+        int(flags.context_size * 1024)
+        if flags.context_size is not None
+        else base_ctx * scale
+    )
 
-    # Build common args
-    common_args: list[str] = [
-        "--host",
-        "::",
-        "--port",
-        "8080" if flags.task == "fim" else "8081",
-        "--ctx-size",
-        ctx_size,
-        "--cache-type-k",
-        "q8_0",
-        "--cache-type-v",
-        "q8_0" if flags.perf == "high" else "q4_0",
-        "--batch-size",
-        "2048",
-        "--ubatch-size",
-        "256",
-        "--flash-attn",
-        "on",
-        "--kv-unified",
-        "--n-gpu-layers",
-        str(flags.ngl),
-        "--parallel",
-        str(flags.parallel),
-        "--jinja",
-    ]
+    cpu_offload = needs_cpu_offload(flags, is_high_vram)
+    cache_type_v = "q8_0"
 
-    if flags.perf == "low":
-        common_args.extend(
-            [
-                "--temp",
-                "0.7",
-                "--top-k",
-                "50",
-                "--top-p",
-                "0.95",
-                "--min-p",
-                "0.05",
-                "--repeat-penalty",
-                "1.05",
-            ]
-        )
+    if avail_ram_mib >= 48000:
+        cache_ram = "16384"
+        ctx_checkpoints = "32"
+    elif cpu_offload:
+        if ctx_size >= 65536:
+            cache_ram = "2048"
+            ctx_checkpoints = "8"
+        else:
+            cache_ram = "4096"
+            ctx_checkpoints = "16"
     else:
-        common_args.extend(
-            [
-                "--temp",
-                "1.0",
-                "--top-k",
-                "20",
-                "--top-p",
-                "0.95",
-                "--min-p",
-                "0.0",
-                "--repeat-penalty",
-                "1.0",
-            ]
-        )
-
-    if should_use_mlock(flags):
-        common_args.extend(["--load-mode", "mmap+mlock"])
-    else:
-        common_args.extend(["--load-mode", "none"])
+        cache_ram = "8192"
+        ctx_checkpoints = "16"
 
     # Model specific args
     model_args: list[str] = []
@@ -288,10 +227,6 @@ def build_serve_cmd(flags) -> list[str]:
                 ]
             else:
                 model_args = [
-                    #  "--alias",
-                    #  "Qwen3-Coder-30B-A3B-Instruct",
-                    #  "--hf-repo",
-                    #  "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:UD-Q4_K_XL",
                     "--alias",
                     "Qwen/Qwen3-Coder-Next",
                     "--hf-repo",
@@ -326,7 +261,9 @@ def build_serve_cmd(flags) -> list[str]:
                     "--image-min-tokens",
                     "1024",
                 ]
-            elif flags.perf == "medium":
+            elif not is_high_vram:
+                if ctx_size >= 32768:
+                    cache_type_v = "q4_0"
                 model_args = [
                     "--alias",
                     "Qwen/Qwen3.8-27B",
@@ -347,7 +284,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "--fit",
                     "off",
                     "-ot",
-                    "blk\\.([3-9]|[1-5][0-9]|6[0-3])\\.ffn_.*=CPU",
+                    r"blk\.(1[2-9]|[2-5][0-9]|6[0-3])\.ffn_.*=CPU",
                 ]
             else:
                 model_args = [
@@ -356,7 +293,7 @@ def build_serve_cmd(flags) -> list[str]:
                     "--hf-repo",
                     "unsloth/Qwen3.8-27B-GGUF:UD-IQ4_XS",
                     "--spec-type",
-                    "draft-mtp,ngram-mod",
+                    "ngram-mod,draft-mtp",
                     "--spec-draft-n-max",
                     "3",
                     "--spec-ngram-mod-n-match",
@@ -369,8 +306,6 @@ def build_serve_cmd(flags) -> list[str]:
                 ]
     elif flags.model == "seed":
         if flags.task == "fim":
-            # Modified version of mradermacher/Seed-Coder-8B-Base-i1-GGUF
-            # Ref: https://github.com/ggml-org/llama.cpp/issues/17900
             model_path = get_cache_dir() / "custom" / "Seed-Coder-8B-Base.gguf"
             download_model_if_not_exist(
                 "https://ciscai-gguf-editor.hf.space/download/mradermacher/Seed-Coder-8B-Base-i1-GGUF/Seed-Coder-8B-Base.i1-IQ4_NL.gguf?add=%5B%22tokenizer.ggml.fim_mid_token_id%22,4,126%5D&add=%5B%22tokenizer.ggml.fim_pre_token_id%22,4,124%5D&add=%5B%22tokenizer.ggml.fim_suf_token_id%22,4,125%5D",
@@ -384,31 +319,30 @@ def build_serve_cmd(flags) -> list[str]:
                 "--spm-infill",
                 "--spec-default",
             ]
+        elif flags.perf == "low":
+            model_args = [
+                "--alias",
+                "ByteDance-Seed/Seed-Coder-8B-Reasoning",
+                "--hf-repo",
+                "unsloth/Seed-Coder-8B-Reasoning-GGUF:IQ4_NL",
+                "--spec-default",
+            ]
+        elif flags.perf == "medium":
+            model_args = [
+                "--alias",
+                "ByteDance-Seed/Seed-OSS-36B-Instruct",
+                "--hf-repo",
+                "unsloth/Seed-OSS-36B-Instruct-GGUF:IQ4_NL",
+                "--spec-default",
+            ]
         else:
-            if flags.perf == "low":
-                model_args = [
-                    "--alias",
-                    "ByteDance-Seed/Seed-Coder-8B-Reasoning",
-                    "--hf-repo",
-                    "unsloth/Seed-Coder-8B-Reasoning-GGUF:IQ4_NL",
-                    "--spec-default",
-                ]
-            elif flags.perf == "medium":
-                model_args = [
-                    "--alias",
-                    "ByteDance-Seed/Seed-OSS-36B-Instruct",
-                    "--hf-repo",
-                    "unsloth/Seed-OSS-36B-Instruct-GGUF:IQ4_NL",
-                    "--spec-default",
-                ]
-            else:
-                model_args = [
-                    "--alias",
-                    "ByteDance-Seed/Seed-OSS-36B-Instruct",
-                    "--hf-repo",
-                    "unsloth/Seed-OSS-36B-Instruct-GGUF:UD-Q8_K_XL",
-                    "--spec-default",
-                ]
+            model_args = [
+                "--alias",
+                "ByteDance-Seed/Seed-OSS-36B-Instruct",
+                "--hf-repo",
+                "unsloth/Seed-OSS-36B-Instruct-GGUF:UD-Q8_K_XL",
+                "--spec-default",
+            ]
     elif flags.model == "deepseek":
         if flags.task == "fim":
             model_args = [
@@ -429,124 +363,119 @@ def build_serve_cmd(flags) -> list[str]:
     elif flags.model == "glm":
         if flags.task == "fim":
             logger.error("This model family is only supported in chat mode.")
-            exit(1)
+            sys.exit(1)
+        if flags.perf == "low":
+            model_args = [
+                "--alias",
+                "Akicou/GLM-4.7-Flash-REAP-50",
+                "--hf-repo",
+                "Akicou/GLM-4.7-Flash-REAP-50-GGUF:Q4_K_M",
+                "--spec-default",
+            ]
+        elif flags.perf == "medium":
+            model_args = [
+                "--alias",
+                "zai-org/GLM-4.7-Flash",
+                "--hf-repo",
+                "unsloth/GLM-4.7-Flash-GGUF:IQ4_NL",
+                "--spec-default",
+            ]
         else:
-            if flags.perf == "low":
-                model_args = [
-                    "--alias",
-                    "Akicou/GLM-4.7-Flash-REAP-50",
-                    "--hf-repo",
-                    "Akicou/GLM-4.7-Flash-REAP-50-GGUF:Q4_K_M",
-                    "--spec-default",
-                ]
-            elif flags.perf == "medium":
-                model_args = [
-                    "--alias",
-                    "zai-org/GLM-4.7-Flash",
-                    "--hf-repo",
-                    "unsloth/GLM-4.7-Flash-GGUF:IQ4_NL",
-                    "--spec-default",
-                ]
-            else:
-                model_args = [
-                    "--alias",
-                    "zai-org/GLM-4.7-Flash",
-                    "--hf-repo",
-                    "unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL",
-                    "--spec-default",
-                ]
+            model_args = [
+                "--alias",
+                "zai-org/GLM-4.7-Flash",
+                "--hf-repo",
+                "unsloth/GLM-4.7-Flash-GGUF:Q8_K_XL",
+                "--spec-default",
+            ]
     elif flags.model == "gemma":
         if flags.task == "fim":
             logger.error("This model family is only supported in chat mode.")
-            exit(1)
+            sys.exit(1)
+        if flags.perf == "low":
+            model_args = [
+                "--alias",
+                "google/gemma-4-12B-it",
+                "--hf-repo",
+                "unsloth/gemma-4-12b-it-GGUF:UD-Q4_K_XL",
+                "--spec-type",
+                "ngram-mod,draft-mtp",
+                "--spec-draft-n-max",
+                "3",
+                "--spec-ngram-mod-n-match",
+                "16",
+                "--spec-ngram-mod-n-min",
+                "4",
+                "--spec-ngram-mod-n-max",
+                "64",
+            ]
+        elif flags.perf == "medium":
+            model_args = [
+                "--alias",
+                "google/gemma-4-26B-A4B-it",
+                "--hf-repo",
+                "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_NL",
+                "--spec-type",
+                "ngram-mod,draft-mtp",
+                "--spec-draft-n-max",
+                "3",
+                "--spec-ngram-mod-n-match",
+                "16",
+                "--spec-ngram-mod-n-min",
+                "4",
+                "--spec-ngram-mod-n-max",
+                "64",
+            ]
         else:
-            if flags.perf == "low":
-                model_args = [
-                    "--alias",
-                    "google/gemma-4-12B-it",
-                    "--hf-repo",
-                    "unsloth/gemma-4-12b-it-GGUF:UD-Q4_K_XL",
-                    "--spec-type",
-                    "ngram-mod,draft-mtp",
-                    "--spec-draft-n-max",
-                    "3",
-                    "--spec-ngram-mod-n-match",
-                    "16",
-                    "--spec-ngram-mod-n-min",
-                    "4",
-                    "--spec-ngram-mod-n-max",
-                    "64",
-                ]
-            elif flags.perf == "medium":
-                model_args = [
-                    "--alias",
-                    "google/gemma-4-26B-A4B-it",
-                    "--hf-repo",
-                    "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_NL",
-                    "--spec-type",
-                    "ngram-mod,draft-mtp",
-                    "--spec-draft-n-max",
-                    "3",
-                    "--spec-ngram-mod-n-match",
-                    "16",
-                    "--spec-ngram-mod-n-min",
-                    "4",
-                    "--spec-ngram-mod-n-max",
-                    "64",
-                ]
-            else:
-                model_args = [
-                    "--alias",
-                    "google/gemma-4-31B-it",
-                    "--hf-repo",
-                    "unsloth/gemma-4-31B-it-GGUF:UD-Q4_K_XL",
-                    "--spec-type",
-                    "ngram-mod,draft-mtp",
-                    "--spec-draft-n-max",
-                    "3",
-                    "--spec-ngram-mod-n-match",
-                    "16",
-                    "--spec-ngram-mod-n-min",
-                    "4",
-                    "--spec-ngram-mod-n-max",
-                    "64",
-                ]
+            model_args = [
+                "--alias",
+                "google/gemma-4-31B-it",
+                "--hf-repo",
+                "unsloth/gemma-4-31B-it-GGUF:UD-Q4_K_XL",
+                "--spec-type",
+                "ngram-mod,draft-mtp",
+                "--spec-draft-n-max",
+                "3",
+                "--spec-ngram-mod-n-match",
+                "16",
+                "--spec-ngram-mod-n-min",
+                "4",
+                "--spec-ngram-mod-n-max",
+                "64",
+            ]
     elif flags.model == "muse":
         if flags.task == "fim":
             logger.error("This model family is only supported in chat mode.")
-            exit(1)
-        else:
-            model_args = [
-                "--alias",
-                "meta-models/Muse-Glimmer-30B",
-                "--hf-repo",
-                "unsloth/Muse-Glimmer-30B-GGUF:UD-Q4_K_XL",
-                "--spec-default",
-            ]
+            sys.exit(1)
+        model_args = [
+            "--alias",
+            "meta-models/Muse-Glimmer-30B",
+            "--hf-repo",
+            "unsloth/Muse-Glimmer-30B-GGUF:UD-Q4_K_XL",
+            "--spec-default",
+        ]
     elif flags.model == "nemotron":
         if flags.task == "fim":
             logger.error("This model family is only supported in chat mode.")
-            exit(1)
-        else:
-            model_args = [
-                "--alias",
-                "nvidia/Nemotron-Cascade-2-30B-A3B",
-                "--hf-repo",
-                "bartowski/nvidia_Nemotron-Cascade-2-30B-A3B-GGUF:IQ4_XS",
-                "--spec-default",
-            ]
+            sys.exit(1)
+        model_args = [
+            "--alias",
+            "nvidia/Nemotron-Cascade-2-30B-A3B",
+            "--hf-repo",
+            "bartowski/nvidia_Nemotron-Cascade-2-30B-A3B-GGUF:IQ4_XS",
+            "--spec-default",
+        ]
     elif flags.model == "gpt-oss":
         if flags.task == "fim":
             logger.error("This model family is only supported in chat mode.")
-            exit(1)
-        else:
-            model_args = [
-                "--alias",
-                "openai/gpt-oss-20b",
-                "--hf-repo",
-                "unsloth/gpt-oss-20b-GGUF:Q4_K_M",
-                "--spec-default",
-            ]
+            sys.exit(1)
+        model_args = [
+            "--alias",
+            "openai/gpt-oss-20b",
+            "--hf-repo",
+            "unsloth/gpt-oss-20b-GGUF:Q4_K_M",
+            "--spec-default",
+        ]
     elif flags.model == "jb":
         if flags.task == "fim":
             model_args = [
@@ -567,55 +496,117 @@ def build_serve_cmd(flags) -> list[str]:
     elif flags.model == "inkling":
         if flags.task == "fim":
             logger.error("This model family is only supported in chat mode.")
-            exit(1)
-        else:
-            model_args = [
-                "--alias",
-                "thinkingmachines/Inkling-2-Mini",
-                "--hf-repo",
-                "unsloth/Inkling-2-Mini-GGUF:UD-Q4_K_M",
-                "--hf-repo-draft",
-                "unsloth/Inkling-2-Mini-GGUF:Q8_0",
-                "--spec-type",
-                "ngram-mod,draft-dspark",
-                "--spec-draft-n-max",
-                "3",
-                "--spec-ngram-mod-n-match",
-                "16",
-                "--spec-ngram-mod-n-min",
-                "8",
-                "--spec-ngram-mod-n-max",
-                "32",
-            ]
-            if flags.perf != "high":
-                model_args = model_args + [
+            sys.exit(1)
+        model_args = [
+            "--alias",
+            "thinkingmachines/Inkling-2-Mini",
+            "--hf-repo",
+            "unsloth/Inkling-2-Mini-GGUF:UD-Q4_K_M",
+            "--hf-repo-draft",
+            "unsloth/Inkling-2-Mini-GGUF:Q8_0",
+            "--spec-type",
+            "ngram-mod,draft-dspark",
+            "--spec-draft-n-max",
+            "3",
+            "--spec-ngram-mod-n-match",
+            "16",
+            "--spec-ngram-mod-n-min",
+            "8",
+            "--spec-ngram-mod-n-max",
+            "32",
+        ]
+        if not is_high_vram:
+            if ctx_size >= 65536:
+                cache_type_v = "q4_0"
+            model_args.extend(
+                [
                     "--spec-draft-type-k",
                     "q4_0",
                     "--spec-draft-type-v",
                     "q4_0",
                     "--spec-draft-n-ubatch",
-                    "128",
+                    "32",
                     "--spec-draft-ngl",
                     "all",
                     "--no-mmproj",
                     "--fit",
                     "off",
                     "-ot",
-                    "blk\\.([0-7]|1[6-9]|2[0-3])\\.ffn_.*_exps\\.=CPU",
+                    r"blk\.([0-8]|1[6-9]|2[0-3])\.ffn_.*_exps\.=CPU",
                     "--moe-cache-mib",
                     "0",
                     "--moe-cache-cpu-share",
                     "0.7",
-                    "--cache-reuse",
-                    "256",
-                    "--cache-ram",
-                    "2048",
-                    "--ctx-checkpoints",
-                    "8",
                 ]
+            )
+
+    common_args: list[str] = [
+        "--host",
+        "::",
+        "--port",
+        "8080" if flags.task == "fim" else "8081",
+        "--ctx-size",
+        str(ctx_size),
+        "--cache-type-k",
+        "q8_0",
+        "--cache-type-v",
+        cache_type_v,
+        "--batch-size",
+        "2048" if is_high_vram else "1024",
+        "--ubatch-size",
+        "256" if is_high_vram else "128",
+        "--flash-attn",
+        "on",
+        "--kv-unified",
+        "--n-gpu-layers",
+        str(flags.ngl),
+        "--parallel",
+        str(flags.parallel),
+        "--load-mode",
+        "none",
+        "--cache-ram",
+        cache_ram,
+        "--ctx-checkpoints",
+        ctx_checkpoints,
+        "--jinja",
+    ]
+
+    if flags.metrics:
+        common_args.append("--metrics")
+
+    if flags.perf == "low":
+        common_args.extend(
+            [
+                "--temp",
+                "0.7",
+                "--top-k",
+                "50",
+                "--top-p",
+                "0.95",
+                "--min-p",
+                "0.05",
+                "--repeat-penalty",
+                "1.05",
+            ]
+        )
+    else:
+        common_args.extend(
+            [
+                "--temp",
+                "1.0",
+                "--top-k",
+                "20",
+                "--top-p",
+                "0.95",
+                "--min-p",
+                "0.0",
+                "--repeat-penalty",
+                "1.0",
+            ]
+        )
 
     serve_cmd = ["llama-server"] + common_args + model_args
-    if should_use_mlock(flags):
+    if cpu_offload:
         serve_cmd = ["taskset", "-c", "0-" + str(get_thread_num() - 1)] + serve_cmd
 
     return serve_cmd
@@ -627,7 +618,7 @@ def main():
         "-p",
         "--perf",
         choices=["low", "medium", "high"],
-        help="Performace mode",
+        help="Performance mode",
         required=True,
     )
     parser.add_argument(
@@ -679,20 +670,26 @@ def main():
         help="Number of server slots",
         required=False,
     )
+    parser.add_argument(
+        "--metrics",
+        action="store_true",
+        help="Enable Prometheus metrics endpoint",
+        required=False,
+    )
 
     flags = parser.parse_args()
 
-    if should_use_mlock(flags):
-        setup_memlock_limit()
+    vram_mib = get_vram_mib()
+    avail_ram_mib = get_avail_ram_mib()
+    is_high_vram = (vram_mib >= 24000) if vram_mib > 0 else (flags.perf == "high")
+
+    if needs_cpu_offload(flags, is_high_vram):
         setup_huge_pages()
 
-    serve_cmd = build_serve_cmd(flags)
-    print(serve_cmd)
+    serve_cmd = build_serve_cmd(flags, is_high_vram, avail_ram_mib)
+    print(serve_cmd, flush=True)
 
-    try:
-        subprocess.run(serve_cmd)
-    except KeyboardInterrupt:
-        logger.info("Server stopped.")
+    os.execvp(serve_cmd[0], serve_cmd)
 
 
 if __name__ == "__main__":
