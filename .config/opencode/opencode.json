@@ -305,6 +305,20 @@
                         "presence_penalty": 0.0,
                         "repetition_penalty": 1.0
                     }
+                },
+                "inkling-2-mini": {
+                    "modelID": "thinkingmachines/Inkling-2-Mini",
+                    "name": "Inkling 2 Mini",
+                    "family": "inkling",
+                    "limit": {
+                        "context": 131072
+                    },
+                    "body": {
+                        "temperature": 1.0,
+                        "top_p": 1.0,
+                        "top_k": 0,
+                        "min_p": 0.0
+                    }
                 }
             }
         }
