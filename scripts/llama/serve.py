@@ -162,7 +162,14 @@ def setup_huge_pages():
 
 
 def should_use_mlock(flags):
-    return flags.ngl != -1 and platform.system() == "Linux"
+    conds = [
+        flags.model == "inkling" and flags.perf != "high",
+        flags.model == "qwen" and flags.task != "fim" and flags.perf != "high",
+    ]
+    cond = False
+    for c in conds:
+        cond = cond or c
+    return (flags.ngl != -1 or cond) and platform.system() == "Linux"
 
 
 def build_serve_cmd(flags) -> list[str]:
@@ -192,7 +199,7 @@ def build_serve_cmd(flags) -> list[str]:
         "--cache-type-k",
         "q8_0",
         "--cache-type-v",
-        "q8_0",
+        "q8_0" if flags.perf == "high" else "q4_0",
         "--batch-size",
         "2048",
         "--ubatch-size",
@@ -239,7 +246,7 @@ def build_serve_cmd(flags) -> list[str]:
         )
 
     if should_use_mlock(flags):
-        common_args.extend(["--load-mode", "mlock"])
+        common_args.extend(["--load-mode", "mmap+mlock"])
     else:
         common_args.extend(["--load-mode", "none"])
 
@@ -557,6 +564,55 @@ def build_serve_cmd(flags) -> list[str]:
                 "bartowski/Mellum2.1-12B-A2.5B-Thinking-GGUF:IQ4_NL",
                 "--spec-default",
             ]
+    elif flags.model == "inkling":
+        if flags.task == "fim":
+            logger.error("This model family is only supported in chat mode.")
+            exit(1)
+        else:
+            model_args = [
+                "--alias",
+                "thinkingmachines/Inkling-2-Mini",
+                "--hf-repo",
+                "unsloth/Inkling-2-Mini-GGUF:UD-Q4_K_M",
+                "--hf-repo-draft",
+                "unsloth/Inkling-2-Mini-GGUF:Q8_0",
+                "--spec-type",
+                "ngram-mod,draft-dspark",
+                "--spec-draft-n-max",
+                "3",
+                "--spec-ngram-mod-n-match",
+                "16",
+                "--spec-ngram-mod-n-min",
+                "8",
+                "--spec-ngram-mod-n-max",
+                "32",
+            ]
+            if flags.perf != "high":
+                model_args = model_args + [
+                    "--spec-draft-type-k",
+                    "q4_0",
+                    "--spec-draft-type-v",
+                    "q4_0",
+                    "--spec-draft-n-ubatch",
+                    "128",
+                    "--spec-draft-ngl",
+                    "all",
+                    "--no-mmproj",
+                    "--fit",
+                    "off",
+                    "-ot",
+                    "blk\\.([0-7]|1[6-9]|2[0-3])\\.ffn_.*_exps\\.=CPU",
+                    "--moe-cache-mib",
+                    "0",
+                    "--moe-cache-cpu-share",
+                    "0.7",
+                    "--cache-reuse",
+                    "256",
+                    "--cache-ram",
+                    "2048",
+                    "--ctx-checkpoints",
+                    "8",
+                ]
 
     serve_cmd = ["llama-server"] + common_args + model_args
     if should_use_mlock(flags):
@@ -594,6 +650,7 @@ def main():
             "nemotron",
             "gpt-oss",
             "jb",
+            "inkling",
         ],
         help="Model family",
         required=True,
