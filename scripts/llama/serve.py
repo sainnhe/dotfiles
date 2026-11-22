@@ -284,7 +284,7 @@ def build_serve_cmd(flags, is_high_vram: bool, avail_ram_mib: int) -> list[str]:
                     "--fit",
                     "off",
                     "-ot",
-                    r"blk\.(1[2-9]|[2-5][0-9]|6[0-3])\.ffn_.*=CPU",
+                    r"blk\.([7-9]|[1-5][0-9]|6[0-3])\.ffn_.*=CPU",
                 ]
             else:
                 model_args = [
@@ -532,7 +532,7 @@ def build_serve_cmd(flags, is_high_vram: bool, avail_ram_mib: int) -> list[str]:
                     "--fit",
                     "off",
                     "-ot",
-                    r"blk\.([0-8]|1[6-9]|2[0-3])\.ffn_.*_exps\.=CPU",
+                    r"blk\.([0-8]|1[5-9]|2[0-3])\.ffn_.*_exps\.=CPU",
                     "--moe-cache-mib",
                     "0",
                     "--moe-cache-cpu-share",
