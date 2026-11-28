@@ -174,6 +174,8 @@ def build_serve_cmd(flags, is_high_vram: bool, avail_ram_mib: int) -> list[str]:
 
     cpu_offload = needs_cpu_offload(flags, is_high_vram)
     cache_type_v = "q8_0"
+    batch_size = "1024" if is_high_vram else "512"
+    ubatch_size = "256" if is_high_vram else "128"
 
     if avail_ram_mib >= 48000:
         cache_ram = "16384"
@@ -501,7 +503,7 @@ def build_serve_cmd(flags, is_high_vram: bool, avail_ram_mib: int) -> list[str]:
             "--alias",
             "thinkingmachines/Inkling-2-Mini",
             "--hf-repo",
-            "unsloth/Inkling-2-Mini-GGUF:UD-Q4_K_M",
+            "unsloth/Inkling-2-Mini-GGUF:UD-IQ4_XS",
             "--hf-repo-draft",
             "unsloth/Inkling-2-Mini-GGUF:Q8_0",
             "--spec-type",
@@ -516,8 +518,10 @@ def build_serve_cmd(flags, is_high_vram: bool, avail_ram_mib: int) -> list[str]:
             "32",
         ]
         if not is_high_vram:
+            batch_size = "256"
             if ctx_size >= 65536:
                 cache_type_v = "q4_0"
+                ubatch_size = "96"
             model_args.extend(
                 [
                     "--spec-draft-type-k",
@@ -532,7 +536,7 @@ def build_serve_cmd(flags, is_high_vram: bool, avail_ram_mib: int) -> list[str]:
                     "--fit",
                     "off",
                     "-ot",
-                    r"blk\.([0-8]|1[5-9]|2[0-3])\.ffn_.*_exps\.=CPU",
+                    r"token_embd\.weight=CPU,blk\.([0-8]|1[5-9]|2[0-3])\.ffn_.*=CPU",
                     "--moe-cache-mib",
                     "0",
                     "--moe-cache-cpu-share",
@@ -552,9 +556,9 @@ def build_serve_cmd(flags, is_high_vram: bool, avail_ram_mib: int) -> list[str]:
         "--cache-type-v",
         cache_type_v,
         "--batch-size",
-        "2048" if is_high_vram else "1024",
+        batch_size,
         "--ubatch-size",
-        "256" if is_high_vram else "128",
+        ubatch_size,
         "--flash-attn",
         "on",
         "--kv-unified",
