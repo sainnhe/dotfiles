@@ -3,7 +3,7 @@
     "update": "notify",
     "shell": "zsh",
     "username": "sainnhe",
-    "model": "google-vertex/deepseek-flash",
+    "model": "google-vertex/deepseek-ai/deepseek-v4.1-flash-1017-maas",
     "snapshots": true,
     "formatter": true,
     "permissions": [
@@ -255,29 +255,6 @@
                         "output": 18,
                         "cache": {
                             "read": 0.3
-                        }
-                    }
-                }
-            }
-        },
-        "google-vertex": {
-            "models": {
-                "deepseek-flash": {
-                    "modelID": "deepseek-ai/deepseek-v4.1-flash-1017-maas",
-                    "name": "Deepseek Flash",
-                    "family": "deepseek",
-                    "limit": {
-                        "context": 1048576
-                    },
-                    "body": {
-                        "temperature": 1.0,
-                        "top_p": 1.0
-                    },
-                    "cost": {
-                        "input": 2.1,
-                        "output": 8.4,
-                        "cache": {
-                            "read": 0.21
                         }
                     }
                 }
