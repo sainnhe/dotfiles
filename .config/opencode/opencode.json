@@ -186,6 +186,10 @@
                 "timeout": {
                     "startup": 120000
                 }
+            },
+            "rust": {
+                "type": "remote",
+                "url": "https://cratesio-mcp.fly.dev/"
             }
         }
     },
